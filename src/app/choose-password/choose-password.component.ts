@@ -4,6 +4,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Vali
 import { Router } from '@angular/router';
 import { SharedServiceService } from '../shared-service.service'
 import { ActivatedRoute, Params } from '@angular/router';
+import { UtilService } from '../../providers/util.service'
 
 @Component({
   selector: 'app-choose-password',
@@ -14,14 +15,14 @@ export class ChoosePasswordComponent implements OnInit {
   ChangePasswordForm: FormGroup;
   passwordNotMatch: any = '';
   error_messages: any = '';
-  userId:any=''
-  constructor(public formBuilder: FormBuilder, private activatedRoute: ActivatedRoute, public router: Router, public service: SharedServiceService) {
+  userId: any = ''
+  constructor(public formBuilder: FormBuilder, public util: UtilService, private activatedRoute: ActivatedRoute, public router: Router, public service: SharedServiceService) {
     this.setupLoginFormData();
   }
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe(params => {
-      console.log('params',params)
+      console.log('params', params)
       this.userId = params['uid'];
       console.log('uid', this.userId);
     });
@@ -89,7 +90,7 @@ export class ChoosePasswordComponent implements OnInit {
   // Set password
   saveLogin() {
     let params = {
-      "uid": this.userId,
+      "uid": '585',
       "password": this.ChangePasswordForm.value.password
     }
 
@@ -100,11 +101,21 @@ export class ChoosePasswordComponent implements OnInit {
     })
     this.service.setPassword(params, { headers: headers }).then((result) => {
       console.log('result', result);
-      localStorage.setItem("uid", this.userId);
-      localStorage.setItem("passwordSet", 'true');
-      this.router.navigate(['/school-name']);
+      if (result['message'] == "Uid Empty") {
+
+        this.util.openSnackBar(result['message']);
+      }
+
+      else {
+        this.util.openSnackBar(result['message']);
+        localStorage.setItem("uid", this.userId);
+        localStorage.setItem("passwordSet", 'true');
+        this.router.navigate(['/school-name']);
+      }
     })
       .catch(error => {
+        console.log(error, 'error')
+        this.util.openSnackBar(error['message']);
       })
   }
 
