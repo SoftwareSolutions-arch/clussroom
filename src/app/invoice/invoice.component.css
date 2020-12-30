@@ -1,4 +1,13 @@
-.image-loader {
+.image-loader,.spinner-loader {
     display: block;
     margin: auto;
+}
+
+.spinner-loader{
+    margin: 10%;
+}
+
+.error-message{
+    color: red !important;
+    font-size: 1rem !important;
 }

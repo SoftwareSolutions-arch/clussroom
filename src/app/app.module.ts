@@ -16,6 +16,7 @@ import { InvoiceComponent } from './invoice/invoice.component';
 import { SchoolNameComponent } from './school-name/school-name.component';
 import { SubscriptionComponent } from './subscription/subscription.component';
 import { ThanksScreenComponent } from './thanks-screen/thanks-screen.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ThanksScreenComponent } from './thanks-screen/thanks-screen.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

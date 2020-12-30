@@ -3,7 +3,7 @@
 <title>Invoice</title>
 
 <head>
-    <!-- <link rel="icon" href="assets/images/clusroom-fav.png" type="image/png">
+  <!-- <link rel="icon" href="assets/images/clusroom-fav.png" type="image/png">
 	<link rel="stylesheet" href="css/slick.css">
   	<link rel="stylesheet" href="boostrap/css/bootstrap.css">
   	<link rel="stylesheet" href="css/all.css">
@@ -11,158 +11,156 @@
 </head>
 
 <body>
-	<div *ngIf="isImageShow">
-		<img class="image-loader" src="assets/spinner.gif">
-	</div>
+  <div *ngIf="isImageShow">
+    <img class="image-loader" src="assets/spinner.gif">
+  </div>
+  <!-- Header start -->
+  <header id="navbar" role="banner" *ngIf="!isImageShow">
+    <div class=" container">
+      <div class="navbar-header-flex">
+        <div class="navbar-header">
 
+          <section class="site-logo">
+            <a href="/"><img src="assets/images/LOGO.png"></a>
+          </section>
 
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
 
-    <!-- Header start -->
-    <header id="navbar" role="banner" *ngIf="!isImageShow">
-        <div class=" container">
-            <div class="navbar-header-flex">
-                <div class="navbar-header">
-
-                    <section class="site-logo">
-                        <a href="/"><img src="assets/images/LOGO.png"></a>
-                    </section>
-
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                </div>
-
-                <nav role="navigation" id="main-menu">
-                    <ul class="menu menu--main nav navbar-nav">
-
-                        <li class="first">
-                            <a href="/">Home</a>
-                        </li>
-
-                        <li>
-                            <a href="">About us</a>
-                        </li>
-
-                        <li>
-                            <a href="">Contact</a>
-                        </li>
-
-                        <li>
-                            <a href="">Log In</a>
-                        </li>
-
-                        <li class="last">
-                            <a href="">Packages</a>
-                        </li>
-
-                    </ul>
-                </nav>
-            </div>
         </div>
-    </header>
-    <!-- Header end -->
-    <section class="invoice-section" *ngIf="!isImageShow">
-    
-            <div class="container">
-                <div class="invoice-wrapper">
-                    <div class="invoice-details">
-                        <h2>Invoice Detail</h2>
-                        <span>Fill your details for invoice </span>
-                        <form [formGroup]="invoiceForm">
-                            <div class="company-name fieldset">
-                                <label>Company Name</label>
-                                <input formControlName="companyName" type="text">
-                                <!-- <div> -->
-                                <ng-container *ngFor="let error of error_messages.companyName">
-                                  <div class="error-message" *ngIf="invoiceForm.get('companyName').hasError(error.type) &&
+
+        <nav role="navigation" id="main-menu">
+          <ul class="menu menu--main nav navbar-nav">
+
+            <li class="first">
+              <a href="/">Home</a>
+            </li>
+
+            <li>
+              <a href="">About us</a>
+            </li>
+
+            <li>
+              <a href="">Contact</a>
+            </li>
+
+            <li>
+              <a href="">Log In</a>
+            </li>
+
+            <li class="last">
+              <a href="">Packages</a>
+            </li>
+
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <!-- Header end -->
+  <section class="invoice-section" *ngIf="!isImageShow">
+    <div class="container">
+      <div class="invoice-wrapper">
+        <div class="invoice-details">
+          <h2>Invoice Detail</h2>
+          <span>Fill your details for invoice </span>
+          <form [formGroup]="invoiceForm">
+            <div class="company-name fieldset">
+              <label>Company Name</label>
+              <input formControlName="companyName" type="text">
+              <!-- <div> -->
+              <ng-container *ngFor="let error of error_messages.companyName">
+                <div class="error-message" *ngIf="invoiceForm.get('companyName').hasError(error.type) &&
                                     (invoiceForm.get('companyName').dirty || invoiceForm.get('companyName').touched)">
-                                    {{ error.message }}
-                                  </div>
-                                </ng-container>
-                              <!-- </div> -->
-                            </div>
-                            
-                            <div class="flex-curve">
-                                <div class="first-name fieldset">
-                                    <label>First Name</label>
-                                    <input formControlName="firstName" type="text">
-                                    <!-- <div> -->
-                                        <ng-container *ngFor="let error of error_messages.firstName">
-                                          <div class="error-message" *ngIf="invoiceForm.get('firstName').hasError(error.type) &&
+                  {{ error.message }}
+                </div>
+              </ng-container>
+              <!-- </div> -->
+            </div>
+
+            <div class="flex-curve">
+              <div class="first-name fieldset">
+                <label>First Name</label>
+                <input formControlName="firstName" type="text">
+                <!-- <div> -->
+                <ng-container *ngFor="let error of error_messages.firstName">
+                  <div class="error-message"
+                    *ngIf="invoiceForm.get('firstName').hasError(error.type) &&
                                             (invoiceForm.get('firstName').dirty || invoiceForm.get('firstName').touched)">
-                                            {{ error.message }}
-                                          </div>
-                                        </ng-container>
-                                      <!-- </div> -->
-                                </div>
-                                <div class="last-name fieldset">
-                                    <label>Last Name</label>
-                                    <input formControlName="lastName"  type="text">
-                                    <!-- <div> -->
-                                        <ng-container *ngFor="let error of error_messages.lastName">
-                                          <div class="error-message" *ngIf="invoiceForm.get('lastName').hasError(error.type) &&
+                    {{ error.message }}
+                  </div>
+                </ng-container>
+                <!-- </div> -->
+              </div>
+              <div class="last-name fieldset">
+                <label>Last Name</label>
+                <input formControlName="lastName" type="text">
+                <!-- <div> -->
+                <ng-container *ngFor="let error of error_messages.lastName">
+                  <div class="error-message"
+                    *ngIf="invoiceForm.get('lastName').hasError(error.type) &&
                                             (invoiceForm.get('lastName').dirty || invoiceForm.get('lastName').touched)">
-                                            {{ error.message }}
-                                          </div>
-                                        </ng-container>
-                                      <!-- </div> -->
-                                </div>
-                            </div>
-                            <div class="address fieldset">
-                                <label>Address</label>
-                                <input formControlName="address" type="text">
-                                <!-- <div> -->
-                                    <ng-container *ngFor="let error of error_messages.address">
-                                      <div class="error-message" *ngIf="invoiceForm.get('address').hasError(error.type) &&
+                    {{ error.message }}
+                  </div>
+                </ng-container>
+                <!-- </div> -->
+              </div>
+            </div>
+            <div class="address fieldset">
+              <label>Address</label>
+              <input formControlName="address" type="text">
+              <!-- <div> -->
+              <ng-container *ngFor="let error of error_messages.address">
+                <div class="error-message" *ngIf="invoiceForm.get('address').hasError(error.type) &&
                                         (invoiceForm.get('address').dirty || invoiceForm.get('address').touched)">
-                                        {{ error.message }}
-                                      </div>
-                                    </ng-container>
-                                  <!-- </div> -->
-                            </div>
-                            <div class="flex-curve">
-                                <div class="city fieldset">
-                                    <label>City</label>
-                                    <input formControlName="city" type="text">
-                                    <!-- <div> -->
-                                        <ng-container *ngFor="let error of error_messages.city">
-                                          <div class="error-message" *ngIf="invoiceForm.get('city').hasError(error.type) &&
+                  {{ error.message }}
+                </div>
+              </ng-container>
+              <!-- </div> -->
+            </div>
+            <div class="flex-curve">
+              <div class="city fieldset">
+                <label>City</label>
+                <input formControlName="city" type="text">
+                <!-- <div> -->
+                <ng-container *ngFor="let error of error_messages.city">
+                  <div class="error-message" *ngIf="invoiceForm.get('city').hasError(error.type) &&
                                             (invoiceForm.get('city').dirty || invoiceForm.get('city').touched)">
-                                            {{ error.message }}
-                                          </div>
-                                        </ng-container>
-                                      <!-- </div> -->
-                                </div>
-                                <div class="state fieldset">
-                                    <label>State/Province</label>
-                                    <input formControlName="state" type="text">
-                                    <!-- <div> -->
-                                        <ng-container *ngFor="let error of error_messages.state">
-                                          <div class="error-message" *ngIf="invoiceForm.get('state').hasError(error.type) &&
+                    {{ error.message }}
+                  </div>
+                </ng-container>
+                <!-- </div> -->
+              </div>
+              <div class="state fieldset">
+                <label>State/Province</label>
+                <input formControlName="state" type="text">
+                <!-- <div> -->
+                <ng-container *ngFor="let error of error_messages.state">
+                  <div class="error-message" *ngIf="invoiceForm.get('state').hasError(error.type) &&
                                             (invoiceForm.get('state').dirty || invoiceForm.get('state').touched)">
-                                            {{ error.message }}
-                                          </div>
-                                        </ng-container>
-                                      <!-- </div> -->
-                                </div>
-                            </div>
-                            <div class="country fieldset">
-                                <label>Country</label>
-                                <input formControlName="country" type="text">
-                                <div>
-                                    <ng-container *ngFor="let error of error_messages.country">
-                                      <div class="error-message" *ngIf="invoiceForm.get('country').hasError(error.type) &&
+                    {{ error.message }}
+                  </div>
+                </ng-container>
+                <!-- </div> -->
+              </div>
+            </div>
+            <div class="country fieldset">
+              <label>Country</label>
+              <input formControlName="country" type="text">
+              <div>
+                <ng-container *ngFor="let error of error_messages.country">
+                  <div class="error-message" *ngIf="invoiceForm.get('country').hasError(error.type) &&
                                         (invoiceForm.get('country').dirty || invoiceForm.get('country').touched)">
-                                        {{ error.message }}
-                                      </div>
-                                    </ng-container>
-                                  </div>
-                            </div>
-                            <!-- <div class="flex-curve">
+                    {{ error.message }}
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+            <!-- <div class="flex-curve">
                                 <div class="email fieldset">
                                     <label>Email Address</label>
                                     <input formControlName="email" type="email">
@@ -178,154 +176,156 @@
                             </div> -->
 
 
-                            <div class="flex-curve">
-                                <div class="email fieldset">
-                                    <label>Email Address</label>
-                                    <input formControlName="email" type="email">
-                                    <ng-container *ngFor="let error of error_messages.email">
-                                        <div class="error-message" *ngIf="invoiceForm.get('email').hasError(error.type) &&
+            <div class="flex-curve">
+              <div class="email fieldset">
+                <label>Email Address</label>
+                <input formControlName="email" type="email">
+                <ng-container *ngFor="let error of error_messages.email">
+                  <div class="error-message" *ngIf="invoiceForm.get('email').hasError(error.type) &&
                                           (invoiceForm.get('email').dirty || invoiceForm.get('email').touched)">
-                                          {{ error.message }}
-                                        </div>
-                                      </ng-container>
-                                </div>
-                                <div class="second-email fieldset">
-                                    <label>Email Address</label>
-                                    <input type="email" formControlName="cmail">
-                                    <ng-container *ngFor="let error of error_messages.cmail">
-                                        <div class="error-message" *ngIf="invoiceForm.get('cmail').hasError(error.type) &&
+                    {{ error.message }}
+                  </div>
+                </ng-container>
+              </div>
+              <div class="second-email fieldset">
+                <label>Email Address</label>
+                <input type="email" formControlName="cmail">
+                <ng-container *ngFor="let error of error_messages.cmail">
+                  <div class="error-message" *ngIf="invoiceForm.get('cmail').hasError(error.type) &&
                                           (invoiceForm.get('cmail').dirty || invoiceForm.get('cmail').touched)">
-                                          {{ error.message }}
-                                        </div>
-                                      </ng-container>
-                                      <div class="error-message"
-                                      *ngIf="invoiceForm.get('cmail').hasError('equalTo') && invoiceForm.get('cmail').dirty || invoiceForm.get('cmail').hasError('equalTo') && invoiceForm.get('cmail').touched">
-                                      Email Mismatch
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="btn" (click)="next()">Next</button>
-                        </form> 
-                    </div>  
-                    <div class="order-summary"> 
-                        <div class="order-summary-flex">
-                            <h3>Order summary</h3>
-                            <div class="lite-subscription-flex">
-                                <div class="lite-subscription">
-                                    <h5>Lite subscription</h5>
-                                    <span>(at ${{this.invoiceDetails.amount}} monthly)</span>
-                                </div>
-                                <h5>$ {{this.invoiceDetails.amount*10}}</h5>
-                            </div>
-                            <div class="vat-section">
-                                <span>Vat 10% <b class="custom-tooltip" data-toggle="tooltip" title="vat">?</b></span>
-                                <em>$ 12</em>
-                            </div>
-                            <div class="net-total-flex">
-                                <div class="net-total">
-                                    <h6>Net Total</h6>
-                                    <span>(Incl Vat)</span>
-                                </div>
-                                <h5>$ {{this.invoiceDetails.yearly_amount}}</h5>
-                            </div>
-                            <div class="payment-order">
-                                <h3>Payment</h3>
-                                <form [formGroup]="paymentForm">
-                                    <div class="payment-mode">
-                                        <img src="assets/images/visa.png">
-                                        <img src="assets/images/mastercard.png">
-                                        <img src="assets/images/american.png">
-                                    </div>
-                                    <div class="cardholder fieldset">
-                                        <label>Cardholder name</label>
-                                        <input type="text" formControlName="cardHolderName">
-                                        <ng-container *ngFor="let error of error_messages.cardHolderName">
-                                            <div class="error-message" *ngIf="paymentForm.get('cardHolderName').hasError(error.type) &&
-                                              (paymentForm.get('cardHolderName').dirty || paymentForm.get('cardHolderName').touched)">
-                                              {{ error.message }}
-                                            </div>
-                                          </ng-container>
-                                    </div>
-                                    <div class="cardnumber fieldset">
-                                        <label>Card Number</label>
-                                        <input formControlName="cardNumber" type="number">
-                                        <!-- <div> -->
-                                            <ng-container *ngFor="let error of error_messages.cardNumber">
-                                              <div class="error-message" *ngIf="paymentForm.get('cardNumber').hasError(error.type) &&
-                                                (paymentForm.get('cardNumber').dirty || paymentForm.get('cardNumber').touched)">
-                                                {{ error.message }}
-                                              </div>
-                                            </ng-container>
-                                          <!-- </div> -->
-                                    </div>
-                                    <div class="payment-flex-curve">
-                                        <div class="expire-date fieldset">
-                                            <label>Expire date</label>
-                                            <select name="date" id="date">
-                                                <option value=""></option>
-                                                <option value="05/2021">05/2021</option>
-                                                <option value="05/2022">05/2022</option>
-                                                <option value="05/2023">05/2023</option>
-                                            </select>
-                                        </div>
-                                        <div class="cvv fieldset">
-                                            <label>CVV <b class="custom-tooltip" data-toggle="tooltip"
-                                                    title="CVV">?</b></label>
-                                            <input type="number" formControlName="cvv">
-                                            <ng-container *ngFor="let error of error_messages.cvv">
-                                                <div class="error-message" *ngIf="paymentForm.get('cvv').hasError(error.type) &&
-                                                  (paymentForm.get('cvv').dirty || paymentForm.get('cvv').touched)">
-                                                  {{ error.message }}
-                                                </div>
-                                              </ng-container>
-                                        </div>
-                                    </div>
-                                    <div class="button-wrapper">
-                                        <button class="btn" (click)="submit()">Make Payment</button>
-                                        <button class="-back-btn">Back</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+                    {{ error.message }}
+                  </div>
+                </ng-container>
+                <div class="error-message"
+                  *ngIf="invoiceForm.get('cmail').hasError('equalTo') && invoiceForm.get('cmail').dirty || invoiceForm.get('cmail').hasError('equalTo') && invoiceForm.get('cmail').touched">
+                  Email Mismatch
                 </div>
+              </div>
             </div>
- 
-
-    </section>
-
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="boostrap/js/bootstrap.js"></script>
-    <script type="text/javascript" src="js/slick.min.js"></script>
-    <script type="text/javascript" src="js/script.js"></script>
-
-
-    <footer *ngIf="!isImageShow">
-        <div class="container">
-            <div class="footer-flex">
-                <div class="footer-caption">
-                    <ul>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Pricing</a></li>
-                        <li><a href="#">Contact us</a></li>
-                    </ul>
-                    <p>copyright clusroom 2020 - terms & condition privacy policy</p>
-                </div>
-                <div class="footer-social">
-                    <a href="#">
-                        <img src="assets/images/twitter.png">
-                    </a>
-                    <a href="#">
-                        <img src="assets/images/facebook.png">
-                    </a>
-                    <a href="#">
-                        <img src="assets/images/instagram.png">
-                    </a>
-                </div>
-            </div>
+            <button class="btn" (click)="next()">Next</button>
+          </form>
         </div>
-    </footer>
+        <div class="order-summary">
+          <div class="order-summary-flex">
+            <h3>Order summary</h3>
+            <div class="lite-subscription-flex">
+              <div class="lite-subscription">
+                <h5>Lite subscription</h5>
+                <span>(at ${{this.invoiceDetails.amount}} monthly)</span>
+              </div>
+              <h5>$ {{this.invoiceDetails.amount*10}}</h5>
+            </div>
+            <div class="vat-section">
+              <span>Vat 10% <b class="custom-tooltip" data-toggle="tooltip" title="vat">?</b></span>
+              <em>$ 12</em>
+            </div>
+            <div class="net-total-flex">
+              <div class="net-total">
+                <h6>Net Total</h6>
+                <span>(Incl Vat)</span>
+              </div>
+              <h5>$ {{this.invoiceDetails.yearly_amount}}</h5>
+            </div>
+            <div class="payment-order">
+              <h3>Payment</h3>
+              <form [formGroup]="paymentForm">
+                <div class="payment-mode">
+                  <img src="assets/images/visa.png">
+                  <img src="assets/images/mastercard.png">
+                  <img src="assets/images/american.png">
+                </div>
+                <div class="cardholder fieldset">
+                  <label>Cardholder name</label>
+                  <input type="text" formControlName="cardHolderName">
+                  <ng-container *ngFor="let error of error_messages.cardHolderName">
+                    <div class="error-message"
+                      *ngIf="paymentForm.get('cardHolderName').hasError(error.type) &&
+                                              (paymentForm.get('cardHolderName').dirty || paymentForm.get('cardHolderName').touched)">
+                      {{ error.message }}
+                    </div>
+                  </ng-container>
+                </div>
+                <div class="cardnumber fieldset">
+                  <label>Card Number</label>
+                  <input formControlName="cardNumber" type="number">
+                  <!-- <div> -->
+                  <ng-container *ngFor="let error of error_messages.cardNumber">
+                    <div class="error-message"
+                      *ngIf="paymentForm.get('cardNumber').hasError(error.type) &&
+                                                (paymentForm.get('cardNumber').dirty || paymentForm.get('cardNumber').touched)">
+                      {{ error.message }}
+                    </div>
+                  </ng-container>
+                  <!-- </div> -->
+                </div>
+                <div class="payment-flex-curve">
+                  <div class="expire-date fieldset">
+                    <label>Expire date</label>
+                    <select name="date" id="date">
+                      <option value=""></option>
+                      <option value="05/2021">05/2021</option>
+                      <option value="05/2022">05/2022</option>
+                      <option value="05/2023">05/2023</option>
+                    </select>
+                  </div>
+                  <div class="cvv fieldset">
+                    <label>CVV <b class="custom-tooltip" data-toggle="tooltip" title="CVV">?</b></label>
+                    <input type="number" formControlName="cvv">
+                    <ng-container *ngFor="let error of error_messages.cvv">
+                      <div class="error-message" *ngIf="paymentForm.get('cvv').hasError(error.type) &&
+                                                  (paymentForm.get('cvv').dirty || paymentForm.get('cvv').touched)">
+                        {{ error.message }}
+                      </div>
+                    </ng-container>
+                  </div>
+                </div>
+                <div class="button-wrapper">
+                  <button class="btn" (click)="submit()" *ngIf="!isSpinnerShow">Make Payment</button>
+                  <div class="spinner-loader" *ngIf="isSpinnerShow">
+                    <mat-progress-spinner mode="indeterminate" value='66' diameter="45"></mat-progress-spinner>
+                  </div>
+                  <button class="-back-btn">Back</button>
+                </div>
 
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="boostrap/js/bootstrap.js"></script>
+  <script type="text/javascript" src="js/slick.min.js"></script>
+  <script type="text/javascript" src="js/script.js"></script>
+
+
+  <footer *ngIf="!isImageShow">
+    <div class="container">
+      <div class="footer-flex">
+        <div class="footer-caption">
+          <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">Contact us</a></li>
+          </ul>
+          <p>copyright clusroom 2020 - terms & condition privacy policy</p>
+        </div>
+        <div class="footer-social">
+          <a href="#">
+            <img src="assets/images/twitter.png">
+          </a>
+          <a href="#">
+            <img src="assets/images/facebook.png">
+          </a>
+          <a href="#">
+            <img src="assets/images/instagram.png">
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
 </body>
 
 </html>

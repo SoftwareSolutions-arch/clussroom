@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router'
 // import { MatSliderModule } from '@angular/material/slider';
 import { SharedServiceService } from '../shared-service.service';
+import { UtilService } from '../../providers/util.service'
 
 @Component({
   selector: 'app-invoice',
@@ -14,11 +15,12 @@ export class InvoiceComponent implements OnInit {
   nidKey: any = '';
   invoiceDetails: any = {};
   isImageShow: boolean = true;
+  isSpinnerShow: boolean = false;
   error_messages: any = '';
   invoiceForm: FormGroup;
   paymentForm: FormGroup;
   passwordNotMatch: any = '';
-  constructor(public formBuilder: FormBuilder, public router: Router, public http: HttpClient, public service: SharedServiceService,
+  constructor(public formBuilder: FormBuilder, public util: UtilService, public router: Router, public http: HttpClient, public service: SharedServiceService,
     // public slider: MatSliderModule
   ) {
     this.setupLoginFormData();
@@ -207,6 +209,7 @@ export class InvoiceComponent implements OnInit {
   }
 
   submit() {
+    this.isSpinnerShow = true
     const params = {
       'step': 4,
       'package_nid': this.nidKey,
@@ -224,19 +227,25 @@ export class InvoiceComponent implements OnInit {
       'cardHolderName': this.invoiceForm.value.cardHolderName,
     }
 
-    console.log('params',params)
+    console.log('params', params)
     let headers = new HttpHeaders({
       'Access-Control-Allow-Origin': '*'
     })
     this.service.postInvoiceDetails(params, { headers: headers }).then((result) => {
-
-      console.log('result',result)
-
-      localStorage.setItem("userCreated", 'true');
-      window.alert('User Created Successfully');
-      this.router.navigate(['/thanks-screen']);
+      if (result['status_message'] == 'User Created Successfully') {
+        this.util.openSnackBarSuccess(result['status_message'])
+        this.isSpinnerShow = false;
+        localStorage.setItem("userCreated", 'true');
+        this.router.navigate(['/thanks-screen']);
+      }
+      else {
+        this.util.openSnackBar(result['status_message']);
+        this.isSpinnerShow = false;
+      }
     })
       .catch(error => {
+        this.util.openSnackBar(error['status_message'])
+        this.isSpinnerShow = false;
       })
   }
 

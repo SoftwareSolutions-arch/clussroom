@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  MatSnackBar,
-  MatSnackBarHorizontalPosition,
-  MatSnackBarVerticalPosition,
-} from '@angular/material/snack-bar';
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { SharedServiceService } from '../shared-service.service';
 import { Router } from '@angular/router';
 import { HttpHeaders } from '@angular/common/http';
+import { UtilService } from '../../providers/util.service'
 
 @Component({
   selector: 'app-login',
@@ -15,49 +11,48 @@ import { HttpHeaders } from '@angular/common/http';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
-  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+
 
   loginForm: FormGroup;
   error_messages: any = '';
-  constructor(public router: Router, public snackBar: MatSnackBar, public service: SharedServiceService, public formBuilder: FormBuilder) {
+  isTextFieldType: boolean;
+  hideImage:boolean=true;
+  constructor(public router: Router, public util: UtilService, public service: SharedServiceService, public formBuilder: FormBuilder) {
     this.setupLoginFormData();
   }
 
   ngOnInit(): void {
   }
 
-
-  openSnackBar(message) {
-    this.snackBar.open(message, 'Try again', {
-      duration: 3000,
-      horizontalPosition: this.horizontalPosition,
-      verticalPosition: this.verticalPosition,
-
-    });
+  togglePasswordFieldType(){
+    this.isTextFieldType = !this.isTextFieldType;
+    this.hideImage=!this.hideImage
   }
+
+
+  ShowPassword(event){
+  console.log('evemt',event.target.checked)
+  }
+
+
 
   setupLoginFormData() {
     this.error_messages = {
-      companyName: [
-        { type: "required", message: '*Company Name is Required' }
+      email: [
+        { type: "required", message: '*Email is Required' },
+        { type: "pattern", message: '*Please Enter valid Email' }
       ],
-      firstName: [
-        { type: "required", message: '*First Name is Required' }
+      password: [
+        { type: "required", message: '*Password is Required' }
       ],
     };
     this.loginForm = this.formBuilder.group(
       {
-        companyName: new FormControl(
+        email: new FormControl("", Validators.compose([Validators.required, Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'),])),
+        password: new FormControl(
           "",
           Validators.compose([
-            Validators.required
-          ])
-        ),
-        firstName: new FormControl(
-          "",
-          Validators.compose([
-            Validators.required
+            Validators.required,
           ])
         )
       }
@@ -68,28 +63,26 @@ export class LoginComponent implements OnInit {
   // login setup
   startClass() {
     let params = {
-      "name": this.loginForm.value.companyName,
-      "pass": this.loginForm.value.firstName
+      "name": this.loginForm.value.email,
+      "pass": this.loginForm.value.password
     }
 
-    console.log('params', params)
+    console.log('params', params);
 
     let headers = new HttpHeaders({
       'Access-Control-Allow-Origin': '*'
     })
     this.service.doLogin(params, { headers: headers }).then((result) => {
       console.log('login++', result);
-      this.openSnackBar(result['mesaage']);
-      if (result['mesaage'] == "User Not Valid") {
-      }
-      else {
-        this.openSnackBar('Login Successfully');
+      if (result['status'] == 200) {
+        this.util.openSnackBarSuccess(result['message'])
         this.router.navigate(['/home']);
       }
-
+      else {
+        this.util.openSnackBar(result['message']);
+      }
     })
       .catch(error => {
       })
   }
-
 }

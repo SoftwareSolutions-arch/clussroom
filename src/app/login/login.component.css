@@ -1,9 +1,16 @@
-.error-message{
-    color: red !important;
-    font-size: 1rem !important;
+.error-message {
+  color: red !important;
+  font-size: 1rem !important;
 }
 
-.mat-snack-bar-container{
-    color: white !important;
-    background: white;
+.mat-snack-bar-container {
+  color: white !important;
+  background: white;
+}
+
+.icon-image {
+  margin-right: 20px;
+  top: -36px;
+  position: relative;
+  float: right;
 }

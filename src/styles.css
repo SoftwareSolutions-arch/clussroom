@@ -3710,3 +3710,7 @@ table.dashboard-table td i.fa-check {
 /*edit course popup css end*/
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-snack-bar-container{
+    background:#efecec !important
+}
