@@ -1,0 +1,9 @@
+.error-message{
+    color: red !important;
+    font-size: 1rem !important;
+}
+
+.mat-snack-bar-container{
+    color: white !important;
+    background: white;
+}

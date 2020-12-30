@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<title>Instruction</title>
+
+<head>
+	<link rel="icon" href="assets/images/clusroom-fav.png" type="image/png">
+	<!-- <link rel="stylesheet" href="boostrap/css/bootstrap.css">
+	<link rel="stylesheet" href="css/style.css"> -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+	<!-- Header start -->
+	<header id="navbar" role="banner">
+		<div class=" container">
+			<div class="navbar-header-flex">
+				<div class="navbar-header">
+
+					<section class="site-logo">
+						<a href="/"><img src="assets/images/LOGO.png"></a>
+					</section>
+
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+
+				</div>
+
+				<nav role="navigation" id="main-menu">
+					<ul class="menu menu--main nav navbar-nav">
+
+						<li class="first">
+							<a href="/">Home</a>
+						</li>
+
+						<li>
+							<a href="">About us</a>
+						</li>
+
+						<li>
+							<a href="">Contact</a>
+						</li>
+
+						<li>
+							<a href="">Log In</a>
+						</li>
+
+						<li class="last">
+							<a href="">Packages</a>
+						</li>
+
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</header>
+	<!-- Header end -->
+	<section class="instruction-section">
+		<div class="container">
+
+			<div class="instruction-form">
+				<ul id="instruction-progressbar">
+
+					<li class="completed">
+						<div class="instruction-progressbaar-line line-1"></div>
+						<strong><img src="assets/images/blue-path.png">1</strong>
+
+					</li>
+
+					<li class="active">
+						<div class="instruction-progressbaar-line line-2"></div>
+						<strong><img src="assets/images/blue-path.png">2</strong>
+					</li>
+
+					<li>
+						<div class="instruction-progressbaar-line line-2"></div>
+						<strong><img src="assets/images/blue-path.png">3</strong>
+						<div class="instruction-progressbaar-line line-1"></div>
+					</li>
+				</ul>
+				<h2>Naming convention of your instructions</h2>
+				<p>What name would you like to give for your instructions?</p>
+
+				<form>
+					<div class="instruction-name fieldset">
+						<label>Name</label>
+						<div class="instruction-checkbox">
+							<div class="chiller_cb" *ngFor="let listItems of  this.instructionList" (click)="selectedItems(listItems.tid)">
+								<input type="checkbox">
+								<label for="myCheckbox">{{listItems.name}}</label>
+							</div>
+						</div>
+
+					</div>
+					<div class="instruction-obliterate">
+						<button class="btn" [disabled]="this.termsCondition!=true" (click)="nextPage()">Next</button>
+						<button class="back-btn" (click)="back()">Back</button>
+					</div>
+					<div class="terms-of-use">
+
+						<label><input (click)="agreeTerms($event)" type="checkbox"> I agree to Clussroom <a
+								href="#">Terms of use</a></label>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</section>
+
+	<footer>
+		<div class="container">
+			<div class="footer-flex">
+				<div class="footer-caption">
+					<ul>
+						<li><a href="#">About</a></li>
+						<li><a href="#">Pricing</a></li>
+						<li><a href="#">Contact us</a></li>
+					</ul>
+					<p>copyright clusroom 2020 - terms & condition privacy policy</p>
+				</div>
+				<div class="footer-social">
+					<a href="#">
+						<img src="assets/images/twitter.png">
+					</a>
+					<a href="#">
+						<img src="assets/images/facebook.png">
+					</a>
+					<a href="#">
+						<img src="assets/images/instagram.png">
+					</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+</body>
+
+</html>

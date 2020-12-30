@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<title>School Name</title>
+<head>
+	<link rel="icon" href="assets/images/clusroom-fav.png" type="image/png">
+  	<!-- <link rel="stylesheet" href="boostrap/css/bootstrap.css">
+	<link rel="stylesheet" href="css/style.css"> -->
+</head>
+
+<body>
+<!-- Header start -->
+<header id="navbar" role="banner">
+  <div class=" container">
+    <div class="navbar-header-flex">
+	    <div class="navbar-header">
+
+	      <section class="site-logo">
+	        <a href="/"><img src="assets/images/LOGO.png"></a>
+	      </section>
+
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+
+	    </div>
+          
+	    <nav role="navigation" id="main-menu">
+	      <ul class="menu menu--main nav navbar-nav">
+
+	        <li class="first">
+	          <a href="/">Home</a>
+	        </li>
+
+	        <li>
+	          <a href="">About us</a>
+	        </li>
+
+	        <li>
+	          <a href="">Contact</a>
+	        </li>
+
+	        <li>
+	          <a href="">Log In</a>
+	        </li>
+
+	        <li class="last">
+	          <a href="">Packages</a>
+	        </li>
+	          
+	      </ul>
+	    </nav>
+	</div>
+  </div>
+</header>
+<!-- Header end -->
+<section class="school-name-section">
+	<div class="container">
+		
+		<div class="school-name-form">
+			<ul id="school-progressbar">
+
+		        <li class="completed">
+		        	<div class="school-progressbaar-line line-1"></div>
+	        		<strong><img src="assets/images/blue-path.png">1</strong>
+		        </li>
+
+		        <li class="active">
+		        	<div class="school-progressbaar-line line-2"></div>
+	        		<strong><img src="assets/images/blue-path.png">2</strong>
+		    	</li>
+
+		        <li>
+		        	<div class="school-progressbaar-line line-2"></div>
+	        		<strong><img src="assets/images/blue-path.png">3</strong>
+	        		<div class="school-progressbaar-line line-1"></div>
+		        </li>
+			</ul>
+			<h2>Give a name to your school/institution</h2>
+			<p>This will be the name which will appear in all correspondences and to your students/participants.</p>
+				
+				<form [formGroup]="schoolNameForm">
+					<div class="school-name-institution fieldset">
+						<label>School/Institution Name</label>
+						<input formControlName="schoolName" type="text">
+					</div>
+					<div class="school-name-obliterate">
+						<button class="btn" (click)="next()">Next</button>
+						<button class="back-btn" (click)="back()">Back</button>
+					</div>
+				</form>
+
+		</div>
+	</div>
+</section>
+
+<footer>
+	<div class="container">
+		<div class="footer-flex">
+			<div class="footer-caption">
+				<ul>
+					<li><a href="#">About</a></li>
+					<li><a href="#">Pricing</a></li>
+					<li><a href="#">Contact us</a></li>
+				</ul>
+				<p>copyright clusroom 2020 - terms & condition privacy policy</p>
+			</div>
+			<div class="footer-social">
+				<a href="#">
+					<img src="assets/images/twitter.png">
+				</a>
+				<a href="#">             
+					<img src="assets/images/facebook.png">
+				</a>
+				<a href="#">
+					<img src="assets/images/instagram.png">
+				</a>
+			</div>
+		</div>
+	</div>
+</footer>
+
+</body>
+</html>
