@@ -61,9 +61,6 @@ const routes: Routes = [
   {
     path: '', redirectTo: '/pricing', pathMatch: 'full'
   },
-  {
-    path: '', redirectTo: '/pricing', pathMatch: 'full'
-  },
   // {
   //   path: '', redirectTo: '/login', pathMatch: 'full'
   // }
