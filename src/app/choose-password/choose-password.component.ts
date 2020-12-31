@@ -90,7 +90,7 @@ export class ChoosePasswordComponent implements OnInit {
   // Set password
   saveLogin() {
     let params = {
-      "uid": '585',
+      "uid": this.userId,
       "password": this.ChangePasswordForm.value.password
     }
 
