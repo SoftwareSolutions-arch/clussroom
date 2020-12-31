@@ -9,6 +9,11 @@ import { InstructionNameComponent } from './instruction-name/instruction-name.co
 import { HomeComponent } from './home/home.component';
 import { ChoosePasswordComponent } from './choose-password/choose-password.component';
 import { ThanksScreenComponent } from './thanks-screen/thanks-screen.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { FooterComponent } from './footer/footer.component';
 
 const routes: Routes = [
   {
@@ -37,6 +42,24 @@ const routes: Routes = [
   },
   {
     path: 'thanks-screen', component: ThanksScreenComponent
+  },
+   {
+    path: 'contact-us', component: ContactUsComponent
+  },
+  {
+    path: 'about-us', component: AboutUsComponent
+  },
+  {
+    path: 'forgot-password', component: ForgotPasswordComponent
+  },
+  {
+    path: 'change-password', component: ChangePasswordComponent
+  },
+  {
+    path: 'footer', component: FooterComponent
+  },
+  {
+    path: '', redirectTo: '/pricing', pathMatch: 'full'
   },
   {
     path: '', redirectTo: '/pricing', pathMatch: 'full'

@@ -85,4 +85,10 @@ export class LoginComponent implements OnInit {
       .catch(error => {
       })
   }
+
+  //reset password
+
+  resetPassword(){
+    this.router.navigate(['/forgot-password']);
+  }
 }

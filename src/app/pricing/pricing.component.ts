@@ -38,11 +38,6 @@ export class PricingComponent implements OnInit {
     this.router.navigate(['/subscription']);
   }
 
-
-  logIn() {
-    this.router.navigate(['/login']);
-  }
-
   // get all record list
   getAllRecordList() {
     let params = {

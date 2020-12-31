@@ -63,6 +63,7 @@
 	</div>
   </div>
 </header>
+<app-header></app-header>
 <!-- Header end -->
 <section class="subscription-summary-section" *ngIf="!isImageShow">
 	<div class="container">
@@ -212,32 +213,7 @@
 <script type="text/javascript" src="js/slick.min.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
 
-	
-<footer *ngIf="!isImageShow">
-	<div class="container">
-		<div class="footer-flex">
-			<div class="footer-caption">
-				<ul>
-					<li><a href="#">About</a></li>
-					<li><a href="#">Pricing</a></li>
-					<li><a href="#">Contact us</a></li>
-				</ul>
-				<p>copyright clusroom 2020 - terms & condition privacy policy</p>
-			</div>
-			<div class="footer-social">
-				<a href="#">
-					<img src="assets/images/twitter.png">
-				</a>
-				<a href="#">
-					<img src="assets/images/facebook.png">
-				</a>
-				<a href="#">
-					<img src="assets/images/instagram.png">
-				</a>
-			</div>
-		</div>
-	</div>
-</footer>
+<app-footer *ngIf="!isImageShow"></app-footer>
 
 </body>
 </html>

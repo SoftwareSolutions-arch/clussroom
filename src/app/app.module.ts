@@ -17,6 +17,13 @@ import { SchoolNameComponent } from './school-name/school-name.component';
 import { SubscriptionComponent } from './subscription/subscription.component';
 import { ThanksScreenComponent } from './thanks-screen/thanks-screen.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { HeaderComponent } from './header/header.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import {MatInputModule} from '@angular/material/input';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +36,13 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     InvoiceComponent,
     SchoolNameComponent,
     SubscriptionComponent,
-    ThanksScreenComponent
+    ThanksScreenComponent,
+    ContactUsComponent,
+    AboutUsComponent,
+    HeaderComponent,
+    ForgotPasswordComponent,
+    ChangePasswordComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +51,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSnackBarModule,
+    MatSnackBarModule,MatInputModule,
     MatProgressSpinnerModule
   ],
   providers: [],
