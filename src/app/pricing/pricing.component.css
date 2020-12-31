@@ -126,3 +126,19 @@
     display: block;
     margin: auto;
 }
+
+.next-btn {
+    /* zoom: 2; */
+    margin: auto;
+    display: block;
+    margin-left: 16px;
+    font-size: 2rem;
+}
+
+.previous-btn{
+    /* zoom: 2; */
+    margin: auto;
+    display: block;
+    /* margin-left: 16px; */
+    font-size: 2rem;
+}
