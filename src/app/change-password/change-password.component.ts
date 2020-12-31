@@ -15,7 +15,7 @@ export class ChangePasswordComponent implements OnInit {
   ChangePasswordForm: FormGroup;
   passwordNotMatch: any = '';
   error_messages: any = '';
-  constructor(public formBuilder: FormBuilder, public util: UtilService, private activatedRoute: ActivatedRoute, public router: Router, public service: SharedServiceService) {
+  constructor(public formBuilder: FormBuilder, public util: UtilService, public router: Router, public service: SharedServiceService) {
     this.setupLoginFormData();
   }
 
