@@ -14,6 +14,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { FooterComponent } from './footer/footer.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 const routes: Routes = [
   {
@@ -58,6 +59,8 @@ const routes: Routes = [
   {
     path: 'footer', component: FooterComponent
   },
+  { path: 'sidebar', component: SidebarComponent },
+
   {
     path: '', redirectTo: '/pricing', pathMatch: 'full'
   },

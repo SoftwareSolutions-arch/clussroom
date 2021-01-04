@@ -24,6 +24,8 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import {MatInputModule} from '@angular/material/input';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { FooterComponent } from './footer/footer.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import { FooterComponent } from './footer/footer.component';
     HeaderComponent,
     ForgotPasswordComponent,
     ChangePasswordComponent,
-    FooterComponent
+    FooterComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +55,8 @@ import { FooterComponent } from './footer/footer.component';
     FormsModule,
     ReactiveFormsModule,
     MatSnackBarModule,MatInputModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    SlickCarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]
