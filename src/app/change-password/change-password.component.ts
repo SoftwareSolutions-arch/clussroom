@@ -4,7 +4,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Vali
 import { Router } from '@angular/router';
 import { SharedServiceService } from '../shared-service.service'
 import { ActivatedRoute, Params } from '@angular/router';
-import { UtilService } from '../../providers/util.service'
+import { UtilService } from '../../providers/util.service';
 
 @Component({
   selector: 'app-change-password',
@@ -15,8 +15,10 @@ export class ChangePasswordComponent implements OnInit {
   ChangePasswordForm: FormGroup;
   passwordNotMatch: any = '';
   error_messages: any = '';
+  otpId: any = '';
   constructor(public formBuilder: FormBuilder, public util: UtilService, public router: Router, public service: SharedServiceService) {
     this.setupLoginFormData();
+    this.otpId = localStorage.getItem('otpId');
   }
 
   ngOnInit(): void {
@@ -86,4 +88,29 @@ export class ChangePasswordComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  // submit Otp 
+  submitOtp() {
+    let params = {
+      "step": 3,
+      "id": this.otpId,
+      "password": this.ChangePasswordForm.value.password
+    }
+    console.log('params', params)
+
+    let headers = new HttpHeaders({
+      'Access-Control-Allow-Origin': '*'
+    })
+    this.service.submitPassword(params, { headers: headers }).then((result) => {
+      console.log('postOtp++', result);
+      if (result['message'] == "") {
+        this.util.openSnackBarSuccess(result['message'])
+        this.router.navigate(['/login']);
+      }
+      else {
+        this.util.openSnackBar(result['message']);
+      }
+    })
+      .catch(error => {
+      })
+  }
 }

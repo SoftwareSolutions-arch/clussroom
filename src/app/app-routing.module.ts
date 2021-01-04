@@ -15,6 +15,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { OtpComponent } from './otp/otp.component';
 
 const routes: Routes = [
   {
@@ -58,6 +59,9 @@ const routes: Routes = [
   },
   {
     path: 'footer', component: FooterComponent
+  },
+   {
+    path: 'otp', component: OtpComponent
   },
   { path: 'sidebar', component: SidebarComponent },
 

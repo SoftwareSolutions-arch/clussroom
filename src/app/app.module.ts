@@ -26,6 +26,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { OtpComponent } from './otp/otp.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
     ForgotPasswordComponent,
     ChangePasswordComponent,
     FooterComponent,
-    SidebarComponent
+    SidebarComponent,
+    OtpComponent
   ],
   imports: [
     BrowserModule,

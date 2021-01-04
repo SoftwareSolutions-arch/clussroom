@@ -1,6 +1,9 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from '@angular/router';
+import { UtilService } from '../../providers/util.service'
+import { SharedServiceService } from '../shared-service.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -8,11 +11,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./forgot-password.component.css']
 })
 export class ForgotPasswordComponent implements OnInit {
-  forgotForm:FormGroup;
+  forgotForm: FormGroup;
   error_messages: any = '';
-  constructor(public router: Router,public formBuilder: FormBuilder) {
+  constructor(public router: Router, public formBuilder: FormBuilder, public util: UtilService, public service: SharedServiceService) {
     this.setupLoginFormData();
-   }
+  }
 
   ngOnInit(): void {
   }
@@ -31,7 +34,29 @@ export class ForgotPasswordComponent implements OnInit {
     );
   }
 
-  sendMail(){
-    this.router.navigate(['/change-password']);
+  //get forgot password
+  sendMail() {
+    let params = {
+      "email": this.forgotForm.value.email,
+      "step": 1
+    }
+
+    let headers = new HttpHeaders({
+      'Access-Control-Allow-Origin': '*'
+    })
+    this.service.getforgotPassword(params, { headers: headers }).then((result) => {
+      // console.log('getForgotPassword++', result);
+      if (result['message'] == "Otp Send") {
+        console.log('reslut',result['id'])
+        localStorage.setItem('otpId',result['id'])
+        this.util.openSnackBarSuccess(result['message'])
+        this.router.navigate(['/otp']);
+      }
+      else {
+        this.util.openSnackBar(result['message']);
+      }
+    })
+      .catch(error => {
+      })
   }
 }

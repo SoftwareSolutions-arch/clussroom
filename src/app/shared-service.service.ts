@@ -105,7 +105,6 @@ export class SharedServiceService {
     });
   }
 
-
   // set school name
   setSchool(params, header) {
     return new Promise((resolve, reject) => {
@@ -147,6 +146,63 @@ export class SharedServiceService {
   doLogin(params, header) {
     return new Promise((resolve, reject) => {
       this.http.post(this.baseurl + "/user/login", params, header).subscribe(
+        res => {
+          if (res['success'] != 0) {
+            resolve(res);
+          }
+          else {
+            reject(res);
+          }
+        },
+        err => {
+          reject(err);
+        }
+      );
+    });
+  }
+
+  //step first for reset password
+  getforgotPassword(params, header) {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.baseurl + "/forget-password-api", params, header).subscribe(
+        res => {
+          if (res['success'] != 0) {
+            resolve(res);
+          }
+          else {
+            reject(res);
+          }
+        },
+        err => {
+          reject(err);
+        }
+      );
+    });
+  }
+
+  //step second for reset password
+  postOtp(params, header) {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.baseurl + "/forget-password-api", params, header).subscribe(
+        res => {
+          if (res['success'] != 0) {
+            resolve(res);
+          }
+          else {
+            reject(res);
+          }
+        },
+        err => {
+          reject(err);
+        }
+      );
+    });
+  }
+
+  //step third for reset password
+  submitPassword(params, header) {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.baseurl + "/forget-password-api", params, header).subscribe(
         res => {
           if (res['success'] != 0) {
             resolve(res);
