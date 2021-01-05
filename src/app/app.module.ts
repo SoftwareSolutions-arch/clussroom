@@ -27,7 +27,7 @@ import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { OtpComponent } from './otp/otp.component';
-
+import * as $ from 'jquery';
 @NgModule({
   declarations: [
     AppComponent,
