@@ -60,7 +60,7 @@ export class OtpComponent implements OnInit {
     })
     this.service.postOtp(params, { headers: headers }).then((result) => {
       console.log('postOtp++', result);
-      if (result['message'] == "") {
+      if (result['message'] == "Otp Valid") {
         this.util.openSnackBarSuccess(result['message'])
         this.router.navigate(['/change-password']);
       }

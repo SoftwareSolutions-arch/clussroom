@@ -102,7 +102,7 @@ export class ChangePasswordComponent implements OnInit {
     })
     this.service.submitPassword(params, { headers: headers }).then((result) => {
       console.log('postOtp++', result);
-      if (result['message'] == "") {
+      if (result['message'] == "Password Reset Successfully ") {
         this.util.openSnackBarSuccess(result['message'])
         this.router.navigate(['/login']);
       }
