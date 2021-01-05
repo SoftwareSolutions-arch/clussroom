@@ -158,8 +158,7 @@ export class InvoiceComponent implements OnInit {
           Validators.compose([
             Validators.required
           ])
-        ),
-        email: new FormControl("", Validators.compose([Validators.required, Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'),])),
+        )
 
       }
     );
@@ -248,5 +247,4 @@ export class InvoiceComponent implements OnInit {
         this.isSpinnerShow = false;
       })
   }
-
 }

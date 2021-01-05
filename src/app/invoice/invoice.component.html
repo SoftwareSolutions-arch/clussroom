@@ -1,22 +1,7 @@
-<!DOCTYPE html>
-<html>
-<title>Invoice</title>
-
-<head>
-  <!-- <link rel="icon" href="assets/images/clusroom-fav.png" type="image/png">
-	<link rel="stylesheet" href="css/slick.css">
-  	<link rel="stylesheet" href="boostrap/css/bootstrap.css">
-  	<link rel="stylesheet" href="css/all.css">
-	<link rel="stylesheet" href="css/style.css"> -->
-</head>
-
-<body>
   <div *ngIf="isImageShow">
     <img class="image-loader" src="assets/spinner.gif">
   </div>
-  <!-- Header start -->
   <app-header *ngIf="!isImageShow"></app-header>
-  <!-- Header end -->
   <section class="invoice-section" *ngIf="!isImageShow">
     <div class="container">
       <div class="invoice-wrapper">
@@ -157,7 +142,7 @@
                 </div>
               </div>
             </div>
-            <button class="btn" (click)="next()">Next</button>
+            <button class="btn" [disabled]="!invoiceForm.valid" (click)="add()">Next</button>
           </form>
         </div>
         <div class="order-summary">
@@ -249,14 +234,4 @@
       </div>
     </div>
   </section>
-
-  <script type="text/javascript" src="js/jquery.min.js"></script>
-  <script type="text/javascript" src="boostrap/js/bootstrap.js"></script>
-  <script type="text/javascript" src="js/slick.min.js"></script>
-  <script type="text/javascript" src="js/script.js"></script>
-
-
   <app-footer *ngIf="!isImageShow"></app-footer>
-</body>
-
-</html>
