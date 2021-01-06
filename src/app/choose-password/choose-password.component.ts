@@ -101,16 +101,15 @@ export class ChoosePasswordComponent implements OnInit {
     })
     this.service.setPassword(params, { headers: headers }).then((result) => {
       console.log('result', result);
-      if (result['message'] == "Uid Empty") {
-
-        this.util.openSnackBar(result['message']);
+      console.log('result', result['csrftoken']);
+      if (result['message'] == "Password Created Successfully And Logged in") {
+        this.util.openSnackBarSuccess(result['message']);
+        localStorage.setItem("uid", this.userId);
+        localStorage.setItem("csrftoken", result['csrftoken']);
+        this.router.navigate(['/school-name']);
       }
-
       else {
         this.util.openSnackBar(result['message']);
-        localStorage.setItem("uid", this.userId);
-        localStorage.setItem("passwordSet", 'true');
-        this.router.navigate(['/school-name']);
       }
     })
       .catch(error => {

@@ -1,5 +1,5 @@
 <div *ngIf="isImageShow">
-  <img class="image-loader" src="assets/spinner.gif">
+  <img class="common-loader">
 </div>
 <app-header *ngIf="!isImageShow"></app-header>
 
@@ -10,7 +10,9 @@
       <span>Choose the best plan for your business</span>
     </div>
     <div class="pricing-content">
-
+      <span class="previous-btn">
+        <i style="margin-right: 40px;" (click)="previous()" *ngIf="currentPage" class="fa fa-arrow-left" aria-hidden="true"></i>
+      </span>
       <div class="pricing-content-box" *ngIf="currentPage">
         <div class="pricing-caption-flex">
           <div class="pricing-header-caption">
@@ -104,10 +106,6 @@
       <span class="next-btn">
         <i (click)="next()" *ngIf="currentPage" class="fa fa-arrow-right" aria-hidden="true"></i>
       </span>
-
-
-      <!-- <img (click)="previous()" *ngIf="!currentPage" class="pre-src" src="../../assets/previous.png">
-      <img (click)="next()" *ngIf="currentPage" class="img-src" src="../../assets/next.png"> -->
       <div *ngIf="!currentPage" class="pricing-content-box">
         <div class="pricing-caption-flex">
           <div class="pricing-header-caption">
@@ -167,6 +165,9 @@
 
         </div>
       </div>
+      <span class="next-btn">
+        <i (click)="next()" style="margin-left: 100px;" *ngIf="!currentPage" class="fa fa-arrow-right" aria-hidden="true"></i>
+      </span>
     </div>
   </div>
 </section>

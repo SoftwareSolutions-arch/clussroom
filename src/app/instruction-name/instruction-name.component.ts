@@ -62,6 +62,7 @@ export class InstructionNameComponent implements OnInit {
       'Access-Control-Allow-Origin': '*'
     })
     this.service.setPassword(params, { headers: headers }).then((result) => {
+      localStorage.setItem('isLogin','1')
       console.log('result', result);
       // localStorage.setItem("passwordSet", 'true');
       this.router.navigate(['/home']);

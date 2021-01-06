@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(public router: Router) { }
 
   ngOnInit(): void {
   }
@@ -29,6 +29,10 @@ export class HomeComponent implements OnInit {
 
   removeSlide() {
     this.slides.length = this.slides.length - 1;
+  }
+
+  startClass(){
+    // this.router.navigate(['/sample04']);
   }
 
 }

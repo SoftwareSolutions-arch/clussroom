@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { SharedServiceService } from '../shared-service.service';
 import { Router } from '@angular/router';
+import { HttpHeaders } from '@angular/common/http';
+import { UtilService } from '../../providers/util.service'
 
 @Component({
   selector: 'app-header',
@@ -7,37 +11,58 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  isLogin:any='';
-  constructor(public router: Router) {
-    this.isLogin=localStorage.getItem('isLogin');
-   }
+  isLogin: any = '';
+  csrftoken: any = '';
+  constructor(public router: Router, public util: UtilService, public service: SharedServiceService, public formBuilder: FormBuilder) {
+    this.isLogin = localStorage.getItem('isLogin');
+    this.csrftoken = localStorage.getItem('csrftoken');
+  }
 
   ngOnInit(): void {
   }
 
-  contactUs(){
+  contactUs() {
     this.router.navigate(['/contact-us']);
   }
 
-  aboutUs(){
+  aboutUs() {
     this.router.navigate(['/about-us']);
   }
 
-  home(){
+  home() {
     this.router.navigate(['/home']);
   }
-  
+
   logIn() {
     this.router.navigate(['/login']);
   }
 
+  // logout setup
   logout() {
-    localStorage.clear();
-    window.location.reload();
-    this.router.navigate(['/login']);
+    // window.location.reload();
+    let params = {
+      'csrftoken': this.csrftoken
+    }
+    let headers = new HttpHeaders({
+      'Access-Control-Allow-Origin': '*'
+    })
+    this.service.doLogout(params, { headers: headers }).then((result) => {
+      console.log('logout++', result);
+      if (result['status'] == 200) {
+        localStorage.clear();
+        this.router.navigate(['/login']);
+      }
+      else {
+        this.util.openSnackBar(result['mesaage']);
+      }
+    })
+      .catch(error => {
+        console.log('getting some error', error);
+        this.util.openSnackBar(error['message']);
+      })
   }
 
-  packages(){
+  packages() {
     this.router.navigate(['/pricing']);
   }
 }

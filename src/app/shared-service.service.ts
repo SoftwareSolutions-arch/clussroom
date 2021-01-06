@@ -9,10 +9,9 @@ export class SharedServiceService {
 
   constructor(public http: HttpClient) { }
 
-
   getRecordList(params, header) {
     return new Promise((resolve, reject) => {
-      this.http.post(this.baseurl + "/test-post-api", params, header).subscribe(
+      this.http.post(this.baseurl + "/vendor-registration", params, header).subscribe(
         res => {
           if (res['success'] != 0) {
             resolve(res);
@@ -31,7 +30,7 @@ export class SharedServiceService {
   // get subscription details
   getSubscriptionList(params, header) {
     return new Promise((resolve, reject) => {
-      this.http.post(this.baseurl + "/test-post-api", params, header).subscribe(
+      this.http.post(this.baseurl + "/vendor-registration", params, header).subscribe(
         res => {
           if (res['success'] != 0) {
             resolve(res);
@@ -50,7 +49,7 @@ export class SharedServiceService {
   // get subscription details
   getInvoiceList(params, header) {
     return new Promise((resolve, reject) => {
-      this.http.post(this.baseurl + "/test-post-api", params, header).subscribe(
+      this.http.post(this.baseurl + "/vendor-registration", params, header).subscribe(
         res => {
           if (res['success'] != 0) {
             resolve(res);
@@ -66,11 +65,10 @@ export class SharedServiceService {
     });
   }
 
-
   // get subscription details
   postInvoiceDetails(params, header) {
     return new Promise((resolve, reject) => {
-      this.http.post(this.baseurl + "/test-post-api", params, header).subscribe(
+      this.http.post(this.baseurl + "/vendor-registration", params, header).subscribe(
         res => {
           if (res['success'] != 0) {
             resolve(res);
@@ -146,6 +144,24 @@ export class SharedServiceService {
   doLogin(params, header) {
     return new Promise((resolve, reject) => {
       this.http.post(this.baseurl + "/user/login", params, header).subscribe(
+        res => {
+          if (res['success'] != 0) {
+            resolve(res);
+          }
+          else {
+            reject(res);
+          }
+        },
+        err => {
+          reject(err);
+        }
+      );
+    });
+  }
+
+  doLogout(params,header){
+    return new Promise((resolve, reject) => {
+      this.http.post(this.baseurl + "/user/logout",params, header).subscribe(
         res => {
           if (res['success'] != 0) {
             resolve(res);
