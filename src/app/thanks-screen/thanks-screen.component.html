@@ -8,9 +8,9 @@
 				<span>Name</span>
 			</div>
 			<h4>All's set!</h4>
-            <p>Your login detail is sent to your registered email address at <a href="#" >umangchopra75@gmail.com</a></p>
-            <form action="/paymentconfirmation">
-			<button class="btn">
+            <p>Your login detail is sent to your registered email address at <a>{{this.userMail}}</a></p>
+            <form>
+			<button class="btn" (click)="gotoDashboard()">
 				Go to dashboard
             </button>
             </form>

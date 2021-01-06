@@ -207,6 +207,7 @@ export class InvoiceComponent implements OnInit {
       })
   }
 
+  // submit 
   submit() {
     this.isSpinnerShow = true
     const params = {
@@ -231,10 +232,12 @@ export class InvoiceComponent implements OnInit {
       'Access-Control-Allow-Origin': '*'
     })
     this.service.postInvoiceDetails(params, { headers: headers }).then((result) => {
+      console.log('result', result['email']);
+      console.log('login++', result);
       if (result['status_message'] == 'User Created Successfully') {
-        this.util.openSnackBarSuccess(result['status_message'])
+        localStorage.setItem('userMail', result['email']);
         this.isSpinnerShow = false;
-        localStorage.setItem("userCreated", 'true');
+        this.util.openSnackBarSuccess(result['status_message'])
         this.router.navigate(['/thanks-screen']);
       }
       else {
@@ -246,5 +249,14 @@ export class InvoiceComponent implements OnInit {
         this.util.openSnackBar(error['status_message'])
         this.isSpinnerShow = false;
       })
+  }
+
+  add() {
+    this.paymentForm.enable()
+    this.invoiceForm.disable()
+  }
+
+  back() {
+    this.invoiceForm.enable()
   }
 }

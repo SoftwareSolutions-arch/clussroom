@@ -16,6 +16,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { OtpComponent } from './otp/otp.component';
+import { Sample04Component } from './sample04/sample04.component';
 
 const routes: Routes = [
   {
@@ -45,7 +46,7 @@ const routes: Routes = [
   {
     path: 'thanks-screen', component: ThanksScreenComponent
   },
-   {
+  {
     path: 'contact-us', component: ContactUsComponent
   },
   {
@@ -60,13 +61,17 @@ const routes: Routes = [
   {
     path: 'footer', component: FooterComponent
   },
-   {
+  {
     path: 'otp', component: OtpComponent
   },
-  { path: 'sidebar', component: SidebarComponent },
-
   {
-    path: '', redirectTo: '/pricing', pathMatch: 'full'
+    path: 'sidebar', component: SidebarComponent
+  },
+  {
+    path: 'sample04', component: Sample04Component
+  },
+  {
+    path: '', redirectTo: '/home', pathMatch: 'full'
   },
   // {
   //   path: '', redirectTo: '/login', pathMatch: 'full'
@@ -74,7 +79,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true,onSameUrlNavigation: 'reload'})],
+  imports: [RouterModule.forRoot(routes, { useHash: true, onSameUrlNavigation: 'reload' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

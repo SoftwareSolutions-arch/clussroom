@@ -7,7 +7,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  constructor(public router: Router) { }
+  isLogin:any='';
+  constructor(public router: Router) {
+    this.isLogin=localStorage.getItem('isLogin');
+   }
 
   ngOnInit(): void {
   }
@@ -26,5 +29,15 @@ export class HeaderComponent implements OnInit {
   
   logIn() {
     this.router.navigate(['/login']);
+  }
+
+  logout() {
+    localStorage.clear();
+    window.location.reload();
+    this.router.navigate(['/login']);
+  }
+
+  packages(){
+    this.router.navigate(['/pricing']);
   }
 }

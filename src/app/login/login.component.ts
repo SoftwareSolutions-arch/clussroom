@@ -74,15 +74,20 @@ export class LoginComponent implements OnInit {
     })
     this.service.doLogin(params, { headers: headers }).then((result) => {
       console.log('login++', result);
+      console.log('login++', result['name']);
       if (result['status'] == 200) {
-        this.util.openSnackBarSuccess(result['message'])
+          localStorage.setItem('userMail',result['name']);
+        localStorage.setItem('isLogin','1')
+        this.util.openSnackBarSuccess(result['message']);
         this.router.navigate(['/home']);
       }
       else {
-        this.util.openSnackBar(result['message']);
+        this.util.openSnackBar(result['mesaage']);
       }
     })
       .catch(error => {
+        console.log('getting some error',error);
+        this.util.openSnackBar(error['message']);
       })
   }
 

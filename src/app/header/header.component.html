@@ -4,7 +4,7 @@
             <div class="navbar-header">
 
                 <section class="site-logo">
-                    <a href="/"><img src="../../assets/images/LOGO.png"></a>
+                    <a><img src="assets/images/logo.png"></a>
                 </section>
 
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
@@ -31,11 +31,15 @@
                         <a >Contact</a>
                     </li>
 
-                    <li (click)="logIn()">
+                    <li *ngIf="this.isLogin!=1" (click)="logIn()">
                         <a >Log In</a>
                     </li>
 
-                    <li class="last">
+                    <li *ngIf="this.isLogin==1" (click)="logout()">
+                        <a >Log Out</a>
+                    </li>
+
+                    <li (click)="packages()" class="last">
                         <a>Packages</a>
                     </li>
 

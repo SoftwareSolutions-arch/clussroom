@@ -1,525 +1,131 @@
-<app-sidebar></app-sidebar>
-<div class="dashboard">
-  <div class="control-panel">
+<app-header></app-header>
+<section class="home-section-banner">
+	<div class="container">
+		<div class="home-banner-wrapper">
+			<div class="home-banner-caption">
+				<h1>For every student, every classroom. Real results.</h1>
+				<p>WooCommerce is a customizable, open-source eCommerce platform built on WordPress.</p>
+				<a class="btn" href="#">Start Your Class NOW!</a>
+			</div>
+			<div class="home-banner-image">
+				<figure>
+					<img src="/assets/images/home-banner.png">
+				</figure>
+			</div>
+		</div>
+	</div>
+</section>
 
-    <!-- dashboard header start -->
-    <div class="dashboard-header">
-      <div class="user-search-setting">
-        <form>
-          <input type="search" placeholder="Search now ...">
-          <button class="search-btn"><img src="assets/images/dashboard/search.png"></button>
-        </form>
-        <div class="user-notification">
-          <img src="assets/images/dashboard/notification.png">
-        </div>
-        <div class="user-setting">
-          <img src="assets/images/dashboard/setting.png">
-        </div>
-      </div>
-      <div class="site-logo">
-        <img src="assets/images/logo.png">
-      </div>
-    </div>
-    <!-- dashboard header end -->
+<section class="why-clussroom-section">
+<div class="container">
+	<div class="why-clussroom-header">
+		<h2>Why Clussroom</h2>
+	</div>
+	<div class="why-clussroom-wrapper">
 
-    <div class="nav-clip">
-      <ul>
-        <a class="clip-item active" href="#">
-          <img src="assets/images/dashboard/second/course-grey.png" class="hover-out">
-          <img src="assets/images/dashboard/second/course-blue.png" class="hover-in">
-          Courses</a>
+		<div class="why-clussroom-box">
+			<figure>
+				<img src="/assets/images/use_it_ease.png">
+			</figure>
+			<div class="why-clussroom-caption">
+				<h4>Use with ease</h4>
+				<p>Clear and simple to use yet sufficiently sophisticated for conducting of classes. </p>
+				<a href="#">How Clussroom works ›</a>
+			</div>
+		</div>
+		<div class="why-clussroom-box">
+			<figure>
+				<img src="/assets/images/Customize-and-Extend.png">
+			</figure>
+			<div class="why-clussroom-caption">
+				<h4>Customize and Extend</h4>
+				<p>There is no need to be tied to the desktop for both coaches and learners.</p>
+				<a href="#">Work For All Platform ›</a>
+			</div>
+		</div>
+		<div class="why-clussroom-box">
+			<figure>
+				<img src="/assets/images/Stay.png">
+			</figure>
+			<div class="why-clussroom-caption">
+				<h4>Stay abeast, anywhere</h4>
+				<p>Personal organiser in a nutshell. Keep tabs on your list of tasks at hand and plan ahead.</p>
+				<a href="#">Online Features  ›</a>
+			</div>
+		</div>
 
-        <a class="clip-item" href="#">
-          <img src="assets/images/dashboard/second/clip-classes-grey.png" class="hover-out">
-          <img src="assets/images/dashboard/second/clip-classes-blue.png" class="hover-in">
-          Classes
-        </a>
-
-        <a class="clip-item" href="#">
-          <img src="assets/images/dashboard/second/list-grey.png" class="hover-out">
-          <img src="assets/images/dashboard/second/list-blue.png" class="hover-in">
-          Class List
-        </a>
-
-        <a class="clip-item" href="#">
-          <img src="assets/images/dashboard/second/clip-learner-grey.png" class="hover-out">
-          <img src="assets/images/dashboard/second/clip-learner-blue.png" class="hover-in">
-          Learners
-        </a>
-
-        <a class="clip-item" href="#">
-          <img src="assets/images/dashboard/second/clip-storage-grey.png" class="hover-out">
-          <img src="assets/images/dashboard/second/clip-storage-blue.png" class="hover-in">
-          Storage
-        </a>
-
-        <a class="clip-item" href="#">
-          <img src="assets/images/dashboard/second/clip-user-grey.png" class="hover-out">
-          <img src="assets/images/dashboard/second/clip-user-blue.png" class="hover-in">
-          Admin
-        </a>
-
-        <a class="clip-item" href="#">
-          <img src="assets/images/dashboard/second/session-grey.png" class="hover-out">
-          <img src="assets/images/dashboard/second/session-blue.png" class="hover-in">
-          Live Sessions
-        </a>
-      </ul>
-    </div>
-
-    <div class="prospectus-section">
-      <div class="prospectus-tabs">
-        <ul class="nav nav-tabs">
-          <li><a data-toggle="tab" href="#summary" class="active">Summary</a></li>
-          <li><a data-toggle="tab" href="#instructions">Method of Instructions</a></li>
-        </ul>
-        <div class="prospectus-action">
-          <a href="#" class="edit-btn"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
-          <!-- <a href="#" class="delete-btn" data-toggle="modal" data-target="#deleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
-          <a href="#" class="delete-btn" data-toggle="modal" data-target="#editCourse"><i class="fa fa-trash-o"
-              aria-hidden="true"></i></a>
-        </div>
-      </div>
-      <div class="tab-content">
-        <div id="summary" class="tab-pane active">
-          <div class="table-responsive">
-            <table class="table dashboard-table">
-              <thead>
-                <tr>
-                  <th scope="col"></th>
-                  <th scope="col">No.</th>
-                  <th scope="col" class="text-left">Course Name</th>
-                  <th scope="col">Code</th>
-                  <th scope="col" class="table-filter">Cateory/Dept</th>
-                  <th scope="col" class="table-filter">Level</th>
-                  <th scope="col" class="table-filter">Banding</th>
-                  <th scope="col" class="table-filter">No. of classes</th>
-                  <th scope="col" class="table-filter">No. of learners</th>
-                  <th scope="col" class="table-filter">Admin</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th>
-                    <div class="radio-table"><input type="checkbox"></div>
-                  </th>
-                  <td>1</td>
-                  <td class="text-left">Biology for Primary 1</td>
-                  <td>A3K</td>
-                  <td>Math</td>
-                  <td>Professional medical</td>
-                  <td>1</td>
-                  <td>12</td>
-                  <td>189</td>
-                  <td>Aeriel Connelly</td>
-                </tr>
-                <tr>
-                  <th>
-                    <div class="radio-table"><input type="checkbox"></div>
-                  </th>
-                  <td>2</td>
-                  <td class="text-left">Geography for Primary 2</td>
-                  <td>4CE</td>
-                  <td>Science</td>
-                  <td>Secondary</td>
-                  <td>2</td>
-                  <td>8</td>
-                  <td>874</td>
-                  <td>Darren Leow</td>
-                </tr>
-                <tr>
-                  <th>
-                    <div class="radio-table"><input type="checkbox"></div>
-                  </th>
-                  <td>3</td>
-                  <td class="text-left">Bull in share market</td>
-                  <td>3AC</td>
-                  <td>Social studies</td>
-                  <td>Primary</td>
-                  <td>3</td>
-                  <td>4</td>
-                  <td>234</td>
-                  <td>Finelly Abrodobe</td>
-                </tr>
-                <tr>
-                  <th>
-                    <div class="radio-table"><input type="checkbox"></div>
-                  </th>
-                  <td>4</td>
-                  <td class="text-left">Balance Sheet making</td>
-                  <td>R6T</td>
-                  <td>Psychology</td>
-                  <td>University</td>
-                  <td>4</td>
-                  <td>11</td>
-                  <td>431</td>
-                  <td>Prena Abdullah</td>
-                </tr>
-                <tr>
-                  <th>
-                    <div class="radio-table"><input type="checkbox"></div>
-                  </th>
-                  <td>5</td>
-                  <td class="text-left">Cash flow </td>
-                  <td>2UY</td>
-                  <td>Accounting</td>
-                  <td>Primary</td>
-                  <td>2</td>
-                  <td>7</td>
-                  <td>501</td>
-                  <td>Nisha Fasa</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="table-result-wrapper">
-            <p>Results: 1-15 of 324</p>
-          </div>
-        </div>
-        <div id="instructions" class="tab-pane">
-          <div class="table=-responsive">
-            <table class="table dashboard-table">
-              <thead>
-                <tr>
-                  <th scope="col"></th>
-                  <th scope="col">No.</th>
-                  <th scope="col" class="text-left">Course Name</th>
-                  <th scope="col">Code</th>
-                  <th scope="col" class="table-filter">Cateory/Dept</th>
-                  <th scope="col" class="table-filter">Level</th>
-                  <th scope="col" class="table-filter">Banding</th>
-                  <th scope="col" class="table-filter">No. of classes</th>
-                  <th scope="col" class="table-filter">No. of learners</th>
-                  <th scope="col" class="table-filter">Admin</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th>
-                    <div class="radio-table"><input type="checkbox"></div>
-                  </th>
-                  <td>1</td>
-                  <td class="text-left">Biology for Primary 1</td>
-                  <td>A3K</td>
-                  <td>Math</td>
-                  <td>Professional medical</td>
-                  <td>1</td>
-                  <td>12</td>
-                  <td>189</td>
-                  <td>Aeriel Connelly</td>
-                </tr>
-                <tr>
-                  <th>
-                    <div class="radio-table"><input type="checkbox"></div>
-                  </th>
-                  <td>2</td>
-                  <td class="text-left">Geography for Primary 2</td>
-                  <td>4CE</td>
-                  <td>Science</td>
-                  <td>Secondary</td>
-                  <td>2</td>
-                  <td>8</td>
-                  <td>874</td>
-                  <td>Darren Leow</td>
-                </tr>
-                <tr>
-                  <th>
-                    <div class="radio-table"><input type="checkbox"></div>
-                  </th>
-                  <td>3</td>
-                  <td class="text-left">Bull in share market</td>
-                  <td>3AC</td>
-                  <td>Social studies</td>
-                  <td>Primary</td>
-                  <td>3</td>
-                  <td>4</td>
-                  <td>234</td>
-                  <td>Finelly Abrodobe</td>
-                </tr>
-                <tr>
-                  <th>
-                    <div class="radio-table"><input type="checkbox"></div>
-                  </th>
-                  <td>4</td>
-                  <td class="text-left">Balance Sheet making</td>
-                  <td>R6T</td>
-                  <td>Psychology</td>
-                  <td>University</td>
-                  <td>4</td>
-                  <td>11</td>
-                  <td>431</td>
-                  <td>Prena Abdullah</td>
-                </tr>
-                <tr>
-                  <th>
-                    <div class="radio-table"><input type="checkbox"></div>
-                  </th>
-                  <td>5</td>
-                  <td class="text-left">Cash flow </td>
-                  <td>2UY</td>
-                  <td>Accounting</td>
-                  <td>Primary</td>
-                  <td>2</td>
-                  <td>7</td>
-                  <td>501</td>
-                  <td>Nisha Fasa</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="table-result-wrapper">
-            <p>Results: 1-15 of 324</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+	</div>
 </div>
+</section>
 
-<!-- Delete modal popup start -->
-<div id="deleteCourse" class="modal deletecourse-modal" role="dialog">
-  <div class="modal-dialog">
+<section class="tasks-robust-section">
+	<div class="container">
+		<div class="tasks-wrapper">
+			<figure>
+				<img src="/assets/images/tasks-image.png">
+			</figure>
+			<div class="tasks-caption">
+				<div class="tasks-caption-flex">
+					<h3>Tasks<br>Segregations</h3>
+					<p>Option to integrate tasks of conducting of lessons with class admin matters, or separation of such responsibilities to empower greater focus on each task. loral lipsum content loral lipsum contentloral lipsum content loral lipsum content loral lipsum content loral lipsum content.</p>
+					<a href="#">About Task Segregation</a>
+				</div>
+			</div>
+		</div>
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-body">
-        <button type="button" class="close" data-dismiss="modal"><img
-            src="assets/images/dashboard/close-modal.png"></button>
-        <figure>
-          <img src="assets/images/dashboard/delete-course.png">
-        </figure>
-        <h4 class="modal-title">Delete Course</h4>
-        <br>
-        <p>Once deleted, all related files including information about past learners & class materials, course materials
-          and learners’ grades will be removed. </p>
-        <br>
-        <span>Continue?</span> <br>
-        <a href="#" class="del-btn-course">Delete Course</a>
-      </div>
-    </div>
+		<div class="robust-wrapper">
+			<div class="robust-caption">
+				<div class="robust-caption-flex">
+					<h3>Robust discussion and interactions</h3>
+					<p>Ample discussions and learners’ interactions in supporting wholesome classroom activities and coherent knowledge transmission. loelipsum this text is placeholder for upcoming text thanks for reading so deeply. Please check the layout and share your views.</p>
+					<a href="#">Know more about this</a>
+				</div>
+			</div>
+			<figure>
+				<img src="/assets/images/robu.png">
+			</figure>
+		</div>
+	</div>
+</section>
 
-  </div>
-</div>
-<!-- Delete modal popup start -->
-
-
-<!-- Unable Delete Course modal popup start -->
-<div id="unabledeleteCourse" class="modal unabledeletecourse-modal" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-body">
-        <button type="button" class="close" data-dismiss="modal"><img
-            src="assets/images/dashboard/close-modal.png"></button>
-        <div class="unable-caption-wrapper">
-          <figure>
-            <img src="assets/images/dashboard/unable.png">
-          </figure>
-          <h4 class="modal-title">Unable to Delete Course</h4>
-        </div>
-        <br>
-        <p>There are active classes being conducted. To remove a course, all learners need to be suspended, or there
-          must be no current ongoing classes.</p>
-        <br>
-        <a href="#" class="unable-del-btn">Ok</a>
-      </div>
-    </div>
-
-  </div>
-</div>
-<!-- Unable Delete Course modal popup start -->
-
-
-<!-- Add Course modal popup start -->
-<div id="addCourse" class="modal addcourse-modal" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4>Add new</h4>
-        <button type="button" class="close" data-dismiss="modal"><img
-            src="assets/images/dashboard/close-course.png"></button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="addCourse-form">
-            <div class="name-of-course fieldset">
-              <label>Name of course*</label>
-              <input type="text" name="course">
-            </div>
-            <div class="category-course fieldset">
-              <label>Category*</label>
-              <select name="category" id="categorycourse">
-                <option selected></option>
-                <option value="finance">Finance</option>
-                <option value="create new">Create new</option>
-              </select>
-            </div>
-            <!-- if user select create new course -->
-            <div class="new-category-course fieldset">
-              <label>New category</label>
-              <input type="text" name="course">
-            </div>
-
-            <div class="level-course fieldset">
-              <label>Level</label>
-              <select name="level" id="levelcourse">
-                <option selected></option>
-                <option value="Professional Level 1">Professional Level 1</option>
-                <option value="create new">Create new</option>
-              </select>
-            </div>
-            <!-- if user select create new level course -->
-            <div class="new-level-course fieldset">
-              <label>New level</label>
-              <input type="text" name="level">
-            </div>
-
-            <div class="banding-course fieldset">
-              <label>Banding</label>
-              <select name="level" id="bandingcourse">
-                <option selected></option>
-                <option value="IV">IV</option>
-                <option value="create new">Create new</option>
-              </select>
-            </div>
-            <!-- if user select create new banding course -->
-            <div class="new-banding-course fieldset">
-              <label>New banding</label>
-              <input type="text" name="banding">
-            </div>
-
-          </div>
-
-          <div class="modal-footer">
-            <button class="back-btn-course">Back</button>
-            <button class="next-btn-course">Next</button>
-          </div>
-        </form>
-      </div>
-    </div>
-
-  </div>
-</div>
-<!-- Add Course modal popup start -->
-
-<!-- Edit Course modal popup start -->
-<div id="editCourse" class="modal editcourse-modal" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4>Edit course</h4>
-        <button type="button" class="close" data-dismiss="modal"><img
-            src="assets/images/dashboard/close-course.png"></button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="editCourse-form-top">
-            <div class="name-of-course fieldset">
-              <label>Name of course*</label>
-              <input type="text" name="course">
-            </div>
-            <div class="category-course fieldset">
-              <label>Category*</label>
-              <select name="category" id="categorycourse">
-                <option selected></option>
-                <option value="finance">Finance</option>
-                <option value="create new">Create new</option>
-              </select>
-            </div>
-
-            <div class="level-course fieldset">
-              <label>Level</label>
-              <select name="level" id="levelcourse">
-                <option selected></option>
-                <option value="Professional Level 1">Professional Level 1</option>
-                <option value="create new">Create new</option>
-              </select>
-            </div>
-
-            <div class="banding-course fieldset">
-              <label>Banding</label>
-              <select name="level" id="bandingcourse">
-                <option selected></option>
-                <option value="IV">IV</option>
-                <option value="create new">Create new</option>
-              </select>
-            </div>
-
-          </div>
-          <div class="editCourse-form-down">
+<!-- <section class="home-testimonial-section">
+	<div class="container">
+		<div class="home-testimonial-header">
+			<h2>Trusted by Teachers & Learners</h2>
+		</div>
+		<ngx-slick-carousel class="carousel home-testimonial-wrapper" #slickModal="slick-carousel" [config]="slideConfig">
+			<div ngxSlickItem *ngFor="let slide of slides" class="slide home-testimonial-box">
+				<div class="home-testimonial-caption">
+					<figure>
+						<img src="/assets/images/blue-quote.png">
+					</figure>
+					<p>{{ slide.text }}</p>
+				</div>
+				<div class="testimonial-user-caption">
+					<figure>
+						<img src="/assets/images/user_1.png">
+					</figure>
+					<div class="testimonial-user">
+						<h6>{{ slide.name }}</h6>
+						<span>Accountant student</span>
+					</div>
+				</div>
+			</div>
+		</ngx-slick-carousel>
 
 
-            <div class="fieldset class-materials">
-              <label>Class materials access available from</label>
-              <div class="editcourse-field-wrapper">
-                <div class="class-materials-radio">
-                  <input type="radio" name="start-date" value="start-date">
-                  <label for="teacher">Class start date</label>
-                </div>
-                <div class="class-materials-radio">
-                  <input type="radio" name="start-date" value="start-date">
-                  <input type="date">
-                </div>
-              </div>
-            </div>
+	</div>
+</section> -->
 
-            <div class="fieldset class-materials-to">
-              <label>Class materials access available to</label>
-              <div class="editcourse-field-wrapper">
-                <div class="class-materials-radio">
-                  <input type="radio" name="start-date-calender" value="start-date-calender">
-                  <label for="teacher">Class start date</label>
-                </div>
-                <div class="class-materials-radio">
-                  <input type="radio" name="start-date-calender" value="start-date-calender">
-                  <input type="date">
-                </div>
-              </div>
-            </div>
-
-            <div class="fieldset allow-messaging">
-              <label>Allow messaging from learner to coach</label>
-              <div class="editcourse-field-wrapper">
-                <div class="allow-messaging-radio">
-                  <input type="radio" name="available" value="available">
-                  <label for="Yes">Yes</label>
-                </div>
-                <div class="allow-messaging-radio">
-                  <input type="radio" name="available" value="available">
-                  <label for="No">No</label>
-                </div>
-              </div>
-            </div>
-
-            <div class="fieldset allow-messaging">
-              <label>Allow messaging from learner to coach</label>
-              <div class="editcourse-field-wrapper">
-                <div class="allow-messaging-radio">
-                  <input type="radio" name="unavailable" value="unavailable">
-                  <label for="Yes">Yes</label>
-                </div>
-                <div class="allow-messaging-radio">
-                  <input type="radio" name="unavailable" value="unavailable">
-                  <label for="No">No</label>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="modal-footer">
-            <button class="cancel-btn-course">Cancel</button>
-            <button class="edit-btn-course">Edit</button>
-          </div>
-        </form>
-      </div>
-    </div>
-
-  </div>
-</div>
-<app-footer></app-footer>
+<section class="newsletter-section">
+	<div class="container">
+		<div class="newsletter-wrapper">
+			<div class="newsletterc-caption">
+				<h5>Subscribe the newletter to get online <span>Learning  Resources for Student and teachers.</span></h5>
+			</div>
+			<div class="newsletterc-btn">
+				<a href="#">Get Newsletter</a>
+			</div>
+		</div>
+	</div>	
+</section>

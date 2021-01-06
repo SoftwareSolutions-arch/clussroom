@@ -28,6 +28,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { OtpComponent } from './otp/otp.component';
 import * as $ from 'jquery';
+import { Sample04Component } from './sample04/sample04.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +48,8 @@ import * as $ from 'jquery';
     ChangePasswordComponent,
     FooterComponent,
     SidebarComponent,
-    OtpComponent
+    OtpComponent,
+    Sample04Component
   ],
   imports: [
     BrowserModule,
