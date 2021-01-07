@@ -65,7 +65,7 @@ export class InstructionNameComponent implements OnInit {
       localStorage.setItem('isLogin','1')
       console.log('result', result);
       // localStorage.setItem("passwordSet", 'true');
-      this.router.navigate(['/home']);
+      this.router.navigate(['/sidebar']);
 
     })
       .catch(error => {

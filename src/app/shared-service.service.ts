@@ -160,8 +160,9 @@ export class SharedServiceService {
   }
 
   doLogout(params,header){
+    console.log('params',params)
     return new Promise((resolve, reject) => {
-      this.http.post(this.baseurl + "/user/logout",params, header).subscribe(
+      this.http.post(this.baseurl + "/user/logout/"+params.csrf_token, header).subscribe(
         res => {
           if (res['success'] != 0) {
             resolve(res);

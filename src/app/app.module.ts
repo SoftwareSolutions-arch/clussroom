@@ -29,6 +29,8 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { OtpComponent } from './otp/otp.component';
 import * as $ from 'jquery';
 import { Sample04Component } from './sample04/sample04.component';
+import { DeletePopupComponent } from './delete-popup/delete-popup.component';
+import { DashboardheaderComponent } from './dashboardheader/dashboardheader.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +51,9 @@ import { Sample04Component } from './sample04/sample04.component';
     FooterComponent,
     SidebarComponent,
     OtpComponent,
-    Sample04Component
+    Sample04Component,
+    DeletePopupComponent,
+    DashboardheaderComponent
   ],
   imports: [
     BrowserModule,

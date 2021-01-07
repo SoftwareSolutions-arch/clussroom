@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   error_messages: any = '';
   isTextFieldType: boolean;
-  hideImage:boolean=true;
+  hideImage: boolean = true;
   constructor(public router: Router, public util: UtilService, public service: SharedServiceService, public formBuilder: FormBuilder) {
     this.setupLoginFormData();
   }
@@ -24,14 +24,14 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  togglePasswordFieldType(){
+  togglePasswordFieldType() {
     this.isTextFieldType = !this.isTextFieldType;
-    this.hideImage=!this.hideImage
+    this.hideImage = !this.hideImage
   }
 
 
-  ShowPassword(event){
-  console.log('evemt',event.target.checked)
+  ShowPassword(event) {
+    console.log('evemt', event.target.checked)
   }
 
 
@@ -73,27 +73,29 @@ export class LoginComponent implements OnInit {
       'Access-Control-Allow-Origin': '*'
     })
     this.service.doLogin(params, { headers: headers }).then((result) => {
-      console.log('login++', result);
-      console.log('login++', result['name']);
+      console.log('result',result);
+      console.log('result++',result['current_user']['csrf_token']);
       if (result['status'] == 200) {
-          localStorage.setItem('userMail',result['name']);
-        localStorage.setItem('isLogin','1')
+        localStorage.setItem("csrftoken", result['current_user']['csrf_token']);
+        localStorage.setItem("uid", result['current_user']['uid']);
+        localStorage.setItem('userMail', result['current_user']['name']);
+        localStorage.setItem('isLogin', '1');
         this.util.openSnackBarSuccess(result['message']);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/sidebar']);
       }
       else {
         this.util.openSnackBar(result['mesaage']);
       }
     })
       .catch(error => {
-        console.log('getting some error',error);
+        console.log('getting some error', error);
         this.util.openSnackBar(error['message']);
       })
   }
 
   //reset password
 
-  resetPassword(){
+  resetPassword() {
     this.router.navigate(['/forgot-password']);
   }
 }

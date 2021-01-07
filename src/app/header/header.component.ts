@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit {
   }
 
   home() {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/sidebar']);
   }
 
   logIn() {
@@ -39,14 +39,13 @@ export class HeaderComponent implements OnInit {
 
   // logout setup
   logout() {
-    // window.location.reload();
-    let params = {
-      'csrftoken': this.csrftoken
+    let params={
+      'csrf_token': this.csrftoken
     }
     let headers = new HttpHeaders({
       'Access-Control-Allow-Origin': '*'
     })
-    this.service.doLogout(params, { headers: headers }).then((result) => {
+    this.service.doLogout(params,{ headers: headers }).then((result) => {
       console.log('logout++', result);
       if (result['status'] == 200) {
         localStorage.clear();
