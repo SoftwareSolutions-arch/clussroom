@@ -32,7 +32,8 @@ export class ChoosePasswordComponent implements OnInit {
     this.error_messages = {
       password: [
         { type: "required", message: '*Password is Required' },
-        { type: "minlength", message: '*Please enter minimum 6 digit password' }
+        { type: "minlength", message: '*Please enter minimum 6 digit password' },
+        { type: "pattern", message: '*Please enter strong password' }
       ],
       confirm_password: [
         { type: "required", message: '*Confirm Password is Required' },
@@ -47,6 +48,8 @@ export class ChoosePasswordComponent implements OnInit {
           Validators.compose([
             Validators.required,
             Validators.minLength(6),
+            Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{6,}')
+
           ])
         ),
         confirm_password: new FormControl(
