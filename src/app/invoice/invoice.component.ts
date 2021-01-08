@@ -16,6 +16,7 @@ export class InvoiceComponent implements OnInit {
   invoiceDetails: any = {};
   isImageShow: boolean = true;
   isSpinnerShow: boolean = false;
+  isLoaderShow: boolean = false;
   error_messages: any = '';
   invoiceForm: FormGroup;
   paymentForm: FormGroup;
@@ -209,6 +210,7 @@ export class InvoiceComponent implements OnInit {
 
   // submit 
   submit() {
+    this.isLoaderShow = true;
     this.isSpinnerShow = true
     const params = {
       'step': 4,
@@ -230,9 +232,9 @@ export class InvoiceComponent implements OnInit {
     console.log('params', params)
     let headers = new HttpHeaders({
       'Access-Control-Allow-Origin': '*'
-    })
+    });
     this.service.postInvoiceDetails(params, { headers: headers }).then((result) => {
-      console.log('result', result['email']);
+      this.isLoaderShow = false;
       console.log('login++', result);
       if (result['status_message'] == 'User Created Successfully') {
         localStorage.setItem('userMail', result['email']);
@@ -241,11 +243,13 @@ export class InvoiceComponent implements OnInit {
         this.router.navigate(['/thanks-screen']);
       }
       else {
+        this.util.errorAlert(result['status_message']);
         this.util.openSnackBar(result['status_message']);
         this.isSpinnerShow = false;
       }
     })
       .catch(error => {
+        this.util.errorAlert(error['status_message']);
         this.util.openSnackBar(error['status_message'])
         this.isSpinnerShow = false;
       })

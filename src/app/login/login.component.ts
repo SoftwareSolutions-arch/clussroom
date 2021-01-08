@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms"
 import { SharedServiceService } from '../shared-service.service';
 import { Router } from '@angular/router';
 import { HttpHeaders } from '@angular/common/http';
-import { UtilService } from '../../providers/util.service'
+import { UtilService } from '../../providers/util.service';
 
 @Component({
   selector: 'app-login',
@@ -12,17 +12,19 @@ import { UtilService } from '../../providers/util.service'
 })
 export class LoginComponent implements OnInit {
 
-
   loginForm: FormGroup;
   error_messages: any = '';
   isTextFieldType: boolean;
   hideImage: boolean = true;
+  isImageShow: boolean = false;
   constructor(public router: Router, public util: UtilService, public service: SharedServiceService, public formBuilder: FormBuilder) {
     this.setupLoginFormData();
   }
 
   ngOnInit(): void {
+
   }
+
 
   togglePasswordFieldType() {
     this.isTextFieldType = !this.isTextFieldType;
@@ -62,6 +64,7 @@ export class LoginComponent implements OnInit {
 
   // login setup
   startClass() {
+    this.isImageShow = true;
     let params = {
       "name": this.loginForm.value.email,
       "pass": this.loginForm.value.password
@@ -73,9 +76,10 @@ export class LoginComponent implements OnInit {
       'Access-Control-Allow-Origin': '*'
     })
     this.service.doLogin(params, { headers: headers }).then((result) => {
-      console.log('result',result);
-      console.log('result++',result['current_user']['csrf_token']);
+      console.log('result', result);
+      console.log('result++', result['current_user']['csrf_token']);
       if (result['status'] == 200) {
+        this.isImageShow = false;
         localStorage.setItem("csrftoken", result['current_user']['csrf_token']);
         localStorage.setItem("uid", result['current_user']['uid']);
         localStorage.setItem('userMail', result['current_user']['name']);
@@ -84,12 +88,16 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/sidebar']);
       }
       else {
-        this.util.openSnackBar(result['mesaage']);
+        // this.util.openSnackBar(result['mesaage']);
+        this.util.errorAlert(result['message']);
+        this.isImageShow=false;
       }
     })
       .catch(error => {
         console.log('getting some error', error);
-        this.util.openSnackBar(error['message']);
+        // this.util.openSnackBar(error['message']);
+        this.util.errorAlert(error['message']);
+        this.isImageShow=false;
       })
   }
 
