@@ -34,8 +34,6 @@ export class LoginComponent implements OnInit {
     console.log('evemt', event.target.checked)
   }
 
-
-
   setupLoginFormData() {
     this.error_messages = {
       email: [
@@ -59,7 +57,6 @@ export class LoginComponent implements OnInit {
     );
   }
 
-
   // login setup
   startClass() {
     let params = {
@@ -73,8 +70,8 @@ export class LoginComponent implements OnInit {
       'Access-Control-Allow-Origin': '*'
     })
     this.service.doLogin(params, { headers: headers }).then((result) => {
-      console.log('result',result);
-      console.log('result++',result['current_user']['csrf_token']);
+      console.log('result', result);
+      console.log('result++', result['current_user']['csrf_token']);
       if (result['status'] == 200) {
         localStorage.setItem("csrftoken", result['current_user']['csrf_token']);
         localStorage.setItem("uid", result['current_user']['uid']);
@@ -94,7 +91,6 @@ export class LoginComponent implements OnInit {
   }
 
   //reset password
-
   resetPassword() {
     this.router.navigate(['/forgot-password']);
   }

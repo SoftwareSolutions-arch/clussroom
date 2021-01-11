@@ -12,7 +12,7 @@ export class InstructionNameComponent implements OnInit {
   termsCondition: boolean = false;
   SchoolName: any = '';
   instructionList: any = '';
-  selectedItem:any=[];
+  selectedItem: any = [];
   constructor(public router: Router, public service: SharedServiceService) {
     this.SchoolName = localStorage.getItem('schoolname');
     this.getInstruction();
@@ -36,7 +36,7 @@ export class InstructionNameComponent implements OnInit {
 
   selectedItems(values) {
     console.log('values', values);
-    this.selectedItem=values;
+    this.selectedItem = values;
   }
 
   back() {
@@ -49,20 +49,19 @@ export class InstructionNameComponent implements OnInit {
 
   // Set password
   nextPage() {
-   var uid = localStorage.getItem('uid');
+    var uid = localStorage.getItem('uid');
     let params = {
       "schoolname": this.SchoolName,
-      "instruction_name":  this.selectedItem,
-      "uid":uid
+      "instruction_name": this.selectedItem,
+      "uid": uid
     }
-
-    console.log('params', params);
 
     let headers = new HttpHeaders({
       'Access-Control-Allow-Origin': '*'
     })
+
     this.service.setPassword(params, { headers: headers }).then((result) => {
-      localStorage.setItem('isLogin','1')
+      localStorage.setItem('isLogin', '1')
       console.log('result', result);
       // localStorage.setItem("passwordSet", 'true');
       this.router.navigate(['/sidebar']);
