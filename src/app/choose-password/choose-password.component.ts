@@ -15,7 +15,8 @@ export class ChoosePasswordComponent implements OnInit {
   ChangePasswordForm: FormGroup;
   passwordNotMatch: any = '';
   error_messages: any = '';
-  userId: any = ''
+  userId: any = '';
+  isImageShow: boolean = false;
   constructor(public formBuilder: FormBuilder, public util: UtilService, private activatedRoute: ActivatedRoute, public router: Router, public service: SharedServiceService) {
     this.setupLoginFormData();
   }
@@ -92,6 +93,7 @@ export class ChoosePasswordComponent implements OnInit {
 
   // Set password
   saveLogin() {
+    this.isImageShow = true;
     let params = {
       "uid": this.userId,
       "password": this.ChangePasswordForm.value.password
@@ -103,6 +105,7 @@ export class ChoosePasswordComponent implements OnInit {
       'Access-Control-Allow-Origin': '*'
     })
     this.service.setPassword(params, { headers: headers }).then((result) => {
+      this.isImageShow = false;
       console.log('result', result);
       console.log('result', result['csrftoken']);
       if (result['message'] == "Password Created Successfully And Logged in") {
@@ -112,12 +115,14 @@ export class ChoosePasswordComponent implements OnInit {
         this.router.navigate(['/school-name']);
       }
       else {
-        this.util.openSnackBar(result['message']);
+        // this.util.openSnackBar(result['message']);
+        this.util.errorAlert(result['message']);
       }
     })
       .catch(error => {
         console.log(error, 'error')
-        this.util.openSnackBar(error['message']);
+        // this.util.openSnackBar(error['message']);
+        this.util.errorAlert(error['message']);
       })
   }
 
