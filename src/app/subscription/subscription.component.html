@@ -1,150 +1,176 @@
-<div *ngIf="isImageShow">
-  <img class="common-loader">
-</div>
+<!DOCTYPE html>
+<html>
+<title>Subscription Summary</title>
 
-<app-header *ngIf="!isImageShow"></app-header>
-<section class="subscription-summary-section" *ngIf="!isImageShow">
-  <div class="container">
-    <div class="subscription-content-flex">
-      <div class="subscription-content-left">
-        <h2>Subscription Summary</h2>
-        <ul>
-          <li>
-            <div class="label-subscription">
-              Subscription Type
-            </div>
-            <div class="estimate-subscription">
-              Lite
-              <span>(for induviduals)</span>
-            </div>
-            <div class="combine-subscription">
+<head>
+  <link rel="icon" href="image/clusroom-fav.png" type="image/png">
+  <!-- <link rel="stylesheet" href="css/slick.css">
+  	<link rel="stylesheet" href="boostrap/css/bootstrap.css">
+  	<link rel="stylesheet" href="css/all.css">
+	<link rel="stylesheet" href="css/style.css"> -->
+</head>
 
-            </div>
-            <div class="price-subscription">
-              $ {{this.subscriptionDetails.amount}}
-            </div>
-          </li>
+<body>
 
-          <li>
-            <div class="label-subscription">
-              Course Administrators
+  <div *ngIf="isImageShow">
+    <img class="image-loader" src="assets/spinner.gif">
+  </div>
+  <!-- Header start -->
+
+  <app-header *ngIf="!isImageShow"></app-header>
+  <!-- Header end -->
+  <section class="subscription-summary-section" *ngIf="!isImageShow">
+    <div class="container">
+      <div class="subscription-content-flex">
+        <div class="subscription-content-left">
+          <h2>Subscription Summary</h2>
+          <ul>
+            <li>
+              <div class="label-subscription">
+                Subscription Type
+              </div>
+              <div class="estimate-subscription">
+                Lite
+                <span>(for induviduals)</span>
+              </div>
+              <div class="combine-subscription">
+
+              </div>
+              <div class="price-subscription">
+                $ {{this.subscriptionDetails.amount}}
+              </div>
+            </li>
+
+            <li>
+              <div class="label-subscription">
+                Course Administrators
+              </div>
+              <div class="estimate-subscription">
+                {{this.subscriptionDetails.course_administrators}}
+              </div>
+              <div class="combine-subscription">
+                <img src="assets/images/blue-tick.png">
+                Included
+              </div>
+              <div class="price-subscription">
+                -
+              </div>
+            </li>
+            <li>
+              <div class="label-subscription">
+                Administrators
+              </div>
+              <div class="estimate-subscription">
+                2
+              </div>
+              <div class="combine-subscription">
+                <img src="assets/images/blue-tick.png">
+                Included
+              </div>
+              <div class="price-subscription">
+                -
+              </div>
+            </li>
+            <li>
+              <div class="label-subscription">
+                Storage(GB)
+              </div>
+              <div class="estimate-subscription">
+                {{this.subscriptionDetails.gb_storage}}
+              </div>
+              <div class="combine-subscription">
+                <img src="assets/images/blue-tick.png">
+                Included
+              </div>
+              <div class="price-subscription">
+                -
+              </div>
+            </li>
+            <li>
+              <div class="label-subscription">
+                Video Minutes (montly)
+              </div>
+              <div class="estimate-subscription">
+                12,000 minutes <b class="custom-tooltip" data-toggle="tooltip" title="12,000 minutes">?</b>
+              </div>
+              <div class="combine-subscription">
+                <img src="assets/images/blue-tick.png">
+                Included
+              </div>
+              <div class="price-subscription">
+                -
+              </div>
+            </li>
+            <li>
+              <div class="label-subscription">
+                Subscription from
+              </div>
+              <div class="estimate-subscription">
+                {{this.subscriptionDetails.subscription_from}}
+              </div>
+              <div class="combine-subscription">
+                <img src="assets/images/blue-tick.png">
+                Included
+              </div>
+              <div class="price-subscription">
+                -
+              </div>
+            </li>
+            <li>
+              <div class="label-subscription">
+                Subscription to
+              </div>
+              <div class="estimate-subscription">
+                {{this.subscriptionDetails.subscription_to}}
+              </div>
+              <div class="combine-subscription">
+                <img src="assets/images/blue-tick.png">
+                Included
+              </div>
+              <div class="price-subscription">
+                -
+              </div>
+            </li>
+            <div class="subscription-total">
+              <h6>Total Amount</h6><span>$ {{this.subscriptionDetails.amount}}</span>
             </div>
-            <div class="estimate-subscription">
-              {{this.subscriptionDetails.course_administrators}}
-            </div>
-            <div class="combine-subscription">
-              <img src="assets/images/blue-tick.png">
-              Included
-            </div>
-            <div class="price-subscription">
-              -
-            </div>
-          </li>
-          <li>
-            <div class="label-subscription">
-              Administrators
-            </div>
-            <div class="estimate-subscription">
-              2
-            </div>
-            <div class="combine-subscription">
-              <img src="assets/images/blue-tick.png">
-              Included
-            </div>
-            <div class="price-subscription">
-              -
-            </div>
-          </li>
-          <li>
-            <div class="label-subscription">
-              Storage(GB)
-            </div>
-            <div class="estimate-subscription">
-              {{this.subscriptionDetails.gb_storage}}
-            </div>
-            <div class="combine-subscription">
-              <img src="assets/images/blue-tick.png">
-              Included
-            </div>
-            <div class="price-subscription">
-              -
-            </div>
-          </li>
-          <li>
-            <div class="label-subscription">
-              Video Minutes (montly)
-            </div>
-            <div class="estimate-subscription">
-              12,000 minutes <b class="custom-tooltip" data-toggle="tooltip" title="12,000 minutes">?</b>
-            </div>
-            <div class="combine-subscription">
-              <img src="assets/images/blue-tick.png">
-              Included
-            </div>
-            <div class="price-subscription">
-              -
-            </div>
-          </li>
-          <li>
-            <div class="label-subscription">
-              Subscription from
-            </div>
-            <div class="estimate-subscription">
-              {{this.subscriptionDetails.subscription_from}}
-            </div>
-            <div class="combine-subscription">
-              <img src="assets/images/blue-tick.png">
-              Included
-            </div>
-            <div class="price-subscription">
-              -
-            </div>
-          </li>
-          <li>
-            <div class="label-subscription">
-              Subscription to
-            </div>
-            <div class="estimate-subscription">
-              {{this.subscriptionDetails.subscription_to}}
-            </div>
-            <div class="combine-subscription">
-              <img src="assets/images/blue-tick.png">
-              Included
-            </div>
-            <div class="price-subscription">
-              -
-            </div>
-          </li>
-          <div class="subscription-total">
-            <h6>Total Amount</h6><span>$ {{this.subscriptionDetails.amount}}</span>
+          </ul>
+          <div class="terms-of-use">
+            <input type="checkbox" ng-model="termsCondition" (click)="agreeTerms($event)">
+            <p>I agree to the accompanying <a href="#">Terms of use and Privacy Policy</a></p>
           </div>
-        </ul>
-        <div class="terms-of-use">
-          <input type="checkbox" ng-model="termsCondition" (click)="agreeTerms($event)">
-          <p>I agree to the accompanying <a href="#">Terms of use and Privacy Policy</a></p>
-        </div>
-        <div class="subscription-buttons">
-          <button [disabled]="this.termsCondition!=true" class="btn" (click)="next()">
-            Next
-          </button>
-          <button class="back-btn" (click)="back()">
-            Back
-          </button>
-        </div>
-      </div>
-      <div class="subscription-content-right">
-        <div class="about-subscription-caption">
-          <h5>About Subscription </h5>
-          <div class="about-subscription-flex">
-            <h6>Lite subscription</h6>
-            <span>$ {{this.subscriptionDetails.amount}}</span>
+          <div class="subscription-buttons">
+            <button [disabled]="this.termsCondition!=true" class="btn" (click)="next()">
+              Next
+            </button>
+            <button class="back-btn" (click)="back()">
+              Back
+            </button>
           </div>
-          <p>Generate Lorem Ipsum placeholder text for use in your graphic, print and web layouts, and discover
-            plugins for your favorite writing, design and blogging tools.Generate Lorem Ipsum placeholder text for use
-            in your graphic, print and web layouts,</p>
+        </div>
+        <div class="subscription-content-right">
+          <div class="about-subscription-caption">
+            <h5>About Subscription </h5>
+            <div class="about-subscription-flex">
+              <h6>Lite subscription</h6>
+              <span>$ {{this.subscriptionDetails.amount}}</span>
+            </div>
+            <p>Generate Lorem Ipsum placeholder text for use in your graphic, print and web layouts, and discover
+              plugins for your favorite writing, design and blogging tools.Generate Lorem Ipsum placeholder text for use
+              in your graphic, print and web layouts,</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-<app-footer *ngIf="!isImageShow"></app-footer>
+  </section>
+
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="boostrap/js/bootstrap.js"></script>
+  <script type="text/javascript" src="js/slick.min.js"></script>
+  <script type="text/javascript" src="js/script.js"></script>
+
+  <app-footer *ngIf="!isImageShow"></app-footer>
+
+</body>
+
+</html>

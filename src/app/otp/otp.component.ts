@@ -65,13 +65,10 @@ export class OtpComponent implements OnInit {
         this.router.navigate(['/change-password']);
       }
       else {
-        this.util.errorAlert(result['message']);
-        // this.util.openSnackBar(result['message']);
+        this.util.openSnackBar(result['message']);
       }
     })
       .catch(error => {
-        this.util.errorAlert(error['message'])
-        // this.util.openSnackBar(error['message']);
       })
   }
 }

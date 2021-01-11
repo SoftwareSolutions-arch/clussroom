@@ -1,3 +1,303 @@
+
+* {
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+	margin: 0 auto;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    color: #8e8e8e;
+    line-height: 1.4;
+    font-size: 16px;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+    font-weight: 400;
+    font-style: normal;
+    font-family: 'Rubik', sans-serif;
+}
+
+:focus {
+    outline: none !important;
+}
+
+img {
+    border: 0;
+    height: auto;
+    display: block;
+    max-width: 100%;
+}
+
+ul,
+li,
+a {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    list-style: none;
+    font-family: 'Rubik', sans-serif;
+    cursor: pointer;
+}
+
+ol,
+li,
+a {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+a:hover,
+a:focus{
+	outline: none;
+	text-decoration: none;
+}
+h1,
+h2{
+    color: #343C6A;
+    line-height: 1.1;
+    font-family: 'Rubik', sans-serif;
+}
+h3,
+h4,
+h5,
+h6{
+	color: #343C6A;
+    line-height: 1.1;
+    font-family: 'Rubik', sans-serif;
+}
+span {
+    color: #343C6A;
+    line-height: 1.5;
+    font-weight: 400;
+    font-family: 'Rubik', sans-serif;
+}
+h1 {
+    font-size: 50px;
+    font-weight: 700;
+}
+h2 {
+    font-size: 36px;
+    font-weight: 700;
+}
+h3 {
+    font-size: 30px;
+    font-weight: 600;
+}
+h4 {
+    font-size: 28px;
+    font-weight: 600;
+}
+h5 {
+    font-size: 24px;
+    font-weight: 600;
+}
+h6 {
+    font-size: 20px;
+    font-weight: 600;
+}
+p {
+    color: #8e8e8e;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+    font-family: 'Rubik', sans-serif;
+}
+
+.button,
+.btn {
+    outline: none;
+    font-size: 17px;
+    border: 2px solid #396AFF;
+    background-color: #396AFF;
+    font-weight: 500;
+    padding: 10px 30px;
+    display: inline-flex;
+    color: #fff;
+    align-content: center;
+    text-decoration: none;
+    justify-content: center;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    border-radius: 0px;
+    font-family: 'Rubik', sans-serif;
+}
+
+.button a,
+.btn a{
+	color: #fff;
+}
+
+.button:hover,
+.btn:hover{
+	background-color: #fff;
+	color: #396AFF;
+	border-color: #396AFF;
+}
+.button:hover a,
+.btn:hover a{
+	color: #396AFF;
+}
+.btn-danger:active:focus,
+.btn-danger:active,
+.btn-primary:active:focus,
+.btn-default:focus,
+.btn-danger:focus,
+.btn-info:focus,
+.btn-primary:focus,
+.btn-success:focus{
+    outline: none;
+    color: #396AFF;
+    background-color: #fff;
+    border: 2px solid #396AFF;
+}
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn.active.focus{
+	outline: none;
+	box-shadow: none;
+}
+
+input
+select,
+textarea,
+.form-control{
+	resize: none;
+    height: 50px;
+    width: 100%;
+    color: #8e8e8e;
+    box-shadow: none;
+    font-size: 15px;
+    border-radius: 0px;
+    background: #fafafa;
+    border: 1px solid #e6e6e6;
+    line-height: 1.42857143;
+    font-weight: 400;
+    font-family: 'Rubik', sans-serif;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+.form-control:focus {
+    border-color: #e6e6e6;
+    box-shadow: none;
+    outline: none;
+}
+
+.fieldset {
+    margin-bottom: 10px;
+}
+
+input[type="date"]{   
+    background-image: url(/assets/images/input-date.png);
+    background-repeat: no-repeat;
+    background-position: right 15px bottom 9px;
+
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+    -webkit-appearance: none;
+}
+
+
+
+/*payment-confirmation css start*/
+section.payment-confirmation-section {
+    background-color: #fbfcfe;
+    padding: 150px 0px;
+}
+
+section.payment-confirmation-section .confirmation-box {
+    background-color: #ffff;
+    border: 1px solid #EEF5FF;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    padding: 70px 80px;
+    width: 60%;
+    margin: 0 auto;
+}
+
+section.payment-confirmation-section .confirmation-box .confirmation-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+section.payment-confirmation-section .confirmation-box .confirmation-header h3 {
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 41px;
+    color: #343C6A;
+    margin-bottom: 0px;
+}
+
+section.payment-confirmation-section .confirmation-box .confirmation-header span {
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 41px;
+    color: #ffa26b;
+}
+
+section.payment-confirmation-section .confirmation-box h4{
+	font-family: Rubik;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 41px;
+    color: #343C6A;
+    text-align: center;
+    margin-bottom: 0px;
+}
+
+section.payment-confirmation-section .confirmation-box p {
+    font-family: Barlow;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 20px;
+    text-align: center;
+    color: #343C6A;
+    margin: 20px 0px 30px;
+}
+
+section.payment-confirmation-section .confirmation-box p a {
+    color: #ffa283;
+}
+
+section.payment-confirmation-section .confirmation-box .btn {
+    margin: 0 auto;
+    font-family: Barlow;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 28px;
+    border-radius: 15px;
+    text-transform: capitalize;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/*payment-confirmation css end*/
+
 .thaks-text{
     display: block;
     margin: auto;

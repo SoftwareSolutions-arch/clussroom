@@ -13,15 +13,15 @@ export class FooterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  contactUs() {
+  contactUs(){
     this.router.navigate(['/contact-us']);
   }
 
-  pricing() {
+  pricing(){
     this.router.navigate(['/pricing']);
   }
 
-  about() {
+  about(){
     this.router.navigate(['/about-us']);
   }
 

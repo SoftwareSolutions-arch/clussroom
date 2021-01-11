@@ -159,7 +159,6 @@ export class SharedServiceService {
     });
   }
 
-  // logout function
   doLogout(params,header){
     console.log('params',params)
     return new Promise((resolve, reject) => {

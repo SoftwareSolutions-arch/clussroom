@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import Swal from 'sweetalert2';
 import {
   MatSnackBar,
   MatSnackBarHorizontalPosition,
@@ -30,27 +29,5 @@ export class UtilService {
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
     });
-  }
-
-
-  // success alert
-
-  successAlert(msg){
-    Swal.fire({
-      position: 'center',
-      icon: 'success',
-      title: msg,
-      showConfirmButton: false,
-      timer: 5000
-
-    })
-  }
-
-  errorAlert(msg){
-    Swal.fire({
-      icon: 'error',
-      title: 'Oops...',
-      text: msg
-    })
   }
 }

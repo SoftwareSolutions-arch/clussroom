@@ -1,12 +1,4 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-
-
-
 * {
     padding: 0;
     box-sizing: border-box;
@@ -51,6 +43,7 @@ a {
     transition: all 0.3s ease;
     list-style: none;
     font-family: 'Rubik', sans-serif;
+    cursor: pointer;
 }
 
 ol,
@@ -200,7 +193,23 @@ textarea:focus,
     box-shadow: none;
     outline: none;
 }
-/*end custom style*/
+
+.fieldset {
+    margin-bottom: 10px;
+}
+
+input[type="date"]{   
+    background-image: url(/assets/images/input-date.png);
+    background-repeat: no-repeat;
+    background-position: right 15px bottom 9px;
+
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+    -webkit-appearance: none;
+}
 
 /*dashboard header css start*/
 .dashboard-header {

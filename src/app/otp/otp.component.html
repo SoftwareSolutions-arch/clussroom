@@ -14,10 +14,10 @@
   <section class="login-section">
     <div class="container">
       <div class="login-form">
-        <h2>Enter a otp</h2>
+        <h2>Enter a OTP</h2>
         <form [formGroup]="otpForm">
           <div class="login-company-name fieldset">
-            <label>otp</label>
+            <label>OTP</label>
             <input formControlName="otp" type="tel">
             <ng-container *ngFor="let error of error_messages.otp">
               <div class="error-message" *ngIf="otpForm.get('otp').hasError(error.type) &&

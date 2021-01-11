@@ -865,6 +865,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 /*dashboard header css start*/
 .dashboard {
     background-color: #fbfcfe;
+    min-height: 100vh;
 }
 
 .control-panel {

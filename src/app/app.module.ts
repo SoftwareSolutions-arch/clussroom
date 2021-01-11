@@ -31,7 +31,6 @@ import * as $ from 'jquery';
 import { Sample04Component } from './sample04/sample04.component';
 import { DeletePopupComponent } from './delete-popup/delete-popup.component';
 import { DashboardheaderComponent } from './dashboardheader/dashboardheader.component';
-import { NgxSpinnerModule } from "ngx-spinner"; 
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,8 +64,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
     ReactiveFormsModule,
     MatSnackBarModule,MatInputModule,
     MatProgressSpinnerModule,
-    SlickCarouselModule,
-    NgxSpinnerModule
+    SlickCarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]
