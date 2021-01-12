@@ -20,10 +20,10 @@ export class InvoiceComponent implements OnInit {
   invoiceForm: FormGroup;
   paymentForm: FormGroup;
   passwordNotMatch: any = '';
-  constructor(public formBuilder: FormBuilder, public util: UtilService, public router: Router, public http: HttpClient, public service: SharedServiceService,
-    // public slider: MatSliderModule
+  constructor(public formBuilder: FormBuilder, public util: UtilService,
+    public router: Router, public http: HttpClient, public service: SharedServiceService
   ) {
-    this.setupLoginFormData();
+    this.setupFormData();
     this.nidKey = localStorage.getItem('nidKey');
     this.getAllInvoiceList();
   }
@@ -31,7 +31,7 @@ export class InvoiceComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  setupLoginFormData() {
+  setupFormData() {
     this.error_messages = {
       companyName: [
         { type: "required", message: '*Company Name is Required' }
@@ -227,13 +227,10 @@ export class InvoiceComponent implements OnInit {
       'cardHolderName': this.invoiceForm.value.cardHolderName,
     }
 
-    console.log('params', params)
     let headers = new HttpHeaders({
       'Access-Control-Allow-Origin': '*'
     })
     this.service.postInvoiceDetails(params, { headers: headers }).then((result) => {
-      console.log('result', result['email']);
-      console.log('login++', result);
       if (result['status_message'] == 'User Created Successfully') {
         localStorage.setItem('userMail', result['email']);
         this.isSpinnerShow = false;
@@ -251,11 +248,13 @@ export class InvoiceComponent implements OnInit {
       })
   }
 
+  // add data
   add() {
     this.paymentForm.enable()
     this.invoiceForm.disable()
   }
 
+  // enable previous page
   back() {
     this.invoiceForm.enable()
   }

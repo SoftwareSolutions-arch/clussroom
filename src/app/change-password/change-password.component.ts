@@ -17,14 +17,14 @@ export class ChangePasswordComponent implements OnInit {
   error_messages: any = '';
   otpId: any = '';
   constructor(public formBuilder: FormBuilder, public util: UtilService, public router: Router, public service: SharedServiceService) {
-    this.setupLoginFormData();
+    this.setupFormData();
     this.otpId = localStorage.getItem('otpId');
   }
 
   ngOnInit(): void {
   }
 
-  setupLoginFormData() {
+  setupFormData() {
     this.error_messages = {
       password: [
         { type: "required", message: '*Password is Required' },
@@ -95,13 +95,10 @@ export class ChangePasswordComponent implements OnInit {
       "id": this.otpId,
       "password": this.ChangePasswordForm.value.password
     }
-    console.log('params', params)
-
     let headers = new HttpHeaders({
       'Access-Control-Allow-Origin': '*'
     })
     this.service.submitPassword(params, { headers: headers }).then((result) => {
-      console.log('postOtp++', result);
       if (result['message'] == "Password Reset Successfully ") {
         this.util.openSnackBarSuccess(result['message'])
         this.router.navigate(['/login']);

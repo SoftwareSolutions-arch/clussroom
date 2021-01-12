@@ -20,13 +20,11 @@ export class SubscriptionComponent implements OnInit {
   isImageShow: boolean = true;
   constructor(public router: Router, public http: HttpClient, public service: SharedServiceService) {
     this.nidKey = localStorage.getItem('nidKey');
-    console.log('this.nidKey', this.nidKey);
   }
 
   ngOnInit(): void {
     this.getAllsubscriptionList();
   }
-
 
   // get all record list
   getAllsubscriptionList() {
@@ -46,6 +44,7 @@ export class SubscriptionComponent implements OnInit {
       })
   }
 
+  // go to the next page
   next() {
     if (this.termsCondition != true) {
       window.alert('please accept terms and condition');
@@ -57,13 +56,13 @@ export class SubscriptionComponent implements OnInit {
 
   }
 
+  // back to the previous form
   back() {
     this.router.navigate(['/pricing']);
   }
 
+  // check terms and condition accepted or not
   agreeTerms(event) {
-    // console.log('event++++++++++++',event)
-    console.log('event++++++++++++', event.target.checked);
     this.termsCondition = event.target.checked
   }
 }

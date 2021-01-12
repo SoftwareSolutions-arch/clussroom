@@ -32,8 +32,8 @@ export class PricingComponent implements OnInit {
     this.currentPage = true;
   }
 
+  // go to the subscription page
   startClass(data) {
-    console.log('data', data);
     localStorage.setItem('nidKey', data);
     this.router.navigate(['/subscription']);
   }
@@ -49,7 +49,6 @@ export class PricingComponent implements OnInit {
     })
     this.service.getRecordList(params, { headers: headers }).then((result) => {
       this.isImageShow = false;
-      console.log('result', result['nids']);
       this.firstNid = result['nids']['34'];
       this.secondNid = result['nids']['35'];
       this.thirdNid = result['nids']['36'];

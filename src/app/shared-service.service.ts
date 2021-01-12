@@ -103,25 +103,6 @@ export class SharedServiceService {
     });
   }
 
-  // set school name
-  setSchool(params, header) {
-    return new Promise((resolve, reject) => {
-      this.http.post(this.baseurl + "/vendor-first-login-api", params, header).subscribe(
-        res => {
-          if (res['success'] != 0) {
-            resolve(res);
-          }
-          else {
-            reject(res);
-          }
-        },
-        err => {
-          reject(err);
-        }
-      );
-    });
-  }
-
   getInstructionList(header) {
     return new Promise((resolve, reject) => {
       this.http.post(this.baseurl + "/instruction-name-list-api", header).subscribe(

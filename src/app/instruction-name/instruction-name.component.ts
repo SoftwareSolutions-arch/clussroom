@@ -13,6 +13,7 @@ export class InstructionNameComponent implements OnInit {
   SchoolName: any = '';
   instructionList: any = '';
   selectedItem: any = [];
+
   constructor(public router: Router, public service: SharedServiceService) {
     this.SchoolName = localStorage.getItem('schoolname');
     this.getInstruction();
@@ -27,15 +28,12 @@ export class InstructionNameComponent implements OnInit {
     })
     this.service.getInstructionList({ headers: headers }).then((result) => {
       this.instructionList = result;
-      console.log('result', result);
-
     })
       .catch(error => {
       })
   }
 
   selectedItems(values) {
-    console.log('values', values);
     this.selectedItem = values;
   }
 
@@ -61,11 +59,8 @@ export class InstructionNameComponent implements OnInit {
     })
 
     this.service.setPassword(params, { headers: headers }).then((result) => {
-      localStorage.setItem('isLogin', '1')
-      console.log('result', result);
-      // localStorage.setItem("passwordSet", 'true');
+      localStorage.setItem('isLogin', '1');
       this.router.navigate(['/sidebar']);
-
     })
       .catch(error => {
       })

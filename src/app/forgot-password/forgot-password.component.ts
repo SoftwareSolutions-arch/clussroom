@@ -14,13 +14,13 @@ export class ForgotPasswordComponent implements OnInit {
   forgotForm: FormGroup;
   error_messages: any = '';
   constructor(public router: Router, public formBuilder: FormBuilder, public util: UtilService, public service: SharedServiceService) {
-    this.setupLoginFormData();
+    this.setupFormData();
   }
 
   ngOnInit(): void {
   }
 
-  setupLoginFormData() {
+  setupFormData() {
     this.error_messages = {
       email: [
         { type: "required", message: '*Email is Required' },
@@ -45,9 +45,7 @@ export class ForgotPasswordComponent implements OnInit {
       'Access-Control-Allow-Origin': '*'
     })
     this.service.getforgotPassword(params, { headers: headers }).then((result) => {
-      // console.log('getForgotPassword++', result);
       if (result['message'] == "Otp Send") {
-        console.log('reslut',result['id'])
         localStorage.setItem('otpId',result['id'])
         this.util.openSnackBarSuccess(result['message'])
         this.router.navigate(['/otp']);

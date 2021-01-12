@@ -16,15 +16,15 @@ export class OtpComponent implements OnInit {
   otpId: any = '';
   otpForm: FormGroup;
   constructor(public formBuilder: FormBuilder, public util: UtilService, public router: Router, public service: SharedServiceService) {
-    this.setupLoginFormData();
+    this.setupFormData();
     this.otpId = localStorage.getItem('otpId');
   }
 
   ngOnInit(): void {
   }
 
-
-  setupLoginFormData() {
+  // setup form data
+  setupFormData() {
     this.error_messages = {
       otp: [
         { type: "required", message: '*otp is Required' }]
@@ -39,9 +39,9 @@ export class OtpComponent implements OnInit {
         )
       }
     );
-
   }
 
+  // go to the change password
   next() {
     this.router.navigate(['/change-password']);
   }
@@ -53,13 +53,11 @@ export class OtpComponent implements OnInit {
       "step": 2,
       "id": this.otpId
     }
-    console.log('params', params)
 
     let headers = new HttpHeaders({
       'Access-Control-Allow-Origin': '*'
     })
     this.service.postOtp(params, { headers: headers }).then((result) => {
-      console.log('postOtp++', result);
       if (result['message'] == "Otp Valid") {
         this.util.openSnackBarSuccess(result['message'])
         this.router.navigate(['/change-password']);

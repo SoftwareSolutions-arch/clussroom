@@ -12,14 +12,15 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Vali
 export class SchoolNameComponent implements OnInit {
   schoolNameForm: FormGroup;
   error_messages: any = '';
-  constructor(public router: Router, public service: SharedServiceService, public formBuilder: FormBuilder) { 
-    this.setupLoginFormData();
+  constructor(public router: Router, public service: SharedServiceService, public formBuilder: FormBuilder) {
+    this.setupFormData();
   }
 
   ngOnInit(): void {
   }
 
-  setupLoginFormData() {
+  // set all validation
+  setupFormData() {
     this.error_messages = {
       schoolName: [
         { type: "required", message: '*School Name is Required' },
@@ -38,29 +39,14 @@ export class SchoolNameComponent implements OnInit {
 
   }
 
-
+  // go to instruction page
   next() {
-    localStorage.setItem('schoolname',this.schoolNameForm.value.schoolName);
+    localStorage.setItem('schoolname', this.schoolNameForm.value.schoolName);
     this.router.navigate(['/instruction-name']);
   }
 
+  // back to login page
   back() {
     this.router.navigate(['/login']);
-  }
-
-  // get all invoice list
-  postSchoolName() {
-    let params = {
-      "step": "3"
-    }
-
-    let headers = new HttpHeaders({
-      'Access-Control-Allow-Origin': '*'
-    })
-    this.service.setSchool(params, { headers: headers }).then((result) => {
-      console.log('vendor-first-login-api', result);
-    })
-      .catch(error => {
-      })
   }
 }

@@ -46,7 +46,6 @@ export class HeaderComponent implements OnInit {
       'Access-Control-Allow-Origin': '*'
     })
     this.service.doLogout(params,{ headers: headers }).then((result) => {
-      console.log('logout++', result);
       if (result['status'] == 200) {
         localStorage.clear();
         this.router.navigate(['/login']);
@@ -56,7 +55,6 @@ export class HeaderComponent implements OnInit {
       }
     })
       .catch(error => {
-        console.log('getting some error', error);
         this.util.openSnackBar(error['message']);
       })
   }

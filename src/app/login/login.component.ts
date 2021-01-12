@@ -11,12 +11,11 @@ import { UtilService } from '../../providers/util.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-
   loginForm: FormGroup;
   error_messages: any = '';
   isTextFieldType: boolean;
   hideImage: boolean = true;
+  
   constructor(public router: Router, public util: UtilService, public service: SharedServiceService, public formBuilder: FormBuilder) {
     this.setupLoginFormData();
   }
@@ -27,11 +26,6 @@ export class LoginComponent implements OnInit {
   togglePasswordFieldType() {
     this.isTextFieldType = !this.isTextFieldType;
     this.hideImage = !this.hideImage
-  }
-
-
-  ShowPassword(event) {
-    console.log('evemt', event.target.checked)
   }
 
   setupLoginFormData() {
@@ -63,15 +57,10 @@ export class LoginComponent implements OnInit {
       "name": this.loginForm.value.email,
       "pass": this.loginForm.value.password
     }
-
-    console.log('params', params);
-
     let headers = new HttpHeaders({
       'Access-Control-Allow-Origin': '*'
     })
     this.service.doLogin(params, { headers: headers }).then((result) => {
-      console.log('result', result);
-      console.log('result++', result['current_user']['csrf_token']);
       if (result['status'] == 200) {
         localStorage.setItem("csrftoken", result['current_user']['csrf_token']);
         localStorage.setItem("uid", result['current_user']['uid']);
@@ -85,7 +74,6 @@ export class LoginComponent implements OnInit {
       }
     })
       .catch(error => {
-        console.log('getting some error', error);
         this.util.openSnackBar(error['message']);
       })
   }

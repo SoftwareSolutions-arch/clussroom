@@ -15,20 +15,19 @@ export class ChoosePasswordComponent implements OnInit {
   ChangePasswordForm: FormGroup;
   passwordNotMatch: any = '';
   error_messages: any = '';
-  userId: any = ''
+  userId: any = '';
+  
   constructor(public formBuilder: FormBuilder, public util: UtilService, private activatedRoute: ActivatedRoute, public router: Router, public service: SharedServiceService) {
-    this.setupLoginFormData();
+    this.setupFormData();
   }
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe(params => {
-      console.log('params', params)
       this.userId = params['uid'];
-      console.log('uid', this.userId);
     });
   }
 
-  setupLoginFormData() {
+  setupFormData() {
     this.error_messages = {
       password: [
         { type: "required", message: '*Password is Required' },
@@ -97,14 +96,10 @@ export class ChoosePasswordComponent implements OnInit {
       "password": this.ChangePasswordForm.value.password
     }
 
-    console.log('params', params);
-
     let headers = new HttpHeaders({
       'Access-Control-Allow-Origin': '*'
     })
     this.service.setPassword(params, { headers: headers }).then((result) => {
-      console.log('result', result);
-      console.log('result', result['csrftoken']);
       if (result['message'] == "Password Created Successfully And Logged in") {
         this.util.openSnackBarSuccess(result['message']);
         localStorage.setItem("uid", this.userId);
@@ -116,9 +111,7 @@ export class ChoosePasswordComponent implements OnInit {
       }
     })
       .catch(error => {
-        console.log(error, 'error')
         this.util.openSnackBar(error['message']);
       })
   }
-
 }
