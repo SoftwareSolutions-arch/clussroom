@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms"
 import { SharedServiceService } from '../shared-service.service';
 import { Router } from '@angular/router';
 import { HttpHeaders } from '@angular/common/http';
-import { UtilService } from '../../providers/util.service'
+import { UtilService } from '../../providers/util.service';
 
 @Component({
   selector: 'app-login',
