@@ -31,6 +31,10 @@ import * as $ from 'jquery';
 import { Sample04Component } from './sample04/sample04.component';
 import { DeletePopupComponent } from './delete-popup/delete-popup.component';
 import { DashboardheaderComponent } from './dashboardheader/dashboardheader.component';
+import { CoursesComponent } from './courses/courses.component';
+import { ClassesComponent } from './classes/classes.component';
+import {MatTabsModule} from '@angular/material/tabs';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +57,9 @@ import { DashboardheaderComponent } from './dashboardheader/dashboardheader.comp
     OtpComponent,
     Sample04Component,
     DeletePopupComponent,
-    DashboardheaderComponent
+    DashboardheaderComponent,
+    CoursesComponent,
+    ClassesComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +70,7 @@ import { DashboardheaderComponent } from './dashboardheader/dashboardheader.comp
     ReactiveFormsModule,
     MatSnackBarModule,MatInputModule,
     MatProgressSpinnerModule,
-    SlickCarouselModule
+    SlickCarouselModule,MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

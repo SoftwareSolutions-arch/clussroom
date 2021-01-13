@@ -17,7 +17,8 @@ import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { OtpComponent } from './otp/otp.component';
 import { Sample04Component } from './sample04/sample04.component';
-// import { DashboardheaderComponent } from './dashboardheader/dashboardheader.component';
+import { DashboardheaderComponent } from './dashboardheader/dashboardheader.component';
+import { ClassesComponent } from './classes/classes.component';
 const routes: Routes = [
   {
     path: 'pricing', component: PricingComponent
@@ -70,9 +71,12 @@ const routes: Routes = [
   {
     path: 'sample04', component: Sample04Component
   },
-  // {
-  //   path: 'dashoardheader',component:DashboardheaderComponent
-  // },
+  {
+    path: 'dashoardheader',component:DashboardheaderComponent
+  },
+  {
+    path: 'goToClasses',component:ClassesComponent
+  },
   {
     path: '', redirectTo: '/home', pathMatch: 'full'
   },

@@ -1,0 +1,257 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+
+* {
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+	margin: 0 auto;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    color: #8e8e8e;
+    line-height: 1.4;
+    font-size: 16px;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+    font-weight: 400;
+    font-style: normal;
+    font-family: 'Rubik', sans-serif;
+}
+
+:focus {
+    outline: none !important;
+}
+
+img {
+    border: 0;
+    height: auto;
+    display: block;
+    max-width: 100%;
+}
+
+ul,
+li,
+a {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    list-style: none;
+    font-family: 'Rubik', sans-serif;
+}
+
+ol,
+li,
+a {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+a:hover,
+a:focus{
+	outline: none;
+	text-decoration: none;
+}
+h1,
+h2{
+    color: #343C6A;
+    line-height: 1.1;
+    font-family: 'Rubik', sans-serif;
+}
+h3,
+h4,
+h5,
+h6{
+	color: #343C6A;
+    line-height: 1.1;
+    font-family: 'Rubik', sans-serif;
+}
+span {
+    color: #343C6A;
+    line-height: 1.5;
+    font-weight: 400;
+    font-family: 'Rubik', sans-serif;
+}
+h1 {
+    font-size: 50px;
+    font-weight: 700;
+}
+h2 {
+    font-size: 36px;
+    font-weight: 700;
+}
+h3 {
+    font-size: 30px;
+    font-weight: 600;
+}
+h4 {
+    font-size: 28px;
+    font-weight: 600;
+}
+h5 {
+    font-size: 24px;
+    font-weight: 600;
+}
+h6 {
+    font-size: 20px;
+    font-weight: 600;
+}
+p {
+    color: #8e8e8e;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+    font-family: 'Rubik', sans-serif;
+}
+
+.button,
+.btn {
+    outline: none;
+    font-size: 17px;
+    border: 2px solid #396AFF;
+    background-color: #396AFF;
+    font-weight: 500;
+    padding: 10px 30px;
+    display: inline-flex;
+    color: #fff;
+    align-content: center;
+    text-decoration: none;
+    justify-content: center;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    border-radius: 0px;
+    font-family: 'Rubik', sans-serif;
+}
+
+.button a,
+.btn a{
+	color: #fff;
+}
+
+.button:hover,
+.btn:hover{
+	background-color: #fff;
+	color: #396AFF;
+	border-color: #396AFF;
+}
+.button:hover a,
+.btn:hover a{
+	color: #396AFF;
+}
+.btn-danger:active:focus,
+.btn-danger:active,
+.btn-primary:active:focus,
+.btn-default:focus,
+.btn-danger:focus,
+.btn-info:focus,
+.btn-primary:focus,
+.btn-success:focus{
+    outline: none;
+    color: #396AFF;
+    background-color: #fff;
+    border: 2px solid #396AFF;
+}
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn.active.focus{
+	outline: none;
+	box-shadow: none;
+}
+
+input
+select,
+textarea,
+.form-control{
+	resize: none;
+    height: 50px;
+    width: 100%;
+    color: #8e8e8e;
+    box-shadow: none;
+    font-size: 15px;
+    border-radius: 0px;
+    background: #fafafa;
+    border: 1px solid #e6e6e6;
+    line-height: 1.42857143;
+    font-weight: 400;
+    font-family: 'Rubik', sans-serif;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+.form-control:focus {
+    border-color: #e6e6e6;
+    box-shadow: none;
+    outline: none;
+}
+/*end custom style*/
+
+/*dashboard header css start*/
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 20px;
+}
+
+.dashboard-header .user-search-setting {
+    display: flex;
+    align-items: center;
+}
+
+.dashboard-header .user-search-setting form {
+    position: relative;
+    margin-right: 20px;
+}
+
+.dashboard-header .user-search-setting form input {
+    background: #FFFFFF;
+    border: 1px solid #F1F6FB;
+    border-radius: 8px;
+    font-family: Barlow;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0px;
+    text-align: left;
+    height: 38px;
+    width: 326px;
+    padding: 0px 10px 0px 35px;
+}
+
+.dashboard-header .user-search-setting form input::placeholder{
+	color: #DCE2EC;
+}
+
+.dashboard-header .user-search-setting form button {
+    position: absolute;
+    border: 0;
+    background-color: transparent;
+    left: 10px;
+    top: 10px;
+}
+
+.dashboard-header .user-search-setting .user-notification {
+    margin-right: 20px;
+}
+
+.dashboard-header .site-logo {
+    width: 151px;
+}
+/*dashboard header css end*/

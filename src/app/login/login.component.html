@@ -19,11 +19,11 @@
         <form [formGroup]="loginForm">
           <div class="radio-curve">
             <div class="login-radio">
-              <input type="radio" id="teacher" name="category" value="teacher">&nbsp;
+              <input (click)="userType($event)" type="radio" id="teacher" name="category" value="teacher">&nbsp;
               <label for="teacher">Teacher</label>
             </div>
             <div class="login-radio">
-              <input type="radio" id="learner" name="category" value="learner">&nbsp;
+              <input (click)="userType($event)" type="radio" id="learner" name="category" value="learner">&nbsp;
               <label for="learner">Learner</label>
             </div>
           </div>

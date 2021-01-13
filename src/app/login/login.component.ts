@@ -11,16 +11,22 @@ import { UtilService } from '../../providers/util.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  selectpayment: any = '';
   loginForm: FormGroup;
   error_messages: any = '';
   isTextFieldType: boolean;
   hideImage: boolean = true;
-  
+  userDetails:any='';
   constructor(public router: Router, public util: UtilService, public service: SharedServiceService, public formBuilder: FormBuilder) {
     this.setupLoginFormData();
+
   }
 
   ngOnInit(): void {
+  }
+
+  selectPaymentmethod(event) {
+    console.log('selectpayment', this.selectpayment)
   }
 
   togglePasswordFieldType() {
@@ -46,13 +52,18 @@ export class LoginComponent implements OnInit {
           Validators.compose([
             Validators.required,
           ])
-        )
+        ),
       }
     );
   }
 
+
   // login setup
   startClass() {
+
+    if(this.userDetails=='' || this.userDetails=="" ){
+      alert('please select ')
+    }
     let params = {
       "name": this.loginForm.value.email,
       "pass": this.loginForm.value.password
@@ -81,5 +92,11 @@ export class LoginComponent implements OnInit {
   //reset password
   resetPassword() {
     this.router.navigate(['/forgot-password']);
+  }
+
+
+  userType(event) {
+    this.userDetails=event.target.value;
+    console.log('event', event.target.value);
   }
 }
