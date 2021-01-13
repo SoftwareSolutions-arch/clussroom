@@ -1,149 +1,161 @@
-
 * {
-    padding: 0;
-    box-sizing: border-box;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.container{
-	margin: 0 auto;
+.container {
+  margin: 0 auto;
 }
 
 html,
 body {
-    margin: 0;
-    padding: 0;
-    color: #8e8e8e;
-    line-height: 1.4;
-    font-size: 16px;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    scroll-behavior: smooth;
-    font-weight: 400;
-    font-style: normal;
-    font-family: 'Rubik', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #8e8e8e;
+  line-height: 1.4;
+  font-size: 16px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+  font-weight: 400;
+  font-style: normal;
+  font-family: 'Rubik', sans-serif;
 }
 
 :focus {
-    outline: none !important;
+  outline: none !important;
 }
 
 img {
-    border: 0;
-    height: auto;
-    display: block;
-    max-width: 100%;
+  border: 0;
+  height: auto;
+  display: block;
+  max-width: 100%;
 }
 
 ul,
 li,
 a {
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    list-style: none;
-    font-family: 'Rubik', sans-serif;
-    cursor: pointer;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  list-style: none;
+  font-family: 'Rubik', sans-serif;
+  cursor: pointer;
 }
 
 ol,
 li,
 a {
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-    transition: all 0.3s ease;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  transition: all 0.3s ease;
 }
+
 a:hover,
-a:focus{
-	outline: none;
-	text-decoration: none;
+a:focus {
+  outline: none;
+  text-decoration: none;
 }
+
 h1,
-h2{
-    color: #343C6A;
-    line-height: 1.1;
-    font-family: 'Rubik', sans-serif;
+h2 {
+  color: #343C6A;
+  line-height: 1.1;
+  font-family: 'Rubik', sans-serif;
 }
+
 h3,
 h4,
 h5,
-h6{
-	color: #343C6A;
-    line-height: 1.1;
-    font-family: 'Rubik', sans-serif;
-}
-span {
-    color: #343C6A;
-    line-height: 1.5;
-    font-weight: 400;
-    font-family: 'Rubik', sans-serif;
-}
-h1 {
-    font-size: 50px;
-    font-weight: 700;
-}
-h2 {
-    font-size: 36px;
-    font-weight: 700;
-}
-h3 {
-    font-size: 30px;
-    font-weight: 600;
-}
-h4 {
-    font-size: 28px;
-    font-weight: 600;
-}
-h5 {
-    font-size: 24px;
-    font-weight: 600;
-}
 h6 {
-    font-size: 20px;
-    font-weight: 600;
+  color: #343C6A;
+  line-height: 1.1;
+  font-family: 'Rubik', sans-serif;
 }
+
+span {
+  color: #343C6A;
+  line-height: 1.5;
+  font-weight: 400;
+  font-family: 'Rubik', sans-serif;
+}
+
+h1 {
+  font-size: 50px;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+h5 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+h6 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
 p {
-    color: #8e8e8e;
-    line-height: 1.5;
-    letter-spacing: 0.5px;
-    font-family: 'Rubik', sans-serif;
+  color: #8e8e8e;
+  line-height: 1.5;
+  letter-spacing: 0.5px;
+  font-family: 'Rubik', sans-serif;
 }
 
 .button,
 .btn {
-    outline: none;
-    font-size: 17px;
-    border: 2px solid #396AFF;
-    background-color: #396AFF;
-    font-weight: 500;
-    padding: 10px 30px;
-    display: inline-flex;
-    color: #fff;
-    align-content: center;
-    text-decoration: none;
-    justify-content: center;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    border-radius: 0px;
-    font-family: 'Rubik', sans-serif;
+  outline: none;
+  font-size: 17px;
+  border: 2px solid #396AFF;
+  background-color: #396AFF;
+  font-weight: 500;
+  padding: 10px 30px;
+  display: inline-flex;
+  color: #fff;
+  align-content: center;
+  text-decoration: none;
+  justify-content: center;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  border-radius: 0px;
+  font-family: 'Rubik', sans-serif;
 }
 
 .button a,
-.btn a{
-	color: #fff;
+.btn a {
+  color: #fff;
 }
 
 .button:hover,
-.btn:hover{
-	background-color: #fff;
-	color: #396AFF;
-	border-color: #396AFF;
+.btn:hover {
+  background-color: #fff;
+  color: #396AFF;
+  border-color: #396AFF;
 }
+
 .button:hover a,
-.btn:hover a{
-	color: #396AFF;
+.btn:hover a {
+  color: #396AFF;
 }
+
 .btn-danger:active:focus,
 .btn-danger:active,
 .btn-primary:active:focus,
@@ -151,429 +163,447 @@ p {
 .btn-danger:focus,
 .btn-info:focus,
 .btn-primary:focus,
-.btn-success:focus{
-    outline: none;
-    color: #396AFF;
-    background-color: #fff;
-    border: 2px solid #396AFF;
+.btn-success:focus {
+  outline: none;
+  color: #396AFF;
+  background-color: #fff;
+  border: 2px solid #396AFF;
 }
+
 .btn:focus,
 .btn:active:focus,
 .btn.active:focus,
 .btn.focus,
 .btn:active.focus,
-.btn.active.focus{
-	outline: none;
-	box-shadow: none;
+.btn.active.focus {
+  outline: none;
+  box-shadow: none;
 }
 
-input
-select,
+input select,
 textarea,
-.form-control{
-	resize: none;
-    height: 50px;
-    width: 100%;
-    color: #8e8e8e;
-    box-shadow: none;
-    font-size: 15px;
-    border-radius: 0px;
-    background: #fafafa;
-    border: 1px solid #e6e6e6;
-    line-height: 1.42857143;
-    font-weight: 400;
-    font-family: 'Rubik', sans-serif;
+.form-control {
+  resize: none;
+  height: 50px;
+  width: 100%;
+  color: #8e8e8e;
+  box-shadow: none;
+  font-size: 15px;
+  border-radius: 0px;
+  background: #fafafa;
+  border: 1px solid #e6e6e6;
+  line-height: 1.42857143;
+  font-weight: 400;
+  font-family: 'Rubik', sans-serif;
 }
 
 input:focus,
 select:focus,
 textarea:focus,
 .form-control:focus {
-    border-color: #e6e6e6;
-    box-shadow: none;
-    outline: none;
-}
-.modal .modal-dialog{
-    transition: -webkit-transform 0.3s ease-out;
-    transition: transform 0.3s ease-out;
-    transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
-    -webkit-transform: translate(0, -50px);
-    transform: translate(0, -50px);
+  border-color: #e6e6e6;
+  box-shadow: none;
+  outline: none;
 }
 
-.modal.show .modal-dialog{
-    -webkit-transform: none;
-    transform: none;
+.modal .modal-dialog {
+  transition: -webkit-transform 0.3s ease-out;
+  transition: transform 0.3s ease-out;
+  transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
+  -webkit-transform: translate(0, -50px);
+  transform: translate(0, -50px);
 }
+
+.modal.show .modal-dialog {
+  -webkit-transform: none;
+  transform: none;
+}
+
 .modal-content {
-    border: 0px;
-    background-clip: unset;
-}
-.modal-header{
-    padding: 1rem 1rem;
-}
-.modal-footer{
-    padding: 1rem;
-}
-.modal-body{
-    padding: 1rem;
-}
-.fieldset {
-    margin-bottom: 10px;
+  border: 0px;
+  background-clip: unset;
 }
 
-input[type="date"]{   
-    background-image: url(/assets/images/input-date.png);
-    background-repeat: no-repeat;
-    background-position: right 15px bottom 9px;
+.modal-header {
+  padding: 1rem 1rem;
+}
+
+.modal-footer {
+  padding: 1rem;
+}
+
+.modal-body {
+  padding: 1rem;
+}
+
+.fieldset {
+  margin-bottom: 10px;
+}
+
+input[type="date"] {
+  background-image: url(/assets/images/input-date.png);
+  background-repeat: no-repeat;
+  background-position: right 15px bottom 9px;
 
 }
 
 input[type="date"]::-webkit-inner-spin-button,
 input[type="date"]::-webkit-calendar-picker-indicator {
-    opacity: 0;
-    -webkit-appearance: none;
+  opacity: 0;
+  -webkit-appearance: none;
 }
 
 
 /*Invoice css start*/
 section.invoice-section {
-    background-color: #fbfcfe;
-    padding: 50px 0px;
+  background-color: #fbfcfe;
+  padding: 50px 0px;
 }
 
 .invoice-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .invoice-details {
-    width: 57%;
+  width: 57%;
 }
 
 .order-summary {
-    width: 40%;
-    background-color: #ffff;
-    border: 1px solid #EEF5FF;
-    box-sizing: border-box;
-    box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.1);
-    border-radius: 15px;
-    padding: 30px;
+  width: 40%;
+  background-color: #ffff;
+  border: 1px solid #EEF5FF;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  padding: 30px;
 }
 
 .invoice-details h2 {
-    font-family: Rubik;
-    font-size: 32px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 39px;
-    letter-spacing: 0px;
-    color: #343C6A;
+  font-family: Rubik;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 39px;
+  letter-spacing: 0px;
+  color: #343C6A;
 }
 
 .invoice-details span {
-    font-family: Barlow;
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 20px;
-    letter-spacing: 0px;
-    text-align: left;
-    color: #5B73A0;
+  font-family: Barlow;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: #5B73A0;
 }
 
 .invoice-details form {
-    padding: 30px 0px;
+  padding: 30px 0px;
 }
 
 .invoice-details form label {
-    font-family: Rubik;
-    font-size: 17px;
-    font-weight: 500;
-    line-height: 28px;
-    letter-spacing: 0px;
-    text-align: left;
-    color: #5B73A0;
-    width: 100%;
+  font-family: Rubik;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: #5B73A0;
+  width: 100%;
 }
 
 .invoice-details form input {
-    width: 100%;
-    border: 1px solid #E7EDFF;
-    box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.04);
-    border-radius: 6px;
-    height: 56px;
-    padding: 0px 15px;
-    color: #343c6a;
+  width: 100%;
+  border: 1px solid #E7EDFF;
+  box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.04);
+  border-radius: 6px;
+  height: 56px;
+  padding: 0px 15px;
+  color: #343c6a;
 }
 
 .flex-curve {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .flex-curve div:first-child {
-    width: 58%;
+  width: 58%;
 }
 
 .flex-curve div:last-child {
-    width: 40%;
+  width: 40%;
 }
 
 .invoice-details form button.btn {
-    border-radius: 8px;
-    width: 90px;
-    height: 46px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0px;
-    margin-top: 20px;
-    text-transform: capitalize;
+  border-radius: 8px;
+  width: 90px;
+  height: 46px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  margin-top: 20px;
+  text-transform: capitalize;
 }
 
 .order-summary h3 {
-    font-family: Rubik;
-    font-size: 32px;
-    font-weight: 500;
-    line-height: 39px;
-    letter-spacing: 0px;
-    color: #343C6A;
+  font-family: Rubik;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 39px;
+  letter-spacing: 0px;
+  color: #343C6A;
 }
 
 .lite-subscription-flex {
-    background-color: #EEF5FF;
-    display: flex;
-    justify-content: space-between;
-    padding: 15px 20px;
-    border-radius: 10px;
-    margin: 20px 0px;
+  background-color: #EEF5FF;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 20px;
+  border-radius: 10px;
+  margin: 20px 0px;
 }
 
 .lite-subscription-flex .lite-subscription h5 {
-    font-size: 17px;
-    font-weight: 500;
-    line-height: 28px;
-    letter-spacing: 0px;
-    text-align: left;
-    color: #7990B4;
-    margin-bottom: 0px;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: #7990B4;
+  margin-bottom: 0px;
 }
 
 .lite-subscription-flex .lite-subscription span {
-    font-family: Barlow;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 25px;
-    letter-spacing: 0px;
-    text-align: left;
-    color: #7990B4;
+  font-family: Barlow;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 25px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: #7990B4;
 }
 
 .lite-subscription-flex h5 {
-    font-family: Rubik;
-    font-size: 22px;
-    font-weight: 500;
-    line-height: 28px;
-    letter-spacing: 0px;
-    text-align: left;
-    color: #396AFF;
+  font-family: Rubik;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: #396AFF;
 }
 
 .vat-section {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 3px solid #E7EDFF;
-    padding: 0px 17px 15px 17px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 3px solid #E7EDFF;
+  padding: 0px 17px 15px 17px;
 }
 
 .vat-section span {
-    font-family: Barlow;
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 20px;
-    letter-spacing: 0px;
-    text-align: left;
-    color: #7990B4;
+  font-family: Barlow;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: #7990B4;
 }
 
 .vat-section em {
-    font-size: 17px;
-    font-weight: 500;
-    line-height: 28px;
-    letter-spacing: 0px;
-    text-align: left;
-    color: #7990B4;
-    font-style: normal;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: #7990B4;
+  font-style: normal;
 }
 
 .net-total-flex {
-    display: flex;
-    justify-content: space-between;
-    padding: 15px 17px;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 17px;
 }
 
 .net-total-flex .net-total {
-    width: 60%;
+  width: 60%;
 }
 
 .net-total-flex .net-total h6 {
-    font-style: normal;
-    font-weight: 500;
-    font-size: 17px;
-    line-height: 28px;
-    color: #7990B4;
-    display: inline-block;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 28px;
+  color: #7990B4;
+  display: inline-block;
 }
 
 .net-total-flex .net-total span {
-    font-family: Barlow;
-    color: #7990B4;
-    font-weight: 400;
-    font-size: 18px;
+  font-family: Barlow;
+  color: #7990B4;
+  font-weight: 400;
+  font-size: 18px;
 }
 
 .net-total-flex h5 {
-    font-size: 22px;
-    font-weight: 500;
-    line-height: 28px;
-    letter-spacing: 0px;
-    color: #343C6A;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: 0px;
+  color: #343C6A;
 }
+
 .payment-order {
-    padding-top: 30px;
+  padding-top: 30px;
 }
 
 .payment-order form {
-    padding-top: 30px;
+  padding-top: 30px;
 }
 
 .payment-order form label {
-    font-family: Barlow;
-    font-size: 15px;
-    font-weight: 500;
-    line-height: 20px;
-    letter-spacing: 0px;
-    text-align: left;
-    width: 100%;
-    color: #5B73A0;
+  font-family: Barlow;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0px;
+  text-align: left;
+  width: 100%;
+  color: #5B73A0;
 }
 
 .payment-order form select,
 .payment-order form input {
-    border: 1px solid #E7EDFF;
-    border-radius: 6px;
-    width: 100%;
-    height: 35px;
-    padding: 0px 15px;
-    font-family: Barlow;
-    font-size: 15px;
-    font-weight: 500;
-    color: #5B73A0;
+  border: 1px solid #E7EDFF;
+  border-radius: 6px;
+  width: 100%;
+  height: 35px;
+  padding: 0px 15px;
+  font-family: Barlow;
+  font-size: 15px;
+  font-weight: 500;
+  color: #5B73A0;
 }
 
-.payment-order form select{
-    padding: 0px 4px;
+.payment-order form select {
+  padding: 0px 4px;
 }
 
 .payment-flex-curve {
-    display: flex;
-    width: 50%;
-    justify-content: space-between;
+  display: flex;
+  width: 50%;
+  justify-content: space-between;
 }
 
 .payment-flex-curve div {
-    width: 47%;
+  width: 47%;
 }
 
 .payment-order form .button-wrapper {
-    display: flex;
-    justify-content: space-between;
-    padding-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 30px;
 }
 
 .payment-order form .button-wrapper button.btn {
-    height: 46px;
-    border-radius: 8px;
-    font-family: Barlow;
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 28px;
-    letter-spacing: 0px;
-    display: flex;
-    align-items: center;
-    text-transform: capitalize;
-    width: 56%;
+  height: 46px;
+  border-radius: 8px;
+  font-family: Barlow;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+  letter-spacing: 0px;
+  display: flex;
+  align-items: center;
+  text-transform: capitalize;
+  width: 56%;
 }
 
 .payment-order form .button-wrapper button.-back-btn {
-    width: 40%;
-    border-radius: 8px;
-    outline: none;
-    font-size: 17px;
-    border: 2px solid #DCFAF8;
-    background-color: #DCFAF8;
-    font-weight: 500;
-    padding: 10px 30px;
-    display: inline-flex;
-    align-content: center;
-    text-decoration: none;
-    justify-content: center;
-    transition: all 0.3s ease;
-    color: #16DBCC;
-    height: 46px;
+  width: 40%;
+  border-radius: 8px;
+  outline: none;
+  font-size: 17px;
+  border: 2px solid #DCFAF8;
+  background-color: #DCFAF8;
+  font-weight: 500;
+  padding: 10px 30px;
+  display: inline-flex;
+  align-content: center;
+  text-decoration: none;
+  justify-content: center;
+  transition: all 0.3s ease;
+  color: #16DBCC;
+  height: 46px;
 }
 
 .payment-mode {
-    display: flex;
-    margin-bottom: 15px;
+  display: flex;
+  margin-bottom: 15px;
 }
 
 .payment-mode img {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 b.custom-tooltip {
-    background: #FFF2F8;
-    border-radius: 6px;
-    font-family: Barlow;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 800;
-    line-height: 13px;
-    letter-spacing: 0px;
-    text-align: center;
-    color: #FF82AC;
-    width: 20px;
-    height: 20px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 5px;
-    cursor: pointer;
+  background: #FFF2F8;
+  border-radius: 6px;
+  font-family: Barlow;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 13px;
+  letter-spacing: 0px;
+  text-align: center;
+  color: #FF82AC;
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 5px;
+  cursor: pointer;
 }
+
 .flex-curve div.email {
-    width: 49%;
+  width: 49%;
 }
 
 .flex-curve div.second-email {
-    width: 49%;
+  width: 49%;
 }
+
 /*Invoice css start*/
 
 
-.image-loader,.spinner-loader {
-    display: block;
-    margin: auto;
+.image-loader,
+.spinner-loader {
+  display: block;
+  margin: auto;
 }
 
-.spinner-loader{
-    margin: 10%;
+.spinner-loader {
+  margin: 10%;
 }
 
-.error-message{
-    color: red !important;
-    font-size: 1rem !important;
+.error-message {
+  color: red !important;
+  font-size: 1rem !important;
+}
+
+.login-form .radio-curve .login-radio:first-child {
+  margin-right: 20px;
+}
+
+.radio-btn {
+  width: 15px !important;
 }

@@ -239,12 +239,12 @@ export class InvoiceComponent implements OnInit {
         this.router.navigate(['/thanks-screen']);
       }
       else {
-        this.util.openSnackBar(result['status_message']);
+        this.util.errorAlertPopup(result['status_message']);
         this.isSpinnerShow = false;
       }
     })
       .catch(error => {
-        this.util.openSnackBar(error['status_message'])
+        this.util.errorAlertPopup(error['status_message'])
         this.isSpinnerShow = false;
       })
   }

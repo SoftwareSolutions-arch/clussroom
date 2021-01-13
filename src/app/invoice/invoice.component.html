@@ -128,7 +128,7 @@
                 </ng-container>
               </div>
               <div class="second-email fieldset">
-                <label>Email Address</label>
+                <label>Confirm Email Address</label>
                 <input type="email" formControlName="cmail">
                 <ng-container *ngFor="let error of error_messages.cmail">
                   <div class="error-message" *ngIf="invoiceForm.get('cmail').hasError(error.type) &&
@@ -153,25 +153,35 @@
                 <h5>Lite subscription</h5>
                 <span>(at ${{this.invoiceDetails.amount}} monthly)</span>
               </div>
-              <h5>$ {{this.invoiceDetails.amount*10}}</h5>
+              <h5>$ {{this.invoiceDetails.yearly_amount}}</h5>
             </div>
             <div class="vat-section">
-              <span>Vat 10% <b class="custom-tooltip" data-toggle="tooltip" title="vat">?</b></span>
-              <em>$ 12</em>
+              <span>Vat {{this.invoiceDetails.vat_percentage}}% <b class="custom-tooltip" data-toggle="tooltip"
+                  title="vat">?</b></span>
+              <em>$ {{this.invoiceDetails.vat_amount}}</em>
             </div>
             <div class="net-total-flex">
               <div class="net-total">
                 <h6>Net Total</h6>
                 <span>(Incl Vat)</span>
               </div>
-              <h5>$ {{this.invoiceDetails.yearly_amount}}</h5>
+              <h5>$ {{this.invoiceDetails.yearly_amount_after_vat}}</h5>
             </div>
             <div class="payment-order">
               <h3>Payment</h3>
               <form [formGroup]="paymentForm">
-                <div class="payment-mode">
+                <!-- <div class="payment-mode">
                   <img src="assets/images/visa.png">
                   <img src="assets/images/mastercard.png">
+                  <img src="assets/images/american.png">
+                </div> -->
+
+                <div class="payment-mode login-radio">
+                  <input class="radio-btn" type="radio" id="visa" name="visa" value="visa">&nbsp;
+                  <img src="assets/images/visa.png">
+                  <input class="radio-btn" type="radio" id="visa" name="visa" value="visa">&nbsp;
+                  <img src="assets/images/mastercard.png">
+                    <input class="radio-btn" type="radio" id="visa" name="visa" value="visa">&nbsp;
                   <img src="assets/images/american.png">
                 </div>
                 <div class="cardholder fieldset">
@@ -222,11 +232,10 @@
                 <div class="button-wrapper">
                   <button class="btn" (click)="submit()" *ngIf="!isSpinnerShow">Make Payment</button>
                   <div class="spinner-loader" *ngIf="isSpinnerShow">
-                    <mat-progress-spinner mode="indeterminate" value='66' diameter="45"></mat-progress-spinner>
+                    <img style="width:100px" src="assets/spinner.gif">
                   </div>
                   <button class="-back-btn" (click)="back()">Back</button>
                 </div>
-
               </form>
             </div>
           </div>
