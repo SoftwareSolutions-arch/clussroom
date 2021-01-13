@@ -16,7 +16,7 @@ export class ChoosePasswordComponent implements OnInit {
   passwordNotMatch: any = '';
   error_messages: any = '';
   userId: any = '';
-  
+
   constructor(public formBuilder: FormBuilder, public util: UtilService, private activatedRoute: ActivatedRoute, public router: Router, public service: SharedServiceService) {
     this.setupFormData();
   }
@@ -91,27 +91,36 @@ export class ChoosePasswordComponent implements OnInit {
 
   // Set password
   saveLogin() {
-    let params = {
-      "uid": this.userId,
-      "password": this.ChangePasswordForm.value.password
+    var data1 = this.ChangePasswordForm.value.password;
+    var data2 = this.ChangePasswordForm.value.confirm_password;
+    if (data1 != data2) {
+      this.util.errorAlertPopup('Please choose both password similar')
     }
 
-    let headers = new HttpHeaders({
-      'Access-Control-Allow-Origin': '*'
-    })
-    this.service.setPassword(params, { headers: headers }).then((result) => {
-      if (result['message'] == "Password Created Successfully And Logged in") {
-        this.util.openSnackBarSuccess(result['message']);
-        localStorage.setItem("uid", this.userId);
-        localStorage.setItem("csrftoken", result['csrftoken']);
-        this.router.navigate(['/school-name']);
+    else {
+      let params = {
+        "uid": this.userId,
+        "password": this.ChangePasswordForm.value.password
       }
-      else {
-        this.util.openSnackBar(result['message']);
-      }
-    })
-      .catch(error => {
-        this.util.openSnackBar(error['message']);
+
+      let headers = new HttpHeaders({
+        'Access-Control-Allow-Origin': '*'
       })
+      this.service.setPassword(params, { headers: headers }).then((result) => {
+        if (result['message'] == "Password Created Successfully And Logged in") {
+          this.util.openSnackBarSuccess(result['message']);
+          localStorage.setItem("uid", this.userId);
+          localStorage.setItem("csrftoken", result['csrftoken']);
+          this.router.navigate(['/school-name']);
+        }
+        else {
+          this.util.errorAlertPopup(result['message']);
+        }
+      })
+        .catch(error => {
+          this.util.errorAlertPopup(error['message']);
+        })
+    }
+
   }
 }

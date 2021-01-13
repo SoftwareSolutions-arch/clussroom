@@ -4,9 +4,12 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
+import Swal from 'sweetalert2'
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class UtilService {
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
@@ -29,5 +32,25 @@ export class UtilService {
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
     });
+  }
+
+  // error message through alert
+  errorAlertPopup(msg) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: msg,
+    })
+  }
+
+  // success message through alert
+  showSuccessAlert(msg){
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: msg,
+      showConfirmButton: false,
+      timer: 1500
+    })
   }
 }

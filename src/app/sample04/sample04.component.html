@@ -1,1746 +1,1763 @@
- <div class="nav-clip">
-   <ul>
-     <a class="clip-item active" (click)="courses()">
-       <img src="assets/images/dashboard/second/course-grey.png" class="hover-out">
-       <img src="assets/images/dashboard/second/course-blue.png" class="hover-in">
-       Courses</a>
+<div class="nav-clip">
+  <ul class="nav nav-tabs">
+    <li><a data-toggle="tab" href="#course-content" class="active clip-item" (click)="courses()">
+        <img src="assets/images/dashboard/second/course-grey.png" class="hover-out">
+        <img src="assets/images/dashboard/second/course-blue.png" class="hover-in">Courses</a>
+    </li>
 
-     <a class="clip-item" (click)="classes()">
-       <img src="assets/images/dashboard/second/clip-classes-grey.png" class="hover-out">
-       <img src="assets/images/dashboard/second/clip-classes-blue.png" class="hover-in">
-       Classes
-     </a>
-
-     <a class="clip-item" (click)="classesList()">
-       <img src="assets/images/dashboard/second/list-grey.png" class="hover-out">
-       <img src="assets/images/dashboard/second/list-blue.png" class="hover-in">
-       Class List
-     </a>
-
-     <a class="clip-item" (click)="learner()">
-       <img src="assets/images/dashboard/second/clip-learner-grey.png" class="hover-out">
-       <img src="assets/images/dashboard/second/clip-learner-blue.png" class="hover-in">
-       Learners
-     </a>
-
-     <a class="clip-item" (click)="stroage()">
-       <img src="assets/images/dashboard/second/clip-storage-grey.png" class="hover-out">
-       <img src="assets/images/dashboard/second/clip-storage-blue.png" class="hover-in">
-       Storage
-     </a>
-
-     <a class="clip-item" (click)="admin()">
-       <img src="assets/images/dashboard/second/clip-user-grey.png" class="hover-out">
-       <img src="assets/images/dashboard/second/clip-user-blue.png" class="hover-in">
-       Admin
-     </a>
-
-     <a class="clip-item" (click)="liveSession()">
-       <img src="assets/images/dashboard/second/session-grey.png" class="hover-out">
-       <img src="assets/images/dashboard/second/session-blue.png" class="hover-in">
-       Live Sessions
-     </a>
-   </ul>
- </div>
-
- <div *ngIf="user=='user1'" class="prospectus-section">
-   <div class="prospectus-tabs">
-     <ul class="nav nav-tabs">
-       <li><a data-toggle="tab" href="#summary" class="active">Summary umang</a></li>
-       <li><a data-toggle="tab" href="#instructions">Method of Instructions</a></li>
-     </ul>
-     <div class="prospectus-action">
-       <a class="add-btn" data-toggle="modal" data-target="#addCourse"><i class="fa fa-plus" aria-hidden="true"></i>
-         Name</a>
-       <!-- <a class="edit-btn" data-toggle="modal" data-target="#editCourse"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
-					<a class="delete-btn" data-toggle="modal" data-target="#deleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-					<a class="delete-btn" data-toggle="modal" data-target="#unabledeleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
-     </div>
-   </div>
-   <div class="tab-content">
-     <div id="summary" class="tab-pane active">
-       <div class="table-responsive">
-         <table class="table dashboard-table">
-           <thead>
-             <tr>
-               <th scope="col"></th>
-               <th scope="col">No.</th>
-               <th scope="col" class="text-left">Course Name</th>
-               <th scope="col">Code</th>
-               <th scope="col" class="table-filter">Cateory/Dept</th>
-               <th scope="col" class="table-filter">Level</th>
-               <th scope="col" class="table-filter">Banding</th>
-               <th scope="col" class="table-filter">No. of classes</th>
-               <th scope="col" class="table-filter">No. of learners</th>
-               <th scope="col" class="table-filter">Admin</th>
-             </tr>
-           </thead>
-           <tbody>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>1</td>
-               <td class="text-left">Biology for Primary 1</td>
-               <td>A3K</td>
-               <td>Math</td>
-               <td>Professional medical</td>
-               <td>1</td>
-               <td>12</td>
-               <td>189</td>
-               <td>Aeriel Connelly</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>2</td>
-               <td class="text-left">Geography for Primary 2</td>
-               <td>4CE</td>
-               <td>Science</td>
-               <td>Secondary</td>
-               <td>2</td>
-               <td>8</td>
-               <td>874</td>
-               <td>Darren Leow</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>3</td>
-               <td class="text-left">Bull in share market</td>
-               <td>3AC</td>
-               <td>Social studies</td>
-               <td>Primary</td>
-               <td>3</td>
-               <td>4</td>
-               <td>234</td>
-               <td>Finelly Abrodobe</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>4</td>
-               <td class="text-left">Balance Sheet making</td>
-               <td>R6T</td>
-               <td>Psychology</td>
-               <td>University</td>
-               <td>4</td>
-               <td>11</td>
-               <td>431</td>
-               <td>Prena Abdullah</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>5</td>
-               <td class="text-left">Cash flow </td>
-               <td>2UY</td>
-               <td>Accounting</td>
-               <td>Primary</td>
-               <td>2</td>
-               <td>7</td>
-               <td>501</td>
-               <td>Nisha Fasa</td>
-             </tr>
-           </tbody>
-         </table>
-       </div>
-       <div class="table-result-wrapper">
-         <p>Results: 1-15 of 324</p>
-       </div>
-     </div>
-     <div id="instructions" class="tab-pane">
-       <div class="table=-responsive">
-         <table class="table dashboard-table">
-           <thead>
-             <tr>
-               <th scope="col"></th>
-               <th scope="col">No.</th>
-               <th scope="col" class="text-left">Course Name</th>
-               <th scope="col">Code</th>
-               <th scope="col" class="table-filter">Cateory/Dept</th>
-               <th scope="col" class="table-filter">Level</th>
-               <th scope="col" class="table-filter">Banding</th>
-               <th scope="col" class="table-filter">No. of classes</th>
-               <th scope="col" class="table-filter">No. of learners</th>
-               <th scope="col" class="table-filter">Admin</th>
-             </tr>
-           </thead>
-           <tbody>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>1</td>
-               <td class="text-left">Biology for Primary 1</td>
-               <td>A3K</td>
-               <td>Math</td>
-               <td>Professional medical</td>
-               <td>1</td>
-               <td>12</td>
-               <td>189</td>
-               <td>Aeriel Connelly</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>2</td>
-               <td class="text-left">Geography for Primary 2</td>
-               <td>4CE</td>
-               <td>Science</td>
-               <td>Secondary</td>
-               <td>2</td>
-               <td>8</td>
-               <td>874</td>
-               <td>Darren Leow</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>3</td>
-               <td class="text-left">Bull in share market</td>
-               <td>3AC</td>
-               <td>Social studies</td>
-               <td>Primary</td>
-               <td>3</td>
-               <td>4</td>
-               <td>234</td>
-               <td>Finelly Abrodobe</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>4</td>
-               <td class="text-left">Balance Sheet making</td>
-               <td>R6T</td>
-               <td>Psychology</td>
-               <td>University</td>
-               <td>4</td>
-               <td>11</td>
-               <td>431</td>
-               <td>Prena Abdullah</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>5</td>
-               <td class="text-left">Cash flow </td>
-               <td>2UY</td>
-               <td>Accounting</td>
-               <td>Primary</td>
-               <td>2</td>
-               <td>7</td>
-               <td>501</td>
-               <td>Nisha Fasa</td>
-             </tr>
-           </tbody>
-         </table>
-       </div>
-       <div class="table-result-wrapper">
-         <p>Results: 1-15 of 324</p>
-       </div>
-     </div>
-   </div>
- </div>
-
- <div *ngIf="user=='user2'" class="prospectus-section">
-   <div class="prospectus-tabs">
-     <ul class="nav nav-tabs">
-       <li><a data-toggle="tab" href="#summary" class="active">Summary</a></li>
-       <li><a data-toggle="tab" href="#instructions">Method of Instructions</a></li>
-     </ul>
-     <div class="prospectus-action">
-       <a class="add-btn" data-toggle="modal" data-target="#addCourse"><i class="fa fa-plus" aria-hidden="true"></i>
-         Name</a>
-       <!-- <a class="edit-btn" data-toggle="modal" data-target="#editCourse"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
-					<a class="delete-btn" data-toggle="modal" data-target="#deleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-					<a class="delete-btn" data-toggle="modal" data-target="#unabledeleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
-     </div>
-   </div>
-   <div class="tab-content">
-     <div id="summary" class="tab-pane active">
-       <div class="table-responsive">
-         <table class="table dashboard-table">
-           <thead>
-             <tr>
-               <th scope="col"></th>
-               <th scope="col">No.</th>
-               <th scope="col" class="text-left">Course Name</th>
-               <th scope="col">Code</th>
-               <th scope="col" class="table-filter">Cateory/Dept</th>
-               <th scope="col" class="table-filter">Level</th>
-               <th scope="col" class="table-filter">Banding</th>
-               <th scope="col" class="table-filter">No. of classes</th>
-               <th scope="col" class="table-filter">No. of learners</th>
-               <th scope="col" class="table-filter">Admin</th>
-             </tr>
-           </thead>
-           <tbody>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>1</td>
-               <td class="text-left">Biology for Primary 1</td>
-               <td>A3K</td>
-               <td>Math</td>
-               <td>Professional medical</td>
-               <td>1</td>
-               <td>12</td>
-               <td>189</td>
-               <td>Aeriel Connelly</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>2</td>
-               <td class="text-left">Geography for Primary 2</td>
-               <td>4CE</td>
-               <td>Science</td>
-               <td>Secondary</td>
-               <td>2</td>
-               <td>8</td>
-               <td>874</td>
-               <td>Darren Leow</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>3</td>
-               <td class="text-left">Bull in share market</td>
-               <td>3AC</td>
-               <td>Social studies</td>
-               <td>Primary</td>
-               <td>3</td>
-               <td>4</td>
-               <td>234</td>
-               <td>Finelly Abrodobe</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>4</td>
-               <td class="text-left">Balance Sheet making</td>
-               <td>R6T</td>
-               <td>Psychology</td>
-               <td>University</td>
-               <td>4</td>
-               <td>11</td>
-               <td>431</td>
-               <td>Prena Abdullah</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>5</td>
-               <td class="text-left">Cash flow </td>
-               <td>2UY</td>
-               <td>Accounting</td>
-               <td>Primary</td>
-               <td>2</td>
-               <td>7</td>
-               <td>501</td>
-               <td>Nisha Fasa</td>
-             </tr>
-           </tbody>
-         </table>
-       </div>
-       <div class="table-result-wrapper">
-         <p>Results: 1-15 of 324</p>
-       </div>
-     </div>
-     <div id="instructions" class="tab-pane">
-       <div class="table=-responsive">
-         <table class="table dashboard-table">
-           <thead>
-             <tr>
-               <th scope="col"></th>
-               <th scope="col">No.</th>
-               <th scope="col" class="text-left">Course Name</th>
-               <th scope="col">Code</th>
-               <th scope="col" class="table-filter">Cateory/Dept</th>
-               <th scope="col" class="table-filter">Level</th>
-               <th scope="col" class="table-filter">Banding</th>
-               <th scope="col" class="table-filter">No. of classes</th>
-               <th scope="col" class="table-filter">No. of learners</th>
-               <th scope="col" class="table-filter">Admin</th>
-             </tr>
-           </thead>
-           <tbody>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>1</td>
-               <td class="text-left">Biology for Primary 1</td>
-               <td>A3K</td>
-               <td>Math</td>
-               <td>Professional medical</td>
-               <td>1</td>
-               <td>12</td>
-               <td>189</td>
-               <td>Aeriel Connelly</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>2</td>
-               <td class="text-left">Geography for Primary 2</td>
-               <td>4CE</td>
-               <td>Science</td>
-               <td>Secondary</td>
-               <td>2</td>
-               <td>8</td>
-               <td>874</td>
-               <td>Darren Leow</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>3</td>
-               <td class="text-left">Bull in share market</td>
-               <td>3AC</td>
-               <td>Social studies</td>
-               <td>Primary</td>
-               <td>3</td>
-               <td>4</td>
-               <td>234</td>
-               <td>Finelly Abrodobe</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>4</td>
-               <td class="text-left">Balance Sheet making</td>
-               <td>R6T</td>
-               <td>Psychology</td>
-               <td>University</td>
-               <td>4</td>
-               <td>11</td>
-               <td>431</td>
-               <td>Prena Abdullah</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>5</td>
-               <td class="text-left">Cash flow </td>
-               <td>2UY</td>
-               <td>Accounting</td>
-               <td>Primary</td>
-               <td>2</td>
-               <td>7</td>
-               <td>501</td>
-               <td>Nisha Fasa</td>
-             </tr>
-           </tbody>
-         </table>
-       </div>
-       <div class="table-result-wrapper">
-         <p>Results: 1-15 of 324</p>
-       </div>
-     </div>
-   </div>
- </div>
-
- <div *ngIf="user=='user3'" class="prospectus-section">
-   <div class="prospectus-tabs">
-     <ul class="nav nav-tabs">
-       <li><a data-toggle="tab" href="#summary" class="active">Summary 23084732</a></li>
-       <li><a data-toggle="tab" href="#instructions">Method of Instructions</a></li>
-     </ul>
-     <div class="prospectus-action">
-       <a class="add-btn" data-toggle="modal" data-target="#addCourse"><i class="fa fa-plus" aria-hidden="true"></i>
-         Name</a>
-       <!-- <a class="edit-btn" data-toggle="modal" data-target="#editCourse"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
-					<a class="delete-btn" data-toggle="modal" data-target="#deleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-					<a class="delete-btn" data-toggle="modal" data-target="#unabledeleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
-     </div>
-   </div>
-   <div class="tab-content">
-     <div id="summary" class="tab-pane active">
-       <div class="table-responsive">
-         <table class="table dashboard-table">
-           <thead>
-             <tr>
-               <th scope="col"></th>
-               <th scope="col">No.</th>
-               <th scope="col" class="text-left">Course Name</th>
-               <th scope="col">Code</th>
-               <th scope="col" class="table-filter">Cateory/Dept</th>
-               <th scope="col" class="table-filter">Level</th>
-               <th scope="col" class="table-filter">Banding</th>
-               <th scope="col" class="table-filter">No. of classes</th>
-               <th scope="col" class="table-filter">No. of learners</th>
-               <th scope="col" class="table-filter">Admin</th>
-             </tr>
-           </thead>
-           <tbody>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>1</td>
-               <td class="text-left">Biology for Primary 1</td>
-               <td>A3K</td>
-               <td>Math</td>
-               <td>Professional medical</td>
-               <td>1</td>
-               <td>12</td>
-               <td>189</td>
-               <td>Aeriel Connelly</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>2</td>
-               <td class="text-left">Geography for Primary 2</td>
-               <td>4CE</td>
-               <td>Science</td>
-               <td>Secondary</td>
-               <td>2</td>
-               <td>8</td>
-               <td>874</td>
-               <td>Darren Leow</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>3</td>
-               <td class="text-left">Bull in share market</td>
-               <td>3AC</td>
-               <td>Social studies</td>
-               <td>Primary</td>
-               <td>3</td>
-               <td>4</td>
-               <td>234</td>
-               <td>Finelly Abrodobe</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>4</td>
-               <td class="text-left">Balance Sheet making</td>
-               <td>R6T</td>
-               <td>Psychology</td>
-               <td>University</td>
-               <td>4</td>
-               <td>11</td>
-               <td>431</td>
-               <td>Prena Abdullah</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>5</td>
-               <td class="text-left">Cash flow </td>
-               <td>2UY</td>
-               <td>Accounting</td>
-               <td>Primary</td>
-               <td>2</td>
-               <td>7</td>
-               <td>501</td>
-               <td>Nisha Fasa</td>
-             </tr>
-           </tbody>
-         </table>
-       </div>
-       <div class="table-result-wrapper">
-         <p>Results: 1-15 of 324</p>
-       </div>
-     </div>
-     <div id="instructions" class="tab-pane">
-       <div class="table=-responsive">
-         <table class="table dashboard-table">
-           <thead>
-             <tr>
-               <th scope="col"></th>
-               <th scope="col">No.</th>
-               <th scope="col" class="text-left">Course Name</th>
-               <th scope="col">Code</th>
-               <th scope="col" class="table-filter">Cateory/Dept</th>
-               <th scope="col" class="table-filter">Level</th>
-               <th scope="col" class="table-filter">Banding</th>
-               <th scope="col" class="table-filter">No. of classes</th>
-               <th scope="col" class="table-filter">No. of learners</th>
-               <th scope="col" class="table-filter">Admin</th>
-             </tr>
-           </thead>
-           <tbody>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>1</td>
-               <td class="text-left">Biology for Primary 1</td>
-               <td>A3K</td>
-               <td>Math</td>
-               <td>Professional medical</td>
-               <td>1</td>
-               <td>12</td>
-               <td>189</td>
-               <td>Aeriel Connelly</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>2</td>
-               <td class="text-left">Geography for Primary 2</td>
-               <td>4CE</td>
-               <td>Science</td>
-               <td>Secondary</td>
-               <td>2</td>
-               <td>8</td>
-               <td>874</td>
-               <td>Darren Leow</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>3</td>
-               <td class="text-left">Bull in share market</td>
-               <td>3AC</td>
-               <td>Social studies</td>
-               <td>Primary</td>
-               <td>3</td>
-               <td>4</td>
-               <td>234</td>
-               <td>Finelly Abrodobe</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>4</td>
-               <td class="text-left">Balance Sheet making</td>
-               <td>R6T</td>
-               <td>Psychology</td>
-               <td>University</td>
-               <td>4</td>
-               <td>11</td>
-               <td>431</td>
-               <td>Prena Abdullah</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>5</td>
-               <td class="text-left">Cash flow </td>
-               <td>2UY</td>
-               <td>Accounting</td>
-               <td>Primary</td>
-               <td>2</td>
-               <td>7</td>
-               <td>501</td>
-               <td>Nisha Fasa</td>
-             </tr>
-           </tbody>
-         </table>
-       </div>
-       <div class="table-result-wrapper">
-         <p>Results: 1-15 of 324</p>
-       </div>
-     </div>
-   </div>
- </div>
-
- <div *ngIf="user=='user4'" class="prospectus-section">
-   <div class="prospectus-tabs">
-     <ul class="nav nav-tabs">
-       <li><a data-toggle="tab" href="#summary" class="active">Summary 23084732</a></li>
-       <li><a data-toggle="tab" href="#instructions">Method of Instructions</a></li>
-     </ul>
-     <div class="prospectus-action">
-       <a class="add-btn" data-toggle="modal" data-target="#addCourse"><i class="fa fa-plus" aria-hidden="true"></i>
-         Name</a>
-       <!-- <a class="edit-btn" data-toggle="modal" data-target="#editCourse"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
-					<a class="delete-btn" data-toggle="modal" data-target="#deleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-					<a class="delete-btn" data-toggle="modal" data-target="#unabledeleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
-     </div>
-   </div>
-   <div class="tab-content">
-     <div id="summary" class="tab-pane active">
-       <div class="table-responsive">
-         <table class="table dashboard-table">
-           <thead>
-             <tr>
-               <th scope="col"></th>
-               <th scope="col">No.</th>
-               <th scope="col" class="text-left">Course Name</th>
-               <th scope="col">Code</th>
-               <th scope="col" class="table-filter">Cateory/Dept</th>
-               <th scope="col" class="table-filter">Level</th>
-               <th scope="col" class="table-filter">Banding</th>
-               <th scope="col" class="table-filter">No. of classes</th>
-               <th scope="col" class="table-filter">No. of learners</th>
-               <th scope="col" class="table-filter">Admin</th>
-             </tr>
-           </thead>
-           <tbody>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>1</td>
-               <td class="text-left">Biology for Primary 1</td>
-               <td>A3K</td>
-               <td>Math</td>
-               <td>Professional medical</td>
-               <td>1</td>
-               <td>12</td>
-               <td>189</td>
-               <td>Aeriel Connelly</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>2</td>
-               <td class="text-left">Geography for Primary 2</td>
-               <td>4CE</td>
-               <td>Science</td>
-               <td>Secondary</td>
-               <td>2</td>
-               <td>8</td>
-               <td>874</td>
-               <td>Darren Leow</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>3</td>
-               <td class="text-left">Bull in share market</td>
-               <td>3AC</td>
-               <td>Social studies</td>
-               <td>Primary</td>
-               <td>3</td>
-               <td>4</td>
-               <td>234</td>
-               <td>Finelly Abrodobe</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>4</td>
-               <td class="text-left">Balance Sheet making</td>
-               <td>R6T</td>
-               <td>Psychology</td>
-               <td>University</td>
-               <td>4</td>
-               <td>11</td>
-               <td>431</td>
-               <td>Prena Abdullah</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>5</td>
-               <td class="text-left">Cash flow </td>
-               <td>2UY</td>
-               <td>Accounting</td>
-               <td>Primary</td>
-               <td>2</td>
-               <td>7</td>
-               <td>501</td>
-               <td>Nisha Fasa</td>
-             </tr>
-           </tbody>
-         </table>
-       </div>
-       <div class="table-result-wrapper">
-         <p>Results: 1-15 of 324</p>
-       </div>
-     </div>
-     <div id="instructions" class="tab-pane">
-       <div class="table=-responsive">
-         <table class="table dashboard-table">
-           <thead>
-             <tr>
-               <th scope="col"></th>
-               <th scope="col">No.</th>
-               <th scope="col" class="text-left">Course Name</th>
-               <th scope="col">Code</th>
-               <th scope="col" class="table-filter">Cateory/Dept</th>
-               <th scope="col" class="table-filter">Level</th>
-               <th scope="col" class="table-filter">Banding</th>
-               <th scope="col" class="table-filter">No. of classes</th>
-               <th scope="col" class="table-filter">No. of learners</th>
-               <th scope="col" class="table-filter">Admin</th>
-             </tr>
-           </thead>
-           <tbody>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>1</td>
-               <td class="text-left">Biology for Primary 1</td>
-               <td>A3K</td>
-               <td>Math</td>
-               <td>Professional medical</td>
-               <td>1</td>
-               <td>12</td>
-               <td>189</td>
-               <td>Aeriel Connelly</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>2</td>
-               <td class="text-left">Geography for Primary 2</td>
-               <td>4CE</td>
-               <td>Science</td>
-               <td>Secondary</td>
-               <td>2</td>
-               <td>8</td>
-               <td>874</td>
-               <td>Darren Leow</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>3</td>
-               <td class="text-left">Bull in share market</td>
-               <td>3AC</td>
-               <td>Social studies</td>
-               <td>Primary</td>
-               <td>3</td>
-               <td>4</td>
-               <td>234</td>
-               <td>Finelly Abrodobe</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>4</td>
-               <td class="text-left">Balance Sheet making</td>
-               <td>R6T</td>
-               <td>Psychology</td>
-               <td>University</td>
-               <td>4</td>
-               <td>11</td>
-               <td>431</td>
-               <td>Prena Abdullah</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>5</td>
-               <td class="text-left">Cash flow </td>
-               <td>2UY</td>
-               <td>Accounting</td>
-               <td>Primary</td>
-               <td>2</td>
-               <td>7</td>
-               <td>501</td>
-               <td>Nisha Fasa</td>
-             </tr>
-           </tbody>
-         </table>
-       </div>
-       <div class="table-result-wrapper">
-         <p>Results: 1-15 of 324</p>
-       </div>
-     </div>
-   </div>
- </div>
-
- <div *ngIf="user=='user5'" class="prospectus-section">
-   <div class="prospectus-tabs">
-     <ul class="nav nav-tabs">
-       <li><a data-toggle="tab" href="#summary" class="active">Summary 23084732</a></li>
-       <li><a data-toggle="tab" href="#instructions">Method of Instructions</a></li>
-     </ul>
-     <div class="prospectus-action">
-       <a class="add-btn" data-toggle="modal" data-target="#addCourse"><i class="fa fa-plus" aria-hidden="true"></i>
-         Name</a>
-       <!-- <a class="edit-btn" data-toggle="modal" data-target="#editCourse"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
-					<a class="delete-btn" data-toggle="modal" data-target="#deleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-					<a class="delete-btn" data-toggle="modal" data-target="#unabledeleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
-     </div>
-   </div>
-   <div class="tab-content">
-     <div id="summary" class="tab-pane active">
-       <div class="table-responsive">
-         <table class="table dashboard-table">
-           <thead>
-             <tr>
-               <th scope="col"></th>
-               <th scope="col">No.</th>
-               <th scope="col" class="text-left">Course Name</th>
-               <th scope="col">Code</th>
-               <th scope="col" class="table-filter">Cateory/Dept</th>
-               <th scope="col" class="table-filter">Level</th>
-               <th scope="col" class="table-filter">Banding</th>
-               <th scope="col" class="table-filter">No. of classes</th>
-               <th scope="col" class="table-filter">No. of learners</th>
-               <th scope="col" class="table-filter">Admin</th>
-             </tr>
-           </thead>
-           <tbody>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>1</td>
-               <td class="text-left">Biology for Primary 1</td>
-               <td>A3K</td>
-               <td>Math</td>
-               <td>Professional medical</td>
-               <td>1</td>
-               <td>12</td>
-               <td>189</td>
-               <td>Aeriel Connelly</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>2</td>
-               <td class="text-left">Geography for Primary 2</td>
-               <td>4CE</td>
-               <td>Science</td>
-               <td>Secondary</td>
-               <td>2</td>
-               <td>8</td>
-               <td>874</td>
-               <td>Darren Leow</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>3</td>
-               <td class="text-left">Bull in share market</td>
-               <td>3AC</td>
-               <td>Social studies</td>
-               <td>Primary</td>
-               <td>3</td>
-               <td>4</td>
-               <td>234</td>
-               <td>Finelly Abrodobe</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>4</td>
-               <td class="text-left">Balance Sheet making</td>
-               <td>R6T</td>
-               <td>Psychology</td>
-               <td>University</td>
-               <td>4</td>
-               <td>11</td>
-               <td>431</td>
-               <td>Prena Abdullah</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>5</td>
-               <td class="text-left">Cash flow </td>
-               <td>2UY</td>
-               <td>Accounting</td>
-               <td>Primary</td>
-               <td>2</td>
-               <td>7</td>
-               <td>501</td>
-               <td>Nisha Fasa</td>
-             </tr>
-           </tbody>
-         </table>
-       </div>
-       <div class="table-result-wrapper">
-         <p>Results: 1-15 of 324</p>
-       </div>
-     </div>
-     <div id="instructions" class="tab-pane">
-       <div class="table=-responsive">
-         <table class="table dashboard-table">
-           <thead>
-             <tr>
-               <th scope="col"></th>
-               <th scope="col">No.</th>
-               <th scope="col" class="text-left">Course Name</th>
-               <th scope="col">Code</th>
-               <th scope="col" class="table-filter">Cateory/Dept</th>
-               <th scope="col" class="table-filter">Level</th>
-               <th scope="col" class="table-filter">Banding</th>
-               <th scope="col" class="table-filter">No. of classes</th>
-               <th scope="col" class="table-filter">No. of learners</th>
-               <th scope="col" class="table-filter">Admin</th>
-             </tr>
-           </thead>
-           <tbody>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>1</td>
-               <td class="text-left">Biology for Primary 1</td>
-               <td>A3K</td>
-               <td>Math</td>
-               <td>Professional medical</td>
-               <td>1</td>
-               <td>12</td>
-               <td>189</td>
-               <td>Aeriel Connelly</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>2</td>
-               <td class="text-left">Geography for Primary 2</td>
-               <td>4CE</td>
-               <td>Science</td>
-               <td>Secondary</td>
-               <td>2</td>
-               <td>8</td>
-               <td>874</td>
-               <td>Darren Leow</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>3</td>
-               <td class="text-left">Bull in share market</td>
-               <td>3AC</td>
-               <td>Social studies</td>
-               <td>Primary</td>
-               <td>3</td>
-               <td>4</td>
-               <td>234</td>
-               <td>Finelly Abrodobe</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>4</td>
-               <td class="text-left">Balance Sheet making</td>
-               <td>R6T</td>
-               <td>Psychology</td>
-               <td>University</td>
-               <td>4</td>
-               <td>11</td>
-               <td>431</td>
-               <td>Prena Abdullah</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>5</td>
-               <td class="text-left">Cash flow </td>
-               <td>2UY</td>
-               <td>Accounting</td>
-               <td>Primary</td>
-               <td>2</td>
-               <td>7</td>
-               <td>501</td>
-               <td>Nisha Fasa</td>
-             </tr>
-           </tbody>
-         </table>
-       </div>
-       <div class="table-result-wrapper">
-         <p>Results: 1-15 of 324</p>
-       </div>
-     </div>
-   </div>
- </div>
-
- <div *ngIf="user=='user6'" class="prospectus-section">
-   <div class="prospectus-tabs">
-     <ul class="nav nav-tabs">
-       <li><a data-toggle="tab" href="#summary" class="active">Summary 23084732</a></li>
-       <li><a data-toggle="tab" href="#instructions">Method of Instructions</a></li>
-     </ul>
-     <div class="prospectus-action">
-       <a class="add-btn" data-toggle="modal" data-target="#addCourse"><i class="fa fa-plus" aria-hidden="true"></i>
-         Name</a>
-       <!-- <a class="edit-btn" data-toggle="modal" data-target="#editCourse"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
-					<a class="delete-btn" data-toggle="modal" data-target="#deleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-					<a class="delete-btn" data-toggle="modal" data-target="#unabledeleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
-     </div>
-   </div>
-   <div class="tab-content">
-     <div id="summary" class="tab-pane active">
-       <div class="table-responsive">
-         <table class="table dashboard-table">
-           <thead>
-             <tr>
-               <th scope="col"></th>
-               <th scope="col">No.</th>
-               <th scope="col" class="text-left">Course Name</th>
-               <th scope="col">Code</th>
-               <th scope="col" class="table-filter">Cateory/Dept</th>
-               <th scope="col" class="table-filter">Level</th>
-               <th scope="col" class="table-filter">Banding</th>
-               <th scope="col" class="table-filter">No. of classes</th>
-               <th scope="col" class="table-filter">No. of learners</th>
-               <th scope="col" class="table-filter">Admin</th>
-             </tr>
-           </thead>
-           <tbody>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>1</td>
-               <td class="text-left">Biology for Primary 1</td>
-               <td>A3K</td>
-               <td>Math</td>
-               <td>Professional medical</td>
-               <td>1</td>
-               <td>12</td>
-               <td>189</td>
-               <td>Aeriel Connelly</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>2</td>
-               <td class="text-left">Geography for Primary 2</td>
-               <td>4CE</td>
-               <td>Science</td>
-               <td>Secondary</td>
-               <td>2</td>
-               <td>8</td>
-               <td>874</td>
-               <td>Darren Leow</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>3</td>
-               <td class="text-left">Bull in share market</td>
-               <td>3AC</td>
-               <td>Social studies</td>
-               <td>Primary</td>
-               <td>3</td>
-               <td>4</td>
-               <td>234</td>
-               <td>Finelly Abrodobe</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>4</td>
-               <td class="text-left">Balance Sheet making</td>
-               <td>R6T</td>
-               <td>Psychology</td>
-               <td>University</td>
-               <td>4</td>
-               <td>11</td>
-               <td>431</td>
-               <td>Prena Abdullah</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>5</td>
-               <td class="text-left">Cash flow </td>
-               <td>2UY</td>
-               <td>Accounting</td>
-               <td>Primary</td>
-               <td>2</td>
-               <td>7</td>
-               <td>501</td>
-               <td>Nisha Fasa</td>
-             </tr>
-           </tbody>
-         </table>
-       </div>
-       <div class="table-result-wrapper">
-         <p>Results: 1-15 of 324</p>
-       </div>
-     </div>
-     <div id="instructions" class="tab-pane">
-       <div class="table=-responsive">
-         <table class="table dashboard-table">
-           <thead>
-             <tr>
-               <th scope="col"></th>
-               <th scope="col">No.</th>
-               <th scope="col" class="text-left">Course Name</th>
-               <th scope="col">Code</th>
-               <th scope="col" class="table-filter">Cateory/Dept</th>
-               <th scope="col" class="table-filter">Level</th>
-               <th scope="col" class="table-filter">Banding</th>
-               <th scope="col" class="table-filter">No. of classes</th>
-               <th scope="col" class="table-filter">No. of learners</th>
-               <th scope="col" class="table-filter">Admin</th>
-             </tr>
-           </thead>
-           <tbody>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>1</td>
-               <td class="text-left">Biology for Primary 1</td>
-               <td>A3K</td>
-               <td>Math</td>
-               <td>Professional medical</td>
-               <td>1</td>
-               <td>12</td>
-               <td>189</td>
-               <td>Aeriel Connelly</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>2</td>
-               <td class="text-left">Geography for Primary 2</td>
-               <td>4CE</td>
-               <td>Science</td>
-               <td>Secondary</td>
-               <td>2</td>
-               <td>8</td>
-               <td>874</td>
-               <td>Darren Leow</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>3</td>
-               <td class="text-left">Bull in share market</td>
-               <td>3AC</td>
-               <td>Social studies</td>
-               <td>Primary</td>
-               <td>3</td>
-               <td>4</td>
-               <td>234</td>
-               <td>Finelly Abrodobe</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>4</td>
-               <td class="text-left">Balance Sheet making</td>
-               <td>R6T</td>
-               <td>Psychology</td>
-               <td>University</td>
-               <td>4</td>
-               <td>11</td>
-               <td>431</td>
-               <td>Prena Abdullah</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>5</td>
-               <td class="text-left">Cash flow </td>
-               <td>2UY</td>
-               <td>Accounting</td>
-               <td>Primary</td>
-               <td>2</td>
-               <td>7</td>
-               <td>501</td>
-               <td>Nisha Fasa</td>
-             </tr>
-           </tbody>
-         </table>
-       </div>
-       <div class="table-result-wrapper">
-         <p>Results: 1-15 of 324</p>
-       </div>
-     </div>
-   </div>
- </div>
-
- <div *ngIf="user=='user7'" class="prospectus-section">
-   <div class="prospectus-tabs">
-     <ul class="nav nav-tabs">
-       <li><a data-toggle="tab" href="#summary" class="active">Summary 23084732</a></li>
-       <li><a data-toggle="tab" href="#instructions">Method of Instructions</a></li>
-     </ul>
-     <div class="prospectus-action">
-       <a class="add-btn" data-toggle="modal" data-target="#addCourse"><i class="fa fa-plus" aria-hidden="true"></i>
-         Name</a>
-       <!-- <a class="edit-btn" data-toggle="modal" data-target="#editCourse"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
-					<a class="delete-btn" data-toggle="modal" data-target="#deleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-					<a class="delete-btn" data-toggle="modal" data-target="#unabledeleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
-     </div>
-   </div>
-   <div class="tab-content">
-     <div id="summary" class="tab-pane active">
-       <div class="table-responsive">
-         <table class="table dashboard-table">
-           <thead>
-             <tr>
-               <th scope="col"></th>
-               <th scope="col">No.</th>
-               <th scope="col" class="text-left">Course Name</th>
-               <th scope="col">Code</th>
-               <th scope="col" class="table-filter">Cateory/Dept</th>
-               <th scope="col" class="table-filter">Level</th>
-               <th scope="col" class="table-filter">Banding</th>
-               <th scope="col" class="table-filter">No. of classes</th>
-               <th scope="col" class="table-filter">No. of learners</th>
-               <th scope="col" class="table-filter">Admin</th>
-             </tr>
-           </thead>
-           <tbody>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>1</td>
-               <td class="text-left">Biology for Primary 1</td>
-               <td>A3K</td>
-               <td>Math</td>
-               <td>Professional medical</td>
-               <td>1</td>
-               <td>12</td>
-               <td>189</td>
-               <td>Aeriel Connelly</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>2</td>
-               <td class="text-left">Geography for Primary 2</td>
-               <td>4CE</td>
-               <td>Science</td>
-               <td>Secondary</td>
-               <td>2</td>
-               <td>8</td>
-               <td>874</td>
-               <td>Darren Leow</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>3</td>
-               <td class="text-left">Bull in share market</td>
-               <td>3AC</td>
-               <td>Social studies</td>
-               <td>Primary</td>
-               <td>3</td>
-               <td>4</td>
-               <td>234</td>
-               <td>Finelly Abrodobe</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>4</td>
-               <td class="text-left">Balance Sheet making</td>
-               <td>R6T</td>
-               <td>Psychology</td>
-               <td>University</td>
-               <td>4</td>
-               <td>11</td>
-               <td>431</td>
-               <td>Prena Abdullah</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>5</td>
-               <td class="text-left">Cash flow </td>
-               <td>2UY</td>
-               <td>Accounting</td>
-               <td>Primary</td>
-               <td>2</td>
-               <td>7</td>
-               <td>501</td>
-               <td>Nisha Fasa</td>
-             </tr>
-           </tbody>
-         </table>
-       </div>
-       <div class="table-result-wrapper">
-         <p>Results: 1-15 of 324</p>
-       </div>
-     </div>
-     <div id="instructions" class="tab-pane">
-       <div class="table=-responsive">
-         <table class="table dashboard-table">
-           <thead>
-             <tr>
-               <th scope="col"></th>
-               <th scope="col">No.</th>
-               <th scope="col" class="text-left">Course Name</th>
-               <th scope="col">Code</th>
-               <th scope="col" class="table-filter">Cateory/Dept</th>
-               <th scope="col" class="table-filter">Level</th>
-               <th scope="col" class="table-filter">Banding</th>
-               <th scope="col" class="table-filter">No. of classes</th>
-               <th scope="col" class="table-filter">No. of learners</th>
-               <th scope="col" class="table-filter">Admin</th>
-             </tr>
-           </thead>
-           <tbody>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>1</td>
-               <td class="text-left">Biology for Primary 1</td>
-               <td>A3K</td>
-               <td>Math</td>
-               <td>Professional medical</td>
-               <td>1</td>
-               <td>12</td>
-               <td>189</td>
-               <td>Aeriel Connelly</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>2</td>
-               <td class="text-left">Geography for Primary 2</td>
-               <td>4CE</td>
-               <td>Science</td>
-               <td>Secondary</td>
-               <td>2</td>
-               <td>8</td>
-               <td>874</td>
-               <td>Darren Leow</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>3</td>
-               <td class="text-left">Bull in share market</td>
-               <td>3AC</td>
-               <td>Social studies</td>
-               <td>Primary</td>
-               <td>3</td>
-               <td>4</td>
-               <td>234</td>
-               <td>Finelly Abrodobe</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>4</td>
-               <td class="text-left">Balance Sheet making</td>
-               <td>R6T</td>
-               <td>Psychology</td>
-               <td>University</td>
-               <td>4</td>
-               <td>11</td>
-               <td>431</td>
-               <td>Prena Abdullah</td>
-             </tr>
-             <tr>
-               <th>
-                 <div class="radio-table"><input type="checkbox"></div>
-               </th>
-               <td>5</td>
-               <td class="text-left">Cash flow </td>
-               <td>2UY</td>
-               <td>Accounting</td>
-               <td>Primary</td>
-               <td>2</td>
-               <td>7</td>
-               <td>501</td>
-               <td>Nisha Fasa</td>
-             </tr>
-           </tbody>
-         </table>
-       </div>
-       <div class="table-result-wrapper">
-         <p>Results: 1-15 of 324</p>
-       </div>
-     </div>
-   </div>
- </div>
- <!-- Delete modal popup start -->
- <div id="deleteCourse" class="modal deletecourse-modal" role="dialog">
-   <div class="modal-dialog">
-
-     <!-- Modal content-->
-     <div class="modal-content">
-       <div class="modal-body">
-         <button type="button" class="close" data-dismiss="modal"><img
-             src="assets/images/dashboard/close-modal.png"></button>
-         <figure>
-           <img src="assets/images/dashboard/delete-course.png">
-         </figure>
-         <h4 class="modal-title">Delete Course</h4>
-         <br>
-         <p>Once deleted, all related files including information about past learners & class materials, course
-           materials
-           and learners’ grades will be removed. </p>
-         <br>
-         <span>Continue?</span> <br>
-         <a class="del-btn-course">Delete Course</a>
-       </div>
-     </div>
-
-   </div>
- </div>
- <!-- Delete modal popup start -->
-
- <!-- Unable Delete Course modal popup start -->
- <div id="unabledeleteCourse" class="modal unabledeletecourse-modal" role="dialog">
-   <div class="modal-dialog">
-
-     <!-- Modal content-->
-     <div class="modal-content">
-       <div class="modal-body">
-         <button type="button" class="close" data-dismiss="modal"><img
-             src="assets/images/dashboard/close-modal.png"></button>
-         <div class="unable-caption-wrapper">
-           <figure>
-             <img src="assets/images/dashboard/unable.png">
-           </figure>
-           <h4 class="modal-title">Unable to Delete Course</h4>
-         </div>
-         <br>
-         <p>There are active classes being conducted. To remove a course, all learners need to be suspended, or there
-           must be no current ongoing classes.</p>
-         <br>
-         <a class="unable-del-btn">Ok</a>
-       </div>
-     </div>
-
-   </div>
- </div>
- <!-- Unable Delete Course modal popup start -->
-
- <!-- Add Course modal popup start -->
- <div id="addCourse" class="modal addcourse-modal" role="dialog">
-   <div class="modal-dialog">
-
-     <!-- Modal content-->
-     <div class="modal-content">
-       <div class="modal-header">
-         <h4>Add new</h4>
-         <button type="button" class="close" data-dismiss="modal"><img
-             src="assets/images/dashboard/close-course.png"></button>
-       </div>
-       <div class="modal-body">
-         <form>
-           <div class="addCourse-form">
-             <div class="name-of-course fieldset">
-               <label>Name of course*</label>
-               <input type="text" name="course">
-             </div>
-             <div class="category-course fieldset">
-               <label>Category*</label>
-               <select name="category" id="categorycourse">
-                 <option selected></option>
-                 <option value="finance">Finance</option>
-                 <option value="create new">Create new</option>
-               </select>
-             </div>
-             <!-- if user select create new course -->
-             <div class="new-category-course fieldset">
-               <label>New category</label>
-               <input type="text" name="course">
-             </div>
-
-             <div class="level-course fieldset">
-               <label>Level</label>
-               <select name="level" id="levelcourse">
-                 <option selected></option>
-                 <option value="Professional Level 1">Professional Level 1</option>
-                 <option value="create new">Create new</option>
-               </select>
-             </div>
-             <!-- if user select create new level course -->
-             <div class="new-level-course fieldset">
-               <label>New level</label>
-               <input type="text" name="level">
-             </div>
-
-             <div class="banding-course fieldset">
-               <label>Banding</label>
-               <select name="level" id="bandingcourse">
-                 <option selected></option>
-                 <option value="IV">IV</option>
-                 <option value="create new">Create new</option>
-               </select>
-             </div>
-             <!-- if user select create new banding course -->
-             <div class="new-banding-course fieldset">
-               <label>New banding</label>
-               <input type="text" name="banding">
-             </div>
-
-           </div>
-
-           <div class="modal-footer">
-             <button class="back-btn-course">Back</button>
-             <button class="next-btn-course">Next</button>
-           </div>
-         </form>
-       </div>
-     </div>
-
-   </div>
- </div>
- <!-- Add Course modal popup start -->
-
- <!-- Edit Course modal popup start -->
- <div id="editCourse" class="modal editcourse-modal" role="dialog">
-   <div class="modal-dialog">
-
-     <!-- Modal content-->
-     <div class="modal-content">
-       <div class="modal-header">
-         <h4>Edit course</h4>
-         <button type="button" class="close" data-dismiss="modal"><img
-             src="assets/images/dashboard/close-course.png"></button>
-       </div>
-       <div class="modal-body">
-         <form>
-           <div class="editCourse-form-top">
-             <div class="name-of-course fieldset">
-               <label>Name of course*</label>
-               <input type="text" name="course">
-             </div>
-             <div class="category-course fieldset">
-               <label>Category*</label>
-               <select name="category" id="categorycourse">
-                 <option selected></option>
-                 <option value="finance">Finance</option>
-                 <option value="create new">Create new</option>
-               </select>
-             </div>
-
-             <div class="level-course fieldset">
-               <label>Level</label>
-               <select name="level" id="levelcourse">
-                 <option selected></option>
-                 <option value="Professional Level 1">Professional Level 1</option>
-                 <option value="create new">Create new</option>
-               </select>
-             </div>
-
-             <div class="banding-course fieldset">
-               <label>Banding</label>
-               <select name="level" id="bandingcourse">
-                 <option selected></option>
-                 <option value="IV">IV</option>
-                 <option value="create new">Create new</option>
-               </select>
-             </div>
-
-           </div>
-           <div class="editCourse-form-down">
+    <li><a data-toggle="tab" href="#classes-content" class="clip-item" (click)="classes()">
+        <img src="assets/images/dashboard/second/clip-classes-grey.png" class="hover-out">
+        <img src="assets/images/dashboard/second/clip-classes-blue.png" class="hover-in">Classes</a>
+    </li>
 
 
-             <div class="fieldset class-materials">
-               <label>Class materials access available from</label>
-               <div class="editcourse-field-wrapper">
-                 <div class="class-materials-radio">
-                   <input type="radio" name="start-date" value="start-date">
-                   <label for="teacher">Class start date</label>
-                 </div>
-                 <div class="class-materials-radio">
-                   <input type="radio" name="start-date" value="start-date">
-                   <input type="date">
-                 </div>
-               </div>
-             </div>
+    <li><a data-toggle="tab" href="#class-list-content" class="clip-item" (click)="classesList()">
+        <img src="assets/images/dashboard/second/list-grey.png" class="hover-out">
+        <img src="assets/images/dashboard/second/list-blue.png" class="hover-in">
+        Class List</a>
+    </li>
 
-             <div class="fieldset class-materials-to">
-               <label>Class materials access available to</label>
-               <div class="editcourse-field-wrapper">
-                 <div class="class-materials-radio">
-                   <input type="radio" name="start-date-calender" value="start-date-calender">
-                   <label for="teacher">Class start date</label>
-                 </div>
-                 <div class="class-materials-radio">
-                   <input type="radio" name="start-date-calender" value="start-date-calender">
-                   <input type="date">
-                 </div>
-               </div>
-             </div>
+    <li><a data-toggle="tab" href="#learners-content" class="clip-item" (click)="learner()">
+        <img src="assets/images/dashboard/second/clip-learner-grey.png" class="hover-out">
+        <img src="assets/images/dashboard/second/clip-learner-blue.png" class="hover-in">
+        Learners</a>
+    </li>
 
-             <div class="fieldset allow-messaging">
-               <label>Allow messaging from learner to coach</label>
-               <div class="editcourse-field-wrapper">
-                 <div class="allow-messaging-radio">
-                   <input type="radio" name="available" value="available">
-                   <label for="Yes">Yes</label>
-                 </div>
-                 <div class="allow-messaging-radio">
-                   <input type="radio" name="available" value="available">
-                   <label for="No">No</label>
-                 </div>
-               </div>
-             </div>
+    <li><a data-toggle="tab" href="#storage-content" class="clip-item" (click)="stroage()">
+        <img src="assets/images/dashboard/second/clip-storage-grey.png" class="hover-out">
+        <img src="assets/images/dashboard/second/clip-storage-blue.png" class="hover-in">
+        Storage</a>
+    </li>
 
-             <div class="fieldset allow-messaging">
-               <label>Allow messaging from learner to coach</label>
-               <div class="editcourse-field-wrapper">
-                 <div class="allow-messaging-radio">
-                   <input type="radio" name="unavailable" value="unavailable">
-                   <label for="Yes">Yes</label>
-                 </div>
-                 <div class="allow-messaging-radio">
-                   <input type="radio" name="unavailable" value="unavailable">
-                   <label for="No">No</label>
-                 </div>
-               </div>
-             </div>
+    <li><a data-toggle="tab" href="#admin-content" class="clip-item" (click)="admin()">
+        <img src="assets/images/dashboard/second/clip-user-grey.png" class="hover-out">
+        <img src="assets/images/dashboard/second/clip-user-blue.png" class="hover-in">
+        Admin</a>
+    </li>
 
-           </div>
+    <li><a data-toggle="tab" href="#live-sessions-content" class="clip-item" (click)="liveSession()">
+        <img src="assets/images/dashboard/second/session-grey.png" class="hover-out">
+        <img src="assets/images/dashboard/second/session-blue.png" class="hover-in">
+        Live Sessions</a>
+    </li>
+  </ul>
+</div>
 
-           <div class="modal-footer">
-             <button class="cancel-btn-course">Cancel</button>
-             <button class="edit-btn-course">Edit</button>
-           </div>
-         </form>
-       </div>
-     </div>
+<div class="tab-content">
+  <div id="course-content" class="tab-pane active" *ngIf="user=='user1'">
+    <div class="prospectus-section">
+      <div class="prospectus-tabs">
+        <ul class="nav nav-tabs">
+          <li><a data-toggle="tab" href="#summary" class="active">Course</a></li>
+          <li><a data-toggle="tab" href="#instructions">Method of Instructions</a></li>
+        </ul>
+        <div class="prospectus-action">
+          <a href="#" class="add-btn custom-a-btn" data-toggle="modal" data-target="#addCourse"><i class="fa fa-plus"
+              aria-hidden="true"></i> Name</a>
+          <!-- <a class="edit-btn custom-a-btn" data-toggle="modal" data-target="#editCourse"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+              <a class="delete-btn custom-a-btn" data-toggle="modal" data-target="#deleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+              <a href="#" class="delete-btn custom-a-btn" data-toggle="modal" data-target="#unabledeleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
+        </div>
+      </div>
+      <div class="tab-content">
+        <div id="summary" class="tab-pane active">
+          <div class="table-responsive">
+            <table class="table dashboard-table">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">No.</th>
+                  <th scope="col" class="text-left">Course Name</th>
+                  <th scope="col">Code</th>
+                  <th scope="col" class="table-filter">Cateory/Dept</th>
+                  <th scope="col" class="table-filter">Level</th>
+                  <th scope="col" class="table-filter">Banding</th>
+                  <th scope="col" class="table-filter">No. of classes</th>
+                  <th scope="col" class="table-filter">No. of learners</th>
+                  <th scope="col" class="table-filter">Admin</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>1</td>
+                  <td class="text-left">Biology for Primary 1</td>
+                  <td>A3K</td>
+                  <td>Math</td>
+                  <td>Professional medical</td>
+                  <td>1</td>
+                  <td>12</td>
+                  <td>189</td>
+                  <td>Aeriel Connelly</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>2</td>
+                  <td class="text-left">Geography for Primary 2</td>
+                  <td>4CE</td>
+                  <td>Science</td>
+                  <td>Secondary</td>
+                  <td>2</td>
+                  <td>8</td>
+                  <td>874</td>
+                  <td>Darren Leow</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>3</td>
+                  <td class="text-left">Bull in share market</td>
+                  <td>3AC</td>
+                  <td>Social studies</td>
+                  <td>Primary</td>
+                  <td>3</td>
+                  <td>4</td>
+                  <td>234</td>
+                  <td>Finelly Abrodobe</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>4</td>
+                  <td class="text-left">Balance Sheet making</td>
+                  <td>R6T</td>
+                  <td>Psychology</td>
+                  <td>University</td>
+                  <td>4</td>
+                  <td>11</td>
+                  <td>431</td>
+                  <td>Prena Abdullah</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>5</td>
+                  <td class="text-left">Cash flow </td>
+                  <td>2UY</td>
+                  <td>Accounting</td>
+                  <td>Primary</td>
+                  <td>2</td>
+                  <td>7</td>
+                  <td>501</td>
+                  <td>Nisha Fasa</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-result-wrapper">
+            <p>Results: 1-15 of 324</p>
+          </div>
+        </div>
+        <div id="instructions" class="tab-pane">
+          <div class="table=-responsive">
+            <table class="table dashboard-table">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">No.</th>
+                  <th scope="col" class="text-left">Course Name</th>
+                  <th scope="col">Code</th>
+                  <th scope="col" class="table-filter">Cateory/Dept</th>
+                  <th scope="col" class="table-filter">Level</th>
+                  <th scope="col" class="table-filter">Banding</th>
+                  <th scope="col" class="table-filter">No. of classes</th>
+                  <th scope="col" class="table-filter">No. of learners</th>
+                  <th scope="col" class="table-filter">Admin</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>1</td>
+                  <td class="text-left">Biology for Primary 1</td>
+                  <td>A3K</td>
+                  <td>Math</td>
+                  <td>Professional medical</td>
+                  <td>1</td>
+                  <td>12</td>
+                  <td>189</td>
+                  <td>Aeriel Connelly</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>2</td>
+                  <td class="text-left">Geography for Primary 2</td>
+                  <td>4CE</td>
+                  <td>Science</td>
+                  <td>Secondary</td>
+                  <td>2</td>
+                  <td>8</td>
+                  <td>874</td>
+                  <td>Darren Leow</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>3</td>
+                  <td class="text-left">Bull in share market</td>
+                  <td>3AC</td>
+                  <td>Social studies</td>
+                  <td>Primary</td>
+                  <td>3</td>
+                  <td>4</td>
+                  <td>234</td>
+                  <td>Finelly Abrodobe</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>4</td>
+                  <td class="text-left">Balance Sheet making</td>
+                  <td>R6T</td>
+                  <td>Psychology</td>
+                  <td>University</td>
+                  <td>4</td>
+                  <td>11</td>
+                  <td>431</td>
+                  <td>Prena Abdullah</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>5</td>
+                  <td class="text-left">Cash flow </td>
+                  <td>2UY</td>
+                  <td>Accounting</td>
+                  <td>Primary</td>
+                  <td>2</td>
+                  <td>7</td>
+                  <td>501</td>
+                  <td>Nisha Fasa</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-result-wrapper">
+            <p>Results: 1-15 of 324</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
-   </div>
- </div>
- <!-- <app-footer></app-footer> -->
+  </div>
+
+  <div id="classes-content" class="tab-pane" *ngIf="user=='user2'">
+    <div class="prospectus-section">
+      <div class="prospectus-tabs">
+        <ul class="nav nav-tabs">
+          <li><a data-toggle="tab" href="#summary" class="active">Classes</a></li>
+          <li><a data-toggle="tab" href="#instructions">Method of Instructions</a></li>
+        </ul>
+        <div class="prospectus-action">
+          <a href="#" class="add-btn custom-a-btn" data-toggle="modal" data-target="#addCourse"><i class="fa fa-plus"
+              aria-hidden="true"></i> Name</a>
+          <!-- <a class="edit-btn custom-a-btn" data-toggle="modal" data-target="#editCourse"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+              <a class="delete-btn custom-a-btn" data-toggle="modal" data-target="#deleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+              <a href="#" class="delete-btn custom-a-btn" data-toggle="modal" data-target="#unabledeleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
+        </div>
+      </div>
+      <div class="tab-content">
+        <div id="summary" class="tab-pane active">
+          <div class="table-responsive">
+            <table class="table dashboard-table">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">No.</th>
+                  <th scope="col" class="text-left">Course Name</th>
+                  <th scope="col">Code</th>
+                  <th scope="col" class="table-filter">Cateory/Dept</th>
+                  <th scope="col" class="table-filter">Level</th>
+                  <th scope="col" class="table-filter">Banding</th>
+                  <th scope="col" class="table-filter">No. of classes</th>
+                  <th scope="col" class="table-filter">No. of learners</th>
+                  <th scope="col" class="table-filter">Admin</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>1</td>
+                  <td class="text-left">Biology for Primary 1</td>
+                  <td>A3K</td>
+                  <td>Math</td>
+                  <td>Professional medical</td>
+                  <td>1</td>
+                  <td>12</td>
+                  <td>189</td>
+                  <td>Aeriel Connelly</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>2</td>
+                  <td class="text-left">Geography for Primary 2</td>
+                  <td>4CE</td>
+                  <td>Science</td>
+                  <td>Secondary</td>
+                  <td>2</td>
+                  <td>8</td>
+                  <td>874</td>
+                  <td>Darren Leow</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>3</td>
+                  <td class="text-left">Bull in share market</td>
+                  <td>3AC</td>
+                  <td>Social studies</td>
+                  <td>Primary</td>
+                  <td>3</td>
+                  <td>4</td>
+                  <td>234</td>
+                  <td>Finelly Abrodobe</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>4</td>
+                  <td class="text-left">Balance Sheet making</td>
+                  <td>R6T</td>
+                  <td>Psychology</td>
+                  <td>University</td>
+                  <td>4</td>
+                  <td>11</td>
+                  <td>431</td>
+                  <td>Prena Abdullah</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>5</td>
+                  <td class="text-left">Cash flow </td>
+                  <td>2UY</td>
+                  <td>Accounting</td>
+                  <td>Primary</td>
+                  <td>2</td>
+                  <td>7</td>
+                  <td>501</td>
+                  <td>Nisha Fasa</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-result-wrapper">
+            <p>Results: 1-15 of 324</p>
+          </div>
+        </div>
+        <div id="instructions" class="tab-pane">
+          <div class="table=-responsive">
+            <table class="table dashboard-table">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">No.</th>
+                  <th scope="col" class="text-left">Course Name</th>
+                  <th scope="col">Code</th>
+                  <th scope="col" class="table-filter">Cateory/Dept</th>
+                  <th scope="col" class="table-filter">Level</th>
+                  <th scope="col" class="table-filter">Banding</th>
+                  <th scope="col" class="table-filter">No. of classes</th>
+                  <th scope="col" class="table-filter">No. of learners</th>
+                  <th scope="col" class="table-filter">Admin</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>1</td>
+                  <td class="text-left">Biology for Primary 1</td>
+                  <td>A3K</td>
+                  <td>Math</td>
+                  <td>Professional medical</td>
+                  <td>1</td>
+                  <td>12</td>
+                  <td>189</td>
+                  <td>Aeriel Connelly</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>2</td>
+                  <td class="text-left">Geography for Primary 2</td>
+                  <td>4CE</td>
+                  <td>Science</td>
+                  <td>Secondary</td>
+                  <td>2</td>
+                  <td>8</td>
+                  <td>874</td>
+                  <td>Darren Leow</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>3</td>
+                  <td class="text-left">Bull in share market</td>
+                  <td>3AC</td>
+                  <td>Social studies</td>
+                  <td>Primary</td>
+                  <td>3</td>
+                  <td>4</td>
+                  <td>234</td>
+                  <td>Finelly Abrodobe</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>4</td>
+                  <td class="text-left">Balance Sheet making</td>
+                  <td>R6T</td>
+                  <td>Psychology</td>
+                  <td>University</td>
+                  <td>4</td>
+                  <td>11</td>
+                  <td>431</td>
+                  <td>Prena Abdullah</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>5</td>
+                  <td class="text-left">Cash flow </td>
+                  <td>2UY</td>
+                  <td>Accounting</td>
+                  <td>Primary</td>
+                  <td>2</td>
+                  <td>7</td>
+                  <td>501</td>
+                  <td>Nisha Fasa</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-result-wrapper">
+            <p>Results: 1-15 of 324</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="class-list-content" class="tab-pane" *ngIf="user=='user3'">
+    <div class="prospectus-section">
+      <div class="prospectus-tabs">
+        <ul class="nav nav-tabs">
+          <li><a data-toggle="tab" href="#summary" class="active">Class list</a></li>
+          <li><a data-toggle="tab" href="#instructions">Method of Instructions</a></li>
+        </ul>
+        <div class="prospectus-action">
+          <a href="#" class="add-btn custom-a-btn" data-toggle="modal" data-target="#addCourse"><i class="fa fa-plus"
+              aria-hidden="true"></i> Name</a>
+          <!-- <a class="edit-btn custom-a-btn" data-toggle="modal" data-target="#editCourse"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+              <a class="delete-btn custom-a-btn" data-toggle="modal" data-target="#deleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+              <a href="#" class="delete-btn custom-a-btn" data-toggle="modal" data-target="#unabledeleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
+        </div>
+      </div>
+      <div class="tab-content">
+        <div id="summary" class="tab-pane active">
+          <div class="table-responsive">
+            <table class="table dashboard-table">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">No.</th>
+                  <th scope="col" class="text-left">Course Name</th>
+                  <th scope="col">Code</th>
+                  <th scope="col" class="table-filter">Cateory/Dept</th>
+                  <th scope="col" class="table-filter">Level</th>
+                  <th scope="col" class="table-filter">Banding</th>
+                  <th scope="col" class="table-filter">No. of classes</th>
+                  <th scope="col" class="table-filter">No. of learners</th>
+                  <th scope="col" class="table-filter">Admin</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>1</td>
+                  <td class="text-left">Biology for Primary 1</td>
+                  <td>A3K</td>
+                  <td>Math</td>
+                  <td>Professional medical</td>
+                  <td>1</td>
+                  <td>12</td>
+                  <td>189</td>
+                  <td>Aeriel Connelly</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>2</td>
+                  <td class="text-left">Geography for Primary 2</td>
+                  <td>4CE</td>
+                  <td>Science</td>
+                  <td>Secondary</td>
+                  <td>2</td>
+                  <td>8</td>
+                  <td>874</td>
+                  <td>Darren Leow</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>3</td>
+                  <td class="text-left">Bull in share market</td>
+                  <td>3AC</td>
+                  <td>Social studies</td>
+                  <td>Primary</td>
+                  <td>3</td>
+                  <td>4</td>
+                  <td>234</td>
+                  <td>Finelly Abrodobe</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>4</td>
+                  <td class="text-left">Balance Sheet making</td>
+                  <td>R6T</td>
+                  <td>Psychology</td>
+                  <td>University</td>
+                  <td>4</td>
+                  <td>11</td>
+                  <td>431</td>
+                  <td>Prena Abdullah</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>5</td>
+                  <td class="text-left">Cash flow </td>
+                  <td>2UY</td>
+                  <td>Accounting</td>
+                  <td>Primary</td>
+                  <td>2</td>
+                  <td>7</td>
+                  <td>501</td>
+                  <td>Nisha Fasa</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-result-wrapper">
+            <p>Results: 1-15 of 324</p>
+          </div>
+        </div>
+        <div id="instructions" class="tab-pane">
+          <div class="table=-responsive">
+            <table class="table dashboard-table">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">No.</th>
+                  <th scope="col" class="text-left">Course Name</th>
+                  <th scope="col">Code</th>
+                  <th scope="col" class="table-filter">Cateory/Dept</th>
+                  <th scope="col" class="table-filter">Level</th>
+                  <th scope="col" class="table-filter">Banding</th>
+                  <th scope="col" class="table-filter">No. of classes</th>
+                  <th scope="col" class="table-filter">No. of learners</th>
+                  <th scope="col" class="table-filter">Admin</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>1</td>
+                  <td class="text-left">Biology for Primary 1</td>
+                  <td>A3K</td>
+                  <td>Math</td>
+                  <td>Professional medical</td>
+                  <td>1</td>
+                  <td>12</td>
+                  <td>189</td>
+                  <td>Aeriel Connelly</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>2</td>
+                  <td class="text-left">Geography for Primary 2</td>
+                  <td>4CE</td>
+                  <td>Science</td>
+                  <td>Secondary</td>
+                  <td>2</td>
+                  <td>8</td>
+                  <td>874</td>
+                  <td>Darren Leow</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>3</td>
+                  <td class="text-left">Bull in share market</td>
+                  <td>3AC</td>
+                  <td>Social studies</td>
+                  <td>Primary</td>
+                  <td>3</td>
+                  <td>4</td>
+                  <td>234</td>
+                  <td>Finelly Abrodobe</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>4</td>
+                  <td class="text-left">Balance Sheet making</td>
+                  <td>R6T</td>
+                  <td>Psychology</td>
+                  <td>University</td>
+                  <td>4</td>
+                  <td>11</td>
+                  <td>431</td>
+                  <td>Prena Abdullah</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>5</td>
+                  <td class="text-left">Cash flow </td>
+                  <td>2UY</td>
+                  <td>Accounting</td>
+                  <td>Primary</td>
+                  <td>2</td>
+                  <td>7</td>
+                  <td>501</td>
+                  <td>Nisha Fasa</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-result-wrapper">
+            <p>Results: 1-15 of 324</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="learners-content" class="tab-pane" *ngIf="user=='user4'">
+    <div class="prospectus-section">
+      <div class="prospectus-tabs">
+        <ul class="nav nav-tabs">
+          <li><a data-toggle="tab" href="#summary" class="active">Learners</a></li>
+          <li><a data-toggle="tab" href="#instructions">Method of Instructions</a></li>
+        </ul>
+        <div class="prospectus-action">
+          <a href="#" class="add-btn custom-a-btn" data-toggle="modal" data-target="#addCourse"><i class="fa fa-plus"
+              aria-hidden="true"></i> Name</a>
+          <!-- <a class="edit-btn custom-a-btn" data-toggle="modal" data-target="#editCourse"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+              <a class="delete-btn custom-a-btn" data-toggle="modal" data-target="#deleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+              <a href="#" class="delete-btn custom-a-btn" data-toggle="modal" data-target="#unabledeleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
+        </div>
+      </div>
+      <div class="tab-content">
+        <div id="summary" class="tab-pane active">
+          <div class="table-responsive">
+            <table class="table dashboard-table">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">No.</th>
+                  <th scope="col" class="text-left">Course Name</th>
+                  <th scope="col">Code</th>
+                  <th scope="col" class="table-filter">Cateory/Dept</th>
+                  <th scope="col" class="table-filter">Level</th>
+                  <th scope="col" class="table-filter">Banding</th>
+                  <th scope="col" class="table-filter">No. of classes</th>
+                  <th scope="col" class="table-filter">No. of learners</th>
+                  <th scope="col" class="table-filter">Admin</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>1</td>
+                  <td class="text-left">Biology for Primary 1</td>
+                  <td>A3K</td>
+                  <td>Math</td>
+                  <td>Professional medical</td>
+                  <td>1</td>
+                  <td>12</td>
+                  <td>189</td>
+                  <td>Aeriel Connelly</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>2</td>
+                  <td class="text-left">Geography for Primary 2</td>
+                  <td>4CE</td>
+                  <td>Science</td>
+                  <td>Secondary</td>
+                  <td>2</td>
+                  <td>8</td>
+                  <td>874</td>
+                  <td>Darren Leow</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>3</td>
+                  <td class="text-left">Bull in share market</td>
+                  <td>3AC</td>
+                  <td>Social studies</td>
+                  <td>Primary</td>
+                  <td>3</td>
+                  <td>4</td>
+                  <td>234</td>
+                  <td>Finelly Abrodobe</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>4</td>
+                  <td class="text-left">Balance Sheet making</td>
+                  <td>R6T</td>
+                  <td>Psychology</td>
+                  <td>University</td>
+                  <td>4</td>
+                  <td>11</td>
+                  <td>431</td>
+                  <td>Prena Abdullah</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>5</td>
+                  <td class="text-left">Cash flow </td>
+                  <td>2UY</td>
+                  <td>Accounting</td>
+                  <td>Primary</td>
+                  <td>2</td>
+                  <td>7</td>
+                  <td>501</td>
+                  <td>Nisha Fasa</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-result-wrapper">
+            <p>Results: 1-15 of 324</p>
+          </div>
+        </div>
+        <div id="instructions" class="tab-pane">
+          <div class="table=-responsive">
+            <table class="table dashboard-table">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">No.</th>
+                  <th scope="col" class="text-left">Course Name</th>
+                  <th scope="col">Code</th>
+                  <th scope="col" class="table-filter">Cateory/Dept</th>
+                  <th scope="col" class="table-filter">Level</th>
+                  <th scope="col" class="table-filter">Banding</th>
+                  <th scope="col" class="table-filter">No. of classes</th>
+                  <th scope="col" class="table-filter">No. of learners</th>
+                  <th scope="col" class="table-filter">Admin</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>1</td>
+                  <td class="text-left">Biology for Primary 1</td>
+                  <td>A3K</td>
+                  <td>Math</td>
+                  <td>Professional medical</td>
+                  <td>1</td>
+                  <td>12</td>
+                  <td>189</td>
+                  <td>Aeriel Connelly</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>2</td>
+                  <td class="text-left">Geography for Primary 2</td>
+                  <td>4CE</td>
+                  <td>Science</td>
+                  <td>Secondary</td>
+                  <td>2</td>
+                  <td>8</td>
+                  <td>874</td>
+                  <td>Darren Leow</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>3</td>
+                  <td class="text-left">Bull in share market</td>
+                  <td>3AC</td>
+                  <td>Social studies</td>
+                  <td>Primary</td>
+                  <td>3</td>
+                  <td>4</td>
+                  <td>234</td>
+                  <td>Finelly Abrodobe</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>4</td>
+                  <td class="text-left">Balance Sheet making</td>
+                  <td>R6T</td>
+                  <td>Psychology</td>
+                  <td>University</td>
+                  <td>4</td>
+                  <td>11</td>
+                  <td>431</td>
+                  <td>Prena Abdullah</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>5</td>
+                  <td class="text-left">Cash flow </td>
+                  <td>2UY</td>
+                  <td>Accounting</td>
+                  <td>Primary</td>
+                  <td>2</td>
+                  <td>7</td>
+                  <td>501</td>
+                  <td>Nisha Fasa</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-result-wrapper">
+            <p>Results: 1-15 of 324</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="storage-content" class="tab-pane" *ngIf="user=='user5'">
+    <div class="prospectus-section">
+      <div class="prospectus-tabs">
+        <ul class="nav nav-tabs">
+          <li><a data-toggle="tab" href="#summary" class="active">Storage</a></li>
+          <li><a data-toggle="tab" href="#instructions">Method of Instructions</a></li>
+        </ul>
+        <div class="prospectus-action">
+          <a href="#" class="add-btn custom-a-btn" data-toggle="modal" data-target="#addCourse"><i class="fa fa-plus"
+              aria-hidden="true"></i> Name</a>
+          <!-- <a class="edit-btn custom-a-btn" data-toggle="modal" data-target="#editCourse"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+              <a class="delete-btn custom-a-btn" data-toggle="modal" data-target="#deleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+              <a href="#" class="delete-btn custom-a-btn" data-toggle="modal" data-target="#unabledeleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
+        </div>
+      </div>
+      <div class="tab-content">
+        <div id="summary" class="tab-pane active">
+          <div class="table-responsive">
+            <table class="table dashboard-table">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">No.</th>
+                  <th scope="col" class="text-left">Course Name</th>
+                  <th scope="col">Code</th>
+                  <th scope="col" class="table-filter">Cateory/Dept</th>
+                  <th scope="col" class="table-filter">Level</th>
+                  <th scope="col" class="table-filter">Banding</th>
+                  <th scope="col" class="table-filter">No. of classes</th>
+                  <th scope="col" class="table-filter">No. of learners</th>
+                  <th scope="col" class="table-filter">Admin</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>1</td>
+                  <td class="text-left">Biology for Primary 1</td>
+                  <td>A3K</td>
+                  <td>Math</td>
+                  <td>Professional medical</td>
+                  <td>1</td>
+                  <td>12</td>
+                  <td>189</td>
+                  <td>Aeriel Connelly</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>2</td>
+                  <td class="text-left">Geography for Primary 2</td>
+                  <td>4CE</td>
+                  <td>Science</td>
+                  <td>Secondary</td>
+                  <td>2</td>
+                  <td>8</td>
+                  <td>874</td>
+                  <td>Darren Leow</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>3</td>
+                  <td class="text-left">Bull in share market</td>
+                  <td>3AC</td>
+                  <td>Social studies</td>
+                  <td>Primary</td>
+                  <td>3</td>
+                  <td>4</td>
+                  <td>234</td>
+                  <td>Finelly Abrodobe</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>4</td>
+                  <td class="text-left">Balance Sheet making</td>
+                  <td>R6T</td>
+                  <td>Psychology</td>
+                  <td>University</td>
+                  <td>4</td>
+                  <td>11</td>
+                  <td>431</td>
+                  <td>Prena Abdullah</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>5</td>
+                  <td class="text-left">Cash flow </td>
+                  <td>2UY</td>
+                  <td>Accounting</td>
+                  <td>Primary</td>
+                  <td>2</td>
+                  <td>7</td>
+                  <td>501</td>
+                  <td>Nisha Fasa</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-result-wrapper">
+            <p>Results: 1-15 of 324</p>
+          </div>
+        </div>
+        <div id="instructions" class="tab-pane">
+          <div class="table=-responsive">
+            <table class="table dashboard-table">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">No.</th>
+                  <th scope="col" class="text-left">Course Name</th>
+                  <th scope="col">Code</th>
+                  <th scope="col" class="table-filter">Cateory/Dept</th>
+                  <th scope="col" class="table-filter">Level</th>
+                  <th scope="col" class="table-filter">Banding</th>
+                  <th scope="col" class="table-filter">No. of classes</th>
+                  <th scope="col" class="table-filter">No. of learners</th>
+                  <th scope="col" class="table-filter">Admin</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>1</td>
+                  <td class="text-left">Biology for Primary 1</td>
+                  <td>A3K</td>
+                  <td>Math</td>
+                  <td>Professional medical</td>
+                  <td>1</td>
+                  <td>12</td>
+                  <td>189</td>
+                  <td>Aeriel Connelly</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>2</td>
+                  <td class="text-left">Geography for Primary 2</td>
+                  <td>4CE</td>
+                  <td>Science</td>
+                  <td>Secondary</td>
+                  <td>2</td>
+                  <td>8</td>
+                  <td>874</td>
+                  <td>Darren Leow</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>3</td>
+                  <td class="text-left">Bull in share market</td>
+                  <td>3AC</td>
+                  <td>Social studies</td>
+                  <td>Primary</td>
+                  <td>3</td>
+                  <td>4</td>
+                  <td>234</td>
+                  <td>Finelly Abrodobe</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>4</td>
+                  <td class="text-left">Balance Sheet making</td>
+                  <td>R6T</td>
+                  <td>Psychology</td>
+                  <td>University</td>
+                  <td>4</td>
+                  <td>11</td>
+                  <td>431</td>
+                  <td>Prena Abdullah</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>5</td>
+                  <td class="text-left">Cash flow </td>
+                  <td>2UY</td>
+                  <td>Accounting</td>
+                  <td>Primary</td>
+                  <td>2</td>
+                  <td>7</td>
+                  <td>501</td>
+                  <td>Nisha Fasa</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-result-wrapper">
+            <p>Results: 1-15 of 324</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="admin-content" class="tab-pane" *ngIf="user=='user6'">
+    <div class="prospectus-section">
+      <div class="prospectus-tabs">
+        <ul class="nav nav-tabs">
+          <li><a data-toggle="tab" href="#summary" class="active">Admin</a></li>
+          <li><a data-toggle="tab" href="#instructions">Method of Instructions</a></li>
+        </ul>
+        <div class="prospectus-action">
+          <a href="#" class="add-btn custom-a-btn" data-toggle="modal" data-target="#addCourse"><i class="fa fa-plus"
+              aria-hidden="true"></i> Name</a>
+          <!-- <a class="edit-btn custom-a-btn" data-toggle="modal" data-target="#editCourse"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+              <a class="delete-btn custom-a-btn" data-toggle="modal" data-target="#deleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+              <a href="#" class="delete-btn custom-a-btn" data-toggle="modal" data-target="#unabledeleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
+        </div>
+      </div>
+      <div class="tab-content">
+        <div id="summary" class="tab-pane active">
+          <div class="table-responsive">
+            <table class="table dashboard-table">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">No.</th>
+                  <th scope="col" class="text-left">Course Name</th>
+                  <th scope="col">Code</th>
+                  <th scope="col" class="table-filter">Cateory/Dept</th>
+                  <th scope="col" class="table-filter">Level</th>
+                  <th scope="col" class="table-filter">Banding</th>
+                  <th scope="col" class="table-filter">No. of classes</th>
+                  <th scope="col" class="table-filter">No. of learners</th>
+                  <th scope="col" class="table-filter">Admin</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>1</td>
+                  <td class="text-left">Biology for Primary 1</td>
+                  <td>A3K</td>
+                  <td>Math</td>
+                  <td>Professional medical</td>
+                  <td>1</td>
+                  <td>12</td>
+                  <td>189</td>
+                  <td>Aeriel Connelly</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>2</td>
+                  <td class="text-left">Geography for Primary 2</td>
+                  <td>4CE</td>
+                  <td>Science</td>
+                  <td>Secondary</td>
+                  <td>2</td>
+                  <td>8</td>
+                  <td>874</td>
+                  <td>Darren Leow</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>3</td>
+                  <td class="text-left">Bull in share market</td>
+                  <td>3AC</td>
+                  <td>Social studies</td>
+                  <td>Primary</td>
+                  <td>3</td>
+                  <td>4</td>
+                  <td>234</td>
+                  <td>Finelly Abrodobe</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>4</td>
+                  <td class="text-left">Balance Sheet making</td>
+                  <td>R6T</td>
+                  <td>Psychology</td>
+                  <td>University</td>
+                  <td>4</td>
+                  <td>11</td>
+                  <td>431</td>
+                  <td>Prena Abdullah</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>5</td>
+                  <td class="text-left">Cash flow </td>
+                  <td>2UY</td>
+                  <td>Accounting</td>
+                  <td>Primary</td>
+                  <td>2</td>
+                  <td>7</td>
+                  <td>501</td>
+                  <td>Nisha Fasa</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-result-wrapper">
+            <p>Results: 1-15 of 324</p>
+          </div>
+        </div>
+        <div id="instructions" class="tab-pane">
+          <div class="table=-responsive">
+            <table class="table dashboard-table">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">No.</th>
+                  <th scope="col" class="text-left">Course Name</th>
+                  <th scope="col">Code</th>
+                  <th scope="col" class="table-filter">Cateory/Dept</th>
+                  <th scope="col" class="table-filter">Level</th>
+                  <th scope="col" class="table-filter">Banding</th>
+                  <th scope="col" class="table-filter">No. of classes</th>
+                  <th scope="col" class="table-filter">No. of learners</th>
+                  <th scope="col" class="table-filter">Admin</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>1</td>
+                  <td class="text-left">Biology for Primary 1</td>
+                  <td>A3K</td>
+                  <td>Math</td>
+                  <td>Professional medical</td>
+                  <td>1</td>
+                  <td>12</td>
+                  <td>189</td>
+                  <td>Aeriel Connelly</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>2</td>
+                  <td class="text-left">Geography for Primary 2</td>
+                  <td>4CE</td>
+                  <td>Science</td>
+                  <td>Secondary</td>
+                  <td>2</td>
+                  <td>8</td>
+                  <td>874</td>
+                  <td>Darren Leow</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>3</td>
+                  <td class="text-left">Bull in share market</td>
+                  <td>3AC</td>
+                  <td>Social studies</td>
+                  <td>Primary</td>
+                  <td>3</td>
+                  <td>4</td>
+                  <td>234</td>
+                  <td>Finelly Abrodobe</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>4</td>
+                  <td class="text-left">Balance Sheet making</td>
+                  <td>R6T</td>
+                  <td>Psychology</td>
+                  <td>University</td>
+                  <td>4</td>
+                  <td>11</td>
+                  <td>431</td>
+                  <td>Prena Abdullah</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>5</td>
+                  <td class="text-left">Cash flow </td>
+                  <td>2UY</td>
+                  <td>Accounting</td>
+                  <td>Primary</td>
+                  <td>2</td>
+                  <td>7</td>
+                  <td>501</td>
+                  <td>Nisha Fasa</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-result-wrapper">
+            <p>Results: 1-15 of 324</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="live-sessions-content" class="tab-pane" *ngIf="user=='user7'">
+    <div class="prospectus-section">
+      <div class="prospectus-tabs">
+        <ul class="nav nav-tabs">
+          <li><a data-toggle="tab" href="#summary" class="active">Live Sessions</a></li>
+          <li><a data-toggle="tab" href="#instructions">Method of Instructions</a></li>
+        </ul>
+        <div class="prospectus-action">
+          <a href="#" class="add-btn custom-a-btn" data-toggle="modal" data-target="#addCourse"><i class="fa fa-plus"
+              aria-hidden="true"></i> Name</a>
+          <!-- <a class="edit-btn custom-a-btn" data-toggle="modal" data-target="#editCourse"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+              <a class="delete-btn custom-a-btn" data-toggle="modal" data-target="#deleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+              <a href="#" class="delete-btn custom-a-btn" data-toggle="modal" data-target="#unabledeleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
+        </div>
+      </div>
+      <div class="tab-content">
+        <div id="summary" class="tab-pane active">
+          <div class="table-responsive">
+            <table class="table dashboard-table">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">No.</th>
+                  <th scope="col" class="text-left">Course Name</th>
+                  <th scope="col">Code</th>
+                  <th scope="col" class="table-filter">Cateory/Dept</th>
+                  <th scope="col" class="table-filter">Level</th>
+                  <th scope="col" class="table-filter">Banding</th>
+                  <th scope="col" class="table-filter">No. of classes</th>
+                  <th scope="col" class="table-filter">No. of learners</th>
+                  <th scope="col" class="table-filter">Admin</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>1</td>
+                  <td class="text-left">Biology for Primary 1</td>
+                  <td>A3K</td>
+                  <td>Math</td>
+                  <td>Professional medical</td>
+                  <td>1</td>
+                  <td>12</td>
+                  <td>189</td>
+                  <td>Aeriel Connelly</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>2</td>
+                  <td class="text-left">Geography for Primary 2</td>
+                  <td>4CE</td>
+                  <td>Science</td>
+                  <td>Secondary</td>
+                  <td>2</td>
+                  <td>8</td>
+                  <td>874</td>
+                  <td>Darren Leow</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>3</td>
+                  <td class="text-left">Bull in share market</td>
+                  <td>3AC</td>
+                  <td>Social studies</td>
+                  <td>Primary</td>
+                  <td>3</td>
+                  <td>4</td>
+                  <td>234</td>
+                  <td>Finelly Abrodobe</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>4</td>
+                  <td class="text-left">Balance Sheet making</td>
+                  <td>R6T</td>
+                  <td>Psychology</td>
+                  <td>University</td>
+                  <td>4</td>
+                  <td>11</td>
+                  <td>431</td>
+                  <td>Prena Abdullah</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>5</td>
+                  <td class="text-left">Cash flow </td>
+                  <td>2UY</td>
+                  <td>Accounting</td>
+                  <td>Primary</td>
+                  <td>2</td>
+                  <td>7</td>
+                  <td>501</td>
+                  <td>Nisha Fasa</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-result-wrapper">
+            <p>Results: 1-15 of 324</p>
+          </div>
+        </div>
+        <div id="instructions" class="tab-pane">
+          <div class="table=-responsive">
+            <table class="table dashboard-table">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">No.</th>
+                  <th scope="col" class="text-left">Course Name</th>
+                  <th scope="col">Code</th>
+                  <th scope="col" class="table-filter">Cateory/Dept</th>
+                  <th scope="col" class="table-filter">Level</th>
+                  <th scope="col" class="table-filter">Banding</th>
+                  <th scope="col" class="table-filter">No. of classes</th>
+                  <th scope="col" class="table-filter">No. of learners</th>
+                  <th scope="col" class="table-filter">Admin</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>1</td>
+                  <td class="text-left">Biology for Primary 1</td>
+                  <td>A3K</td>
+                  <td>Math</td>
+                  <td>Professional medical</td>
+                  <td>1</td>
+                  <td>12</td>
+                  <td>189</td>
+                  <td>Aeriel Connelly</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>2</td>
+                  <td class="text-left">Geography for Primary 2</td>
+                  <td>4CE</td>
+                  <td>Science</td>
+                  <td>Secondary</td>
+                  <td>2</td>
+                  <td>8</td>
+                  <td>874</td>
+                  <td>Darren Leow</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>3</td>
+                  <td class="text-left">Bull in share market</td>
+                  <td>3AC</td>
+                  <td>Social studies</td>
+                  <td>Primary</td>
+                  <td>3</td>
+                  <td>4</td>
+                  <td>234</td>
+                  <td>Finelly Abrodobe</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>4</td>
+                  <td class="text-left">Balance Sheet making</td>
+                  <td>R6T</td>
+                  <td>Psychology</td>
+                  <td>University</td>
+                  <td>4</td>
+                  <td>11</td>
+                  <td>431</td>
+                  <td>Prena Abdullah</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>5</td>
+                  <td class="text-left">Cash flow </td>
+                  <td>2UY</td>
+                  <td>Accounting</td>
+                  <td>Primary</td>
+                  <td>2</td>
+                  <td>7</td>
+                  <td>501</td>
+                  <td>Nisha Fasa</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-result-wrapper">
+            <p>Results: 1-15 of 324</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Delete modal popup start -->
+<div id="deleteCourse" class="modal deletecourse-modal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal"><img
+            src="assets/images/dashboard/close-modal.png"></button>
+        <figure>
+          <img src="assets/images/dashboard/delete-course.png">
+        </figure>
+        <h4 class="modal-title">Delete Course</h4>
+        <br>
+        <p>Once deleted, all related files including information about past learners & class materials, course
+          materials
+          and learners’ grades will be removed. </p>
+        <br>
+        <span>Continue?</span> <br>
+        <a class="del-btn-course">Delete Course</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Delete modal popup start -->
+
+<!-- Unable Delete Course modal popup start -->
+<div id="unabledeleteCourse" class="modal unabledeletecourse-modal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal"><img
+            src="assets/images/dashboard/close-modal.png"></button>
+        <div class="unable-caption-wrapper">
+          <figure>
+            <img src="assets/images/dashboard/unable.png">
+          </figure>
+          <h4 class="modal-title">Unable to Delete Course</h4>
+        </div>
+        <br>
+        <p>There are active classes being conducted. To remove a course, all learners need to be suspended, or there
+          must be no current ongoing classes.</p>
+        <br>
+        <a class="unable-del-btn">Ok</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Unable Delete Course modal popup start -->
+
+<!-- Add Course modal popup start -->
+<div id="addCourse" class="modal addcourse-modal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4>Add new</h4>
+        <button type="button" class="close" data-dismiss="modal"><img
+            src="assets/images/dashboard/close-course.png"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="addCourse-form">
+            <div class="name-of-course fieldset">
+              <label>Name of course*</label>
+              <input type="text" name="course">
+            </div>
+            <div class="category-course fieldset">
+              <label>Category*</label>
+              <select name="category" id="categorycourse">
+                <option selected></option>
+                <option value="finance">Finance</option>
+                <option value="create new">Create new</option>
+              </select>
+            </div>
+            <!-- if user select create new course -->
+            <div class="new-category-course fieldset">
+              <label>New category</label>
+              <input type="text" name="course">
+            </div>
+
+            <div class="level-course fieldset">
+              <label>Level</label>
+              <select name="level" id="levelcourse">
+                <option selected></option>
+                <option value="Professional Level 1">Professional Level 1</option>
+                <option value="create new">Create new</option>
+              </select>
+            </div>
+            <!-- if user select create new level course -->
+            <div class="new-level-course fieldset">
+              <label>New level</label>
+              <input type="text" name="level">
+            </div>
+
+            <div class="banding-course fieldset">
+              <label>Banding</label>
+              <select name="level" id="bandingcourse">
+                <option selected></option>
+                <option value="IV">IV</option>
+                <option value="create new">Create new</option>
+              </select>
+            </div>
+            <!-- if user select create new banding course -->
+            <div class="new-banding-course fieldset">
+              <label>New banding</label>
+              <input type="text" name="banding">
+            </div>
+
+          </div>
+
+          <div class="modal-footer">
+            <button class="back-btn-course">Back</button>
+            <button class="next-btn-course">Next</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Add Course modal popup start -->
+
+<!-- Edit Course modal popup start -->
+<div id="editCourse" class="modal editcourse-modal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4>Edit course</h4>
+        <button type="button" class="close" data-dismiss="modal"><img
+            src="assets/images/dashboard/close-course.png"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="editCourse-form-top">
+            <div class="name-of-course fieldset">
+              <label>Name of course*</label>
+              <input type="text" name="course">
+            </div>
+            <div class="category-course fieldset">
+              <label>Category*</label>
+              <select name="category" id="categorycourse">
+                <option selected></option>
+                <option value="finance">Finance</option>
+                <option value="create new">Create new</option>
+              </select>
+            </div>
+
+            <div class="level-course fieldset">
+              <label>Level</label>
+              <select name="level" id="levelcourse">
+                <option selected></option>
+                <option value="Professional Level 1">Professional Level 1</option>
+                <option value="create new">Create new</option>
+              </select>
+            </div>
+
+            <div class="banding-course fieldset">
+              <label>Banding</label>
+              <select name="level" id="bandingcourse">
+                <option selected></option>
+                <option value="IV">IV</option>
+                <option value="create new">Create new</option>
+              </select>
+            </div>
+
+          </div>
+          <div class="editCourse-form-down">
+
+
+            <div class="fieldset class-materials">
+              <label>Class materials access available from</label>
+              <div class="editcourse-field-wrapper">
+                <div class="class-materials-radio">
+                  <input type="radio" name="start-date" value="start-date">
+                  <label for="teacher">Class start date</label>
+                </div>
+                <div class="class-materials-radio">
+                  <input type="radio" name="start-date" value="start-date">
+                  <input type="date">
+                </div>
+              </div>
+            </div>
+
+            <div class="fieldset class-materials-to">
+              <label>Class materials access available to</label>
+              <div class="editcourse-field-wrapper">
+                <div class="class-materials-radio">
+                  <input type="radio" name="start-date-calender" value="start-date-calender">
+                  <label for="teacher">Class start date</label>
+                </div>
+                <div class="class-materials-radio">
+                  <input type="radio" name="start-date-calender" value="start-date-calender">
+                  <input type="date">
+                </div>
+              </div>
+            </div>
+
+            <div class="fieldset allow-messaging">
+              <label>Allow messaging from learner to coach</label>
+              <div class="editcourse-field-wrapper">
+                <div class="allow-messaging-radio">
+                  <input type="radio" name="available" value="available">
+                  <label for="Yes">Yes</label>
+                </div>
+                <div class="allow-messaging-radio">
+                  <input type="radio" name="available" value="available">
+                  <label for="No">No</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="fieldset allow-messaging">
+              <label>Allow messaging from learner to coach</label>
+              <div class="editcourse-field-wrapper">
+                <div class="allow-messaging-radio">
+                  <input type="radio" name="unavailable" value="unavailable">
+                  <label for="Yes">Yes</label>
+                </div>
+                <div class="allow-messaging-radio">
+                  <input type="radio" name="unavailable" value="unavailable">
+                  <label for="No">No</label>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="modal-footer">
+            <button class="cancel-btn-course">Cancel</button>
+            <button class="edit-btn-course">Edit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- <app-footer></app-footer> -->

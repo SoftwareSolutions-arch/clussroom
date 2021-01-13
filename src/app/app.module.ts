@@ -34,6 +34,8 @@ import { DashboardheaderComponent } from './dashboardheader/dashboardheader.comp
 import { CoursesComponent } from './courses/courses.component';
 import { ClassesComponent } from './classes/classes.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import { CommonModule } from '@angular/common';  
+
 
 @NgModule({
   declarations: [
@@ -61,7 +63,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     CoursesComponent,
     ClassesComponent
   ],
-  imports: [
+  imports: [CommonModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

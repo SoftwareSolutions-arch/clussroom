@@ -200,6 +200,7 @@ export class InvoiceComponent implements OnInit {
       'Access-Control-Allow-Origin': '*'
     })
     this.service.getInvoiceList(params, { headers: headers }).then((result) => {
+      console.log('result+++++++pp',result);
       this.isImageShow = false;
       this.invoiceDetails = result['nids'][0];
     })

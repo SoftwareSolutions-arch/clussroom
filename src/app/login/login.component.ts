@@ -11,18 +11,24 @@ import { UtilService } from '../../providers/util.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
+  myemail: any='';
+  mypassword: any='';
+  isChecked: boolean = false;
+
   selectpayment: any = '';
   loginForm: FormGroup;
   error_messages: any = '';
   isTextFieldType: boolean;
   hideImage: boolean = true;
-  userDetails:any='';
+  userDetails: any = '';
   constructor(public router: Router, public util: UtilService, public service: SharedServiceService, public formBuilder: FormBuilder) {
     this.setupLoginFormData();
 
   }
 
   ngOnInit(): void {
+    this.getmy();
   }
 
   selectPaymentmethod(event) {
@@ -57,36 +63,38 @@ export class LoginComponent implements OnInit {
     );
   }
 
-
-  // login setup
+  // do login
   startClass() {
+    if (this.userDetails == '') {
+      this.util.errorAlertPopup('please select user type');
+    }
 
-    if(this.userDetails=='' || this.userDetails=="" ){
-      alert('please select ')
-    }
-    let params = {
-      "name": this.loginForm.value.email,
-      "pass": this.loginForm.value.password
-    }
-    let headers = new HttpHeaders({
-      'Access-Control-Allow-Origin': '*'
-    })
-    this.service.doLogin(params, { headers: headers }).then((result) => {
-      if (result['status'] == 200) {
-        localStorage.setItem("csrftoken", result['current_user']['csrf_token']);
-        localStorage.setItem("uid", result['current_user']['uid']);
-        localStorage.setItem('userMail', result['current_user']['name']);
-        localStorage.setItem('isLogin', '1');
-        this.util.openSnackBarSuccess(result['message']);
-        this.router.navigate(['/sidebar']);
+    else{
+      let params = {
+        "name": this.loginForm.value.email,
+        "pass": this.loginForm.value.password
       }
-      else {
-        this.util.openSnackBar(result['mesaage']);
-      }
-    })
-      .catch(error => {
-        this.util.openSnackBar(error['message']);
+      let headers = new HttpHeaders({
+        'Access-Control-Allow-Origin': '*'
       })
+      this.service.doLogin(params, { headers: headers }).then((result) => {
+        if (result['status'] == 200) {
+          localStorage.setItem("csrftoken", result['current_user']['csrf_token']);
+          localStorage.setItem("uid", result['current_user']['uid']);
+          localStorage.setItem('userMail', result['current_user']['name']);
+          localStorage.setItem('isLogin', '1');
+          this.util.showSuccessAlert(result['message']);
+          this.router.navigate(['/sidebar']);
+        }
+        else {
+          this.util.errorAlertPopup(result['mesaage']);
+        }
+      })
+        .catch(error => {
+          this.util.errorAlertPopup(error['message']);
+        })
+    }
+    
   }
 
   //reset password
@@ -94,9 +102,22 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/forgot-password']);
   }
 
-
   userType(event) {
-    this.userDetails=event.target.value;
-    console.log('event', event.target.value);
+    this.userDetails = event.target.value;
+  }
+
+
+  rememberMe() {
+    this.isChecked = !this.isChecked;
+    if (this.isChecked == true) {
+      localStorage.setItem('setEmail', this.loginForm.value.email);
+      localStorage.setItem('setPassword', this.loginForm.value.password);
+    }
+  }
+
+  getmy() {
+    console.log('+++', localStorage.getItem('setEmail'))
+    this.myemail =  localStorage.getItem('setEmail');
+    this.mypassword =  localStorage.getItem('setPassword');
   }
 }

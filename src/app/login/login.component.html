@@ -30,7 +30,7 @@
 
           <div class="login-company-name fieldset">
             <label>Email id</label>
-            <input formControlName="email" type="text">
+            <input  formControlName="email" type="text" value={{this.myemail}} >
             <ng-container *ngFor="let error of error_messages.email">
               <div class="error-message" *ngIf="loginForm.get('email').hasError(error.type) &&
 							  (loginForm.get('email').dirty || loginForm.get('email').touched)">
@@ -40,8 +40,8 @@
           </div>
 
           <div class="login-first-name fieldset">
-            <label>Password</label>
-            <input formControlName="password" [type]="isTextFieldType ? 'text' : 'password'">
+            <label>Password {{this.mypassword}}</label>
+            <input formControlName="password" [type]="isTextFieldType ? 'text' : 'password'" value={{this.mypassword}} >
             <span class="icon-image">
               <i class="fa fa-eye" *ngIf="hideImage" (click)="togglePasswordFieldType()"></i>
             </span>
@@ -63,7 +63,7 @@
           </div>
 
           <div class="login-remember-me">
-            <label><input type="checkbox"> Remember me</label>
+            <label><input (click)="rememberMe()" [checked]="isChecked" type="checkbox"> Remember me</label>
           </div>
 
         </form>

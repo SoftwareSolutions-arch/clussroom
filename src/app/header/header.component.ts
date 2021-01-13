@@ -37,25 +37,27 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  // logout setup
+  // do logout setup
   logout() {
-    let params={
-      'csrf_token': this.csrftoken
-    }
     let headers = new HttpHeaders({
-      'Access-Control-Allow-Origin': '*'
+      'Access-Control-Allow-Origin': '*',
+      'X-CSRF-Token': this.csrftoken
     })
-    this.service.doLogout(params,{ headers: headers }).then((result) => {
-      if (result['status'] == 200) {
-        localStorage.clear();
+    this.service.doLogout({ headers: headers }).then((result) => {
+      if (result['status'] == 1) {
+        this.util.showSuccessAlert(result['status_message']);
+        localStorage.removeItem('csrftoken');
+        localStorage.removeItem('uid');
+        localStorage.removeItem('userMail');
+        localStorage.removeItem('isLogin');
         this.router.navigate(['/login']);
       }
       else {
-        this.util.openSnackBar(result['mesaage']);
+        this.util.errorAlertPopup(result['status_message']);
       }
     })
       .catch(error => {
-        this.util.openSnackBar(error['message']);
+        this.util.errorAlertPopup(error['status_message']);
       })
   }
 
