@@ -34,7 +34,8 @@ import { DashboardheaderComponent } from './dashboardheader/dashboardheader.comp
 import { CoursesComponent } from './courses/courses.component';
 import { ClassesComponent } from './classes/classes.component';
 import {MatTabsModule} from '@angular/material/tabs';
-import { CommonModule } from '@angular/common';  
+import { CommonModule } from '@angular/common';
+import { PasswordStrengthComponent } from './password-strength/password-strength.component';  
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import { CommonModule } from '@angular/common';
     DeletePopupComponent,
     DashboardheaderComponent,
     CoursesComponent,
-    ClassesComponent
+    ClassesComponent,
+    PasswordStrengthComponent
   ],
   imports: [CommonModule,
     BrowserModule,

@@ -16,6 +16,7 @@ export class ChoosePasswordComponent implements OnInit {
   passwordNotMatch: any = '';
   error_messages: any = '';
   userId: any = '';
+  passwordIsValid = false;
 
   constructor(public formBuilder: FormBuilder, public util: UtilService, private activatedRoute: ActivatedRoute, public router: Router, public service: SharedServiceService) {
     this.setupFormData();
@@ -31,12 +32,9 @@ export class ChoosePasswordComponent implements OnInit {
     this.error_messages = {
       password: [
         { type: "required", message: '*Password is Required' },
-        { type: "minlength", message: '*Please enter minimum 6 digit password' },
-        { type: "pattern", message: '*Please enter strong password' }
       ],
       confirm_password: [
-        { type: "required", message: '*Confirm Password is Required' },
-        { type: "minlength", message: '*Please enter minimum 6 digit password' }
+        { type: "required", message: '*Confirm Password is Required' }
       ]
 
     };
@@ -46,9 +44,7 @@ export class ChoosePasswordComponent implements OnInit {
           "",
           Validators.compose([
             Validators.required,
-            Validators.minLength(6),
             Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{6,}')
-
           ])
         ),
         confirm_password: new FormControl(
@@ -56,7 +52,6 @@ export class ChoosePasswordComponent implements OnInit {
           Validators.compose([
             Validators.required,
             this.equalto('password'),
-            Validators.minLength(6)
           ])
         ),
       }
@@ -122,5 +117,11 @@ export class ChoosePasswordComponent implements OnInit {
         })
     }
 
+  }
+
+
+
+  passwordValid(event) {
+    this.passwordIsValid = event;
   }
 }
