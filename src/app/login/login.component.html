@@ -40,7 +40,7 @@
           </div>
 
           <div class="login-first-name fieldset">
-            <label>Password {{this.mypassword}}</label>
+            <label>Password</label>
             <input formControlName="password" [type]="isTextFieldType ? 'text' : 'password'" value={{this.mypassword}} >
             <span class="icon-image">
               <i class="fa fa-eye" *ngIf="hideImage" (click)="togglePasswordFieldType()"></i>
