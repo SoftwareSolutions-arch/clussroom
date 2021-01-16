@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { SharedServiceService } from '../shared-service.service';
+import { Router } from '@angular/router';
+import { HttpHeaders } from '@angular/common/http';
+import { UtilService } from '../../providers/util.service';
+
 
 @Component({
   selector: 'app-sample04',
@@ -6,39 +12,37 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sample04.component.css']
 })
 export class Sample04Component implements OnInit {
-  user:any='user1';
-
-  constructor() { }
+  allCourseList: any = [];
+  constructor(public router: Router, public util: UtilService, public service: SharedServiceService, public formBuilder: FormBuilder) {
+    this.getAllCoursesList();
+  }
 
   ngOnInit(): void {
   }
 
-  courses(){
-    this.user = 'user1';
+
+
+  isCheckClicked(event) {
+    console.log('event', event.target.checked);
   }
 
-  classes() {
-    this.user = 'user2';
-  }
+  // get all courses list
+  getAllCoursesList() {
+    let headers = new HttpHeaders({
+      'Access-Control-Allow-Origin': '*'
+    })
+    this.service.viewAllCourses({ headers: headers }).then((result) => {
+      console.log('result', result['coursesdata']);
+      if (result['status'] == 1) {
+        this.allCourseList = result['coursesdata'];
 
-  classesList(){
-    this.user = 'user3';
+      }
+      else {
+        this.util.errorAlertPopup(result['mesaage']);
+      }
+    })
+      .catch(error => {
+        this.util.errorAlertPopup(error['message']);
+      })
   }
-
-  learner(){
-    this.user = 'user4';
-  }
-
-  stroage(){
-    this.user = 'user5';
-  }
-
-  admin(){
-    this.user = 'user6';
-  }
-
-  liveSession(){
-    this.user = 'user7';
-  }
-
 }

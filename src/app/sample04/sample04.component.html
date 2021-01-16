@@ -1,41 +1,41 @@
 <div class="nav-clip">
   <ul class="nav nav-tabs">
-    <li><a data-toggle="tab" href="#course-content" class="active clip-item" (click)="courses()">
+    <li><a data-toggle="tab" href="#course-content" class="active clip-item">
         <img src="assets/images/dashboard/second/course-grey.png" class="hover-out">
         <img src="assets/images/dashboard/second/course-blue.png" class="hover-in">Courses</a>
     </li>
 
-    <li><a data-toggle="tab" href="#classes-content" class="clip-item" (click)="classes()">
+    <li><a data-toggle="tab" href="#classes-content" class="clip-item">
         <img src="assets/images/dashboard/second/clip-classes-grey.png" class="hover-out">
         <img src="assets/images/dashboard/second/clip-classes-blue.png" class="hover-in">Classes</a>
     </li>
 
 
-    <li><a data-toggle="tab" href="#class-list-content" class="clip-item" (click)="classesList()">
+    <li><a data-toggle="tab" href="#class-list-content" class="clip-item">
         <img src="assets/images/dashboard/second/list-grey.png" class="hover-out">
         <img src="assets/images/dashboard/second/list-blue.png" class="hover-in">
         Class List</a>
     </li>
 
-    <li><a data-toggle="tab" href="#learners-content" class="clip-item" (click)="learner()">
+    <li><a data-toggle="tab" href="#learners-content" class="clip-item">
         <img src="assets/images/dashboard/second/clip-learner-grey.png" class="hover-out">
         <img src="assets/images/dashboard/second/clip-learner-blue.png" class="hover-in">
         Learners</a>
     </li>
 
-    <li><a data-toggle="tab" href="#storage-content" class="clip-item" (click)="stroage()">
+    <li><a data-toggle="tab" href="#storage-content" class="clip-item">
         <img src="assets/images/dashboard/second/clip-storage-grey.png" class="hover-out">
         <img src="assets/images/dashboard/second/clip-storage-blue.png" class="hover-in">
         Storage</a>
     </li>
 
-    <li><a data-toggle="tab" href="#admin-content" class="clip-item" (click)="admin()">
+    <li><a data-toggle="tab" href="#admin-content" class="clip-item">
         <img src="assets/images/dashboard/second/clip-user-grey.png" class="hover-out">
         <img src="assets/images/dashboard/second/clip-user-blue.png" class="hover-in">
         Admin</a>
     </li>
 
-    <li><a data-toggle="tab" href="#live-sessions-content" class="clip-item" (click)="liveSession()">
+    <li><a data-toggle="tab" href="#live-sessions-content" class="clip-item">
         <img src="assets/images/dashboard/second/session-grey.png" class="hover-out">
         <img src="assets/images/dashboard/second/session-blue.png" class="hover-in">
         Live Sessions</a>
@@ -44,7 +44,7 @@
 </div>
 
 <div class="tab-content">
-  <div id="course-content" class="tab-pane active" *ngIf="user=='user1'">
+  <div id="course-content" class="tab-pane active">
     <div class="prospectus-section">
       <div class="prospectus-tabs">
         <ul class="nav nav-tabs">
@@ -80,7 +80,9 @@
               <tbody>
                 <tr>
                   <th>
-                    <div class="radio-table"><input type="checkbox"></div>
+                    <div class="radio-table">
+                      <input (click)="isCheckClicked($event)" type="checkbox">
+                    </div>
                   </th>
                   <td>1</td>
                   <td class="text-left">Biology for Primary 1</td>
@@ -255,7 +257,7 @@
 
   </div>
 
-  <div id="classes-content" class="tab-pane" *ngIf="user=='user2'">
+  <div id="classes-content" class="tab-pane">
     <div class="prospectus-section">
       <div class="prospectus-tabs">
         <ul class="nav nav-tabs">
@@ -465,7 +467,7 @@
     </div>
   </div>
 
-  <div id="class-list-content" class="tab-pane" *ngIf="user=='user3'">
+  <div id="class-list-content" class="tab-pane">
     <div class="prospectus-section">
       <div class="prospectus-tabs">
         <ul class="nav nav-tabs">
@@ -675,7 +677,7 @@
     </div>
   </div>
 
-  <div id="learners-content" class="tab-pane" *ngIf="user=='user4'">
+  <div id="learners-content" class="tab-pane">
     <div class="prospectus-section">
       <div class="prospectus-tabs">
         <ul class="nav nav-tabs">
@@ -885,7 +887,7 @@
     </div>
   </div>
 
-  <div id="storage-content" class="tab-pane" *ngIf="user=='user5'">
+  <div id="storage-content" class="tab-pane">
     <div class="prospectus-section">
       <div class="prospectus-tabs">
         <ul class="nav nav-tabs">
@@ -1095,7 +1097,7 @@
     </div>
   </div>
 
-  <div id="admin-content" class="tab-pane" *ngIf="user=='user6'">
+  <div id="admin-content" class="tab-pane">
     <div class="prospectus-section">
       <div class="prospectus-tabs">
         <ul class="nav nav-tabs">
@@ -1305,7 +1307,7 @@
     </div>
   </div>
 
-  <div id="live-sessions-content" class="tab-pane" *ngIf="user=='user7'">
+  <div id="live-sessions-content" class="tab-pane">
     <div class="prospectus-section">
       <div class="prospectus-tabs">
         <ul class="nav nav-tabs">

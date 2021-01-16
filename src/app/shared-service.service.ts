@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SharedServiceService {
   baseurl = "https://classroom.auxesisdevelopment.com/api";
-
+  baseUrl = 'https://lingolista.auxesisdevelopment.com/api/'
   constructor(public http: HttpClient) { }
 
   getRecordList(params, header) {
@@ -140,7 +141,7 @@ export class SharedServiceService {
     });
   }
 
-  doLogout(header){
+  doLogout(header) {
     return new Promise((resolve, reject) => {
       this.http.post(this.baseurl + "/user-logout-api", header).subscribe(
         res => {
@@ -196,6 +197,25 @@ export class SharedServiceService {
     });
   }
 
+  // view all courses list
+  viewAllCourses(header) {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.baseurl + "/view-all-courses-api", header).subscribe(
+        res => {
+          if (res['success'] != 0) {
+            resolve(res);
+          }
+          else {
+            reject(res);
+          }
+        },
+        err => {
+          reject(err);
+        }
+      );
+    });
+  }
+
   //step third for reset password
   submitPassword(params, header) {
     return new Promise((resolve, reject) => {
@@ -213,5 +233,25 @@ export class SharedServiceService {
         }
       );
     });
+  }
+
+  post(endPoint, data, isHeader): Observable<any> {
+    let httpOptions;
+    if (isHeader === 0) {
+      httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+        })
+      };
+      return this.http.post(this.baseUrl + endPoint, data, httpOptions);
+    } else if (isHeader === 1) { //method with token
+      httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': sessionStorage.getItem('token')
+        })
+      }
+      return this.http.post(this.baseUrl + endPoint, data, httpOptions);
+    }
   }
 }

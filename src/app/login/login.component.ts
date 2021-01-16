@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
   userDetails: any = '';
   constructor(public router: Router, public util: UtilService, public service: SharedServiceService, public formBuilder: FormBuilder) {
     this.setupLoginFormData();
-
   }
 
   ngOnInit(): void {
