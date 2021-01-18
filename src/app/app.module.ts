@@ -36,8 +36,6 @@ import { ClassesComponent } from './classes/classes.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { CommonModule } from '@angular/common';
 import { PasswordStrengthComponent } from './password-strength/password-strength.component';
-import { LoaderComponent } from './loader/loader.component';
-
 
 @NgModule({
   declarations: [
@@ -64,8 +62,7 @@ import { LoaderComponent } from './loader/loader.component';
     DashboardheaderComponent,
     CoursesComponent,
     ClassesComponent,
-    PasswordStrengthComponent,
-    LoaderComponent
+    PasswordStrengthComponent
   ],
   imports: [CommonModule,
     BrowserModule,
