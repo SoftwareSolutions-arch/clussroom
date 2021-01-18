@@ -51,12 +51,9 @@
           <li><a data-toggle="tab" href="#summary" class="active">Course</a></li>
           <li><a data-toggle="tab" href="#instructions">Method of Instructions</a></li>
         </ul>
-        <div class="prospectus-action">
-          <a href="#" class="add-btn custom-a-btn" data-toggle="modal" data-target="#addCourse"><i class="fa fa-plus"
-              aria-hidden="true"></i> Name</a>
-          <!-- <a class="edit-btn custom-a-btn" data-toggle="modal" data-target="#editCourse"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
-              <a class="delete-btn custom-a-btn" data-toggle="modal" data-target="#deleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-              <a href="#" class="delete-btn custom-a-btn" data-toggle="modal" data-target="#unabledeleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
+        <div class="prospectus-action" (click)="addNewCourse($event)">
+          <a class="add-btn custom-a-btn" data-toggle="modal" data-target="#addCourse">
+            <i class="fa fa-plus" aria-hidden="true"></i> Name</a>
         </div>
       </div>
       <div class="tab-content">
@@ -85,28 +82,44 @@
                     </div>
                   </th>
                   <td>1</td>
-                  <td class="text-left">Biology for Primary 1</td>
-                  <td>A3K</td>
-                  <td>Math</td>
-                  <td>Professional medical</td>
-                  <td>1</td>
-                  <td>12</td>
-                  <td>189</td>
-                  <td>Aeriel Connelly</td>
+                  <td class="text-left" *ngIf="!isShow">Biology for Primary 1</td>
+                  <td *ngIf="isShow"><input class="text-left" value="Biology for Primary 1"></td>
+                  <td *ngIf="!isShow">A3K</td>
+                  <td *ngIf="isShow"><input class="text-left" value="A3K"></td>
+                  <td *ngIf="!isShow">Math</td>
+                  <td *ngIf="isShow"><input class="text-left" value="Math"></td>
+                  <td *ngIf="!isShow">Professional medical</td>
+                  <td *ngIf="isShow"><input class="text-left" value="Professional medical"></td>
+                  <td *ngIf="!isShow">1</td>
+                  <td *ngIf="isShow"><input class="text-left" value="1"></td>
+                  <td *ngIf="!isShow">12</td>
+                  <td *ngIf="isShow"><input class="text-left" value="12"></td>
+                  <td *ngIf="!isShow">189</td>
+                  <td *ngIf="isShow"><input class="text-left" value="189"></td>
+                  <td *ngIf="!isShow">Aeriel Connelly</td>
+                  <td *ngIf="isShow"><input class="text-left" value="Aeriel Connelly"></td>
                 </tr>
                 <tr>
                   <th>
                     <div class="radio-table"><input type="checkbox"></div>
                   </th>
                   <td>2</td>
-                  <td class="text-left">Geography for Primary 2</td>
-                  <td>4CE</td>
-                  <td>Science</td>
-                  <td>Secondary</td>
-                  <td>2</td>
-                  <td>8</td>
-                  <td>874</td>
-                  <td>Darren Leow</td>
+                  <td class="text-left" *ngIf="!isShow">Geography for Primary 2</td>
+                  <td *ngIf="isShow"><input class="text-left" value="Geography for Primary 2"></td>
+                  <td *ngIf="!isShow">4CE</td>
+                  <td *ngIf="isShow"><input class="text-left" value="4CE"></td>
+                  <td *ngIf="!isShow">Science</td>
+                  <td *ngIf="isShow"><input class="text-left" value="Science"></td>
+                  <td *ngIf="!isShow">Secondary</td>
+                  <td *ngIf="isShow"><input class="text-left" value="Secondary"></td>
+                  <td *ngIf="!isShow">2</td>
+                  <td *ngIf="isShow"><input class="text-left" value="1"></td>
+                  <td *ngIf="!isShow">8</td>
+                  <td *ngIf="isShow"><input class="text-left" value="8"></td>
+                  <td *ngIf="!isShow">874</td>
+                  <td *ngIf="isShow"><input class="text-left" value="874"></td>
+                  <td *ngIf="!isShow">Darren Leow</td>
+                  <td *ngIf="isShow"><input class="text-left" value="Darren Leow"></td>
                 </tr>
                 <tr>
                   <th>
@@ -265,11 +278,11 @@
           <li><a data-toggle="tab" href="#instructions">Method of Instructions</a></li>
         </ul>
         <div class="prospectus-action">
-          <a href="#" class="add-btn custom-a-btn" data-toggle="modal" data-target="#addCourse"><i class="fa fa-plus"
+          <a class="add-btn custom-a-btn" data-toggle="modal" data-target="#addCourse"><i class="fa fa-plus"
               aria-hidden="true"></i> Name</a>
           <!-- <a class="edit-btn custom-a-btn" data-toggle="modal" data-target="#editCourse"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
               <a class="delete-btn custom-a-btn" data-toggle="modal" data-target="#deleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-              <a href="#" class="delete-btn custom-a-btn" data-toggle="modal" data-target="#unabledeleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
+              <a  class="delete-btn custom-a-btn" data-toggle="modal" data-target="#unabledeleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
         </div>
       </div>
       <div class="tab-content">
@@ -475,11 +488,11 @@
           <li><a data-toggle="tab" href="#instructions">Method of Instructions</a></li>
         </ul>
         <div class="prospectus-action">
-          <a href="#" class="add-btn custom-a-btn" data-toggle="modal" data-target="#addCourse"><i class="fa fa-plus"
+          <a class="add-btn custom-a-btn" data-toggle="modal" data-target="#addCourse"><i class="fa fa-plus"
               aria-hidden="true"></i> Name</a>
           <!-- <a class="edit-btn custom-a-btn" data-toggle="modal" data-target="#editCourse"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
               <a class="delete-btn custom-a-btn" data-toggle="modal" data-target="#deleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-              <a href="#" class="delete-btn custom-a-btn" data-toggle="modal" data-target="#unabledeleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
+              <a  class="delete-btn custom-a-btn" data-toggle="modal" data-target="#unabledeleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
         </div>
       </div>
       <div class="tab-content">
@@ -685,11 +698,11 @@
           <li><a data-toggle="tab" href="#instructions">Method of Instructions</a></li>
         </ul>
         <div class="prospectus-action">
-          <a href="#" class="add-btn custom-a-btn" data-toggle="modal" data-target="#addCourse"><i class="fa fa-plus"
+          <a class="add-btn custom-a-btn" data-toggle="modal" data-target="#addCourse"><i class="fa fa-plus"
               aria-hidden="true"></i> Name</a>
           <!-- <a class="edit-btn custom-a-btn" data-toggle="modal" data-target="#editCourse"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
               <a class="delete-btn custom-a-btn" data-toggle="modal" data-target="#deleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-              <a href="#" class="delete-btn custom-a-btn" data-toggle="modal" data-target="#unabledeleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
+              <a  class="delete-btn custom-a-btn" data-toggle="modal" data-target="#unabledeleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
         </div>
       </div>
       <div class="tab-content">
@@ -895,11 +908,11 @@
           <li><a data-toggle="tab" href="#instructions">Method of Instructions</a></li>
         </ul>
         <div class="prospectus-action">
-          <a href="#" class="add-btn custom-a-btn" data-toggle="modal" data-target="#addCourse"><i class="fa fa-plus"
+          <a class="add-btn custom-a-btn" data-toggle="modal" data-target="#addCourse"><i class="fa fa-plus"
               aria-hidden="true"></i> Name</a>
           <!-- <a class="edit-btn custom-a-btn" data-toggle="modal" data-target="#editCourse"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
               <a class="delete-btn custom-a-btn" data-toggle="modal" data-target="#deleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-              <a href="#" class="delete-btn custom-a-btn" data-toggle="modal" data-target="#unabledeleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
+              <a  class="delete-btn custom-a-btn" data-toggle="modal" data-target="#unabledeleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
         </div>
       </div>
       <div class="tab-content">
@@ -1105,11 +1118,11 @@
           <li><a data-toggle="tab" href="#instructions">Method of Instructions</a></li>
         </ul>
         <div class="prospectus-action">
-          <a href="#" class="add-btn custom-a-btn" data-toggle="modal" data-target="#addCourse"><i class="fa fa-plus"
+          <a class="add-btn custom-a-btn" data-toggle="modal" data-target="#addCourse"><i class="fa fa-plus"
               aria-hidden="true"></i> Name</a>
           <!-- <a class="edit-btn custom-a-btn" data-toggle="modal" data-target="#editCourse"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
               <a class="delete-btn custom-a-btn" data-toggle="modal" data-target="#deleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-              <a href="#" class="delete-btn custom-a-btn" data-toggle="modal" data-target="#unabledeleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
+              <a  class="delete-btn custom-a-btn" data-toggle="modal" data-target="#unabledeleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
         </div>
       </div>
       <div class="tab-content">
@@ -1315,11 +1328,11 @@
           <li><a data-toggle="tab" href="#instructions">Method of Instructions</a></li>
         </ul>
         <div class="prospectus-action">
-          <a href="#" class="add-btn custom-a-btn" data-toggle="modal" data-target="#addCourse"><i class="fa fa-plus"
+          <a class="add-btn custom-a-btn" data-toggle="modal" data-target="#addCourse"><i class="fa fa-plus"
               aria-hidden="true"></i> Name</a>
           <!-- <a class="edit-btn custom-a-btn" data-toggle="modal" data-target="#editCourse"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
               <a class="delete-btn custom-a-btn" data-toggle="modal" data-target="#deleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-              <a href="#" class="delete-btn custom-a-btn" data-toggle="modal" data-target="#unabledeleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
+              <a  class="delete-btn custom-a-btn" data-toggle="modal" data-target="#unabledeleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
         </div>
       </div>
       <div class="tab-content">

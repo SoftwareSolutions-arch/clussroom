@@ -1,8 +1,12 @@
-.text-center{
+:host ::ng-deep.text-center{
     text-align: center !important;
 }
 
-.error-message{
+:host ::ng-deep .error-message{
     color: red !important;
-    font-size: 1rem !important;
+    font-size: 1.3rem !important;
+}
+
+:host ::ng-deep input{
+    font-size: 1.4rem;
 }

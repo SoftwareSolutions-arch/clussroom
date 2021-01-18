@@ -48,6 +48,7 @@ export class PricingComponent implements OnInit {
       'Access-Control-Allow-Origin': '*'
     })
     this.service.getRecordList(params, { headers: headers }).then((result) => {
+      console.log('result',result);
       this.isImageShow = false;
       this.firstNid = result['nids']['34'];
       this.secondNid = result['nids']['35'];

@@ -1,76 +1,60 @@
-
-<!DOCTYPE html>
-<html>
-<title>login</title>
-
-<head>
-  <link rel="icon" href="assets/images/clusroom-fav.png" type="image/png">
-  <!-- <link rel="stylesheet" href="boostrap/css/bootstrap.css"> -->
-  <!-- <link rel="stylesheet" href="css/style.css"> -->
-</head>
-
-<body>
-  <app-header></app-header>
-  <section class="login-section">
-    <div class="container">
-      <div class="login-form">
-        <h2>For every student,
-          every classroom.</h2>
-        <form [formGroup]="loginForm">
-          <div class="radio-curve">
-            <div class="login-radio">
-              <input (click)="userType($event)" type="radio" id="teacher" name="category" value="teacher">&nbsp;
-              <label for="teacher">Teacher</label>
-            </div>
-            <div class="login-radio">
-              <input (click)="userType($event)" type="radio" id="learner" name="category" value="learner">&nbsp;
-              <label for="learner">Learner</label>
-            </div>
+<app-header></app-header>
+<section class="login-section">
+  <div class="container">
+    <div class="login-form">
+      <h2>For every student,
+        every classroom.</h2>
+      <form [formGroup]="loginForm">
+        <div class="radio-curve">
+          <div class="login-radio">
+            <input (click)="userType($event)" type="radio" id="teacher" name="category" value="teacher">&nbsp;
+            <label for="teacher">Teacher</label>
           </div>
+          <div class="login-radio">
+            <input (click)="userType($event)" type="radio" id="learner" name="category" value="learner">&nbsp;
+            <label for="learner">Learner</label>
+          </div>
+        </div>
 
-          <div class="login-company-name fieldset">
-            <label>Email id</label>
-            <input  formControlName="email" type="text" value={{this.myemail}} >
-            <ng-container *ngFor="let error of error_messages.email">
-              <div class="error-message" *ngIf="loginForm.get('email').hasError(error.type) &&
+        <div class="login-company-name fieldset">
+          <label>Email id</label>
+          <input formControlName="email" type="text" value={{this.myemail}}>
+          <ng-container *ngFor="let error of error_messages.email">
+            <div class="error-message" *ngIf="loginForm.get('email').hasError(error.type) &&
 							  (loginForm.get('email').dirty || loginForm.get('email').touched)">
-                {{ error.message }}
-              </div>
-            </ng-container>
-          </div>
+              {{ error.message }}
+            </div>
+          </ng-container>
+        </div>
 
-          <div class="login-first-name fieldset">
-            <label>Password</label>
-            <input formControlName="password" [type]="isTextFieldType ? 'text' : 'password'" value={{this.mypassword}} >
-            <span class="icon-image">
-              <i class="fa fa-eye" *ngIf="hideImage" (click)="togglePasswordFieldType()"></i>
-            </span>
-            <span class="icon-image">
-              <i class="fa fa-eye-slash" *ngIf="!hideImage" aria-hidden="true" (click)="togglePasswordFieldType()"></i>
-            </span>
-            <ng-container *ngFor="let error of error_messages.password">
-              <div class="error-message" *ngIf="loginForm.get('password').hasError(error.type) &&
+        <div class="login-first-name fieldset">
+          <label>Password</label>
+          <input formControlName="password" [type]="isTextFieldType ? 'text' : 'password'" value={{this.mypassword}}>
+          <span class="icon-image">
+            <i class="fa fa-eye" *ngIf="hideImage" (click)="togglePasswordFieldType()"></i>
+          </span>
+          <span class="icon-image">
+            <i class="fa fa-eye-slash" *ngIf="!hideImage" aria-hidden="true" (click)="togglePasswordFieldType()"></i>
+          </span>
+          <ng-container *ngFor="let error of error_messages.password">
+            <div class="error-message" *ngIf="loginForm.get('password').hasError(error.type) &&
 							  (loginForm.get('password').dirty || loginForm.get('password').touched)">
-                {{ error.message }}
-              </div>
-            </ng-container>
+              {{ error.message }}
+            </div>
+          </ng-container>
+        </div>
 
-          </div>
+        <div class="login-obliterate">
+          <button class="btn" [disabled]="!loginForm.valid" (click)="startClass()">Start Class</button>
+          <p>Forgot password <a (click)="resetPassword()">Reset it.</a></p>
+        </div>
 
-          <div class="login-obliterate">
-            <button class="btn" [disabled]="!loginForm.valid" (click)="startClass()">Start Class</button>
-            <p>Forgot password <a (click)="resetPassword()">Reset it.</a></p>
-          </div>
+        <div class="login-remember-me">
+          <label><input (click)="rememberMe()" [checked]="isChecked" type="checkbox"> Remember me</label>
+        </div>
 
-          <div class="login-remember-me">
-            <label><input (click)="rememberMe()" [checked]="isChecked" type="checkbox"> Remember me</label>
-          </div>
-
-        </form>
-      </div>
+      </form>
     </div>
-  </section>
-  <app-footer></app-footer>
-</body>
-
-</html>
+  </div>
+</section>
+<app-footer></app-footer>

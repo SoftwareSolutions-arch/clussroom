@@ -597,7 +597,7 @@ b.custom-tooltip {
 
 .error-message {
   color: red !important;
-  font-size: 1rem !important;
+  font-size: 1.4rem !important;
 }
 
 .login-form .radio-curve .login-radio:first-child {
@@ -606,4 +606,8 @@ b.custom-tooltip {
 
 .radio-btn {
   width: 15px !important;
+}
+
+input{
+  font-size: 1.7rem;
 }

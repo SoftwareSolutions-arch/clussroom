@@ -11,17 +11,17 @@ import { UtilService } from '../../providers/util.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  myemail: any='';
-  mypassword: any='';
   isChecked: boolean = false;
+  hideImage: boolean = true;
+  isTextFieldType: boolean;
 
+  myemail: any = '';
+  mypassword: any = '';
   selectpayment: any = '';
   loginForm: FormGroup;
   error_messages: any = '';
-  isTextFieldType: boolean;
-  hideImage: boolean = true;
   userDetails: any = '';
+
   constructor(public router: Router, public util: UtilService, public service: SharedServiceService, public formBuilder: FormBuilder) {
     this.setupLoginFormData();
   }
@@ -68,7 +68,7 @@ export class LoginComponent implements OnInit {
       this.util.errorAlertPopup('please select user type');
     }
 
-    else{
+    else {
       let params = {
         "name": this.loginForm.value.email,
         "pass": this.loginForm.value.password
@@ -86,14 +86,14 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/sidebar']);
         }
         else {
-          this.util.errorAlertPopup(result['mesaage']);
+          this.util.errorAlertPopup("Something went wrong, please check your email id and password");
         }
       })
         .catch(error => {
-          this.util.errorAlertPopup(error['message']);
+          this.util.errorAlertPopup("Something went wrong, please check your email id and password");
         })
     }
-    
+
   }
 
   //reset password
@@ -105,7 +105,6 @@ export class LoginComponent implements OnInit {
     this.userDetails = event.target.value;
   }
 
-
   rememberMe() {
     this.isChecked = !this.isChecked;
     if (this.isChecked == true) {
@@ -115,8 +114,7 @@ export class LoginComponent implements OnInit {
   }
 
   getmy() {
-    console.log('+++', localStorage.getItem('setEmail'))
-    this.myemail =  localStorage.getItem('setEmail');
-    this.mypassword =  localStorage.getItem('setPassword');
+    this.myemail = localStorage.getItem('setEmail');
+    this.mypassword = localStorage.getItem('setPassword');
   }
 }

@@ -13,6 +13,7 @@ import { UtilService } from '../../providers/util.service';
 })
 export class Sample04Component implements OnInit {
   allCourseList: any = [];
+  isShow:boolean=false;
   constructor(public router: Router, public util: UtilService, public service: SharedServiceService, public formBuilder: FormBuilder) {
     this.getAllCoursesList();
   }
@@ -32,9 +33,9 @@ export class Sample04Component implements OnInit {
       'Access-Control-Allow-Origin': '*'
     })
     this.service.viewAllCourses({ headers: headers }).then((result) => {
-      console.log('result', result['coursesdata']);
+      console.log('result', result['coursesdata'][50]);
       if (result['status'] == 1) {
-        this.allCourseList = result['coursesdata'];
+        this.allCourseList = result['coursesdata'][50];
 
       }
       else {
@@ -44,5 +45,13 @@ export class Sample04Component implements OnInit {
       .catch(error => {
         this.util.errorAlertPopup(error['message']);
       })
+  }
+
+  addNewCourse(event){
+    this.isShow=true;
+  }
+
+  createCourse(){
+    
   }
 }

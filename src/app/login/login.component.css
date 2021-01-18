@@ -370,12 +370,6 @@ section.login-section {
 }
 /*login page css end*/
 
-
-.error-message {
-  color: red !important;
-  font-size: 1rem !important;
-}
-
 .mat-snack-bar-container {
   color: white !important;
   background: white;
@@ -389,3 +383,6 @@ section.login-section {
   font-size: 1.4rem;
 }
 
+.login-form .radio-curve label{
+  margin-left: 5px;
+}
