@@ -18,8 +18,11 @@ export class SubscriptionComponent implements OnInit {
   nidKey: any = '';
   subscriptionDetails: any = {};
   isImageShow: boolean = true;
+  title:any='';
   constructor(public router: Router, public http: HttpClient, public service: SharedServiceService) {
     this.nidKey = localStorage.getItem('nidKey');
+    this.title = localStorage.getItem('title');
+    //
   }
 
   ngOnInit(): void {
@@ -37,6 +40,7 @@ export class SubscriptionComponent implements OnInit {
       'Access-Control-Allow-Origin': '*'
     })
     this.service.getSubscriptionList(params, { headers: headers }).then((result) => {
+      console.log('result',result);
       this.isImageShow = false;
       this.subscriptionDetails = result['nids']['0'];
     })

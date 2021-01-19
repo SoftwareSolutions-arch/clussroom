@@ -7,9 +7,10 @@ import { Router } from '@angular/router'
 })
 export class ThanksScreenComponent implements OnInit {
   userMail:any='';
+  firstName:any='';
   constructor(public router: Router) {
    this.userMail= localStorage.getItem('userMail');
-   console.log('userMail',this.userMail);
+   this.firstName= localStorage.getItem('firstName')
    }
 
   ngOnInit(): void {

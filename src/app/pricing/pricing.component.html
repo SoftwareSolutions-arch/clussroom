@@ -2,7 +2,6 @@
   <img class="common-loader">
 </div>
 <app-header *ngIf="!isImageShow"></app-header>
-
 <section class="pricing-section" *ngIf="!isImageShow">
   <div class="container">
     <div class="pricing-header">
@@ -11,165 +10,87 @@
     </div>
     <div class="pricing-content">
       <span class="previous-btn">
-        <i style="margin-right: 40px;" (click)="previous()" *ngIf="currentPage" class="fa fa-arrow-left" aria-hidden="true"></i>
+        <i (click)="prev()" style="margin-right: 40px;" (click)="previous()" *ngIf="currentPage" class="fa fa-arrow-left"
+          aria-hidden="true"></i>
       </span>
-      <div class="pricing-content-box" *ngIf="currentPage">
-        <div class="pricing-caption-flex">
-          <div class="pricing-header-caption">
-            <h5>{{this.firstNid.title}}</h5>
-            <div class="pricing-showing">
-              <h4>${{this.firstNid.amount}}</h4>
-              <span>95</span>
-              <p>/{{this.firstNid.duration}}</p>
+      <ngx-slick-carousel style="width: 100%;" class="carousel pricing-content" #slickModal="slick-carousel"
+        [config]="slideConfig">
+        <div ngxSlickItem *ngFor="let i of recordList" class="slide pricing-content-box">
+          <div class="pricing-caption-flex">
+            <div class="pricing-header-caption">
+              <h5>{{ i?.title}}</h5>
+              <div class="pricing-showing">
+                <h4>${{ i?.amount}}</h4>
+                <span>{{ i?.monthly}}</span>
+                <p>/monthly</p>
+              </div>
+              <em>Billed {{ i?.duration}}</em>
             </div>
-            <em>Billed yearly</em>
-          </div>
-          <div class="pricing-content-showing">
-            <ul>
-              <li><img src="assets/images/green-tick.png">{{this.firstNid.course_administrators}}
-                Course Adminstrator</li>
-              <li><img src="assets/images/green-tick.png">{{this.firstNid.gb_storage}} GB storage</li>
-              <li class="un-active"><img src="assets/images/grey-tick.png">{{this.firstNid.active_students}} active
-                students1</li>
-              <li class="un-active"><img src="assets/images/grey-tick.png">Sub-admin</li>
-              <li class="un-active"><img src="assets/images/grey-tick.png">Live session</li>
-            </ul>
-            <button class="btn" (click)="startClass(this.firstNid.nid)">
-              Start Class
-            </button>
-          </div>
+            <div class="pricing-content-showing">
+              <ul>
+                <!-- for course_administrators-->
+                <li *ngIf="i.course_administrators==0;else courseAdministratorsTemp">
+                  <img src="/assets/images/grey-tick.png">{{i?.course_administrators}} Course Adminstrator
+                </li>
+                <ng-template #courseAdministratorsTemp>
+                  <li>
+                    <img src="/assets/images/green-tick.png">{{i?.course_administrators}} Course Adminstrator
+                  </li>
+                </ng-template>
 
-        </div>
-      </div>
-      <div class="pricing-content-box" *ngIf="currentPage">
-        <div class="pricing-caption-flex">
-          <div class="pricing-header-caption">
-            <h5>{{this.secondNid.title}}</h5>
-            <div class="pricing-showing">
-              <h4>${{this.secondNid.amount}}</h4>
-              <span>95 </span>
-              <p>/{{this.secondNid.duration}}</p>
+                 <!-- for gb_storage-->
+                 <li *ngIf="i.gb_storage==0;else gbStorageTemp">
+                  <img src="/assets/images/grey-tick.png">{{i?.gb_storage}} GB storage
+                </li>
+                <ng-template #gbStorageTemp>
+                  <li>
+                    <img src="/assets/images/green-tick.png">{{i?.gb_storage}} GB storage
+                  </li>
+                </ng-template>
+
+                <!-- for active students-->
+                <li *ngIf="i.active_students==0;else activeStudents">
+                  <img src="/assets/images/grey-tick.png">{{i?.active_students}} active students1
+                </li>
+                <ng-template #activeStudents>
+                  <li>
+                    <img src="/assets/images/green-tick.png">{{i?.active_students}} active students1
+                  </li>
+                </ng-template>
+
+                 <!-- for Sub-admin-->
+                 <li *ngIf="i.sub_admin==0;else subAdmin">
+                  <img src="/assets/images/grey-tick.png">{{i?.sub_admin}} Sub-admin
+                </li>
+                <ng-template #subAdmin>
+                  <li>
+                    <img src="/assets/images/green-tick.png">{{i?.sub_admin}} Sub-admin
+                  </li>
+                </ng-template>
+
+                 <!-- for Live session-->
+                 <li *ngIf="i.live_session==0;else liveSession">
+                  <img src="/assets/images/grey-tick.png">{{i?.live_session}} Live session
+                </li>
+                <ng-template #liveSession>
+                  <li>
+                    <img src="/assets/images/green-tick.png">{{i?.live_session}} Live session
+                  </li>
+                </ng-template>
+              </ul>
+
+              <button class="btn" (click)="startClass(i)">
+                Start Class
+              </button>
             </div>
-            <em>Billed yearly</em>
           </div>
-          <div class="pricing-content-showing">
-            <ul>
-              <li><img src="assets/images/green-tick.png">{{this.secondNid.course_administrators}}
-                Course Adminstrator</li>
-              <li><img src="assets/images/green-tick.png">{{this.secondNid.gb_storage}} GB storage
-              </li>
-              <li><img src="assets/images/green-tick.png">{{this.secondNid.active_students}} active
-                students</li>
-              <li><img src="assets/images/green-tick.png">{{this.secondNid.sub_admin}} Sub-admin</li>
-              <li><img src="assets/images/green-tick.png">{{this.secondNid.live_session}} Hour Live
-                session</li>
-            </ul>
-            <button class="btn" (click)="startClass(this.secondNid.nid)">
-              Start Class
-            </button>
-          </div>
-
         </div>
-      </div>
-      <div class="pricing-content-box" *ngIf="currentPage">
-        <div class="pricing-caption-flex">
-          <div class="pricing-header-caption">
-            <h5>{{this.thirdNid.title}}</h5>
-            <div class="pricing-showing">
-              <h4>${{this.thirdNid.amount}}</h4>
-              <span>95 </span>
-              <p>/{{this.thirdNid.duration}}</p>
-            </div>
-            <em>Billed yearly</em>
-          </div>
-          <div class="pricing-content-showing">
-            <ul>
-              <li><img src="assets/images/green-tick.png">{{this.thirdNid.course_administrators}}
-                Course Adminstrator</li>
-              <li><img src="assets/images/green-tick.png">{{this.thirdNid.gb_storage}} GB storage</li>
-              <li><img src="assets/images/green-tick.png">{{this.thirdNid.active_students}} active
-                students</li>
-              <li><img src="assets/images/green-tick.png">{{this.thirdNid.sub_admin}} Sub-admin</li>
-              <li><img src="assets/images/green-tick.png">{{this.thirdNid.live_session}} Hour Live
-                session</li>
-            </ul>
-            <button class="btn" (click)="startClass(this.thirdNid.nid)">
-              Start Class
-            </button>
-          </div>
+      </ngx-slick-carousel>
 
-        </div>
-      </div>
-      <span class="previous-btn">
-        <i (click)="previous()" *ngIf="!currentPage" class="fa fa-arrow-left" aria-hidden="true"></i>
-      </span>
       <span class="next-btn">
-        <i (click)="next()" *ngIf="currentPage" class="fa fa-arrow-right" aria-hidden="true"></i>
-      </span>
-      <div *ngIf="!currentPage" class="pricing-content-box">
-        <div class="pricing-caption-flex">
-          <div class="pricing-header-caption">
-            <h5>{{this.fourthNid.title}}</h5>
-            <div class="pricing-showing">
-              <h4>${{this.fourthNid.amount}}</h4>
-              <span>95 </span>
-              <p>/{{this.fourthNid.duration}}</p>
-            </div>
-            <em>Billed yearly</em>
-          </div>
-          <div class="pricing-content-showing">
-            <ul>
-              <li><img src="assets/images/green-tick.png">{{this.fourthNid.course_administrators}}
-                Course Adminstrator</li>
-              <li><img src="assets/images/green-tick.png">{{this.fourthNid.gb_storage}} GB storage
-              </li>
-              <li><img src="assets/images/green-tick.png">{{this.fourthNid.active_students}} active
-                students</li>
-              <li><img src="assets/images/green-tick.png">{{this.fourthNid.sub_admin}} Sub-admin</li>
-              <li><img src="assets/images/green-tick.png">{{this.fourthNid.live_session}} Hour Live
-                session</li>
-            </ul>
-            <button class="btn" (click)="startClass(this.fourthNid.nid)">
-              Start Class
-            </button>
-          </div>
-
-        </div>
-      </div>
-      <div *ngIf="!currentPage" class="pricing-content-box">
-        <div class="pricing-caption-flex">
-          <div class="pricing-header-caption">
-            <h5>{{this.fifthNid.title}}</h5>
-            <div class="pricing-showing">
-              <h5>${{this.fifthNid.amount}}</h5>
-              <span>95 </span>
-              <p>/{{this.fifthNid.duration}}</p>
-            </div>
-            <em>Billed yearly</em>
-          </div>
-          <div class="pricing-content-showing">
-            <ul>
-              <li><img src="assets/images/green-tick.png">{{this.fifthNid.course_administrators}}
-                Course Adminstrator</li>
-              <li><img src="assets/images/green-tick.png">{{this.fifthNid.gb_storage}} GB storage</li>
-              <li><img src="assets/images/green-tick.png">{{this.fifthNid.active_students}} active
-                students</li>
-              <li><img src="assets/images/green-tick.png">{{this.fifthNid.sub_admin}} Sub-admin</li>
-              <li><img src="assets/images/green-tick.png">{{this.fifthNid.live_session}} Hour Live
-                session</li>
-            </ul>
-            <button class="btn" (click)="startClass(this.fifthNid.nid)">
-              Start Class
-            </button>
-          </div>
-
-        </div>
-      </div>
-      <span class="next-btn">
-        <i (click)="next()" style="margin-left: 100px;" *ngIf="!currentPage" class="fa fa-arrow-right" aria-hidden="true"></i>
+        <i (click)="next()" style="margin-left: 100px;" class="fa fa-arrow-right" aria-hidden="true"></i>
       </span>
     </div>
   </div>
 </section>
-
 <app-footer *ngIf="!isImageShow"></app-footer>

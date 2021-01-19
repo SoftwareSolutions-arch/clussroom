@@ -47,14 +47,15 @@ export class ForgotPasswordComponent implements OnInit {
     this.service.getforgotPassword(params, { headers: headers }).then((result) => {
       if (result['message'] == "Otp Send") {
         localStorage.setItem('otpId',result['id'])
-        this.util.openSnackBarSuccess(result['message'])
+        this.util.showSuccessAlert(result['message'])
         this.router.navigate(['/otp']);
       }
       else {
-        this.util.openSnackBar(result['message']);
+        this.util.errorAlertPopup(result['message']);
       }
     })
       .catch(error => {
+        this.util.errorAlertPopup(error['message']);
       })
   }
 }

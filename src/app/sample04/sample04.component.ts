@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { HttpHeaders } from '@angular/common/http';
 import { UtilService } from '../../providers/util.service';
 
-
 @Component({
   selector: 'app-sample04',
   templateUrl: './sample04.component.html',
@@ -13,7 +12,8 @@ import { UtilService } from '../../providers/util.service';
 })
 export class Sample04Component implements OnInit {
   allCourseList: any = [];
-  isShow:boolean=false;
+  isShow: boolean = false;
+
   constructor(public router: Router, public util: UtilService, public service: SharedServiceService, public formBuilder: FormBuilder) {
     this.getAllCoursesList();
   }
@@ -21,22 +21,16 @@ export class Sample04Component implements OnInit {
   ngOnInit(): void {
   }
 
-
-
   isCheckClicked(event) {
-    console.log('event', event.target.checked);
   }
 
-  // get all courses list
   getAllCoursesList() {
     let headers = new HttpHeaders({
       'Access-Control-Allow-Origin': '*'
     })
     this.service.viewAllCourses({ headers: headers }).then((result) => {
-      console.log('result', result['coursesdata'][50]);
       if (result['status'] == 1) {
-        this.allCourseList = result['coursesdata'][50];
-
+        this.allCourseList = result['coursesdata'];
       }
       else {
         this.util.errorAlertPopup(result['mesaage']);
@@ -47,11 +41,10 @@ export class Sample04Component implements OnInit {
       })
   }
 
-  addNewCourse(event){
-    this.isShow=true;
+  addNewCourse(event) {
+    this.isShow = true;
   }
 
-  createCourse(){
-    
+  createCourse() {
   }
 }

@@ -20,12 +20,16 @@ export class InvoiceComponent implements OnInit {
   invoiceForm: FormGroup;
   paymentForm: FormGroup;
   passwordNotMatch: any = '';
+  title:any='';
   constructor(public formBuilder: FormBuilder, public util: UtilService,
     public router: Router, public http: HttpClient, public service: SharedServiceService
   ) {
     this.setupFormData();
     this.nidKey = localStorage.getItem('nidKey');
     this.getAllInvoiceList();
+    this.paymentForm.disable();
+    this.title = localStorage.getItem('title');
+
   }
 
   ngOnInit(): void {
@@ -34,25 +38,31 @@ export class InvoiceComponent implements OnInit {
   setupFormData() {
     this.error_messages = {
       companyName: [
-        { type: "required", message: '*Company Name is Required' }
+        { type: "required", message: '*Company Name is Required' },
+        { type: "pattern", message: '*Please Enter character only' }
       ],
       firstName: [
-        { type: "required", message: '*First Name is Required' }
+        { type: "required", message: '*First Name is Required' },
+        { type: "pattern", message: '*Please Enter character only' }
       ],
       lastName: [
-        { type: "required", message: '*Last Name is Required' }
+        { type: "required", message: '*Last Name is Required' },
+        { type: "pattern", message: '*Please Enter character only' }
       ],
       address: [
         { type: "required", message: '*Address is Required' }
       ],
       city: [
-        { type: "required", message: '*City is Required' }
+        { type: "required", message: '*City is Required' },
+        { type: "pattern", message: '*Please Enter character only' }
       ],
       state: [
-        { type: "required", message: '*State is Required' }
+        { type: "required", message: '*State is Required' },
+        { type: "pattern", message: '*Please Enter character only' }
       ],
       country: [
-        { type: "required", message: '*Country is Required' }
+        { type: "required", message: '*Country is Required' },
+        { type: "pattern", message: '*Please Enter character only' }
       ],
       email: [
         { type: "required", message: '*Email is Required' },
@@ -63,21 +73,22 @@ export class InvoiceComponent implements OnInit {
         { type: "pattern", message: '*Please Enter valid Email' }
       ],
       cardHolderName: [
-        { type: "required", message: '*Card holder Name is Required' }
+        { type: "required", message: '*Card holder Name is Required' },
+        { type: "pattern", message: '*Please Enter character only' }
       ],
       cvv: [
-        { type: "required", message: '*Cvv is Required' },
-        { type: "minlength", message: '*Minimum length should be 3 digits only' }
-
+        { type: "required", message: '*Cvv is Required' }
       ],
       cardNumber: [
         { type: "required", message: '*Card Number is Required' },
         { type: "max", message: '*Maximum length should be 16 digits only' },
-        { type: "min", message: '*Minimum length should be 16 digits only' }
+        { type: "min", message: '*Minimum length should be 16 digits only' },
+        { type: "pattern", message: '*Please Enter number only' }
 
       ],
       expiryDate: [
-        { type: "required", message: '*Expirey Date is Required' }
+        { type: "required", message: '*Expirey Date is Required' },
+        { type: "pattern", message: '*Please Enter correct expiry date  only' }
       ],
 
     };
@@ -86,19 +97,22 @@ export class InvoiceComponent implements OnInit {
         companyName: new FormControl(
           "",
           Validators.compose([
-            Validators.required
+            Validators.required,
+            Validators.pattern('^[a-zA-Z, ]*$')
           ])
         ),
         firstName: new FormControl(
           "",
           Validators.compose([
-            Validators.required
+            Validators.required,
+            Validators.pattern('^[a-zA-Z, ]*$')
           ])
         ),
         lastName: new FormControl(
           "",
           Validators.compose([
-            Validators.required
+            Validators.required,
+            Validators.pattern('^[a-zA-Z, ]*$')
           ])
         ),
         address: new FormControl(
@@ -110,19 +124,22 @@ export class InvoiceComponent implements OnInit {
         city: new FormControl(
           "",
           Validators.compose([
-            Validators.required
+            Validators.required,
+            Validators.pattern('^[a-zA-Z, ]*$')
           ])
         ),
         state: new FormControl(
           "",
           Validators.compose([
-            Validators.required
+            Validators.required,
+            Validators.pattern('^[a-zA-Z, ]*$')
           ])
         ),
         country: new FormControl(
           "",
           Validators.compose([
-            Validators.required
+            Validators.required,
+            Validators.pattern('^[a-zA-Z, ]*$')
           ])
         ),
         email: new FormControl("", Validators.compose([Validators.required, Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'),])),
@@ -135,14 +152,14 @@ export class InvoiceComponent implements OnInit {
         cardHolderName: new FormControl(
           "",
           Validators.compose([
-            Validators.required
+            Validators.required,
+            Validators.pattern('^[a-zA-Z, ]*$')
           ])
         ),
         cvv: new FormControl(
           "",
           Validators.compose([
-            Validators.required,
-            Validators.minLength(3)
+            Validators.required
           ])
         ),
         cardNumber: new FormControl(
@@ -150,7 +167,8 @@ export class InvoiceComponent implements OnInit {
           Validators.compose([
             Validators.required,
             Validators.min(1000000000000000),
-            Validators.max(9999999999999999)
+            Validators.max(9999999999999999),
+            Validators.pattern('^[0-9, ]*$')
           ])
         ),
         expiryDate: new FormControl(
@@ -200,7 +218,7 @@ export class InvoiceComponent implements OnInit {
       'Access-Control-Allow-Origin': '*'
     })
     this.service.getInvoiceList(params, { headers: headers }).then((result) => {
-      console.log('result+++++++pp',result);
+      console.log("result+++P",result)
       this.isImageShow = false;
       this.invoiceDetails = result['nids'][0];
     })
@@ -232,8 +250,10 @@ export class InvoiceComponent implements OnInit {
       'Access-Control-Allow-Origin': '*'
     })
     this.service.postInvoiceDetails(params, { headers: headers }).then((result) => {
+      console.log('result',result);
       if (result['status_message'] == 'User Created Successfully') {
         localStorage.setItem('userMail', result['email']);
+        localStorage.setItem('firstName', result['fname']);
         this.isSpinnerShow = false;
         this.util.openSnackBarSuccess(result['status_message'])
         this.router.navigate(['/thanks-screen']);

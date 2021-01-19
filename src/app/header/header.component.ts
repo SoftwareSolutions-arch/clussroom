@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit {
   }
 
   home() {
-    this.router.navigate(['/sidebar']);
+    this.router.navigate(['/home']);
   }
 
   logIn() {

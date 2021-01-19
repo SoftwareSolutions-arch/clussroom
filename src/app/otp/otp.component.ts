@@ -63,10 +63,11 @@ export class OtpComponent implements OnInit {
         this.router.navigate(['/change-password']);
       }
       else {
-        this.util.openSnackBar(result['message']);
+        this.util.errorAlertPopup("Invalid OTP");
       }
     })
       .catch(error => {
+        this.util.errorAlertPopup("Invalid OTP");
       })
   }
 }

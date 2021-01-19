@@ -150,7 +150,7 @@
             <h3>Order summary</h3>
             <div class="lite-subscription-flex">
               <div class="lite-subscription">
-                <h5>Lite subscription</h5>
+                <h5>{{this.title}} subscription</h5>
                 <span>(at ${{this.invoiceDetails.amount}} monthly)</span>
               </div>
               <h5>$ {{this.invoiceDetails.yearly_amount}}</h5>
@@ -170,20 +170,20 @@
             <div class="payment-order">
               <h3>Payment</h3>
               <form [formGroup]="paymentForm">
-                <!-- <div class="payment-mode">
-                  <img src="assets/images/visa.png">
-                  <img src="assets/images/mastercard.png">
-                  <img src="assets/images/american.png">
-                </div> -->
+                <div class="payment-mode">
+                  <img class="selected-image" src="assets/images/visa.png">
+                  <img class="selected-image" src="assets/images/mastercard.png">
+                  <img class="selected-image" src="assets/images/american.png">
+                </div>
 
-                <div class="payment-mode login-radio">
+                <!-- <div class="payment-mode login-radio">
                   <input class="radio-btn" type="radio" id="visa" name="visa" value="visa">&nbsp;
                   <img src="assets/images/visa.png">
                   <input class="radio-btn" type="radio" id="visa" name="visa" value="visa">&nbsp;
                   <img src="assets/images/mastercard.png">
                     <input class="radio-btn" type="radio" id="visa" name="visa" value="visa">&nbsp;
                   <img src="assets/images/american.png">
-                </div>
+                </div> -->
                 <div class="cardholder fieldset">
                   <label>Cardholder name</label>
                   <input type="text" formControlName="cardHolderName">
@@ -211,12 +211,14 @@
                 <div class="payment-flex-curve">
                   <div class="expire-date fieldset">
                     <label>Expire date</label>
-                    <select name="date" id="date">
-                      <option value=""></option>
-                      <option value="05/2021">05/2021</option>
-                      <option value="05/2022">05/2022</option>
-                      <option value="05/2023">05/2023</option>
-                    </select>
+                    <input type="number" formControlName="expiryDate">
+                    <ng-container *ngFor="let error of error_messages.expiryDate">
+                      <div class="error-message"
+                        *ngIf="paymentForm.get('expiryDate').hasError(error.type) &&
+                                                  (paymentForm.get('expiryDate').dirty || paymentForm.get('expiryDate').touched)">
+                        {{ error.message }}
+                      </div>
+                    </ng-container>
                   </div>
                   <div class="cvv fieldset">
                     <label>CVV <b class="custom-tooltip" data-toggle="tooltip" title="CVV">?</b></label>
