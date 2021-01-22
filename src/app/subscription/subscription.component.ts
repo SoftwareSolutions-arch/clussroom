@@ -18,7 +18,7 @@ export class SubscriptionComponent implements OnInit {
   nidKey: any = '';
   subscriptionDetails: any = {};
   isImageShow: boolean = true;
-  title:any='';
+  title: any = '';
   constructor(public router: Router, public http: HttpClient, public service: SharedServiceService) {
     this.nidKey = localStorage.getItem('nidKey');
     this.title = localStorage.getItem('title');
@@ -27,25 +27,6 @@ export class SubscriptionComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllsubscriptionList();
-  }
-
-  // get all record list
-  getAllsubscriptionList() {
-    let params = {
-      "step": "2",
-      "package_nid": this.nidKey
-    }
-
-    let headers = new HttpHeaders({
-      'Access-Control-Allow-Origin': '*'
-    })
-    this.service.getSubscriptionList(params, { headers: headers }).then((result) => {
-      console.log('result',result);
-      this.isImageShow = false;
-      this.subscriptionDetails = result['nids']['0'];
-    })
-      .catch(error => {
-      })
   }
 
   // go to the next page
@@ -68,5 +49,19 @@ export class SubscriptionComponent implements OnInit {
   // check terms and condition accepted or not
   agreeTerms(event) {
     this.termsCondition = event.target.checked
+  }
+
+  // get all record list
+  getAllsubscriptionList() {
+    let data = {
+      "step": "2",
+      "package_nid": this.nidKey
+    }
+
+    this.service.post('vendor-registration', data, 0).subscribe(result => {
+      console.log('result', result)
+      this.isImageShow = false;
+      this.subscriptionDetails = result['nids']['0'];
+    })
   }
 }

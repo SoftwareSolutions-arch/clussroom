@@ -36,7 +36,11 @@ import { ClassesComponent } from './classes/classes.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { CommonModule } from '@angular/common';
 import { PasswordStrengthComponent } from './password-strength/password-strength.component';
-
+import { NgxPaginationModule } from 'ngx-pagination';
+import {MatTableModule} from '@angular/material/table';
+import {CookieService} from 'ngx-cookie-service';
+// import {MatPaginator} from '@angular/material/paginator';
+// import {MatSort} from '@angular/material/sort';
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,11 +75,11 @@ import { PasswordStrengthComponent } from './password-strength/password-strength
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSnackBarModule,MatInputModule,
+    MatSnackBarModule,MatInputModule,MatTableModule,
     MatProgressSpinnerModule,
-    SlickCarouselModule,MatTabsModule
+    SlickCarouselModule,MatTabsModule,NgxPaginationModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

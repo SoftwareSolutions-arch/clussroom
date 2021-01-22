@@ -36,17 +36,15 @@ export class ForgotPasswordComponent implements OnInit {
 
   //get forgot password
   sendMail() {
-    let params = {
+    let data = {
       "email": this.forgotForm.value.email,
       "step": 1
     }
 
-    let headers = new HttpHeaders({
-      'Access-Control-Allow-Origin': '*'
-    })
-    this.service.getforgotPassword(params, { headers: headers }).then((result) => {
+    this.service.post('forget-password-api', data, 0).subscribe(result => {
+      console.log('result', result)
       if (result['message'] == "Otp Send") {
-        localStorage.setItem('otpId',result['id'])
+        localStorage.setItem('otpId', result['id'])
         this.util.showSuccessAlert(result['message'])
         this.router.navigate(['/otp']);
       }
@@ -54,8 +52,5 @@ export class ForgotPasswordComponent implements OnInit {
         this.util.errorAlertPopup(result['message']);
       }
     })
-      .catch(error => {
-        this.util.errorAlertPopup(error['message']);
-      })
   }
 }

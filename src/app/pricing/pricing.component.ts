@@ -10,7 +10,6 @@ import { SlickCarouselComponent } from 'ngx-slick-carousel';
   styleUrls: ['./pricing.component.css']
 })
 
-
 export class PricingComponent implements OnInit {
 
   @ViewChild('slickModal') slickModal: SlickCarouselComponent;
@@ -34,7 +33,7 @@ export class PricingComponent implements OnInit {
   };
 
   constructor(public router: Router, private http: HttpClient, public service: SharedServiceService) {
-    this.getAllRecordList();
+    this.getAllCoursesList();
   }
 
   ngOnInit(): void {
@@ -46,30 +45,10 @@ export class PricingComponent implements OnInit {
 
   // go to the subscription page
   startClass(data) {
-    console.log('data',data)
+    console.log('data', data)
     localStorage.setItem('nidKey', data.nid);
     localStorage.setItem('title', data.title);
     this.router.navigate(['/subscription']);
-  }
-
-  // get all record list
-  getAllRecordList() {
-    let params = {
-      "step": "1",
-    }
-
-    let headers = new HttpHeaders({
-      'Access-Control-Allow-Origin': '*'
-    })
-    this.service.getRecordList(params, { headers: headers }).then((result) => {
-      console.log('result', result);
-      if (result['status'] == '1') {
-        this.isImageShow = false;
-        this.recordList = result['nids'];
-      }
-    })
-      .catch(error => {
-      })
   }
 
   addSlide() {
@@ -82,5 +61,24 @@ export class PricingComponent implements OnInit {
 
   prev() {
     this.slickModal.slickPrev();
+  }
+
+  // get all record list
+  getAllCoursesList() {
+    let data = {
+      "step": "1",
+    }
+
+    this.service.post('packages-list', data, 0).subscribe(result => {
+      console.log('result', result)
+      if (result['status'] == '1') {
+        this.isImageShow = false;
+        this.recordList = result['nids'];
+      }
+      else {
+        // this.util.errorAlertPopup(result['mesaage']);
+      }
+
+    })
   }
 }

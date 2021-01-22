@@ -4,7 +4,7 @@ import { SharedServiceService } from '../shared-service.service';
 import { Router } from '@angular/router';
 import { HttpHeaders } from '@angular/common/http';
 import { UtilService } from '../../providers/util.service';
-
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -21,9 +21,12 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   error_messages: any = '';
   userDetails: any = '';
-
-  constructor(public router: Router, public util: UtilService, public service: SharedServiceService, public formBuilder: FormBuilder) {
+  cookieDetails: any = '';
+  constructor(public router: Router, public util: UtilService, public service: SharedServiceService,
+    public formBuilder: FormBuilder, public cookie: CookieService) {
     this.setupLoginFormData();
+    this.cookieDetails = this.cookie.getAll();
+    console.log('this.cookieDetails++1', this.cookieDetails);
   }
 
   ngOnInit(): void {
@@ -62,40 +65,6 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  // do login
-  startClass() {
-    if (this.userDetails == '') {
-      this.util.errorAlertPopup('please select user type');
-    }
-
-    else {
-      let params = {
-        "name": this.loginForm.value.email,
-        "pass": this.loginForm.value.password
-      }
-      let headers = new HttpHeaders({
-        'Access-Control-Allow-Origin': '*'
-      })
-      this.service.doLogin(params, { headers: headers }).then((result) => {
-        if (result['status'] == 200) {
-          localStorage.setItem("csrftoken", result['current_user']['csrf_token']);
-          localStorage.setItem("uid", result['current_user']['uid']);
-          localStorage.setItem('userMail', result['current_user']['name']);
-          localStorage.setItem('isLogin', '1');
-          this.util.showSuccessAlert(result['message']);
-          this.router.navigate(['/sidebar']);
-        }
-        else {
-          this.util.errorAlertPopup("Something went wrong, please check your email id and password");
-        }
-      })
-        .catch(error => {
-          this.util.errorAlertPopup("Something went wrong, please check your email id and password");
-        })
-    }
-
-  }
-
   //reset password
   resetPassword() {
     this.router.navigate(['/forgot-password']);
@@ -116,5 +85,34 @@ export class LoginComponent implements OnInit {
   getmy() {
     this.myemail = localStorage.getItem('setEmail');
     this.mypassword = localStorage.getItem('setPassword');
+  }
+
+// do login
+  login() {
+    if (this.userDetails == '') {
+      this.util.errorAlertPopup('please select user type');
+      return
+    }
+
+    const data = {
+      name: this.loginForm.value.email,
+      pass: this.loginForm.value.password
+    }
+    this.service.post('user/login', data, 0).subscribe(result => {
+      if (result['status'] == 200) {
+        localStorage.setItem("csrftoken", result['current_user']['csrf_token']);
+        localStorage.setItem("uid", result['current_user']['uid']);
+        localStorage.setItem('userMail', result['current_user']['name']);
+        localStorage.setItem('isLogin', '1');
+        this.util.showSuccessAlert(result['message']);
+        this.cookieDetails = this.cookie.getAll();
+        console.log('this.cookieDetails++2', this.cookieDetails);
+        this.router.navigate(['/sidebar']);
+      }
+      else {
+        this.util.errorAlertPopup("Something went wrong, please check your email id and password");
+      }
+
+    })
   }
 }

@@ -20,7 +20,7 @@ export class InvoiceComponent implements OnInit {
   invoiceForm: FormGroup;
   paymentForm: FormGroup;
   passwordNotMatch: any = '';
-  title:any='';
+  title: any = '';
   constructor(public formBuilder: FormBuilder, public util: UtilService,
     public router: Router, public http: HttpClient, public service: SharedServiceService
   ) {
@@ -207,29 +207,39 @@ export class InvoiceComponent implements OnInit {
     }
   }
 
-  // get all invoice list
+  // enable or disable form
+  add() {
+    this.paymentForm.enable()
+    this.invoiceForm.disable()
+  }
+
+  // enable previous page
+  back() {
+    this.invoiceForm.enable()
+  }
+
+  // get invoice list
   getAllInvoiceList() {
-    let params = {
+    let data = {
       "step": "3",
       "package_nid": this.nidKey
     }
 
-    let headers = new HttpHeaders({
-      'Access-Control-Allow-Origin': '*'
-    })
-    this.service.getInvoiceList(params, { headers: headers }).then((result) => {
-      console.log("result+++P",result)
+    this.service.post('vendor-registration', data, 0).subscribe(result => {
+      console.log('result', result)
       this.isImageShow = false;
       this.invoiceDetails = result['nids'][0];
     })
-      .catch(error => {
-      })
   }
 
-  // submit 
+  // submit all invoice details
   submit() {
-    this.isSpinnerShow = true
-    const params = {
+    if (this.invoiceForm.value.firstName == '' && this.paymentForm.value.cardNumber == '') {
+      this.util.errorAlertPopup('Please insert all required values before proceed');
+      return;
+    }
+    this.isSpinnerShow = true;
+    const data = {
       'step': 4,
       'package_nid': this.nidKey,
       'cname': this.invoiceForm.value.companyName,
@@ -240,17 +250,14 @@ export class InvoiceComponent implements OnInit {
       'state': this.invoiceForm.value.state,
       'country': this.invoiceForm.value.country,
       'email': this.invoiceForm.value.email,
-      'cardNumber': this.invoiceForm.value.cardNumber,
-      'cvv': this.invoiceForm.value.cvv,
-      'expiryDate': this.invoiceForm.value.expiryDate,
-      'cardHolderName': this.invoiceForm.value.cardHolderName,
+      'cardNumber': this.paymentForm.value.cardNumber,
+      'cvv': this.paymentForm.value.cvv,
+      'expiryDate': this.paymentForm.value.expiryDate,
+      'cardHolderName': this.paymentForm.value.cardHolderName,
     }
 
-    let headers = new HttpHeaders({
-      'Access-Control-Allow-Origin': '*'
-    })
-    this.service.postInvoiceDetails(params, { headers: headers }).then((result) => {
-      console.log('result',result);
+    this.service.post('vendor-registration', data, 0).subscribe(result => {
+      console.log('result', result)
       if (result['status_message'] == 'User Created Successfully') {
         localStorage.setItem('userMail', result['email']);
         localStorage.setItem('firstName', result['fname']);
@@ -263,20 +270,5 @@ export class InvoiceComponent implements OnInit {
         this.isSpinnerShow = false;
       }
     })
-      .catch(error => {
-        this.util.errorAlertPopup(error['status_message'])
-        this.isSpinnerShow = false;
-      })
-  }
-
-  // add data
-  add() {
-    this.paymentForm.enable()
-    this.invoiceForm.disable()
-  }
-
-  // enable previous page
-  back() {
-    this.invoiceForm.enable()
   }
 }

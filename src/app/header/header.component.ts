@@ -37,13 +37,14 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  packages() {
+    this.router.navigate(['/pricing']);
+  }
+
   // do logout setup
   logout() {
-    let headers = new HttpHeaders({
-      'Access-Control-Allow-Origin': '*',
-      'X-CSRF-Token': this.csrftoken
-    })
-    this.service.doLogout({ headers: headers }).then((result) => {
+    this.service.post('user-logout-api', '', 0).subscribe(result => {
+      console.log('result', result)
       if (result['status'] == 1) {
         this.util.showSuccessAlert(result['status_message']);
         localStorage.removeItem('csrftoken');
@@ -56,12 +57,5 @@ export class HeaderComponent implements OnInit {
         this.util.errorAlertPopup(result['status_message']);
       }
     })
-      .catch(error => {
-        this.util.errorAlertPopup(error['status_message']);
-      })
-  }
-
-  packages() {
-    this.router.navigate(['/pricing']);
   }
 }

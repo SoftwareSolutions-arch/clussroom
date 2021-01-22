@@ -1,3 +1,21 @@
+<div class="dashboard-header">
+  <div class="user-search-setting">
+    <form>
+      <input type="search" placeholder="Search now ..."  (input)="doFilter($event.target.value)">
+      <button class="search-btn"><img src="assets/images/dashboard/search.png"></button>
+    </form>
+    <div class="user-notification">
+      <img src="assets/images/dashboard/notification.png">
+    </div>
+    <div class="user-setting">
+      <img src="assets/images/dashboard/setting.png">
+    </div>
+  </div>
+  <div class="site-logo">
+    <img src="assets/images/LOGO.png">
+  </div>
+</div>
+
 <div class="nav-clip">
   <ul class="nav nav-tabs">
     <li><a data-toggle="tab" href="#course-content" class="active clip-item">
@@ -59,7 +77,7 @@
       <div class="tab-content">
         <div id="summary" class="tab-pane active">
           <div class="table-responsive">
-            <table class="table dashboard-table">
+            <table  class="table dashboard-table">
               <thead>
                 <tr>
                   <th scope="col"></th>
@@ -75,99 +93,39 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th>
-                    <div class="radio-table">
+                <tr
+                  *ngFor="let courseList of this.allCourseList| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index"
+                  [class.active]="i == currentIndex">
+                  <th (click)="viewMore(courseList)">
+                    <div class="radio-table" >
                       <input (click)="isCheckClicked($event)" type="checkbox">
                     </div>
                   </th>
                   <td>1</td>
-                  <td class="text-left" *ngIf="!isShow">Biology for Primary 1</td>
-                  <td *ngIf="isShow"><input class="text-left" value="Biology for Primary 1"></td>
-                  <td *ngIf="!isShow">A3K</td>
-                  <td *ngIf="isShow"><input class="text-left" value="A3K"></td>
-                  <td *ngIf="!isShow">Math</td>
-                  <td *ngIf="isShow"><input class="text-left" value="Math"></td>
-                  <td *ngIf="!isShow">Professional medical</td>
-                  <td *ngIf="isShow"><input class="text-left" value="Professional medical"></td>
-                  <td *ngIf="!isShow">1</td>
-                  <td *ngIf="isShow"><input class="text-left" value="1"></td>
-                  <td *ngIf="!isShow">12</td>
-                  <td *ngIf="isShow"><input class="text-left" value="12"></td>
-                  <td *ngIf="!isShow">189</td>
-                  <td *ngIf="isShow"><input class="text-left" value="189"></td>
-                  <td *ngIf="!isShow">Aeriel Connelly</td>
-                  <td *ngIf="isShow"><input class="text-left" value="Aeriel Connelly"></td>
-                </tr>
-                <tr>
-                  <th>
-                    <div class="radio-table"><input type="checkbox"></div>
-                  </th>
-                  <td>2</td>
-                  <td class="text-left" *ngIf="!isShow">Geography for Primary 2</td>
-                  <td *ngIf="isShow"><input class="text-left" value="Geography for Primary 2"></td>
-                  <td *ngIf="!isShow">4CE</td>
-                  <td *ngIf="isShow"><input class="text-left" value="4CE"></td>
-                  <td *ngIf="!isShow">Science</td>
-                  <td *ngIf="isShow"><input class="text-left" value="Science"></td>
-                  <td *ngIf="!isShow">Secondary</td>
-                  <td *ngIf="isShow"><input class="text-left" value="Secondary"></td>
-                  <td *ngIf="!isShow">2</td>
-                  <td *ngIf="isShow"><input class="text-left" value="1"></td>
-                  <td *ngIf="!isShow">8</td>
-                  <td *ngIf="isShow"><input class="text-left" value="8"></td>
-                  <td *ngIf="!isShow">874</td>
-                  <td *ngIf="isShow"><input class="text-left" value="874"></td>
-                  <td *ngIf="!isShow">Darren Leow</td>
-                  <td *ngIf="isShow"><input class="text-left" value="Darren Leow"></td>
-                </tr>
-                <tr>
-                  <th>
-                    <div class="radio-table"><input type="checkbox"></div>
-                  </th>
-                  <td>3</td>
-                  <td class="text-left">Bull in share market</td>
-                  <td>3AC</td>
-                  <td>Social studies</td>
-                  <td>Primary</td>
-                  <td>3</td>
-                  <td>4</td>
-                  <td>234</td>
-                  <td>Finelly Abrodobe</td>
-                </tr>
-                <tr>
-                  <th>
-                    <div class="radio-table"><input type="checkbox"></div>
-                  </th>
-                  <td>4</td>
-                  <td class="text-left">Balance Sheet making</td>
-                  <td>R6T</td>
-                  <td>Psychology</td>
-                  <td>University</td>
-                  <td>4</td>
-                  <td>11</td>
-                  <td>431</td>
-                  <td>Prena Abdullah</td>
-                </tr>
-                <tr>
-                  <th>
-                    <div class="radio-table"><input type="checkbox"></div>
-                  </th>
-                  <td>5</td>
-                  <td class="text-left">Cash flow </td>
-                  <td>2UY</td>
-                  <td>Accounting</td>
-                  <td>Primary</td>
-                  <td>2</td>
-                  <td>7</td>
-                  <td>501</td>
-                  <td>Nisha Fasa</td>
+                  <!-- <td class="text-left" *ngIf="!isShow">{{this.courseList.title}}</td> -->
+                  <td *ngIf="!isShow"><input class="text-left" value={{this.courseList.title}} disabled></td>
+                  <td *ngIf="!isShow">{{this.courseList.field_level}}</td>
+                  <td *ngIf="isShow"><input class="text-left" value={{this.courseList.field_level}}></td>
+                  <td *ngIf="!isShow">{{this.courseList.field_banding}}</td>
+                  <td *ngIf="isShow"><input class="text-left" value={{this.courseList.field_banding}}></td>
+                  <td *ngIf="!isShow">{{this.courseList.field_category}}</td>
+                  <td *ngIf="isShow"><input class="text-left" value={{this.courseList.field_category}}></td>
+                  <td *ngIf="!isShow">{{this.courseList.field_sub_banding}}</td>
+                  <td *ngIf="isShow"><input class="text-left" value={{this.courseList.field_sub_banding}}></td>
+                  <td *ngIf="!isShow">{{this.courseList.classes}}</td>
+                  <td *ngIf="isShow"><input class="text-left" value={{this.courseList.classes}}></td>
+                  <td *ngIf="!isShow">{{this.courseList.total_learners}}</td>
+                  <td *ngIf="isShow"><input class="text-left" value={{this.courseList.total_learners}}></td>
+                  <td *ngIf="!isShow">{{this.courseList.field_banding}}</td>
+                  <td *ngIf="isShow"><input class="text-left" value={{this.courseList.field_banding}}></td>
                 </tr>
               </tbody>
             </table>
+
           </div>
           <div class="table-result-wrapper">
-            <p>Results: 1-15 of 324</p>
+            <pagination-controls previousLabel="Prev" nextLabel="Next" autoHide="true" responsive="true"
+              (pageChange)="handlePageChange($event)"></pagination-controls>
           </div>
         </div>
         <div id="instructions" class="tab-pane">
@@ -267,7 +225,6 @@
         </div>
       </div>
     </div>
-
   </div>
 
   <div id="classes-content" class="tab-pane">
@@ -1775,4 +1732,3 @@
 
   </div>
 </div>
-<!-- <app-footer></app-footer> -->

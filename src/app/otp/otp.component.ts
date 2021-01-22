@@ -46,18 +46,16 @@ export class OtpComponent implements OnInit {
     this.router.navigate(['/change-password']);
   }
 
-  // submit Otp 
+  // submit otp
   submitOtp() {
-    let params = {
+    let data = {
       "otp": this.otpForm.value.otp,
       "step": 2,
       "id": this.otpId
     }
 
-    let headers = new HttpHeaders({
-      'Access-Control-Allow-Origin': '*'
-    })
-    this.service.postOtp(params, { headers: headers }).then((result) => {
+    this.service.post('forget-password-api', data, 0).subscribe(result => {
+      console.log('result', result)
       if (result['message'] == "Otp Valid") {
         this.util.openSnackBarSuccess(result['message'])
         this.router.navigate(['/change-password']);
@@ -66,8 +64,5 @@ export class OtpComponent implements OnInit {
         this.util.errorAlertPopup("Invalid OTP");
       }
     })
-      .catch(error => {
-        this.util.errorAlertPopup("Invalid OTP");
-      })
   }
 }

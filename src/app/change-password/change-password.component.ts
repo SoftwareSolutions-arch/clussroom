@@ -90,15 +90,14 @@ export class ChangePasswordComponent implements OnInit {
 
   // submit Otp 
   submitOtp() {
-    let params = {
+    let data = {
       "step": 3,
       "id": this.otpId,
       "password": this.ChangePasswordForm.value.password
     }
-    let headers = new HttpHeaders({
-      'Access-Control-Allow-Origin': '*'
-    })
-    this.service.submitPassword(params, { headers: headers }).then((result) => {
+
+    this.service.post('forget-password-api', data, 0).subscribe(result => {
+      console.log('result', result)
       if (result['message'] == "Password Reset Successfully ") {
         this.util.openSnackBarSuccess(result['message'])
         this.router.navigate(['/login']);
@@ -107,7 +106,7 @@ export class ChangePasswordComponent implements OnInit {
         this.util.openSnackBar(result['message']);
       }
     })
-      .catch(error => {
-      })
   }
+
+
 }
