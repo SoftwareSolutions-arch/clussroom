@@ -99,11 +99,14 @@ export class LoginComponent implements OnInit {
       pass: this.loginForm.value.password
     }
     this.service.post('user/login', data, 0).subscribe(result => {
+      console.log('result',result);
       if (result['status'] == 200) {
+        console.log('result',result['current_user']['csrf_token'])
         localStorage.setItem("csrftoken", result['current_user']['csrf_token']);
         localStorage.setItem("uid", result['current_user']['uid']);
         localStorage.setItem('userMail', result['current_user']['name']);
         localStorage.setItem('isLogin', '1');
+        localStorage.setItem('Authorization',result['current_user']['basic_auth_token'])
         this.util.showSuccessAlert(result['message']);
         this.cookieDetails = this.cookie.getAll();
         console.log('this.cookieDetails++2', this.cookieDetails);

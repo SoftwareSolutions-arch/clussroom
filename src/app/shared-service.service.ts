@@ -11,13 +11,15 @@ export class SharedServiceService {
 
   // post  method
   post(endPoint, data, isHeader): Observable<any> {
+    var authKey =localStorage.getItem('Authorization');
+
     let httpOptions;
     if (isHeader === 0) {
       httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*'
-        })
+        }),
       };
       return this.http.post(this.baseurl + endPoint, data, httpOptions);
     } else if (isHeader === 1) { //method with token
@@ -25,8 +27,9 @@ export class SharedServiceService {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*',
-          'X-CSRF-Token': sessionStorage.getItem('token')
-        })
+          'X-CSRF-Token': localStorage.getItem('csrftoken'),
+          'Authorization':authKey
+        }),
       }
       return this.http.post(this.baseurl + endPoint, data, httpOptions);
     }
@@ -46,47 +49,11 @@ export class SharedServiceService {
       httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          'X-CSRF-Token': sessionStorage.getItem('token')
+          'X-CSRF-Token': sessionStorage.getItem('token'),
+          'Authorization':localStorage.getItem('Authorization')
         })
       }
       return this.http.get(this.baseurl + endPoint, httpOptions);
     }
-  }
-
-  // get subscription details
-  getInvoiceList(params, header) {
-    return new Promise((resolve, reject) => {
-      this.http.post(this.baseurl + "/vendor-registration", params, header).subscribe(
-        res => {
-          if (res['success'] != 0) {
-            resolve(res);
-          }
-          else {
-            reject(res);
-          }
-        },
-        err => {
-          reject(err);
-        }
-      );
-    });
-  }
-
-  getInstructionList(header) {
-    return new Promise((resolve, reject) => {
-      this.http.post(this.baseurl + "/instruction-name-list-api", header).subscribe(
-        res => {
-          if (res['success'] != 0) {
-            resolve(res);
-          }
-          else {
-            reject(res);
-          }
-        },
-        err => {
-          reject(err);
-        }
-      );
-    });
   }
 }

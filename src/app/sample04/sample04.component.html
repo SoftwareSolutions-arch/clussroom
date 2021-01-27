@@ -1,3 +1,7 @@
+<div *ngIf="isLoadingBool" class="loading-indicator">
+  <mat-spinner></mat-spinner>
+</div>
+
 <div class="dashboard-header">
   <div class="user-search-setting">
     <form>
@@ -69,10 +73,13 @@
           <li><a data-toggle="tab" href="#summary" class="active">Course</a></li>
           <li><a data-toggle="tab" href="#instructions">Method of Instructions</a></li>
         </ul>
-        <div class="prospectus-action" (click)="addNewCourse($event)">
-          <a class="add-btn custom-a-btn" data-toggle="modal" data-target="#addCourse">
+        <div class="prospectus-action">
+          <a *ngIf="!editForm"  class="add-btn custom-a-btn" data-toggle="modal" data-target="#addCourse">
             <i class="fa fa-plus" aria-hidden="true"></i> Name</a>
+            <a *ngIf="editForm" (click)="editCourses()" style="margin-left: 15px;background: #ef4a4a !important;" class="add-btn custom-a-btn" data-toggle="modal">
+              <i class="fa fa-edit" aria-hidden="true"></i> Edit</a>
         </div>
+     
       </div>
       <div class="tab-content">
         <div id="summary" class="tab-pane active">
@@ -96,28 +103,28 @@
                 <tr
                   *ngFor="let courseList of this.allCourseList| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index"
                   [class.active]="i == currentIndex">
-                  <th (click)="viewMore(courseList)">
+                  <th>
                     <div class="radio-table" >
                       <input (click)="isCheckClicked($event)" type="checkbox">
                     </div>
                   </th>
                   <td>1</td>
-                  <!-- <td class="text-left" *ngIf="!isShow">{{this.courseList.title}}</td> -->
-                  <td *ngIf="!isShow"><input class="text-left" value={{this.courseList.title}} disabled></td>
-                  <td *ngIf="!isShow">{{this.courseList.field_level}}</td>
-                  <td *ngIf="isShow"><input class="text-left" value={{this.courseList.field_level}}></td>
-                  <td *ngIf="!isShow">{{this.courseList.field_banding}}</td>
-                  <td *ngIf="isShow"><input class="text-left" value={{this.courseList.field_banding}}></td>
-                  <td *ngIf="!isShow">{{this.courseList.field_category}}</td>
-                  <td *ngIf="isShow"><input class="text-left" value={{this.courseList.field_category}}></td>
-                  <td *ngIf="!isShow">{{this.courseList.field_sub_banding}}</td>
-                  <td *ngIf="isShow"><input class="text-left" value={{this.courseList.field_sub_banding}}></td>
-                  <td *ngIf="!isShow">{{this.courseList.classes}}</td>
-                  <td *ngIf="isShow"><input class="text-left" value={{this.courseList.classes}}></td>
-                  <td *ngIf="!isShow">{{this.courseList.total_learners}}</td>
-                  <td *ngIf="isShow"><input class="text-left" value={{this.courseList.total_learners}}></td>
-                  <td *ngIf="!isShow">{{this.courseList.field_banding}}</td>
-                  <td *ngIf="isShow"><input class="text-left" value={{this.courseList.field_banding}}></td>
+                  <!-- <td *ngIf="!isShow" class="text-left" >{{this.courseList.title}}</td> -->
+                  <td *ngIf="!isShow" ><input disabled class="text-left" value={{this.courseList.title}}></td>
+                  <!-- <td *ngIf="!isShow">{{this.courseList.field_level}}</td> -->
+                  <td *ngIf="!isShow"><input disabled class="text-left" value={{this.courseList.field_level}}></td>
+                  <!-- <td *ngIf="!isShow">{{this.courseList.field_banding}}</td> -->
+                  <td *ngIf="!isShow"><input disabled class="text-left" value={{this.courseList.field_banding}}></td>
+                  <!-- <td *ngIf="!isShow">{{this.courseList.field_category}}</td> -->
+                  <td *ngIf="!isShow"><input disabled class="text-left" value={{this.courseList.field_category}}></td>
+                  <!-- <td *ngIf="!isShow">{{this.courseList.field_sub_banding}}</td> -->
+                  <td *ngIf="!isShow"><input disabled class="text-left" value={{this.courseList.field_sub_banding}}></td>
+                  <!-- <td *ngIf="!isShow">{{this.courseList.classes}}</td> -->
+                  <td *ngIf="!isShow"><input disabled class="text-left" value={{this.courseList.classes}}></td>
+                  <!-- <td *ngIf="!isShow">{{this.courseList.total_learners}}</td> -->
+                  <td *ngIf="!isShow"><input disabled class="text-left" value={{this.courseList.total_learners}}></td>
+                  <!-- <td *ngIf="!isShow">{{this.courseList.field_banding}}</td> -->
+                  <td *ngIf="!isShow"><input disabled class="text-left" value={{this.courseList.field_banding}}></td>
                 </tr>
               </tbody>
             </table>
@@ -1557,14 +1564,12 @@
           <div class="addCourse-form">
             <div class="name-of-course fieldset">
               <label>Name of course*</label>
-              <input type="text" name="course">
+              <input [(ngModel)]="courseName" type="text" name="courseName" (change)="getCourseName(courseName)">
             </div>
             <div class="category-course fieldset">
               <label>Category*</label>
               <select name="category" id="categorycourse">
-                <option selected></option>
-                <option value="finance">Finance</option>
-                <option value="create new">Create new</option>
+                <option *ngFor="let categoriesList of this.allCategories">{{categoriesList.name}}</option>
               </select>
             </div>
             <!-- if user select create new course -->
@@ -1590,7 +1595,6 @@
             <div class="banding-course fieldset">
               <label>Banding</label>
               <select name="level" id="bandingcourse">
-                <option selected></option>
                 <option value="IV">IV</option>
                 <option value="create new">Create new</option>
               </select>
@@ -1604,7 +1608,7 @@
           </div>
 
           <div class="modal-footer">
-            <button class="back-btn-course">Back</button>
+            <button class="back-btn-course" class="close" data-dismiss="modal">Back</button>
             <button class="next-btn-course">Next</button>
           </div>
         </form>

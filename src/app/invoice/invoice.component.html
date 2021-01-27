@@ -170,27 +170,21 @@
             <div class="payment-order">
               <h3>Payment</h3>
               <form [formGroup]="paymentForm">    
-                <!-- <div class="payment-mode">
-                  <img class="selected-image" src="assets/images/visa.png">
-                  <img class="selected-image" src="assets/images/mastercard.png">
-                  <img class="selected-image" src="assets/images/american.png">
-                </div> -->
-
                 <div class="payment-mode login-radio">
+
                   <div class="wrapper-visa">
-                    <input class="radio-btn" type="radio" id="visa" name="visa" value="visa">&nbsp;
-                    <img src="assets/images/visa.png">
+                  <input class="radio-btn" type="radio" id="visa" name="visa" value="visa">
+                  <img src="../../assets/images/visa-copy.png">
                   </div>
-                 <div class="wrapper-visa">
-                  <input class="radio-btn" type="radio" id="visa" name="visa" value="visa">&nbsp;
-                  <img src="assets/images/mastercard.png">
-                 </div>
                   <div class="wrapper-visa">
-                    <input class="radio-btn" type="radio" id="visa" name="visa" value="visa">&nbsp;
-                    <img src="assets/images/american.png">
+                  <input class="radio-btn" type="radio" id="visa" name="visa" value="visa">
+                  <img src="../../assets/images/mastercard-copy.png">
                   </div>
-                   
-                </div>
+                  <div class="wrapper-visa">
+                  <input class="radio-btn" type="radio" id="visa" name="visa" value="visa">
+                  <img src="../../assets/images/american-copy.png">
+                  </div>
+                  </div>
                 <div class="cardholder fieldset">
                   <label>Cardholder name</label>
                   <input type="text" formControlName="cardHolderName">

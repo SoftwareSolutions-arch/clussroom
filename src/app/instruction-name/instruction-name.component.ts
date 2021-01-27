@@ -22,17 +22,6 @@ export class InstructionNameComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getInstruction() {
-    let headers = new HttpHeaders({
-      'Access-Control-Allow-Origin': '*'
-    })
-    this.service.getInstructionList({ headers: headers }).then((result) => {
-      this.instructionList = result;
-    })
-      .catch(error => {
-      })
-  }
-
   selectedItems(values) {
     this.selectedItem = values;
   }
@@ -48,21 +37,24 @@ export class InstructionNameComponent implements OnInit {
   // Set password
   nextPage() {
     var uid = localStorage.getItem('uid');
-    let params = {
+    let data = {
       "schoolname": this.SchoolName,
       "instruction_name": this.selectedItem,
       "uid": uid
     }
 
-    let headers = new HttpHeaders({
-      'Access-Control-Allow-Origin': '*'
-    })
-
-    this.service.setPassword(params, { headers: headers }).then((result) => {
+    this.service.post('vendor-first-login-api', data, 0).subscribe(result => {
+      console.log('result', result)
       localStorage.setItem('isLogin', '1');
       this.router.navigate(['/sidebar']);
     })
-      .catch(error => {
-      })
+  }
+
+  // get all instruction api
+  getInstruction() {
+    this.service.post('instruction-name-list-api', '', 0).subscribe(result => {
+      console.log('res', result);
+      this.instructionList = result;
+    })
   }
 }

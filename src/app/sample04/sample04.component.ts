@@ -14,7 +14,7 @@ import { UtilService } from '../../providers/util.service';
 export class Sample04Component implements OnInit {
   allCourseList: any = [];
   isShow: boolean = false;
-
+  editForm: boolean = false;
   tutorials: any;
   currentTutorial = null;
   currentIndex = -1;
@@ -23,9 +23,15 @@ export class Sample04Component implements OnInit {
   page = 1;
   count = 0;
   pageSize = 5;
+  courseName: any;
+  isLoadingBool: boolean = true;
 
+  allCategories:any='';
   constructor(public router: Router, public util: UtilService, public service: SharedServiceService, public formBuilder: FormBuilder) {
     this.getAllCoursesList();
+  }
+
+  ngOnInit(): void {
   }
 
   handlePageChange(event): void {
@@ -37,16 +43,14 @@ export class Sample04Component implements OnInit {
     this.page = 1;
   }
 
-
-  ngOnInit(): void {
-  }
-
   isCheckClicked(event) {
-  }
-
-  addNewCourse(courseList) {
-    console.log('courseList', courseList);
-    this.isShow = true;
+    console.log('isclicked', event.target.checked);
+    if (event.target.checked == true) {
+      this.editForm = true;
+    }
+    if (event.target.checked == false) {
+      this.editForm = false;
+    }
   }
 
   viewMore(courseList) {
@@ -54,11 +58,7 @@ export class Sample04Component implements OnInit {
   }
 
   getSort() {
-    // this.allCourseList.sort();
-
-
     this.allCourseList.sort((a, b) => a.field_level.localeCompare(b.field_level));
-
     console.log(this.allCourseList)
   }
 
@@ -74,8 +74,10 @@ export class Sample04Component implements OnInit {
 
   // get all courses list
   getAllCoursesList() {
-    this.service.post('view-all-courses-api','', 0).subscribe(result => {
-      console.log('result',result)
+    this.isLoadingBool = true;
+    this.service.post('view-all-courses-api', '', 1).subscribe(result => {
+      this.isLoadingBool = false;
+      console.log('result', result)
       if (result['status'] == 1) {
         const { tutorials, totalItems } = result['coursesdata'];
         this.allCourseList = result['coursesdata'];
@@ -87,5 +89,34 @@ export class Sample04Component implements OnInit {
       }
 
     })
+  }
+
+  editCourses() {
+    this.editForm = true;
+  }
+
+  getCourseName(courseName) {
+    console.log('courseName', courseName);
+    if (courseName == '') {
+      return
+    }
+    else {
+      let params = {
+        step: 1,
+        coursename: courseName
+      }
+      this.isLoadingBool = true;
+      this.service.post('create-course-api', params, 1).subscribe(result => {
+        this.isLoadingBool = false;
+        console.log('result', result)
+        if (result['status'] == 1) {
+          console.log('result+++))',result['categories'])
+          this.allCategories=result['categories'];
+        }
+        else {
+          this.util.errorAlertPopup(result['mesaage']);
+        }
+      })
+    }
   }
 }

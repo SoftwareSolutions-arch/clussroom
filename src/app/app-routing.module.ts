@@ -19,63 +19,64 @@ import { OtpComponent } from './otp/otp.component';
 import { Sample04Component } from './sample04/sample04.component';
 import { DashboardheaderComponent } from './dashboardheader/dashboardheader.component';
 import { ClassesComponent } from './classes/classes.component';
+import {AuthGuardGuard} from './auth-guard.guard';
 const routes: Routes = [
   {
-    path: 'pricing', component: PricingComponent
+    path: 'pricing', component: PricingComponent,canActivate:[AuthGuardGuard]
   },
   {
-    path: 'subscription', component: SubscriptionComponent
+    path: 'subscription', component: SubscriptionComponent,canActivate:[AuthGuardGuard]
   },
   {
-    path: 'invoice', component: InvoiceComponent
+    path: 'invoice', component: InvoiceComponent,canActivate:[AuthGuardGuard]
   },
   {
-    path: 'login', component: LoginComponent
+    path: 'login', component: LoginComponent,canActivate:[AuthGuardGuard]
   },
   {
-    path: 'school-name', component: SchoolNameComponent
+    path: 'school-name', component: SchoolNameComponent,canActivate:[AuthGuardGuard]
   },
   {
-    path: 'instruction-name', component: InstructionNameComponent
+    path: 'instruction-name', component: InstructionNameComponent,canActivate:[AuthGuardGuard]
   },
   {
-    path: 'home', component: HomeComponent
+    path: 'home', component: HomeComponent,canActivate:[AuthGuardGuard]
   },
   {
-    path: 'choose-password', component: ChoosePasswordComponent
+    path: 'choose-password', component: ChoosePasswordComponent,canActivate:[AuthGuardGuard]
   },
   {
-    path: 'thanks-screen', component: ThanksScreenComponent
+    path: 'thanks-screen', component: ThanksScreenComponent,canActivate:[AuthGuardGuard]
   },
   {
-    path: 'contact-us', component: ContactUsComponent
+    path: 'contact-us', component: ContactUsComponent,canActivate:[AuthGuardGuard]
   },
   {
-    path: 'about-us', component: AboutUsComponent
+    path: 'about-us', component: AboutUsComponent,canActivate:[AuthGuardGuard]
   },
   {
-    path: 'forgot-password', component: ForgotPasswordComponent
+    path: 'forgot-password', component: ForgotPasswordComponent,canActivate:[AuthGuardGuard]
   },
   {
-    path: 'change-password', component: ChangePasswordComponent
+    path: 'change-password', component: ChangePasswordComponent,canActivate:[AuthGuardGuard]
   },
   {
-    path: 'footer', component: FooterComponent
+    path: 'footer', component: FooterComponent,canActivate:[AuthGuardGuard]
   },
   {
-    path: 'otp', component: OtpComponent
+    path: 'otp', component: OtpComponent,canActivate:[AuthGuardGuard]
   },
   {
-    path: 'sidebar', component: SidebarComponent
+    path: 'sidebar', component: SidebarComponent,canActivate:[AuthGuardGuard]
   },
   {
-    path: 'sample04', component: Sample04Component
+    path: 'sample04', component: Sample04Component,canActivate:[AuthGuardGuard]
   },
   {
-    path: 'dashoardheader',component:DashboardheaderComponent
+    path: 'dashoardheader',component:DashboardheaderComponent,canActivate:[AuthGuardGuard]
   },
   {
-    path: 'goToClasses',component:ClassesComponent
+    path: 'goToClasses',component:ClassesComponent,canActivate:[AuthGuardGuard]
   },
   {
     path: '', redirectTo: '/home', pathMatch: 'full'
