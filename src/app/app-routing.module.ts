@@ -76,7 +76,7 @@ const routes: Routes = [
     path: 'dashoardheader',component:DashboardheaderComponent,canActivate:[AuthGuardGuard]
   },
   {
-    path: 'goToClasses',component:ClassesComponent,canActivate:[AuthGuardGuard]
+    path: 'classes',component:ClassesComponent,canActivate:[AuthGuardGuard]
   },
   {
     path: '', redirectTo: '/home', pathMatch: 'full'
