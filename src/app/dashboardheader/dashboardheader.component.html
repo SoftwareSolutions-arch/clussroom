@@ -2,7 +2,7 @@
          <div class="dashboard-header">
             <div class="user-search-setting">
               <form>
-                <input type="search" placeholder="Search now ...">
+                <input (input)="doFilter($event.target.value)" type="search" placeholder="Search now ...">
                 <button class="search-btn"><img src="assets/images/dashboard/search.png"></button>
               </form>
               <div class="user-notification">

@@ -937,3 +937,400 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     width: 151px;
 }
 /*dashboard header css end*/
+
+/*header css start*/
+header {
+    padding: 10px 0px;
+    border-bottom: 1px solid #f1f6fb;
+}
+
+header .navbar-toggle{
+	display: none;
+}
+
+header .navbar-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header #main-menu ul.navbar-nav {
+    display: flex;
+    flex-direction: row;
+   align-items: baseline;
+}
+
+header #main-menu ul.navbar-nav li {
+    display: inline-block;
+    padding: 0px 20px;
+    font-family: Rubik;
+    list-style: none;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 28px;
+    letter-spacing: 0px;
+    text-align: left;
+}
+
+header #main-menu ul.navbar-nav li a {
+    color: #343C6A;
+}
+
+header #main-menu ul.navbar-nav li.last {
+    background-color: #396AFF;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+header #main-menu ul.navbar-nav li.last a{
+	color: #fff;
+}
+/*header css end*/
+
+
+/*footer css start*/
+footer {
+    background-color: #fff;
+    padding: 20px 0px;
+    border-top: 1px solid #E7EDFF;
+}
+
+footer .footer-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+footer .footer-caption ul {
+    display: flex;
+    padding-bottom: 10px;
+}
+
+footer .footer-caption ul li {
+	font-family: Barlow;
+	font-size: 15px;
+	font-weight: 500;
+	line-height: 20px;
+	letter-spacing: 0px;
+	padding: 0px 15px;
+}
+
+footer .footer-caption ul li:first-child {
+    padding-left: 0px;
+}
+
+footer .footer-caption ul li a{
+	color: #AFBCD2;
+}
+
+footer .footer-caption ul li a:hover{
+	color: #343c6a;
+}
+
+footer .footer-caption p {
+    margin-bottom: 0px;
+    font-family: Barlow;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0px;
+    color: #90A8CD;
+}
+
+footer .footer-social{
+    display: flex;
+    align-items: center;
+}
+
+footer .footer-social a{
+	margin: 0px 15px;
+	color: #7990B4;
+}
+footer .footer-social a:first-child{
+    margin-left: 0px;
+}
+footer .footer-social a:last-child{
+    margin-right: 0px;
+}
+/*footer css end*/
+
+/*sample 4 page css start*/
+.nav-clip {
+    margin: 0px 20px;
+    background-color: #FFFFFF;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.04);
+	border-radius: 8px;
+}
+
+.nav-clip ul {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 10px;
+}
+
+.nav-clip ul a .hover-in {
+    display: none;
+}
+
+.nav-clip ul a img {
+    margin-right: 7px;
+}
+
+.nav-clip ul a {
+    font-family: Barlow;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 28px;
+    color: #7990B4;
+    display: flex;
+    align-items: center;
+    padding: 11px;
+    position: relative;
+}
+
+.nav-clip ul a:hover .hover-in {
+    display: block;
+}
+
+.nav-clip ul a:hover .hover-out {
+    display: none;
+}
+
+.nav-clip ul a:hover {
+    color: #396AFF;
+}
+
+.nav-clip ul a.active .hover-out {
+    display: none;
+}
+
+.nav-clip ul a.active .hover-in {
+    display: block;
+}
+
+.nav-clip ul a.clip-item.active {
+    color: #396AFF;
+}
+
+.nav-clip ul a:after {
+    content: "";
+    background-color: #396AFF;
+    height: 0px;
+    width: 100%;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    border-radius: 8px;
+}
+
+.nav-clip ul a.active:after {
+    height: 4px;
+}
+
+.prospectus-section {
+    padding: 20px;
+}
+
+.prospectus-section .prospectus-tabs {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.prospectus-section .prospectus-tabs .nav-tabs {
+    border: 0px;
+}
+
+.prospectus-section .prospectus-tabs ul li a {
+    background-color: #F3F6FF;
+    border-radius: 8px 8px 0px 0px;
+    margin-right: 10px;
+    padding: 12px 20px;
+    font-family: Barlow;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+    text-align: center;
+    display: block;
+    border: 0px;
+    color: #5B73A0;
+}
+
+.prospectus-section .prospectus-tabs ul li a.active {
+	color: #396AFF;
+    background-color: #fff;
+}
+
+.prospectus-section .prospectus-tabs .prospectus-action {
+    display: flex;
+    align-items: center;
+}
+
+.prospectus-section .prospectus-tabs .prospectus-action a {
+    font-family: Barlow;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px;
+    letter-spacing: 0px;
+    text-align: left;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.prospectus-section .prospectus-tabs .prospectus-action a.edit-btn {
+    background-color: #FFBB38;
+    border-radius: 6px;
+    width: 77px;
+    height: 35px;
+    margin-right: 10px;
+}
+
+.prospectus-section .prospectus-tabs .prospectus-action a.edit-btn i {
+    font-size: 20px;
+    margin-right: 12px;
+}
+
+.prospectus-section .prospectus-tabs .prospectus-action a.delete-btn {
+    background-color: #FF5A64;
+    border-radius: 6px;
+    width: 40px;
+    height: 35px;
+}
+
+.prospectus-section .prospectus-tabs .prospectus-action a.delete-btn i {
+    font-size: 18px;
+}
+
+.prospectus-section .tab-content {
+    background-color: #fff;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px 10px;
+    border-radius: 0px 8px 8px 8px;
+}
+
+table.dashboard-table thead th {
+    border: 0px;
+    font-family: Barlow;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px;
+    letter-spacing: 0px;
+    text-align: center;
+    color: #333B6A;
+}
+
+.table-filter{
+	position: relative;
+}
+
+.table-filter:after {
+    content: "";
+    background-image: url(../../assets/images/dashboard/up-down-filter.png);
+    width: 11px;
+    height: 11px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 50%;
+    transform: translate(5px, -50%);
+}
+
+table.dashboard-table th {
+    border: 0px;
+}
+
+table.dashboard-table td {
+    border: 0px;
+    font-family: Barlow;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0px;
+    text-align: center;
+    color: #343C6A;
+}
+
+table.dashboard-table tbody tr {
+    border-bottom: 1px solid #F1F6FB;
+}
+
+table.dashboard-table th .radio-table {
+    text-align: center;
+}
+
+table.dashboard-table th .radio-table input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    visibility: hidden;
+    cursor: pointer;
+}
+
+table.dashboard-table th .radio-table input[type="checkbox"]:before {
+    content: "\f1db";
+    font: normal normal normal 14px/1 FontAwesome;
+    background-color: #F3F6FF;
+    visibility: visible;
+    border: 1px solid #C3D2FF;
+    border-radius: 100%;
+    color: transparent;
+    width: 20px;
+    display: block;
+    height: 20px;
+    z-index: 1;
+    position: absolute;
+}
+
+table.dashboard-table th .radio-table input[type="checkbox"]:after {
+    content: "";
+    font: normal normal normal 14px/1 FontAwesome;
+    background-color: #396AFF;
+    visibility: visible;
+    border: 1px solid #396AFF;
+    border-radius: 100%;
+    color: #396AFF;
+    width: 20px;
+    display: block;
+    height: 20px;
+    position: absolute;
+}
+
+table.dashboard-table th .radio-table input[type="checkbox"]:checked:after {
+    content: "\f111";
+    z-index: 1;
+}
+
+table.dashboard-table tbody {
+    border-bottom: 2px solid #F1F6FB;
+    border-top: 2px solid #F1F6F8;
+}
+
+table.dashboard-table thead {
+    border-bottom: 2px solid #F1F6FB;
+}
+
+.table-result-wrapper {
+    padding: 20px 10px;
+}
+
+.table-result-wrapper p {
+    font-family: Barlow;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px;
+    letter-spacing: 0px;
+    text-align: left;
+    margin-bottom: 0px;
+    color: #7990B4;
+}
+
+/*sample 4 page css start*/

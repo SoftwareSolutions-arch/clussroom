@@ -39,6 +39,11 @@ import { PasswordStrengthComponent } from './password-strength/password-strength
 import { NgxPaginationModule } from 'ngx-pagination';
 import {MatTableModule} from '@angular/material/table';
 import {CookieService} from 'ngx-cookie-service';
+import { ClassListComponent } from './class-list/class-list.component';
+import { LearnersComponent } from './learners/learners.component';
+import { StorageComponent } from './storage/storage.component';
+import { AdminComponent } from './admin/admin.component';
+import { LiveSessionsComponent } from './live-sessions/live-sessions.component';
 // import {MatPaginator} from '@angular/material/paginator';
 // import {MatSort} from '@angular/material/sort';
 
@@ -67,7 +72,12 @@ import {CookieService} from 'ngx-cookie-service';
     DashboardheaderComponent,
     CoursesComponent,
     ClassesComponent,
-    PasswordStrengthComponent
+    PasswordStrengthComponent,
+    ClassListComponent,
+    LearnersComponent,
+    StorageComponent,
+    AdminComponent,
+    LiveSessionsComponent
   ],
   imports: [CommonModule,
     BrowserModule,

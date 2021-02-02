@@ -3,7 +3,6 @@ import { FormBuilder } from "@angular/forms";
 import { SharedServiceService } from '../shared-service.service';
 import { Router } from '@angular/router';
 import { UtilService } from '../../providers/util.service';
-
 @Component({
   selector: 'app-sample04',
   templateUrl: './sample04.component.html',
@@ -41,8 +40,8 @@ export class Sample04Component implements OnInit {
   newLevel: any = '';
   newBanding: any = '';
   selectedItems = [];
-
-  constructor(public router: Router, public util: UtilService, public service: SharedServiceService, public formBuilder: FormBuilder) {
+  constructor(public router: Router, public util: UtilService, public service: SharedServiceService, 
+    public formBuilder: FormBuilder) {
     this.getAllCoursesList();
   }
 
@@ -83,16 +82,6 @@ export class Sample04Component implements OnInit {
   getSort() {
     // this.allCourseList.sort((a, b) => a.field_level.localeCompare(b.field_level));
     // console.log(this.allCourseList)
-  }
-
-  public doFilter = (value: string) => {
-    this.allCourseList.filter = value.trim().toLocaleLowerCase();
-    console.log('this.allCourseList.filter', this.allCourseList.filter)
-    var searchText = value.trim().toLocaleLowerCase();
-
-    return this.allCourseList.filter(it => {
-      return it.toLocaleLowerCase().includes(searchText);
-    });
   }
 
   // get all courses list
