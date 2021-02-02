@@ -40,6 +40,7 @@ export class Sample04Component implements OnInit {
   newLevel: any = '';
   newBanding: any = '';
   selectedItems = [];
+  indexesValue:any='';
   constructor(public router: Router, public util: UtilService, public service: SharedServiceService, 
     public formBuilder: FormBuilder) {
     this.getAllCoursesList();
@@ -64,13 +65,16 @@ export class Sample04Component implements OnInit {
   }
 
   // get events of check box for edit or add button show and hide
-  isCheckClicked(event, courseList) {
+  isCheckClicked(event, courseList,i) {
+    console.log('i',i);
+    this.indexesValue=i;
     if (event.target.checked == true) {
       this.editForm = true;
       this.selectedItems.push(courseList.nid)
     }
     // console.log('this.selectedItems11',this.selectedItems)
     if (event.target.checked == false) {
+      this.indexesValue='';
       this.selectedItems = this.selectedItems.filter(
         book => book != courseList.nid);
       if (this.selectedItems.length == 0) {

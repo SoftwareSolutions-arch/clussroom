@@ -3795,7 +3795,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 /*dashboard header css end*/
 input.text-left {
-    border: none;
+    /* border: none; */
+    text-align: center !important;
     background: none;
 }
 .mat-spinner {
