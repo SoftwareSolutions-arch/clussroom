@@ -91,7 +91,7 @@
                 Video Minutes (montly)
               </div>
               <div class="estimate-subscription">
-                12,000 minutes <b class="custom-tooltip" data-toggle="tooltip" title="12,000 minutes">?</b>
+                {{this.subscriptionDetails.video_minutes}} minutes <b class="custom-tooltip" data-toggle="tooltip" title="12,000 minutes">?</b>
               </div>
               <div class="combine-subscription">
                 <img src="assets/images/blue-tick.png">
@@ -155,9 +155,7 @@
               <h6>{{this.title}} subscription</h6>
               <span>$ {{this.subscriptionDetails.amount}}</span>
             </div>
-            <p>Generate Lorem Ipsum placeholder text for use in your graphic, print and web layouts, and discover
-              plugins for your favorite writing, design and blogging tools.Generate Lorem Ipsum placeholder text for use
-              in your graphic, print and web layouts,</p>
+            <p>{{this.subscriptionDetails.field_package_description}}</p>
           </div>
         </div>
       </div>

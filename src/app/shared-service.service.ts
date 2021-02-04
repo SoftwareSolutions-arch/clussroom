@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SharedServiceService {
-  baseurl = "http://classroom.auxesisdevelopment.com/api/";
+  baseurl = "https://classroom.auxesisdevelopment.com/api/";
   constructor(public http: HttpClient) { }
 
   // post  method

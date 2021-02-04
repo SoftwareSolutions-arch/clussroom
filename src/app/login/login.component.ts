@@ -21,12 +21,12 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   error_messages: any = '';
   userDetails: any = '';
-  cookieDetails: any = '';
+  // cookieDetails: any = '';
   constructor(public router: Router, public util: UtilService, public service: SharedServiceService,
     public formBuilder: FormBuilder, public cookie: CookieService) {
     this.setupLoginFormData();
-    this.cookieDetails = this.cookie.getAll();
-    console.log('this.cookieDetails++1', this.cookieDetails);
+    // this.cookieDetails = this.cookie.getAll();
+    // console.log('this.cookie/Details++1', this.cookieDetails);
   }
 
   ngOnInit(): void {
@@ -87,7 +87,7 @@ export class LoginComponent implements OnInit {
     this.mypassword = localStorage.getItem('setPassword');
   }
 
-// do login
+  // do login
   login() {
     if (this.userDetails == '') {
       this.util.errorAlertPopup('please select user type');
@@ -96,26 +96,35 @@ export class LoginComponent implements OnInit {
 
     const data = {
       name: this.loginForm.value.email,
-      pass: this.loginForm.value.password
+      pass: this.loginForm.value.password,
+      // userType: this.userDetails
+
     }
     this.service.post('user/login', data, 0).subscribe(result => {
-      console.log('result',result);
-      if (result['status'] == 200) {
-        console.log('result',result['current_user']['csrf_token'])
-        localStorage.setItem("csrftoken", result['current_user']['csrf_token']);
-        localStorage.setItem("uid", result['current_user']['uid']);
-        localStorage.setItem('userMail', result['current_user']['name']);
-        localStorage.setItem('isLogin', '1');
-        localStorage.setItem('Authorization',result['current_user']['basic_auth_token'])
-        this.util.showSuccessAlert(result['message']);
-        this.cookieDetails = this.cookie.getAll();
-        console.log('this.cookieDetails++2', this.cookieDetails);
-        this.router.navigate(['/sidebar']);
-      }
-      else {
-        this.util.errorAlertPopup("Something went wrong, please check your email id and password");
+      console.log('result', result);
+      try{
+        if (result['status'] == 200) {
+          console.log('result', result['current_user']['csrf_token'])
+          localStorage.setItem("csrftoken", result['current_user']['csrf_token']);
+          localStorage.setItem("uid", result['current_user']['uid']);
+          localStorage.setItem('userMail', result['current_user']['name']);
+          localStorage.setItem('isLogin', '1');
+          localStorage.setItem('Authorization', result['current_user']['basic_auth_token'])
+          this.util.showSuccessAlert(result['message']);
+          // this.cookieDetails = this.cookie.getAll();
+          // console.log('this.cookieDetails++2', this.cookieDetails);
+          this.router.navigate(['/sidebar']);
+        }
+        else {
+          this.util.errorAlertPopup(result.error_message);
+        }
       }
 
+      catch(error){
+        this.util.errorAlertPopup(result.error_message);
+        console.log('Exception',error)
+      }
+     
     })
   }
 }
