@@ -97,7 +97,7 @@ export class LoginComponent implements OnInit {
     const data = {
       name: this.loginForm.value.email,
       pass: this.loginForm.value.password,
-      // userType: this.userDetails
+      user_type: this.userDetails
 
     }
     this.service.post('user/login', data, 0).subscribe(result => {
