@@ -90,7 +90,7 @@ import { LiveSessionsComponent } from './live-sessions/live-sessions.component';
     MatProgressSpinnerModule,
     SlickCarouselModule,MatTabsModule,NgxPaginationModule
   ],
-  providers: [CookieService],
+  providers: [CookieService,Sample04Component],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

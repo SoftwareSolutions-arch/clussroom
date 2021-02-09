@@ -48,7 +48,9 @@ export class Sample04Component implements OnInit {
 
   courseList = { title: '', field_category: '', field_level: '', field_banding: '', classes: '', total_learners: '', field_sub_level: '' };
 
-  showInputCategory:boolean=true;
+  showInputCategory: boolean = true;
+  showFiledLevel: boolean = true;
+  showBanding: boolean = true;
 
   constructor(public router: Router, public util: UtilService, public service: SharedServiceService,
     public formBuilder: FormBuilder) {
@@ -78,13 +80,16 @@ export class Sample04Component implements OnInit {
   isCheckClicked(event, courseList, i) {
     if (event.target.checked == true) {
       this.editForm = true;
-      this.selectedItems.push({ 'nid': courseList.nid })
+      // this.selectedItems.push({ 'nid': courseList.nid })
+      this.selectedItems.push(courseList.nid)
+
     }
     // console.log('this.selectedItems11',this.selectedItems)
     if (event.target.checked == false) {
       // this.indexesValue=[];
       this.selectedItems = this.selectedItems.filter(
-        book => book.nid != courseList.nid);
+        book => book != courseList.nid);
+        // book => book.nid != courseList.nid);
       if (this.selectedItems.length == 0) {
         this.editForm = false;
       }
@@ -98,7 +103,6 @@ export class Sample04Component implements OnInit {
 
   // get all courses list
   getAllCoursesList() {
-    console.log(localStorage.getItem('csrftoken'))
     this.isLoadingBool = true;
     this.service.post('view-all-courses-api', '', 1).subscribe(result => {
       this.isLoadingBool = false;
@@ -118,44 +122,20 @@ export class Sample04Component implements OnInit {
 
   // edit course details 
   editCourses() {
-    // console.log('this.selectedItems', this.selectedItems)
-    this.selectedItems.forEach(element => {
-      this.userIdDetails = element.nid
-      console.log(element.nid, 'element++')
-    });
-    this.editForm = false;
-    this.isSaveCourses = true;
-  }
-
-  saveCourses(index: number): any {
-    let params = {
-      "coursename": index['title'],
-      "course_category": index['field_category'],
-      "sub_category": index['field_sub_category'],
-      "level": index['field_level'],
-      "sub_level": index['field_sub_level'],
-      "sub_banding": index['field_sub_banding'],
-      "banding": index['field_banding'],
-      "courseid ": index['nid']
+    if (this.selectedItems.length > 1) {
+      this.util.errorAlertPopup("Please select only one row for edit")
+      return
+    }
+    else {
+      this.selectedItems.forEach(element => {
+        this.userIdDetails = element.nid
+        console.log(element.nid, 'element++')
+      });
+      this.editForm = false;
+      this.isSaveCourses = true;
+      this.showInputCategory = true;
     }
 
-    console.log('params', params)
-
-    this.isLoadingBool = true;
-    this.service.post('update-course-api', index, 1).subscribe(result => {
-      this.isLoadingBool = false;
-      console.log('result', result)
-      this.isSaveCourses = false;
-      this.editForm = false;
-      this.userIdDetails = '';
-      this.selectedItems = []
-      this.checkboxes.forEach((element) => {
-        element.nativeElement.checked = false;
-      });
-      this.deleteclosebutton.nativeElement.click();
-      this.util.showSuccessAlert('Course Updated Successfully');
-      this.getAllCoursesList();
-    })
   }
 
   // send course name to get all required details
@@ -255,6 +235,7 @@ export class Sample04Component implements OnInit {
       this.getAllCoursesList();
     })
   }
+
   // filter course 
   filerCourseArray() {
     let params = {
@@ -272,6 +253,7 @@ export class Sample04Component implements OnInit {
   }
 
   cancelCourses() {
+    this.getAllCoursesList();
     this.isSaveCourses = false;
     this.editForm = false;
     this.userIdDetails = '';
@@ -279,6 +261,9 @@ export class Sample04Component implements OnInit {
     this.checkboxes.forEach((element) => {
       element.nativeElement.checked = false;
     });
+    this.showInputCategory = true;
+    this.showFiledLevel = true;
+    this.showBanding = true;
   }
 
   getallListingDropdown() {
@@ -293,14 +278,79 @@ export class Sample04Component implements OnInit {
     })
   }
 
-
   addNewcategory(index: number): any {
-    console.log('value',index)
-    if (index['field_category']== 'create_new') {
+    console.log('value', index)
+    if (index['field_category'] == 'create_new') {
+      index['field_category'] = ''
       this.showInputCategory = false;
+    }
+    else if (index['field_level'] == 'create_new') {
+      index['field_level'] = ''
+      this.showFiledLevel = false;
+    }
+    else if (index['field_banding'] == 'create_new') {
+      index['field_banding'] = ''
+      this.showBanding = false;
     }
     else {
       this.isCourseAdded = true;
     }
+  }
+
+  compareFn(a, b) {
+    console.log('a', a)
+    console.log('b', b);
+    console.log(a, b, a && b && a.num == b.num);
+    return a && b && a.num == b.num;
+  }
+
+  saveCourses(index: number): any {
+    let params = {
+      "coursename": index['title'],
+      "course_category": index['field_category'],
+      "sub_category": index['field_sub_category'],
+      "level": index['field_level'],
+      "sub_level": index['field_sub_level'],
+      "sub_banding": index['field_sub_banding'],
+      "banding": index['field_banding'],
+      "courseid": index['nid']
+    }
+
+    this.isLoadingBool = true;
+    this.service.post('update-course-api', params, 0).subscribe(result => {
+      console.log("result", result);
+      if (result['Status'] == 1 || '1') {
+        this.isLoadingBool = false;
+        this.isSaveCourses = false;
+        this.editForm = false;
+        this.userIdDetails = '';
+        this.selectedItems = []
+        this.checkboxes.forEach((element) => {
+          element.nativeElement.checked = false;
+        });
+        this.deleteclosebutton.nativeElement.click();
+        this.util.showSuccessAlert('Course Updated Successfully');
+        this.getAllCoursesList();
+      }
+    })
+  }
+
+  // search api
+  serchCoursesList() {
+    this.isLoadingBool = true;
+    this.service.post('view-all-courses-api', '', 1).subscribe(result => {
+      this.isLoadingBool = false;
+      console.log('result', result)
+      if (result['status'] == 1) {
+        const { tutorials, totalItems } = result['coursesdata'];
+        this.allCourseList = result['coursesdata'];
+        this.tutorials = tutorials;
+        this.count = totalItems;
+      }
+      else {
+        this.util.errorAlertPopup(result['mesaage']);
+      }
+
+    })
   }
 }

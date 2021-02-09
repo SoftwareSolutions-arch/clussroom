@@ -47,63 +47,71 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let courseList of this.allCourseList| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;" [class.active]="i == currentIndex"> 
-              <th >
-                <div class="radio-table" >
+            <tr
+              *ngFor="let courseList of this.allCourseList| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;"
+              [class.active]="i == currentIndex">
+              <th>
+                <div class="radio-table">
                   <input #checkboxes (click)="isCheckClicked($event,courseList,i)" type="checkbox">
                 </div>
               </th>
               <td>{{this.courseList.sno}}</td>
               <td *ngIf="this.courseList.nid !== this.userIdDetails" class="text-left">{{this.courseList.title}}</td>
-              <td *ngIf="this.courseList.nid===this.userIdDetails"><input [(ngModel)]="this.allCourseList[i].title" class="text-left" /></td>
+              <td *ngIf="this.courseList.nid===this.userIdDetails"><input [(ngModel)]="this.allCourseList[i].title"
+                  class="text-left" /></td>
 
               <td class="text-left">{{this.courseList.field_course_code}}</td>
 
-              <td *ngIf="this.courseList.nid !== this.userIdDetails" class="text-left">{{this.courseList.field_category}}</td>
+              <td *ngIf="this.courseList.nid !== this.userIdDetails" class="text-left">
+                {{this.courseList.field_category}}</td>
               <td *ngIf="this.courseList.nid===this.userIdDetails">
                 <div class="category-course fieldset">
-                  <select name="category" id="categorycourse" [(ngModel)]="this.allCourseList[i].field_category" *ngIf=showInputCategory (change)="addNewcategory(this.allCourseList[i])">
-                    <option *ngFor="let categories of this.allCategories">{{categories.name}}</option>
+                  <select name="category" id="categorycourse" [(ngModel)]="this.allCourseList[i].field_category"
+                    *ngIf=showInputCategory (change)="addNewcategory(this.allCourseList[i])">
+                    <option *ngFor="let categories of this.allCategories" [ngValue]="categories.tid">{{categories.name}}
+                    </option>
                     <option *ngIf="this.allCategories.length>1" value="create_new">Create new</option>
                   </select>
-                  <input *ngIf=!showInputCategory name="courseList.title" [(ngModel)]="this.allCourseList[i].field_category" class="text-left">
+                  <input *ngIf=!showInputCategory name="courseList.title"
+                    [(ngModel)]="this.allCourseList[i].field_category" class="text-left">
                 </div>
               </td>
 
-              <td *ngIf="this.courseList.nid !== this.userIdDetails" class="text-left">{{this.courseList.field_level}}</td>
+              <td *ngIf="this.courseList.nid !== this.userIdDetails" class="text-left">{{this.courseList.field_level}}
+              </td>
               <td *ngIf="this.courseList.nid===this.userIdDetails">
-                <!-- <input name="courseList.title" [(ngModel)]="this.allCourseList[i].field_level" class="text-left"> -->
                 <div class="category-course fieldset">
-                  <select name="category" id="categorycourse" [(ngModel)]="this.allCourseList[i].field_level">
-                    <option *ngFor="let level of this.allLevel">{{level.name}}</option>
+                  <select name="category" id="categorycourse" [(ngModel)]="this.allCourseList[i].field_level"
+                    *ngIf=showFiledLevel (change)="addNewcategory(this.allCourseList[i])">
+                    <option *ngFor="let level of this.allLevel" [ngValue]="level.tid">{{level.name}}</option>
+                    <option *ngIf="this.allLevel.length>1" value="create_new">Create new</option>
                   </select>
+                  <input *ngIf=!showFiledLevel name="courseList.title" [(ngModel)]="this.allCourseList[i].field_level"
+                    class="text-left">
                 </div>
               </td>
 
-              <td *ngIf="this.courseList.nid !== this.userIdDetails" class="text-left">{{this.courseList.field_banding}}</td>
+              <td *ngIf="this.courseList.nid !== this.userIdDetails" class="text-left">{{this.courseList.field_banding}}
+              </td>
               <td *ngIf="this.courseList.nid===this.userIdDetails">
-                <!-- <input name="courseList.title" [(ngModel)]="this.allCourseList[i].field_banding" class="text-left"> -->
                 <div class="category-course fieldset">
-                  <select name="category" id="categorycourse" [(ngModel)]="this.allCourseList[i].field_banding">
-                    <option *ngFor="let banding of this.allBanding">{{banding.name}}</option>
+                  <select name="category" id="categorycourse" [(ngModel)]="this.allCourseList[i].field_banding"
+                    *ngIf=showBanding (change)="addNewcategory(this.allCourseList[i])">
+                    <option *ngFor="let banding of this.allBanding" [ngValue]="banding.tid">{{banding.name}}</option>
+                    <option *ngIf="this.allBanding.length>1" value="create_new">Create new</option>
                   </select>
+                  <input *ngIf=!showBanding name="courseList.title" [(ngModel)]="this.allCourseList[i].field_banding"
+                    class="text-left">
                 </div>
               </td>
 
               <td *ngIf="this.courseList.nid !== this.userIdDetails" class="text-left">{{this.courseList.classes}}</td>
               <td *ngIf="this.courseList.nid===this.userIdDetails">
-                <!-- <input name="courseList.title" [(ngModel)]="this.allCourseList[i].classes" class="text-left"> -->
-                <div class="category-course fieldset">
-                  <select name="category" id="categorycourse" [(ngModel)]="this.allCourseList[i].classes">
-                    <option selected></option>
-                    <option value="finance" selected>Finance</option>
-                    <option value="create new">Create new</option>
-                  </select>
-                </div>
-              </td>
-
-              <td *ngIf="this.courseList.nid !== this.userIdDetails" class="text-left">{{this.courseList.total_learners}}</td>
-              <td *ngIf="this.courseList.nid===this.userIdDetails"><input name="courseList.title" [(ngModel)]="this.allCourseList[i].total_learners" class="text-left"></td>
+                <input name="courseList.title" [(ngModel)]="this.allCourseList[i].classes" class="text-left"></td>
+              <td *ngIf="this.courseList.nid !== this.userIdDetails" class="text-left">
+                {{this.courseList.total_learners}}</td>
+              <td *ngIf="this.courseList.nid===this.userIdDetails"><input name="courseList.title"
+                  [(ngModel)]="this.allCourseList[i].total_learners" class="text-left"></td>
 
               <td><span>Assign</span></td>
 
@@ -113,7 +121,7 @@
             </tr>
           </tbody>
         </table>
-      
+
       </div>
       <div class="table-result-wrapper">
         <pagination-controls previousLabel="Prev" nextLabel="Next" autoHide="true" responsive="true"
@@ -149,27 +157,36 @@
               <td>{{i+1}}</td>
 
               <td *ngIf="i !== this.indexesValue" class="text-left">{{this.courseList.title}}</td>
-              <td *ngIf="i===this.indexesValue"><input type="text" name="name" [(ngModel)]="courseDetails.name" class="text-left" value={{this.courseList.title}} /></td>
+              <td *ngIf="i===this.indexesValue"><input type="text" name="name" [(ngModel)]="courseDetails.name"
+                  class="text-left" value={{this.courseList.title}} /></td>
 
               <td class="text-left">{{this.courseList.nid}}</td>
 
               <td *ngIf="i !== this.indexesValue" class="text-left">{{this.courseList.field_category}}</td>
-              <td *ngIf="i===this.indexesValue"><input type="text" name="field_category" [(ngModel)]="courseDetails.field_category" class="text-left" value={{this.courseList.field_category}}></td>
+              <td *ngIf="i===this.indexesValue"><input type="text" name="field_category"
+                  [(ngModel)]="courseDetails.field_category" class="text-left" value={{this.courseList.field_category}}>
+              </td>
 
               <td *ngIf="i !== this.indexesValue" class="text-left">{{this.courseList.field_level}}</td>
-              <td *ngIf="i===this.indexesValue"><input type="text" name="field_level" [(ngModel)]="courseDetails.field_level" class="text-left" value={{this.courseList.field_level}}></td>
+              <td *ngIf="i===this.indexesValue"><input type="text" name="field_level"
+                  [(ngModel)]="courseDetails.field_level" class="text-left" value={{this.courseList.field_level}}></td>
 
               <td *ngIf="i !== this.indexesValue" class="text-left">{{this.courseList.field_banding}}</td>
-              <td *ngIf="i===this.indexesValue"><input type="text" name="field_banding" [(ngModel)]="courseDetails.field_banding" class="text-left" value={{this.courseList.field_banding}}></td>
+              <td *ngIf="i===this.indexesValue"><input type="text" name="field_banding"
+                  [(ngModel)]="courseDetails.field_banding" class="text-left" value={{this.courseList.field_banding}}>
+              </td>
 
               <td *ngIf="i !== this.indexesValue" class="text-left">{{this.courseList.classes}}</td>
-              <td *ngIf="i===this.indexesValue"><input name="classes" [(ngModel)]="courseDetails.classes" class="text-left" value={{this.courseList.classes}}></td>
+              <td *ngIf="i===this.indexesValue"><input name="classes" [(ngModel)]="courseDetails.classes"
+                  class="text-left" value={{this.courseList.classes}}></td>
 
               <td *ngIf="i !== this.indexesValue" class="text-left">{{this.courseList.total_learners}}</td>
-              <td *ngIf="i===this.indexesValue"><input name="total_learners" [(ngModel)]="courseDetails.total_learners" class="text-left" value={{this.courseList.total_learners}}></td>
-              
+              <td *ngIf="i===this.indexesValue"><input name="total_learners" [(ngModel)]="courseDetails.total_learners"
+                  class="text-left" value={{this.courseList.total_learners}}></td>
+
               <td *ngIf="i !== this.indexesValue" class="text-left">{{this.courseList.field_banding}}</td>
-              <td *ngIf="i===this.indexesValue"><input name="admin" [(ngModel)]="courseDetails.admin" class="text-left" value={{this.courseList.field_banding}}></td>
+              <td *ngIf="i===this.indexesValue"><input name="admin" [(ngModel)]="courseDetails.admin" class="text-left"
+                  value={{this.courseList.field_banding}}></td>
 
               <td (click)="saveCourses(courseList)">Save</td>
             </tr>
@@ -233,9 +250,8 @@
             <div class="category-course fieldset">
               <label>Category*</label>
               <select [(ngModel)]="selectedCategory" name="category" id="categorycourse" (click)="getCategory()">
-                <option *ngIf="this.allCategories.length<1">please choose Category</option>
-                <option *ngFor="let categoriesList of this.allCategories" value="{{categoriesList.tid}}">
-                  {{categoriesList.name}}</option>
+                <option selected>please choose Category</option>
+                <option *ngFor="let categoriesList of this.allCategories" value="{{categoriesList.tid}}">{{categoriesList.name}}</option>
                 <option *ngIf="this.allCategories.length>1" value="create_new">Create new</option>
               </select>
             </div>
@@ -248,7 +264,7 @@
             <div class="level-course fieldset">
               <label>Level</label>
               <select [(ngModel)]="level" name="level" id="levelcourse" (click)="getLevel()">
-                <option *ngIf="this.allLevel.length<1">please choose level</option>
+                <option selected>please choose level</option>
                 <option *ngFor="let level of this.allLevel" value="{{level.tid}}">{{level.name}}</option>
                 <option *ngIf="this.allLevel.length>1" value="create_new">Create new</option>
               </select>
@@ -262,7 +278,7 @@
             <div class="banding-course fieldset">
               <label>Banding</label>
               <select [(ngModel)]="banding" name="level" id="bandingcourse" (click)="getBanding()">
-                <option *ngIf="this.allBanding.length<1">please choose banding</option>
+                <option selected>please choose banding</option>
                 <option *ngFor="let banding of this.allBanding" value="{{banding.tid}}">{{banding.name}}</option>
                 <option *ngIf="this.allBanding.length>1" value="create_new">Create new</option>
               </select>
