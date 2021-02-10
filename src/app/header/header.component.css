@@ -279,16 +279,26 @@ header #main-menu ul.navbar-nav li a {
 }
 
 header #main-menu ul.navbar-nav li a:hover{
-    background-color: transparent;
+    border-radius: 8px;
+    background-color: #396AFF;
+    padding: 9px 16px;
+    color: #fff;
 }
 
 header #main-menu ul.navbar-nav li.last {
     background-color: #396AFF;
-    padding: 10px 20px;
+    padding: 9px 16px;
     border-radius: 10px;
+    margin-left: 5em;
 }
 
 header #main-menu ul.navbar-nav li.last a{
 	color: #fff;
+}
+
+header #main-menu ul.navbar-nav li.last:hover {
+    padding: 0 !important;
+    background-color: #fff !important;
+    color: #396AFF;
 }
 /*header css end*/

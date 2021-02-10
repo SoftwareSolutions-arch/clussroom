@@ -68,7 +68,8 @@
                 <div class="category-course fieldset">
                   <select name="category" id="categorycourse" [(ngModel)]="this.allCourseList[i].field_category"
                     *ngIf=showInputCategory (change)="addNewcategory(this.allCourseList[i])">
-                    <option *ngFor="let categories of this.allCategories" [ngValue]="categories.tid">{{categories.name}}
+                    <option > please select category</option>
+                    <option *ngFor="let categories of this.allCategories" >{{categories.name}}
                     </option>
                     <option *ngIf="this.allCategories.length>1" value="create_new">Create new</option>
                   </select>
@@ -83,7 +84,7 @@
                 <div class="category-course fieldset">
                   <select name="category" id="categorycourse" [(ngModel)]="this.allCourseList[i].field_level"
                     *ngIf=showFiledLevel (change)="addNewcategory(this.allCourseList[i])">
-                    <option *ngFor="let level of this.allLevel" [ngValue]="level.tid">{{level.name}}</option>
+                    <option *ngFor="let level of this.allLevel" [value]="level.tid">{{level.name}}</option>
                     <option *ngIf="this.allLevel.length>1" value="create_new">Create new</option>
                   </select>
                   <input *ngIf=!showFiledLevel name="courseList.title" [(ngModel)]="this.allCourseList[i].field_level"
@@ -97,7 +98,7 @@
                 <div class="category-course fieldset">
                   <select name="category" id="categorycourse" [(ngModel)]="this.allCourseList[i].field_banding"
                     *ngIf=showBanding (change)="addNewcategory(this.allCourseList[i])">
-                    <option *ngFor="let banding of this.allBanding" [ngValue]="banding.tid">{{banding.name}}</option>
+                    <option *ngFor="let banding of this.allBanding" [value]="banding.tid">{{banding.name}}</option>
                     <option *ngIf="this.allBanding.length>1" value="create_new">Create new</option>
                   </select>
                   <input *ngIf=!showBanding name="courseList.title" [(ngModel)]="this.allCourseList[i].field_banding"

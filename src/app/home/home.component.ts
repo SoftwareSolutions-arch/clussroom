@@ -13,12 +13,12 @@ export class HomeComponent implements OnInit {
   }
 
   slides = [
-    {text: 'No other eCommerce platform allows people to start for free and grow their store as their business grows.', name: 'Rubika'},
-    {text: 'No other eCommerce platform allows people to start for free and grow their store as their.', name: 'Rubika'},
-    {text: 'No other eCommerce platform allows people to start for.', name: 'Rubika'},
-    {text: 'No other eCommerce platform allows people to start for free and grow their store as their.', name: 'Rubika'},
-    {text: 'No other eCommerce platform allows people to start for free and grow their.', name: 'Rubika'},
-    {text: 'No other eCommerce platform allows.', name: 'Rubika'}
+    {text: 'Clussroom is neatly organised and I did not take much downtime to navigate around and familiarise myself with what needs to be done!', name: 'Sarah Teo'},
+    {text: 'With Clussroo, I can have the singular focus to transmit transmit what I needed to teach the students. That leaves me with more time for organising materials.', name: 'Randy Woo'},
+    {text: 'Clussroom is neatly organised and I did not take much downtime to navigate around and familiarise myself with what needs to be done!', name: 'Sarah Teo'},
+    {text: 'With Clussroo, I can have the singular focus to transmit transmit what I needed to teach the students. That leaves me with more time for organising materials.', name: 'Randy Woo'},
+    {text: 'Clussroom is neatly organised and I did not take much downtime to navigate around and familiarise myself with what needs to be done!', name: 'Sarah Teo'},
+    {text: 'With Clussroo, I can have the singular focus to transmit transmit what I needed to teach the students. That leaves me with more time for organising materials.', name: 'Randy Woo'},
   ];
 
   slideConfig = {"slidesToShow": 2, "slidesToScroll": 1, "rows": 1, "arrows": false, "dot": false};

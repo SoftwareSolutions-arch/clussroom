@@ -84,7 +84,7 @@ export class Sample04Component implements OnInit {
       this.selectedItems.push(courseList.nid)
 
     }
-    // console.log('this.selectedItems11',this.selectedItems)
+    console.log('this.selectedItems11',this.selectedItems)
     if (event.target.checked == false) {
       // this.indexesValue=[];
       this.selectedItems = this.selectedItems.filter(
@@ -128,13 +128,17 @@ export class Sample04Component implements OnInit {
     }
     else {
       this.selectedItems.forEach(element => {
-        this.userIdDetails = element.nid
-        console.log(element.nid, 'element++')
+        // this.userIdDetails = element.nid
+        this.userIdDetails = element
+        console.log(element, 'element++')
       });
       this.editForm = false;
       this.isSaveCourses = true;
       this.showInputCategory = true;
     }
+
+
+  
 
   }
 

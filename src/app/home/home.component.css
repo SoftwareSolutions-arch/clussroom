@@ -211,9 +211,9 @@ section.home-section-banner {
 
 .home-banner-wrapper .home-banner-caption h1 {
     font-family: Rubik;
-    font-size: 60px;
+    font-size: 36px;
     font-weight: 500;
-    line-height: 60px;
+    /* line-height: 60px; */
     letter-spacing: 0px;
     text-align: left;
     color: #343C6A;
@@ -245,16 +245,16 @@ section.home-section-banner {
     padding: 0px;
     justify-content: center;
     align-items: center;
-    margin-top: 50px;
+    /* margin-top: 50px; */
 }
 
 .home-banner-wrapper .home-banner-image {
-    width: 50%;
+    width: 44%;
 }
 
 .why-clussroom-header h2 {
     font-family: Rubik;
-    font-size: 55px;
+    font-size: 36px;
     font-weight: 500;
     line-height: 41px;
     letter-spacing: 0px;
@@ -264,9 +264,19 @@ section.home-section-banner {
 
 .why-clussroom-wrapper {
     display: flex;
-    margin-top: 80px;
+    /* margin-top: 80px; */
     flex-wrap: wrap;
     width: 100%;
+}
+
+.why-clussroom-wrapper span{
+    color: #396aff;
+    font-weight: 600;
+}
+
+.why-clussroom-wrapper a:hover span{
+    margin-left: 10px;
+    transition: .5s ease-in-out;
 }
 
 .why-clussroom-wrapper .why-clussroom-box {
@@ -292,7 +302,7 @@ section.home-section-banner {
 
 .why-clussroom-wrapper .why-clussroom-box .why-clussroom-caption h4 {
     font-family: Rubik;
-    font-size: 36px;
+    font-size: 24px;
     font-weight: 500;
     line-height: 41px;
     letter-spacing: 0px;
@@ -340,8 +350,10 @@ section.tasks-robust-section .container:before {
     background-image: url(/assets/images/tasks-dot.png);
     position: absolute;
     width: 214px;
-    height: 473px;
-    bottom: 238px;
+    width: 214px;
+    height: 371px;
+    bottom: 364px;
+    left: -4em;
 }
 
 section.tasks-robust-section .container:after {
@@ -624,10 +636,10 @@ section.home-testimonial-section:before {
 
 .home-testimonial-header h2 {
     font-family: Rubik;
-    font-size: 55px;
+    font-size: 36px;
     font-style: normal;
     font-weight: 500;
-    line-height: 70px;
+    line-height: 48px;
     letter-spacing: 0px;
     text-align: center;
     width: 50%;
