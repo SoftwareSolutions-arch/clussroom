@@ -136,10 +136,6 @@ export class Sample04Component implements OnInit {
       this.isSaveCourses = true;
       this.showInputCategory = true;
     }
-
-
-  
-
   }
 
   // send course name to get all required details
@@ -296,9 +292,7 @@ export class Sample04Component implements OnInit {
       index['field_banding'] = ''
       this.showBanding = false;
     }
-    else {
-      this.isCourseAdded = true;
-    }
+  
   }
 
   compareFn(a, b) {

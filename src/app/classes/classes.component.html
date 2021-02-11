@@ -1,276 +1,230 @@
-<div class="prospectus-section">
-  <div class="prospectus-tabs">
-    <ul class="nav nav-tabs">
-      <li><a data-toggle="tab" href="#summary" class="active">Summary</a></li>
-      <li><a data-toggle="tab" href="#instructions">Method of Instructions</a></li>
-    </ul>
-    <div class="prospectus-action">
-      <a class="add-btn" data-toggle="modal" data-target="#addCourse">
-        <i class="fa fa-plus" aria-hidden="true"></i> Name</a></div>
-  </div>
-  <div class="tab-content">
-    <div id="summary" class="tab-pane active">
+<!-- loader showing-->
+<div *ngIf="isLoadingBool" class="loading-indicator">
+  <mat-spinner></mat-spinner>
+</div>
+<!-- close loader showing-->
+
+<div class="program_course_wrapper">
+  <form class="green-button" style="text-align: center;">
+    <div class="fieldset course-name">
+      <label>Course Name : </label>
+      <select [(ngModel)]="selectedCategory" name="course" id="course-name" (change)="selectCategory()">
+        <option selected>Select</option>
+        <option *ngFor="let courseList of this.allCourseList" value="{{courseList.nid}}">{{this.courseList.title}}
+        </option>
+      </select>
+    </div>
+    <button><a href="#">Go</a></button>
+  </form>
+</div>
+
+<div *ngIf="!isLoadingBool">
+  <div class="prospectus-section">
+    <div class="prospectus-tabs">
+      <div class="prospectus-action">
+        <a class="add-btn custom-a-btn" data-toggle="modal" data-target="#addCourses">
+          <i class="fa fa-plus" aria-hidden="true"></i> New Class</a>
+
+          <a class="delete-btn custom-a-btn" data-toggle="modal" data-target="#deleteClass">
+          <i class="fa fa-trash-o" aria-hidden="true"></i></a>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <!-- <table class="table dashboard-table">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">No.</th>
+            <th scope="col" class="text-left">Class Name</th>
+            <th scope="col">Class Code</th>
+            <th scope="col" class="table-filter">Start date</th>
+            <th scope="col" class="table-filter">End date</th>
+            <th scope="col" class="table-filter">Learner</th>
+            <th scope="col" class="table-filter">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let classList of this.allClassesData| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;"
+          [class.active]="i == currentIndex">
+            <th>
+              <div class="radio-table"><input type="checkbox"></div>
+            </th>
+            <td>{{this.classList.title}}</td>
+            <td class="text-left">{{this.classList.title}}</td>
+            <td>{{this.classList.title}}</td>
+            <td>{{this.classList.title}}</td>
+            <td>{{this.classList.title}}</td>
+            <td>{{this.classList.title}}</td>
+            <td>{{this.classList.title}}</td>
+
+          </tr>
+        </tbody>
+      </table> -->
       <div class="table-responsive">
         <table class="table dashboard-table">
           <thead>
             <tr>
               <th scope="col"></th>
               <th scope="col">No.</th>
-              <th scope="col" class="text-left">Course Name</th>
-              <th scope="col">Code</th>
-              <th scope="col" class="table-filter">Cateory/Dept</th>
-              <th scope="col" class="table-filter">Level</th>
-              <th scope="col" class="table-filter">Banding</th>
-              <th scope="col" class="table-filter">No. of classes</th>
-              <th scope="col" class="table-filter">No. of learners</th>
-              <th scope="col" class="table-filter">Admin</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th>
-                <div class="radio-table"><input type="checkbox"></div>
-              </th>
-              <td>1</td>
-              <td class="text-left">Biology for Primary 1</td>
-              <td>A3K</td>
-              <td>Math</td>
-              <td>Professional medical</td>
-              <td>1</td>
-              <td>12</td>
-              <td>189</td>
-              <td>Aeriel Connelly</td>
-            </tr>
-            <tr>
-              <th>
-                <div class="radio-table"><input type="checkbox"></div>
-              </th>
-              <td>2</td>
-              <td class="text-left">Geography for Primary 2</td>
-              <td>4CE</td>
-              <td>Science</td>
-              <td>Secondary</td>
-              <td>2</td>
-              <td>8</td>
-              <td>874</td>
-              <td>Darren Leow</td>
-            </tr>
-            <tr>
-              <th>
-                <div class="radio-table"><input type="checkbox"></div>
-              </th>
-              <td>3</td>
-              <td class="text-left">Bull in share market</td>
-              <td>3AC</td>
-              <td>Social studies</td>
-              <td>Primary</td>
-              <td>3</td>
-              <td>4</td>
-              <td>234</td>
-              <td>Finelly Abrodobe</td>
-            </tr>
-            <tr>
-              <th>
-                <div class="radio-table"><input type="checkbox"></div>
-              </th>
-              <td>4</td>
-              <td class="text-left">Balance Sheet making</td>
-              <td>R6T</td>
-              <td>Psychology</td>
-              <td>University</td>
-              <td>4</td>
-              <td>11</td>
-              <td>431</td>
-              <td>Prena Abdullah</td>
-            </tr>
-            <tr>
-              <th>
-                <div class="radio-table"><input type="checkbox"></div>
-              </th>
-              <td>5</td>
-              <td class="text-left">Cash flow </td>
-              <td>2UY</td>
-              <td>Accounting</td>
-              <td>Primary</td>
-              <td>2</td>
-              <td>7</td>
-              <td>501</td>
-              <td>Nisha Fasa</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="table-result-wrapper">
-        <p>Results: 1-15 of 324</p>
-      </div>
-    </div>
-    <div id="instructions" class="tab-pane">
-      <div class="table=-responsive">
-        <table class="table dashboard-table">
-          <thead>
-            <tr>
+              <th scope="col" class="text-left table-filter">Class Name</th>
+              <th scope="col" class="table-filter">Class Code</th>
+              <th scope="col" class="table-filter">Start date</th>
+              <th scope="col" class="table-filter">End date</th>
+              <th scope="col" class="table-filter">Learners</th>
+              <th scope="col" class="table-filter">Status</th>
               <th scope="col"></th>
-              <th scope="col">No.</th>
-              <th scope="col" class="text-left">Course Name</th>
-              <th scope="col">Code</th>
-              <th scope="col" class="table-filter">Cateory/Dept</th>
-              <th scope="col" class="table-filter">Level</th>
-              <th scope="col" class="table-filter">Banding</th>
-              <th scope="col" class="table-filter">No. of classes</th>
-              <th scope="col" class="table-filter">No. of learners</th>
-              <th scope="col" class="table-filter">Admin</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th>
-                <div class="radio-table"><input type="checkbox"></div>
-              </th>
-              <td>1</td>
-              <td class="text-left">Biology for Primary 1</td>
-              <td>A3K</td>
-              <td>Math</td>
-              <td>Professional medical</td>
-              <td>1</td>
-              <td>12</td>
-              <td>189</td>
-              <td>Aeriel Connelly</td>
-            </tr>
-            <tr>
-              <th>
-                <div class="radio-table"><input type="checkbox"></div>
-              </th>
-              <td>2</td>
-              <td class="text-left">Geography for Primary 2</td>
-              <td>4CE</td>
-              <td>Science</td>
-              <td>Secondary</td>
-              <td>2</td>
-              <td>8</td>
-              <td>874</td>
-              <td>Darren Leow</td>
-            </tr>
-            <tr>
-              <th>
-                <div class="radio-table"><input type="checkbox"></div>
-              </th>
-              <td>3</td>
-              <td class="text-left">Bull in share market</td>
-              <td>3AC</td>
-              <td>Social studies</td>
-              <td>Primary</td>
-              <td>3</td>
-              <td>4</td>
-              <td>234</td>
-              <td>Finelly Abrodobe</td>
-            </tr>
-            <tr>
-              <th>
-                <div class="radio-table"><input type="checkbox"></div>
-              </th>
-              <td>4</td>
-              <td class="text-left">Balance Sheet making</td>
-              <td>R6T</td>
-              <td>Psychology</td>
-              <td>University</td>
-              <td>4</td>
-              <td>11</td>
-              <td>431</td>
-              <td>Prena Abdullah</td>
-            </tr>
-            <tr>
-              <th>
-                <div class="radio-table"><input type="checkbox"></div>
-              </th>
-              <td>5</td>
-              <td class="text-left">Cash flow </td>
-              <td>2UY</td>
-              <td>Accounting</td>
-              <td>Primary</td>
-              <td>2</td>
-              <td>7</td>
-              <td>501</td>
-              <td>Nisha Fasa</td>
+            <tr *ngFor="let classList of this.allClassesData">
+              <th><div class="radio-table"><input type="checkbox"></div></th>
+              <td><div>1</div></td>
+              <td class="text-left"><div>{{this.classList.title}}</div></td>
+              <td><div>{{this.classList.field_class_code}}</div></td>
+              <td><div>{{this.classList.field_start_date}}</div></td>
+              <td><div>{{this.classList.field_end_date}}</div></td>
+              <td><div class="highlight">{{this.classList.total_learners}}</div></td>
+              <td>
+                <div class="effective" *ngIf="this.classList.field_status=='Completed'">{{this.classList.field_status}}</div>
+                <div class="finish" *ngIf="this.classList.field_status!='Completed'">{{this.classList.field_status}}</div>
+              </td>
+              <td><div class="go-to-class">Go to Class</div></td>
             </tr>
           </tbody>
         </table>
-      </div>
-      <div class="table-result-wrapper">
-        <p>Results: 1-15 of 324</p>
-      </div>
+    
+    </div>
+    <div class="table-result-wrapper">
+      <pagination-controls previousLabel="Prev" nextLabel="Next" autoHide="true" responsive="true"
+        (pageChange)="handlePageChange($event)"></pagination-controls>
     </div>
   </div>
 </div>
 
 <!-- Add Course modal popup start -->
-<div id="addCourse" class="modal addcourse-modal" role="dialog">
+<div id="addCourses" class="modal addcourse-modal" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
     <div class="modal-content">
-    	<div class="modal-header">
-	        <h4>Add new</h4>
-	        <button type="button" class="close" data-dismiss="modal"><img src="assets/images/dashboard/close-course.png"></button>
-      	</div>
-      	<div class="modal-body">
-	        <form>
-	        	<div class="addCourse-form">
-		        	<div class="name-of-course fieldset">
-		        		<label>Name of course*</label>
-		        		<input type="text" name="course">
-		        	</div>
-		        	<div class="category-course fieldset">
-		        		<label>Category*</label>
-		        		<select name="category" id="categorycourse">
-							<option selected></option>
-							<option value="finance">Finance</option>
-							<option value="create new">Create new</option>
-						</select>
-		        	</div>
-		        	<!-- if user select create new course -->
-		        	<div class="new-category-course fieldset">
-		        		<label>New category</label>
-		        		<input type="text" name="course">
-		        	</div>
+      <div class="modal-header">
+        <h4>Add new</h4>
+        <button type="button" class="close" data-dismiss="modal"><img
+            src="assets/images/dashboard/close-course.png"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="addCourse-form">
+            <div class="name-of-course fieldset">
+              <label>Name of course*</label>
+              <input type="text" name="course">
+            </div>
+            <div class="category-course fieldset">
+              <label>Category*</label>
+              <select name="category" id="categorycourse">
+                <option selected></option>
+                <option value="finance">Finance</option>
+                <option value="create new">Create new</option>
+              </select>
+            </div>
+            <!-- if user select create new course -->
+            <div class="new-category-course fieldset">
+              <label>New category</label>
+              <input type="text" name="course">
+            </div>
 
-		        	<div class="level-course fieldset">
-		        		<label>Level</label>
-		        		<select name="level" id="levelcourse">
-							<option selected></option>
-							<option value="Professional Level 1">Professional Level 1</option>
-							<option value="create new">Create new</option>
-						</select>
-		        	</div>
-		        	<!-- if user select create new level course -->
-		        	<div class="new-level-course fieldset">
-		        		<label>New level</label>
-		        		<input type="text" name="level">
-		        	</div>
+            <div class="level-course fieldset">
+              <label>Level</label>
+              <select name="level" id="levelcourse">
+                <option selected></option>
+                <option value="Professional Level 1">Professional Level 1</option>
+                <option value="create new">Create new</option>
+              </select>
+            </div>
+            <!-- if user select create new level course -->
+            <div class="new-level-course fieldset">
+              <label>New level</label>
+              <input type="text" name="level">
+            </div>
 
-		        	<div class="banding-course fieldset">
-		        		<label>Banding</label>
-		        		<select name="level" id="bandingcourse">
-							<option selected></option>
-							<option value="IV">IV</option>
-							<option value="create new">Create new</option>
-						</select>
-		        	</div>
-		        	<!-- if user select create new banding course -->
-		        	<div class="new-banding-course fieldset">
-		        		<label>New banding</label>
-		        		<input type="text" name="banding">
-		        	</div>
+            <div class="banding-course fieldset">
+              <label>Banding</label>
+              <select name="level" id="bandingcourse">
+                <option selected></option>
+                <option value="IV">IV</option>
+                <option value="create new">Create new</option>
+              </select>
+            </div>
+            <!-- if user select create new banding course -->
+            <div class="new-banding-course fieldset">
+              <label>New banding</label>
+              <input type="text" name="banding">
+            </div>
 
-	        	</div>
-      	
-		      	<div class="modal-footer">
-		      		<button class="back-btn-course">Back</button>
-		        	<button class="next-btn-course">Next</button>
-		      	</div>
-      		</form>
-      	</div>
+          </div>
+
+          <div class="modal-footer">
+            <button class="back-btn-course">Back</button>
+            <button class="next-btn-course">Next</button>
+          </div>
+        </form>
+      </div>
     </div>
 
   </div>
 </div>
 <!-- Add Course modal popup start -->
+
+<!-- Delete Class modal popup start -->
+<div id="deleteClass" class="modal deleteclass-modal" role="dialog">
+  <div class="modal-dialog">
+
+    Modal content
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4>Delete class</h4>
+        <button type="button" class="close" data-dismiss="modal"><img
+            src="assets/images/dashboard/close-course.png"></button>
+      </div>
+      <div class="modal-body">
+        <div class="class-delete-list">
+          <div class="delete-field">
+            <span>Course Name :</span>
+            <p>Geography for Secondary 4 - Level 3</p>
+          </div>
+          <div class="class-delete-curve">
+            <div class="delete-field">
+              <span>Level :</span>
+              <p>Secondary 4</p>
+            </div>
+            <div class="delete-field">
+              <span>Banding :</span>
+              <p>Band 3</p>
+            </div>
+            <div class="delete-field">
+              <span>Class :</span>
+              <p>Poppins</p>
+            </div>
+            <div class="delete-field">
+              <span>Class code :</span>
+              <div class="class-code-text">#56782</div>
+            </div>
+          </div>
+        </div>
+        <div class="class-del-caption">
+          <p>Deletion of class will remove all materials, learners' information including
+            grades, tests and assignments. </p>
+          <p>Proceed?</p>
+        </div>
+        <div class="class-del-btn">
+          <button class="class-proceed-btn">Proceed to delete</button>
+          <button class="class-cancel-btn" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+<!-- Delete Class modal popup start -->

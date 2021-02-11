@@ -68,8 +68,8 @@
                 <div class="category-course fieldset">
                   <select name="category" id="categorycourse" [(ngModel)]="this.allCourseList[i].field_category"
                     *ngIf=showInputCategory (change)="addNewcategory(this.allCourseList[i])">
-                    <option > please select category</option>
-                    <option *ngFor="let categories of this.allCategories" >{{categories.name}}
+                    <option> please select category</option>
+                    <option *ngFor="let categories of this.allCategories" [value]="categories.tid">{{categories.name}}
                     </option>
                     <option *ngIf="this.allCategories.length>1" value="create_new">Create new</option>
                   </select>
@@ -106,13 +106,13 @@
                 </div>
               </td>
 
-              <td *ngIf="this.courseList.nid !== this.userIdDetails" class="text-left">{{this.courseList.classes}}</td>
-              <td *ngIf="this.courseList.nid===this.userIdDetails">
-                <input name="courseList.title" [(ngModel)]="this.allCourseList[i].classes" class="text-left"></td>
-              <td *ngIf="this.courseList.nid !== this.userIdDetails" class="text-left">
+              <td class="text-left">{{this.courseList.classes}}</td>
+              <!-- <td *ngIf="this.courseList.nid===this.userIdDetails">
+                <input name="courseList.title" [(ngModel)]="this.allCourseList[i].classes" class="text-left"></td> -->
+              <td class="text-left">
                 {{this.courseList.total_learners}}</td>
-              <td *ngIf="this.courseList.nid===this.userIdDetails"><input name="courseList.title"
-                  [(ngModel)]="this.allCourseList[i].total_learners" class="text-left"></td>
+              <!-- <td *ngIf="this.courseList.nid===this.userIdDetails"><input name="courseList.title"
+                  [(ngModel)]="this.allCourseList[i].total_learners" class="text-left"></td> -->
 
               <td><span>Assign</span></td>
 
@@ -122,7 +122,6 @@
             </tr>
           </tbody>
         </table>
-
       </div>
       <div class="table-result-wrapper">
         <pagination-controls previousLabel="Prev" nextLabel="Next" autoHide="true" responsive="true"
@@ -252,7 +251,8 @@
               <label>Category*</label>
               <select [(ngModel)]="selectedCategory" name="category" id="categorycourse" (click)="getCategory()">
                 <option selected>please choose Category</option>
-                <option *ngFor="let categoriesList of this.allCategories" value="{{categoriesList.tid}}">{{categoriesList.name}}</option>
+                <option *ngFor="let categoriesList of this.allCategories" value="{{categoriesList.tid}}">
+                  {{categoriesList.name}}</option>
                 <option *ngIf="this.allCategories.length>1" value="create_new">Create new</option>
               </select>
             </div>
