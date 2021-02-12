@@ -20,6 +20,8 @@ import { Sample04Component } from './sample04/sample04.component';
 import { DashboardheaderComponent } from './dashboardheader/dashboardheader.component';
 import { ClassesComponent } from './classes/classes.component';
 import {AuthGuardGuard} from './auth-guard.guard';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { TermsOfUseComponent } from './terms-of-use/terms-of-use.component';
 const routes: Routes = [
   {
     path: 'pricing', component: PricingComponent,canActivate:[AuthGuardGuard]
@@ -77,6 +79,12 @@ const routes: Routes = [
   },
   {
     path: 'classes',component:ClassesComponent,canActivate:[AuthGuardGuard]
+  },
+  {
+    path: 'privacy-policy',component:PrivacyPolicyComponent,canActivate:[AuthGuardGuard]
+  },
+  {
+    path: 'terms-of-use',component:TermsOfUseComponent,canActivate:[AuthGuardGuard]
   },
   {
     path: '', redirectTo: '/home', pathMatch: 'full'

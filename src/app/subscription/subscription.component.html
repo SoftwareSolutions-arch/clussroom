@@ -1,10 +1,9 @@
 <div *ngIf="isImageShow">
   <img class="image-loader" src="assets/spinner.gif">
 </div>
-<!-- Header start -->
 
 <app-header *ngIf="!isImageShow"></app-header>
-<!-- Header end -->
+
 <section class="subscription-summary-section" *ngIf="!isImageShow">
   <div class="container">
     <div class="subscription-content-flex">
@@ -17,7 +16,7 @@
             </div>
             <div class="estimate-subscription">
               {{this.title}}
-              <span>(for individuals)</span>
+              <span *ngIf="this.title=='tutor'">(for individuals)</span>
             </div>
             <div class="combine-subscription">
 
@@ -124,8 +123,9 @@
         </ul>
         <div class="terms-of-use">
           <input type="checkbox" ng-model="termsCondition" (click)="agreeTerms($event)">
-          <p class="term-button">I agree to the accompanying <button><a href="#">Terms of use</a></button> and
-            <button><a href="#">Privacy Policy</a></button></p>
+          <p class="term-button">I agree to the accompanying <button (click)="goToTermsUse()"><a>Terms of
+                use</a></button> and
+            <button (click)="goToPrivacyPolicy()"><a>Privacy Policy</a></button></p>
         </div>
         <div class="subscription-buttons">
           <button [disabled]="this.termsCondition!=true" class="btn" (click)="next()">

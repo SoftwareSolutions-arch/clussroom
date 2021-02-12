@@ -24,13 +24,13 @@
         <a *ngIf="!editForm && !isSaveCourses" class="add-btn custom-a-btn" data-toggle="modal" data-target="#addClass">
           <i class="fa fa-plus" aria-hidden="true"></i> New Class</a>
 
+          <a *ngIf="editForm" (click)="editCourses()" style="margin-left: 15px;background: #4CAF50 !important;"
+          class="add-btn custom-a-btn" data-toggle="modal">
+          <i class="fa fa-edit" aria-hidden="true"></i> Edit</a>
+
         <a *ngIf="!isSaveCourses && editForm" class="delete-btn custom-a-btn" data-toggle="modal"
           data-target="#deleteClass">
           <i class="fa fa-trash-o" aria-hidden="true"></i></a>
-
-        <a *ngIf="editForm" (click)="editCourses()" style="margin-left: 15px;background: #ef4a4a !important;"
-          class="add-btn custom-a-btn" data-toggle="modal">
-          <i class="fa fa-edit" aria-hidden="true"></i> Edit</a>
       </div>
     </div>
     <div class="table-responsive">
@@ -108,7 +108,9 @@
               <td>
                 <div class="effective" *ngIf="this.classList.field_status=='Completed'">{{this.classList.field_status}}
                 </div>
-                <div class="finish" *ngIf="this.classList.field_status!='Completed'">{{this.classList.field_status}}
+                <div class="ongoing" *ngIf="this.classList.field_status=='Ongoing'">{{this.classList.field_status}}
+                </div>
+                <div class="schedule" *ngIf="this.classList.field_status=='Sheduled'">{{this.classList.field_status}}
                 </div>
               </td>
               <td>
@@ -126,7 +128,7 @@
     </div>
   </div>
 
-  <div id="addClass" class="modal addcourse-modal" role="dialog" #addclosebutton>
+  <div id="addClass" class="modal addcourse-modal" role="dialog">
     <div class="modal-dialog">
 
       <!-- Modal content-->
@@ -140,9 +142,11 @@
           <form>
             <div class="addCourse-form">
               <div class="my-modal my-modal-classes">Class Start:&nbsp;&nbsp;&nbsp;</div>
-              <input [(ngModel)]="courseList.class_start" [ngModelOptions]="{standalone: true}" type="date" placeholder="dd/mm/yyyy" value="" style="border: 1px solid #E7EDFF;">
+              <input [(ngModel)]="courseList.class_start" [ngModelOptions]="{standalone: true}" type="date"
+                placeholder="dd/mm/yyyy" value="" style="border: 1px solid #E7EDFF;">
               <div class="my-modal my-modal-classes">Class Ends:&nbsp;&nbsp;&nbsp;</div>
-              <input [(ngModel)]="courseList.class_end" [ngModelOptions]="{standalone: true}" type="date" placeholder="dd/mm/yyyy" value="" style="border: 1px solid #E7EDFF;">
+              <input [(ngModel)]="courseList.class_end" [ngModelOptions]="{standalone: true}" type="date"
+                placeholder="dd/mm/yyyy" value="" style="border: 1px solid #E7EDFF;">
             </div>
             <div class="class-name">
               Class Name:&nbsp;&nbsp;&nbsp;
@@ -150,7 +154,7 @@
             </div>
             <div class="modal-footer">
               <button class="modalfooter-back" data-dismiss="modal">Back</button>
-              <button (click)="next()" class="modalfooter-next" data-dismiss="modal">Next</button>
+              <button (click)="createCourse()" class="modalfooter-next" data-dismiss="modal">Next</button>
             </div>
           </form>
         </div>

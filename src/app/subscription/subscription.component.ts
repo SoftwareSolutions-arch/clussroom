@@ -64,4 +64,13 @@ export class SubscriptionComponent implements OnInit {
       this.subscriptionDetails = result['nids']['0'];
     })
   }
+
+  // go to terms and condition page
+  goToTermsUse() {
+    this.router.navigate(['terms-of-use']);
+  }
+  // go to privacy page
+  goToPrivacyPolicy() {
+    this.router.navigate(['privacy-policy']);
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UtilService } from '../../providers/util.service';
 import { SharedServiceService } from '../shared-service.service';
 @Component({
@@ -7,8 +7,6 @@ import { SharedServiceService } from '../shared-service.service';
   styleUrls: ['./classes.component.css']
 })
 export class ClassesComponent implements OnInit {
-  // @ViewChild('addclosebuttons') addclosebuttons;
-  @ViewChild('addclosebuttons') addclosebuttons: ElementRef;
 
   isLoadingBool: boolean = true;
   allCourseList: any = [];
@@ -101,7 +99,8 @@ export class ClassesComponent implements OnInit {
     }
   }
 
-  next() {
+  // create course 
+  createCourse() {
     let params = {
       "startdate": this.courseList.class_start,
       "enddate": this.courseList.class_end,

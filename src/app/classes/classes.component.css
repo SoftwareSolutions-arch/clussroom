@@ -112,8 +112,9 @@ textarea:focus,
 .prospectus-section .prospectus-tabs .prospectus-action a.delete-btn {
   background-color: #FF5A64;
   border-radius: 6px;
-  width: 40px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
 }
 
 .prospectus-section .prospectus-tabs .prospectus-action a.delete-btn i {
@@ -981,4 +982,16 @@ a.add-btn i {
   width: 100%;
   height: 100%;
   background-color: rgb(0 0 0 / 7%);
+}
+
+.effective{
+  color: #396aff;
+}
+
+.ongoing{
+  color: #16DBCC;
+}
+
+.schedule{
+  color: red;
 }
