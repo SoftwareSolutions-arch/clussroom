@@ -1,50 +1,50 @@
 <header id="navbar" role="banner">
-    <div class=" container">
-        <div class="navbar-header-flex">
-            <div class="navbar-header">
+  <div class=" container">
+      <div class="navbar-header-flex">
+          <div class="navbar-header">
 
-                <section class="site-logo">
-                    <a><img src="assets/images/LOGO.png"></a>
-                </section>
+              <section class="site-logo">
+                  <a><img src="assets/images/LOGO.png"></a>
+              </section>
 
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
 
-            </div>
+          </div>
 
-            <nav role="navigation" id="main-menu">
-                <ul class="menu menu--main nav navbar-nav">
+          <nav role="navigation" id="main-menu">
+              <ul class="menu menu--main nav navbar-nav">
 
-                    <li class="first" (click)="home()">
-                        <a>Home</a>
-                    </li>
+                  <li class="first" (click)="home()">
+                      <a>Home</a>
+                  </li>
 
-                    <li (click)="aboutUs()">
-                        <a>About us</a>
-                    </li>
+                  <li (click)="aboutUs()">
+                      <a>About us</a>
+                  </li>
 
-                    <li (click)="contactUs()">
-                        <a >Contact</a>
-                    </li>
+                  <li (click)="contactUs()">
+                      <a >Contact</a>
+                  </li>
 
-                    <li *ngIf="this.isLogin!=1" (click)="logIn()">
-                        <a >Log In</a>
-                    </li>
+                  <li *ngIf="this.isLogin!=1" (click)="logIn()">
+                      <a >Log In</a>
+                  </li>
 
-                    <li *ngIf="this.isLogin==1" (click)="logout()">
-                        <a >Log Out</a>
-                    </li>
+                  <li *ngIf="this.isLogin==1" (click)="logout()">
+                      <a >Log Out</a>
+                  </li>
 
-                    <li (click)="packages()" class="last">
-                        <a>Packages</a>
-                    </li>
+                  <li (click)="packages()" class="last">
+                      <a>Packages</a>
+                  </li>
 
-                </ul>
-            </nav>
-        </div>
-    </div>
+              </ul>
+          </nav>
+      </div>
+  </div>
 </header>

@@ -16,6 +16,7 @@ export class InvoiceComponent implements OnInit {
   invoiceDetails: any = {};
   isImageShow: boolean = true;
   isSpinnerShow: boolean = false;
+  enablePaymemtForm: boolean = true;
   error_messages: any = '';
   invoiceForm: FormGroup;
   paymentForm: FormGroup;
@@ -38,43 +39,43 @@ export class InvoiceComponent implements OnInit {
   setupFormData() {
     this.error_messages = {
       companyName: [
-        { type: "required", message: '*Company Name is Required' },
-        { type: "pattern", message: '*Please Enter character only' }
+        { type: "required", message: '*Company name is required' },
+        { type: "pattern", message: '*Please enter character only' }
       ],
       firstName: [
         { type: "required", message: '*First Name is Required' },
-        { type: "pattern", message: '*Please Enter character only' }
+        { type: "pattern", message: '*Please enter character only' }
       ],
       lastName: [
-        { type: "required", message: '*Last Name is Required' },
-        { type: "pattern", message: '*Please Enter character only' }
+        { type: "required", message: '*Last Name is required' },
+        { type: "pattern", message: '*Please enter character only' }
       ],
       address: [
-        { type: "required", message: '*Address is Required' }
+        { type: "required", message: '*Address is required' }
       ],
       city: [
-        { type: "required", message: '*City is Required' },
-        { type: "pattern", message: '*Please Enter character only' }
+        { type: "required", message: '*City is required' },
+        { type: "pattern", message: '*Please enter character only' }
       ],
       state: [
-        { type: "required", message: '*State is Required' },
-        { type: "pattern", message: '*Please Enter character only' }
+        { type: "required", message: '*State is required' },
+        { type: "pattern", message: '*Please enter character only' }
       ],
       country: [
-        { type: "required", message: '*Country is Required' },
-        { type: "pattern", message: '*Please Enter character only' }
+        { type: "required", message: '*Country is required' },
+        { type: "pattern", message: '*Please enter character only' }
       ],
       email: [
-        { type: "required", message: '*Email is Required' },
-        { type: "pattern", message: '*Please Enter valid Email' }
+        { type: "required", message: '*Email is required' },
+        { type: "pattern", message: '*Please enter valid email' }
       ],
       cmail: [
-        { type: "required", message: '*Confirm Email is Required' },
-        { type: "pattern", message: '*Please Enter valid Email' }
+        { type: "required", message: '*Confirm email is required' },
+        { type: "pattern", message: '*Please enter valid email' }
       ],
       cardHolderName: [
-        { type: "required", message: '*Card holder Name is Required' },
-        { type: "pattern", message: '*Please Enter character only' }
+        { type: "required", message: '*Card holder name is required' },
+        { type: "pattern", message: '*Please enter character only' }
       ],
       cvv: [
         { type: "required", message: '*Cvv is Required' }
@@ -209,8 +210,9 @@ export class InvoiceComponent implements OnInit {
 
   // enable or disable form
   add() {
-    this.paymentForm.enable()
-    this.invoiceForm.disable()
+    this.paymentForm.enable();
+    this.invoiceForm.disable();
+    this.enablePaymemtForm = false;
   }
 
   // enable previous page
@@ -270,5 +272,10 @@ export class InvoiceComponent implements OnInit {
         this.isSpinnerShow = false;
       }
     })
+  }
+
+  // back to subscription page
+  backToPreviousPage() {
+    this.router.navigate(['/subscription'])
   }
 }

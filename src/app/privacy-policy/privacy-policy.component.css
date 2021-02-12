@@ -1,12 +1,10 @@
-
-
 * {
   padding: 0;
   box-sizing: border-box;
 }
 
-.container{
-margin: 0 auto;
+.container {
+  margin: 0 auto;
 }
 
 html,
@@ -55,55 +53,66 @@ a {
   text-decoration: none;
   transition: all 0.3s ease;
 }
+
 a:hover,
-a:focus{
-outline: none;
-text-decoration: none;
+a:focus {
+  outline: none;
+  text-decoration: none;
 }
+
 h1,
-h2{
+h2 {
   color: #343C6A;
   line-height: 1.1;
   font-family: 'Rubik', sans-serif;
 }
+
 h3,
 h4,
 h5,
-h6{
-color: #343C6A;
+h6 {
+  color: #343C6A;
   line-height: 1.1;
   font-family: 'Rubik', sans-serif;
 }
+
 span {
   color: #343C6A;
   line-height: 1.5;
   font-weight: 400;
   font-family: 'Rubik', sans-serif;
 }
+
 h1 {
   font-size: 50px;
   font-weight: 700;
 }
+
 h2 {
   font-size: 36px;
   font-weight: 700;
 }
+
 h3 {
   font-size: 30px;
   font-weight: 600;
 }
+
 h4 {
   font-size: 28px;
   font-weight: 600;
 }
+
 h5 {
   font-size: 24px;
   font-weight: 600;
 }
+
 h6 {
   font-size: 20px;
   font-weight: 600;
 }
+
 p {
   color: #8e8e8e;
   line-height: 1.5;
@@ -131,20 +140,22 @@ p {
 }
 
 .button a,
-.btn a{
-color: #fff;
+.btn a {
+  color: #fff;
 }
 
 .button:hover,
-.btn:hover{
-background-color: #fff;
-color: #396AFF;
-border-color: #396AFF;
+.btn:hover {
+  background-color: #fff;
+  color: #396AFF;
+  border-color: #396AFF;
 }
+
 .button:hover a,
-.btn:hover a{
-color: #396AFF;
+.btn:hover a {
+  color: #396AFF;
 }
+
 .btn-danger:active:focus,
 .btn-danger:active,
 .btn-primary:active:focus,
@@ -152,27 +163,27 @@ color: #396AFF;
 .btn-danger:focus,
 .btn-info:focus,
 .btn-primary:focus,
-.btn-success:focus{
+.btn-success:focus {
   outline: none;
   color: #396AFF;
   background-color: #fff;
   border: 2px solid #396AFF;
 }
+
 .btn:focus,
 .btn:active:focus,
 .btn.active:focus,
 .btn.focus,
 .btn:active.focus,
-.btn.active.focus{
-outline: none;
-box-shadow: none;
+.btn.active.focus {
+  outline: none;
+  box-shadow: none;
 }
 
-input
-select,
+input select,
 textarea,
-.form-control{
-resize: none;
+.form-control {
+  resize: none;
   height: 50px;
   width: 100%;
   color: #8e8e8e;
@@ -194,7 +205,8 @@ textarea:focus,
   box-shadow: none;
   outline: none;
 }
-.modal .modal-dialog{
+
+.modal .modal-dialog {
   transition: -webkit-transform 0.3s ease-out;
   transition: transform 0.3s ease-out;
   transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
@@ -202,28 +214,33 @@ textarea:focus,
   transform: translate(0, -50px);
 }
 
-.modal.show .modal-dialog{
+.modal.show .modal-dialog {
   -webkit-transform: none;
   transform: none;
 }
+
 .modal-content {
   border: 0px;
   background-clip: unset;
 }
-.modal-header{
+
+.modal-header {
   padding: 1rem 1rem;
 }
-.modal-footer{
+
+.modal-footer {
   padding: 1rem;
 }
-.modal-body{
+
+.modal-body {
   padding: 1rem;
 }
+
 .fieldset {
   margin-bottom: 10px;
 }
 
-input[type="date"]{   
+input[type="date"] {
   background-image: url(/assets/images/input-date.png);
   background-repeat: no-repeat;
   background-position: right 15px bottom 9px;
@@ -237,154 +254,68 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 
-/*login page css start*/
-section.login-section {
-  background-color: #fbfcfe;
-  padding: 50px 0px;
+/*About us page css start*/
+.about-us-section {
+  background: linear-gradient(180deg, rgba(229, 239, 255, 0.25) 0%, rgba(229, 239, 255, 0.0656652) 83.7%, rgba(229, 239, 255, 0) 100%);
+  padding: 50px 0px 50px;
 }
 
-.login-form h2 {
-  font-family: Rubik;
-  font-size: 36px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 1.2;
-  letter-spacing: 0px;
-}
-
-.login-form {
-  width: 50%;
+.about-us-header {
+  text-align: center;
+  width: 85%;
   margin: 0 auto;
 }
 
-.login-form form .fieldset label {
+.about-us-header h3 {
   font-family: Rubik;
-  font-size: 15px;
+  font-size: 36px;
   font-weight: 500;
-  /* line-height: 28px; */
+  line-height: 41px;
   letter-spacing: 0px;
-  text-align: left;
-  color: #5B73A0;
-  width: 100%;
-}
-
-.login-form form .fieldset input {
-  width: 100%;
-  border: 1px solid #E7EDFF;
-  box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.04);
-  border-radius: 6px;
-  height: 56px;
-  padding: 0px 15px;
-  color: #343c6a;
-}
-
-.login-form form .login-first-name .icon-image{
-  top: -38px;
-}
-
-.login-form form .login-first-name input{
-  padding: 0px 40px 0px 15px;
-}
-
-.login-form .login-obliterate {
-  display: flex;
-  align-items: center;
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-
-.login-form .login-obliterate button.btn {
-  width: 136px;
-  height: 46px;
-  padding: 0px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: Barlow;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 500;
-  letter-spacing: 0px;
-  text-transform: capitalize;
-  border-radius: 8px;
-  margin-right: 20px;
-}
-
-.login-form .login-obliterate {
-  margin-bottom: 0px;
-  font-family: Barlow;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 20px;
-  letter-spacing: 0px;
-  color: #5B73A0;
-}
-
-.login-form .login-obliterate a{
-  color: #007bff;
-}
-
-.login-form  .login-remember-me {
-  display: flex;
-  align-items: center;
-}
-
-.login-form .login-remember-me label {
-  margin-bottom: 0px;
-  font-family: Barlow;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 15px;
-  color: #5B73A0;
-  display: flex;
-  align-items: center;
-}
-
-.login-form .login-remember-me input {
-  margin: 0 4px;
-  width: 15px;
-  height: 15px;
-}
-
-.login-form .radio-curve label {
-  font-family: Rubik;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 28px;
+  text-align: center;
   color: #343C6A;
 }
 
-.login-form .radio-curve input {
-  width: 17px;
-  height: 17px;
+.about-us-header p {
+  color: #5B73A0;
+  font-family: Barlow;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 25px;
+  letter-spacing: 0px;
+  text-align: center;
 }
 
-.login-form .radio-curve {
-  display: flex;
-  align-items: center;
-  margin: 20px 0px 35px;
+.about-us-caption {
+  background: #FFFFFF;
+  border-radius: 15px;
+  filter: drop-shadow(0px 4px 25px rgba(0, 0, 0, 0.1));
+  padding: 50px;
+  width: 85%;
+  margin: 50px auto 0px;
 }
 
-.login-form .radio-curve .login-radio:first-child {
-  margin-right: 20px;
-}
-/*login page css end*/
-
-.mat-snack-bar-container {
-  color: white !important;
-  background: white;
-}
-
-.icon-image {
-  margin-right: 20px;
-  top: -45px;
-  position: relative;
-  float: right;
-  font-size: 1.4rem;
+.about-us-caption h6 {
+  font-family: Rubik;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 30px;
+  text-align: center;
+  text-transform: capitalize;
+  color: #343C6A;
+  width: 92%;
+  margin: 0 auto 30px;
 }
 
-.login-form .radio-curve label{
-  margin-left: 5px;
+.about-us-caption p {
+  font-family: Barlow;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0px;
+  text-align: center;
+  color: #7990B4;
 }
+
+/*About us page css end*/

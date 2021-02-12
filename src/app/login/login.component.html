@@ -1,4 +1,7 @@
-<!-- <app-header></app-header> -->
+<app-header></app-header>
+
+<!-- Login Section -->
+
 <section class="login-section">
   <div class="container">
     <div class="login-form">
@@ -6,13 +9,13 @@
         every classroom.</h2>
       <form [formGroup]="loginForm">
         <div class="radio-curve">
-          <div class="login-radio">
-            <input (click)="userType($event)" type="radio" id="teacher" name="category" value="teacher">&nbsp;
-            <label for="teacher">Teacher</label>
+          <div class="login-radio" style="display: flex; align-items: center;">
+            <input (click)="userType($event)" type="radio" id="teacher" name="category" value="teacher" style="margin: 0 4px;">&nbsp;
+            <label for="teacher" style="margin: 0;">Teacher</label>
           </div>
-          <div class="login-radio">
-            <input (click)="userType($event)" type="radio" id="learner" name="category" value="learner">&nbsp;
-            <label for="learner">Learner</label>
+          <div class="login-radio" style="display: flex; align-items: center;">
+            <input (click)="userType($event)" type="radio" id="learner" name="category" value="learner" style="margin: 0 4px;">&nbsp;
+            <label for="learner" style="margin: 0;">Learner</label>
           </div>
         </div>
 
@@ -44,17 +47,17 @@
           </ng-container>
         </div>
 
-        <div class="login-obliterate">
+        <div class="login-obliterate mb-5">
           <button class="btn" [disabled]="!loginForm.valid" (click)="login()">Start Class</button>
-          <p>Forgot password <a (click)="resetPassword()">Reset it.</a></p>
+          <a (click)="resetPassword()">Forgot password Reset it.</a>
         </div>
 
         <div class="login-remember-me">
-          <label><input (click)="rememberMe()" [checked]="isChecked" type="checkbox"> Remember me</label>
+          <label><input (click)="rememberMe()" [checked]="isChecked" type="checkbox"><span>Remember me</span></label>
         </div>
 
       </form>
     </div>
   </div>
 </section>
-<!-- <app-footer></app-footer> -->
+<app-footer></app-footer>

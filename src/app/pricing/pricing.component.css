@@ -216,14 +216,15 @@ section .pricing-content-box {
   border: 1px solid #DCE2EC;
 }
 
-section .pricing-header h2 {
-  font-size: 60px;
+section .pricing-header h1 {
+  font-size: 36px;
   font-weight: 500;
   line-height: 60px;
   letter-spacing: 0px;
   text-align: center;
   color: #343C6A;
   margin-bottom: 20px;
+  font-family: Rubik;
 }
 
 section .pricing-header span {
@@ -241,7 +242,7 @@ section .pricing-header span {
 
 section .pricing-content {
   display: flex;
-  padding: 30px 0px 0px;
+  padding: 20px 0px 0px;
 }
 
 section .pricing-content .slick-track {
@@ -272,7 +273,7 @@ section .pricing-content-box .pricing-header-caption h5 {
 section .pricing-content-box .pricing-header-caption .pricing-showing {
   display: flex;
   align-items: center;
-  padding: 15px 0px;
+  padding: 10px 0px;
 }
 
 section .pricing-content-box .pricing-header-caption .pricing-showing h4 {

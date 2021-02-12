@@ -5,8 +5,8 @@
 <section class="pricing-section" *ngIf="!isImageShow">
   <div class="container">
     <div class="pricing-header">
-      <h2>Pricing</h2>
-      <span>Choose the best plan for your business</span>
+      <h1 style="margin-bottom:0;">Pricing</h1>
+      <!-- <span>Choose the best plan for your business</span> -->
     </div>
     <div class="pricing-content">
       <span class="previous-btn">
@@ -18,11 +18,11 @@
         <div ngxSlickItem *ngFor="let i of recordList" class="slide pricing-content-box">
           <div class="pricing-caption-flex">
             <div class="pricing-header-caption">
-              <h5>{{ i?.title}}</h5>
+              <h5 style="font-size: 24px !important;">{{ i?.title}}</h5>
               <div class="pricing-showing">
-                <h4>${{ i?.amount}}</h4>
-                <span>{{ i?.monthly}}</span>
-                <p>/{{ i?.duration}}</p>
+                <h4 style="font-size: 36px !important;">${{ i?.amount}}</h4>
+                <span style="font-size:22px !important;">{{ i?.monthly}}</span>
+                <p style="font-size: 15px !important;">/{{ i?.duration}}</p>
               </div>
               <em>Billed {{ i?.duration}}</em>
             </div>
@@ -30,7 +30,10 @@
               <ul>
                 <!-- for course_administrators-->
                 <li *ngIf="i.course_administrators==0;else courseAdministratorsTemp">
-                  <img src="/assets/images/grey-tick.png">{{i?.course_administrators}} Course Adminstrator
+                  <img  src="/assets/images/grey-tick.png">
+                  <span style="color: #dadfea;">
+                    {{i?.course_administrators}} Course Adminstrator
+                  </span>
                 </li>
                 <ng-template #courseAdministratorsTemp>
                   <li>
@@ -40,7 +43,10 @@
 
                  <!-- for gb_storage-->
                  <li *ngIf="i.gb_storage==0;else gbStorageTemp">
-                  <img src="/assets/images/grey-tick.png">{{i?.gb_storage}} GB storage
+                  <img  src="/assets/images/grey-tick.png">
+                  <span style="color: #dadfea;">
+                    {{i?.gb_storage}} GB storage
+                  </span>
                 </li>
                 <ng-template #gbStorageTemp>
                   <li>
@@ -50,17 +56,24 @@
 
                 <!-- for active students-->
                 <li *ngIf="i.active_students==0;else activeStudents">
-                  <img src="/assets/images/grey-tick.png">{{i?.active_students}} active students1
+                  <img  src="/assets/images/grey-tick.png">
+                  <span style="color: #dadfea;">
+                    {{i?.active_students}} active students1
+                  </span>
                 </li>
                 <ng-template #activeStudents>
                   <li>
-                    <img src="/assets/images/green-tick.png">{{i?.active_students}} active students1
+                    <img src="/assets/images/green-tick.png">
+                    {{i?.active_students}} active students1
                   </li>
                 </ng-template>
 
                  <!-- for Sub-admin-->
                  <li *ngIf="i.sub_admin==0;else subAdmin">
-                  <img src="/assets/images/grey-tick.png">{{i?.sub_admin}} Sub-admin
+                  <img  src="/assets/images/grey-tick.png">
+                  <span style="color: #dadfea;">
+                    {{i?.sub_admin}} Sub-admin
+                  </span>
                 </li>
                 <ng-template #subAdmin>
                   <li>
@@ -70,7 +83,10 @@
 
                  <!-- for Live session-->
                  <li *ngIf="i.live_session==0;else liveSession">
-                  <img src="/assets/images/grey-tick.png">{{i?.live_session}} Live session
+                  <img  src="/assets/images/grey-tick.png">
+                  <span style="color: #dadfea;">
+                    {{i?.live_session}} Live session
+                  </span>
                 </li>
                 <ng-template #liveSession>
                   <li>

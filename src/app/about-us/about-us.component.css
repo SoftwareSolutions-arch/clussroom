@@ -239,7 +239,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 /*About us page css start*/
 .about-us-section {
     background: linear-gradient(180deg, rgba(229, 239, 255, 0.25) 0%, rgba(229, 239, 255, 0.0656652) 83.7%, rgba(229, 239, 255, 0) 100%);
-    padding: 50px 0px 100px;
+    padding: 50px 0px 50px;
 }
 
 .about-us-header {

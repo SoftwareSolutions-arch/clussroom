@@ -267,18 +267,31 @@ section.invoice-section {
 }
 
 .invoice-details {
-  width: 57%;
+  width: 623px;
 }
 
 .order-summary {
-  width: 40%;
-  background-color: #ffff;
+  width: 401px;
+  background-color: #D5D8DC;
   border: 1px solid #EEF5FF;
   box-sizing: border-box;
-  box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 25px rgb(0 0 0 / 10%);
   border-radius: 15px;
   padding: 30px;
+  opacity: .6;
 }
+
+.order-summary-enable{
+  width: 401px;
+  /* background-color: #D5D8DC; */
+  border: 1px solid #EEF5FF;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 25px rgb(0 0 0 / 10%);
+  border-radius: 15px;
+  padding: 30px;
+  /* opacity: .6; */
+}
+
 
 .invoice-details h2 {
   font-family: Rubik;
@@ -306,7 +319,7 @@ section.invoice-section {
 
 .invoice-details form label {
   font-family: Rubik;
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 500;
   line-height: 28px;
   letter-spacing: 0px;
@@ -320,7 +333,7 @@ section.invoice-section {
   border: 1px solid #E7EDFF;
   box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.04);
   border-radius: 6px;
-  height: 56px;
+  height: 45px;
   padding: 0px 15px;
   color: #343c6a;
 }
@@ -333,11 +346,13 @@ section.invoice-section {
 }
 
 .flex-curve div:first-child {
-  width: 58%;
+  width: 290px !important;
+  padding: 0 6px 0 0;
 }
 
 .flex-curve div:last-child {
-  width: 40%;
+  width: 290px !important;
+  padding: 0 0 0 6px;
 }
 
 .invoice-details form button.btn {
@@ -354,7 +369,7 @@ section.invoice-section {
 
 .order-summary h3 {
   font-family: Rubik;
-  font-size: 32px;
+  font-size: 24px;
   font-weight: 500;
   line-height: 39px;
   letter-spacing: 0px;
@@ -371,7 +386,7 @@ section.invoice-section {
 }
 
 .lite-subscription-flex .lite-subscription h5 {
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 500;
   line-height: 28px;
   letter-spacing: 0px;
@@ -382,7 +397,7 @@ section.invoice-section {
 
 .lite-subscription-flex .lite-subscription span {
   font-family: Barlow;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 400;
   line-height: 25px;
   letter-spacing: 0px;
@@ -545,6 +560,11 @@ section.invoice-section {
   height: 46px;
 }
 
+.payment-order form .button-wrapper button.-back-btn:hover {
+  border:2px solid #16DBCC;
+  background-color: #fff;
+}
+
 .payment-mode {
   display: flex;
   margin-bottom: 15px;
@@ -642,4 +662,17 @@ input {
     z-index: 999;
     position: absolute;
     background: rgba(0, 0, 0, 0.5);
+}
+
+.back-btn{
+  margin-left: 16px;
+  border: 2px solid #DCFAF8;
+  background-color: #DCFAF8;
+  color: #16DBCC;
+
+}
+
+.back-btn:hover {
+  border: 2px solid #16DBCC;
+  background: #fff;
 }

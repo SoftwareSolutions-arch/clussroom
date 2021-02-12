@@ -44,6 +44,8 @@ import { LearnersComponent } from './learners/learners.component';
 import { StorageComponent } from './storage/storage.component';
 import { AdminComponent } from './admin/admin.component';
 import { LiveSessionsComponent } from './live-sessions/live-sessions.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { TermsOfUseComponent } from './terms-of-use/terms-of-use.component';
 // import {MatPaginator} from '@angular/material/paginator';
 // import {MatSort} from '@angular/material/sort';
 
@@ -77,7 +79,9 @@ import { LiveSessionsComponent } from './live-sessions/live-sessions.component';
     LearnersComponent,
     StorageComponent,
     AdminComponent,
-    LiveSessionsComponent
+    LiveSessionsComponent,
+    PrivacyPolicyComponent,
+    TermsOfUseComponent
   ],
   imports: [CommonModule,
     BrowserModule,

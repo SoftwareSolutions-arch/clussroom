@@ -240,7 +240,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 /*Contact us page css start*/
 .contact-us-section {
     background: linear-gradient(180deg, rgba(229, 239, 255, 0.25) 0%, rgba(229, 239, 255, 0.0656652) 83.7%, rgba(229, 239, 255, 0) 100%);
-    padding: 50px 0px 0px;
+    /* padding: 50px 0px 0px; */
 }
 
 .contact-us-header {
@@ -277,7 +277,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     background: linear-gradient(180deg, #FFFFFF 26.69%, rgba(255, 255, 255, 0) 100%);
 }
 
-.contact-us-caption h6 {
+.contact-us-caption h1 {
     font-family: Rubik;
     font-size: 36px;
     font-style: normal;
@@ -289,9 +289,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin-bottom: 25px;
 }
 
-.contact-us-caption span {
+.contact-us-caption h4 {
     font-family: Rubik;
-    font-size: 20px;
+    font-size: 22px;
     font-style: normal;
     font-weight: 400;
     line-height: 20px;

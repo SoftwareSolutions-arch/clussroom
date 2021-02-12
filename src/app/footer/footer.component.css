@@ -237,7 +237,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 /*footer css start*/
 footer {
-    background-color: #fff;
+    background-color: #396aff;
     padding: 20px 0px;
     border-top: 1px solid #E7EDFF;
 }
@@ -266,7 +266,7 @@ footer .footer-caption ul li:first-child {
 }
 
 footer .footer-caption ul li a{
-	color: #AFBCD2;
+	color: #fff;
 }
 
 footer .footer-caption ul li a:hover{
@@ -280,18 +280,26 @@ footer .footer-caption p {
     font-weight: 500;
     line-height: 16px;
     letter-spacing: 0px;
-    color: #90A8CD;
+    color: #fff;
 }
 
 footer .footer-social{
     display: flex;
     align-items: center;
+    justify-content: flex-end;
+    padding: 0 0 7px 0;
 }
 
 footer .footer-social a{
-	margin: 0px 15px;
-	color: #7990B4;
+    margin: 0px 11px;
+    color: #fff;
+    font-size: 28px;
 }
+
+footer .footer-social a:hover {
+    color: #343c6a;
+}
+
 footer .footer-social a:first-child{
     margin-left: 0px;
 }
@@ -299,3 +307,40 @@ footer .footer-social a:last-child{
     margin-right: 0px;
 }
 /*footer css end*/
+
+/* New CSS */
+footer .footer-terms ul {
+    display: flex;
+    padding-bottom: 10px;
+}
+
+footer .footer-terms ul li {
+	font-family: Barlow;
+	font-size: 15px;
+	font-weight: 500;
+	line-height: 20px;
+	letter-spacing: 0px;
+	padding: 0px 15px;
+}
+
+footer .footer-terms ul li:first-child {
+    padding-left: 0px;
+}
+
+footer .footer-terms ul li a{
+	color: #fff;
+}
+
+footer .footer-terms ul li a:hover{
+	color: #343c6a;
+}
+
+footer .footer-terms p {
+    margin-bottom: 0px;
+    font-family: Barlow;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0px;
+    color: #fff;
+}

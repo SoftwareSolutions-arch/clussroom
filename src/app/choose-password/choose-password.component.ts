@@ -32,6 +32,9 @@ export class ChoosePasswordComponent implements OnInit {
     this.error_messages = {
       password: [
         { type: "required", message: '*Password is Required' },
+        { type: "pattern", message: '*Please enter atleast' },
+        { type: "pattern", message: '*One lowercase char,one uppercase char' },
+        { type: "pattern", message: '*One number and one special character' }
       ],
       confirm_password: [
         { type: "required", message: '*Confirm Password is Required' }
@@ -45,6 +48,7 @@ export class ChoosePasswordComponent implements OnInit {
           Validators.compose([
             Validators.required,
             Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{6,}')
+
           ])
         ),
         confirm_password: new FormControl(
