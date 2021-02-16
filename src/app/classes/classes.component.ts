@@ -1,12 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { UtilService } from '../../providers/util.service';
 import { SharedServiceService } from '../shared-service.service';
+import * as $ from "jquery";
+
+
 @Component({
   selector: 'app-classes',
   templateUrl: './classes.component.html',
   styleUrls: ['./classes.component.css']
 })
 export class ClassesComponent implements OnInit {
+  @ViewChild('deleteclosebutton') deleteclosebutton;
+  @ViewChild('closeModal') private closeModal: ElementRef;
+  @ViewChildren("checkboxes") checkboxes: QueryList<ElementRef>;
 
   isLoadingBool: boolean = true;
   allCourseList: any = [];
@@ -24,6 +30,9 @@ export class ClassesComponent implements OnInit {
   selectedItems = [];
 
   courseList = { class_start: '', class_end: '', class_name: '' };
+  classesData: any = {};
+  userIdDetails: any = '';
+  showInputCategory: boolean = true;
 
   constructor(public util: UtilService, public service: SharedServiceService) {
     this.getAllCoursesList();
@@ -84,7 +93,7 @@ export class ClassesComponent implements OnInit {
     if (event.target.checked == true) {
       this.editForm = true;
       // this.selectedItems.push({ 'nid': courseList.nid })
-      // this.selectedItems.push(courseList.nid)
+      this.selectedItems.push(courseList.nid)
 
     }
     // console.log('this.selectedItems11',this.selectedItems)
@@ -121,4 +130,99 @@ export class ClassesComponent implements OnInit {
       }
     })
   }
+
+  // delete class pop up for confirm details
+  popDeleteClass() {
+    let params = {
+      "step": 1,
+      "delete_class_nids": this.selectedItems
+    }
+    this.service.post('delete-class-api', params, 1).subscribe(result => {
+      console.log('result', result);
+      if (result['status'] == '1') {
+        this.classesData = result.classesdata;
+      }
+    })
+  }
+
+  // final delete for classes
+  proceedToDelete() {
+    let params = {
+      "step": 2,
+      "delete_class_nids": this.selectedItems
+    }
+    this.service.post('delete-class-api', params, 1).subscribe(result => {
+      this.closeModal.nativeElement.click();
+      if (result['status'] == '1') {
+        this.selectedItems = [];
+        this.editForm = false;
+        this.util.showSuccessAlert('Class deleted successfully');
+        this.viewClassesList();
+      }
+    })
+  }
+
+  // edit course details 
+  editCourses() {
+    if (this.selectedItems.length > 1) {
+      this.util.errorAlertPopup("Please select only one row for edit")
+      return
+    }
+    else {
+      this.selectedItems.forEach(element => {
+        // this.userIdDetails = element.nid
+        this.userIdDetails = element
+        console.log(element, 'element++')
+      });
+      this.editForm = false;
+      this.isSaveCourses = true;
+      this.showInputCategory = true;
+    }
+  }
+
+  // cancel course details 
+  cancelCourses() {
+    this.viewClassesList();
+    this.isSaveCourses = false;
+    this.editForm = false;
+    this.userIdDetails = '';
+    this.selectedItems = []
+    this.checkboxes.forEach((element) => {
+      element.nativeElement.checked = false;
+    });
+    this.showInputCategory = true;
+  }
+
+
+
+  saveClasses(index: number): any {
+    console.log('index', index);
+    let params = {
+      "class_name": index['title'],
+      "classid": index['nid'],
+      // "class_code":index['field_class_code'],
+      "startdate": index['field_start_date'],
+      "enddate": index['field_end_date'],
+      // "status":index['field_status']
+    }
+    console.log('params', params);
+    this.isLoadingBool = true;
+    this.service.post('update-class-api', params, 1).subscribe(result => {
+      console.log("result", result);
+      if (result['Status'] == 1 || '1') {
+        this.isLoadingBool = false;
+        this.isSaveCourses = false;
+        this.editForm = false;
+        this.userIdDetails = '';
+        this.selectedItems = []
+        this.checkboxes.forEach((element) => {
+          element.nativeElement.checked = false;
+        });
+        // this.deleteclosebutton.nativeElement.click();
+        this.util.showSuccessAlert('Classes Updated Successfully');
+        this.getAllCoursesList();
+      }
+    })
+  }
+
 }

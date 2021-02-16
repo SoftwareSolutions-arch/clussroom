@@ -24,13 +24,17 @@
         <a *ngIf="!editForm && !isSaveCourses" class="add-btn custom-a-btn" data-toggle="modal" data-target="#addClass">
           <i class="fa fa-plus" aria-hidden="true"></i> New Class</a>
 
-          <a *ngIf="editForm" (click)="editCourses()" style="margin-left: 15px;background: #4CAF50 !important;"
+        <a *ngIf="editForm" (click)="editCourses()" style="margin-left: 15px;background: #4CAF50 !important;"
           class="add-btn custom-a-btn" data-toggle="modal">
           <i class="fa fa-edit" aria-hidden="true"></i> Edit</a>
 
         <a *ngIf="!isSaveCourses && editForm" class="delete-btn custom-a-btn" data-toggle="modal"
-          data-target="#deleteClass">
+          data-target="#deleteClass" (click)="popDeleteClass()">
           <i class="fa fa-trash-o" aria-hidden="true"></i></a>
+
+        <a *ngIf="isSaveCourses" (click)="cancelCourses()" style="margin-left: 15px;background: #db2929 !important;"
+          class="add-btn custom-a-btn" data-toggle="modal">
+          <i class="fa fa-times" aria-hidden="true"></i> Cancel</a>
       </div>
     </div>
     <div class="table-responsive">
@@ -79,7 +83,7 @@
               <th scope="col"></th>
             </tr>
           </thead>
-          <tbody>
+          <tbody class="learner-text-left">
             <tr
               *ngFor="let classList of this.allClassesData| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;"
               [class.active]="i == currentIndex">
@@ -88,20 +92,28 @@
                   <input type="checkbox" #checkboxes (click)="isCheckClicked($event,classList,i)"></div>
               </th>
               <td>
-                <div>1</div>
+                <div>{{this.classList.sno}}</div>
               </td>
-              <td class="text-left">
-                <div>{{this.classList.title}}</div>
-              </td>
+
+              <td *ngIf="this.classList.nid !== this.userIdDetails" class="text-left">{{this.classList.title}}</td>
+              <td *ngIf="this.classList.nid===this.userIdDetails"><input [(ngModel)]="this.allClassesData[i].title"
+                  class="text-left" /></td>
+
               <td>
                 <div>{{this.classList.field_class_code}}</div>
               </td>
-              <td>
-                <div>{{this.classList.field_start_date}}</div>
+
+              <td *ngIf="this.classList.nid !== this.userIdDetails" class="text-left">
+                {{this.classList.field_start_date}}</td>
+              <td *ngIf="this.classList.nid===this.userIdDetails"><input type="date"
+                  [(ngModel)]="this.allClassesData[i].field_start_date" class="text-left" /></td>
+
+              <td *ngIf="this.classList.nid !== this.userIdDetails" class="text-left">{{this.classList.field_end_date}}
               </td>
-              <td>
-                <div>{{this.classList.field_end_date}}</div>
-              </td>
+
+              <td *ngIf="this.classList.nid===this.userIdDetails"><input type="date"
+                  [(ngModel)]="this.allClassesData[i].field_end_date" class="text-left" /></td>
+
               <td>
                 <div class="highlight">{{this.classList.total_learners}}</div>
               </td>
@@ -114,7 +126,16 @@
                 </div>
               </td>
               <td>
-                <div class="go-to-class">Go to Class</div>
+                <button><a href="#">Go to Class</a></button>
+              </td>
+
+              <td>
+                <!-- <div class="go-to-class" *ngIf="this.classList.nid===this.userIdDetails" (click)="saveClasses(this.allClassesData[i])">Save class</div> -->
+                <button style="color: #90a193 !important;" *ngIf="this.classList.nid===this.userIdDetails"
+                  (click)="saveClasses(this.allClassesData[i])">
+                  <a style="color: #90a193 !important;" href="#">Save class</a>
+                </button>
+
               </td>
             </tr>
           </tbody>
@@ -164,7 +185,7 @@
 
   <!-- Delete Class modal popup start -->
 
-  <div id="deleteClass" class="modal deleteclass-modal" role="dialog">
+  <div id="deleteClass" class="modal deleteclass-modal" role="dialog" #closeModal data-dismiss="modal">
     <div class="modal-dialog">
 
       Modal content
@@ -179,24 +200,25 @@
           <div class="class-delete-list">
             <div class="delete-field">
               <span>Course Name :</span>
-              <p>Geography for Secondary 4 - Level 3</p>
+              <p>{{this.classesData.title}}</p>
             </div>
             <div class="class-delete-curve">
               <div class="delete-field">
                 <span>Level :</span>
-                <p>Secondary 4</p>
+                <p>{{this.classesData.field_level_name}}</p>
               </div>
               <div class="delete-field">
                 <span>Banding :</span>
-                <p>Band 3</p>
+                <p>{{this.classesData.field_banding_name}}</p>
               </div>
               <div class="delete-field">
                 <span>Class :</span>
-                <p>Poppins</p>
+                <p *ngFor="let classes of this.classesData.cl">{{classes.title}}</p>
               </div>
               <div class="delete-field">
                 <span>Class code :</span>
-                <div class="class-code-text">#56782</div>
+                <div class="class-code-text" *ngFor="let classes of this.classesData.cl">{{classes.field_class_code}}
+                </div>
               </div>
             </div>
           </div>
@@ -206,7 +228,7 @@
             <p>Proceed?</p>
           </div>
           <div class="class-del-btn">
-            <button class="class-proceed-btn">Proceed to delete</button>
+            <button class="class-proceed-btn" (click)="proceedToDelete()">Proceed to delete</button>
             <button class="class-cancel-btn" data-dismiss="modal">Cancel</button>
           </div>
         </div>

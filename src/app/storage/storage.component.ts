@@ -12,4 +12,8 @@ export class StorageComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  showHideRow(table) {
+    console.log("Hello", table)
+    $("#" + table).toggle();
+  }
 }

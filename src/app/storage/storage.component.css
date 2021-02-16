@@ -3733,3 +3733,154 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-snack-bar-container{
     background:#efecec !important
 }
+
+
+/* NEW CSS */
+
+.danger-text {
+    color: #FF5A64 !important;
+    font-weight: 600 !important;
+    font-size: 12px !important;
+}
+
+.finish {
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    color: #FFBB38 !important;
+}
+
+.green {
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    color: #81C8C1 !important;
+}
+
+.bottom-select select {
+    resize: none;
+    width: 100%;
+    color: #8e8e8e;
+    box-shadow: none;
+    font-size: 13px;
+    line-height: 1.42857143;
+    font-weight: 400;
+    font-family: 'Rubik', sans-serif;
+    background: #FFFFFF;
+    border: 1px solid #F3F6FF;
+    border-radius: 6px;
+    height: 35px;
+    width: 56px;
+    margin-right: 1em;
+    transition: .5s ease;
+}
+
+.selector ul {
+    display: flex;
+    justify-content:flex-end;
+    position: relative;
+    list-style-type: none !important;
+}
+
+.selector ul li a{
+    padding: 6px 10px !important;
+    color: #7990B4;
+    font-size: 13px;
+    list-style: none !important;
+}
+
+.selector ul li a:hover {
+        background: #396aff;
+    border-radius: 6px;
+    padding: 6px 10px !important;
+    color: #fff !important;
+}
+
+.selector ul li i {
+    padding: 0 0;
+}
+
+.learner-text-left tr th {
+    text-align: left !important;
+}
+
+
+.learner-text-left tr td {
+    text-align: left !important;
+}
+
+
+.learner-text-left button {
+    width: 90px !important;
+    height: 30px !important;
+    border-radius: 3px !important;
+    background-color: #FFA26B;
+    border: 2px solid #ffa26b !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 8px 0 0 0;
+
+}
+
+.learner-text-left button a {
+    color: #fff;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px 10px;
+}
+
+.learner-text-left button:hover {
+    background: transparent;
+    border: 2px solid #ffa26b !important;
+    transition: .5s ease-in-out;
+}
+
+.learner-text-left button a:hover {
+    color: #ffa26b;
+    text-decoration: none;
+}
+
+.table-highlight {
+    padding: 9px 26px;
+    text-decoration: underline;
+    color: #396aff !important;
+}
+
+
+.finish {
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    color: #FFBB38 !important;
+}
+
+.green {
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    color: #81C8C1 !important;
+}
+
+.table-result-wrapper {
+    padding: 20px 10px 20px 30px;
+    display: flex;
+    align-items: center;
+}
+
+.table-content-wrapper-display {
+    justify-content: flex-end;
+    display: flex;
+    padding: 0 23px;
+    float: right;
+    width: 100%;
+}
+
+
+.col-sm-2-width {
+    text-align: right;
+    max-width: 10%;
+}
+
+.col-sm-2-width p {
+    text-align: right !important;
+    font-weight: 600;
+    font-size: 13px;
+    color: #343C6A;
+}

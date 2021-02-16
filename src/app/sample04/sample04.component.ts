@@ -84,12 +84,12 @@ export class Sample04Component implements OnInit {
       this.selectedItems.push(courseList.nid)
 
     }
-    console.log('this.selectedItems11',this.selectedItems)
+    console.log('this.selectedItems11', this.selectedItems)
     if (event.target.checked == false) {
       // this.indexesValue=[];
       this.selectedItems = this.selectedItems.filter(
         book => book != courseList.nid);
-        // book => book.nid != courseList.nid);
+      // book => book.nid != courseList.nid);
       if (this.selectedItems.length == 0) {
         this.editForm = false;
       }
@@ -292,7 +292,7 @@ export class Sample04Component implements OnInit {
       index['field_banding'] = ''
       this.showBanding = false;
     }
-  
+
   }
 
   compareFn(a, b) {

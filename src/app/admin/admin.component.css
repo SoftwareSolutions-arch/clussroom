@@ -2911,6 +2911,7 @@ table.dashboard-table td {
     letter-spacing: 0px;
     text-align: center;
     color: #343C6A;
+    padding: 14px 0;
 }
 
 table.dashboard-table tbody tr {
@@ -3732,4 +3733,430 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .mat-snack-bar-container{
     background:#efecec !important
+}
+
+
+
+/* New CSS */
+
+.danger-text {
+    color: #FF5A64 !important;
+    font-weight: 600 !important;
+    font-size: 12px !important;
+}
+
+.finish {
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    color: #FFBB38 !important;
+}
+
+.green {
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    color: #81C8C1 !important;
+}
+
+.bottom-select select {
+    resize: none;
+    width: 100%;
+    color: #8e8e8e;
+    box-shadow: none;
+    font-size: 13px;
+    line-height: 1.42857143;
+    font-weight: 400;
+    font-family: 'Rubik', sans-serif;
+    background: #FFFFFF;
+    border: 1px solid #F3F6FF;
+    border-radius: 6px;
+    height: 35px;
+    width: 56px;
+    margin-right: 1em;
+    transition: .5s ease;
+}
+
+.selector ul {
+    display: flex;
+    justify-content:flex-end;
+    position: relative;
+    list-style-type: none !important;
+}
+
+.selector ul li a{
+    padding: 6px 10px !important;
+    color: #7990B4;
+    font-size: 13px;
+    list-style: none !important;
+}
+
+.selector ul li a:hover {
+        background: #396aff;
+    border-radius: 6px;
+    padding: 6px 10px !important;
+    color: #fff !important;
+}
+
+.selector ul li i {
+    padding: 0 0;
+}
+
+.learner-text-left tr th {
+    text-align: left !important;
+}
+
+
+.learner-text-left tr td {
+    text-align: left !important;
+}
+
+
+.learner-text-left button {
+    width: 83px !important;
+    height: 20px !important;
+    border-radius: 3px !important;
+    background-color: #FFA26B;
+    border: 2px solid #ffa26b !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 8px 0 0 0;
+
+}
+
+.learner-text-left button a {
+    color: #fff;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.learner-text-left button:hover {
+    background: transparent;
+    border: 2px solid #ffa26b !important;
+    transition: .5s ease-in-out;
+}
+
+.learner-text-left button a:hover {
+    color: #ffa26b;
+    text-decoration: none;
+}
+
+.table-highlight {
+    padding: 9px 26px;
+    text-decoration: underline;
+    color: #396aff !important;
+}
+
+
+.finish {
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    color: #FFBB38 !important;
+}
+
+.green {
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    color: #81C8C1 !important;
+}
+
+.table-result-wrapper {
+    padding: 20px 10px 20px 30px;
+    display: flex;
+    align-items: center;
+}
+
+.table-path {
+    width: 100%;
+}
+
+.table-path p {
+    font-size: 20px;
+    color: #333B6A;
+    font-weight: 500;
+    border-bottom: 1px solid #F1F6FB;
+    padding: 18px 28px;
+    margin: 0;
+}
+
+.admin-button button {
+    width: 71px;
+    height: 22px;
+    border-radius: 6px;
+    background: #FFF5D9;
+    border: 2px solid #fff5d9;
+}
+
+.admin-button button:hover {
+    background: #fff !important;
+    transition: .5s ease-in-out;
+}
+
+
+.admin-button button a {
+    color: #FFBB38;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+.admin-button-green {
+    background: #DCFAF8 !important;
+    border: 2px solid #DCFAF8 !important;
+}
+
+.admin-button-green:hover {
+    background: #fff !important;
+    transition: .5s ease-in-out;
+}
+
+
+.admin-button-green a {
+    color: #81C8C1 !important;
+    padding: 0px 12px !important;
+}
+.class-table-user {
+    margin: 20px;
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #F1F6FB;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* POPUP */
+
+.green-modal-header {
+    padding: 0 !important;
+    right: 30px !important;
+    top: 32px !important;
+    background-color: #81C8C1;
+}
+
+.green-modal-header h4 {
+    font-weight: 500;
+    font-size: 17px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    position: relative;
+    top: 0.6em;
+    left: 1em;
+}
+
+.green-modal-header button {
+    bottom: .8em;
+    right: 1em;
+    position: relative;
+    opacity: 1;
+}
+
+
+.contain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0;
+    width: 20% !important;
+    padding: 0 0 1em 0;
+    font-size: 15px !important;
+    font-weight: 400 !important;
+}
+
+.contain input {
+    width: 20px !important;
+    height: 20px !important;
+    padding: 0 0 !important;
+    margin: 0 10px
+}
+
+.add-button {
+        width: 69px;
+    background: #EEF5FE;
+    border: 2px solid #EEF5FF;
+    height: 35px;
+    color: #396aff;
+    font-size: 15px;
+    border-radius: 6px;
+    font-weight: 500;
+    position: relative;
+    left: 8em;
+    bottom: .6em;
+}
+
+.add-button:hover {
+    background: #396aff;
+    border: 2px solid #396aff;
+    color: #eef5fe;
+    transition: .5s ease-in-out;
+}
+
+.label-p {
+    padding: 1px 0 0 0px !important;
+    margin: 0;
+    font-size: 15px !important;
+    align-items: center;
+    display: flex;
+    text-align: left;
+}
+
+
+.admin-popup-button button{
+    background: #DCE2EC;
+    height: 35px;
+    width: 140px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    color: #343c6a;
+    transition: .5s ease-in-out;
+}
+
+
+.admin-popup-button button:hover {
+    background: #343c6a;
+    color: #dce3ec;
+    transition: .5s ease-in-out;
+}
+
+.admin-table table td{
+    padding: 16px 10px !important;
+}
+
+.admin-table-width {
+    width: 28% !important;
+}
+
+.modal-dialog-width {
+    max-width: 642px !important;
+}
+
+.orange {
+    background-color: #FFE8DA;
+    color: #FFA26B !important;
+    padding: 7px 28px;
+    border-radius: 6px;
+    font-size: 18px !important;
+}
+
+.para {
+    padding: 0 0 0 19em;
+    margin: 0;
+    font-size: 15px;
+}
+
+.adjust {
+    text-align: right !important;
+    padding: 0 26px;
+    margin: 0 6px 0 0;
+}
+
+
+.next-btn-course {
+    width: 75px !important;
+    background-color: #DCFAF8 !important;
+    color: #81C8C1 !important;
+    height: 35px !important;
+    border-radius: 6px !important;
+    transition: .5s ease-in-out;
+}
+
+
+.next-btn-course:hover {
+    background-color: #81c8c1 !important;
+    color: #dcfaf8 !important;
+    border:1px solid #81c8c1 !important;
+    transition: .5s ease-in-out;
+}
+
+.back-btn-course-blue {
+    width: 92px !important;
+    background-color: #396aff !important;
+    color: #fff !important;
+    height: 35px !important;
+    border-radius: 6px !important;
+    margin-right: 10px !important;
+    transition: .5s ease-in-out;
+
+}
+
+.back-btn-course-blue a {
+    color: #fff;
+    padding: 7px 15px;
+}
+
+.back-btn-course-blue:hover {
+    background-color: #fff !important;
+/*    color: #ffa26b !important;*/
+    border: 2px solid #396aff !important;
+    transition: .5s ease-in-out;
+}
+
+.back-btn-course-blue a:hover {
+    color: #396aff;
+}
+
+.admin-modal-footer {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 0;
+}
+
+.admin-modal-footer button {
+    font-family: Barlow;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+    letter-spacing: 0px;
+    text-align: center;
+    width: 50%;
+    background-color: transparent;
+    border: 0px;
+    color: #396AFF;
+    margin: 0;
+}
+
+.admin-popup-button input {
+    width: 285px !important;
+    height: 35px !important;
+}
+
+.admin-popup-button input::placeholder {
+    font-size: 15px;
+    font-weight: 400;
+    color: #DCE2EC;
+}
+
+.admin-popup-button {
+    padding: 20px 0px;
+    border-bottom: 1px solid #F1F6FB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.banding-adjust {
+    
+    text-align: right;
+    width: 113px;
+    color: #5B73A0 !important;
+    padding: 0 5em 0 14em;
+
+}
+
+
+.admin-table tr td {
+    font-size: 15px;
+    font-weight: 400;
+    color: #7990B4;
+}
+
+.name-of-course select {
+    color: #DCE2EC !important;
+}
+
+.name-of-course select option {
+    color: #5B73A0 !important;
 }
