@@ -1,422 +1,422 @@
-<!-- loader showing-->
-<div *ngIf="isLoadingBool" class="loading-indicator">
-  <mat-spinner></mat-spinner>
-</div>
-<!-- close loader showing-->
+  <!-- loader showing-->
+  <div *ngIf="isLoadingBool" class="loading-indicator">
+    <mat-spinner></mat-spinner>
+  </div>
+  <!-- close loader showing-->
 
-<!-- courses table-->
-<div class="prospectus-section">
-  <div class="prospectus-tabs">
-    <ul class="nav nav-tabs">
-      <li><a data-toggle="tab" href="#summary" class="active">Course</a></li>
-      <li><a data-toggle="tab" href="#instructions">Method of Instructions</a></li>
-    </ul>
-    <div class="prospectus-action">
-      <a *ngIf="!editForm && !isSaveCourses" class="add-btn custom-a-btn" data-toggle="modal" data-target="#addCourse">
-        <i class="fa fa-plus" aria-hidden="true"></i> Name</a>
-      <a *ngIf="editForm" (click)="editCourses()" style="margin-left: 15px;background: #ef4a4a !important;"
-        class="add-btn custom-a-btn" data-toggle="modal">
-        <i class="fa fa-edit" aria-hidden="true"></i> Edit</a>
-      <!-- <a *ngIf="isSaveCourses" (click)="saveCourses()" style="margin-left: 15px;background: #7460b0 !important;"
-        class="add-btn custom-a-btn" data-toggle="modal">
-        <i class="fa fa-save" aria-hidden="true"></i> Save</a> -->
-      <a *ngIf="isSaveCourses" (click)="cancelCourses()" style="margin-left: 15px;background: #db2929 !important;"
-        class="add-btn custom-a-btn" data-toggle="modal">
-        <i class="fa fa-times" aria-hidden="true"></i> Cancel</a>
-      <a *ngIf="!isSaveCourses && editForm" style="margin-left: 15px;background: #9a7be3 !important;"
-        class="add-btn custom-a-btn" data-toggle="modal" data-target="#deleteCourse">
-        <i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
+  <!-- courses table-->
+  <div class="prospectus-section">
+    <div class="prospectus-tabs">
+      <ul class="nav nav-tabs">
+        <li><a data-toggle="tab" href="#summary" class="active">Course</a></li>
+        <li><a data-toggle="tab" href="#instructions">Method of Instructions</a></li>
+      </ul>
+      <div class="prospectus-action">
+        <a *ngIf="!editForm && !isSaveCourses" class="add-btn custom-a-btn" data-toggle="modal" data-target="#addCourse">
+          <i class="fa fa-plus" aria-hidden="true"></i> Name</a>
+        <a *ngIf="editForm" (click)="editCourses()" style="margin-left: 15px;background: #ef4a4a !important;"
+          class="add-btn custom-a-btn" data-toggle="modal">
+          <i class="fa fa-edit" aria-hidden="true"></i> Edit</a>
+        <!-- <a *ngIf="isSaveCourses" (click)="saveCourses()" style="margin-left: 15px;background: #7460b0 !important;"
+          class="add-btn custom-a-btn" data-toggle="modal">
+          <i class="fa fa-save" aria-hidden="true"></i> Save</a> -->
+        <a *ngIf="isSaveCourses" (click)="cancelCourses()" style="margin-left: 15px;background: #db2929 !important;"
+          class="add-btn custom-a-btn" data-toggle="modal">
+          <i class="fa fa-times" aria-hidden="true"></i> Cancel</a>
+        <a *ngIf="!isSaveCourses && editForm" style="margin-left: 15px;background: #9a7be3 !important;"
+          class="add-btn custom-a-btn" data-toggle="modal" data-target="#deleteCourse">
+          <i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
+      </div>
+    </div>
+    <div class="tab-content">
+      <div id="summary" class="tab-pane active">
+        <div class="table-responsive">
+          <table class="table dashboard-table">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">No.</th>
+                <th scope="col" class="text-left">Course Name</th>
+                <th scope="col">Code</th>
+                <th scope="col" class="table-filter">Cateory/Dept</th>
+                <th scope="col" class="table-filter">Level</th>
+                <th scope="col" class="table-filter">Banding</th>
+                <th scope="col" class="table-filter">No. of classes</th>
+                <th scope="col" class="table-filter">No. of learners</th>
+                <th scope="col" class="table-filter">Admin</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let courseList of this.allCourseList| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;"
+                [class.active]="i == currentIndex">
+                <th>
+                  <div class="radio-table">
+                    <input #checkboxes (click)="isCheckClicked($event,courseList,i)" type="checkbox">
+                  </div>
+                </th>
+                <td>{{this.courseList.sno}}</td>
+                <td *ngIf="this.courseList.nid !== this.userIdDetails" class="text-left">{{this.courseList.title}}</td>
+                <td *ngIf="this.courseList.nid===this.userIdDetails"><input [(ngModel)]="this.allCourseList[i].title"
+                    class="text-left" /></td>
+
+                <td class="text-left">{{this.courseList.field_course_code}}</td>
+
+                <td *ngIf="this.courseList.nid !== this.userIdDetails" class="text-left">
+                  {{this.courseList.field_category}}</td>
+                <td *ngIf="this.courseList.nid===this.userIdDetails">
+                  <div class="category-course fieldset">
+                    <select name="category" id="categorycourse" [(ngModel)]="this.allCourseList[i].field_category"
+                      *ngIf=showInputCategory (change)="addNewcategory(this.allCourseList[i])">
+                      <option> please select category</option>
+                      <option *ngFor="let categories of this.allCategories" [value]="categories.tid">{{categories.name}}
+                      </option>
+                      <option *ngIf="this.allCategories.length>1" value="create_new">Create new</option>
+                    </select>
+                    <input *ngIf=!showInputCategory name="courseList.title"
+                      [(ngModel)]="this.allCourseList[i].field_category" class="text-left">
+                  </div>
+                </td>
+
+                <td *ngIf="this.courseList.nid !== this.userIdDetails" class="text-left">{{this.courseList.field_level}}
+                </td>
+                <td *ngIf="this.courseList.nid===this.userIdDetails">
+                  <div class="category-course fieldset">
+                    <select name="category" id="categorycourse" [(ngModel)]="this.allCourseList[i].field_level"
+                      *ngIf=showFiledLevel (change)="addNewcategory(this.allCourseList[i])">
+                      <option *ngFor="let level of this.allLevel" [value]="level.tid">{{level.name}}</option>
+                      <option *ngIf="this.allLevel.length>1" value="create_new">Create new</option>
+                    </select>
+                    <input *ngIf=!showFiledLevel name="courseList.title" [(ngModel)]="this.allCourseList[i].field_level"
+                      class="text-left">
+                  </div>
+                </td>
+
+                <td *ngIf="this.courseList.nid !== this.userIdDetails" class="text-left">{{this.courseList.field_banding}}
+                </td>
+                <td *ngIf="this.courseList.nid===this.userIdDetails">
+                  <div class="category-course fieldset">
+                    <select name="category" id="categorycourse" [(ngModel)]="this.allCourseList[i].field_banding"
+                      *ngIf=showBanding (change)="addNewcategory(this.allCourseList[i])">
+                      <option *ngFor="let banding of this.allBanding" [value]="banding.tid">{{banding.name}}</option>
+                      <option *ngIf="this.allBanding.length>1" value="create_new">Create new</option>
+                    </select>
+                    <input *ngIf=!showBanding name="courseList.title" [(ngModel)]="this.allCourseList[i].field_banding"
+                      class="text-left">
+                  </div>
+                </td>
+
+                <td class="text-left">{{this.courseList.classes}}</td>
+                <!-- <td *ngIf="this.courseList.nid===this.userIdDetails">
+                  <input name="courseList.title" [(ngModel)]="this.allCourseList[i].classes" class="text-left"></td> -->
+                <td class="text-left">
+                  {{this.courseList.total_learners}}</td>
+                <!-- <td *ngIf="this.courseList.nid===this.userIdDetails"><input name="courseList.title"
+                    [(ngModel)]="this.allCourseList[i].total_learners" class="text-left"></td> -->
+
+                <td><span>Assign</span></td>
+
+                <td *ngIf="this.courseList.nid===this.userIdDetails" (click)="saveCourses(this.allCourseList[i])">
+                  <span class="save-user">Save</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-result-wrapper">
+          <pagination-controls previousLabel="Prev" nextLabel="Next" autoHide="true" responsive="true"
+            (pageChange)="handlePageChange($event)"></pagination-controls>
+        </div>
+      </div>
+      <div id="instructions" class="tab-pane">
+        <div class="table-responsive">
+          <table class="table dashboard-table">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">No.</th>
+                <th scope="col" class="text-left">Course Name</th>
+                <th scope="col">Code</th>
+                <th scope="col" class="table-filter">Cateory/Dept</th>
+                <th scope="col" class="table-filter">Level</th>
+                <th scope="col" class="table-filter">Banding</th>
+                <th scope="col" class="table-filter">No. of classes</th>
+                <th scope="col" class="table-filter">No. of learners</th>
+                <th scope="col" class="table-filter">Admin</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let courseList of this.allCourseList| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index"
+                [class.active]="i == currentIndex">
+                <th>
+                  <div class="radio-table">
+                    <input (click)="isCheckClicked($event,courseList,i)" type="checkbox">
+                  </div>
+                </th>
+                <td>{{i+1}}</td>
+
+                <td *ngIf="i !== this.indexesValue" class="text-left">{{this.courseList.title}}</td>
+                <td *ngIf="i===this.indexesValue"><input type="text" name="name" [(ngModel)]="courseDetails.name"
+                    class="text-left" value={{this.courseList.title}} /></td>
+
+                <td class="text-left">{{this.courseList.nid}}</td>
+
+                <td *ngIf="i !== this.indexesValue" class="text-left">{{this.courseList.field_category}}</td>
+                <td *ngIf="i===this.indexesValue"><input type="text" name="field_category"
+                    [(ngModel)]="courseDetails.field_category" class="text-left" value={{this.courseList.field_category}}>
+                </td>
+
+                <td *ngIf="i !== this.indexesValue" class="text-left">{{this.courseList.field_level}}</td>
+                <td *ngIf="i===this.indexesValue"><input type="text" name="field_level"
+                    [(ngModel)]="courseDetails.field_level" class="text-left" value={{this.courseList.field_level}}></td>
+
+                <td *ngIf="i !== this.indexesValue" class="text-left">{{this.courseList.field_banding}}</td>
+                <td *ngIf="i===this.indexesValue"><input type="text" name="field_banding"
+                    [(ngModel)]="courseDetails.field_banding" class="text-left" value={{this.courseList.field_banding}}>
+                </td>
+
+                <td *ngIf="i !== this.indexesValue" class="text-left">{{this.courseList.classes}}</td>
+                <td *ngIf="i===this.indexesValue"><input name="classes" [(ngModel)]="courseDetails.classes"
+                    class="text-left" value={{this.courseList.classes}}></td>
+
+                <td *ngIf="i !== this.indexesValue" class="text-left">{{this.courseList.total_learners}}</td>
+                <td *ngIf="i===this.indexesValue"><input name="total_learners" [(ngModel)]="courseDetails.total_learners"
+                    class="text-left" value={{this.courseList.total_learners}}></td>
+
+                <td *ngIf="i !== this.indexesValue" class="text-left">{{this.courseList.field_banding}}</td>
+                <td *ngIf="i===this.indexesValue"><input name="admin" [(ngModel)]="courseDetails.admin" class="text-left"
+                    value={{this.courseList.field_banding}}></td>
+
+                <td (click)="saveCourses(courseList)">Save</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-result-wrapper">
+          <pagination-controls previousLabel="Prev" nextLabel="Next" autoHide="true" responsive="true"
+            (pageChange)="handlePageChange($event)"></pagination-controls>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="tab-content">
-    <div id="summary" class="tab-pane active">
-      <div class="table-responsive">
-        <table class="table dashboard-table">
-          <thead>
-            <tr>
-              <th scope="col"></th>
-              <th scope="col">No.</th>
-              <th scope="col" class="text-left">Course Name</th>
-              <th scope="col">Code</th>
-              <th scope="col" class="table-filter">Cateory/Dept</th>
-              <th scope="col" class="table-filter">Level</th>
-              <th scope="col" class="table-filter">Banding</th>
-              <th scope="col" class="table-filter">No. of classes</th>
-              <th scope="col" class="table-filter">No. of learners</th>
-              <th scope="col" class="table-filter">Admin</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr
-              *ngFor="let courseList of this.allCourseList| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;"
-              [class.active]="i == currentIndex">
-              <th>
-                <div class="radio-table">
-                  <input #checkboxes (click)="isCheckClicked($event,courseList,i)" type="checkbox">
-                </div>
-              </th>
-              <td>{{this.courseList.sno}}</td>
-              <td *ngIf="this.courseList.nid !== this.userIdDetails" class="text-left">{{this.courseList.title}}</td>
-              <td *ngIf="this.courseList.nid===this.userIdDetails"><input [(ngModel)]="this.allCourseList[i].title"
-                  class="text-left" /></td>
+  <!-- close courses table-->
 
-              <td class="text-left">{{this.courseList.field_course_code}}</td>
+  <!-- Delete modal popup start -->
+  <div id="deleteCourse" class="modal deletecourse-modal" role="dialog" #deleteclosebutton>
+    <div class="modal-dialog">
 
-              <td *ngIf="this.courseList.nid !== this.userIdDetails" class="text-left">
-                {{this.courseList.field_category}}</td>
-              <td *ngIf="this.courseList.nid===this.userIdDetails">
-                <div class="category-course fieldset">
-                  <select name="category" id="categorycourse" [(ngModel)]="this.allCourseList[i].field_category"
-                    *ngIf=showInputCategory (change)="addNewcategory(this.allCourseList[i])">
-                    <option> please select category</option>
-                    <option *ngFor="let categories of this.allCategories" [value]="categories.tid">{{categories.name}}
-                    </option>
-                    <option *ngIf="this.allCategories.length>1" value="create_new">Create new</option>
-                  </select>
-                  <input *ngIf=!showInputCategory name="courseList.title"
-                    [(ngModel)]="this.allCourseList[i].field_category" class="text-left">
-                </div>
-              </td>
-
-              <td *ngIf="this.courseList.nid !== this.userIdDetails" class="text-left">{{this.courseList.field_level}}
-              </td>
-              <td *ngIf="this.courseList.nid===this.userIdDetails">
-                <div class="category-course fieldset">
-                  <select name="category" id="categorycourse" [(ngModel)]="this.allCourseList[i].field_level"
-                    *ngIf=showFiledLevel (change)="addNewcategory(this.allCourseList[i])">
-                    <option *ngFor="let level of this.allLevel" [value]="level.tid">{{level.name}}</option>
-                    <option *ngIf="this.allLevel.length>1" value="create_new">Create new</option>
-                  </select>
-                  <input *ngIf=!showFiledLevel name="courseList.title" [(ngModel)]="this.allCourseList[i].field_level"
-                    class="text-left">
-                </div>
-              </td>
-
-              <td *ngIf="this.courseList.nid !== this.userIdDetails" class="text-left">{{this.courseList.field_banding}}
-              </td>
-              <td *ngIf="this.courseList.nid===this.userIdDetails">
-                <div class="category-course fieldset">
-                  <select name="category" id="categorycourse" [(ngModel)]="this.allCourseList[i].field_banding"
-                    *ngIf=showBanding (change)="addNewcategory(this.allCourseList[i])">
-                    <option *ngFor="let banding of this.allBanding" [value]="banding.tid">{{banding.name}}</option>
-                    <option *ngIf="this.allBanding.length>1" value="create_new">Create new</option>
-                  </select>
-                  <input *ngIf=!showBanding name="courseList.title" [(ngModel)]="this.allCourseList[i].field_banding"
-                    class="text-left">
-                </div>
-              </td>
-
-              <td class="text-left">{{this.courseList.classes}}</td>
-              <!-- <td *ngIf="this.courseList.nid===this.userIdDetails">
-                <input name="courseList.title" [(ngModel)]="this.allCourseList[i].classes" class="text-left"></td> -->
-              <td class="text-left">
-                {{this.courseList.total_learners}}</td>
-              <!-- <td *ngIf="this.courseList.nid===this.userIdDetails"><input name="courseList.title"
-                  [(ngModel)]="this.allCourseList[i].total_learners" class="text-left"></td> -->
-
-              <td><span>Assign</span></td>
-
-              <td *ngIf="this.courseList.nid===this.userIdDetails" (click)="saveCourses(this.allCourseList[i])">
-                <span class="save-user">Save</span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-body">
+          <button type="button" class="close" data-dismiss="modal"><img
+              src="assets/images/dashboard/close-modal.png"></button>
+          <figure>
+            <img src="assets/images/dashboard/delete-course.png">
+          </figure>
+          <h4 class="modal-title">Delete Course</h4>
+          <br>
+          <p>Once deleted, all related files including information about past learners & class materials, course
+            materials
+            and learners’ grades will be removed. </p>
+          <br>
+          <span>Continue?</span> <br>
+          <a (click)="deleteCourse()" class="del-btn-course">Delete Course</a>
+        </div>
       </div>
-      <div class="table-result-wrapper">
-        <pagination-controls previousLabel="Prev" nextLabel="Next" autoHide="true" responsive="true"
-          (pageChange)="handlePageChange($event)"></pagination-controls>
-      </div>
-    </div>
-    <div id="instructions" class="tab-pane">
-      <div class="table-responsive">
-        <table class="table dashboard-table">
-          <thead>
-            <tr>
-              <th scope="col"></th>
-              <th scope="col">No.</th>
-              <th scope="col" class="text-left">Course Name</th>
-              <th scope="col">Code</th>
-              <th scope="col" class="table-filter">Cateory/Dept</th>
-              <th scope="col" class="table-filter">Level</th>
-              <th scope="col" class="table-filter">Banding</th>
-              <th scope="col" class="table-filter">No. of classes</th>
-              <th scope="col" class="table-filter">No. of learners</th>
-              <th scope="col" class="table-filter">Admin</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr
-              *ngFor="let courseList of this.allCourseList| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index"
-              [class.active]="i == currentIndex">
-              <th>
-                <div class="radio-table">
-                  <input (click)="isCheckClicked($event,courseList,i)" type="checkbox">
-                </div>
-              </th>
-              <td>{{i+1}}</td>
 
-              <td *ngIf="i !== this.indexesValue" class="text-left">{{this.courseList.title}}</td>
-              <td *ngIf="i===this.indexesValue"><input type="text" name="name" [(ngModel)]="courseDetails.name"
-                  class="text-left" value={{this.courseList.title}} /></td>
-
-              <td class="text-left">{{this.courseList.nid}}</td>
-
-              <td *ngIf="i !== this.indexesValue" class="text-left">{{this.courseList.field_category}}</td>
-              <td *ngIf="i===this.indexesValue"><input type="text" name="field_category"
-                  [(ngModel)]="courseDetails.field_category" class="text-left" value={{this.courseList.field_category}}>
-              </td>
-
-              <td *ngIf="i !== this.indexesValue" class="text-left">{{this.courseList.field_level}}</td>
-              <td *ngIf="i===this.indexesValue"><input type="text" name="field_level"
-                  [(ngModel)]="courseDetails.field_level" class="text-left" value={{this.courseList.field_level}}></td>
-
-              <td *ngIf="i !== this.indexesValue" class="text-left">{{this.courseList.field_banding}}</td>
-              <td *ngIf="i===this.indexesValue"><input type="text" name="field_banding"
-                  [(ngModel)]="courseDetails.field_banding" class="text-left" value={{this.courseList.field_banding}}>
-              </td>
-
-              <td *ngIf="i !== this.indexesValue" class="text-left">{{this.courseList.classes}}</td>
-              <td *ngIf="i===this.indexesValue"><input name="classes" [(ngModel)]="courseDetails.classes"
-                  class="text-left" value={{this.courseList.classes}}></td>
-
-              <td *ngIf="i !== this.indexesValue" class="text-left">{{this.courseList.total_learners}}</td>
-              <td *ngIf="i===this.indexesValue"><input name="total_learners" [(ngModel)]="courseDetails.total_learners"
-                  class="text-left" value={{this.courseList.total_learners}}></td>
-
-              <td *ngIf="i !== this.indexesValue" class="text-left">{{this.courseList.field_banding}}</td>
-              <td *ngIf="i===this.indexesValue"><input name="admin" [(ngModel)]="courseDetails.admin" class="text-left"
-                  value={{this.courseList.field_banding}}></td>
-
-              <td (click)="saveCourses(courseList)">Save</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="table-result-wrapper">
-        <pagination-controls previousLabel="Prev" nextLabel="Next" autoHide="true" responsive="true"
-          (pageChange)="handlePageChange($event)"></pagination-controls>
-      </div>
     </div>
   </div>
-</div>
-<!-- close courses table-->
+  <!-- Delete modal popup start -->
 
-<!-- Delete modal popup start -->
-<div id="deleteCourse" class="modal deletecourse-modal" role="dialog" #deleteclosebutton>
-  <div class="modal-dialog">
+  <!-- Add Course modal popup start -->
+  <div id="addCourse" class="modal addcourse-modal" role="dialog" #addclosebutton>
+    <div class="modal-dialog">
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-body">
-        <button type="button" class="close" data-dismiss="modal"><img
-            src="assets/images/dashboard/close-modal.png"></button>
-        <figure>
-          <img src="assets/images/dashboard/delete-course.png">
-        </figure>
-        <h4 class="modal-title">Delete Course</h4>
-        <br>
-        <p>Once deleted, all related files including information about past learners & class materials, course
-          materials
-          and learners’ grades will be removed. </p>
-        <br>
-        <span>Continue?</span> <br>
-        <a (click)="deleteCourse()" class="del-btn-course">Delete Course</a>
-      </div>
-    </div>
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4>Add new</h4>
+          <button type="button" class="close" data-dismiss="modal"><img
+              src="assets/images/dashboard/close-course.png"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="addCourse-form">
+              <div class="name-of-course fieldset">
+                <label>Name of course*</label>
+                <input [(ngModel)]="courseName" type="text" name="courseName" (change)="postCourseName(courseName)">
+              </div>
+              <div class="category-course fieldset">
+                <label>Category*</label>
+                <select [(ngModel)]="selectedCategory" name="category" id="categorycourse" (click)="getCategory()">
+                  <option selected>please choose Category</option>
+                  <option *ngFor="let categoriesList of this.allCategories" value="{{categoriesList.tid}}">
+                    {{categoriesList.name}}</option>
+                  <option *ngIf="this.allCategories.length>1" value="create_new">Create new</option>
+                </select>
+              </div>
+              <!-- if user select create new course -->
+              <div class="new-category-course fieldset" *ngIf="isCourseAdded">
+                <label>New category</label>
+                <input [(ngModel)]="newCategory" type="text" name="course">
+              </div>
 
-  </div>
-</div>
-<!-- Delete modal popup start -->
+              <div class="level-course fieldset">
+                <label>Level</label>
+                <select [(ngModel)]="level" name="level" id="levelcourse" (click)="getLevel()">
+                  <option selected>please choose level</option>
+                  <option *ngFor="let level of this.allLevel" value="{{level.tid}}">{{level.name}}</option>
+                  <option *ngIf="this.allLevel.length>1" value="create_new">Create new</option>
+                </select>
+              </div>
+              <!-- if user select create new level course -->
+              <div class="new-level-course fieldset" *ngIf="isLevelAdded">
+                <label>New level</label>
+                <input [(ngModel)]="newLevel" type="text" name="level">
+              </div>
 
-<!-- Add Course modal popup start -->
-<div id="addCourse" class="modal addcourse-modal" role="dialog" #addclosebutton>
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4>Add new</h4>
-        <button type="button" class="close" data-dismiss="modal"><img
-            src="assets/images/dashboard/close-course.png"></button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="addCourse-form">
-            <div class="name-of-course fieldset">
-              <label>Name of course*</label>
-              <input [(ngModel)]="courseName" type="text" name="courseName" (change)="postCourseName(courseName)">
-            </div>
-            <div class="category-course fieldset">
-              <label>Category*</label>
-              <select [(ngModel)]="selectedCategory" name="category" id="categorycourse" (click)="getCategory()">
-                <option selected>please choose Category</option>
-                <option *ngFor="let categoriesList of this.allCategories" value="{{categoriesList.tid}}">
-                  {{categoriesList.name}}</option>
-                <option *ngIf="this.allCategories.length>1" value="create_new">Create new</option>
-              </select>
-            </div>
-            <!-- if user select create new course -->
-            <div class="new-category-course fieldset" *ngIf="isCourseAdded">
-              <label>New category</label>
-              <input [(ngModel)]="newCategory" type="text" name="course">
-            </div>
-
-            <div class="level-course fieldset">
-              <label>Level</label>
-              <select [(ngModel)]="level" name="level" id="levelcourse" (click)="getLevel()">
-                <option selected>please choose level</option>
-                <option *ngFor="let level of this.allLevel" value="{{level.tid}}">{{level.name}}</option>
-                <option *ngIf="this.allLevel.length>1" value="create_new">Create new</option>
-              </select>
-            </div>
-            <!-- if user select create new level course -->
-            <div class="new-level-course fieldset" *ngIf="isLevelAdded">
-              <label>New level</label>
-              <input [(ngModel)]="newLevel" type="text" name="level">
-            </div>
-
-            <div class="banding-course fieldset">
-              <label>Banding</label>
-              <select [(ngModel)]="banding" name="level" id="bandingcourse" (click)="getBanding()">
-                <option selected>please choose banding</option>
-                <option *ngFor="let banding of this.allBanding" value="{{banding.tid}}">{{banding.name}}</option>
-                <option *ngIf="this.allBanding.length>1" value="create_new">Create new</option>
-              </select>
-            </div>
-            <!-- if user select create new banding course -->
-            <div class="new-banding-course fieldset" *ngIf="isBandingAdded">
-              <label>New banding</label>
-              <input [(ngModel)]="newBanding" type="text" name="banding">
-            </div>
-          </div>
-
-          <div class="modal-footer">
-            <button class="back-btn-course" class="close" data-dismiss="modal">Back</button>
-            <button (click)="createCourse()" class="next-btn-course">Next</button>
-          </div>
-        </form>
-      </div>
-    </div>
-
-  </div>
-</div>
-<!-- Add Course modal popup start -->
-
-<!-- Edit Course modal popup start -->
-<div id="editCourse" class="modal editcourse-modal" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4>Edit course</h4>
-        <button type="button" class="close" data-dismiss="modal"><img
-            src="assets/images/dashboard/close-course.png"></button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="editCourse-form-top">
-            <div class="name-of-course fieldset">
-              <label>Name of course*</label>
-              <input type="text" name="course">
-            </div>
-            <div class="category-course fieldset">
-              <label>Category*</label>
-              <select name="category" id="categorycourse">
-                <option selected></option>
-                <option value="finance">Finance</option>
-                <option value="create new">Create new</option>
-              </select>
-            </div>
-
-            <div class="level-course fieldset">
-              <label>Level</label>
-              <select name="level" id="levelcourse">
-                <option selected></option>
-                <option value="Professional Level 1">Professional Level 1</option>
-                <option value="create new">Create new</option>
-              </select>
-            </div>
-
-            <div class="banding-course fieldset">
-              <label>Banding</label>
-              <select name="level" id="bandingcourse">
-                <option selected></option>
-                <option value="IV">IV</option>
-                <option value="create new">Create new</option>
-              </select>
-            </div>
-
-          </div>
-          <div class="editCourse-form-down">
-
-
-            <div class="fieldset class-materials">
-              <label>Class materials access available from</label>
-              <div class="editcourse-field-wrapper">
-                <div class="class-materials-radio">
-                  <input type="radio" name="start-date" value="start-date">
-                  <label for="teacher">Class start date</label>
-                </div>
-                <div class="class-materials-radio">
-                  <input type="radio" name="start-date" value="start-date">
-                  <input type="date">
-                </div>
+              <div class="banding-course fieldset">
+                <label>Banding</label>
+                <select [(ngModel)]="banding" name="level" id="bandingcourse" (click)="getBanding()">
+                  <option selected>please choose banding</option>
+                  <option *ngFor="let banding of this.allBanding" value="{{banding.tid}}">{{banding.name}}</option>
+                  <option *ngIf="this.allBanding.length>1" value="create_new">Create new</option>
+                </select>
+              </div>
+              <!-- if user select create new banding course -->
+              <div class="new-banding-course fieldset" *ngIf="isBandingAdded">
+                <label>New banding</label>
+                <input [(ngModel)]="newBanding" type="text" name="banding">
               </div>
             </div>
 
-            <div class="fieldset class-materials-to">
-              <label>Class materials access available to</label>
-              <div class="editcourse-field-wrapper">
-                <div class="class-materials-radio">
-                  <input type="radio" name="start-date-calender" value="start-date-calender">
-                  <label for="teacher">Class start date</label>
-                </div>
-                <div class="class-materials-radio">
-                  <input type="radio" name="start-date-calender" value="start-date-calender">
-                  <input type="date">
-                </div>
-              </div>
+            <div class="modal-footer">
+              <button class="back-btn-course" class="close" data-dismiss="modal">Back</button>
+              <button (click)="createCourse()" class="next-btn-course">Next</button>
             </div>
-
-            <div class="fieldset allow-messaging">
-              <label>Allow messaging from learner to coach</label>
-              <div class="editcourse-field-wrapper">
-                <div class="allow-messaging-radio">
-                  <input type="radio" name="available" value="available">
-                  <label for="Yes">Yes</label>
-                </div>
-                <div class="allow-messaging-radio">
-                  <input type="radio" name="available" value="available">
-                  <label for="No">No</label>
-                </div>
-              </div>
-            </div>
-
-            <div class="fieldset allow-messaging">
-              <label>Allow messaging from learner to coach</label>
-              <div class="editcourse-field-wrapper">
-                <div class="allow-messaging-radio">
-                  <input type="radio" name="unavailable" value="unavailable">
-                  <label for="Yes">Yes</label>
-                </div>
-                <div class="allow-messaging-radio">
-                  <input type="radio" name="unavailable" value="unavailable">
-                  <label for="No">No</label>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="modal-footer">
-            <button class="cancel-btn-course">Cancel</button>
-            <button class="edit-btn-course">Edit</button>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
-    </div>
 
+    </div>
   </div>
-</div>
+  <!-- Add Course modal popup start -->
+
+  <!-- Edit Course modal popup start -->
+  <div id="editCourse" class="modal editcourse-modal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4>Edit course</h4>
+          <button type="button" class="close" data-dismiss="modal"><img
+              src="assets/images/dashboard/close-course.png"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="editCourse-form-top">
+              <div class="name-of-course fieldset">
+                <label>Name of course*</label>
+                <input type="text" name="course">
+              </div>
+              <div class="category-course fieldset">
+                <label>Category*</label>
+                <select name="category" id="categorycourse">
+                  <option selected></option>
+                  <option value="finance">Finance</option>
+                  <option value="create new">Create new</option>
+                </select>
+              </div>
+
+              <div class="level-course fieldset">
+                <label>Level</label>
+                <select name="level" id="levelcourse">
+                  <option selected></option>
+                  <option value="Professional Level 1">Professional Level 1</option>
+                  <option value="create new">Create new</option>
+                </select>
+              </div>
+
+              <div class="banding-course fieldset">
+                <label>Banding</label>
+                <select name="level" id="bandingcourse">
+                  <option selected></option>
+                  <option value="IV">IV</option>
+                  <option value="create new">Create new</option>
+                </select>
+              </div>
+
+            </div>
+            <div class="editCourse-form-down">
+
+
+              <div class="fieldset class-materials">
+                <label>Class materials access available from</label>
+                <div class="editcourse-field-wrapper">
+                  <div class="class-materials-radio">
+                    <input type="radio" name="start-date" value="start-date">
+                    <label for="teacher">Class start date</label>
+                  </div>
+                  <div class="class-materials-radio">
+                    <input type="radio" name="start-date" value="start-date">
+                    <input type="date">
+                  </div>
+                </div>
+              </div>
+
+              <div class="fieldset class-materials-to">
+                <label>Class materials access available to</label>
+                <div class="editcourse-field-wrapper">
+                  <div class="class-materials-radio">
+                    <input type="radio" name="start-date-calender" value="start-date-calender">
+                    <label for="teacher">Class start date</label>
+                  </div>
+                  <div class="class-materials-radio">
+                    <input type="radio" name="start-date-calender" value="start-date-calender">
+                    <input type="date">
+                  </div>
+                </div>
+              </div>
+
+              <div class="fieldset allow-messaging">
+                <label>Allow messaging from learner to coach</label>
+                <div class="editcourse-field-wrapper">
+                  <div class="allow-messaging-radio">
+                    <input type="radio" name="available" value="available">
+                    <label for="Yes">Yes</label>
+                  </div>
+                  <div class="allow-messaging-radio">
+                    <input type="radio" name="available" value="available">
+                    <label for="No">No</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="fieldset allow-messaging">
+                <label>Allow messaging from learner to coach</label>
+                <div class="editcourse-field-wrapper">
+                  <div class="allow-messaging-radio">
+                    <input type="radio" name="unavailable" value="unavailable">
+                    <label for="Yes">Yes</label>
+                  </div>
+                  <div class="allow-messaging-radio">
+                    <input type="radio" name="unavailable" value="unavailable">
+                    <label for="No">No</label>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="modal-footer">
+              <button class="cancel-btn-course">Cancel</button>
+              <button class="edit-btn-course">Edit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>

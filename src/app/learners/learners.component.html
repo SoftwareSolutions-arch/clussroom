@@ -5,8 +5,8 @@
       <li><a data-toggle="tab" href="#instructions">Method of Instructions</a></li>
     </ul>
     <div class="prospectus-action">
-      <a class="add-btn custom-a-btn" data-toggle="modal" data-target="#addCourse"><i class="fa fa-plus"
-          aria-hidden="true"></i> Name</a>
+      <a class="add-btn custom-a-btn" data-toggle="modal" data-target="#addLearner"><i class="fa fa-plus"
+          aria-hidden="true"></i> Learners</a>
       <!-- <a class="edit-btn custom-a-btn" data-toggle="modal" data-target="#editCourse"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
                 <a class="delete-btn custom-a-btn" data-toggle="modal" data-target="#deleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                 <a  class="delete-btn custom-a-btn" data-toggle="modal" data-target="#unabledeleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
@@ -95,7 +95,7 @@
 
             <tr>
               <td>5</td>
-              <td class="text-left finish">Invite Sent</td>
+              <td><div class="finish text-left">Invite Sent</div></td>
               <td> </td>
               <td>KellySibone@gmail.com</td>
               <td>30 Jan 20</td>
@@ -134,3 +134,80 @@
     </div>
   </div>
 </div>
+
+
+      <div id="addLearner" class="modal addcourse-modal" role="dialog">
+    <div class="modal-dialog modal-dialog-width">
+       <div class="modal-content">
+          <div class="green-modal-header">
+             <h4>Invite Learner</h4>
+             <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true" style="color: #fff;"></i></button>
+          </div>
+          <div class="modal-body">
+             <form>
+                <div class="addCourse-form" style="display: block !important;">
+                   <div class="name-of-course fieldset" style="padding: 0 16px;">
+                      <label style="text-align: center;">Course Name:</label>
+                      <select name="level" id="levelcourse" style="width: 390px !important;">
+                         <option selected>Geography for Secondary 3</option>
+                         <option value="Professional Level 1">Geography for Secondary 2</option>
+                         <option value="create new">Geography for Secondary 1</option>
+                      </select>
+                   </div>
+                </div>
+                   <div class="name-of-course fieldset mt-3" style="padding: 0 16px;">
+                      <label style="text-align: right; padding-right: 2em;">Level:</label>
+                      <select name="level" id="levelcourse" style="width: 140px !important;">
+                         <option selected>Secondary 3</option>
+                         <option value="Professional Level 1">Secondary 2</option>
+                         <option value="create new">Secondary 1</option>
+                      </select>
+                      <label style="text-align: right; width: 113px; padding-right: 1.5em">Branding:</label>
+                      <select name="level" id="levelcourse" style="width: 140px !important;">
+                         <option selected>Brand 3</option>
+                         <option value="Professional Level 1">Brand 2</option>
+                         <option value="create new">Brand 1</option>
+                      </select>
+                   </div>
+                   <div class="name-of-course fieldset" style="border-bottom: 1px solid #F1F6FB; margin: 0; padding-bottom: 1.5em;">
+                      <label style="text-align: right; padding: 0 14px; margin: 0 16px 0 0;">class:</label>
+                      <select name="level" id="levelcourse" style="width: 140px !important;">
+                         <option selected>Poppins</option>
+                         <option value="Professional Level 1">Poppings 1</option>
+                         <option value="create new">Poppins 2</option>
+                      </select>
+                      <p style="padding: 0 26px; margin: 0; font-size: 15px;">Class code:&nbsp;&nbsp;&nbsp;<span class="orange">#56782</span></p>
+                   </div>
+                   <div class="name-of-course fieldset mt-3">
+                      <div class="radio-check" style="width: 100%;">
+                         <label class="radio-check" style="padding: 0 37px; justify-content: center;">By Email
+                         <input type="radio" name="radio">
+                         <span class="checkmark"></span>
+                         </label>
+                         <label class="radio-check">Bulk Upload
+                         <input type="radio" name="radio">
+                         <span class="checkmark"></span>
+                         </label>
+                      </div>
+                   </div>
+                   <div class="name-of-course fieldset mt-3" style="display: block;">
+                      <label class="modal-input" style="display: flex"><a>1. <i class="fa fa-envelope" aria-hidden="true"></i></a>
+                      <input type="text" placeholder="Kellyamine@gmail.com">
+                      <button type="button" data-dismiss="#" style="margin: 0 5px;"><i class="fa fa-times" aria-hidden="true"></i></button>
+                      </label>
+                      <label class="modal-input mt-3" style="padding: 0 60px;"><a style="margin-right: 4px !important;">2. <i class="fa fa-envelope" aria-hidden="true" style="padding: 0 13px 0 5px !important;"></i></a>
+                      <input type="text" placeholder="Kellyamine@gmail.com">
+                      </label>
+                   </div>
+                   <button type="button" class="add-button">Add</button>
+                   <!--                      modal footer start-->
+                   <div class="modal-footer" style="box-shadow: none;">
+                      <button class="back-btn-course-blue"><a href="#">Confirm</a></button>
+                      <button class="next-btn-course">Cancel</button>
+                   </div>
+                   <!--                      modal footer end-->
+             </form>
+             </div>
+          </div>
+       </div>
+    </div>

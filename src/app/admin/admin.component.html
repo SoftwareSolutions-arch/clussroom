@@ -15,8 +15,8 @@
   <div class="tab-content class-table-user">
     <div id="summary" class="tab-pane active">
       <div class="table-path">
-        <p>&lt;Course&gt;/&lt;Activity&gt;/&lt;Subject&gt;/&lt;Topic&gt; Administrator</p>                                      
-    </div>
+        <p>&lt;Course&gt;/&lt;Activity&gt;/&lt;Subject&gt;/&lt;Topic&gt; Administrator</p>
+      </div>
       <div class="table-responsive admin-button">
         <table class="table dashboard-table">
           <thead>
@@ -39,7 +39,7 @@
               <td>Darren Leow</td>
               <td>abc@email.com</td>
               <td><button><a href="#">Edit</a></button></td>
-                              
+
             </tr>
             <tr>
 
@@ -59,7 +59,8 @@
               <td>-</td>
               <td>-</td>
               <td>-</td>
-              <td><button class="admin-button-green" style="padding: 0 !important;"><a class="custom-a-btn" data-toggle="modal" data-target="#learners">Assign</a></button></td>
+              <td><button class="admin-button-green" style="padding: 0 !important;"><a class="custom-a-btn"
+                    data-toggle="modal" data-target="#learners">Assign</a></button></td>
 
             </tr>
             <tr>
@@ -89,25 +90,25 @@
       </div>
       <div class="table-result-wrapper bottom-select row">
         <select name="course" id="course-name">
-        <option selected>10</option>
-        <option value="Course 1">1</option>
-        <option value="Course 2">2</option>
-        <option value="Course 3">3</option>
+          <option selected>10</option>
+          <option value="Course 1">1</option>
+          <option value="Course 2">2</option>
+          <option value="Course 3">3</option>
         </select>
         <p>Results: 1-15 of 324</p>
         <div class="selector col-lg-10">
-        <ul>
-        <li><a href="#"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
-        <li><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li class="active"><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-        <li><a href="#">...</a></li>
-        <li><a href="#" class="right-arrow"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
-        </ul>
+          <ul>
+            <li><a href="#"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li class="active"><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">...</a></li>
+            <li><a href="#" class="right-arrow"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+          </ul>
         </div>
-        </div>
+      </div>
     </div>
     <div id="instructions" class="tab-pane">
       <div class="table=-responsive">
@@ -207,126 +208,131 @@
   </div>
 </div>
 
-
 <!--PopUp Start-->
 <div id="learners" class="modal addcourse-modal" role="dialog">
-    <div class="modal-dialog" style="max-width: 829px !important;">
-       <div class="modal-content">
-          <div class="green-modal-header">
-             <h4>Add Admin</h4>
-             <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true" style="color: #fff;"></i></button>
-          </div>
-          <div class="modal-body">
-             <form>
-                 
-                 <div class="name-of-course fieldset admin-popup-button" style="padding: 20px 16px;border-bottom: 1px solid #F1F6FB;">
-                      <label style="text-align: center; margin: 0 -2em;">Email:</label>
-                      <input type="text" placeholder="Enter email">
-                     
-                     <label style="text-align: center; margin: 0 -1em;">Admin type:</label>
-                     <button type="button">&lt;Course&gt;admin</button>
-                   </div>
-                 
-                <div class="addCourse-form row mt-3" class="align-items:center;">
+  <div class="modal-dialog" style="max-width: 829px !important;">
+    <div class="modal-content">
+      <div class="green-modal-header">
+        <h4>Add Admin</h4>
+        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"
+            style="color: #fff;"></i></button>
+      </div>
+      <div class="modal-body">
+        <form>
 
-                   <div class="name-of-course fieldset" style="padding: 0 16px;">
-                      <label style="text-align: center;color: #5B73A0 !important;">Course Name:</label>
-                       <p class="label-p">Coursename2</p>
-                   </div>
-                   <div class="name-of-course fieldset mt-3" style="padding: 0 17px;">
-                      <label style="text-align: right; padding-right: 2em;color: #5B73A0 !important;">Level:</label>
-                      <select name="level" id="levelcourse" style="width: 140px !important;">
-                         <option selected>Secondary 3</option>
-                         <option value="Professional Level 1">Secondary 2</option>
-                         <option value="create new">Secondary 1</option>
-                      </select>
-                      <label class="banding-adjust">Banding:</label>
-                      <select name="level" id="levelcourse" style="width: 140px !important;">
-                         <option selected>Band 3</option>
-                         <option value="Professional Level 1">Band 2</option>
-                         <option value="create new">Band 1</option>
-                      </select>
-                   </div>
-                   <div class="name-of-course fieldset" style="border-bottom: 1px solid #F1F6FB; padding: 0 12px;">
-                      <label class="adjust" style="color: #5B73A0 !important;">Class:</label>
-                      <select name="level" id="levelcourse" style="width: 140px !important;">
-                         <option selected>Poppins</option>
-                         <option value="Professional Level 1">Poppings 1</option>
-                         <option value="create new">Poppins 2</option>
-                      </select>
-                      <p class="para"><span class="orange">#56782</span></p>
-                   </div>
-                </div>
-                    <div class="name-of-course fieldset admin-table">
-                      <div class="table-responsive">
+          <div class="name-of-course fieldset admin-popup-button"
+            style="padding: 20px 16px;border-bottom: 1px solid #F1F6FB;">
+            <label style="text-align: center; margin: 0 -2em;">Email:</label>
+            <input type="text" placeholder="Enter email">
+
+            <label style="text-align: center; margin: 0 -1em;">Admin type:</label>
+            <button type="button">&lt;Course&gt;admin</button>
+          </div>
+
+          <div class="addCourse-form row mt-3" class="align-items:center;">
+
+            <div class="name-of-course fieldset" style="padding: 0 16px;">
+              <label style="text-align: center;color: #5B73A0 !important;">Course Name:</label>
+              <p class="label-p">Coursename2</p>
+            </div>
+            <div class="name-of-course fieldset mt-3" style="padding: 0 17px;">
+              <label style="text-align: right; padding-right: 2em;color: #5B73A0 !important;">Level:</label>
+              <select name="level" id="levelcourse" style="width: 140px !important;">
+                <option selected>Secondary 3</option>
+                <option value="Professional Level 1">Secondary 2</option>
+                <option value="create new">Secondary 1</option>
+              </select>
+              <label class="banding-adjust">Banding:</label>
+              <select name="level" id="levelcourse" style="width: 140px !important;">
+                <option selected>Band 3</option>
+                <option value="Professional Level 1">Band 2</option>
+                <option value="create new">Band 1</option>
+              </select>
+            </div>
+            <div class="name-of-course fieldset" style="border-bottom: 1px solid #F1F6FB; padding: 0 12px;">
+              <label class="adjust" style="color: #5B73A0 !important;">Class:</label>
+              <select name="level" id="levelcourse" style="width: 140px !important;">
+                <option selected>Poppins</option>
+                <option value="Professional Level 1">Poppings 1</option>
+                <option value="create new">Poppins 2</option>
+              </select>
+              <p class="para"><span class="orange">#56782</span></p>
+            </div>
+          </div>
+          <div class="name-of-course fieldset admin-table">
+            <div class="table-responsive">
               <table class="table dashboard-table">
-                  
+
                 <tbody>
                   <tr>
                     <td>1</td>
                     <td class="text-left admin-table-width">&lt;Course&gt; creation</td>
                     <td>Poppins</td>
-                    <th><div class="radio-table"><input type="checkbox"></div></th>
+                    <th>
+                      <div class="radio-table"><input type="checkbox"></div>
+                    </th>
                   </tr>
                   <tr>
                     <td>2</td>
                     <td class="text-left admin-table-width">Class creation</td>
                     <td></td>
-                    <th><div class="radio-table"><input type="checkbox"></div></th>
+                    <th>
+                      <div class="radio-table"><input type="checkbox"></div>
+                    </th>
                   </tr>
                   <tr>
                     <td>3</td>
                     <td class="text-left admin-table-width">Add learners</td>
                     <td></td>
-                    <th><div class="radio-table"><input type="checkbox"></div></th>
+                    <th>
+                      <div class="radio-table"><input type="checkbox"></div>
+                    </th>
                   </tr>
                   <tr>
                     <td>4</td>
                     <td class="text-left admin-table-width">Main library file upload/edit</td>
                     <td></td>
-                    <th><div class="radio-table"><input type="checkbox"></div></th>
+                    <th>
+                      <div class="radio-table"><input type="checkbox"></div>
+                    </th>
                   </tr>
                   <tr>
                     <td>5</td>
                     <td class="text-left admin-table-width">&lt;Course&gt; library file upload/edit</td>
                     <td></td>
-                    <th><div class="radio-table"><input type="checkbox"></div></th>
-
+                    <th>
+                      <div class="radio-table"><input type="checkbox"></div>
+                    </th>
                   </tr>
-
                   <tr>
                     <td>6</td>
                     <td class="text-left admin-table-width">Class deletion</td>
                     <td></td>
-                    <th><div class="radio-table"><input type="checkbox"></div></th>
-
+                    <th>
+                      <div class="radio-table"><input type="checkbox"></div>
+                    </th>
                   </tr>
-
                   <tr>
                     <td>7</td>
                     <td class="text-left admin-table-width">Class deletion</td>
                     <td></td>
-                    <th><div class="radio-table"><input type="checkbox"></div></th>
-
+                    <th>
+                      <div class="radio-table"><input type="checkbox"></div>
+                    </th>
                   </tr>
                 </tbody>
               </table>
             </div>
-                    
-                    </div>
-                    
-                    
-<!--                      modal footer start-->
-                   <div class="admin-modal-footer" style="box-shadow: none;">
-                      <button class="back-btn-course-blue"><a href="#">Confirm</a></button>
-                      <button class="next-btn-course">Cancel</button>
-                   </div>
-<!--                      modal footer end-->
-             </form>
-             </div>
           </div>
-       </div>
+          <!--modal footer start-->
+          <div class="admin-modal-footer" style="box-shadow: none;">
+            <button class="back-btn-course-blue"><a href="#">Confirm</a></button>
+            <button class="next-btn-course">Cancel</button>
+          </div>
+          <!--modal footer end-->
+        </form>
+      </div>
     </div>
-  
-  
+  </div>
+</div>
 <!--PopUp End    -->
