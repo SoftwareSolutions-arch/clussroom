@@ -295,7 +295,7 @@ section.invoice-section {
 
 .invoice-details h2 {
   font-family: Rubik;
-  font-size: 32px;
+  font-size: 24px;
   font-style: normal;
   font-weight: 500;
   line-height: 39px;
@@ -318,7 +318,7 @@ section.invoice-section {
 }
 
 .invoice-details form label {
-  font-family: Rubik;
+  font-family: 'Barlow';
   font-size: 15px;
   font-weight: 500;
   line-height: 28px;
@@ -393,10 +393,11 @@ section.invoice-section {
   text-align: left;
   color: #7990B4;
   margin-bottom: 0px;
+  font-family: 'Barlow';
 }
 
 .lite-subscription-flex .lite-subscription span {
-  font-family: Barlow;
+  font-family: 'Rubik';
   font-size: 15px;
   font-weight: 400;
   line-height: 25px;

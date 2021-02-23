@@ -46,7 +46,6 @@ import { AdminComponent } from './admin/admin.component';
 import { LiveSessionsComponent } from './live-sessions/live-sessions.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { TermsOfUseComponent } from './terms-of-use/terms-of-use.component';
-import { NgxEditorModule } from 'ngx-editor';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 
 
@@ -96,7 +95,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     ReactiveFormsModule,
     MatSnackBarModule,MatInputModule,MatTableModule,
     MatProgressSpinnerModule,
-    SlickCarouselModule,MatTabsModule,NgxPaginationModule,NgxEditorModule,AngularEditorModule
+    SlickCarouselModule,MatTabsModule,NgxPaginationModule,AngularEditorModule
   ],
   providers: [CookieService,Sample04Component],
   bootstrap: [AppComponent]

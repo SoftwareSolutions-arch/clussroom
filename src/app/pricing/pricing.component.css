@@ -312,9 +312,10 @@ section .pricing-content-box .pricing-header-caption .pricing-showing p {
 section .pricing-content-box .pricing-header-caption em {
   font-style: normal;
   font-weight: 500;
-  font-size: 17px;
+  font-size: 15px;
   line-height: 28px;
   color: #5B73A0;
+  font-family: 'Barlow' !important;
 }
 
 section .pricing-content-box .pricing-content-showing ul {
@@ -324,9 +325,9 @@ section .pricing-content-box .pricing-content-showing ul {
 section .pricing-content-box .pricing-content-showing ul li {
   display: flex;
   font-weight: normal;
-  font-size: 18px;
+  font-size: 15px;
   line-height: 25px;
-  font-family: Barlow;
+  font-family: Barlow !important;
   color: #5B73A0;
   border-bottom: 1px solid #EEF5FF;
   padding: 12px 20px;
