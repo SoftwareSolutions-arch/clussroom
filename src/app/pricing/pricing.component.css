@@ -333,6 +333,10 @@ section .pricing-content-box .pricing-content-showing ul li {
   padding: 12px 20px;
 }
 
+section .pricing-content-box .pricing-content-showing ul li span {
+  font-family: 'Barlow' !important;
+}
+
 section .pricing-content-box .pricing-content-showing ul li img {
   margin-right: 10px;
   width: 23px;

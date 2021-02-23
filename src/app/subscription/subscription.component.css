@@ -284,7 +284,8 @@ section.subscription-summary-section {
   padding: 15px 25px;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
+  height: 45px;
 }
 
 .subscription-content-flex .subscription-content-left ul li .label-subscription {
@@ -309,8 +310,8 @@ section.subscription-summary-section {
 .subscription-content-flex .subscription-content-left ul li .estimate-subscription span {
   font-family: Barlow;
   font-weight: normal;
-  font-size: 18px;
-  line-height: 25px;
+  font-size: 15px;
+  line-height: 22px;
   color: #7990B4;
   width: 100%;
   display: block;
@@ -324,10 +325,13 @@ section.subscription-summary-section {
   font-size: 15px;
   line-height: 25px;
   color: #7990B4;
+  align-items: center;
 }
 
 .subscription-content-flex .subscription-content-left ul li .combine-subscription img {
   margin-right: 10px;
+  width: 20px;
+  height: 20px;
 }
 
 .subscription-content-flex .subscription-content-left ul li .price-subscription {
@@ -438,7 +442,7 @@ section.subscription-summary-section {
 .subscription-content-flex .subscription-content-left .terms-of-use p {
   margin-bottom: 0px;
   font-family: Barlow;
-  font-size: 15px;
+  font-size: 13px;
   font-style: normal;
   font-weight: 400;
   line-height: 20px;
@@ -456,6 +460,9 @@ section.subscription-summary-section {
 
 .subscription-content-flex .subscription-content-left .terms-of-use p a {
   color: #396aff;
+  font-size: 13px;
+  font-weight: 400;
+  font-family: 'Barlow';
 }
 
 .subscription-content-flex .subscription-content-left .subscription-buttons {

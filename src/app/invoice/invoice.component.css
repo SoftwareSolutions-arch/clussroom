@@ -393,7 +393,7 @@ section.invoice-section {
   text-align: left;
   color: #7990B4;
   margin-bottom: 0px;
-  font-family: 'Barlow';
+  font-family: 'Barlow', sans-serif;
 }
 
 .lite-subscription-flex .lite-subscription span {
@@ -424,7 +424,7 @@ section.invoice-section {
 }
 
 .vat-section span {
-  font-family: Barlow;
+  font-family: 'Rubik' !important;
   font-size: 15px;
   font-weight: 400;
   line-height: 20px;

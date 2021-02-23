@@ -688,11 +688,11 @@ section.home-testimonial-section:before {
 .home-testimonial-box .home-testimonial-caption p {
   width: calc(100% - 65px);
   margin-bottom: 0px;
-  font-family: Rubik;
-  font-size: 22px;
+  font-family: 'Barlow';
+  font-size: 15px;
   font-style: normal;
   font-weight: 400;
-  line-height: 28px;
+  line-height: 23px;
   letter-spacing: 0px;
   color: #94A2B3;
 }
