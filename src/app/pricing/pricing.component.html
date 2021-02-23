@@ -39,7 +39,13 @@
                 </li>
                 <ng-template #courseAdministratorsTemp>
                   <li>
-                    <img src="/assets/images/green-tick.png">{{i?.course_administrators}} Course Adminstrator
+                    <img src="/assets/images/green-tick.png">
+                    <span *ngIf="i.course_administrators==1">
+                      {{i?.course_administrators}} Course Adminstrator
+                    </span>
+                    <span *ngIf="i.course_administrators>1">
+                      {{i?.course_administrators}} Course Adminstrators
+                    </span>
                   </li>
                 </ng-template>
 
