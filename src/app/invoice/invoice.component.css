@@ -281,7 +281,7 @@ section.invoice-section {
   opacity: .6;
 }
 
-.order-summary-enable{
+.order-summary-enable {
   width: 401px;
   /* background-color: #D5D8DC; */
   border: 1px solid #EEF5FF;
@@ -561,7 +561,7 @@ section.invoice-section {
 }
 
 .payment-order form .button-wrapper button.-back-btn:hover {
-  border:2px solid #16DBCC;
+  border: 2px solid #16DBCC;
   background-color: #fff;
 }
 
@@ -624,17 +624,6 @@ b.custom-tooltip {
 
 /*Invoice css start*/
 
-
-.image-loader,
-.spinner-loader {
-  display: block;
-  margin: auto;
-}
-
-.spinner-loader {
-  margin: 10%;
-}
-
 .error-message {
   color: red !important;
   font-size: 1.4rem !important;
@@ -653,18 +642,19 @@ input {
 }
 
 
-.section-user-register-step3.disable:after, .section-user-register-step2.disable:after {
-    top: 0;
-    left: 0;
-    content: "";
-    width: 100%;
-    height: 100%;
-    z-index: 999;
-    position: absolute;
-    background: rgba(0, 0, 0, 0.5);
+.section-user-register-step3.disable:after,
+.section-user-register-step2.disable:after {
+  top: 0;
+  left: 0;
+  content: "";
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.5);
 }
 
-.back-btn{
+.back-btn {
   margin-left: 16px;
   border: 2px solid #DCFAF8;
   background-color: #DCFAF8;
@@ -675,4 +665,37 @@ input {
 .back-btn:hover {
   border: 2px solid #16DBCC;
   background: #fff;
+}
+
+
+
+.mat-spinner {
+  stroke: grey;
+}
+
+.loading-indicator {
+  position: fixed;
+  z-index: 999;
+  height: 3em;
+  width: 3em;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.loading-indicator::before {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0 0 0 / 7%);
+}
+.lite-subscription-flex .lite-subscription h5 {
+  text-transform: capitalize;
 }

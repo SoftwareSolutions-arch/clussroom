@@ -193,8 +193,6 @@ export class ClassesComponent implements OnInit {
     this.showInputCategory = true;
   }
 
-
-
   saveClasses(index: number): any {
     console.log('index', index);
     let params = {

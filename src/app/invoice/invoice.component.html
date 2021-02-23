@@ -1,6 +1,9 @@
-<div *ngIf="isImageShow">
-  <img class="image-loader" src="assets/spinner.gif">
+<!-- loader showing-->
+<div *ngIf="isImageShow" class="loading-indicator">
+  <mat-spinner></mat-spinner>
 </div>
+<!-- close loader showing-->
+
 <app-header *ngIf="!isImageShow"></app-header>
 <section class="invoice-section" *ngIf="!isImageShow">
   <div class="container">
@@ -151,11 +154,11 @@
       <!-- disable payment-->
       <div class="order-summary" *ngIf="enablePaymemtForm">
         <div class="order-summary-flex">
-          <h3>Order summary</h3>
+          <h3>Order Summary</h3>
           <div class="lite-subscription-flex">
             <div class="lite-subscription">
               <h5>{{this.title}} subscription</h5>
-              <span>(at ${{this.invoiceDetails.amount}} monthly)</span>
+              <span>(at ${{this.invoiceDetails.amount}} yearly)</span>
             </div>
             <h5>$ {{this.invoiceDetails.yearly_amount}}</h5>
           </div>

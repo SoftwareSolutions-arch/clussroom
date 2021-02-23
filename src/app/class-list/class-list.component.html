@@ -5,8 +5,7 @@
       <li><a data-toggle="tab" href="#instructions">Method of Instructions</a></li>
     </ul> -->
     <div class="prospectus-action">
-      <a class="add-btn custom-a-btn"><i class="fa fa-plus"
-          aria-hidden="true"></i> Learner</a>
+      <a class="add-btn custom-a-btn"><i class="fa fa-plus" aria-hidden="true"></i> Learner</a>
       <!-- <a class="edit-btn custom-a-btn" data-toggle="modal" data-target="#editCourse"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
                 <a class="delete-btn custom-a-btn" data-toggle="modal" data-target="#deleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                 <a  class="delete-btn custom-a-btn" data-toggle="modal" data-target="#unabledeleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
@@ -26,89 +25,46 @@
               <th scope="col" class="table-filter">Grades</th>
               <th scope="col" class="table-filter">Status</th>
               <th scope="col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-              <th scope="col"><a href="#" class="custom-a-btn" data-toggle="modal" data-target="#cancel"><i class="fa fa-ellipsis-v" aria-hidden="true" style="color: #7990B4"></i></a></th>
+              <th scope="col"><a href="#" class="custom-a-btn" data-toggle="modal" data-target="#cancel"><i
+                    class="fa fa-ellipsis-v" aria-hidden="true" style="color: #7990B4"></i></a></th>
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr *ngFor="let classList of this.allClassesList">
               <th>
                 <div class="radio-table"><input type="checkbox"></div>
               </th>
               <td>1</td>
-              <td class="text-left">Monica</td>
-              <td class="text-left">Juneja</td>
-              <td>Monica@gmail.com</td>
-              <td>75%</td>
-              <td class="danger-text">Suspended</td>
-            </tr>
-            <tr>
-              <th>
-                <div class="radio-table"><input type="checkbox"></div>
-              </th>
-              <td>2</td>
-              <td class="text-left">Darren</td>
-              <td class="text-left">Leow</td>
-              <td>Darren@outlook.com</td>
-              <td>81%</td>
-              <td><div class="finish">Complete</div></td>
-            </tr>
-            <tr>
-              <th>
-                <div class="radio-table"><input type="checkbox"></div>
-              </th>
-              <td>3</td>
-              <td class="text-left">Henderson</td>
-              <td class="text-left">Prevelly</td>
-              <td>Henderson@yahoo.com</td>
-              <td>60%</td>
-              <td class="green">Active</td>
-            </tr>
-            <tr>
-              <th>
-                <div class="radio-table"><input type="checkbox"></div>
-              </th>
-              <td>4</td>
-              <td class="text-left">Kelly</td>
-              <td class="text-left">Sibone</td>
-              <td>KellySibone@gmail.com</td>
-              <td>A+</td>
-              <td class="green">Active</td>
-            </tr>
-            <tr>
-              <th>
-                <div class="radio-table"><input type="checkbox"></div>
-              </th>
-              <td>5</td>
-              <td class="text-left">Kelly</td>
-              <td class="text-left">Sibone</td>
-              <td>KellySibone@gmail.com</td>
-              <td>A+</td>
-              <td class="green">Active</td>
+              <td class="text-left">{{classList.first_name}}</td>
+              <td class="text-left">{{classList.last_name}}</td>
+              <td>{{classList.email}}</td>
+              <td>{{classList.grades}}</td>
+              <td class="danger-text">{{classList.learner_status}}</td>
             </tr>
           </tbody>
         </table>
       </div>
       <div class="table-result-wrapper bottom-select row">
         <select name="course" id="course-name">
-        <option selected>10</option>
-        <option value="Course 1">1</option>
-        <option value="Course 2">2</option>
-        <option value="Course 3">3</option>
+          <option selected>10</option>
+          <option value="Course 1">1</option>
+          <option value="Course 2">2</option>
+          <option value="Course 3">3</option>
         </select>
         <p>Results: 1-15 of 324</p>
         <div class="selector col-lg-10">
-        <ul>
-        <li><a href="#"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
-        <li><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li class="active"><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-        <li><a href="#">...</a></li>
-        <li><a href="#" class="right-arrow"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
-        </ul>
+          <ul>
+            <li><a href="#"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li class="active"><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">...</a></li>
+            <li><a href="#" class="right-arrow"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+          </ul>
         </div>
-        </div> 
+      </div>
     </div>
     <div id="instructions" class="tab-pane">
       <div class="table=-responsive">
@@ -210,28 +166,36 @@
 
 
 <!-- Popup for transfer popup start -->
-      <div id="cancel" class="modal addcourse-modal" role="dialog">
-        <div class="modal-dialog dialog">
-           <!-- Modal content-->
-           <div class="modal-content" style="width: 205px; height: 160px;">
-              <div class="modal-body" style="padding: 0 !important;">
-                 <form>
-                    <div class="addCourse-form-right">
-                       <div class="my-modal"><button><a href="#" class="add-btn custom-a-btn custom-a-btn-learner" data-toggle="modal" data-target="#transfer"><i class="fa fa-exchange"></i>&nbsp;&nbsp;Transfer to another course</a></button></div>
-                       <div class="my-modal"><button><a href="#" class="add-btn custom-a-btn custom-a-btn-learner" data-toggle="modal" data-target="#transferClass"><i class="fa fa-repeat" aria-hidden="true"></i>&nbsp;&nbsp;Transfer to another class</a></button></div>
-                       <div class="my-modal"><button><a href="#"class="add-btn custom-a-btn custom-a-btn-learner" data-toggle="modal" data-target="#suspendlearner"><i class="fa fa-times-circle-o" aria-hidden="true"></i>&nbsp;&nbsp;Suspend</a></button></div>
-                       <div class="my-modal"><button><a href="#" class="add-btn custom-a-btn custom-a-btn-learner" data-toggle="modal" data-target="#cancelClass"><i class="fa fa-minus-circle" aria-hidden="true"></i>&nbsp;&nbsp;Cancel Invite</a></button></div>
-                    </div>
-                 </form>
-              </div>
-           </div>
-        </div>
-     </div>
+<div id="cancel" class="modal addcourse-modal" role="dialog">
+  <div class="modal-dialog dialog">
+    <!-- Modal content-->
+    <div class="modal-content" style="width: 205px; height: 160px;">
+      <div class="modal-body" style="padding: 0 !important;">
+        <form>
+          <div class="addCourse-form-right">
+            <div class="my-modal"><button><a href="#" class="add-btn custom-a-btn custom-a-btn-learner"
+                  data-toggle="modal" data-target="#transfer"><i class="fa fa-exchange"></i>&nbsp;&nbsp;Transfer to
+                  another course</a></button></div>
+            <div class="my-modal"><button><a href="#" class="add-btn custom-a-btn custom-a-btn-learner"
+                  data-toggle="modal" data-target="#transferClass"><i class="fa fa-repeat"
+                    aria-hidden="true"></i>&nbsp;&nbsp;Transfer to another class</a></button></div>
+            <div class="my-modal"><button><a href="#" class="add-btn custom-a-btn custom-a-btn-learner"
+                  data-toggle="modal" data-target="#suspendlearner"><i class="fa fa-times-circle-o"
+                    aria-hidden="true"></i>&nbsp;&nbsp;Suspend</a></button></div>
+            <div class="my-modal"><button><a href="#" class="add-btn custom-a-btn custom-a-btn-learner"
+                  data-toggle="modal" data-target="#cancelClass"><i class="fa fa-minus-circle"
+                    aria-hidden="true"></i>&nbsp;&nbsp;Cancel Invite</a></button></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- Popup for transfer popup end -->
 
- <!-- suspend learner popup start-->
+<!-- suspend learner popup start-->
 
-    <!-- <div id="suspendlearner" class="modal addcourse-modal" role="dialog">
+<!-- <div id="suspendlearner" class="modal addcourse-modal" role="dialog">
        <div class="modal-dialog modal-dialog-width">
           <div class="modal-content">
              <div class="modal-body">
@@ -253,11 +217,11 @@
           </div>
        </div>
     </div> -->
-    <!--    suspend learner popup end -->
+<!--    suspend learner popup end -->
 
-    <!--Cancel Class Invite popup start-->
+<!--Cancel Class Invite popup start-->
 
-    <!-- <div id="cancelClass" class="modal addcourse-modal" role="dialog">
+<!-- <div id="cancelClass" class="modal addcourse-modal" role="dialog">
        <div class="modal-dialog modal-dialog-width">
           <div class="modal-content">
              <div class="modal-body">
@@ -279,97 +243,106 @@
        </div>
     </div> -->
 
-    <!--    Cancel Class Invite Popup End-->
+<!--    Cancel Class Invite Popup End-->
 
 
-          <!--Transfer to another course popup start-->
+<!--Transfer to another course popup start-->
 
-    <div id="transfer" class="modal addcourse-modal" role="dialog">
-    <div class="modal-dialog modal-dialog-width">
-       Modal content
-       <div class="modal-content">
-          <div class="orange-modal-header">
-             <h4>Transfer to another course</h4>
-             <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true" style="color: #fff;"></i></button>
+<div id="transfer" class="modal addcourse-modal" role="dialog">
+  <div class="modal-dialog modal-dialog-width">
+    Modal content
+    <div class="modal-content">
+      <div class="orange-modal-header">
+        <h4>Transfer to another course</h4>
+        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"
+            style="color: #fff;"></i></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="addCourse-form" style="display: block !important;">
+            <div class="name-of-course fieldset fieldset-center">
+              <p>Learner</p>
+            </div>
+            <div class="name-of-course fieldset" style="margin: 0;">
+              <p style="font-size: 15px !important;">First name:&nbsp;&nbsp;&nbsp;<span>Lorenzo</span></p>
+              <p style="font-size: 15px !important;">Last name:&nbsp;&nbsp;&nbsp;<span>Gomez</span></p>
+            </div>
+            <div class="name-of-course fieldset" style="border-bottom: 1px solid #F1F6FB;">
+              <p style="line-height: 2.5; font-size: 15px !important;">Email: &nbsp;&nbsp;<span>1234567@gmail.com</span>
+              </p>
+            </div>
+            <div class="name-of-course fieldset fieldset-center">
+              <p>Current course</p>
+            </div>
+            <div class="name-of-course fieldset mt-3">
+              <p style="padding: 0 2.6em; font-size: 15px !important;">Course
+                Name:&nbsp;&nbsp;&nbsp;&nbsp;<span>Geography for Secondary 4&nbsp;-&nbsp;Level 3</span></p>
+            </div>
+            <div class="name-of-course fieldset" style="margin: 0;">
+              <p style="padding: 0 3.6em; font-size: 15px !important;">Level:&nbsp;&nbsp;&nbsp;<span>Secondary 4</span>
+              </p>
+              <p style="font-size: 15px !important;">Banding:&nbsp;&nbsp;&nbsp;<span>Band 3</span></p>
+            </div>
+            <div class="name-of-course fieldset"
+              style="border-bottom: 1px solid #F1F6FB; margin: 0; padding-bottom: 1.5em;">
+              <p style="padding: 0 3.6em; font-size: 15px !important;">Class:&nbsp;&nbsp;&nbsp;<span>Poppins</span></p>
+              <p style="padding: 0 5.3em; font-size: 15px !important;">Class code:&nbsp;&nbsp;&nbsp;<span
+                  class="orange">#56782</span></p>
+            </div>
+            <div class="name-of-course fieldset fieldset-center mt-3">
+              <p>Transfer to</p>
+            </div>
+            <div class="name-of-course fieldset" style="padding: 0 16px;">
+              <label style="text-align: center;">Course Name:</label>
+              <select name="level" id="levelcourse" style="width: 390px !important;">
+                <option selected>Geography for Secondary 3</option>
+                <option value="Professional Level 1">Geography for Secondary 2</option>
+                <option value="create new">Geography for Secondary 1</option>
+              </select>
+            </div>
+            <div class="name-of-course fieldset mt-3" style="padding: 0 16px;">
+              <label style="text-align: right; padding-right: 2em;">Level:</label>
+              <select name="level" id="levelcourse" style="width: 140px !important;">
+                <option selected>Secondary 3</option>
+                <option value="Professional Level 1">Secondary 2</option>
+                <option value="create new">Secondary 1</option>
+              </select>
+              <label style="text-align: right; width: 113px; padding-right: 1.5em">Branding:</label>
+              <select name="level" id="levelcourse" style="width: 140px !important;">
+                <option selected>Brand 3</option>
+                <option value="Professional Level 1">Brand 2</option>
+                <option value="create new">Brand 1</option>
+              </select>
+            </div>
+            <div class="name-of-course fieldset"
+              style="border-bottom: 1px solid #F1F6FB; margin: 0; padding-bottom: 1.5em;">
+              <label style="text-align: right; padding: 0 14px; margin: 0 16px 0 0;">class:</label>
+              <select name="level" id="levelcourse" style="width: 140px !important;">
+                <option selected>Poppins</option>
+                <option value="Professional Level 1">Poppings 1</option>
+                <option value="create new">Poppins 2</option>
+              </select>
+              <p style="padding: 0 26px; margin: 0; font-size: 15px;">Class code:&nbsp;&nbsp;&nbsp;<span
+                  class="orange">#56782</span></p>
+            </div>
+            <div class="modal-footer">
+              <button class="back-btn-course add-btn custom-a-btn custom-a-btn-learner" data-toggle="modal"
+                data-target="#suspend"><a href="#">Confirm</a></button>
+              <button class="next-btn-course">Cancel</button>
+            </div>
           </div>
-          <div class="modal-body">
-             <form>
-                <div class="addCourse-form" style="display: block !important;">
-                   <div class="name-of-course fieldset fieldset-center">
-                      <p>Learner</p>
-                   </div>
-                   <div class="name-of-course fieldset" style="margin: 0;">
-                      <p style="font-size: 15px !important;">First name:&nbsp;&nbsp;&nbsp;<span>Lorenzo</span></p>
-                      <p style="font-size: 15px !important;">Last name:&nbsp;&nbsp;&nbsp;<span>Gomez</span></p>
-                   </div>
-                   <div class="name-of-course fieldset" style="border-bottom: 1px solid #F1F6FB;">
-                      <p style="line-height: 2.5; font-size: 15px !important;">Email: &nbsp;&nbsp;<span>1234567@gmail.com</span></p>
-                   </div>
-                   <div class="name-of-course fieldset fieldset-center">
-                      <p>Current course</p>
-                   </div>
-                   <div class="name-of-course fieldset mt-3">
-                      <p style="padding: 0 2.6em; font-size: 15px !important;">Course Name:&nbsp;&nbsp;&nbsp;&nbsp;<span>Geography for Secondary 4&nbsp;-&nbsp;Level 3</span></p>
-                   </div>
-                   <div class="name-of-course fieldset" style="margin: 0;">
-                      <p style="padding: 0 3.6em; font-size: 15px !important;">Level:&nbsp;&nbsp;&nbsp;<span>Secondary 4</span></p>
-                      <p style="font-size: 15px !important;">Banding:&nbsp;&nbsp;&nbsp;<span>Band 3</span></p>
-                   </div>
-                   <div class="name-of-course fieldset" style="border-bottom: 1px solid #F1F6FB; margin: 0; padding-bottom: 1.5em;">
-                      <p style="padding: 0 3.6em; font-size: 15px !important;">Class:&nbsp;&nbsp;&nbsp;<span>Poppins</span></p>
-                      <p style="padding: 0 5.3em; font-size: 15px !important;">Class code:&nbsp;&nbsp;&nbsp;<span class="orange">#56782</span></p>
-                   </div>
-                   <div class="name-of-course fieldset fieldset-center mt-3">
-                      <p>Transfer to</p>
-                   </div>
-                   <div class="name-of-course fieldset" style="padding: 0 16px;">
-                      <label style="text-align: center;">Course Name:</label>
-                      <select name="level" id="levelcourse" style="width: 390px !important;">
-                         <option selected>Geography for Secondary 3</option>
-                         <option value="Professional Level 1">Geography for Secondary 2</option>
-                         <option value="create new">Geography for Secondary 1</option>
-                      </select>
-                   </div>
-                   <div class="name-of-course fieldset mt-3" style="padding: 0 16px;">
-                      <label style="text-align: right; padding-right: 2em;">Level:</label>
-                      <select name="level" id="levelcourse" style="width: 140px !important;">
-                         <option selected>Secondary 3</option>
-                         <option value="Professional Level 1">Secondary 2</option>
-                         <option value="create new">Secondary 1</option>
-                      </select>
-                      <label style="text-align: right; width: 113px; padding-right: 1.5em">Branding:</label>
-                      <select name="level" id="levelcourse" style="width: 140px !important;">
-                         <option selected>Brand 3</option>
-                         <option value="Professional Level 1">Brand 2</option>
-                         <option value="create new">Brand 1</option>
-                      </select>
-                   </div>
-                   <div class="name-of-course fieldset" style="border-bottom: 1px solid #F1F6FB; margin: 0; padding-bottom: 1.5em;">
-                      <label style="text-align: right; padding: 0 14px; margin: 0 16px 0 0;">class:</label>
-                      <select name="level" id="levelcourse" style="width: 140px !important;">
-                         <option selected>Poppins</option>
-                         <option value="Professional Level 1">Poppings 1</option>
-                         <option value="create new">Poppins 2</option>
-                      </select>
-                      <p style="padding: 0 26px; margin: 0; font-size: 15px;">Class code:&nbsp;&nbsp;&nbsp;<span class="orange">#56782</span></p>
-                   </div>
-                   <div class="modal-footer">
-                      <button class="back-btn-course add-btn custom-a-btn custom-a-btn-learner" data-toggle="modal" data-target="#suspend"><a href="#">Confirm</a></button>
-                      <button class="next-btn-course">Cancel</button>
-                   </div>
-                  </div>
-             </form>
-             </div>
-          </div>
-       </div>
+        </form>
+      </div>
     </div>
+  </div>
+</div>
 
-    <!--Transfer to another course popup end-->
+<!--Transfer to another course popup end-->
 
 
-    <!--Transfer to another class popup start-->
+<!--Transfer to another class popup start-->
 
-    <!-- <div id="transferClass" class="modal addcourse-modal" role="dialog">
+<!-- <div id="transferClass" class="modal addcourse-modal" role="dialog">
     <div class="modal-dialog modal-dialog-width">
         Modal content
        <div class="modal-content">
@@ -450,4 +423,4 @@
        </div>
     </div> -->
 
-    <!--Transfer to another class popup end-->
+<!--Transfer to another class popup end-->

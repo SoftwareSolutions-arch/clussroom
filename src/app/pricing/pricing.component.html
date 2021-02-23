@@ -1,6 +1,8 @@
-<div *ngIf="isImageShow">
-  <img class="common-loader">
+<!-- loader showing-->
+<div *ngIf="isImageShow" class="loading-indicator">
+  <mat-spinner></mat-spinner>
 </div>
+<!-- close loader showing-->
 <app-header *ngIf="!isImageShow"></app-header>
 <section class="pricing-section" *ngIf="!isImageShow">
   <div class="container">
@@ -10,8 +12,8 @@
     </div>
     <div class="pricing-content">
       <span class="previous-btn">
-        <i (click)="prev()" style="margin-right: 40px;" (click)="previous()" *ngIf="currentPage" class="fa fa-arrow-left"
-          aria-hidden="true"></i>
+        <i (click)="prev()" style="margin-right: 40px;" (click)="previous()" *ngIf="currentPage"
+          class="fa fa-arrow-left" aria-hidden="true"></i>
       </span>
       <ngx-slick-carousel style="width: 100%;" class="carousel pricing-content" #slickModal="slick-carousel"
         [config]="slideConfig">
@@ -30,7 +32,7 @@
               <ul>
                 <!-- for course_administrators-->
                 <li *ngIf="i.course_administrators==0;else courseAdministratorsTemp">
-                  <img  src="/assets/images/grey-tick.png">
+                  <img src="/assets/images/grey-tick.png">
                   <span style="color: #dadfea;">
                     {{i?.course_administrators}} Course Adminstrator
                   </span>
@@ -41,9 +43,9 @@
                   </li>
                 </ng-template>
 
-                 <!-- for gb_storage-->
-                 <li *ngIf="i.gb_storage==0;else gbStorageTemp">
-                  <img  src="/assets/images/grey-tick.png">
+                <!-- for gb_storage-->
+                <li *ngIf="i.gb_storage==0;else gbStorageTemp">
+                  <img src="/assets/images/grey-tick.png">
                   <span style="color: #dadfea;">
                     {{i?.gb_storage}} GB storage
                   </span>
@@ -56,7 +58,7 @@
 
                 <!-- for active students-->
                 <li *ngIf="i.active_students==0;else activeStudents">
-                  <img  src="/assets/images/grey-tick.png">
+                  <img src="/assets/images/grey-tick.png">
                   <span style="color: #dadfea;">
                     {{i?.active_students}} active students1
                   </span>
@@ -68,9 +70,9 @@
                   </li>
                 </ng-template>
 
-                 <!-- for Sub-admin-->
-                 <li *ngIf="i.sub_admin==0;else subAdmin">
-                  <img  src="/assets/images/grey-tick.png">
+                <!-- for Sub-admin-->
+                <li *ngIf="i.sub_admin==0;else subAdmin">
+                  <img src="/assets/images/grey-tick.png">
                   <span style="color: #dadfea;">
                     {{i?.sub_admin}} Sub-admin
                   </span>
@@ -81,9 +83,9 @@
                   </li>
                 </ng-template>
 
-                 <!-- for Live session-->
-                 <li *ngIf="i.live_session==0;else liveSession">
-                  <img  src="/assets/images/grey-tick.png">
+                <!-- for Live session-->
+                <li *ngIf="i.live_session==0;else liveSession">
+                  <img src="/assets/images/grey-tick.png">
                   <span style="color: #dadfea;">
                     {{i?.live_session}} Live session
                   </span>

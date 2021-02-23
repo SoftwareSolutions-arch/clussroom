@@ -1,6 +1,8 @@
-<div *ngIf="isImageShow">
-  <img class="image-loader" src="assets/spinner.gif">
+<!-- loader showing-->
+<div *ngIf="isImageShow" class="loading-indicator">
+  <mat-spinner></mat-spinner>
 </div>
+<!-- close loader showing-->
 
 <app-header *ngIf="!isImageShow"></app-header>
 
