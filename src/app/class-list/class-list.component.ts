@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { UtilService } from '../../providers/util.service';
 import { SharedServiceService } from '../shared-service.service';
 
-
 @Component({
   selector: 'app-class-list',
   templateUrl: './class-list.component.html',
   styleUrls: ['./class-list.component.css']
 })
+
 export class ClassListComponent implements OnInit {
   isLoadingBool: boolean = true;
   allClassesList: any = [];

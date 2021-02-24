@@ -733,10 +733,10 @@ section.home-testimonial-section:before {
 }
 
 .home-testimonial-box .testimonial-user-caption .testimonial-user span {
-  font-family: Rubik;
+  font-family: 'Barlow';
   font-weight: 400;
-  font-size: 17px;
   color: #94a2b3;
+  font-size:15px;
 }
 
 .home-testimonial-section .slick-arrow {
