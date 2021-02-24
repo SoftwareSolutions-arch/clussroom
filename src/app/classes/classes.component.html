@@ -76,8 +76,8 @@
               <th scope="col">No.</th>
               <th scope="col" class="text-left table-filter">Class Name</th>
               <th scope="col" class="table-filter">Class Code</th>
-              <th scope="col" class="table-filter">Start date</th>
-              <th scope="col" class="table-filter">End date</th>
+              <th scope="col" class="text-left table-filter">Start date</th>
+              <th scope="col" class="text-left table-filter">End date</th>
               <th scope="col" class="table-filter">Learners</th>
               <th scope="col" class="table-filter">Status</th>
               <th scope="col"></th>
@@ -126,14 +126,14 @@
                 </div>
               </td>
               <td>
-                <button><a href="#">Go to Class</a></button>
+                <button><a >Go to Class</a></button>
               </td>
 
               <td>
                 <!-- <div class="go-to-class" *ngIf="this.classList.nid===this.userIdDetails" (click)="saveClasses(this.allClassesData[i])">Save class</div> -->
                 <button style="color: #90a193 !important;" *ngIf="this.classList.nid===this.userIdDetails"
                   (click)="saveClasses(this.allClassesData[i])">
-                  <a style="color: #90a193 !important;" href="#">Save class</a>
+                  <a style="color: #90a193 !important;" >Save class</a>
                 </button>
 
               </td>
@@ -175,7 +175,7 @@
             </div>
             <div class="modal-footer">
               <button class="modalfooter-back" data-dismiss="modal">Back</button>
-              <button (click)="createCourse()" class="modalfooter-next" data-dismiss="modal">Next</button>
+              <button (click)="createNewClasses()" class="modalfooter-next" data-dismiss="modal">Next</button>
             </div>
           </form>
         </div>

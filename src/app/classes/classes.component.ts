@@ -66,16 +66,16 @@ export class ClassesComponent implements OnInit {
     }
     this.isLoadingBool = true;
     this.service.post('view-all-classes-api', params, 1).subscribe(result => {
-      console.log('result++p', result)
       this.isLoadingBool = false;
       if (result['status'] == 1) {
         this.allClassesData = result['classesdata'];
-        if (result['classesdata'].length > 0) {
-          this.isTableShow = true;
-        }
-        if (result['classesdata'].length == 0) {
-          this.isTableShow = false;
-        }
+        this.isTableShow = true;
+        // if (result['classesdata'].length > 0) {
+        //   this.isTableShow = true;
+        // }
+        // if (result['classesdata'].length == 0) {
+        //   this.isTableShow = false;
+        // }
       }
       else {
         this.util.errorAlertPopup(result['mesaage']);
@@ -108,27 +108,45 @@ export class ClassesComponent implements OnInit {
     }
   }
 
-  // create course 
-  createCourse() {
-    let params = {
-      "startdate": this.courseList.class_start,
-      "enddate": this.courseList.class_end,
-      "class_name": this.courseList.class_name,
-      "course_id": this.selectedCategory
+  // create new classes
+  createNewClasses() {
+    console.log('this.courseList.class_start',this.courseList.class_start);
+    console.log('this.courseList.class_end',this.courseList.class_end);
+    var x = new Date(this.courseList.class_start);
+    var y = new Date(this.courseList.class_end);
+    if(x>y){
+      this.util.errorAlertPopup('start date should be less than end date')
     }
-    console.log('classList', params)
-    this.isLoadingBool = true;
-    this.service.post('create-class-api', params, 1).subscribe(result => {
-      this.isLoadingBool = false;
-
-      if (result['status'] == "completed") {
-        this.util.showSuccessAlert('Course Created Successfully');
-        this.viewClassesList();
+    else if(x<=y){
+      let params = {
+        "startdate": this.courseList.class_start,
+        "enddate": this.courseList.class_end,
+        "class_name": this.courseList.class_name,
+        "course_id": this.selectedCategory
+      }
+  
+      if (this.courseList.class_start == '' || this.courseList.class_end == '' || this.courseList.class_name == '') {
+        this.util.errorAlertPopup('You must have to fill all the required values');
+        return
       }
       else {
-        this.util.errorAlertPopup(result['mesaage']);
+        this.isLoadingBool = true;
+        this.service.post('create-class-api', params, 1).subscribe(result => {
+          console.log('result_++p', result)
+          this.isLoadingBool = false;
+  
+          if (result['status'] == "completed" || "ongoing") {
+            this.util.showSuccessAlert('Class created successfully');
+            this.viewClassesList();
+          }
+          else {
+            this.util.errorAlertPopup(result['mesaage']);
+          }
+        })
       }
-    })
+    }
+    
+
   }
 
   // delete class pop up for confirm details
@@ -195,32 +213,38 @@ export class ClassesComponent implements OnInit {
 
   saveClasses(index: number): any {
     console.log('index', index);
-    let params = {
-      "class_name": index['title'],
-      "classid": index['nid'],
-      // "class_code":index['field_class_code'],
-      "startdate": index['field_start_date'],
-      "enddate": index['field_end_date'],
-      // "status":index['field_status']
+    var x = new Date(index['field_start_date']);
+    var y = new Date(index['field_end_date']);
+    if(x>y){
+      this.util.errorAlertPopup('start date should be less than end date')
     }
-    console.log('params', params);
-    this.isLoadingBool = true;
-    this.service.post('update-class-api', params, 1).subscribe(result => {
-      console.log("result", result);
-      if (result['Status'] == 1 || '1') {
-        this.isLoadingBool = false;
-        this.isSaveCourses = false;
-        this.editForm = false;
-        this.userIdDetails = '';
-        this.selectedItems = []
-        this.checkboxes.forEach((element) => {
-          element.nativeElement.checked = false;
-        });
-        // this.deleteclosebutton.nativeElement.click();
-        this.util.showSuccessAlert('Classes Updated Successfully');
-        this.getAllCoursesList();
+    else if(x<=y){
+      let params = {
+        "class_name": index['title'],
+        "classid": index['nid'],
+        "startdate": index['field_start_date'],
+        "enddate": index['field_end_date'],
       }
-    })
-  }
+      console.log('params', params);
+      this.isLoadingBool = true;
+      this.service.post('update-class-api', params, 1).subscribe(result => {
+        console.log("result", result);
+        if (result['Status'] == 1 || '1') {
+          this.isLoadingBool = false;
+          this.isSaveCourses = false;
+          this.editForm = false;
+          this.userIdDetails = '';
+          this.selectedItems = []
+          this.checkboxes.forEach((element) => {
+            element.nativeElement.checked = false;
+          });
+          // this.deleteclosebutton.nativeElement.click();
+          this.util.showSuccessAlert('Classes Updated Successfully');
+          this.getAllCoursesList();
+        }
+      })
+    }
 
+   
+  }
 }

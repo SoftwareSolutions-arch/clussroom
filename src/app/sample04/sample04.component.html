@@ -14,7 +14,7 @@
           <div class="prospectus-action">
             <a *ngIf="!editForm && !isSaveCourses" class="add-btn custom-a-btn" data-toggle="modal"
               data-target="#addCourse">
-              <i class="fa fa-plus" aria-hidden="true"></i> Name</a>
+              <i class="fa fa-plus" aria-hidden="true"></i> New course</a>
             <a *ngIf="editForm" (click)="editCourses()" style="margin-left: 15px;background: #ef4a4a !important;"
               class="add-btn custom-a-btn" data-toggle="modal">
               <i class="fa fa-edit" aria-hidden="true"></i> Edit</a>
@@ -70,7 +70,7 @@
                       <div class="category-course fieldset">
                         <select name="category" id="categorycourse" [(ngModel)]="this.allCourseList[i].field_category"
                           *ngIf=showInputCategory (change)="addNewcategory(this.allCourseList[i])">
-                          <option> please select category</option>
+                          <!-- <option> please select category</option> -->
                           <option *ngFor="let categories of this.allCategories" [value]="categories.tid">
                             {{categories.name}}
                           </option>
@@ -87,7 +87,7 @@
                     <td *ngIf="this.courseList.nid===this.userIdDetails">
                       <div class="category-course fieldset">
                         <select name="category" id="categorycourse" [(ngModel)]="this.allCourseList[i].field_level"
-                          *ngIf=showFiledLevel (change)="addNewcategory(this.allCourseList[i])">
+                          *ngIf=showFiledLevel (change)="addNewlevel(this.allCourseList[i])">
                           <option *ngFor="let level of this.allLevel" [value]="level.tid">{{level.name}}</option>
                           <option *ngIf="this.allLevel.length>1" value="create_new">Create new</option>
                         </select>
@@ -102,7 +102,7 @@
                     <td *ngIf="this.courseList.nid===this.userIdDetails">
                       <div class="category-course fieldset">
                         <select name="category" id="categorycourse" [(ngModel)]="this.allCourseList[i].field_banding"
-                          *ngIf=showBanding (change)="addNewcategory(this.allCourseList[i])">
+                          *ngIf=showBanding (change)="addNewBanding(this.allCourseList[i])">
                           <option *ngFor="let banding of this.allBanding" [value]="banding.tid">{{banding.name}}
                           </option>
                           <option *ngIf="this.allBanding.length>1" value="create_new">Create new</option>
