@@ -110,43 +110,44 @@ export class ClassesComponent implements OnInit {
 
   // create new classes
   createNewClasses() {
-    console.log('this.courseList.class_start',this.courseList.class_start);
-    console.log('this.courseList.class_end',this.courseList.class_end);
+    console.log('this.courseList.class_start', this.courseList.class_start);
+    console.log('this.courseList.class_end', this.courseList.class_end);
     var x = new Date(this.courseList.class_start);
     var y = new Date(this.courseList.class_end);
-    if(x>y){
-      this.util.errorAlertPopup('start date should be less than end date')
+
+    if (this.courseList.class_start == '' || this.courseList.class_end == '' || this.courseList.class_name == '') {
+      this.util.errorAlertPopup('You must have to fill all the required values');
+      return
+
     }
-    else if(x<=y){
+
+    else if (x > y) {
+      this.util.errorAlertPopup('start date should be less than end date');
+      return
+    }
+
+    else if (x <= y) {
       let params = {
         "startdate": this.courseList.class_start,
         "enddate": this.courseList.class_end,
         "class_name": this.courseList.class_name,
         "course_id": this.selectedCategory
       }
-  
-      if (this.courseList.class_start == '' || this.courseList.class_end == '' || this.courseList.class_name == '') {
-        this.util.errorAlertPopup('You must have to fill all the required values');
-        return
-      }
-      else {
-        this.isLoadingBool = true;
-        this.service.post('create-class-api', params, 1).subscribe(result => {
-          console.log('result_++p', result)
-          this.isLoadingBool = false;
-  
-          if (result['status'] == "completed" || "ongoing") {
-            this.util.showSuccessAlert('Class created successfully');
-            this.viewClassesList();
-          }
-          else {
-            this.util.errorAlertPopup(result['mesaage']);
-          }
-        })
-      }
-    }
-    
 
+      this.isLoadingBool = true;
+      this.service.post('create-class-api', params, 1).subscribe(result => {
+        console.log('result_++p', result)
+        this.isLoadingBool = false;
+        this.clearAddClassValues();
+        if (result['status'] == "completed" || "ongoing") {
+          this.util.showSuccessAlert('Class created successfully');
+          this.viewClassesList();
+        }
+        else {
+          this.util.errorAlertPopup(result['mesaage']);
+        }
+      })
+    }
   }
 
   // delete class pop up for confirm details
@@ -215,10 +216,10 @@ export class ClassesComponent implements OnInit {
     console.log('index', index);
     var x = new Date(index['field_start_date']);
     var y = new Date(index['field_end_date']);
-    if(x>y){
+    if (x > y) {
       this.util.errorAlertPopup('start date should be less than end date')
     }
-    else if(x<=y){
+    else if (x <= y) {
       let params = {
         "class_name": index['title'],
         "classid": index['nid'],
@@ -245,6 +246,12 @@ export class ClassesComponent implements OnInit {
       })
     }
 
-   
+
+  }
+  clearAddClassValues() {
+    console.log('hello user')
+    this.courseList.class_start = '';
+    this.courseList.class_end = '';
+    this.courseList.class_name = '';
   }
 }

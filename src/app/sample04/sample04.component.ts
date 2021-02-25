@@ -218,6 +218,8 @@ export class Sample04Component implements OnInit {
         "new_level": this.newLevel
       }
       this.service.post('create-course-api', params, 1).subscribe(result => {
+        this.clearAddFOrmValues();
+        this.util.showSuccessAlert('Course Created Successfully');
         this.isLoadingBool = false;
         this.addclosebutton.nativeElement.click();
         this.getAllCoursesList();
@@ -340,6 +342,7 @@ export class Sample04Component implements OnInit {
       this.showBanding = false;
     }
   }
+
   compareFn(a, b) {
     console.log('a', a)
     console.log('b', b);
@@ -408,5 +411,15 @@ export class Sample04Component implements OnInit {
       }
 
     })
+  }
+
+  clearAddFOrmValues(){
+    this.courseName='';
+    this.selectedCategory='';
+    this.newCategory='';
+    this.level='';
+    this.newLevel='';
+    this.banding='';
+    this.newBanding='';    
   }
 }
