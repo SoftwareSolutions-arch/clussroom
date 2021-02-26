@@ -21,7 +21,7 @@ export class ClassesComponent implements OnInit {
   currentIndex = -1;
   page = 1;
   count = 0;
-  pageSize = 10;
+  pageSize = 3;
   isTableShow: boolean = false;
   editForm: boolean = false;
   isSaveCourses: boolean = false;
@@ -41,17 +41,21 @@ export class ClassesComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  ngAfterViewInit() { }
+
   // get all courses list
   getAllCoursesList() {
+    console.log('hello ')
     this.isLoadingBool = true;
     this.service.post('view-all-courses-api', '', 1).subscribe(result => {
       this.isLoadingBool = false;
-      if (result['status'] == 1) {
-        this.allCourseList = result['coursesdata'];
-      }
-      else {
-        this.util.errorAlertPopup(result['mesaage']);
-      }
+      this.allCourseList = result['coursesdata'];
+      // if (result['status'] == 1) {
+      //   this.allCourseList = result['coursesdata'];
+      // }
+      // else {
+      //   this.util.errorAlertPopup(result['mesaage']);
+      // }
     })
   }
 
@@ -66,6 +70,7 @@ export class ClassesComponent implements OnInit {
     }
     this.isLoadingBool = true;
     this.service.post('view-all-classes-api', params, 1).subscribe(result => {
+      console.log('result', result)
       this.isLoadingBool = false;
       if (result['status'] == 1) {
         this.allClassesData = result['classesdata'];
@@ -90,6 +95,9 @@ export class ClassesComponent implements OnInit {
 
   // get events of check box for edit or add button show and hide 
   isCheckClicked(event, courseList, i) {
+    console.log('classList', courseList);
+    console.log('index', i);
+    console.log("event", event)
     if (event.target.checked == true) {
       this.editForm = true;
       // this.selectedItems.push({ 'nid': courseList.nid })
@@ -134,6 +142,7 @@ export class ClassesComponent implements OnInit {
         "course_id": this.selectedCategory
       }
 
+      console.log('params',params)
       this.isLoadingBool = true;
       this.service.post('create-class-api', params, 1).subscribe(result => {
         console.log('result_++p', result)
@@ -156,11 +165,11 @@ export class ClassesComponent implements OnInit {
       "step": 1,
       "delete_class_nids": this.selectedItems
     }
+    console.log('params',params)
     this.service.post('delete-class-api', params, 1).subscribe(result => {
       console.log('result', result);
-      if (result['status'] == '1') {
-        this.classesData = result.classesdata;
-      }
+      this.classesData = result.classesdata;
+
     })
   }
 
@@ -212,19 +221,19 @@ export class ClassesComponent implements OnInit {
     this.showInputCategory = true;
   }
 
-  saveClasses(index: number): any {
-    console.log('index', index);
-    var x = new Date(index['field_start_date']);
-    var y = new Date(index['field_end_date']);
+  saveClasses(data): any {
+    console.log('index', data);
+    var x = new Date(data['field_start_date']);
+    var y = new Date(data['field_end_date']);
     if (x > y) {
       this.util.errorAlertPopup('start date should be less than end date')
     }
     else if (x <= y) {
       let params = {
-        "class_name": index['title'],
-        "classid": index['nid'],
-        "startdate": index['field_start_date'],
-        "enddate": index['field_end_date'],
+        "class_name": data['title'],
+        "classid": data['nid'],
+        "startdate": data['field_start_date'],
+        "enddate": data['field_end_date'],
       }
       console.log('params', params);
       this.isLoadingBool = true;
@@ -241,7 +250,7 @@ export class ClassesComponent implements OnInit {
           });
           // this.deleteclosebutton.nativeElement.click();
           this.util.showSuccessAlert('Classes Updated Successfully');
-          this.getAllCoursesList();
+          this.viewClassesList();
         }
       })
     }

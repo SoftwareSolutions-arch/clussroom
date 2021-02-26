@@ -13,7 +13,8 @@
         </option>
       </select>
     </div>
-    <button (click)="selectCategory()"><a>Go</a></button>
+    <button (click)="viewClassesList()"><a>Go</a></button>
+    <button (click)="getAllCoursesList()" class="refresh-btn"><a>Refresh</a></button>
   </form>
 </div>
 
@@ -38,36 +39,7 @@
       </div>
     </div>
     <div class="table-responsive">
-      <!-- <table class="table dashboard-table">
-        <thead>
-          <tr>
-            <th scope="col"></th>
-            <th scope="col">No.</th>
-            <th scope="col" class="text-left">Class Name</th>
-            <th scope="col">Class Code</th>
-            <th scope="col" class="table-filter">Start date</th>
-            <th scope="col" class="table-filter">End date</th>
-            <th scope="col" class="table-filter">Learner</th>
-            <th scope="col" class="table-filter">Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let classList of this.allClassesData| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;"
-          [class.active]="i == currentIndex">
-            <th>
-              <div class="radio-table"><input type="checkbox"></div>
-            </th>
-            <td>{{this.classList.title}}</td>
-            <td class="text-left">{{this.classList.title}}</td>
-            <td>{{this.classList.title}}</td>
-            <td>{{this.classList.title}}</td>
-            <td>{{this.classList.title}}</td>
-            <td>{{this.classList.title}}</td>
-            <td>{{this.classList.title}}</td>
-
-          </tr>
-        </tbody>
-      </table> -->
+     
       <div class="table-responsive">
         <table class="table dashboard-table">
           <thead>
@@ -89,14 +61,18 @@
               [class.active]="i == currentIndex">
               <th>
                 <div class="radio-table">
-                  <input type="checkbox" #checkboxes (click)="isCheckClicked($event,classList,i)"></div>
+                  <!-- <input type="checkbox" #checkboxes (click)="isCheckClicked($event,classList,i)"> -->
+                  <input name="checkbox" (click)="isCheckClicked($event,classList,i)" type="radio">
+
+                </div>
+
               </th>
               <td>
                 <div>{{this.classList.sno}}</div>
               </td>
 
               <td *ngIf="this.classList.nid !== this.userIdDetails" class="text-left">{{this.classList.title}}</td>
-              <td *ngIf="this.classList.nid===this.userIdDetails"><input [(ngModel)]="this.allClassesData[i].title"
+              <td *ngIf="this.classList.nid===this.userIdDetails"><input [(ngModel)]="this.classList.title"
                   class="text-left" /></td>
 
               <td>
@@ -106,13 +82,13 @@
               <td *ngIf="this.classList.nid !== this.userIdDetails" class="text-left">
                 {{this.classList.field_start_date}}</td>
               <td *ngIf="this.classList.nid===this.userIdDetails"><input type="date"
-                  [(ngModel)]="this.allClassesData[i].field_start_date" class="text-left" /></td>
+                  [(ngModel)]="this.classList.field_start_date" class="text-left" /></td>
 
               <td *ngIf="this.classList.nid !== this.userIdDetails" class="text-left">{{this.classList.field_end_date}}
               </td>
 
               <td *ngIf="this.classList.nid===this.userIdDetails"><input type="date"
-                  [(ngModel)]="this.allClassesData[i].field_end_date" class="text-left" /></td>
+                  [(ngModel)]="this.classList.field_end_date" class="text-left" /></td>
 
               <td>
                 <div class="highlight">{{this.classList.total_learners}}</div>
@@ -132,7 +108,7 @@
               <td>
                 <!-- <div class="go-to-class" *ngIf="this.classList.nid===this.userIdDetails" (click)="saveClasses(this.allClassesData[i])">Save class</div> -->
                 <button style="color: #90a193 !important;" *ngIf="this.classList.nid===this.userIdDetails"
-                  (click)="saveClasses(this.allClassesData[i])">
+                  (click)="saveClasses(this.classList)">
                   <a style="color: #90a193 !important;">Save class</a>
                 </button>
 
@@ -140,17 +116,17 @@
             </tr>
           </tbody>
         </table>
-
+        <div class="table-result-wrapper">
+          <pagination-controls previousLabel="Prev" nextLabel="Next"  responsive="true"
+            (pageChange)="handlePageChange($event)"></pagination-controls>
+        </div>
       </div>
-      <div class="table-result-wrapper">
-        <pagination-controls previousLabel="Prev" nextLabel="Next" autoHide="true" responsive="true"
-          (pageChange)="handlePageChange($event)"></pagination-controls>
-      </div>
+   
     </div>
   </div>
 
   <div id="addClass" class="modal addcourse-modal" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog" style="max-width: 40%;">
 
       <!-- Modal content-->
       <div class="modal-content">
@@ -162,10 +138,10 @@
         <div class="modal-body" style="padding:26px 26px 0px 26px !important">
           <form>
             <div class="addCourse-form">
-              <div class="my-modal my-modal-classes">Class Start:&nbsp;&nbsp;&nbsp;</div>
+              <div class="my-modal my-modal-classes">Class start:&nbsp;&nbsp;&nbsp;</div>
               <input [(ngModel)]="courseList.class_start" [ngModelOptions]="{standalone: true}" type="date"
                 placeholder="dd/mm/yyyy" value="" style="border: 1px solid #E7EDFF;">
-              <div class="my-modal my-modal-classes">Class Ends:&nbsp;&nbsp;&nbsp;</div>
+              <div class="my-modal my-modal-classes">Class ends:&nbsp;&nbsp;&nbsp;</div>
               <input [(ngModel)]="courseList.class_end" [ngModelOptions]="{standalone: true}" type="date"
                 placeholder="dd/mm/yyyy" value="" style="border: 1px solid #E7EDFF;">
             </div>

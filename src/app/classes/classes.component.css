@@ -345,20 +345,20 @@ table.dashboard-table thead {
 }
 
 .green-button button {
-  background-color: #DCE2EC !important;
-  border: 2px solid #dce2ec !important;
+  background-color: #DCE2EC;
+  border: 2px solid #dce2ec;
 
 }
 
 .green-button button:hover {
-  background-color: #16DBCC !important;
-  border: 2px solid #16dbcc !important;
+  background-color: #16DBCC;
+  border: 2px solid #16dbcc;
   transition: .5s ease-in-out;
 }
 
 
 .green-button button a {
-  color: #fff !important;
+  color: #fff;
 }
 
 .fieldset {
@@ -742,7 +742,7 @@ a.add-btn i {
 
 .class-name {
   display: flex;
-  padding: 18px 0px;
+  padding: 18px 25px;
   border-radius: 6px;
   font-size: 15px;
   line-height: 2.2;
@@ -752,11 +752,12 @@ a.add-btn i {
   height: 35px;
   width: 350px;
   border-radius: 6px;
-  padding: 0 0;
+  padding: 5px 7px;
   /* margin: -4px 0px; */
   font-size: 13px;
   border: 1px solid #E7EDFF;
   box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.02);
+
 }
 
 .addcourse-modal .modal-header {
@@ -796,6 +797,7 @@ a.add-btn i {
 .addcourse-modal .modal-body .addCourse-form {
   display: flex;
   padding: 25px 2px;
+  justify-content: center !important;
 }
 
 .addCourse-form input {
@@ -816,7 +818,7 @@ a.add-btn i {
 }
 
 .addCourse-form input {
-  width: 120px;
+  width: 160px;
   height: 35px;
   padding: 16px 9px;
   font-size: 15px;
@@ -880,7 +882,7 @@ a.add-btn i {
   background-color: transparent;
   border: 0px;
   color: #396AFF;
-  margin: 0;
+  margin: 0 7px;
 }
 
 .addcourse-modal .modal-body .fieldset {
@@ -1024,4 +1026,11 @@ a.add-btn i {
 .learner-text-left button a:hover {
   color: #ffa26b;
   text-decoration: none;
+}
+
+.refresh-btn{
+  /* position: absolute;
+  right: 35px; */
+  background: #007bff !important;
+  margin-left: 10px;
 }

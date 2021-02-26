@@ -296,9 +296,13 @@ header #main-menu ul.navbar-nav li.last a{
 	color: #fff;
 }
 
-header #main-menu ul.navbar-nav li.last:hover {
+header #main-menu ul.navbar-nav li.last a:hover{
+	padding:0;
+}
+
+/* header #main-menu ul.navbar-nav li.last:hover {
     padding: 0 !important;
     background-color: #fff !important;
     color: #396AFF;
-}
+} */
 /*header css end*/

@@ -66,13 +66,13 @@
                 <li *ngIf="i.active_students==0;else activeStudents">
                   <img src="/assets/images/grey-tick.png">
                   <span style="color: #dadfea;">
-                    {{i?.active_students}} active students1
+                    {{i?.active_students}} active students
                   </span>
                 </li>
                 <ng-template #activeStudents>
                   <li>
                     <img src="/assets/images/green-tick.png">
-                    {{i?.active_students}} active students1
+                    {{i?.active_students}} active students
                   </li>
                 </ng-template>
 

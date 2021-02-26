@@ -12,16 +12,15 @@
             <li><a data-toggle="tab" href="#instructions">Method of Instructions</a></li>
           </ul>
           <div class="prospectus-action">
+            <!-- <a class="add-btn custom-a-btn" data-toggle="modal" data-target="#editCourse">
+              <i class="fa fa-plus" aria-hidden="true"></i> edit course</a> -->
             <a *ngIf="!editForm && !isSaveCourses" class="add-btn custom-a-btn" data-toggle="modal"
               data-target="#addCourse">
               <i class="fa fa-plus" aria-hidden="true"></i> New course</a>
-            <a *ngIf="editForm" (click)="editCourses()" style="margin-left: 15px;background: #ef4a4a !important;"
-              class="add-btn custom-a-btn" data-toggle="modal">
+            <a *ngIf="editForm" style="margin-left: 15px;background: #ef4a4a !important;" class="add-btn custom-a-btn"
+              data-target="#editCourse" data-toggle="modal">
               <i class="fa fa-edit" aria-hidden="true"></i> Edit</a>
-            <!-- <a *ngIf="isSaveCourses" (click)="saveCourses()" style="margin-left: 15px;background: #7460b0 !important;"
-          class="add-btn custom-a-btn" data-toggle="modal">
-          <i class="fa fa-save" aria-hidden="true"></i> Save</a> -->
-            <a *ngIf="isSaveCourses" (click)="cancelCourses()" style="margin-left: 15px;background: #db2929 !important;"
+            <a *ngIf="!isSaveCourses && editForm" (click)="cancelCourses()" style="margin-left: 15px;background: #db2929 !important;"
               class="add-btn custom-a-btn" data-toggle="modal">
               <i class="fa fa-times" aria-hidden="true"></i> Cancel</a>
             <a *ngIf="!isSaveCourses && editForm" style="margin-left: 15px;background: #9a7be3 !important;"
@@ -47,90 +46,42 @@
                     <th scope="col" class="table-filter">Admin</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr
-                    *ngFor="let courseList of this.allCourseList| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;"
+                <tbody >
+                  <tr *ngFor="let courseLists of this.allCourseList| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;"
                     [class.active]="i == currentIndex">
                     <th>
                       <div class="radio-table">
-                        <input #checkboxes (click)="isCheckClicked($event,courseList,i)" type="checkbox">
+                        <input name="checkbox" (click)="isCheckClicked($event,courseLists,i)" type="radio">
                       </div>
                     </th>
-                    <td>{{this.courseList.sno}}</td>
-                    <td *ngIf="this.courseList.nid !== this.userIdDetails" class="text-left">{{this.courseList.title}}
-                    </td>
-                    <td *ngIf="this.courseList.nid===this.userIdDetails"><input
-                        [(ngModel)]="this.allCourseList[i].title" class="text-left" /></td>
+                    <td>{{courseLists.sno}}</td>
+                    <td class="text-left">{{courseLists.title}}</td>
+                   
+                    <td class="text-left">{{courseLists.field_course_code}}</td>
 
-                    <td class="text-left">{{this.courseList.field_course_code}}</td>
-
-                    <td *ngIf="this.courseList.nid !== this.userIdDetails" class="text-left">
-                      {{this.courseList.field_category}}</td>
-                    <td *ngIf="this.courseList.nid===this.userIdDetails">
-                      <div class="category-course fieldset">
-                        <select name="category" id="categorycourse" [(ngModel)]="this.allCourseList[i].field_category"
-                          *ngIf=showInputCategory (change)="addNewcategory(this.allCourseList[i])">
-                          <!-- <option> please select category</option> -->
-                          <option *ngFor="let categories of this.allCategories" [value]="categories.tid">
-                            {{categories.name}}
-                          </option>
-                          <option *ngIf="this.allCategories.length>1" value="create_new">Create new</option>
-                        </select>
-                        <input *ngIf=!showInputCategory name="courseList.title"
-                          [(ngModel)]="this.allCourseList[i].field_category" class="text-left">
-                      </div>
-                    </td>
-
-                    <td *ngIf="this.courseList.nid !== this.userIdDetails" class="text-left">
-                      {{this.courseList.field_level}}
-                    </td>
-                    <td *ngIf="this.courseList.nid===this.userIdDetails">
-                      <div class="category-course fieldset">
-                        <select name="category" id="categorycourse" [(ngModel)]="this.allCourseList[i].field_level"
-                          *ngIf=showFiledLevel (change)="addNewlevel(this.allCourseList[i])">
-                          <option *ngFor="let level of this.allLevel" [value]="level.tid">{{level.name}}</option>
-                          <option *ngIf="this.allLevel.length>1" value="create_new">Create new</option>
-                        </select>
-                        <input *ngIf=!showFiledLevel name="courseList.title"
-                          [(ngModel)]="this.allCourseList[i].field_level" class="text-left">
-                      </div>
-                    </td>
-
-                    <td *ngIf="this.courseList.nid !== this.userIdDetails" class="text-left">
-                      {{this.courseList.field_banding}}
-                    </td>
-                    <td *ngIf="this.courseList.nid===this.userIdDetails">
-                      <div class="category-course fieldset">
-                        <select name="category" id="categorycourse" [(ngModel)]="this.allCourseList[i].field_banding"
-                          *ngIf=showBanding (change)="addNewBanding(this.allCourseList[i])">
-                          <option *ngFor="let banding of this.allBanding" [value]="banding.tid">{{banding.name}}
-                          </option>
-                          <option *ngIf="this.allBanding.length>1" value="create_new">Create new</option>
-                        </select>
-                        <input *ngIf=!showBanding name="courseList.title"
-                          [(ngModel)]="this.allCourseList[i].field_banding" class="text-left">
-                      </div>
-                    </td>
-
-                    <td class="text-left">{{this.courseList.classes}}</td>
-                    <!-- <td *ngIf="this.courseList.nid===this.userIdDetails">
-                  <input name="courseList.title" [(ngModel)]="this.allCourseList[i].classes" class="text-left"></td> -->
                     <td class="text-left">
-                      {{this.courseList.total_learners}}</td>
-                    <!-- <td *ngIf="this.courseList.nid===this.userIdDetails"><input name="courseList.title"
-                    [(ngModel)]="this.allCourseList[i].total_learners" class="text-left"></td> -->
+                      {{courseLists.field_category}}</td>
+
+                    <td class="text-left">
+                      {{courseLists.field_level}}
+                    </td>
+                  
+                    <td class="text-left">
+                      {{courseLists.field_banding}}
+                    </td>
+
+                    <td class="text-left">{{courseLists.classes}}</td>
+
+                    <td class="text-left">
+                      {{courseLists.total_learners}}</td>
 
                     <td><span>Assign</span></td>
-
-                    <td *ngIf="this.courseList.nid===this.userIdDetails" (click)="saveCourses(this.allCourseList[i])">
-                      <span class="save-user">Save</span>
-                    </td>
                   </tr>
                 </tbody>
               </table>
             </div>
             <div class="table-result-wrapper">
-              <pagination-controls previousLabel="Prev" nextLabel="Next" autoHide="true" responsive="true"
+              <pagination-controls previousLabel="Prev" nextLabel="Next"  responsive="true"
                 (pageChange)="handlePageChange($event)"></pagination-controls>
             </div>
           </div>
@@ -157,46 +108,31 @@
                     [class.active]="i == currentIndex">
                     <th>
                       <div class="radio-table">
-                        <input (click)="isCheckClicked($event,courseList,i)" type="checkbox">
+                        <input name="gender" (click)="isCheckClicked($event,courseList,i)" type="radio">
                       </div>
                     </th>
                     <td>{{i+1}}</td>
 
                     <td *ngIf="i !== this.indexesValue" class="text-left">{{this.courseList.title}}</td>
-                    <td *ngIf="i===this.indexesValue"><input type="text" name="name" [(ngModel)]="courseDetails.name"
-                        class="text-left" value={{this.courseList.title}} /></td>
+
 
                     <td class="text-left">{{this.courseList.nid}}</td>
 
                     <td *ngIf="i !== this.indexesValue" class="text-left">{{this.courseList.field_category}}</td>
-                    <td *ngIf="i===this.indexesValue"><input type="text" name="field_category"
-                        [(ngModel)]="courseDetails.field_category" class="text-left"
-                        value={{this.courseList.field_category}}>
-                    </td>
 
                     <td *ngIf="i !== this.indexesValue" class="text-left">{{this.courseList.field_level}}</td>
-                    <td *ngIf="i===this.indexesValue"><input type="text" name="field_level"
-                        [(ngModel)]="courseDetails.field_level" class="text-left" value={{this.courseList.field_level}}>
-                    </td>
+
 
                     <td *ngIf="i !== this.indexesValue" class="text-left">{{this.courseList.field_banding}}</td>
-                    <td *ngIf="i===this.indexesValue"><input type="text" name="field_banding"
-                        [(ngModel)]="courseDetails.field_banding" class="text-left"
-                        value={{this.courseList.field_banding}}>
-                    </td>
+
 
                     <td *ngIf="i !== this.indexesValue" class="text-left">{{this.courseList.classes}}</td>
-                    <td *ngIf="i===this.indexesValue"><input name="classes" [(ngModel)]="courseDetails.classes"
-                        class="text-left" value={{this.courseList.classes}}></td>
+
 
                     <td *ngIf="i !== this.indexesValue" class="text-left">{{this.courseList.total_learners}}</td>
-                    <td *ngIf="i===this.indexesValue"><input name="total_learners"
-                        [(ngModel)]="courseDetails.total_learners" class="text-left"
-                        value={{this.courseList.total_learners}}></td>
+
 
                     <td *ngIf="i !== this.indexesValue" class="text-left">{{this.courseList.field_banding}}</td>
-                    <td *ngIf="i===this.indexesValue"><input name="admin" [(ngModel)]="courseDetails.admin"
-                        class="text-left" value={{this.courseList.field_banding}}></td>
 
                     <td (click)="saveCourses(courseList)">Save</td>
                   </tr>
@@ -255,12 +191,11 @@
                 <div class="addCourse-form">
                   <div class="name-of-course fieldset">
                     <label>Name of course*</label>
-                    <input [(ngModel)]="courseName" type="text" name="courseName" (change)="postCourseName(courseName)">
+                    <input [(ngModel)]="courseName" type="text" name="courseName">
                   </div>
                   <div class="category-course fieldset">
                     <label>Category*</label>
                     <select [(ngModel)]="selectedCategory" name="category" id="categorycourse" (click)="getCategory()">
-                      <option selected>please choose Category</option>
                       <option *ngFor="let categoriesList of this.allCategories" value="{{categoriesList.tid}}">
                         {{categoriesList.name}}</option>
                       <option *ngIf="this.allCategories.length>1" value="create_new">Create new</option>
@@ -275,7 +210,6 @@
                   <div class="level-course fieldset">
                     <label>Level</label>
                     <select [(ngModel)]="level" name="level" id="levelcourse" (click)="getLevel()">
-                      <option selected>please choose level</option>
                       <option *ngFor="let level of this.allLevel" value="{{level.tid}}">{{level.name}}</option>
                       <option *ngIf="this.allLevel.length>1" value="create_new">Create new</option>
                     </select>
@@ -289,7 +223,6 @@
                   <div class="banding-course fieldset">
                     <label>Banding</label>
                     <select [(ngModel)]="banding" name="level" id="bandingcourse" (click)="getBanding()">
-                      <option selected>please choose banding</option>
                       <option *ngFor="let banding of this.allBanding" value="{{banding.tid}}">{{banding.name}}</option>
                       <option *ngIf="this.allBanding.length>1" value="create_new">Create new</option>
                     </select>
@@ -300,6 +233,7 @@
                     <input [(ngModel)]="newBanding" type="text" name="banding">
                   </div>
                 </div>
+
 
                 <div class="modal-footer">
                   <button class="back-btn-course" class="close" data-dismiss="modal">Back</button>
@@ -314,7 +248,7 @@
       <!-- Add Course modal popup start -->
 
       <!-- Edit Course modal popup start -->
-      <div id="editCourse" class="modal editcourse-modal" role="dialog">
+      <div id="editCourse" class="modal editcourse-modal" role="dialog" #editclosebutton>
         <div class="modal-dialog">
 
           <!-- Modal content-->
@@ -325,43 +259,46 @@
                   src="assets/images/dashboard/close-course.png"></button>
             </div>
             <div class="modal-body">
-              <form>
+              <form [formGroup]="editSampleForm">
                 <div class="editCourse-form-top">
                   <div class="name-of-course fieldset">
                     <label>Name of course*</label>
-                    <input type="text" name="course">
+                    <input formControlName="courseName" type="text" name="course">
                   </div>
                   <div class="category-course fieldset">
                     <label>Category*</label>
-                    <select name="category" id="categorycourse">
-                      <option selected></option>
-                      <option value="finance">Finance</option>
-                      <option value="create new">Create new</option>
+                    <select formControlName="category" name="category" id="category">
+                      <option *ngFor="let categories of allCategories" [value]="categories.tid">{{categories.name}}
+                      </option>
+                      <option *ngIf="this.allCategories.length>1" value="create_new">Create new</option>
                     </select>
                   </div>
 
+
+                  <!-- <select [(ngModel)]="this.courseList.field_category" [ngModelOptions]="{standalone: true}" (ngModelChange)="onGroupChange($event)">
+                    <option *ngFor="let group of allCategories" [value]="group.tid">
+                    {{group.name}}
+                    </option>
+                </select> -->
+
                   <div class="level-course fieldset">
                     <label>Level</label>
-                    <select name="level" id="levelcourse">
-                      <option selected></option>
-                      <option value="Professional Level 1">Professional Level 1</option>
-                      <option value="create new">Create new</option>
+                    <select formControlName="level" name="level" id="level">
+                      <option *ngFor="let level of this.allLevel" [value]="level.tid">{{level.name}}</option>
+                      <option *ngIf="this.allLevel.length>1" value="create_new">Create new</option>
                     </select>
                   </div>
 
                   <div class="banding-course fieldset">
                     <label>Banding</label>
-                    <select name="level" id="bandingcourse">
-                      <option selected></option>
-                      <option value="IV">IV</option>
-                      <option value="create new">Create new</option>
+                    <select name="category" id="categorycourse" formControlName="banding">
+                      <option *ngFor="let banding of this.allBanding" [value]="banding.tid">{{banding.name}}</option>
+                      <option *ngIf="this.allBanding.length>1" value="create_new">Create new</option>
                     </select>
                   </div>
 
                 </div>
-                <div class="editCourse-form-down">
-
-
+                <!-- <div class="editCourse-form-down">
                   <div class="fieldset class-materials">
                     <label>Class materials access available from</label>
                     <div class="editcourse-field-wrapper">
@@ -417,12 +354,11 @@
                       </div>
                     </div>
                   </div>
-
-                </div>
+                </div> -->
 
                 <div class="modal-footer">
-                  <button class="cancel-btn-course">Cancel</button>
-                  <button class="edit-btn-course">Edit</button>
+                  <button class="cancel-btn-course" data-dismiss="modal">Cancel</button>
+                  <button class="edit-btn-course" (click)="updateCourses()">Edit</button>
                 </div>
               </form>
             </div>

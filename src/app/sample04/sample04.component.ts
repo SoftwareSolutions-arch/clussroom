@@ -1,9 +1,9 @@
 import { Component, ElementRef, Input, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { FormBuilder } from "@angular/forms";
 import { SharedServiceService } from '../shared-service.service';
 import { Router } from '@angular/router';
 import { UtilService } from '../../providers/util.service';
-
+import { ClassesComponent } from '../classes/classes.component';
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 @Component({
   selector: 'app-sample04',
   templateUrl: './sample04.component.html',
@@ -13,6 +13,7 @@ import { UtilService } from '../../providers/util.service';
 export class Sample04Component implements OnInit {
   @ViewChild('deleteclosebutton') deleteclosebutton;
   @ViewChild('addclosebutton') addclosebutton;
+  @ViewChild('editclosebutton') editclosebutton;
   @ViewChildren("checkboxes") checkboxes: QueryList<ElementRef>;
 
   allCourseList: any = [];
@@ -46,23 +47,63 @@ export class Sample04Component implements OnInit {
   indexesValue: any = '';
   userIdDetails: any = '';
 
-  courseList = { field_category: '', field_level: '', field_banding: '' };
+  courseList: any = {};
 
   showInputCategory: boolean = true;
   showFiledLevel: boolean = true;
   showBanding: boolean = true;
 
-  firstBandingItems: boolean = false;
-  secondBandingItems: boolean = false;
-  thirdBandingItems: boolean = false;
+  editSampleForm: FormGroup;
+  error_messages: any = '';
 
   constructor(public router: Router, public util: UtilService, public service: SharedServiceService,
-    public formBuilder: FormBuilder) {
+    public formBuilder: FormBuilder, public classes: ClassesComponent) {
     this.getAllCoursesList();
     this.getallListingDropdown();
+    this.setupLoginFormData();
   }
 
   ngOnInit(): void {
+  }
+
+  setupLoginFormData() {
+    this.error_messages = {
+      courseName: [
+        { type: "required", message: '*Email is Required' }
+      ],
+      category: [
+        { type: "required", message: '*Email is Required' }
+      ],
+      level: [
+        { type: "required", message: '*Email is Required' }
+      ],
+      banding: [
+        { type: "required", message: '*Email is Required' }
+      ],
+    };
+    this.editSampleForm = this.formBuilder.group(
+      {
+        courseName: new FormControl("", Validators.compose([Validators.required])),
+        category: new FormControl("", Validators.compose([Validators.required])),
+        level: new FormControl("", Validators.compose([Validators.required])),
+        banding: new FormControl("", Validators.compose([Validators.required])),
+        class_start_date_from: new FormControl("", Validators.compose([Validators.required])),
+        class_start_date_to: new FormControl("", Validators.compose([Validators.required])),
+
+      }
+    )
+
+  }
+
+  getallListingDropdown() {
+    let params = {
+      "step": 1
+    }
+    this.service.post('create-course-api', params, 1).subscribe(result => {
+      this.allCategories = result['categories'];
+      this.allLevel = result['level'];
+      this.allBanding = result['banding'];
+    })
   }
 
   openClasses() {
@@ -82,14 +123,20 @@ export class Sample04Component implements OnInit {
 
   // get events of check box for edit or add button show and hide
   isCheckClicked(event, courseList, i) {
+    console.log('courseList', courseList)
     if (event.target.checked == true) {
+      this.courseList = courseList;
+      this.editSampleForm.controls.courseName.setValue(courseList.title);
+      this.editSampleForm.controls.category.setValue(courseList.field_category_id);
+      this.editSampleForm.controls.level.setValue(courseList.field_level_id)
+      this.editSampleForm.controls.banding.setValue(courseList.field_banding_id)
       this.editForm = true;
       // this.selectedItems.push({ 'nid': courseList.nid })
       this.selectedItems.push(courseList.nid)
 
     }
-    console.log('this.selectedItems11', this.selectedItems)
     if (event.target.checked == false) {
+      this.courseList = '';
       // this.indexesValue=[];
       this.selectedItems = this.selectedItems.filter(
         book => book != courseList.nid);
@@ -100,28 +147,15 @@ export class Sample04Component implements OnInit {
     }
   }
 
-  getSort() {
-    // this.allCourseList.sort((a, b) => a.field_level.localeCompare(b.field_level));
-    // console.log(this.allCourseList)
-  }
-
   // get all courses list
   getAllCoursesList() {
     this.isLoadingBool = true;
     this.service.post('view-all-courses-api', '', 1).subscribe(result => {
-      console.log('this.allCourseList+++++++++++++++++++++++++', this.allCourseList)
       this.isLoadingBool = false;
-      console.log('result', result)
-      if (result['status'] == 1) {
-        const { tutorials, totalItems } = result['coursesdata'];
-        this.allCourseList = result['coursesdata'];
-        this.tutorials = tutorials;
-        this.count = totalItems;
-      }
-      else {
-        this.util.errorAlertPopup(result['mesaage']);
-      }
-
+      this.allCourseList = result.coursesdata;
+      const { tutorials, totalItems } = result.coursesdata;
+      this.tutorials = tutorials;
+      this.count = totalItems;
     })
   }
 
@@ -140,32 +174,6 @@ export class Sample04Component implements OnInit {
       this.editForm = false;
       this.isSaveCourses = true;
       this.showInputCategory = true;
-    }
-  }
-
-  // send course name to get all required details
-  postCourseName(courseName) {
-    if (courseName == '') {
-      return
-    }
-    else {
-      let params = {
-        step: 1,
-        coursename: courseName
-      }
-      this.isLoadingBool = true;
-      this.service.post('create-course-api', params, 1).subscribe(result => {
-        this.isLoadingBool = false;
-        console.log('result', result)
-        if (result['status'] == 1) {
-          this.allCategories = result['categories'];
-          this.allLevel = result['level'];
-          this.allBanding = result['banding'];
-        }
-        else {
-          this.util.errorAlertPopup(result['mesaage']);
-        }
-      })
     }
   }
 
@@ -199,6 +207,55 @@ export class Sample04Component implements OnInit {
     }
   }
 
+  // delete single or multiple course
+  deleteCourse() {
+    let params = {
+      "delete_course_nids": this.selectedItems
+    }
+    this.isLoadingBool = true;
+    this.service.post('delete-course-api', params, 1).subscribe(result => {
+      // this.classes.ngOnInit();
+      this.getAllCoursesList();
+      this.selectedItems = [];
+      this.editForm = false;
+      this.deleteclosebutton.nativeElement.click();
+      this.util.showSuccessAlert('Course Deleted Successfully');
+      this.isLoadingBool = false;
+
+    })
+  }
+
+  cancelCourses() {
+    this.getAllCoursesList();
+    this.isSaveCourses = false;
+    this.editForm = false;
+    this.userIdDetails = '';
+    this.selectedItems = []
+    this.checkboxes.forEach((element) => {
+      element.nativeElement.checked = false;
+    });
+    this.showInputCategory = true;
+    this.showFiledLevel = true;
+    this.showBanding = true;
+  }
+
+  addNewcategory(index: number): any {
+
+    if (index['field_category'] == 'create_new') {
+      index['field_category'] = ''
+      this.showInputCategory = false;
+    }
+    else if (index['field_level'] == 'create_new') {
+      index['field_level'] = ''
+      this.showFiledLevel = false;
+    }
+    else if (index['field_banding'] == 'create_new') {
+      index['field_banding'] = ''
+      this.showBanding = false;
+    }
+
+  }
+
   // create new courses
   createCourse() {
     if (this.banding == undefined || this.level == undefined || this.selectedCategory == undefined) {
@@ -217,7 +274,10 @@ export class Sample04Component implements OnInit {
         "new_category": this.newCategory,
         "new_level": this.newLevel
       }
+      console.log('params', params)
       this.service.post('create-course-api', params, 1).subscribe(result => {
+        // this.classes.ngOnInit();
+        console.log('isCOurseCreated', result);
         this.clearAddFOrmValues();
         this.util.showSuccessAlert('Course Created Successfully');
         this.isLoadingBool = false;
@@ -227,199 +287,51 @@ export class Sample04Component implements OnInit {
     }
   }
 
-  // delete single or multiple course
-  deleteCourse() {
+  // update Course api 
+  updateCourses(): any {
+
     let params = {
-      "delete_course_nids": this.selectedItems
+      "courseid": this.courseList.nid,
+      "coursename": this.editSampleForm.value.courseName,
+      "banding": this.editSampleForm.value.banding,
+      "level": this.editSampleForm.value.level,
+      "course_category": this.editSampleForm.value.category,
+      "sub_category": this.editSampleForm.value.field_sub_category,
+      "sub_level": this.editSampleForm.value.field_sub_level,
+      "sub_banding": this.editSampleForm.value.field_sub_banding,
     }
+
+    console.log('saveCourses', params)
+
     this.isLoadingBool = true;
-    this.service.post('delete-course-api', params, 1).subscribe(result => {
-      this.selectedItems = [];
-      this.editForm = false;
-      this.deleteclosebutton.nativeElement.click();
-      this.util.showSuccessAlert('Course Deleted Successfully');
-      this.isLoadingBool = false;
-      this.getAllCoursesList();
-    })
-  }
+    this.service.post('update-course-api', params, 0).subscribe(result => {
+      console.log("result", result);
+      this.editclosebutton.nativeElement.click();
+      if (result['Status'] == 1 || '1') {
+        this.isLoadingBool = false;
+        this.isSaveCourses = false;
 
-  // filter course 
-  filerCourseArray() {
-    let params = {
-      "delete_course_nids": this.selectedItems
-    }
-    this.isLoadingBool = true;
-    this.service.post('delete-course-api', params, 1).subscribe(result => {
-      this.selectedItems = [];
-      this.editForm = false;
-      this.deleteclosebutton.nativeElement.click();
-      this.util.showSuccessAlert('Course Deleted Successfully');
-      this.isLoadingBool = false;
-      this.getAllCoursesList();
-    })
-  }
-
-  cancelCourses() {
-    this.getAllCoursesList();
-    this.isSaveCourses = false;
-    this.editForm = false;
-    this.userIdDetails = '';
-    this.selectedItems = []
-    this.checkboxes.forEach((element) => {
-      element.nativeElement.checked = false;
-    });
-    this.showInputCategory = true;
-    this.showFiledLevel = true;
-    this.showBanding = true;
-  }
-
-  getallListingDropdown() {
-    let params = {
-      "step": 1
-    }
-    this.service.post('create-course-api', params, 1).subscribe(result => {
-      console.log("result+++++++++===", result);
-      this.allCategories = result['categories'];
-      this.allLevel = result['level'];
-      this.allBanding = result['banding'];
-    })
-  }
-
-  addNewcategory(index: number): any {
-    if (index['field_category'] != '') {
-      this.firstBandingItems = true;
-    }
-
-    if (index['field_category'] == 'create_new') {
-      index['field_category'] = ''
-      this.showInputCategory = false;
-    }
-    else if (index['field_level'] == 'create_new') {
-      index['field_level'] = ''
-      this.showFiledLevel = false;
-    }
-    else if (index['field_banding'] == 'create_new') {
-      index['field_banding'] = ''
-      this.showBanding = false;
-    }
-
-  }
-
-  addNewlevel(index: number): any {
-    if (index['field_level'] != '') {
-      this.secondBandingItems = true;
-    }
-
-    if (index['field_category'] == 'create_new') {
-      index['field_category'] = ''
-      this.showInputCategory = false;
-    }
-    else if (index['field_level'] == 'create_new') {
-      index['field_level'] = ''
-      this.showFiledLevel = false;
-    }
-    else if (index['field_banding'] == 'create_new') {
-      index['field_banding'] = ''
-      this.showBanding = false;
-    }
-  }
-
-  addNewBanding(index: number): any {
-    if (index['field_banding'] != '') {
-      this.thirdBandingItems = true;
-    }
-
-    if (index['field_category'] == 'create_new') {
-      index['field_category'] = ''
-      this.showInputCategory = false;
-    }
-    else if (index['field_level'] == 'create_new') {
-      index['field_level'] = ''
-      this.showFiledLevel = false;
-    }
-    else if (index['field_banding'] == 'create_new') {
-      index['field_banding'] = ''
-      this.showBanding = false;
-    }
-  }
-
-  compareFn(a, b) {
-    console.log('a', a)
-    console.log('b', b);
-    console.log(a, b, a && b && a.num == b.num);
-    return a && b && a.num == b.num;
-  }
-
-  saveCourses(index: number): any {
-    console.log('index', this.firstBandingItems, this.secondBandingItems, this.thirdBandingItems)
-    if (this.firstBandingItems == false || this.secondBandingItems == false || this.thirdBandingItems == false) {
-      this.util.errorAlertPopup("please select all values")
-      return
-    }
-    else {
-      let params = {
-        "coursename": index['title'],
-        "course_category": index['field_category'],
-        "sub_category": index['field_sub_category'],
-        "level": index['field_level'],
-        "sub_level": index['field_sub_level'],
-        "sub_banding": index['field_sub_banding'],
-        "banding": index['field_banding'],
-        "courseid": index['nid']
+        this.editForm = false;
+        this.userIdDetails = '';
+        this.selectedItems = [];
+        this.checkboxes.forEach((element) => {
+          element.nativeElement.checked = false;
+        });
+        this.deleteclosebutton.nativeElement.click();
+        this.util.showSuccessAlert('Course Updated Successfully');
+        this.getAllCoursesList();
       }
-
-      console.log('saveCourses', params)
-
-      this.isLoadingBool = true;
-      this.service.post('update-course-api', params, 0).subscribe(result => {
-        console.log("result", result);
-        if (result['Status'] == 1 || '1') {
-          this.isLoadingBool = false;
-          this.isSaveCourses = false;
-          this.firstBandingItems = false;
-          this.secondBandingItems = false;
-          this.thirdBandingItems = false;
-          this.editForm = false;
-          this.userIdDetails = '';
-          this.selectedItems = []
-          this.checkboxes.forEach((element) => {
-            element.nativeElement.checked = false;
-          });
-          this.deleteclosebutton.nativeElement.click();
-          this.util.showSuccessAlert('Course Updated Successfully');
-          this.getAllCoursesList();
-        }
-      })
-    }
-
-  }
-
-  // search api
-  serchCoursesList() {
-    this.isLoadingBool = true;
-    this.service.post('view-all-courses-api', '', 1).subscribe(result => {
-      this.isLoadingBool = false;
-      console.log('result', result)
-      if (result['status'] == 1) {
-        const { tutorials, totalItems } = result['coursesdata'];
-        this.allCourseList = result['coursesdata'];
-        this.tutorials = tutorials;
-        this.count = totalItems;
-      }
-      else {
-        this.util.errorAlertPopup(result['mesaage']);
-      }
-
     })
+
   }
 
-  clearAddFOrmValues(){
-    this.courseName='';
-    this.selectedCategory='';
-    this.newCategory='';
-    this.level='';
-    this.newLevel='';
-    this.banding='';
-    this.newBanding='';    
+  clearAddFOrmValues() {
+    this.courseName = '';
+    this.selectedCategory = '';
+    this.newCategory = '';
+    this.level = '';
+    this.newLevel = '';
+    this.banding = '';
+    this.newBanding = '';
   }
 }

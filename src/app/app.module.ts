@@ -97,7 +97,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     MatProgressSpinnerModule,
     SlickCarouselModule,MatTabsModule,NgxPaginationModule,AngularEditorModule
   ],
-  providers: [CookieService,Sample04Component],
+  providers: [CookieService,Sample04Component,ClassesComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

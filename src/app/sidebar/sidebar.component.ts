@@ -1,12 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-// import '../sidebar/sidebar.component.js';
+import { ClassesComponent } from '../classes/classes.component';
+import { SharedServiceService } from '../shared-service.service';
+import { UtilService } from '../../providers/util.service'
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-  constructor() { }
+  constructor(public classes: ClassesComponent, public util: UtilService, public service: SharedServiceService, public router: Router) { }
 
   ngOnInit(): void {
     jQuery(document).ready(function () {
@@ -40,5 +44,27 @@ export class SidebarComponent implements OnInit {
         jQuery(".sidebar-blue").removeClass("toogleopen");
       });
     });
+  }
+
+  getCourses() {
+    // this.classes.getAllCoursesList();
+  }
+
+  // do logout setup
+  logOut() {
+    this.service.post('user-logout-api', '', 0).subscribe(result => {
+      console.log('result', result)
+      if (result['status'] == 1) {
+        this.util.showSuccessAlert(result['status_message']);
+        localStorage.removeItem('csrftoken');
+        localStorage.removeItem('uid');
+        localStorage.removeItem('userMail');
+        localStorage.removeItem('isLogin');
+        this.router.navigate(['/login']);
+      }
+      else {
+        this.util.errorAlertPopup(result['status_message']);
+      }
+    })
   }
 }

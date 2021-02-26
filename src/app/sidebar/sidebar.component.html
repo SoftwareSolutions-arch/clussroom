@@ -104,7 +104,7 @@
                     profile</span></a>
               </li>
 
-              <li class="submenu-order">
+              <li class="submenu-order" (click)="logOut()">
                 <a class="primary-item" href="#">
                   <img src="assets/images/dashboard/logout.png" class="hover-out">
                   <img src="assets/images/dashboard/logout-blue.png" class="hover-in"><span>Logout</span></a>
@@ -200,11 +200,11 @@
     </div>
   </div>
   <div class="control-panel">
-    <app-header></app-header>
+    <!-- <app-header></app-header> -->
     <app-dashboardheader></app-dashboardheader>
     <div class="nav-clip">
       <ul class="nav nav-tabs">
-        <li><a data-toggle="tab" href="#course-content" class="active clip-item">
+        <li><a data-toggle="tab" href="#course-content" class="active clip-item" (click)="getCourses()">
             <img src="assets/images/dashboard/second/course-grey.png" class="hover-out">
             <img src="assets/images/dashboard/second/course-blue.png" class="hover-in">Courses</a>
         </li>
@@ -276,6 +276,6 @@
        <app-live-sessions></app-live-sessions>
       </div>
     </div>
-    <app-footer></app-footer>
+    <!-- <app-footer></app-footer> -->
   </div>
 </div>

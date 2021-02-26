@@ -43,7 +43,7 @@ export class InstructionNameComponent implements OnInit {
       "uid": uid
     }
 
-    this.service.post('vendor-first-login-api', data, 0).subscribe(result => {
+    this.service.post('vendor-first-login-api', data, 1).subscribe(result => {
       console.log('result', result)
       localStorage.setItem('isLogin', '1');
       this.router.navigate(['/sidebar']);

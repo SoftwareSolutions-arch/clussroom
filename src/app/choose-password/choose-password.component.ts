@@ -107,11 +107,13 @@ export class ChoosePasswordComponent implements OnInit {
     }
 
     this.service.post('create-password-api', data, 0).subscribe(result => {
-      console.log('result', result)
-      if (result['message'] == "Password Created Successfully And Logged in") {
+      console.log('result', result['basic_auth_token'])
+      if (result['status'] == 1 || '1') {
         this.util.openSnackBarSuccess(result['message']);
         localStorage.setItem("uid", this.userId);
         localStorage.setItem("csrftoken", result['csrftoken']);
+        localStorage.setItem('Authorization', result['basic_auth_token'])
+
         this.router.navigate(['/school-name']);
       }
       else {
