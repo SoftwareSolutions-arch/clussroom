@@ -1,281 +1,200 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<div class="dashboard">
-  <div class="sidebar-dashboard">
-    <div class="sidebar-blue">
-      <!-- toogleopen -->
-      <div class="sidebar-menu">
-        <div class="sidebar-bar">
-          <div class="sidebar-bar-nav">
-            <img src="assets/images/dashboard/thunder.png">
-          </div>
-          <div class="user-details-dash">
-            <figure>
-              <img src="assets/images/dashboard/user.png">
-            </figure>
-            <a href="#">Upgrade</a>
-            <div class="user-details-name">
-              <h4>Hey Derran Leow</h4>
-              <p>Course admin</p>
-            </div>
-          </div>
+<div class="sidebar-dashboard">
+  <div class="sidebar-blue">
+    <!-- toogleopen -->
+    <div class="sidebar-menu">
+      <div class="sidebar-bar">
+        <div class="sidebar-bar-nav">
+          <img src="assets/images/dashboard/thunder.png">
         </div>
-        <div class="sidebar-menus-nav">
-          <nav>
-            <div class="primary-sidebar">
-              <li class="submenu-order">
-                <a class="primary-item active" href="#nav-dashboard">
-                  <img src="assets/images/dashboard/dashboard.png" class="hover-out">
-                  <img src="assets/images/dashboard/dashboard-blue.png" class="hover-in">
-                  <span>Dashboard</span>
-                </a>
-              </li>
-
-              <li class="submenu-order">
-                <a class="primary-item" href="#nav-library">
-                  <img src="assets/images/dashboard/library.png" class="hover-out">
-                  <img src="assets/images/dashboard/library-blue.png" class="hover-in"><span>Library</span></a>
-              </li>
-
-              <li class="submenu-order">
-                <a class="primary-item" href="#nav-message">
-                  <img src="assets/images/dashboard/email.png" class="hover-out">
-                  <img src="assets/images/dashboard/email-blue.png" class="hover-in"><span>All Messages</span></a>
-              </li>
-
-              <li class="submenu-order">
-                <a class="primary-item" href="#nav-calender">
-                  <img src="assets/images/dashboard/calender.png" class="hover-out">
-                  <img src="assets/images/dashboard/calender-blue.png" class="hover-in"><span>Calendar</span></a>
-              </li>
-
-              <li class="submenu-order">
-                <a class="primary-item accordion-toggle toggle-switch collapsed" data-toggle="collapse"
-                  href="#submenu-course">
-                  <img src="assets/images/dashboard/course.png" class="hover-out">
-                  <img src="assets/images/dashboard/course-blue.png" class="hover-in"><span>Courses <i
-                      class="fa fa-angle-down" aria-hidden="true"></i></span>
-                </a>
-                <div class="courses-menu-list">
-                  <ul id="submenu-course" class="panel-collapse collapse panel-switch" role="menu">
-                    <div class="panel-collapse-content">
-                      <li><a>Geography Sec1</a></li>
-                      <li><a>Geography Sec2</a></li>
-                      <li><a>History</a></li>
-                      <li><a>Civics</a></li>
-                      <li><a>Diaster Mgmt</a></li>
-                      <li><a>Diaster Mgmt2</a></li>
-                      <li><a>History</a></li>
-                      <li><a>Civics</a></li>
-                      <li><a>Diaster Mgmt</a></li>
-                      <li><a>Diaster Mgmt2</a></li>
-                    </div>
-                  </ul>
-                </div>
-              </li>
-
-              <li class="submenu-order">
-                <a class="primary-item" href="#nav-archive">
-                  <img src="assets/images/dashboard/archive.png" class="hover-out">
-                  <img src="assets/images/dashboard/archive-blue.png" class="hover-in"><span>Archive</span></a>
-              </li>
-            </div>
-          </nav>
-        </div>
-        <div class="user-menu-nav">
-          <nav>
-            <div class="primary-sidebar">
-              <li class="submenu-order">
-                <a class="primary-item active" href="#nav-login-detail">
-                  <img src="assets/images/dashboard/login-detail.png" class="hover-out">
-                  <img src="assets/images/dashboard/login-detail-blue.png" class="hover-in"><span>Login
-                    details</span></a>
-              </li>
-
-              <li class="submenu-order">
-                <a class="primary-item" href="#nav-profile">
-                  <img src="assets/images/dashboard/profile.png" class="hover-out">
-                  <img src="assets/images/dashboard/profile-blue.png" class="hover-in"><span>Profile</span></a>
-              </li>
-
-              <li class="submenu-order">
-                <a class="primary-item" href="#nav-edit-profile">
-                  <img src="assets/images/dashboard/edit-profile.png" class="hover-out">
-                  <img src="assets/images/dashboard/edit-profile-blue.png" class="hover-in"><span>Edit
-                    profile</span></a>
-              </li>
-
-              <li class="submenu-order" (click)="logOut()">
-                <a class="primary-item" href="#">
-                  <img src="assets/images/dashboard/logout.png" class="hover-out">
-                  <img src="assets/images/dashboard/logout-blue.png" class="hover-in"><span>Logout</span></a>
-              </li>
-            </div>
-          </nav>
-        </div>
-      </div>
-    </div>
-    <div class="dashboard-user-sidebar">
-      <div class="user-dash-wrapper">
         <div class="user-details-dash">
-          <div class="dashboard-user-dash">
-            <figure>
-              <img src="assets/images/dashboard/user.png">
-            </figure>
-            <a href="#">Upgrade</a>
-          </div>
-          <div class="dashboard-user-collapse">
-            <img src="assets/images/dashboard/right-arrow.png" class="course-sidebar">
-          </div>
+          <figure>
+            <img src="assets/images/dashboard/user.png">
+          </figure>
+          <a href="#">Upgrade</a>
           <div class="user-details-name">
             <h4>Hey Derran Leow</h4>
             <p>Course admin</p>
           </div>
         </div>
       </div>
-      <div class="acknowledgment-user">
-        <p>Math for Secondary 4 & Secondary 3 students</p>
-        <label>Course Name</label>
-        <p>Poppins - E </p>
-        <label>Class Name - Banding</label>
-        <p>Senior Secondary</p>
-        <label>Level</label>
+      <div class="sidebar-menus-nav">
+        <nav>
+          <div class="primary-sidebar">
+            <li class="submenu-order">
+              <a class="primary-item active" href="#nav-dashboard">
+                <img src="assets/images/dashboard/dashboard.png" class="hover-out">
+                <img src="assets/images/dashboard/dashboard-blue.png" class="hover-in">
+                <span>Dashboard</span>
+              </a>
+            </li>
+
+            <li class="submenu-order">
+              <a class="primary-item" href="#nav-library">
+                <img src="assets/images/dashboard/library.png" class="hover-out">
+                <img src="assets/images/dashboard/library-blue.png" class="hover-in"><span>Library</span></a>
+            </li>
+
+            <li class="submenu-order">
+              <a class="primary-item" href="#nav-message">
+                <img src="assets/images/dashboard/email.png" class="hover-out">
+                <img src="assets/images/dashboard/email-blue.png" class="hover-in"><span>All Messages</span></a>
+            </li>
+
+            <li class="submenu-order">
+              <a class="primary-item" href="#nav-calender">
+                <img src="assets/images/dashboard/calender.png" class="hover-out">
+                <img src="assets/images/dashboard/calender-blue.png" class="hover-in"><span>Calendar</span></a>
+            </li>
+
+            <li class="submenu-order">
+              <a class="primary-item accordion-toggle toggle-switch collapsed" data-toggle="collapse"
+                href="#submenu-course">
+                <img src="assets/images/dashboard/course.png" class="hover-out">
+                <img src="assets/images/dashboard/course-blue.png" class="hover-in"><span>Courses <i
+                    class="fa fa-angle-down" aria-hidden="true"></i></span>
+              </a>
+              <div class="courses-menu-list">
+                <ul id="submenu-course" class="panel-collapse collapse panel-switch" role="menu">
+                  <div class="panel-collapse-content">
+                    <li><a>Geography Sec1</a></li>
+                    <li><a>Geography Sec2</a></li>
+                    <li><a>History</a></li>
+                    <li><a>Civics</a></li>
+                    <li><a>Diaster Mgmt</a></li>
+                    <li><a>Diaster Mgmt2</a></li>
+                    <li><a>History</a></li>
+                    <li><a>Civics</a></li>
+                    <li><a>Diaster Mgmt</a></li>
+                    <li><a>Diaster Mgmt2</a></li>
+                  </div>
+                </ul>
+              </div>
+            </li>
+
+            <li class="submenu-order">
+              <a class="primary-item" href="#nav-archive">
+                <img src="assets/images/dashboard/archive.png" class="hover-out">
+                <img src="assets/images/dashboard/archive-blue.png" class="hover-in"><span>Archive</span></a>
+            </li>
+          </div>
+        </nav>
       </div>
-      <div class="user-navbar-content">
-        <div class="second-sidebar">
-          <a class="second-item" id="nav-Calendar" href="#">
-            <img src="assets/images/dashboard/second/calendar-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/calendar-blue.png" class="hover-in">Calendar</a>
+      <div class="user-menu-nav">
+        <nav>
+          <div class="primary-sidebar">
+            <li class="submenu-order">
+              <a class="primary-item active" href="#nav-login-detail">
+                <img src="assets/images/dashboard/login-detail.png" class="hover-out">
+                <img src="assets/images/dashboard/login-detail-blue.png" class="hover-in"><span>Login
+                  details</span></a>
+            </li>
 
-          <a class="second-item active" id="nav-Materials" href="#">
-            <img src="assets/images/dashboard/second/material-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/material-blue.png" class="hover-in">Class Materials</a>
+            <li class="submenu-order">
+              <a class="primary-item" href="#nav-profile">
+                <img src="assets/images/dashboard/profile.png" class="hover-out">
+                <img src="assets/images/dashboard/profile-blue.png" class="hover-in"><span>Profile</span></a>
+            </li>
 
-          <a class="second-item" id="nav-Sessions" href="#">
-            <img src="assets/images/dashboard/second/session-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/session-blue.png" class="hover-in">Live Sessions</a>
+            <li class="submenu-order">
+              <a class="primary-item" href="#nav-edit-profile">
+                <img src="assets/images/dashboard/edit-profile.png" class="hover-out">
+                <img src="assets/images/dashboard/edit-profile-blue.png" class="hover-in"><span>Edit
+                  profile</span></a>
+            </li>
 
-          <a class="second-item" id="nav-Announcements" href="#">
-            <img src="assets/images/dashboard/second/announcements-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/announcements-blue.png" class="hover-in">Announcements</a>
-          <a class="second-item" id="nav-Messages" href="#">
-            <img src="assets/images/dashboard/second/message-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/message-blue.png" class="hover-in">Messages</a>
-
-          <a class="second-item" id="nav-Discussion" href="#">
-            <img src="assets/images/dashboard/second/chat-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/chat-blue.png" class="hover-in">Discussion Board</a>
-
-          <a class="second-item" id="nav-Class" href="#">
-            <img src="assets/images/dashboard/second/list-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/list-blue.png" class="hover-in">Class List</a>
-
-          <a class="second-item" id="nav-Grades" href="#">
-            <img src="assets/images/dashboard/second/grade-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/grade-blue.png" class="hover-in">Grades</a>
-
-          <a class="second-item" id="nav-Setup" href="#">
-            <img src="assets/images/dashboard/second/setup-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/setup-blue.png" class="hover-in">Grade Setup</a>
-        </div>
-      </div>
-      <div class="user-personal-library">
-        <div class="second-sidebar">
-          <a class="second-item" id="nav-Personal" href="#">
-            <img src="assets/images/dashboard/second/library-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/library-blue.png" class="hover-in">Personal Library</a>
-
-          <a class="second-item" id="nav-Materials" href="#">
-            <img src="assets/images/dashboard/second/course-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/course-blue.png" class="hover-in">Course Library</a>
-
-          <a class="second-item" id="nav-Sessions" href="#">
-            <img src="assets/images/dashboard/second/main-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/main-blue.png" class="hover-in">Main Library</a>
-
-          <a class="second-item" id="nav-Announcements" href="#">
-            <img src="assets/images/dashboard/second/file-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/file-blue.png" class="hover-in">File Transfer</a>
-        </div>
+            <li class="submenu-order" (click)="logOut()">
+              <a class="primary-item" href="#">
+                <img src="assets/images/dashboard/logout.png" class="hover-out">
+                <img src="assets/images/dashboard/logout-blue.png" class="hover-in"><span>Logout</span></a>
+            </li>
+          </div>
+        </nav>
       </div>
     </div>
   </div>
-  <div class="control-panel">
-    <!-- <app-header></app-header> -->
-    <app-dashboardheader></app-dashboardheader>
-    <div class="nav-clip">
-      <ul class="nav nav-tabs">
-        <li><a data-toggle="tab" href="#course-content" class="active clip-item" (click)="getCourses()">
-            <img src="assets/images/dashboard/second/course-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/course-blue.png" class="hover-in">Courses</a>
-        </li>
-
-        <li><a data-toggle="tab" href="#classes-content" class="clip-item">
-            <img src="assets/images/dashboard/second/clip-classes-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/clip-classes-blue.png" class="hover-in">Classes</a>
-        </li>
-
-
-        <li><a data-toggle="tab" href="#class-list-content" class="clip-item">
-            <img src="assets/images/dashboard/second/list-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/list-blue.png" class="hover-in">
-            Class List</a>
-        </li>
-
-        <li><a data-toggle="tab" href="#learners-content" class="clip-item">
-            <img src="assets/images/dashboard/second/clip-learner-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/clip-learner-blue.png" class="hover-in">
-            Learners</a>
-        </li>
-
-        <li><a data-toggle="tab" href="#storage-content" class="clip-item">
-            <img src="assets/images/dashboard/second/clip-storage-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/clip-storage-blue.png" class="hover-in">
-            Storage</a>
-        </li>
-
-        <li><a data-toggle="tab" href="#admin-content" class="clip-item">
-            <img src="assets/images/dashboard/second/clip-user-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/clip-user-blue.png" class="hover-in">
-            Admin</a>
-        </li>
-
-        <li><a data-toggle="tab" href="#live-sessions-content" class="clip-item">
-            <img src="assets/images/dashboard/second/session-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/session-blue.png" class="hover-in">
-            Live Sessions</a>
-        </li>
-      </ul>
-
-    </div>
-    <div class="tab-content">
-      <div id="course-content" class="tab-pane active" style="min-height: 425px;">
-      <app-sample04></app-sample04>
-      </div>
-
-      <div id="classes-content" class="tab-pane" style="min-height: 425px;">
-       <app-classes></app-classes>
-      </div>
-
-      <div id="class-list-content" class="tab-pane">
-       <app-class-list></app-class-list>
-      </div>
-
-      <div id="learners-content" class="tab-pane">
-        <app-learners></app-learners>
-      </div>
-
-      <div id="storage-content" class="tab-pane">
-        <app-storage></app-storage>
-      </div>
-
-      <div id="admin-content" class="tab-pane">
-        <app-admin></app-admin>
-      </div>
-
-      <div id="live-sessions-content" class="tab-pane">
-       <app-live-sessions></app-live-sessions>
+  <div class="dashboard-user-sidebar">
+    <div class="user-dash-wrapper">
+      <div class="user-details-dash">
+        <div class="dashboard-user-dash">
+          <figure>
+            <img src="assets/images/dashboard/user.png">
+          </figure>
+          <a href="#">Upgrade</a>
+        </div>
+        <div class="dashboard-user-collapse">
+          <img src="assets/images/dashboard/right-arrow.png" class="course-sidebar">
+        </div>
+        <div class="user-details-name">
+          <h4>Hey Derran Leow</h4>
+          <p>Course admin</p>
+        </div>
       </div>
     </div>
-    <!-- <app-footer></app-footer> -->
+    <div class="acknowledgment-user">
+      <p>Math for Secondary 4 & Secondary 3 students</p>
+      <label>Course Name</label>
+      <p>Poppins - E </p>
+      <label>Class Name - Banding</label>
+      <p>Senior Secondary</p>
+      <label>Level</label>
+    </div>
+    <div class="user-navbar-content">
+      <div class="second-sidebar">
+        <a class="second-item" id="nav-Calendar" href="#">
+          <img src="assets/images/dashboard/second/calendar-grey.png" class="hover-out">
+          <img src="assets/images/dashboard/second/calendar-blue.png" class="hover-in">Calendar</a>
+
+        <a class="second-item active" id="nav-Materials" href="#">
+          <img src="assets/images/dashboard/second/material-grey.png" class="hover-out">
+          <img src="assets/images/dashboard/second/material-blue.png" class="hover-in">Class Materials</a>
+
+        <a class="second-item" id="nav-Sessions" href="#">
+          <img src="assets/images/dashboard/second/session-grey.png" class="hover-out">
+          <img src="assets/images/dashboard/second/session-blue.png" class="hover-in">Live Sessions</a>
+
+        <a class="second-item" id="nav-Announcements" href="#">
+          <img src="assets/images/dashboard/second/announcements-grey.png" class="hover-out">
+          <img src="assets/images/dashboard/second/announcements-blue.png" class="hover-in">Announcements</a>
+        <a class="second-item" id="nav-Messages" href="#">
+          <img src="assets/images/dashboard/second/message-grey.png" class="hover-out">
+          <img src="assets/images/dashboard/second/message-blue.png" class="hover-in">Messages</a>
+
+        <a class="second-item" id="nav-Discussion" href="#">
+          <img src="assets/images/dashboard/second/chat-grey.png" class="hover-out">
+          <img src="assets/images/dashboard/second/chat-blue.png" class="hover-in">Discussion Board</a>
+
+        <a class="second-item" id="nav-Class" href="#">
+          <img src="assets/images/dashboard/second/list-grey.png" class="hover-out">
+          <img src="assets/images/dashboard/second/list-blue.png" class="hover-in">Class List</a>
+
+        <a class="second-item" id="nav-Grades" href="#">
+          <img src="assets/images/dashboard/second/grade-grey.png" class="hover-out">
+          <img src="assets/images/dashboard/second/grade-blue.png" class="hover-in">Grades</a>
+
+        <a class="second-item" id="nav-Setup" href="#">
+          <img src="assets/images/dashboard/second/setup-grey.png" class="hover-out">
+          <img src="assets/images/dashboard/second/setup-blue.png" class="hover-in">Grade Setup</a>
+      </div>
+    </div>
+    <div class="user-personal-library">
+      <div class="second-sidebar">
+        <a class="second-item" id="nav-Personal" href="#">
+          <img src="assets/images/dashboard/second/library-grey.png" class="hover-out">
+          <img src="assets/images/dashboard/second/library-blue.png" class="hover-in">Personal Library</a>
+
+        <a class="second-item" id="nav-Materials" href="#">
+          <img src="assets/images/dashboard/second/course-grey.png" class="hover-out">
+          <img src="assets/images/dashboard/second/course-blue.png" class="hover-in">Course Library</a>
+
+        <a class="second-item" id="nav-Sessions" href="#">
+          <img src="assets/images/dashboard/second/main-grey.png" class="hover-out">
+          <img src="assets/images/dashboard/second/main-blue.png" class="hover-in">Main Library</a>
+
+        <a class="second-item" id="nav-Announcements" href="#">
+          <img src="assets/images/dashboard/second/file-grey.png" class="hover-out">
+          <img src="assets/images/dashboard/second/file-blue.png" class="hover-in">File Transfer</a>
+      </div>
+    </div>
   </div>
 </div>

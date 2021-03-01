@@ -12,10 +12,7 @@ export class AppComponent {
   constructor(public router: Router){
     var data=localStorage.getItem('isLogin');
     if(data=='1'){
-      this.router.navigate(['/sidebar']);
-    }
-    else{
-      this.router.navigate(['/home']);
+      this.router.navigate(['/sample04']);
     }
   }
 

@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } fro
 import { UtilService } from '../../providers/util.service';
 import { SharedServiceService } from '../shared-service.service';
 import * as $ from "jquery";
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -34,11 +35,42 @@ export class ClassesComponent implements OnInit {
   userIdDetails: any = '';
   showInputCategory: boolean = true;
 
-  constructor(public util: UtilService, public service: SharedServiceService) {
+  constructor(public util: UtilService, public router: Router, public service: SharedServiceService) {
     this.getAllCoursesList();
   }
 
   ngOnInit(): void {
+    jQuery(document).ready(function () {
+      jQuery(document).on("click", ".sidebar-blue .sidebar-menu .sidebar-bar .sidebar-bar-nav", function () {
+        // jQuery(".sidebar-blue .sidebar-menu .sidebar-bar .sidebar-bar-nav").click(function(){
+        jQuery(".sidebar-blue").toggleClass("toogleopen");
+        jQuery(".control-panel").toggleClass("toogleopen").removeClass("dashboardtoogleopen").removeClass("dashboardtoogleclose");
+        jQuery(".sidebar-dashboard .dashboard-user-sidebar").removeClass("dashboardtoogleopen").removeClass("dashboardtoogleclose");
+      });
+
+      jQuery(document).on("click", ".sidebar-blue .panel-collapse li a", function () {
+        // jQuery(".sidebar-blue .panel-collapse li a").click(function(){
+        jQuery(".sidebar-blue").removeClass("toogleopen");
+        jQuery(".control-panel").removeClass("toogleopen").addClass("dashboardtoogleopen");
+        jQuery(".sidebar-dashboard .dashboard-user-sidebar").removeClass("dashboardtoogleclose");
+        jQuery(".sidebar-dashboard .dashboard-user-sidebar").addClass("dashboardtoogleopen");
+      });
+
+      jQuery(document).on("click", ".dashboard-user-sidebar.dashboardtoogleopen .user-details-dash .course-sidebar", function () {
+        // jQuery(".dashboard-user-sidebar.dashboardtoogleopen .user-details-dash .course-sidebar").click(function(){
+        jQuery(".sidebar-dashboard .dashboard-user-sidebar").removeClass("dashboardtoogleopen").addClass("dashboardtoogleclose");
+        jQuery(".control-panel").removeClass("dashboardtoogleopen").addClass("dashboardtoogleclose").addClass("toogleopen");
+        jQuery(".sidebar-blue").toggleClass("toogleopen");
+      });
+
+      jQuery(document).on("click", ".dashboard-user-sidebar.dashboardtoogleclose .user-details-dash .course-sidebar", function () {
+
+        // jQuery(".dashboard-user-sidebar.dashboardtoogleclose .user-details-dash .course-sidebar").click(function(){
+        jQuery(".sidebar-dashboard .dashboard-user-sidebar").removeClass("dashboardtoogleclose").addClass("dashboardtoogleopen");
+        jQuery(".control-panel").removeClass("toogleopen");
+        jQuery(".sidebar-blue").removeClass("toogleopen");
+      });
+    });
   }
 
   ngAfterViewInit() { }
@@ -142,7 +174,7 @@ export class ClassesComponent implements OnInit {
         "course_id": this.selectedCategory
       }
 
-      console.log('params',params)
+      console.log('params', params)
       this.isLoadingBool = true;
       this.service.post('create-class-api', params, 1).subscribe(result => {
         console.log('result_++p', result)
@@ -165,7 +197,7 @@ export class ClassesComponent implements OnInit {
       "step": 1,
       "delete_class_nids": this.selectedItems
     }
-    console.log('params',params)
+    console.log('params', params)
     this.service.post('delete-class-api', params, 1).subscribe(result => {
       console.log('result', result);
       this.classesData = result.classesdata;
@@ -262,5 +294,31 @@ export class ClassesComponent implements OnInit {
     this.courseList.class_start = '';
     this.courseList.class_end = '';
     this.courseList.class_name = '';
+  }
+
+  getCourses() {
+    // this.classes.getAllCoursesList();
+  }
+
+  // do logout setup
+  logOut() {
+    this.service.post('user-logout-api', '', 0).subscribe(result => {
+      console.log('result', result)
+      if (result['status'] == 1) {
+        this.util.showSuccessAlert(result['status_message']);
+        localStorage.removeItem('csrftoken');
+        localStorage.removeItem('uid');
+        localStorage.removeItem('userMail');
+        localStorage.removeItem('isLogin');
+        // this.router.navigate(['/login']);
+      }
+      else {
+        this.util.errorAlertPopup(result['status_message']);
+      }
+    })
+  }
+
+  goBro() {
+    this.router.navigate(['/sample04']);
   }
 }

@@ -86,9 +86,9 @@ const routes: Routes = [
   {
     path: 'terms-of-use',component:TermsOfUseComponent,canActivate:[AuthGuardGuard]
   },
-  // {
-  //   path: '', redirectTo: '/home', pathMatch: 'full'
-  // }
+  {
+    path: '', redirectTo: '/home', pathMatch: 'full'
+  }
 ];
 
 @NgModule({

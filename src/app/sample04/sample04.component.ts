@@ -16,6 +16,11 @@ export class Sample04Component implements OnInit {
   @ViewChild('editclosebutton') editclosebutton;
   @ViewChildren("checkboxes") checkboxes: QueryList<ElementRef>;
 
+  @ViewChild('closeModal') private closeModal: ElementRef;
+  @ViewChild('closeModal2') private closeModal2: ElementRef;
+  @ViewChild('closeModal3') private closeModal3: ElementRef;
+
+
   allCourseList: any = [];
   isShow: boolean = false;
   editForm: boolean = false;
@@ -55,7 +60,14 @@ export class Sample04Component implements OnInit {
 
   editSampleForm: FormGroup;
   error_messages: any = '';
-
+  addCourse2: FormGroup;
+  class_start_date: any = '';
+  class_end_date: any = '';
+  allow_msg_learner: any = ''
+  allow_msg_coach: any = '';
+  patchCategorieName: any = ''
+  patchLevelName: any = '';
+  patchBandingName: any = '';
   constructor(public router: Router, public util: UtilService, public service: SharedServiceService,
     public formBuilder: FormBuilder, public classes: ClassesComponent) {
     this.getAllCoursesList();
@@ -64,7 +76,39 @@ export class Sample04Component implements OnInit {
   }
 
   ngOnInit(): void {
+    jQuery(document).ready(function () {
+      jQuery(document).on("click", ".sidebar-blue .sidebar-menu .sidebar-bar .sidebar-bar-nav", function () {
+        // jQuery(".sidebar-blue .sidebar-menu .sidebar-bar .sidebar-bar-nav").click(function(){
+        jQuery(".sidebar-blue").toggleClass("toogleopen");
+        jQuery(".control-panel").toggleClass("toogleopen").removeClass("dashboardtoogleopen").removeClass("dashboardtoogleclose");
+        jQuery(".sidebar-dashboard .dashboard-user-sidebar").removeClass("dashboardtoogleopen").removeClass("dashboardtoogleclose");
+      });
+
+      jQuery(document).on("click", ".sidebar-blue .panel-collapse li a", function () {
+        // jQuery(".sidebar-blue .panel-collapse li a").click(function(){
+        jQuery(".sidebar-blue").removeClass("toogleopen");
+        jQuery(".control-panel").removeClass("toogleopen").addClass("dashboardtoogleopen");
+        jQuery(".sidebar-dashboard .dashboard-user-sidebar").removeClass("dashboardtoogleclose");
+        jQuery(".sidebar-dashboard .dashboard-user-sidebar").addClass("dashboardtoogleopen");
+      });
+
+      jQuery(document).on("click", ".dashboard-user-sidebar.dashboardtoogleopen .user-details-dash .course-sidebar", function () {
+        // jQuery(".dashboard-user-sidebar.dashboardtoogleopen .user-details-dash .course-sidebar").click(function(){
+        jQuery(".sidebar-dashboard .dashboard-user-sidebar").removeClass("dashboardtoogleopen").addClass("dashboardtoogleclose");
+        jQuery(".control-panel").removeClass("dashboardtoogleopen").addClass("dashboardtoogleclose").addClass("toogleopen");
+        jQuery(".sidebar-blue").toggleClass("toogleopen");
+      });
+
+      jQuery(document).on("click", ".dashboard-user-sidebar.dashboardtoogleclose .user-details-dash .course-sidebar", function () {
+
+        // jQuery(".dashboard-user-sidebar.dashboardtoogleclose .user-details-dash .course-sidebar").click(function(){
+        jQuery(".sidebar-dashboard .dashboard-user-sidebar").removeClass("dashboardtoogleclose").addClass("dashboardtoogleopen");
+        jQuery(".control-panel").removeClass("toogleopen");
+        jQuery(".sidebar-blue").removeClass("toogleopen");
+      });
+    });
   }
+
 
   setupLoginFormData() {
     this.error_messages = {
@@ -90,6 +134,13 @@ export class Sample04Component implements OnInit {
         class_start_date_from: new FormControl("", Validators.compose([Validators.required])),
         class_start_date_to: new FormControl("", Validators.compose([Validators.required])),
 
+      }
+    )
+
+
+    this.addCourse2 = this.formBuilder.group(
+      {
+        class_start_date: new FormControl("", Validators.compose([Validators.required])),
       }
     )
 
@@ -184,6 +235,9 @@ export class Sample04Component implements OnInit {
     }
     else {
       this.isCourseAdded = false;
+      var items = this.allCategories.filter(
+        book => book.tid == this.selectedCategory);
+      this.patchCategorieName = items[0].name
     }
   }
 
@@ -194,6 +248,10 @@ export class Sample04Component implements OnInit {
     }
     else {
       this.isLevelAdded = false;
+      var items = this.allLevel.filter(
+        book => book.tid == this.level);
+      this.patchLevelName = items[0].name
+      console.log('items', items)
     }
   }
 
@@ -204,6 +262,10 @@ export class Sample04Component implements OnInit {
     }
     else {
       this.isBandingAdded = false;
+      var items = this.allBanding.filter(
+        book => book.tid == this.banding);
+      this.patchBandingName = items[0].name
+      console.log('items', items)
     }
   }
 
@@ -258,33 +320,32 @@ export class Sample04Component implements OnInit {
 
   // create new courses
   createCourse() {
-    if (this.banding == undefined || this.level == undefined || this.selectedCategory == undefined) {
-      this.util.errorAlertPopup('please fill all the required value')
-    }
 
-    else {
-      this.isLoadingBool = true;
-      let params = {
-        "step": "2",
-        "coursename": this.courseName,
-        "course_category": this.selectedCategory,
-        "level": this.level,
-        "banding": this.banding,
-        "new_banding": this.newBanding,
-        "new_category": this.newCategory,
-        "new_level": this.newLevel
-      }
-      console.log('params', params)
-      this.service.post('create-course-api', params, 1).subscribe(result => {
-        // this.classes.ngOnInit();
-        console.log('isCOurseCreated', result);
-        this.clearAddFOrmValues();
-        this.util.showSuccessAlert('Course Created Successfully');
-        this.isLoadingBool = false;
-        this.addclosebutton.nativeElement.click();
-        this.getAllCoursesList();
-      })
+    this.isLoadingBool = true;
+    let params = {
+      "step": "2",
+      "coursename": this.courseName,
+      "course_category": this.selectedCategory,
+      "level": this.level,
+      "banding": this.banding,
+      "new_banding": this.newBanding,
+      "new_category": this.newCategory,
+      "new_level": this.newLevel,
+      "class_start_date": this.class_start_date,
+      "class_end_date": this.class_end_date,
+      "messaging_between_learners": this.allow_msg_learner,
+      "messaging_learner_to_coach": this.allow_msg_coach
     }
+    console.log('params', params)
+    this.service.post('create-course-api', params, 1).subscribe(result => {
+      this.closeModal.nativeElement.click();
+      this.closeModal2.nativeElement.click();
+      this.closeModal3.nativeElement.click();
+      this.clearAddFOrmValues();
+      this.util.showSuccessAlert('Course Created Successfully');
+      this.isLoadingBool = false;
+      this.getAllCoursesList();
+    })
   }
 
   // update Course api 
@@ -334,4 +395,31 @@ export class Sample04Component implements OnInit {
     this.banding = '';
     this.newBanding = '';
   }
+
+  getCourses() {
+    // this.classes.getAllCoursesList();
+  }
+
+  // do logout setup
+  logOut() {
+    this.service.post('user-logout-api', '', 0).subscribe(result => {
+      console.log('result', result)
+      if (result['status'] == 1) {
+        this.util.showSuccessAlert(result['status_message']);
+        localStorage.removeItem('csrftoken');
+        localStorage.removeItem('uid');
+        localStorage.removeItem('userMail');
+        localStorage.removeItem('isLogin');
+        this.router.navigate(['/login']);
+      }
+      else {
+        this.util.errorAlertPopup(result['status_message']);
+      }
+    })
+  }
+
+  goToclasses() {
+    this.router.navigate(['/classes'])
+  }
+
 }
