@@ -1,12 +1,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="dashboard">
-<app-sidebar></app-sidebar>
+  <app-sidebar></app-sidebar>
   <div class="control-panel">
     <!-- <app-header></app-header> -->
     <app-dashboardheader></app-dashboardheader>
     <div class="nav-clip">
       <ul class="nav nav-tabs">
-        <li (click)="goBro()"><a data-toggle="tab" href="#course-content" class=" clip-item">
+        <li (click)="goToCourses()"><a data-toggle="tab" href="#course-content" class=" clip-item">
             <img src="assets/images/dashboard/second/course-grey.png" class="hover-out">
             <img src="assets/images/dashboard/second/course-blue.png" class="hover-in">Courses</a>
         </li>
@@ -133,7 +133,6 @@
                       </td>
                       <td *ngIf="this.classList.nid===this.userIdDetails"><input [(ngModel)]="this.classList.title"
                           class="text-left" /></td>
-
                       <td>
                         <div>{{this.classList.field_class_code}}</div>
                       </td>
@@ -164,14 +163,13 @@
                           {{this.classList.field_status}}
                         </div>
                       </td>
-                      <td>
+                      <!-- <td>
                         <button><a>Go to Class</a></button>
-                      </td>
+                      </td> -->
 
                       <td>
-                        <!-- <div class="go-to-class" *ngIf="this.classList.nid===this.userIdDetails" (click)="saveClasses(this.allClassesData[i])">Save class</div> -->
                         <button style="color: #90a193 !important;" *ngIf="this.classList.nid===this.userIdDetails"
-                          (click)="saveClasses(this.classList)">
+                          (click)="updateClasses(this.classList)">
                           <a style="color: #90a193 !important;">Save class</a>
                         </button>
 

@@ -113,7 +113,7 @@ export class LoginComponent implements OnInit {
           this.util.showSuccessAlert(result['message']);
           // this.cookieDetails = this.cookie.getAll();
           // console.log('this.cookieDetails++2', this.cookieDetails);
-          this.router.navigate(['/sidebar']);
+          this.router.navigate(['/sample04']);
         }
         else {
           this.util.errorAlertPopup(result.error_message);

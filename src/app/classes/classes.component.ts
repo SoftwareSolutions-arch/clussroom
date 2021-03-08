@@ -34,7 +34,7 @@ export class ClassesComponent implements OnInit {
   classesData: any = {};
   userIdDetails: any = '';
   showInputCategory: boolean = true;
-
+  selectedNewItems: any = ''
   constructor(public util: UtilService, public router: Router, public service: SharedServiceService) {
     this.getAllCoursesList();
   }
@@ -77,7 +77,6 @@ export class ClassesComponent implements OnInit {
 
   // get all courses list
   getAllCoursesList() {
-    console.log('hello ')
     this.isLoadingBool = true;
     this.service.post('view-all-courses-api', '', 1).subscribe(result => {
       this.isLoadingBool = false;
@@ -127,13 +126,11 @@ export class ClassesComponent implements OnInit {
 
   // get events of check box for edit or add button show and hide 
   isCheckClicked(event, courseList, i) {
-    console.log('classList', courseList);
-    console.log('index', i);
-    console.log("event", event)
     if (event.target.checked == true) {
       this.editForm = true;
       // this.selectedItems.push({ 'nid': courseList.nid })
       this.selectedItems.push(courseList.nid)
+      this.selectedNewItems = courseList.nid
 
     }
     // console.log('this.selectedItems11',this.selectedItems)
@@ -195,7 +192,7 @@ export class ClassesComponent implements OnInit {
   popDeleteClass() {
     let params = {
       "step": 1,
-      "delete_class_nids": this.selectedItems
+      "delete_class_nids": [this.selectedNewItems]
     }
     console.log('params', params)
     this.service.post('delete-class-api', params, 1).subscribe(result => {
@@ -209,7 +206,7 @@ export class ClassesComponent implements OnInit {
   proceedToDelete() {
     let params = {
       "step": 2,
-      "delete_class_nids": this.selectedItems
+      "delete_class_nids": [this.selectedNewItems]
     }
     this.service.post('delete-class-api', params, 1).subscribe(result => {
       this.closeModal.nativeElement.click();
@@ -224,20 +221,12 @@ export class ClassesComponent implements OnInit {
 
   // edit course details 
   editCourses() {
-    if (this.selectedItems.length > 1) {
-      this.util.errorAlertPopup("Please select only one row for edit")
-      return
-    }
-    else {
-      this.selectedItems.forEach(element => {
-        // this.userIdDetails = element.nid
-        this.userIdDetails = element
-        console.log(element, 'element++')
-      });
-      this.editForm = false;
-      this.isSaveCourses = true;
-      this.showInputCategory = true;
-    }
+    this.selectedItems.forEach(element => {
+      this.userIdDetails = element
+    });
+    this.editForm = false;
+    this.isSaveCourses = true;
+    this.showInputCategory = true;
   }
 
   // cancel course details 
@@ -253,7 +242,8 @@ export class ClassesComponent implements OnInit {
     this.showInputCategory = true;
   }
 
-  saveClasses(data): any {
+  // update class
+  updateClasses(data): any {
     console.log('index', data);
     var x = new Date(data['field_start_date']);
     var y = new Date(data['field_end_date']);
@@ -289,15 +279,12 @@ export class ClassesComponent implements OnInit {
 
 
   }
+
+  // clear all form values 
   clearAddClassValues() {
-    console.log('hello user')
     this.courseList.class_start = '';
     this.courseList.class_end = '';
     this.courseList.class_name = '';
-  }
-
-  getCourses() {
-    // this.classes.getAllCoursesList();
   }
 
   // do logout setup
@@ -318,7 +305,8 @@ export class ClassesComponent implements OnInit {
     })
   }
 
-  goBro() {
+  // navigate to courses tab
+  goToCourses() {
     this.router.navigate(['/sample04']);
   }
 }

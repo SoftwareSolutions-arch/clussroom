@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
   slideConfig = { "slidesToShow": 2, "slidesToScroll": 1, "rows": 1, "arrows": false, "dot": false };
 
   startClass() {
-    this.router.navigate(['/sidebar']);
+    this.router.navigate(['/sample04']);
   }
 
   // all home content data 

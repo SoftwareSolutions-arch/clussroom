@@ -45,8 +45,12 @@ export class InstructionNameComponent implements OnInit {
 
     this.service.post('vendor-first-login-api', data, 1).subscribe(result => {
       console.log('result', result)
-      localStorage.setItem('isLogin', '1');
-      this.router.navigate(['/sidebar']);
+      if (result.status == 1) {
+        localStorage.setItem('instructionName', this.selectedItem);
+        localStorage.setItem('isLogin', '1');
+        this.router.navigate(['/sample04']);
+      }
+
     })
   }
 
