@@ -1,148 +1,148 @@
 
 * {
-    padding: 0;
-    box-sizing: border-box;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .container{
-	margin: 0 auto;
+  margin: 0 auto;
 }
 
 html,
 body {
-    margin: 0;
-    padding: 0;
-    color: #8e8e8e;
-    line-height: 1.4;
-    font-size: 16px;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    scroll-behavior: smooth;
-    font-weight: 400;
-    font-style: normal;
-    font-family: 'Rubik', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #8e8e8e;
+  line-height: 1.4;
+  font-size: 16px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+  font-weight: 400;
+  font-style: normal;
+  font-family: 'Rubik', sans-serif;
 }
 
 :focus {
-    outline: none !important;
+  outline: none !important;
 }
 
 img {
-    border: 0;
-    height: auto;
-    display: block;
-    max-width: 100%;
+  border: 0;
+  height: auto;
+  display: block;
+  max-width: 100%;
 }
 
 ul,
 li,
 a {
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    list-style: none;
-    font-family: 'Rubik', sans-serif;
-    cursor: pointer;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  list-style: none;
+  font-family: 'Rubik', sans-serif;
+  cursor: pointer;
 }
 
 ol,
 li,
 a {
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-    transition: all 0.3s ease;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  transition: all 0.3s ease;
 }
 a:hover,
 a:focus{
-	outline: none;
-	text-decoration: none;
+  outline: none;
+  text-decoration: none;
 }
 h1,
 h2{
-    color: #343C6A;
-    line-height: 1.1;
-    font-family: 'Rubik', sans-serif;
+  color: #343C6A;
+  line-height: 1.1;
+  font-family: 'Rubik', sans-serif;
 }
 h3,
 h4,
 h5,
 h6{
-	color: #343C6A;
-    line-height: 1.1;
-    font-family: 'Rubik', sans-serif;
+  color: #343C6A;
+  line-height: 1.1;
+  font-family: 'Rubik', sans-serif;
 }
 span {
-    color: #343C6A;
-    line-height: 1.5;
-    font-weight: 400;
-    font-family: 'Rubik', sans-serif;
+  color: #343C6A;
+  line-height: 1.5;
+  font-weight: 400;
+  font-family: 'Rubik', sans-serif;
 }
 h1 {
-    font-size: 50px;
-    font-weight: 700;
+  font-size: 50px;
+  font-weight: 700;
 }
 h2 {
-    font-size: 36px;
-    font-weight: 700;
+  font-size: 36px;
+  font-weight: 700;
 }
 h3 {
-    font-size: 30px;
-    font-weight: 600;
+  font-size: 30px;
+  font-weight: 600;
 }
 h4 {
-    font-size: 28px;
-    font-weight: 600;
+  font-size: 28px;
+  font-weight: 600;
 }
 h5 {
-    font-size: 24px;
-    font-weight: 600;
+  font-size: 24px;
+  font-weight: 600;
 }
 h6 {
-    font-size: 20px;
-    font-weight: 600;
+  font-size: 20px;
+  font-weight: 600;
 }
 p {
-    color: #8e8e8e;
-    line-height: 1.5;
-    letter-spacing: 0.5px;
-    font-family: 'Rubik', sans-serif;
+  color: #8e8e8e;
+  line-height: 1.5;
+  letter-spacing: 0.5px;
+  font-family: 'Rubik', sans-serif;
 }
 
 .button,
 .btn {
-    outline: none;
-    font-size: 17px;
-    border: 2px solid #396AFF;
-    background-color: #396AFF;
-    font-weight: 500;
-    padding: 10px 30px;
-    display: inline-flex;
-    color: #fff;
-    align-content: center;
-    text-decoration: none;
-    justify-content: center;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    border-radius: 0px;
-    font-family: 'Rubik', sans-serif;
+  outline: none;
+  font-size: 17px;
+  border: 2px solid #396AFF;
+  background-color: #396AFF;
+  font-weight: 500;
+  padding: 10px 30px;
+  display: inline-flex;
+  color: #fff;
+  align-content: center;
+  text-decoration: none;
+  justify-content: center;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  border-radius: 0px;
+  font-family: 'Rubik', sans-serif;
 }
 
 .button a,
 .btn a{
-	color: #fff;
+  color: #fff;
 }
 
 .button:hover,
 .btn:hover{
-	background-color: #fff;
-	color: #396AFF;
-	border-color: #396AFF;
+  background-color: #fff;
+  color: #396AFF;
+  border-color: #396AFF;
 }
 .button:hover a,
 .btn:hover a{
-	color: #396AFF;
+  color: #396AFF;
 }
 .btn-danger:active:focus,
 .btn-danger:active,
@@ -152,10 +152,10 @@ p {
 .btn-info:focus,
 .btn-primary:focus,
 .btn-success:focus{
-    outline: none;
-    color: #396AFF;
-    background-color: #fff;
-    border: 2px solid #396AFF;
+  outline: none;
+  color: #396AFF;
+  background-color: #fff;
+  border: 2px solid #396AFF;
 }
 .btn:focus,
 .btn:active:focus,
@@ -163,268 +163,275 @@ p {
 .btn.focus,
 .btn:active.focus,
 .btn.active.focus{
-	outline: none;
-	box-shadow: none;
+  outline: none;
+  box-shadow: none;
 }
 
 input
 select,
 textarea,
 .form-control{
-	resize: none;
-    height: 50px;
-    width: 100%;
-    color: #8e8e8e;
-    box-shadow: none;
-    font-size: 15px;
-    border-radius: 0px;
-    background: #fafafa;
-    border: 1px solid #e6e6e6;
-    line-height: 1.42857143;
-    font-weight: 400;
-    font-family: 'Rubik', sans-serif;
+  resize: none;
+  height: 50px;
+  width: 100%;
+  color: #8e8e8e;
+  box-shadow: none;
+  font-size: 15px;
+  border-radius: 0px;
+  background: #fafafa;
+  border: 1px solid #e6e6e6;
+  line-height: 1.42857143;
+  font-weight: 400;
+  font-family: 'Rubik', sans-serif;
 }
 
 input:focus,
 select:focus,
 textarea:focus,
 .form-control:focus {
-    border-color: #e6e6e6;
-    box-shadow: none;
-    outline: none;
+  border-color: #e6e6e6;
+  box-shadow: none;
+  outline: none;
 }
 .fieldset {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
-input[type="date"]{   
-    background-image: url(/assets/images/input-date.png);
-    background-repeat: no-repeat;
-    background-position: right 15px bottom 9px;
+input[type="date"]{
+  background-image: url(/assets/images/input-date.png);
+  background-repeat: no-repeat;
+  background-position: right 15px bottom 9px;
 
 }
 
 input[type="date"]::-webkit-inner-spin-button,
 input[type="date"]::-webkit-calendar-picker-indicator {
-    opacity: 0;
-    -webkit-appearance: none;
+  opacity: 0;
+  -webkit-appearance: none;
 }
 
 /*instruction page css start*/
 section.instruction-section {
-    background-color: #fbfcfe;
-    padding: 50px 0px;
-    min-height: 80vh;
+  background-color: #fbfcfe;
+  padding: 50px 0px;
+  min-height: 80vh;
 }
 
 .instruction-form {
-    width: 52%;
-    margin: 0 auto;
+  width: 52%;
+  margin: 0 auto;
 }
 
 .instruction-form h2 {
-    font-family: Rubik;
-    font-size: 50px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 60px;
-    letter-spacing: 0px;
-    margin-bottom: 30px;
+  font-family: Rubik;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 50px;
+  letter-spacing: 0px;
+  margin-bottom: 30px;
 }
 
 .instruction-form p {
-    font-family: Barlow;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 20px;
-    letter-spacing: 0px;
-    width: 70%;
+  font-family: Barlow;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0px;
+  width: 70%;
 }
 
 .instruction-obliterate {
-    display: flex;
+  display: flex;
 }
 
 .instruction-form .instruction-obliterate .btn {
-    width: 77px;
-    height: 46px;
-    padding: 0px;
-    display: flex;
-    align-items: center;
-    border-radius: 8px;
-    font-family: Barlow;
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 28px;
-    letter-spacing: 0px;
-    text-transform: capitalize;
-    margin-right: 10px;
+  width: 90px;
+  height: 46px;
+  padding: 0px;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  font-family: Barlow;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: 0px;
+  text-transform: capitalize;
+  margin-right: 10px;
 }
 
 .instruction-form .instruction-obliterate .back-btn {
-    width: 77px;
-    height: 46px;
-    border-radius: 8px;
-    outline: none;
-    border: 2px solid #DCFAF8;
-    background-color: #DCFAF8;
-    transition: all 0.3s ease;
-    font-family: Barlow;
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 28px;
-    letter-spacing: 0px;
-    color: #16DBCC;
-    justify-content: center;
-    display: flex;
-    align-items: center;
+  width: 90px;
+  height: 46px;
+  border-radius: 8px;
+  outline: none;
+  border: 2px solid #DCFAF8;
+  background-color: #DCFAF8;
+  transition: all 0.3s ease;
+  font-family: Barlow;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+  letter-spacing: 0px;
+  color: #16DBCC;
+  justify-content: center;
+  display: flex;
+  align-items: center;
 }
 
 .instruction-form .terms-of-use {
-    display: flex;
-    align-items: center;
-    margin-top: 20px;
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
 }
 
 .instruction-form .terms-of-use input {
-    margin-right: 7px;
-    width: 15px;
-    height: 15px;
+  margin: 0 7px 0 0;
+  width: 15px;
+  height: 15px;
 }
 
 .instruction-form .terms-of-use label {
-    margin-bottom: 0px;
-    font-family: Barlow;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 20px;
-    letter-spacing: 0px;
-    color: #5B73A0;
-    text-align: left;
+  margin-bottom: 0px;
+  font-family: Barlow;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0px;
+  color: #5B73A0;
+  text-align: left;
+  display: flex;
+  align-items: center;
 }
 .instruction-form ul#instruction-progressbar {
-    display: flex;
-    align-items: center;
-    padding-bottom: 50px;
-    padding-top: 10px;
+  display: flex;
+  align-items: center;
+  padding-bottom: 50px;
+  padding-top: 10px;
 }
 
 .instruction-form ul#instruction-progressbar li {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .instruction-form ul#instruction-progressbar li .instruction-progressbaar-line {
-    background-color: #DCE2EC;
-    height: 4px;
-    width: 30px;
-    border-radius: 2px;
+  background-color: #DCE2EC;
+  height: 4px;
+  width: 30px;
+  border-radius: 2px;
 }
 
 .instruction-form ul#instruction-progressbar li strong {
-    border: 1px solid #ECEBED;
-    box-shadow: 0px 7px 64px rgba(0, 0, 0, 0.07);
-    background-color: #FFFFFF;
-    width: 28px;
-    height: 28px;
-    display: flex;
-    border-radius: 50px;
-    align-items: center;
-    justify-content: center;
-    font-family: SF Pro Text;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 13px;
-    line-height: 13px;
-    color: #D0C9D6;
-    margin: 0px 5px;
+  border: 1px solid #ECEBED;
+  box-shadow: 0px 7px 64px rgba(0, 0, 0, 0.07);
+  background-color: #FFFFFF;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  border-radius: 50px;
+  align-items: center;
+  justify-content: center;
+  font-family: SF Pro Text;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 13px;
+  color: #D0C9D6;
+  margin: 0px 5px;
 }
 
 .instruction-form ul#instruction-progressbar li strong img {
-    display: none;
+  display: none;
 }
 
 .instruction-form ul#instruction-progressbar li.active .instruction-progressbaar-line {
-    background-color: #396aff;
+  background-color: #396aff;
 }
 
 .instruction-form ul#instruction-progressbar li .instruction-progressbaar-line.line-2 {
-    width: 80px;
+  width: 80px;
 }
 
 .instruction-form ul#instruction-progressbar li.active strong {
-    background-color: #396aff;
-    border: 1px solid #396aff;
-    color: #fff;
+  background-color: #396aff;
+  border: 1px solid #396aff;
+  color: #fff;
 }
 
 .instruction-form ul#instruction-progressbar li.completed strong img {
-    display: block;
+  display: block;
 }
 
 .instruction-form ul#instruction-progressbar li.completed strong {
-    font-size: 0px;
-    background-color: #16DBCC;
-    border: 1px solid #16DBCC;
+  font-size: 0px;
+  background-color: #16DBCC;
+  border: 1px solid #16DBCC;
 }
 
 .instruction-form ul#instruction-progressbar li.completed .instruction-progressbaar-line {
-    background-color: #16dbcc;
+  background-color: #16dbcc;
 }
 
 .instruction-form form label {
-    font-family: Rubik;
-    font-size: 17px;
-    font-weight: 500;
-    line-height: 28px;
-    letter-spacing: 0px;
-    text-align: left;
-    color: #5B73A0;
-    width: 100%;
+  font-family: Rubik;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: #5B73A0;
+  width: 100%;
 }
 
 .instruction-form form .instruction-checkbox {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .instruction-form form .chiller_cb {
-    position: relative;
-    width: fit-content;
-    margin-right: 15px;
-    margin-bottom: 15px;
+  position: relative;
+  width: fit-content;
+  margin-right: 15px;
+  margin-bottom: 15px;
 }
 
 .instruction-form form .chiller_cb input {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    cursor: pointer;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
 }
 
 .instruction-form form .chiller_cb label {
-    opacity: 1;
-    padding: 14px 17px;
-    color: #5B73A0;
-    font-family: Barlow;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    background-color: #ffff;
-    margin-bottom: 0px;
-    border-radius: 6px;
-    box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.04);
-    border: 1px solid #E7EDFF;
+  opacity: 1;
+  width: 90px;
+  /* padding: 14px 17px; */
+  color: #5B73A0;
+  font-family: Barlow;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  background-color: #ffff;
+  margin-bottom: 0px;
+  box-shadow: 0px 4px 9px rgb(0 0 0 / 4%);
+  border: 1px solid #E7EDFF;
+  border-radius: 48px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .instruction-form form .chiller_cb input:checked ~ label {
-    background-color: #396aff;
-    color: #fff;
-    border: 1px solid #396aff;
-    box-shadow: 0px 4px 9px rgb(57 106 255 / 25%);
+  background-color: #396aff;
+  color: #fff;
+  border: 1px solid #396aff;
+  box-shadow: 0px 4px 9px rgb(57 106 255 / 25%);
 }
 
 /*instruction page css end*/

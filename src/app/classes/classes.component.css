@@ -257,7 +257,7 @@ table.dashboard-table thead {
   margin: 20px;
   border: 1px solid #F1F6FB;
   border-radius: 8px;
-  padding: 23px 20px;
+  padding: 23px 82px;
   /*    display: flex;*/
   align-items: center;
   font-size: 13px;
@@ -289,7 +289,7 @@ table.dashboard-table thead {
   font-family: Barlow;
   font-style: normal;
   font-weight: normal;
-  font-size: 13px;
+  font-size: 15px;
   line-height: 20px;
   color: #7990B4;
   height: 25px;
@@ -324,7 +324,7 @@ table.dashboard-table thead {
   font-weight: 500;
   line-height: 20px;
   letter-spacing: 0px;
-  height: 30px;
+  height: 25px;
   width: 90px;
   border-radius: 6px;
   align-items: center;
@@ -347,6 +347,8 @@ table.dashboard-table thead {
 .green-button button {
   background-color: #DCE2EC;
   border: 2px solid #dce2ec;
+  color: #fff;
+  transition: .5s ease-in-out;
 
 }
 
@@ -409,7 +411,7 @@ a.add-btn i {
 
 .addcourse-modal .modal-footer {
   border-top: 0px;
-  box-shadow: 0px -1px 2px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0px -1px 2px rgba(0, 0, 0, 0.1); */
 }
 
 .addcourse-modal .modal-footer button {
@@ -737,26 +739,38 @@ a.add-btn i {
   justify-content: center !important;
   margin: 0 0em !important;
   align-items: center !important;
+  font-weight: 500;
+  font-family: 'Barlow';
+  color: #5B73A0;
 }
 
 
 .class-name {
   display: flex;
-  padding: 18px 25px;
+  padding: 18px 19px;
   border-radius: 6px;
   font-size: 15px;
   line-height: 2.2;
 }
 
+.class-name p {
+  padding: 0 11px 0 0;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: 'Barlow';
+  color: #5B73A0;
+}
+
 .class-name input {
   height: 35px;
-  width: 350px;
+  width: 452px;
   border-radius: 6px;
   padding: 5px 7px;
   /* margin: -4px 0px; */
   font-size: 13px;
   border: 1px solid #E7EDFF;
   box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.02);
+  font-family: 'Barlow';
 
 }
 
@@ -781,7 +795,7 @@ a.add-btn i {
   position: absolute;
   right: 23px;
   opacity: 1;
-  padding: 6px 0 !important;
+  padding: 1px 0 !important;
   top: 18px;
 }
 
@@ -805,8 +819,22 @@ a.add-btn i {
   height: 35px;
   padding: 16px 9px;
   font-size: 15px;
-  margin: 0 8px 0 0;
+  margin: 0 48px 0 0;
   border-radius: 6px;
+}
+
+.my-modal-classes input::placeholder {
+  color: #7990B4;
+  font-size: 15px;
+  font-weight: 400;
+  font-family: 'Barlow';
+}
+
+.my-modal-classes input::placeholder {
+  color: #7990B4;
+  font-size: 15px;
+  font-weight: 400;
+  font-family: 'Barlow';
 }
 
 .addCourse-form .my-modal {
@@ -822,7 +850,7 @@ a.add-btn i {
   height: 35px;
   padding: 16px 9px;
   font-size: 15px;
-  margin: 0 8px 0 0;
+  margin: 0 48px 0 0;
   border-radius: 6px;
 }
 
@@ -860,13 +888,13 @@ a.add-btn i {
   position: absolute;
   right: 23px;
   opacity: 1;
-  padding: 6px 0 !important;
+  padding: 1px 0 !important;
   top: 18px;
 }
 
 .addcourse-modal .modal-footer {
   border-top: 0px;
-  box-shadow: 0px -1px 2px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0px -1px 2px rgba(0, 0, 0, 0.1); */
   justify-content: center;
 }
 
@@ -1004,10 +1032,6 @@ a.add-btn i {
   border-radius: 3px !important;
   background-color: #FFA26B;
   border: 2px solid #ffa26b !important;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 8px 0 0 0;
 }
 
 .learner-text-left button a {
@@ -2131,4 +2155,10 @@ table.dashboard-table thead {
   color: #7990B4;
 }
 
+.addCourse-form .my-modal .my-modal-classes input[type="date"]{
+  color: red;
+  font-size: 18px;
+}
+
 /*sample 4 page css start*/
+

@@ -31,13 +31,15 @@ export class ChoosePasswordComponent implements OnInit {
   setupFormData() {
     this.error_messages = {
       password: [
-        { type: "required", message: '*Password is Required' },
+        { type: "required", message: '*Password is required' },
         { type: "pattern", message: '*Please enter atleast' },
-        { type: "pattern", message: '*One lowercase char,one uppercase char' },
-        { type: "pattern", message: '*One number and one special character' }
+        { type: "pattern", message: '*One lowercase alphabet' },
+        { type: "pattern", message: '*One uppercase alphabet' },
+        { type: "pattern", message: '*One number' },
+        { type: "pattern", message: '*One special character' }
       ],
       confirm_password: [
-        { type: "required", message: '*Confirm Password is Required' }
+        { type: "required", message: '*Confirm password is required' }
       ]
 
     };

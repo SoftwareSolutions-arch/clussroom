@@ -1,50 +1,52 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="dashboard">
+
   <app-sidebar></app-sidebar>
+
   <div class="control-panel">
     <!-- <app-header></app-header> -->
     <app-dashboardheader></app-dashboardheader>
     <div class="nav-clip">
       <ul class="nav nav-tabs">
         <li (click)="goToCourses()"><a data-toggle="tab" href="#course-content" class=" clip-item">
-            <img src="assets/images/dashboard/second/course-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/course-blue.png" class="hover-in">Courses</a>
+          <img src="assets/images/dashboard/second/course-grey.png" class="hover-out">
+          <img src="assets/images/dashboard/second/course-blue.png" class="hover-in">Courses</a>
         </li>
 
         <li><a data-toggle="tab" href="#classes-content" class="active clip-item">
-            <img src="assets/images/dashboard/second/clip-classes-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/clip-classes-blue.png" class="hover-in">Classes</a>
+          <img src="assets/images/dashboard/second/clip-classes-grey.png" class="hover-out">
+          <img src="assets/images/dashboard/second/clip-classes-blue.png" class="hover-in">Classes</a>
         </li>
 
 
-        <li><a data-toggle="tab" href="#class-list-content" class="clip-item">
-            <img src="assets/images/dashboard/second/list-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/list-blue.png" class="hover-in">
-            Class List</a>
+        <li (click)="goToClassList()"><a data-toggle="tab" href="#class-list-content" class="clip-item">
+          <img src="assets/images/dashboard/second/list-grey.png" class="hover-out">
+          <img src="assets/images/dashboard/second/list-blue.png" class="hover-in">
+          Class List</a>
         </li>
 
         <li><a data-toggle="tab" href="#learners-content" class="clip-item">
-            <img src="assets/images/dashboard/second/clip-learner-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/clip-learner-blue.png" class="hover-in">
-            Learners</a>
+          <img src="assets/images/dashboard/second/clip-learner-grey.png" class="hover-out">
+          <img src="assets/images/dashboard/second/clip-learner-blue.png" class="hover-in">
+          Learners</a>
         </li>
 
         <li><a data-toggle="tab" href="#storage-content" class="clip-item">
-            <img src="assets/images/dashboard/second/clip-storage-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/clip-storage-blue.png" class="hover-in">
-            Storage</a>
+          <img src="assets/images/dashboard/second/clip-storage-grey.png" class="hover-out">
+          <img src="assets/images/dashboard/second/clip-storage-blue.png" class="hover-in">
+          Storage</a>
         </li>
 
         <li><a data-toggle="tab" href="#admin-content" class="clip-item">
-            <img src="assets/images/dashboard/second/clip-user-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/clip-user-blue.png" class="hover-in">
-            Admin</a>
+          <img src="assets/images/dashboard/second/clip-user-grey.png" class="hover-out">
+          <img src="assets/images/dashboard/second/clip-user-blue.png" class="hover-in">
+          Admin</a>
         </li>
 
         <li><a data-toggle="tab" href="#live-sessions-content" class="clip-item">
-            <img src="assets/images/dashboard/second/session-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/session-blue.png" class="hover-in">
-            Live Sessions</a>
+          <img src="assets/images/dashboard/second/session-grey.png" class="hover-out">
+          <img src="assets/images/dashboard/second/session-blue.png" class="hover-in">
+          Live Sessions</a>
         </li>
       </ul>
 
@@ -60,8 +62,9 @@
         </div>
         <!-- close loader showing-->
 
-        <div class="program_course_wrapper">
-          <form class="green-button" style="text-align: center;">
+        <div class="program_course_wrapper col-lg-12 container">
+          <!-- <div class="col-sm-1"></div> -->
+          <form class="green-button col-md-8" style="text-align: center;">
             <div class="fieldset course-name">
               <label>Course Name : </label>
               <select [(ngModel)]="selectedCategory" name="course" id="course-name">
@@ -70,29 +73,30 @@
                 </option>
               </select>
             </div>
-            <button (click)="viewClassesList()"><a>Go</a></button>
+            <button (click)="viewClassesList()">Go</button>
           </form>
+          <div class="col-md-4">&nbsp;</div>
         </div>
 
         <div *ngIf="!isLoadingBool && isTableShow">
           <div class="prospectus-section">
             <div class="prospectus-tabs">
-              <div class="prospectus-action">
-                <a *ngIf="!editForm && !isSaveCourses" class="add-btn custom-a-btn" data-toggle="modal"
-                  data-target="#addClass">
+              <div class="prospectus-action" style="position: relative; right: 11em; bottom: .5em;">
+                <a *ngIf="!editForm && !isSaveCourses" class="add-btn custom-a-btn mt-3" data-toggle="modal"
+                   data-target="#addClass">
                   <i class="fa fa-plus" aria-hidden="true"></i> New Class</a>
 
                 <a *ngIf="editForm" (click)="editCourses()" style="margin-left: 15px;background: #4CAF50 !important;"
-                  class="add-btn custom-a-btn" data-toggle="modal">
+                   class="add-btn custom-a-btn" data-toggle="modal">
                   <i class="fa fa-edit" aria-hidden="true"></i> Edit</a>
 
                 <a *ngIf="!isSaveCourses && editForm" class="delete-btn custom-a-btn" data-toggle="modal"
-                  data-target="#deleteClass" (click)="popDeleteClass()">
+                   data-target="#deleteClass" (click)="popDeleteClass()">
                   <i class="fa fa-trash-o" aria-hidden="true"></i></a>
 
                 <a *ngIf="isSaveCourses" (click)="cancelCourses()"
-                  style="margin-left: 15px;background: #db2929 !important;" class="add-btn custom-a-btn"
-                  data-toggle="modal">
+                   style="margin-left: 15px;background: #db2929 !important;" class="add-btn custom-a-btn"
+                   data-toggle="modal">
                   <i class="fa fa-times" aria-hidden="true"></i> Cancel</a>
               </div>
             </div>
@@ -101,85 +105,85 @@
               <div class="table-responsive">
                 <table class="table dashboard-table">
                   <thead>
-                    <tr>
-                      <th scope="col"></th>
-                      <th scope="col">No.</th>
-                      <th scope="col" class="text-left table-filter">Class Name</th>
-                      <th scope="col" class="table-filter">Class Code</th>
-                      <th scope="col" class="text-left table-filter">Start date</th>
-                      <th scope="col" class="text-left table-filter">End date</th>
-                      <th scope="col" class="table-filter">Learners</th>
-                      <th scope="col" class="table-filter">Status</th>
-                      <th scope="col"></th>
-                    </tr>
+                  <tr>
+                    <th scope="col"></th>
+                    <th scope="col">No.</th>
+                    <th scope="col" class="text-left table-filter">Class Name</th>
+                    <th scope="col" class="table-filter text-center">Class Code</th>
+                    <th scope="col" class="text-center table-filter">Start date</th>
+                    <th scope="col" class="text-center table-filter">End date</th>
+                    <th scope="col" class="text-center table-filter">Learners</th>
+                    <th scope="col" class="text-center table-filter">Status</th>
+                  </tr>
                   </thead>
                   <tbody class="learner-text-left">
-                    <tr
-                      *ngFor="let classList of this.allClassesData| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;"
-                      [class.active]="i == currentIndex">
-                      <th>
-                        <div class="radio-table">
-                          <!-- <input type="checkbox" #checkboxes (click)="isCheckClicked($event,classList,i)"> -->
-                          <input name="checkbox" (click)="isCheckClicked($event,classList,i)" type="radio">
+                  <tr
+                    *ngFor="let classList of this.allClassesData| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;"
+                    [class.active]="i == currentIndex">
+                    <th>
+                      <div class="radio-table">
+                        <!-- <input type="checkbox" #checkboxes (click)="isCheckClicked($event,classList,i)"> -->
+                        <input name="checkbox" (click)="isCheckClicked($event,classList,i)" type="radio">
 
-                        </div>
+                      </div>
 
-                      </th>
-                      <td>
-                        <div>{{this.classList.sno}}</div>
-                      </td>
+                    </th>
+                    <td>
+                      <div>{{this.classList.sno}}</div>
+                    </td>
 
-                      <td *ngIf="this.classList.nid !== this.userIdDetails" class="text-left">{{this.classList.title}}
-                      </td>
-                      <td *ngIf="this.classList.nid===this.userIdDetails"><input [(ngModel)]="this.classList.title"
-                          class="text-left" /></td>
-                      <td>
-                        <div>{{this.classList.field_class_code}}</div>
-                      </td>
+                    <td *ngIf="this.classList.nid !== this.userIdDetails" class="text-left">{{this.classList.title}}
+                    </td>
+                    <td *ngIf="this.classList.nid===this.userIdDetails"><input [(ngModel)]="this.classList.title"
+                                                                               class="text-left" /></td>
 
-                      <td *ngIf="this.classList.nid !== this.userIdDetails" class="text-left">
-                        {{this.classList.field_start_date}}</td>
-                      <td *ngIf="this.classList.nid===this.userIdDetails"><input type="date"
-                          [(ngModel)]="this.classList.field_start_date" class="text-left" /></td>
+                    <td class="text-center">
+                      <div>{{this.classList.field_class_code}}</div>
+                    </td>
 
-                      <td *ngIf="this.classList.nid !== this.userIdDetails" class="text-left">
-                        {{this.classList.field_end_date}}
-                      </td>
+                    <td *ngIf="this.classList.nid !== this.userIdDetails" class="text-center">
+                      {{this.classList.field_start_date}}</td>
+                    <td *ngIf="this.classList.nid===this.userIdDetails"><input type="date"
+                                                                               [(ngModel)]="this.classList.field_start_date" class="text-center" /></td>
 
-                      <td *ngIf="this.classList.nid===this.userIdDetails"><input type="date"
-                          [(ngModel)]="this.classList.field_end_date" class="text-left" /></td>
+                    <td *ngIf="this.classList.nid !== this.userIdDetails" class="text-center">
+                      {{this.classList.field_end_date}}
+                    </td>
 
-                      <td>
-                        <div class="highlight">{{this.classList.total_learners}}</div>
-                      </td>
-                      <td>
-                        <div class="effective" *ngIf="this.classList.field_status=='Completed'">
-                          {{this.classList.field_status}}
-                        </div>
-                        <div class="ongoing" *ngIf="this.classList.field_status=='Ongoing'">
-                          {{this.classList.field_status}}
-                        </div>
-                        <div class="schedule" *ngIf="this.classList.field_status=='Sheduled'">
-                          {{this.classList.field_status}}
-                        </div>
-                      </td>
-                      <!-- <td>
-                        <button><a>Go to Class</a></button>
-                      </td> -->
+                    <td *ngIf="this.classList.nid===this.userIdDetails"><input type="date"
+                                                                               [(ngModel)]="this.classList.field_end_date" class="text-center" /></td>
 
-                      <td>
-                        <button style="color: #90a193 !important;" *ngIf="this.classList.nid===this.userIdDetails"
-                          (click)="updateClasses(this.classList)">
-                          <a style="color: #90a193 !important;">Save class</a>
-                        </button>
+                    <td class="text-center">
+                      <div class="highlight">{{this.classList.total_learners}}</div>
+                    </td>
+                    <td>
+                      <div class="effective" *ngIf="this.classList.field_status=='Completed'">
+                        {{this.classList.field_status}}
+                      </div>
+                      <div class="ongoing" *ngIf="this.classList.field_status=='Ongoing'">
+                        {{this.classList.field_status}}
+                      </div>
+                      <div class="schedule" *ngIf="this.classList.field_status=='Sheduled'">
+                        {{this.classList.field_status}}
+                      </div>
+                    </td>
+                    <td>
+                      <button><a>Go to Class</a></button>
+                    </td>
 
-                      </td>
-                    </tr>
+                    <td>
+                      <button style="color: #90a193 !important;" *ngIf="this.classList.nid===this.userIdDetails"
+                              (click)="updateClasses(this.classList)">
+                        <a style="color: #90a193 !important;">Save class</a>
+                      </button>
+
+                    </td>
+                  </tr>
                   </tbody>
                 </table>
                 <div class="table-result-wrapper">
                   <pagination-controls previousLabel="Prev" nextLabel="Next" responsive="true"
-                    (pageChange)="handlePageChange($event)"></pagination-controls>
+                                       (pageChange)="handlePageChange($event)"></pagination-controls>
                 </div>
               </div>
 
@@ -187,33 +191,33 @@
           </div>
 
           <div id="addClass" class="modal addcourse-modal" role="dialog">
-            <div class="modal-dialog" style="max-width: 40%;">
+            <div class="modal-dialog" style="max-width: 45%;">
 
               <!-- Modal content-->
               <div class="modal-content">
                 <div class="modal-header" style="padding: 6px 0;">
                   <h4>Add Class</h4>
                   <button type="button" class="close" data-dismiss="modal" style="padding: 6px 0;"><img
-                      src="assets/images/dashboard/close-course.png"></button>
+                    src="assets/images/dashboard/close-course.png"></button>
                 </div>
                 <div class="modal-body" style="padding:26px 26px 0px 26px !important">
                   <form>
                     <div class="addCourse-form">
                       <div class="my-modal my-modal-classes">Class start:&nbsp;&nbsp;&nbsp;</div>
                       <input [(ngModel)]="courseList.class_start" [ngModelOptions]="{standalone: true}" type="date"
-                        placeholder="dd/mm/yyyy" value="" style="border: 1px solid #E7EDFF;">
+                             placeholder="dd/mm/yyyy" value="" style="border: 1px solid #E7EDFF; color: #7990B4; font-size: 15px; font-weight: 400; font-family: 'Barlow';">
                       <div class="my-modal my-modal-classes">Class ends:&nbsp;&nbsp;&nbsp;</div>
                       <input [(ngModel)]="courseList.class_end" [ngModelOptions]="{standalone: true}" type="date"
-                        placeholder="dd/mm/yyyy" value="" style="border: 1px solid #E7EDFF;">
+                             placeholder="dd/mm/yyyy" value="" style="border: 1px solid #E7EDFF; color: #7990B4; font-size: 15px; font-weight: 400; font-family: 'Barlow';">
                     </div>
                     <div class="class-name">
-                      Class Name:&nbsp;&nbsp;&nbsp;
+                      <p>Class name:</p>
                       <input [(ngModel)]="courseList.class_name" [ngModelOptions]="{standalone: true}" type="text"
-                        value=" ">
+                             value=" ">
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer mb-3">
                       <button class="modalfooter-back" data-dismiss="modal">Back</button>
-                      <button (click)="createNewClasses()" class="modalfooter-next" data-dismiss="modal">Next</button>
+                      <button (click)="createNewClasses()" class="modalfooter-next" data-dismiss="modal">Add</button>
                     </div>
                   </form>
                 </div>
@@ -232,7 +236,7 @@
                 <div class="modal-header">
                   <h4>Delete class</h4>
                   <button type="button" class="close" data-dismiss="modal"><img
-                      src="assets/images/dashboard/close-course.png"></button>
+                    src="assets/images/dashboard/close-course.png"></button>
                 </div>
                 <div class="modal-body">
                   <div class="class-delete-list">

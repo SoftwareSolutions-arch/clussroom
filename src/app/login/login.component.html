@@ -5,8 +5,8 @@
 <section class="login-section">
   <div class="container">
     <div class="login-form">
-      <h2>For every student,
-        every classroom.</h2>
+<!--      <h2>For every student,-->
+<!--        every classroom.</h2>-->
       <form [formGroup]="loginForm">
         <div class="radio-curve">
           <div class="login-radio" style="display: flex; align-items: center;">
@@ -20,7 +20,7 @@
         </div>
 
         <div class="login-company-name fieldset">
-          <label>Email id</label>
+          <label>Email</label>
           <input formControlName="email" type="text" value={{this.myemail}}>
           <ng-container *ngFor="let error of error_messages.email">
             <div class="error-message" *ngIf="loginForm.get('email').hasError(error.type) &&
@@ -47,13 +47,18 @@
           </ng-container>
         </div>
 
-        <div class="login-obliterate mb-5">
+        <!-- <div class="login-obliterate mb-5">
           <button class="btn" [disabled]="!loginForm.valid" (click)="login()">Start Class</button>
           <a (click)="resetPassword()">Forgot password Reset it.</a>
-        </div>
+        </div> -->
 
         <div class="login-remember-me">
           <label><input (click)="rememberMe()" [checked]="isChecked" type="checkbox"><span>Remember me</span></label>
+          <a (click)="resetPassword()" style="position: relative; left: 21.5em;">Forgot password</a>
+        </div>
+
+        <div class="login-obliterate mb-5">
+          <button class="btn" [disabled]="!loginForm.valid" (click)="login()" style="text-transform: none !important;">Start class</button>
         </div>
 
       </form>

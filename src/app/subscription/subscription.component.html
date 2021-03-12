@@ -78,8 +78,8 @@
               Video minutes (monthly)
             </div>
             <div class="estimate-subscription">
-              {{this.subscriptionDetails.video_minutes}} minutes <b class="custom-tooltip" data-toggle="tooltip"
-                title="12,000 minutes">?</b>
+              {{this.subscriptionDetails.video_minutes}} minutes <b class="custom-tooltip">?<span class="tooltiptext" style="width: 12%; top: 62%; left: 35.5%;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</span></b>
+
             </div>
             <div class="combine-subscription">
               <img src="assets/images/blue-tick.png">
@@ -152,7 +152,7 @@
             </div>
           </li>
 
-           <li>
+          <li>
             <div class="label-subscription">
               Live Session
             </div>
@@ -173,9 +173,9 @@
         </ul>
         <div class="terms-of-use">
           <input type="checkbox" ng-model="termsCondition" (click)="agreeTerms($event)">
-          <p class="term-button">I agree to the accompanying <button (click)="goToTermsUse()"><a>Terms of
-                use</a></button> and
-            <button (click)="goToPrivacyPolicy()"><a>Privacy Policy</a></button></p>
+          <p class="term-button">I agree to the accompanying <button (click)="goToTermsUse()"><a style="text-decoration: underline;">Terms of
+            use</a></button> and
+            <button (click)="goToPrivacyPolicy()"><a style="text-decoration: underline;">Privacy Policy</a></button></p>
         </div>
         <div class="subscription-buttons">
           <button [disabled]="this.termsCondition!=true" class="btn" (click)="next()">

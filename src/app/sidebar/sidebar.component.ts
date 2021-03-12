@@ -10,7 +10,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-  constructor(public classes: ClassesComponent, public util: UtilService, public service: SharedServiceService, public router: Router) { }
+  constructor(public classes: ClassesComponent, public util: UtilService, public service: SharedServiceService, public router: Router) { 
+    // this.ngOnInit();
+  }
 
   ngOnInit(): void {
     jQuery(document).ready(function () {

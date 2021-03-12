@@ -13,6 +13,9 @@ import { UtilService } from '../../providers/util.service'
 })
 export class InvoiceComponent implements OnInit {
   nidKey: any = '';
+  allCountryList: any = '';
+  allStateList: any = '';
+  allCityList: any = '';
   invoiceDetails: any = {};
   isImageShow: boolean = true;
   isSpinnerShow: boolean = false;
@@ -30,7 +33,7 @@ export class InvoiceComponent implements OnInit {
     this.getAllInvoiceList();
     this.paymentForm.disable();
     this.title = localStorage.getItem('title');
-
+    this.getAllCountry();
   }
 
   ngOnInit(): void {
@@ -38,43 +41,43 @@ export class InvoiceComponent implements OnInit {
 
   setupFormData() {
     this.error_messages = {
-      companyName: [
-        { type: "required", message: '*Company name is required' },
-        { type: "pattern", message: '*Please enter character only' }
-      ],
+      // companyName: [
+      //   { type: "required", message: '*Company name is required' },
+      //   { type: "pattern", message: '*Please enter character only' }
+      // ],
       firstName: [
-        { type: "required", message: '*First Name is Required' },
+        { type: "required", message: '*Required' },
         { type: "pattern", message: '*Please enter character only' }
       ],
       lastName: [
-        { type: "required", message: '*Last Name is required' },
+        { type: "required", message: '*Required' },
         { type: "pattern", message: '*Please enter character only' }
       ],
-      address: [
-        { type: "required", message: '*Address is required' }
-      ],
+      // address: [
+      //   { type: "required", message: '*Address is required' }
+      // ],
       city: [
-        { type: "required", message: '*City is required' },
+        { type: "required", message: '*Required' },
         { type: "pattern", message: '*Please enter character only' }
       ],
-      state: [
-        { type: "required", message: '*State is required' },
-        { type: "pattern", message: '*Please enter character only' }
-      ],
+      // state: [
+      //   { type: "required", message: '*State is required' },
+      //   { type: "pattern", message: '*Please enter character only' }
+      // ],
       country: [
-        { type: "required", message: '*Country is required' },
+        { type: "required", message: '*Required' },
         { type: "pattern", message: '*Please enter character only' }
       ],
       email: [
-        { type: "required", message: '*Email is required' },
+        { type: "required", message: '*Required' },
         { type: "pattern", message: '*Please enter valid email' }
       ],
       cmail: [
-        { type: "required", message: '*Confirm email is required' },
+        { type: "required", message: '*Required' },
         { type: "pattern", message: '*Please enter valid email' }
       ],
       cardHolderName: [
-        { type: "required", message: '*Card holder name is required' },
+        { type: "required", message: '*Required' },
         { type: "pattern", message: '*Please enter character only' }
       ],
       cvv: [
@@ -277,5 +280,27 @@ export class InvoiceComponent implements OnInit {
   // back to subscription page
   backToPreviousPage() {
     this.router.navigate(['/subscription'])
+  }
+
+
+  // get invoice list
+  getAllCountry() {
+    this.allStateList='';
+    this.allCityList='';
+    this.service.getData('countries').subscribe(result => {
+      this.allCountryList=result
+    })
+  }
+
+  getState(){
+    this.service.getData('countries/'+this.invoiceForm.value.country.iso2+'/states').subscribe(result => {
+      this.allStateList=result
+    })
+  }
+
+  getCity(){
+    this.service.getData('countries/'+this.invoiceForm.value.country.iso2+'/states/'+this.invoiceForm.value.state.iso2+'/cities').subscribe(result => {
+      this.allCityList=result
+    })
   }
 }

@@ -34,18 +34,17 @@
 						<div class="instruction-progressbaar-line line-1"></div>
 					</li>
 				</ul>
-				<h2>Naming convention of your instructions</h2>
+				<h2>Name of your instructions</h2>
 				<p>What name would you like to give for your instructions?</p>
 
 				<form>
-					<div class="instruction-name fieldset">
-						<label>Name</label>
-						<div class="instruction-checkbox">
-							<div class="chiller_cb" *ngFor="let listItems of  this.instructionList" (click)="selectedItems(listItems.tid)">
-								<input type="checkbox">
-								<label for="myCheckbox">{{listItems.name}}</label>
-							</div>
-						</div>
+          <div class="instruction-name fieldset">
+            <div class="instruction-checkbox">
+              <div class="chiller_cb" *ngFor="let listItems of  this.instructionList" (click)="selectedItems(listItems.tid)">
+                <input type="checkbox">
+                <label for="myCheckbox">{{listItems.name}}</label>
+              </div>
+            </div>
 
 					</div>
 					<div class="instruction-obliterate">
@@ -54,8 +53,8 @@
 					</div>
 					<div class="terms-of-use">
 
-						<label><input (click)="agreeTerms($event)" type="checkbox"> I agree to Clussroom <a
-								href="#">Terms of use</a></label>
+            <label><input (click)="agreeTerms($event)" type="checkbox"> I agree to Clussroom <a
+              href="#" style="text-decoration: underline;">Terms of use</a></label>
 					</div>
 				</form>
 

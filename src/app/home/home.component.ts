@@ -44,6 +44,6 @@ export class HomeComponent implements OnInit {
   }
 
   loginAlert() {
-    this.util.errorAlertPopup('You must have to login first')
+    this.router.navigate(['/login']);
   }
 }
