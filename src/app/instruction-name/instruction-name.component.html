@@ -1,69 +1,52 @@
-<!DOCTYPE html>
-<html>
-<title>Instruction</title>
+  <app-header></app-header>
+  <section class="instruction-section">
+    <div class="container">
 
-<head>
-	<link rel="icon" href="assets/images/clusroom-fav.png" type="image/png">
-	<!-- <link rel="stylesheet" href="boostrap/css/bootstrap.css">
-	<link rel="stylesheet" href="css/style.css"> -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
+      <div class="instruction-form">
+        <ul id="instruction-progressbar">
 
-<body>
-	<app-header></app-header>
-	<section class="instruction-section">
-		<div class="container">
+          <li class="completed">
+            <div class="instruction-progressbaar-line line-1"></div>
+            <strong><img src="assets/images/blue-path.png">1</strong>
 
-			<div class="instruction-form">
-				<ul id="instruction-progressbar">
+          </li>
 
-					<li class="completed">
-						<div class="instruction-progressbaar-line line-1"></div>
-						<strong><img src="assets/images/blue-path.png">1</strong>
+          <li class="active">
+            <div class="instruction-progressbaar-line line-2"></div>
+            <strong><img src="assets/images/blue-path.png">2</strong>
+          </li>
 
-					</li>
+          <li>
+            <div class="instruction-progressbaar-line line-2"></div>
+            <strong><img src="assets/images/blue-path.png">3</strong>
+            <div class="instruction-progressbaar-line line-1"></div>
+          </li>
+        </ul>
+        <h2>Name of your instructions</h2>
+        <p>What name would you like to give for your instructions?</p>
 
-					<li class="active">
-						<div class="instruction-progressbaar-line line-2"></div>
-						<strong><img src="assets/images/blue-path.png">2</strong>
-					</li>
-
-					<li>
-						<div class="instruction-progressbaar-line line-2"></div>
-						<strong><img src="assets/images/blue-path.png">3</strong>
-						<div class="instruction-progressbaar-line line-1"></div>
-					</li>
-				</ul>
-				<h2>Name of your instructions</h2>
-				<p>What name would you like to give for your instructions?</p>
-
-				<form>
+        <form>
           <div class="instruction-name fieldset">
             <div class="instruction-checkbox">
-              <div class="chiller_cb" *ngFor="let listItems of  this.instructionList" (click)="selectedItems(listItems.tid)">
-                <input type="checkbox">
+              <div class="chiller_cb" *ngFor="let listItems of  this.instructionList"
+                (click)="selectedItems(listItems)">
+                <input name="unique" type="radio">
                 <label for="myCheckbox">{{listItems.name}}</label>
               </div>
             </div>
+          </div>
+          <div class="instruction-obliterate">
+            <button class="btn" [disabled]="this.termsCondition!=true" (click)="nextPage()">Next</button>
+            <button class="back-btn" (click)="back()">Back</button>
+          </div>
+          <div class="terms-of-use">
 
-					</div>
-					<div class="instruction-obliterate">
-						<button class="btn" [disabled]="this.termsCondition!=true" (click)="nextPage()">Next</button>
-						<button class="back-btn" (click)="back()">Back</button>
-					</div>
-					<div class="terms-of-use">
+            <label><input (click)="agreeTerms($event)" type="checkbox"> I agree to Clussroom's &nbsp;<a href="#"
+                style="text-decoration: underline;">Terms of use</a></label>
+          </div>
+        </form>
 
-            <label><input (click)="agreeTerms($event)" type="checkbox"> I agree to Clussroom <a
-              href="#" style="text-decoration: underline;">Terms of use</a></label>
-					</div>
-				</form>
-
-			</div>
-		</div>
-	</section>
-
-	<app-footer></app-footer>
-
-</body>
-
-</html>
+      </div>
+    </div>
+  </section>
+  <app-footer></app-footer>

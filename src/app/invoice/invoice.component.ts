@@ -34,6 +34,8 @@ export class InvoiceComponent implements OnInit {
     this.paymentForm.disable();
     this.title = localStorage.getItem('title');
     this.getAllCountry();
+    this.util.errorAlertPopup('Email already exist');
+
   }
 
   ngOnInit(): void {
@@ -129,21 +131,21 @@ export class InvoiceComponent implements OnInit {
           "",
           Validators.compose([
             Validators.required,
-            Validators.pattern('^[a-zA-Z, ]*$')
+            // Validators.pattern('^[a-zA-Z, ]*$')
           ])
         ),
         state: new FormControl(
           "",
           Validators.compose([
             Validators.required,
-            Validators.pattern('^[a-zA-Z, ]*$')
+            // Validators.pattern('^[a-zA-Z, ]*$')
           ])
         ),
         country: new FormControl(
           "",
           Validators.compose([
             Validators.required,
-            Validators.pattern('^[a-zA-Z, ]*$')
+            // Validators.pattern('^[a-zA-Z, ]*$')
           ])
         ),
         email: new FormControl("", Validators.compose([Validators.required, Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'),])),
@@ -169,10 +171,10 @@ export class InvoiceComponent implements OnInit {
         cardNumber: new FormControl(
           "",
           Validators.compose([
-            Validators.required,
-            Validators.min(1000000000000000),
-            Validators.max(9999999999999999),
-            Validators.pattern('^[0-9, ]*$')
+            // Validators.required,
+            // Validators.min(1000000000000000),
+            // Validators.max(9999999999999999),
+            // Validators.pattern('^[0-9, ]*$')
           ])
         ),
         expiryDate: new FormControl(
@@ -251,9 +253,9 @@ export class InvoiceComponent implements OnInit {
       'fname': this.invoiceForm.value.firstName,
       'lname': this.invoiceForm.value.lastName,
       'address': this.invoiceForm.value.address,
-      'city': this.invoiceForm.value.city,
-      'state': this.invoiceForm.value.state,
-      'country': this.invoiceForm.value.country,
+      'city': this.invoiceForm.value.city.name,
+      'state': this.invoiceForm.value.state.name,
+      'country': this.invoiceForm.value.country.name,
       'email': this.invoiceForm.value.email,
       'cardNumber': this.paymentForm.value.cardNumber,
       'cvv': this.paymentForm.value.cvv,
@@ -282,25 +284,24 @@ export class InvoiceComponent implements OnInit {
     this.router.navigate(['/subscription'])
   }
 
-
   // get invoice list
   getAllCountry() {
-    this.allStateList='';
-    this.allCityList='';
+    this.allStateList = '';
+    this.allCityList = '';
     this.service.getData('countries').subscribe(result => {
-      this.allCountryList=result
+      this.allCountryList = result
     })
   }
 
-  getState(){
-    this.service.getData('countries/'+this.invoiceForm.value.country.iso2+'/states').subscribe(result => {
-      this.allStateList=result
+  getState() {
+    this.service.getData('countries/' + this.invoiceForm.value.country.iso2 + '/states').subscribe(result => {
+      this.allStateList = result
     })
   }
 
-  getCity(){
-    this.service.getData('countries/'+this.invoiceForm.value.country.iso2+'/states/'+this.invoiceForm.value.state.iso2+'/cities').subscribe(result => {
-      this.allCityList=result
+  getCity() {
+    this.service.getData('countries/' + this.invoiceForm.value.country.iso2 + '/states/' + this.invoiceForm.value.state.iso2 + '/cities').subscribe(result => {
+      this.allCityList = result
     })
   }
 }

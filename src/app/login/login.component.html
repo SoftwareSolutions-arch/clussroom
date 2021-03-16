@@ -2,11 +2,11 @@
 
 <!-- Login Section -->
 
-<section class="login-section">
+<section class="login-section" style="min-height: 557px;">
   <div class="container">
     <div class="login-form">
-<!--      <h2>For every student,-->
-<!--        every classroom.</h2>-->
+      <!-- <h2>For every student,
+        every classroom.</h2> -->
       <form [formGroup]="loginForm">
         <div class="radio-curve">
           <div class="login-radio" style="display: flex; align-items: center;">
@@ -34,10 +34,10 @@
           <label>Password</label>
           <input formControlName="password" [type]="isTextFieldType ? 'text' : 'password'" value={{this.mypassword}}>
           <span class="icon-image">
-            <i class="fa fa-eye" *ngIf="hideImage" (click)="togglePasswordFieldType()"></i>
+            <i class="fa fa-eye-slash" *ngIf="hideImage" (click)="togglePasswordFieldType()"></i>
           </span>
           <span class="icon-image">
-            <i class="fa fa-eye-slash" *ngIf="!hideImage" aria-hidden="true" (click)="togglePasswordFieldType()"></i>
+            <i class="fa fa-eye" *ngIf="!hideImage" aria-hidden="true" (click)="togglePasswordFieldType()"></i>
           </span>
           <ng-container *ngFor="let error of error_messages.password">
             <div class="error-message" *ngIf="loginForm.get('password').hasError(error.type) &&
@@ -46,11 +46,6 @@
             </div>
           </ng-container>
         </div>
-
-        <!-- <div class="login-obliterate mb-5">
-          <button class="btn" [disabled]="!loginForm.valid" (click)="login()">Start Class</button>
-          <a (click)="resetPassword()">Forgot password Reset it.</a>
-        </div> -->
 
         <div class="login-remember-me">
           <label><input (click)="rememberMe()" [checked]="isChecked" type="checkbox"><span>Remember me</span></label>

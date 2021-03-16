@@ -23,6 +23,7 @@ export class InstructionNameComponent implements OnInit {
   }
 
   selectedItems(values) {
+    console.log(values)
     this.selectedItem = values;
   }
 
@@ -36,21 +37,21 @@ export class InstructionNameComponent implements OnInit {
 
   // Set password
   nextPage() {
+    console.log('this.selectedItem.name', this.selectedItem.name)
     var uid = localStorage.getItem('uid');
     let data = {
       "schoolname": this.SchoolName,
-      "instruction_name": this.selectedItem,
+      "instruction_name": this.selectedItem.tid,
       "uid": uid
     }
 
     this.service.post('vendor-first-login-api', data, 1).subscribe(result => {
       console.log('result', result)
       if (result.status == 1) {
-        localStorage.setItem('instructionName', this.selectedItem);
+        localStorage.setItem('instructionName', this.selectedItem.name);
         localStorage.setItem('isLogin', '1');
         this.router.navigate(['/sample04']);
       }
-
     })
   }
 

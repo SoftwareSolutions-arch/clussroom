@@ -58,12 +58,11 @@ export class SharedServiceService {
     }
   }
 
-
   getData(endPoint): Observable<any> {
     let httpOptions;
     httpOptions = {
       headers: new HttpHeaders({
-        'X-CSCAPI-KEY': 'N2FiWXlHTkZCelg5VU1BYlVkNnhNM2xwWUs5MFBmYWJIWUZTT2NTSQ=='
+        'X-CSCAPI-KEY': 'UDJMdHl1NktVZk95U2NlNkFvOHFKNmdIYnhPVGRDbEJya1gxT2VVYg=='
       }),
     };
     return this.http.get(this.tempUrl + endPoint, httpOptions);

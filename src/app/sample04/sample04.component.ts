@@ -78,15 +78,14 @@ export class Sample04Component implements OnInit {
   selectedNewItems: any = '';
   edit_allow_msg_learner: any = '';
   edit_allow_msg_coach: any = '';
+  instructionName:any='';
   constructor(public router: Router, public util: UtilService, public service: SharedServiceService,
     public formBuilder: FormBuilder, public classes: ClassesComponent) {
     this.getAllCoursesList();
     this.getallListingDropdown();
     this.setupLoginFormData();
+    this.instructionName=localStorage.getItem('instructionName')
   }
-
-
-  getCountry(){}
 
   parseDate(dateString: string): Date {
     var dateStrings = JSON.parse(dateString)
@@ -97,7 +96,7 @@ export class Sample04Component implements OnInit {
   }
 
   ngOnInit(): void {
-    
+
   }
 
   setupLoginFormData() {
@@ -520,7 +519,7 @@ export class Sample04Component implements OnInit {
     this.isClickedRadios = event.target.value;
   }
 
-  goToClassList(){
+  goToClassList() {
     this.router.navigate(['/classes-list'])
 
   }

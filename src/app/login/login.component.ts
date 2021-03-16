@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
   constructor(public router: Router, public util: UtilService, public service: SharedServiceService,
     public formBuilder: FormBuilder, public cookie: CookieService) {
     this.setupLoginFormData();
+    this.getInstructionName();
     // this.cookieDetails = this.cookie.getAll();
     // console.log('this.cookie/Details++1', this.cookieDetails);
   }
@@ -127,4 +128,17 @@ export class LoginComponent implements OnInit {
 
     })
   }
+
+
+
+  // do login
+  getInstructionName() {
+    this.service.post('instruction-name-api','', 0).subscribe(result => {
+      console.log('result+++', result);
+      localStorage.setItem('instructionName', result.instruction_name);
+
+     
+    })
+  }
+
 }

@@ -5568,3 +5568,10 @@ textarea:focus {
   color: #FFBB38;
   font-weight: 600;
 }
+
+.text-right {
+  font-size: 13px;
+  font-weight: 500;
+  font-family: 'Barlow';
+  color: #5B73A0;
+}

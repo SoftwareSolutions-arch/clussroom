@@ -727,3 +727,86 @@ input {
 .order-summary-enable input[type="number"] {
   -moz-appearance: textfield;
 }
+/*Dialog modal start*/
+
+.delete-remind-modal .modal-body figure img {
+	margin: 0 auto;
+}
+
+.delete-remind-modal .modal-body figure {
+	padding: 15px 0px;
+}
+
+.delete-remind-modal .modal-body h4 {
+	font-family: Rubik;
+	font-size: 24px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 30px;
+	letter-spacing: 0px;
+	text-align: center;
+}
+
+.delete-remind-modal .modal-body p,
+.delete-remind-modal .modal-body span {
+	font-family: Barlow;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 15px;
+	line-height: 20px;
+	color: #FF5A64;
+	text-align: center;
+	display: block;
+	margin-bottom: 0px;
+}
+
+.delete-remind-modal .modal-body .delete-btn-course {
+    height: 35px;
+    width: 100px;
+    border-radius: 6px;
+    background-color: #FFA26B;
+    font-family: Barlow;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    margin: 0 auto;
+}
+
+
+.delete-remind-modal .modal-body {
+	padding-bottom: 50px;
+}
+
+.dialog-header p {
+  font-size: 17px !important;
+  font-weight: 500 !important;
+  font-family: 'Rubik' !important;
+  color: #396aff !important;
+  letter-spacing: 0 !important;
+}
+
+.dialog-header {
+  background-color: #EEF5FF;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.modal-content h3 {
+  font-size: 17px;
+  font-weight: 500;
+  font-family: 'Barlow';
+  color: #7990B4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2em 0;
+}
+
+/*Dialog modal end*/

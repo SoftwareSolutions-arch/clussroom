@@ -20,6 +20,11 @@ export class ChoosePasswordComponent implements OnInit {
 
   constructor(public formBuilder: FormBuilder, public util: UtilService, private activatedRoute: ActivatedRoute, public router: Router, public service: SharedServiceService) {
     this.setupFormData();
+    this.checkPassword();
+    var data = localStorage.getItem('isPasswordSet')
+    if (data == '1') {
+      this.router.navigate(['/login']);
+    }
   }
 
   ngOnInit(): void {
@@ -104,6 +109,7 @@ export class ChoosePasswordComponent implements OnInit {
     }
 
     let data = {
+      "step": 2,
       "uid": this.userId,
       "password": this.ChangePasswordForm.value.password
     }
@@ -112,11 +118,27 @@ export class ChoosePasswordComponent implements OnInit {
       console.log('result', result['basic_auth_token'])
       if (result['status'] == 1 || '1') {
         this.util.openSnackBarSuccess(result['message']);
+        localStorage.setItem("isPasswordSet", '1');
         localStorage.setItem("uid", this.userId);
         localStorage.setItem("csrftoken", result['csrftoken']);
         localStorage.setItem('Authorization', result['basic_auth_token'])
-
         this.router.navigate(['/school-name']);
+      }
+      else {
+        this.util.errorAlertPopup(result['message']);
+      }
+    })
+  }
+
+  checkPassword() {
+    let data = {
+      "step": 1,
+      "uid": this.userId
+    }
+    this.service.post('create-password-api', data, 0).subscribe(result => {
+      console.log('result', result);
+      if (result['status'] == 1 || '1') {
+
       }
       else {
         this.util.errorAlertPopup(result['message']);

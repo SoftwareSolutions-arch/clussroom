@@ -85,7 +85,7 @@
             </div>
             <div class="state fieldset col-md-6">
               <label>City<span style="color: red; margin-left: 4px;">*</span></label>
-              <select formControlName="state" name="category" id="categorycourse" style="padding: 0 11px;">
+              <select formControlName="city" name="category" id="categorycourse" style="padding: 0 11px;">
                 <option *ngFor="let cityName of this.allCityList" [ngValue]="cityName">
                   {{cityName.name}}
                 </option>
@@ -192,7 +192,7 @@
                     {{ error.message }}
                   </div>
                 </ng-container>
-  
+
               </div>
               <div class="payment-flex-curve">
                 <div class="expire-date fieldset">
@@ -287,7 +287,7 @@
               </div>
               <div class="cardnumber fieldset">
                 <label>Card Number</label>
-                <input type="number" ng-model="number" onKeyPress="if(this.value.length==7) return false;" min="0"
+                <input type="number" ng-model="number" onKeyPress="if(this.value.length==4) return false;" min="0"
                   style="width:20%; margin-right: 5px;">
                 <input type="number" ng-model="number" onKeyPress="if(this.value.length==4) return false;" min="0"
                   style="width:20%; margin-right: 5px;">
@@ -296,19 +296,19 @@
                 <input type="number" ng-model="number" onKeyPress="if(this.value.length==4) return false;" min="0"
                   style="width:20%; margin-right: 5px;">
                 <!-- <div> -->
-                <ng-container *ngFor="let error of error_messages.cardNumber">
+                <!-- <ng-container *ngFor="let error of error_messages.cardNumber">
                   <div class="error-message"
                     *ngIf="paymentForm.get('cardNumber').hasError(error.type) &&
                                               (paymentForm.get('cardNumber').dirty || paymentForm.get('cardNumber').touched)">
                     {{ error.message }}
                   </div>
-                </ng-container>
-  
+                </ng-container> -->
+
               </div>
               <div class="payment-flex-curve">
                 <div class="expire-date fieldset">
                   <label>Card Expiry</label>
-                  <input type="number">
+                  <input type="number" formControlName="expiryDate">
                   <ng-container *ngFor="let error of error_messages.expiryDate">
                     <div class="error-message"
                       *ngIf="paymentForm.get('expiryDate').hasError(error.type) &&
@@ -319,7 +319,8 @@
                 </div>
                 <div class="cvv fieldset">
                   <label>CVV <b class="custom-tooltip" data-toggle="tooltip" title="CVV">?</b></label>
-                  <input type="number" formControlName="cvv">
+                  <input type="number" formControlName="cvv" onKeyPress="if(this.value.length==3) return false;"
+                    min="0">
                   <ng-container *ngFor="let error of error_messages.cvv">
                     <div class="error-message" *ngIf="paymentForm.get('cvv').hasError(error.type) &&
                                                 (paymentForm.get('cvv').dirty || paymentForm.get('cvv').touched)">
