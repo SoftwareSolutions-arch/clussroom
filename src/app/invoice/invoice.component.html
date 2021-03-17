@@ -64,7 +64,7 @@
           </div>
 
           <div class="country fieldset">
-            <label>Country<span style="color: red; margin-left: 4px;">*</span></label>
+            <label>Country</label>
             <select formControlName="country" name="category" id="categorycourse" (change)="getState()"
               style="padding: 0 11px;">
               <option *ngFor="let countryName of this.allCountryList" [ngValue]="countryName">
@@ -75,7 +75,7 @@
 
           <div class="flex-curve">
             <div class="city fieldset col-md-6">
-              <label>State<span style="color: red; margin-left: 4px;">*</span></label>
+              <label>State</label>
               <select formControlName="state" name="category" id="categorycourse" (change)="getCity()"
                 style="padding: 0 11px;">
                 <option *ngFor="let stateName of this.allStateList" [ngValue]="stateName">
@@ -84,7 +84,7 @@
               </select>
             </div>
             <div class="state fieldset col-md-6">
-              <label>City<span style="color: red; margin-left: 4px;">*</span></label>
+              <label>City</label>
               <select formControlName="city" name="category" id="categorycourse" style="padding: 0 11px;">
                 <option *ngFor="let cityName of this.allCityList" [ngValue]="cityName">
                   {{cityName.name}}

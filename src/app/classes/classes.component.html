@@ -10,7 +10,7 @@
       <ul class="nav nav-tabs">
         <li (click)="goToCourses()"><a data-toggle="tab" href="#course-content" class=" clip-item">
           <img src="assets/images/dashboard/second/course-grey.png" class="hover-out">
-          <img src="assets/images/dashboard/second/course-blue.png" class="hover-in">Courses</a>
+          <img src="assets/images/dashboard/second/course-blue.png" class="hover-in">{{this.instructionName}}</a>
         </li>
 
         <li><a data-toggle="tab" href="#classes-content" class="active clip-item">
@@ -66,7 +66,7 @@
           <!-- <div class="col-sm-1"></div> -->
           <form class="green-button col-md-8" style="text-align: center;">
             <div class="fieldset course-name">
-              <label>Course Name : </label>
+              <label>{{this.instructionName}} Name : </label>
               <select [(ngModel)]="selectedCategory" name="course" id="course-name">
                 <option *ngFor="let courseList of this.allCourseList" value="{{courseList.nid}}">
                   {{this.courseList.title}}
@@ -86,9 +86,9 @@
                    data-target="#addClass">
                   <i class="fa fa-plus" aria-hidden="true"></i> New Class</a>
 
-                <a *ngIf="editForm" (click)="editCourses()" style="margin-left: 15px;background: #4CAF50 !important;"
+                <a *ngIf="editForm" (click)="editCourses()" style="margin-left: 15px;background: #4CAF50 !important; width: 60px; height: 35px;"
                    class="add-btn custom-a-btn" data-toggle="modal">
-                  <i class="fa fa-edit" aria-hidden="true"></i> Edit</a>
+                  <i class="fa fa-edit" aria-hidden="true" style="font-size: 13px; margin-right: 5px;"></i> Edit</a>
 
                 <a *ngIf="!isSaveCourses && editForm" class="delete-btn custom-a-btn" data-toggle="modal"
                    data-target="#deleteClass" (click)="popDeleteClass()">
@@ -167,9 +167,9 @@
                         {{this.classList.field_status}}
                       </div>
                     </td>
-                    <td>
+                    <!-- <td>
                       <button><a>Go to Class</a></button>
-                    </td>
+                    </td> -->
 
                     <td>
                       <button style="color: #90a193 !important;" *ngIf="this.classList.nid===this.userIdDetails"

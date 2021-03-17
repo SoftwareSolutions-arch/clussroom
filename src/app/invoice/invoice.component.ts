@@ -34,8 +34,6 @@ export class InvoiceComponent implements OnInit {
     this.paymentForm.disable();
     this.title = localStorage.getItem('title');
     this.getAllCountry();
-    this.util.errorAlertPopup('Email already exist');
-
   }
 
   ngOnInit(): void {
@@ -130,21 +128,21 @@ export class InvoiceComponent implements OnInit {
         city: new FormControl(
           "",
           Validators.compose([
-            Validators.required,
+            // Validators.required,
             // Validators.pattern('^[a-zA-Z, ]*$')
           ])
         ),
         state: new FormControl(
           "",
           Validators.compose([
-            Validators.required,
+            // Validators.required,
             // Validators.pattern('^[a-zA-Z, ]*$')
           ])
         ),
         country: new FormControl(
           "",
           Validators.compose([
-            Validators.required,
+            // Validators.required,
             // Validators.pattern('^[a-zA-Z, ]*$')
           ])
         ),

@@ -26,8 +26,6 @@ export class LoginComponent implements OnInit {
     public formBuilder: FormBuilder, public cookie: CookieService) {
     this.setupLoginFormData();
     this.getInstructionName();
-    // this.cookieDetails = this.cookie.getAll();
-    // console.log('this.cookie/Details++1', this.cookieDetails);
   }
 
   ngOnInit(): void {
@@ -102,18 +100,14 @@ export class LoginComponent implements OnInit {
 
     }
     this.service.post('user/login', data, 0).subscribe(result => {
-      console.log('result', result);
       try {
         if (result['status'] == 200) {
-          console.log('result', result['current_user']['csrf_token'])
           localStorage.setItem("csrftoken", result['current_user']['csrf_token']);
           localStorage.setItem("uid", result['current_user']['uid']);
           localStorage.setItem('userMail', result['current_user']['name']);
           localStorage.setItem('isLogin', '1');
           localStorage.setItem('Authorization', result['current_user']['basic_auth_token'])
           this.util.showSuccessAlert(result['message']);
-          // this.cookieDetails = this.cookie.getAll();
-          // console.log('this.cookieDetails++2', this.cookieDetails);
           this.router.navigate(['/sample04']);
         }
         else {
@@ -129,15 +123,11 @@ export class LoginComponent implements OnInit {
     })
   }
 
-
-
   // do login
   getInstructionName() {
-    this.service.post('instruction-name-api','', 0).subscribe(result => {
+    this.service.post('instruction-name-api', '', 0).subscribe(result => {
       console.log('result+++', result);
       localStorage.setItem('instructionName', result.instruction_name);
-
-     
     })
   }
 

@@ -43,7 +43,7 @@ export class UtilService {
   }
 
   // success message through alert
-  showSuccessAlert(msg){
+  showSuccessAlert(msg) {
     Swal.fire({
       position: 'center',
       icon: 'success',

@@ -34,9 +34,12 @@ export class ClassesComponent implements OnInit {
   classesData: any = {};
   userIdDetails: any = '';
   showInputCategory: boolean = true;
-  selectedNewItems: any = ''
+  selectedNewItems: any = '';
+  instructionName: any = '';
   constructor(public util: UtilService, public router: Router, public service: SharedServiceService) {
     this.getAllCoursesList();
+    this.instructionName=localStorage.getItem('instructionName')
+
   }
 
   ngOnInit(): void {
