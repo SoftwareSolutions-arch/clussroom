@@ -2,7 +2,7 @@
 
 <!-- Login Section -->
 
-<section class="login-section" style="min-height: 557px;">
+<section class="login-section" style="min-height: 580px;">
   <div class="container">
     <div class="login-form">
       <!-- <h2>For every student,
@@ -10,11 +10,13 @@
       <form [formGroup]="loginForm">
         <div class="radio-curve">
           <div class="login-radio" style="display: flex; align-items: center;">
-            <input (click)="userType($event)" type="radio" id="teacher" name="category" value="teacher" style="margin: 0 4px;">&nbsp;
+            <input (click)="userType($event)" type="radio" id="teacher" name="category" value="teacher"
+              style="margin: 0 4px;">&nbsp;
             <label for="teacher" style="margin: 0;">Teacher</label>
           </div>
           <div class="login-radio" style="display: flex; align-items: center;">
-            <input (click)="userType($event)" type="radio" id="learner" name="category" value="learner" style="margin: 0 4px;">&nbsp;
+            <input (click)="userType($event)" type="radio" id="learner" name="category" value="learner"
+              style="margin: 0 4px;">&nbsp;
             <label for="learner" style="margin: 0;">Learner</label>
           </div>
         </div>
@@ -53,7 +55,8 @@
         </div>
 
         <div class="login-obliterate mb-5">
-          <button class="btn" [disabled]="!loginForm.valid" (click)="login()" style="text-transform: none !important;">Start class</button>
+          <button class="btn" [disabled]="!loginForm.valid" (click)="login()"
+            style="text-transform: none !important;">Start class</button>
         </div>
 
       </form>

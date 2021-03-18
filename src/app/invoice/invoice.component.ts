@@ -101,7 +101,7 @@ export class InvoiceComponent implements OnInit {
         companyName: new FormControl(
           "",
           Validators.compose([
-            Validators.required,
+            // Validators.required,
             Validators.pattern('^[a-zA-Z, ]*$')
           ])
         ),
@@ -122,7 +122,7 @@ export class InvoiceComponent implements OnInit {
         address: new FormControl(
           "",
           Validators.compose([
-            Validators.required
+            // Validators.required
           ])
         ),
         city: new FormControl(

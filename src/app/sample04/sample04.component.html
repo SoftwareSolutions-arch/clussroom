@@ -70,9 +70,9 @@
               <a *ngIf="!editForm && !isSaveCourses" class="add-btn custom-a-btn" data-toggle="modal"
                 data-target="#addCourse" style="position: relative; right: 3.3em;">
                 <i class="fa fa-plus" aria-hidden="true"></i> New {{instructionName}}</a>
-              <a *ngIf="editForm" style="margin-left: 15px;background: #ef4a4a !important;" class="add-btn custom-a-btn"
+                <a *ngIf="editForm" style="margin-left: 15px;background: #ef4a4a !important; width: 60px;" class="add-btn custom-a-btn"
                 data-target="#editCourse" data-toggle="modal">
-                <i class="fa fa-edit" aria-hidden="true"></i> Edit</a>
+                <i class="fa fa-edit" aria-hidden="true" style="margin-right: 5px; font-size: 13px;"></i> Edit</a>
               <a *ngIf="!isSaveCourses && editForm" (click)="cancelCourses()"
                 style="margin-left: 15px;background: #db2929 !important;" class="add-btn custom-a-btn"
                 data-toggle="modal">
@@ -299,8 +299,6 @@
                       <input [(ngModel)]="newBanding" type="text" name="banding" placeholder="Name of banding">
                     </div>
                   </div>
-
-
                   <div class="modal-footer">
                     <button class="back-btn-course" class="close" data-dismiss="modal">Back</button>
                     <button [disabled]="courseName==='' " data-toggle="modal" data-target="#addCourse2"

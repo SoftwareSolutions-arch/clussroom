@@ -84,12 +84,12 @@ export class ClassesComponent implements OnInit {
     this.service.post('view-all-courses-api', '', 1).subscribe(result => {
       this.isLoadingBool = false;
       this.allCourseList = result['coursesdata'];
-      // if (result['status'] == 1) {
-      //   this.allCourseList = result['coursesdata'];
-      // }
-      // else {
-      //   this.util.errorAlertPopup(result['mesaage']);
-      // }
+      if (result['status'] == 1) {
+        this.allCourseList = result['coursesdata'];
+      }
+      else {
+        this.util.errorAlertPopup(result['mesaage']);
+      }
     })
   }
 

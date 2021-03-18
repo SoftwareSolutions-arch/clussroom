@@ -23,7 +23,7 @@
             Class List</a>
         </li>
 
-        <li><a data-toggle="tab" href="#learners-content" class="clip-item">
+        <li (click)="goToLearners()"><a data-toggle="tab" href="#learners-content" class="clip-item">
             <img src="assets/images/dashboard/second/clip-learner-grey.png" class="hover-out">
             <img src="assets/images/dashboard/second/clip-learner-blue.png" class="hover-in">
             Learners</a>
@@ -47,46 +47,42 @@
             Live Sessions</a>
         </li>
       </ul>
-
     </div>
 
     <div class="program_course_wrapper">
       <form style="text-align: center;">
-         <div class="fieldset course-name">
-            <label>Course Name : </label>
-            <select name="course" id="course-name">
-               <option selected>Select</option>
-               <option value="Course 1">Course 1</option>
-               <option value="Course 2">Course 2</option>
-               <option value="Course 3">Course 3</option>
-            </select>
-         </div>
-         <div class="col-sm-2 text-right" style="padding: 0; margin: 0 2em;">
-            Level:
-         </div>
-         <div class="col-sm-2 text-right" style="padding: 0;">
-            Start Date:
-         </div>
+        <div class="fieldset course-name">
+          <label>Course Name : </label>
+          <select (change)="viewAllCoursesList()" [(ngModel)]="selectedCategory" name="course" id="course-name">
+            <option *ngFor="let courseList of this.allCourseList" [ngValue]="courseList">{{this.courseList.title}}
+            </option>
+          </select>
+        </div>
+        <div class="col-sm-2 text-right" style="padding: 0; margin: 0 2em;">
+          Level:&nbsp;&nbsp;&nbsp;{{selectedCategory.field_level}}
+        </div>
+        <div class="col-sm-2 text-right" style="padding: 0;">
+          Start Date:&nbsp;&nbsp;&nbsp;{{selectedClass.field_start_date}}
+        </div>
       </form>
       <form class="mb-5" style="display: flex;">
-         <div class="fieldset course-name mt-5">
-            <label>Course Name : </label>
-            <select name="course" id="course-name" style="width: 140px !important;">
-               <option selected>Select</option>
-               <option value="Course 1">Course 1</option>
-               <option value="Course 2">Course 2</option>
-               <option value="Course 3">Course 3</option>
-            </select>
-         </div>
-         <div class="col-sm-2 org-btn mt-5">
-            Class code:&nbsp;&nbsp;&nbsp;<span>#56782</span>
-         </div>
-         <div class="col-sm-2 mt-5 text-right" style="margin: 0 74px 0 0; padding: 0 35px; text-align:center;">
-            Branding:
-         </div>
-         <div class="col-sm-2 mt-5 text-right" style="padding: 0 82px;">
-            End Date:
-         </div>
+        <div class="fieldset course-name mt-5">
+          <label>Class Name : </label>
+          <select (change)="viewClassesList()" [(ngModel)]="selectedClass" name="class" id="class-name"
+            style="width: 140px !important;">
+            <option *ngFor="let classesData of this.allClassesData" [ngValue]="classesData">{{classesData.title}}
+            </option>
+          </select>
+        </div>
+        <div class="col-sm-2 org-btn mt-5">
+          Class code:&nbsp;&nbsp;&nbsp;<span>#56782</span>
+        </div>
+        <div class="col-sm-2 mt-5 text-right" style="margin: 0 74px 0 0; padding: 0 35px; text-align:center;">
+          Branding:&nbsp;&nbsp;&nbsp;{{selectedCategory.field_banding}}
+        </div>
+        <div class="col-sm-2 mt-5 text-right" style="padding: 0 50px;">
+          End Date:&nbsp;&nbsp;&nbsp;{{selectedClass.field_end_date}}
+        </div>
       </form>
       <button class="center-btn">Go</button>
     </div>
@@ -98,14 +94,15 @@
           <li><a data-toggle="tab" href="#instructions">Method of Instructions</a></li>
         </ul> -->
         <div class="prospectus-action">
-          <a class="add-btn custom-a-btn"  data-toggle="modal" data-target="#addLearner"><i class="fa fa-plus" aria-hidden="true"></i> Learner</a>
+          <a class="add-btn custom-a-btn" data-toggle="modal" data-target="#addLearner"><i class="fa fa-plus"
+              aria-hidden="true"></i> Learner</a>
           <!-- <a class="edit-btn custom-a-btn" data-toggle="modal" data-target="#editCourse"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
                     <a class="delete-btn custom-a-btn" data-toggle="modal" data-target="#deleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                     <a  class="delete-btn custom-a-btn" data-toggle="modal" data-target="#unabledeleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
         </div>
       </div>
 
-      
+
       <div class="tab-content">
         <div id="summary" class="tab-pane active">
           <div class="table-responsive">
@@ -534,8 +531,8 @@
 
     <!--Transfer to another class popup end-->
   </div>
-  
- <!--Add learner -->
+
+  <!--Add learner -->
   <div id="addLearner" class="modal addcourse-modal" role="dialog">
     <div class="modal-dialog modal-dialog-width">
       <div class="modal-content">
@@ -545,7 +542,7 @@
               style="color: #fff;"></i></button>
         </div>
         <div class="modal-body">
-          <form>
+          <form [formGroup]="loginForm">
             <div class="addCourse-form" style="display: block !important;">
               <div class="name-of-course fieldset" style="padding: 0 16px;">
                 <label style="text-align: center;">Course Name:</label>
@@ -593,24 +590,30 @@
                 </label>
               </div>
             </div>
-            <div class="name-of-course fieldset mt-3" style="display: block;">
-              <label class="modal-input" style="display: flex"><a>1. <i class="fa fa-envelope" aria-hidden="true"></i></a>
-                <input type="text" placeholder="Kellyamine@gmail.com">
-                <button type="button" data-dismiss="#" style="margin: 0 5px;"><i class="fa fa-times"
-                    aria-hidden="true"></i></button>
-              </label>
-              <label class="modal-input mt-3" style="padding: 0 60px;"><a style="margin-right: 4px !important;">2. <i
-                    class="fa fa-envelope" aria-hidden="true" style="padding: 0 13px 0 5px !important;"></i></a>
-                <input type="text" placeholder="Kellyamine@gmail.com">
-              </label>
+
+            <div formArrayName="users">
+              <div *ngFor="let group of UsersArray.controls; index as i;" [formGroupName]="i"
+                class="name-of-course fieldset mt-3" style="display: block;">
+                <label class="modal-input" style="display: flex"><a>{{i+1}} <i class="fa fa-envelope"
+                      aria-hidden="true"></i></a>
+                  <input type="text" formControlName="username" placeholder="Kellyamine@gmail.com">
+                  <button (click)="deleteUser()" type="button" data-dismiss="#" style="margin: 0 5px;"><i
+                      class="fa fa-times" aria-hidden="true"></i></button>
+                </label>
+                <!-- <label class="modal-input mt-3" style="padding: 0 60px;"><a style="margin-right: 4px !important;">2. <i
+                      class="fa fa-envelope" aria-hidden="true" style="padding: 0 13px 0 5px !important;"></i></a>
+                  <input type="text" placeholder="Kellyamine@gmail.com">
+                </label> -->
+              </div>
             </div>
-            <button type="button" class="add-button">Add</button>
-            <!--                      modal footer start-->
+
+            <button type="button" class="add-button" (click)="addUser()">Add</button>
+            <!--modal footer start-->
             <div class="modal-footer" style="box-shadow: none;">
-              <button class="back-btn-course-blue"><a href="#">Confirm</a></button>
-              <button class="next-btn-course">Cancel</button>
+              <button class="back-btn-course-blue"><a>Confirm</a></button>
+              <button class="next-btn-course" data-dismiss="modal">Cancel</button>
             </div>
-            <!--                      modal footer end-->
+            <!--modal footer end-->
           </form>
         </div>
       </div>

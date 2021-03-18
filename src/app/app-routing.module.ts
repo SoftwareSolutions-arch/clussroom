@@ -23,6 +23,7 @@ import {AuthGuardGuard} from './auth-guard.guard';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { TermsOfUseComponent } from './terms-of-use/terms-of-use.component';
 import { ClassListComponent } from './class-list/class-list.component';
+import { LearnersComponent } from './learners/learners.component';
 const routes: Routes = [
   {
     path: 'pricing', component: PricingComponent,canActivate:[AuthGuardGuard]
@@ -83,6 +84,9 @@ const routes: Routes = [
   },
   {
     path: 'classes-list',component:ClassListComponent,canActivate:[AuthGuardGuard]
+  },
+  {
+    path: 'learners',component:LearnersComponent,canActivate:[AuthGuardGuard]
   },
   {
     path: 'privacy-policy',component:PrivacyPolicyComponent,canActivate:[AuthGuardGuard]
