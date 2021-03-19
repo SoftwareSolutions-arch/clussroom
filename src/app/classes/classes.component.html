@@ -86,7 +86,7 @@
                    data-target="#addClass">
                   <i class="fa fa-plus" aria-hidden="true"></i> New Class</a>
 
-                  <a *ngIf="editForm" style="margin-left: 15px;background: #ef4a4a !important; width: 60px;" class="add-btn custom-a-btn"
+                  <a (click)="editCourses()" *ngIf="editForm" style="margin-left: 15px;background: #ef4a4a !important; width: 60px;" class="add-btn custom-a-btn"
                   data-target="#editCourse" data-toggle="modal">
                   <i class="fa fa-edit" aria-hidden="true" style="margin-right: 5px; font-size: 13px;"></i> Edit</a>
 

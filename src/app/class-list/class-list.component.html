@@ -68,8 +68,7 @@
       <form class="mb-5" style="display: flex;">
         <div class="fieldset course-name mt-5">
           <label>Class Name : </label>
-          <select (change)="viewClassesList()" [(ngModel)]="selectedClass" name="class" id="class-name"
-            style="width: 140px !important;">
+          <select [(ngModel)]="selectedClass" name="class" id="class-name" style="width: 140px !important;">
             <option *ngFor="let classesData of this.allClassesData" [ngValue]="classesData">{{classesData.title}}
             </option>
           </select>
@@ -84,7 +83,7 @@
           End Date:&nbsp;&nbsp;&nbsp;{{selectedClass.field_end_date}}
         </div>
       </form>
-      <button class="center-btn">Go</button>
+      <button class="center-btn" (click)="getClassesListData()">Go</button>
     </div>
 
     <div class="prospectus-section">
@@ -121,7 +120,7 @@
                         class="fa fa-ellipsis-v" aria-hidden="true" style="color: #7990B4"></i></a></th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody *ngIf="this.allClassesList.length>0">
                 <tr *ngFor="let classList of this.allClassesList">
                   <th>
                     <div class="radio-table"><input type="checkbox"></div>
@@ -542,15 +541,21 @@
               style="color: #fff;"></i></button>
         </div>
         <div class="modal-body">
-          <form [formGroup]="loginForm">
+          <form [formGroup]="addCourseForm">
             <div class="addCourse-form" style="display: block !important;">
               <div class="name-of-course fieldset" style="padding: 0 16px;">
                 <label style="text-align: center;">Course Name:</label>
-                <select name="level" id="levelcourse" style="width: 390px !important;">
+                <!-- <select name="level" id="levelcourse" style="width: 390px !important;">
                   <option selected>Geography for Secondary 3</option>
                   <option value="Professional Level 1">Geography for Secondary 2</option>
                   <option value="create new">Geography for Secondary 1</option>
+                </select> -->
+
+                <select name="level" id="levelcourse" style="width: 390px !important;">
+                  <option *ngFor="let allCourses of this.allCourseList" [ngValue]="allCourses">{{this.allCourses.title}}
+                  </option>
                 </select>
+
               </div>
             </div>
             <div class="name-of-course fieldset mt-3" style="padding: 0 16px;">
@@ -591,29 +596,44 @@
               </div>
             </div>
 
-            <div formArrayName="users">
-              <div *ngFor="let group of UsersArray.controls; index as i;" [formGroupName]="i"
-                class="name-of-course fieldset mt-3" style="display: block;">
-                <label class="modal-input" style="display: flex"><a>{{i+1}} <i class="fa fa-envelope"
-                      aria-hidden="true"></i></a>
-                  <input type="text" formControlName="username" placeholder="Kellyamine@gmail.com">
-                  <button (click)="deleteUser()" type="button" data-dismiss="#" style="margin: 0 5px;"><i
-                      class="fa fa-times" aria-hidden="true"></i></button>
-                </label>
-                <!-- <label class="modal-input mt-3" style="padding: 0 60px;"><a style="margin-right: 4px !important;">2. <i
-                      class="fa fa-envelope" aria-hidden="true" style="padding: 0 13px 0 5px !important;"></i></a>
-                  <input type="text" placeholder="Kellyamine@gmail.com">
-                </label> -->
+            <div formArrayName="employees">
+              <div *ngFor="let employee of employees().controls; let empIndex=index">
+                <div class="course-title" [formGroupName]="empIndex">
+                  <div formArrayName="sub_title">
+                    <div class="name-of-course fieldset mt-3" style="display: block;"
+                      *ngFor="let skill of employeeSkills(empIndex).controls; let skillIndex=index"
+                      [formGroupName]="skillIndex">
+                      <label class="modal-input" style="display: flex"><a>{{skillIndex+1}} <i class="fa fa-envelope"
+                            aria-hidden="true"></i></a>
+                        <input type="sub-menu" class="form-control" formControlName="sub_title"
+                          placeholder="Kellyamine@gmail.com">
+                        <button (click)="deleteUser(empIndex,skillIndex)" type="button" data-dismiss="#"
+                          style="margin: 0 5px;"><i class="fa fa-times" aria-hidden="true"></i>
+                        </button>
+                      </label>
+                      <div class="fieldRequired"
+                        *ngIf="skill.get('sub_title').hasError('required') && skill.get('sub_title').touched" style="font-size: 10px;
+                         color: #ec3232; font-size: 13px;margin-left: 9em;">
+                        *Email is required.
+                      </div>
+
+                      <div class="fieldRequired"
+                        *ngIf="skill.get('sub_title').hasError('pattern') && skill.get('sub_title').touched" style="font-size: 10px;
+                         color: #ec3232; font-size: 13px;margin-left: 9em;">
+                        *Please insert a valid mail
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="sub-title">
+                  <button type="button" class="add-button" (click)="addEmployeeSkill(empIndex)">Add</button>
+                  <div class="modal-footer" style="box-shadow: none;">
+                    <button class="back-btn-course-blue"><a>Confirm</a></button>
+                    <button class="next-btn-course" data-dismiss="modal">Cancel</button>
+                  </div>
+                </div>
               </div>
             </div>
-
-            <button type="button" class="add-button" (click)="addUser()">Add</button>
-            <!--modal footer start-->
-            <div class="modal-footer" style="box-shadow: none;">
-              <button class="back-btn-course-blue"><a>Confirm</a></button>
-              <button class="next-btn-course" data-dismiss="modal">Cancel</button>
-            </div>
-            <!--modal footer end-->
           </form>
         </div>
       </div>

@@ -47,6 +47,7 @@ import { LiveSessionsComponent } from './live-sessions/live-sessions.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { TermsOfUseComponent } from './terms-of-use/terms-of-use.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { CalendarComponent } from './calendar/calendar.component';
 
 
 // import {MatPaginator} from '@angular/material/paginator';
@@ -84,7 +85,8 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     AdminComponent,
     LiveSessionsComponent,
     PrivacyPolicyComponent,
-    TermsOfUseComponent
+    TermsOfUseComponent,
+    CalendarComponent
   ],
   imports: [CommonModule,
     BrowserModule,

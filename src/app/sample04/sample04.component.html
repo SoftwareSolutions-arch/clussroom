@@ -591,6 +591,7 @@
                           <label for="teacher">Class start date</label>
                         </div>
                         <div class="class-materials-radio">
+                          <!-- <input [checked]="true" name="class_start" type="radio" value="date"> -->
                           <input [checked]="true" name="class_start" type="radio" value="date">
                           <input formControlName="datagram" type="date" #myDate
                             [value]="demoUser.date | date:'yyyy-MM-dd'" />
@@ -606,7 +607,8 @@
                           <label for="teacher">Class end date</label>
                         </div>
                         <div class="class-materials-radio">
-                          <input [checked]="true" name='class1' type="radio" value="start-date-calender">
+                          <!-- <input [checked]="true" name='class1' type="radio" value="start-date-calender"> -->
+                          <input name='class1' type="radio" value="start-date-calender">
                           <input formControlName="datagram2" type="date" [value]="demoUser.dates | date:'yyyy-MM-dd'" />
                         </div>
                       </div>

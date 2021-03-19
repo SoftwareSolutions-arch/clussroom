@@ -24,6 +24,8 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
 import { TermsOfUseComponent } from './terms-of-use/terms-of-use.component';
 import { ClassListComponent } from './class-list/class-list.component';
 import { LearnersComponent } from './learners/learners.component';
+import { CalendarComponent } from './calendar/calendar.component';
+
 const routes: Routes = [
   {
     path: 'pricing', component: PricingComponent,canActivate:[AuthGuardGuard]
@@ -93,6 +95,9 @@ const routes: Routes = [
   },
   {
     path: 'terms-of-use',component:TermsOfUseComponent,canActivate:[AuthGuardGuard]
+  },
+  {
+    path: 'calendar',component:CalendarComponent,canActivate:[AuthGuardGuard]
   },
   {
     path: '', redirectTo: '/home', pathMatch: 'full'
