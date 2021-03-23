@@ -2155,10 +2155,9 @@ table.dashboard-table thead {
   color: #7990B4;
 }
 
-.addCourse-form .my-modal .my-modal-classes input[type="date"]{
+.addCourse-form .my-modal .my-modal-classes input[type="date"] {
   color: red;
   font-size: 18px;
 }
 
 /*sample 4 page css start*/
-

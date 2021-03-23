@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { UtilService } from '../../providers/util.service';
 import { SharedServiceService } from '../shared-service.service';
@@ -15,13 +15,25 @@ import { HttpClient } from '@angular/common/http';
 
 export class ClassListComponent implements OnInit {
   isLoadingBool: boolean = true;
+  isTableShow: boolean = false;
   allClassesList: any = [];
   addCourseForm: FormGroup;
   allCourseList: any = '';
   selectedCategory: any = '';
   selectedClass: any = '';
   allClassesData: any = [];
-  error_messages: any = '';
+
+  allCategories: any = '';
+  allLevel: any = '';
+  allBanding: any = '';
+  data: any = [];
+  @ViewChild('closeModal') private closeModal: ElementRef;
+
+  currentIndex = -1;
+  page = 1;
+  count = 0;
+  pageSize = 10;
+
   constructor(public service: SharedServiceService, public router: Router, public util: UtilService, private fb: FormBuilder,
     private http: HttpClient) {
     this.getAllClassesList();
@@ -31,7 +43,13 @@ export class ClassListComponent implements OnInit {
 
     })
     this.addInitialForms();
+    this.getallListingDropdown();
+  }
 
+
+  // handling page events
+  handlePageChange(event): void {
+    this.page = event;
   }
 
   employees(): FormArray {
@@ -121,7 +139,6 @@ export class ClassListComponent implements OnInit {
   getAllClassesList() {
     this.isLoadingBool = true;
     this.service.post('view-all-learners-api', '', 1).subscribe(result => {
-      console.log('result++', result);
       this.isLoadingBool = false;
       this.allClassesList = result;
     })
@@ -133,13 +150,11 @@ export class ClassListComponent implements OnInit {
 
   // view classes
   viewAllCoursesList() {
-    console.log('this.selectedCategory', this.selectedCategory)
     let params = {
       "course_id": this.selectedCategory.nid
     }
     this.isLoadingBool = true;
     this.service.post('view-all-classes-api', params, 1).subscribe(result => {
-      console.log('result', result)
       this.isLoadingBool = false;
       if (result['status'] == 1) {
         this.allClassesData = result['classesdata'];
@@ -150,6 +165,17 @@ export class ClassListComponent implements OnInit {
     })
   }
 
+  getallListingDropdown() {
+    let params = {
+      "step": 1
+    }
+    this.service.post('create-course-api', params, 1).subscribe(result => {
+      this.allCategories = result['categories'];
+      this.allLevel = result['level'];
+      this.allBanding = result['banding'];
+    })
+  }
+
   getClassesListData() {
     let params = {
       "class_id": this.selectedClass.nid
@@ -157,14 +183,34 @@ export class ClassListComponent implements OnInit {
     console.log('params+++P', params);
     this.isLoadingBool = true;
     this.service.post('view-all-learners-api', params, 1).subscribe(result => {
-      console.log('result+++p', result)
+      console.log('result',result);
+      this.isTableShow = true;
       this.isLoadingBool = false;
       if (result['status'] == 1) {
-        // this.allClassesData = result['classesdata'];
-        // this.isTableShow = true;
       }
       else {
-        this.util.errorAlertPopup(result['message']);
+      }
+    })
+  }
+
+  confirmBtn() {
+    this.closeModal.nativeElement.click();
+    let data = []
+    this.addCourseForm.value.employees[0].sub_title.forEach(element => {
+      data.push(element.sub_title)
+    });
+
+    let params = {
+      "email": data,
+      "class_id": this.selectedClass.nid
+    }
+    this.service.post('add-learner-api', params, 1).subscribe(result => {
+      console.log('result', result['error_message']);
+      if (result['status'] == 1) {
+        this.util.showSuccessAlert(result['error_message'])
+      }
+      else {
+        this.util.showSuccessAlert(result['error_message']);
       }
     })
   }

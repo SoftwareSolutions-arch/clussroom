@@ -83,24 +83,16 @@
           End Date:&nbsp;&nbsp;&nbsp;{{selectedClass.field_end_date}}
         </div>
       </form>
-      <button class="center-btn" (click)="getClassesListData()">Go</button>
+      <button class="center-btn" [disabled]="selectedClass=='' " (click)="getClassesListData()">Go</button>
     </div>
 
-    <div class="prospectus-section">
+    <div class="prospectus-section" *ngIf="isTableShow">
       <div class="prospectus-tabs">
-        <!-- <ul class="nav nav-tabs">
-          <li><a data-toggle="tab" href="#summary" class="active">Class list</a></li>
-          <li><a data-toggle="tab" href="#instructions">Method of Instructions</a></li>
-        </ul> -->
         <div class="prospectus-action">
           <a class="add-btn custom-a-btn" data-toggle="modal" data-target="#addLearner"><i class="fa fa-plus"
               aria-hidden="true"></i> Learner</a>
-          <!-- <a class="edit-btn custom-a-btn" data-toggle="modal" data-target="#editCourse"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
-                    <a class="delete-btn custom-a-btn" data-toggle="modal" data-target="#deleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                    <a  class="delete-btn custom-a-btn" data-toggle="modal" data-target="#unabledeleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
         </div>
       </div>
-
 
       <div class="tab-content">
         <div id="summary" class="tab-pane active">
@@ -121,7 +113,8 @@
                 </tr>
               </thead>
               <tbody *ngIf="this.allClassesList.length>0">
-                <tr *ngFor="let classList of this.allClassesList">
+                <tr *ngFor="let classList of this.allClassesList| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;"
+                [class.active]="i == currentIndex">
                   <th>
                     <div class="radio-table"><input type="checkbox"></div>
                   </th>
@@ -134,6 +127,7 @@
                 </tr>
               </tbody>
             </table>
+         
           </div>
           <div class="table-result-wrapper bottom-select row">
             <select name="course" id="course-name">
@@ -142,8 +136,11 @@
               <option value="Course 2">2</option>
               <option value="Course 3">3</option>
             </select>
-            <p>Results: 1-15 of 324</p>
-            <div class="selector col-lg-10">
+            <div class="table-result-wrapper">
+              <pagination-controls previousLabel="Prev" nextLabel="Next" responsive="true"
+                (pageChange)="handlePageChange($event)"></pagination-controls>
+            </div>
+             <!-- <div class="selector col-lg-10">
               <ul>
                 <li><a href="#"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
                 <li><a href="#">1</a></li>
@@ -154,7 +151,7 @@
                 <li><a href="#">...</a></li>
                 <li><a href="#" class="right-arrow"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
               </ul>
-            </div>
+            </div> -->
           </div>
         </div>
         <div id="instructions" class="tab-pane">
@@ -249,7 +246,8 @@
             </table>
           </div>
           <div class="table-result-wrapper">
-            <p>Results: 1-15 of 324</p>
+            <pagination-controls previousLabel="Prev" nextLabel="Next" responsive="true"
+              (pageChange)="handlePageChange($event)"></pagination-controls>
           </div>
         </div>
       </div>
@@ -432,11 +430,6 @@
       </div>
     </div>
 
-    <!--Transfer to another course popup end-->
-
-
-    <!--Transfer to another class popup start-->
-
     <div id="transferClass" class="modal addcourse-modal" role="dialog">
       <div class="modal-dialog modal-dialog-width">
         Modal content
@@ -532,7 +525,7 @@
   </div>
 
   <!--Add learner -->
-  <div id="addLearner" class="modal addcourse-modal" role="dialog">
+  <div id="addLearner" class="modal addcourse-modal" role="dialog" #closeModal>
     <div class="modal-dialog modal-dialog-width">
       <div class="modal-content">
         <div class="green-modal-header">
@@ -545,40 +538,29 @@
             <div class="addCourse-form" style="display: block !important;">
               <div class="name-of-course fieldset" style="padding: 0 16px;">
                 <label style="text-align: center;">Course Name:</label>
-                <!-- <select name="level" id="levelcourse" style="width: 390px !important;">
-                  <option selected>Geography for Secondary 3</option>
-                  <option value="Professional Level 1">Geography for Secondary 2</option>
-                  <option value="create new">Geography for Secondary 1</option>
-                </select> -->
-
                 <select name="level" id="levelcourse" style="width: 390px !important;">
                   <option *ngFor="let allCourses of this.allCourseList" [ngValue]="allCourses">{{this.allCourses.title}}
                   </option>
                 </select>
-
               </div>
             </div>
             <div class="name-of-course fieldset mt-3" style="padding: 0 16px;">
               <label style="text-align: right; padding-right: 2em;">Level:</label>
               <select name="level" id="levelcourse" style="width: 140px !important;">
-                <option selected>Secondary 3</option>
-                <option value="Professional Level 1">Secondary 2</option>
-                <option value="create new">Secondary 1</option>
+                <option *ngFor="let level of this.allLevel" value="{{level.tid}}">{{level.name}}</option>
               </select>
+
               <label style="text-align: right; width: 113px; padding-right: 1.5em">Branding:</label>
-              <select name="level" id="levelcourse" style="width: 140px !important;">
-                <option selected>Brand 3</option>
-                <option value="Professional Level 1">Brand 2</option>
-                <option value="create new">Brand 1</option>
+              <select name="level" id="bandingcourse" style="width: 140px !important;">
+                <option *ngFor="let banding of this.allBanding" value="{{banding.tid}}">{{banding.name}}</option>
               </select>
             </div>
             <div class="name-of-course fieldset"
               style="border-bottom: 1px solid #F1F6FB; margin: 0; padding-bottom: 1.5em;">
               <label style="text-align: right; padding: 0 14px; margin: 0 16px 0 0;">class:</label>
               <select name="level" id="levelcourse" style="width: 140px !important;">
-                <option selected>Poppins</option>
-                <option value="Professional Level 1">Poppings 1</option>
-                <option value="create new">Poppins 2</option>
+                <option *ngFor="let classesData of this.allClassesData" [ngValue]="classesData">{{classesData.title}}
+                </option>
               </select>
               <p style="padding: 0 26px; margin: 0; font-size: 15px;">Class code:&nbsp;&nbsp;&nbsp;<span
                   class="orange">#56782</span></p>
@@ -628,7 +610,7 @@
                 <div class="sub-title">
                   <button type="button" class="add-button" (click)="addEmployeeSkill(empIndex)">Add</button>
                   <div class="modal-footer" style="box-shadow: none;">
-                    <button class="back-btn-course-blue"><a>Confirm</a></button>
+                    <button (click)="confirmBtn()" class="back-btn-course-blue"><a>Confirm</a></button>
                     <button class="next-btn-course" data-dismiss="modal">Cancel</button>
                   </div>
                 </div>

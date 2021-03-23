@@ -34,12 +34,10 @@ export class ClassesComponent implements OnInit {
   classesData: any = {};
   userIdDetails: any = '';
   showInputCategory: boolean = true;
-  selectedNewItems: any = '';
-  instructionName: any = '';
+  isClassEdited: boolean = true;
+  selectedNewItems: any = ''
   constructor(public util: UtilService, public router: Router, public service: SharedServiceService) {
     this.getAllCoursesList();
-    this.instructionName=localStorage.getItem('instructionName')
-
   }
 
   ngOnInit(): void {
@@ -84,12 +82,12 @@ export class ClassesComponent implements OnInit {
     this.service.post('view-all-courses-api', '', 1).subscribe(result => {
       this.isLoadingBool = false;
       this.allCourseList = result['coursesdata'];
-      if (result['status'] == 1) {
-        this.allCourseList = result['coursesdata'];
-      }
-      else {
-        this.util.errorAlertPopup(result['mesaage']);
-      }
+      // if (result['status'] == 1) {
+      //   this.allCourseList = result['coursesdata'];
+      // }
+      // else {
+      //   this.util.errorAlertPopup(result['mesaage']);
+      // }
     })
   }
 
@@ -227,6 +225,7 @@ export class ClassesComponent implements OnInit {
     this.selectedItems.forEach(element => {
       this.userIdDetails = element
     });
+    this.isClassEdited=false;
     this.editForm = false;
     this.isSaveCourses = true;
     this.showInputCategory = true;
@@ -237,6 +236,7 @@ export class ClassesComponent implements OnInit {
     this.viewClassesList();
     this.isSaveCourses = false;
     this.editForm = false;
+    this.isClassEdited=true;
     this.userIdDetails = '';
     this.selectedItems = []
     this.checkboxes.forEach((element) => {
@@ -313,7 +313,7 @@ export class ClassesComponent implements OnInit {
     this.router.navigate(['/sample04']);
   }
 
-  goToClassList(){
+  goToClassList() {
     this.router.navigate(['/classes-list'])
   }
 }
