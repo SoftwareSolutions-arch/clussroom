@@ -62,28 +62,28 @@
         </div>
         <!-- close loader showing-->
 
-        <div class="program_course_wrapper col-lg-12 container">
-          <!-- <div class="col-sm-1"></div> -->
-          <form class="green-button col-md-8" style="text-align: center;">
-            <div class="fieldset course-name">
-              <label>Course Name : </label>
-              <select [(ngModel)]="selectedCategory" name="course" id="course-name">
-                <option *ngFor="let courseList of this.allCourseList" value="{{courseList.nid}}">
-                  {{this.courseList.title}}
-                </option>
-              </select>
-            </div>
-            <button (click)="viewClassesList()">Go</button>
+        <div class="program_course_wrapper col-lg-12"
+          style="display: flex; align-items: center; padding-left:0; padding-right:0;">
+          <div class="col-sm-1" style="padding: 0;"></div>
+          <form class="green-button fieldset course-name">
+            <label class="common-label">{{instructionName}} Name: </label>
+            <select [(ngModel)]="selectedCategory" name="course" id="course-name">
+              <option *ngFor="let courseList of this.allCourseList" value="{{courseList.nid}}">
+                {{this.courseList.title}}
+              </option>
+            </select>
+            <button (click)="viewClassesList()" class="green-go-button">Go</button>
           </form>
-          <div class="col-md-4">&nbsp;</div>
+          <div class="col-sm-1"> </div>
+
         </div>
 
         <div *ngIf="!isLoadingBool && isTableShow">
           <div class="prospectus-section">
-            <div class="prospectus-tabs">
-              <div class="prospectus-action" style="position: relative; right: 11em; bottom: .5em;">
+            <div class="prospectus-tabs col-lg-12" style="justify-content: flex-end;">
+              <div class="prospectus-action display-center" style="justify-content: flex-end;">
                 <a *ngIf="!editForm && !isSaveCourses" class="add-btn custom-a-btn mt-3" data-toggle="modal"
-                  data-target="#addClass">
+                  data-target="#addClass" style="position: relative; right: 7.8em; bottom: 1em;">
                   <i class="fa fa-plus" aria-hidden="true"></i> New Class</a>
 
                 <a *ngIf="editForm" (click)="editCourses()"
@@ -101,7 +101,7 @@
                   <i class="fa fa-times" aria-hidden="true"></i> Cancel</a>
               </div>
             </div>
-            <div class="table-responsive">
+            <div class="table-responsive tab-content">
 
               <div class="table-responsive">
                 <table class="table dashboard-table">
@@ -115,6 +115,8 @@
                       <th scope="col" class="text-center table-filter">End date</th>
                       <th scope="col" class="text-center table-filter">Learners</th>
                       <th scope="col" class="text-center table-filter">Status</th>
+                      <th scope="col">&nbsp;</th>
+
                     </tr>
                   </thead>
                   <tbody class="learner-text-left">
@@ -136,8 +138,8 @@
                       <td *ngIf="this.classList.nid !== this.userIdDetails" class="text-left" style="padding: 15px 0;">
                         {{this.classList.title}}
                       </td>
-                      <td class="text-left" *ngIf="this.classList.nid===this.userIdDetails"><input [(ngModel)]="this.classList.title"
-                           /></td>
+                      <td *ngIf="this.classList.nid===this.userIdDetails"><input [(ngModel)]="this.classList.title"
+                          class="text-left" /></td>
 
                       <td class="text-center" style="padding: 15px 0;">
                         <div>{{this.classList.field_class_code}}</div>
@@ -171,7 +173,7 @@
                           {{this.classList.field_status}}
                         </div>
                       </td>
-                      <td *ngIf="isClassEdited">
+                      <td>
                         <button><a>Go to Class</a></button>
                       </td>
 
@@ -195,7 +197,7 @@
           </div>
 
           <div id="addClass" class="modal addcourse-modal" role="dialog">
-            <div class="modal-dialog" style="max-width: 45%;">
+            <div class="modal-dialog">
 
               <!-- Modal content-->
               <div class="modal-content">
@@ -204,22 +206,30 @@
                   <button type="button" class="close" data-dismiss="modal" style="padding: 6px 0;"><img
                       src="assets/images/dashboard/close-course.png"></button>
                 </div>
-                <div class="modal-body" style="padding:26px 26px 0px 26px !important">
+                <div class="modal-body" style="padding:26px 26px 0px 32px !important">
                   <form>
-                    <div class="addCourse-form">
-                      <div class="my-modal my-modal-classes">Class start:&nbsp;&nbsp;&nbsp;</div>
-                      <input [(ngModel)]="courseList.class_start" [ngModelOptions]="{standalone: true}" type="date"
-                        placeholder="dd/mm/yyyy" value=""
-                        style="border: 1px solid #E7EDFF; color: #7990B4; font-size: 15px; font-weight: 400; font-family: 'Barlow';">
-                      <div class="my-modal my-modal-classes">Class ends:&nbsp;&nbsp;&nbsp;</div>
-                      <input [(ngModel)]="courseList.class_end" [ngModelOptions]="{standalone: true}" type="date"
-                        placeholder="dd/mm/yyyy" value=""
-                        style="border: 1px solid #E7EDFF; color: #7990B4; font-size: 15px; font-weight: 400; font-family: 'Barlow';">
+                    <div class="addCourse-form col-lg-12 display-center">
+                      <div class="my-modal my-modal-classes col-md-6">
+                        <div class="col-md-4 text-center" style="padding: 0;"><label style="font-weight: 500;">Class
+                            start:</label></div>
+                        <div class="col-lg-8" style="padding: 0;"><input [(ngModel)]="courseList.class_start"
+                            [ngModelOptions]="{standalone: true}" type="date" placeholder="dd/mm/yyyy" value=""></div>
+                      </div>
+                      <!-- <div class="col-sm-1"></div> -->
+                      <div class="my-modal my-modal-classes col-md-6" style="justify-content: left;"><label
+                          style="font-weight: 500;">Class ends:&nbsp;&nbsp;&nbsp;</label>
+                        <input [(ngModel)]="courseList.class_end" [ngModelOptions]="{standalone: true}" type="date"
+                          placeholder="dd/mm/yyyy" value="">
+                      </div>
                     </div>
-                    <div class="class-name">
-                      <p>Class name:</p>
-                      <input [(ngModel)]="courseList.class_name" [ngModelOptions]="{standalone: true}" type="text"
-                        value=" ">
+                    <div class="class-name col-lg-12 mt-4 mb-4" style="padding: 0;">
+                      <div class="col-sm-2 text-center" style="padding: 0;">
+                        <p>Class name:</p>
+                      </div>
+                      <div class="col-lg-10" style="padding: 0;">
+                        <input [(ngModel)]="courseList.class_name" [ngModelOptions]="{standalone: true}" type="text"
+                          value=" ">
+                      </div>
                     </div>
                     <div class="modal-footer mb-3">
                       <button class="modalfooter-back" data-dismiss="modal">Back</button>

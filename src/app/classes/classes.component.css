@@ -282,7 +282,7 @@ table.dashboard-table thead {
   color: #5B73A0;
 }
 
-.program_course_wrapper form .fieldset select {
+.program_course_wrapper .fieldset select {
   border: 0.5px solid #E7EDFF;
   border-radius: 6px;
   background: #FFFFFF;
@@ -386,99 +386,7 @@ a.add-btn i {
 }
 
 
-.addcourse-modal .modal-header {
-  background-color: #16DBCC;
-  position: relative;
-  border-bottom: 0px;
-}
 
-.addcourse-modal .modal-header h4 {
-  width: 85%;
-  font-family: Barlow;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 28px;
-  text-align: center;
-  color: #fff;
-  margin: 0 auto;
-}
-
-.addcourse-modal .modal-header button.close {
-  position: absolute;
-  right: 15px;
-  opacity: 1;
-}
-
-.addcourse-modal .modal-footer {
-  border-top: 0px;
-  /* box-shadow: 0px -1px 2px rgba(0, 0, 0, 0.1); */
-}
-
-.addcourse-modal .modal-footer button {
-  font-family: Barlow;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 20px;
-  letter-spacing: 0px;
-  text-align: center;
-  width: 50%;
-  background-color: transparent;
-  border: 0px;
-  color: #396AFF;
-  margin: 0;
-}
-
-.addcourse-modal .modal-body .fieldset {
-  display: flex;
-  align-items: center;
-}
-
-.addcourse-modal .modal-body .fieldset label {
-  font-family: Barlow;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 20px;
-  letter-spacing: 0px;
-  text-align: left;
-  margin-bottom: 0px;
-  width: 150px;
-  color: #8e8e8e;
-  display: inline-block;
-}
-
-.addcourse-modal .modal-body .fieldset select,
-.addcourse-modal .modal-body .fieldset input {
-  border: 1px solid #E7EDFF;
-  box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.02);
-  border-radius: 6px;
-  height: 35px;
-  width: calc(100% - 100px);
-  padding: 0px 15px;
-  font-family: Barlow;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 0px;
-  color: #5B73A0;
-}
-
-.addcourse-modal .modal-body .fieldset select option {
-  font-family: Barlow;
-  font-size: 15px;
-  font-weight: 400;
-}
-
-.addcourse-modal .modal-body {
-  padding: 0;
-}
-
-.addcourse-modal .modal-body .addCourse-form {
-  padding: 30px 50px 50px;
-}
-
-/*Add course modal end*/
 
 
 
@@ -710,6 +618,10 @@ a.add-btn i {
   margin: 0 4em;
 }
 
+.modal-dialog {
+  max-width: 600px !important;
+}
+
 .my-modal button {
   border: none;
   background: transparent;
@@ -726,6 +638,7 @@ a.add-btn i {
 .my-modal button a:hover {
   color: #396aff;
 }
+
 
 .purple {
   color: #BCAEE3;
@@ -747,14 +660,14 @@ a.add-btn i {
 
 .class-name {
   display: flex;
-  padding: 18px 19px;
+  /* padding: 18px 32px; */
   border-radius: 6px;
   font-size: 15px;
   line-height: 2.2;
 }
 
 .class-name p {
-  padding: 0 11px 0 0;
+  /* padding: 0 11px 0 0; */
   font-size: 15px;
   font-weight: 500;
   font-family: 'Barlow';
@@ -763,7 +676,7 @@ a.add-btn i {
 
 .class-name input {
   height: 35px;
-  width: 452px;
+  width: 97%;
   border-radius: 6px;
   padding: 5px 7px;
   /* margin: -4px 0px; */
@@ -819,7 +732,7 @@ a.add-btn i {
   height: 35px;
   padding: 16px 9px;
   font-size: 15px;
-  margin: 0 48px 0 0;
+  
   border-radius: 6px;
 }
 
@@ -850,13 +763,18 @@ a.add-btn i {
   height: 35px;
   padding: 16px 9px;
   font-size: 15px;
-  margin: 0 48px 0 0;
   border-radius: 6px;
+  border: 1px solid #E7EDFF; 
+  color: #7990B4; 
+  font-size: 15px; 
+  font-weight: 400; 
+  font-family: 'Barlow';
 }
 
 .addCourse-form input::placeholder {
   color: #d8d8d8;
 }
+
 
 .addcourse-modal .modal-body .addCourse-form-right {
   padding: 25px 2px;
@@ -2155,9 +2073,166 @@ table.dashboard-table thead {
   color: #7990B4;
 }
 
-.addCourse-form .my-modal .my-modal-classes input[type="date"] {
+.addCourse-form .my-modal .my-modal-classes input[type="date"]{
   color: red;
   font-size: 18px;
 }
 
 /*sample 4 page css start*/
+
+.common-label {
+	font-size: 15px;
+	font-weight: 500;
+	font-family: 'Barlow';
+	color: #5B73A0;
+	margin: 0;
+}
+
+/* Responsive */
+
+@media (min-width:200px) {
+
+  
+  .program_course_wrapper {
+    width: 96.1%;
+  }
+
+
+  .modal-dialog {
+    max-width: 600px !important;
+  }
+
+  .green-button {
+    width: 100%;
+  }
+
+  .nav-clip .nav-clip ul {
+    width: 100%;
+  }
+
+  .nav .nav-tabs {
+    width: 100%;
+  }
+
+  .tab-content {
+    width: 100%;
+  }
+
+  
+  }
+
+@media (min-width:400px) {
+
+  
+  .program_course_wrapper {
+    width: 94.8%;
+  }
+
+  .modal-dialog {
+    max-width: 600px !important;
+  }
+
+  .green-button {
+    width: 100%;
+  }
+
+  .nav-clip .nav-clip ul {
+    width: 100%;
+  }
+
+  .nav .nav-tabs {
+    width: 100%;
+  }
+
+  .tab-content {
+    width: 100%;
+  }
+
+  
+  }
+  
+  @media (min-width:768px) {
+  
+  
+  .program_course_wrapper {
+    width: 96.1%;
+  }
+
+  .modal-dialog {
+    max-width: 600px !important;
+  }
+  .green-button {
+    width: 100%;
+  }
+  .nav-clip .nav-clip ul {
+    width: 100%;
+  }
+
+  .nav .nav-tabs {
+    width: 100%;
+  }
+
+  .tab-content {
+    width: 100%;
+  }
+
+  
+  }
+  
+  
+  @media (min-width:992px) {
+  
+  
+  .program_course_wrapper {
+    width: 96.1%;
+  }
+
+
+  .green-button {
+    width: 100%;
+  }
+  .modal-dialog {
+    max-width: 600px !important;
+  }
+  .nav-clip .nav-clip ul {
+    width: 100%;
+  }
+
+  .nav .nav-tabs {
+    width: 100%;
+  }
+
+  .tab-content {
+    width: 100%;
+  }
+  
+  }
+  
+  
+  @media (min-width:1200px) {
+  
+  .green-button {
+    width: 100%;
+  }
+
+  
+  .program_course_wrapper {
+    width: 96.1%;
+  }
+
+  .modal-dialog {
+    max-width: 600px !important;
+  }
+  .nav-clip .nav-clip ul {
+    width: 100%;
+  }
+
+  .nav .nav-tabs {
+    width: 100%;
+  }
+
+  .tab-content {
+    width: 100%;
+  }
+  
+  }

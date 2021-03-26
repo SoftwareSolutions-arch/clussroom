@@ -110,7 +110,7 @@
                         </div>
                       </th>
                       <td class="text-left" style="padding-left: 0 !important;">{{courseLists.sno}}</td>
-                      <td class="text-left">{{courseLists.title}}</td>
+                      <td class="text-left" style="padding-left: 40px;">{{courseLists.title}}</td>
 
                       <td class="text-center">{{courseLists.field_course_code}}</td>
 
@@ -171,7 +171,7 @@
                       <td *ngIf="i !== this.indexesValue" class="text-left">{{this.courseList.title}}</td>
 
 
-                      <td class="text-left">{{this.courseList.nid}}</td>
+                      <td class="text-center">{{this.courseList.nid}}</td>
 
                       <td *ngIf="i !== this.indexesValue" class="text-center">{{this.courseList.field_category}}</td>
 
@@ -246,7 +246,7 @@
                 <form>
                   <div class="addCourse-form">
                     <div class="name-of-course fieldset">
-                      <label>Name of course*</label>
+                      <label>Name of {{instructionName}}*</label>
                       <input id="name" name="name" class="form-control" required minlength="4" [(ngModel)]="courseName"
                         #name="ngModel">
                     </div>
@@ -418,7 +418,7 @@
 
         <!-- add course pop up 3-->
         <div *ngIf="allTrue" id="addCourse3" class="modal editcourse-modal" role="dialog" #closeModal>
-          <div class="modal-dialog">
+          <div class="modal-dialog" style="min-width: 685px !important;">
 
             <!-- Modal content-->
             <div class="modal-content">
@@ -593,7 +593,7 @@
                           <label for="teacher">Class start date</label>
                         </div>
                         <div class="class-materials-radio">
-                          <input name="class_start" type="radio" value="date">
+                          <input [checked]="true" name="class_start" type="radio" value="date">
                           <input formControlName="datagram" type="date" #myDate
                             [value]="demoUser.date | date:'yyyy-MM-dd'" />
                         </div>
@@ -608,7 +608,7 @@
                           <label for="teacher">Class end date</label>
                         </div>
                         <div class="class-materials-radio">
-                          <input name='class1' type="radio" value="start-date-calender">
+                          <input [checked]="true" name='class1' type="radio" value="start-date-calender">
                           <input formControlName="datagram2" type="date" [value]="demoUser.dates | date:'yyyy-MM-dd'" />
                         </div>
                       </div>

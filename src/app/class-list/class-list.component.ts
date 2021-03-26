@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
 import { UtilService } from '../../providers/util.service';
 import { SharedServiceService } from '../shared-service.service';
@@ -28,11 +28,18 @@ export class ClassListComponent implements OnInit {
   allBanding: any = '';
   data: any = [];
   @ViewChild('closeModal') private closeModal: ElementRef;
+  @ViewChildren("checkboxes") checkboxes: QueryList<ElementRef>;
 
   currentIndex = -1;
   page = 1;
   count = 0;
   pageSize = 10;
+
+  radioMail: any = 'byEmail';
+  files: any = File;
+  base64Files: any = Number;
+  selectedItems = [];
+  isGoToShow: boolean = false;
 
   constructor(public service: SharedServiceService, public router: Router, public util: UtilService, private fb: FormBuilder,
     private http: HttpClient) {
@@ -111,7 +118,6 @@ export class ClassListComponent implements OnInit {
   // do logout setup
   logOut() {
     this.service.post('user-logout-api', '', 0).subscribe(result => {
-      console.log('result', result)
       if (result['status'] == 1) {
         this.util.showSuccessAlert(result['status_message']);
         localStorage.removeItem('csrftoken');
@@ -155,6 +161,7 @@ export class ClassListComponent implements OnInit {
     }
     this.isLoadingBool = true;
     this.service.post('view-all-classes-api', params, 1).subscribe(result => {
+      console.log('result++;p', result);
       this.isLoadingBool = false;
       if (result['status'] == 1) {
         this.allClassesData = result['classesdata'];
@@ -176,42 +183,101 @@ export class ClassListComponent implements OnInit {
     })
   }
 
+  // view all learners
   getClassesListData() {
     let params = {
       "class_id": this.selectedClass.nid
     }
-    console.log('params+++P', params);
     this.isLoadingBool = true;
     this.service.post('view-all-learners-api', params, 1).subscribe(result => {
-      console.log('result',result);
+      this.allClassesList = result;
       this.isTableShow = true;
       this.isLoadingBool = false;
-      if (result['status'] == 1) {
-      }
-      else {
-      }
     })
   }
 
-  confirmBtn() {
-    this.closeModal.nativeElement.click();
-    let data = []
-    this.addCourseForm.value.employees[0].sub_title.forEach(element => {
-      data.push(element.sub_title)
-    });
-
-    let params = {
-      "email": data,
-      "class_id": this.selectedClass.nid
+  // add learner
+  addLearner() {
+    if (this.radioMail == 'byEmail') {
+      this.closeModal.nativeElement.click();
+      let data = []
+      this.addCourseForm.value.employees[0].sub_title.forEach(element => {
+        data.push(element.sub_title)
+      });
+      let params = {
+        "email": data,
+        "class_id": this.selectedClass.nid
+      }
+      this.service.post('add-learner-api', params, 1).subscribe(result => {
+        if (result['status'] == 1) {
+          this.util.showSuccessAlert(result['error_message']);
+          this.getClassesListData();
+        }
+        else {
+          this.util.showSuccessAlert(result['error_message']);
+        }
+      })
     }
-    this.service.post('add-learner-api', params, 1).subscribe(result => {
-      console.log('result', result['error_message']);
-      if (result['status'] == 1) {
-        this.util.showSuccessAlert(result['error_message'])
+    else {
+      let params = {
+        "csv_file": this.base64Files,
+        "class_id": this.selectedClass.nid
       }
-      else {
-        this.util.showSuccessAlert(result['error_message']);
-      }
-    })
+      this.service.post('add-learner-api', params, 1).subscribe(result => {
+        this.closeModal.nativeElement.click();
+        if (result['status'] == 1) {
+          this.util.showSuccessAlert(result['error_message']);
+          this.getClassesListData();
+        }
+        else {
+          this.util.showSuccessAlert(result['error_message']);
+        }
+      })
+    }
+  }
+
+  isClickedRadio() {
+    console.log('radioMail', this.radioMail);
+  }
+
+  // public changeListener(files: FileList){
+  //   var reader = new FileReader();
+  //   reader.readAsDataURL(files[0]);
+  //   this.files=reader.result
+  //   reader.onload = function () {
+  //     let csv: string = reader.result as string;
+  //     console.log('reader.result',csv);
+  //   };
+
+  //   if(files && files.length > 0) {
+  //      let file : File = files.item(0);
+  //        let reader: FileReader = new FileReader();
+  //        reader.readAsText(file);
+  //        reader.onload = (e) => {
+  //          console.log('e data',e.target.result);
+  //           let csv: string = reader.result as string;
+  //           // console.log(csv);`
+  //        }
+  //     }
+  // }
+
+  // base 64 csv upload
+  public changeListeners(files: FileList) {
+    var reader = new FileReader();
+    reader.readAsDataURL(files[0]);
+    reader.onload = (e) => {
+      this.base64Files = reader.result as Int32Array;
+    }
+  }
+
+  isCheckClicked(event, courseList, i) {
+    this.isGoToShow = true;
+  }
+
+  cancelCourses() {
+    this.isGoToShow = false;
+    this.checkboxes.forEach((element) => {
+      element.nativeElement.checked = false;
+    });
   }
 }

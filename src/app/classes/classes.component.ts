@@ -22,7 +22,7 @@ export class ClassesComponent implements OnInit {
   currentIndex = -1;
   page = 1;
   count = 0;
-  pageSize = 3;
+  pageSize = 10;
   isTableShow: boolean = false;
   editForm: boolean = false;
   isSaveCourses: boolean = false;
@@ -35,9 +35,12 @@ export class ClassesComponent implements OnInit {
   userIdDetails: any = '';
   showInputCategory: boolean = true;
   isClassEdited: boolean = true;
-  selectedNewItems: any = ''
+  selectedNewItems: any = '';
+  instructionName: any = '';
+
   constructor(public util: UtilService, public router: Router, public service: SharedServiceService) {
     this.getAllCoursesList();
+    this.instructionName = localStorage.getItem('instructionName')
   }
 
   ngOnInit(): void {
@@ -225,7 +228,7 @@ export class ClassesComponent implements OnInit {
     this.selectedItems.forEach(element => {
       this.userIdDetails = element
     });
-    this.isClassEdited=false;
+    this.isClassEdited = false;
     this.editForm = false;
     this.isSaveCourses = true;
     this.showInputCategory = true;
@@ -236,7 +239,7 @@ export class ClassesComponent implements OnInit {
     this.viewClassesList();
     this.isSaveCourses = false;
     this.editForm = false;
-    this.isClassEdited=true;
+    this.isClassEdited = true;
     this.userIdDetails = '';
     this.selectedItems = []
     this.checkboxes.forEach((element) => {
