@@ -1,7 +1,5 @@
 <app-header></app-header>
-
 <!-- Login Section -->
-
 <section class="login-section" style="min-height: 580px;">
   <div class="container">
     <div class="login-form">
@@ -23,7 +21,7 @@
 
         <div class="login-company-name fieldset">
           <label>Email</label>
-          <input formControlName="email" type="text" value={{this.myemail}}>
+          <input formControlName="email" type="text">
           <ng-container *ngFor="let error of error_messages.email">
             <div class="error-message" *ngIf="loginForm.get('email').hasError(error.type) &&
 							  (loginForm.get('email').dirty || loginForm.get('email').touched)">
@@ -50,7 +48,9 @@
         </div>
 
         <div class="login-remember-me">
-          <label><input (click)="rememberMe()" [checked]="isChecked" type="checkbox"><span>Remember me</span></label>
+          <label>
+            <input [(ngModel)]="ischeckboxTrue" [ngModelOptions]="{standalone: true}" (click)="rememberMe()"
+              [checked]="isChecked" type="checkbox"><span>Remember me</span></label>
           <a (click)="resetPassword()" style="position: relative; left: 21.5em;">Forgot password</a>
         </div>
 
@@ -63,4 +63,5 @@
     </div>
   </div>
 </section>
+<!-- Login Section -->
 <app-footer></app-footer>

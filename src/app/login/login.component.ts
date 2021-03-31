@@ -4,30 +4,30 @@ import { SharedServiceService } from '../shared-service.service';
 import { Router } from '@angular/router';
 import { HttpHeaders } from '@angular/common/http';
 import { UtilService } from '../../providers/util.service';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  ischeckboxTrue: boolean = true;
   isChecked: boolean = false;
   hideImage: boolean = true;
   isTextFieldType: boolean;
 
-  myemail: any = '';
-  mypassword: any = '';
   selectpayment: any = '';
   loginForm: FormGroup;
   error_messages: any = '';
   userDetails: any = '';
-  // cookieDetails: any = '';
-  constructor(public router: Router, public util: UtilService, public service: SharedServiceService,
+  constructor(public router: Router, private toastr: ToastrService, public util: UtilService, public service: SharedServiceService,
     public formBuilder: FormBuilder) {
     this.setupLoginFormData();
   }
 
   ngOnInit(): void {
-    this.getmy();
+    this.setPassword();
   }
 
   selectPaymentmethod() {
@@ -76,11 +76,15 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('setEmail', this.loginForm.value.email);
       localStorage.setItem('setPassword', this.loginForm.value.password);
     }
+    if (this.isChecked == false) {
+      localStorage.setItem('setEmail', '');
+      localStorage.setItem('setPassword', '');
+    }
   }
 
-  getmy() {
-    this.myemail = localStorage.getItem('setEmail');
-    this.mypassword = localStorage.getItem('setPassword');
+  setPassword() {
+    this.loginForm.controls.email.setValue(localStorage.getItem('setEmail'));
+    this.loginForm.controls.password.setValue(localStorage.getItem('setPassword'));
   }
 
   // do login
@@ -97,9 +101,10 @@ export class LoginComponent implements OnInit {
 
     }
     this.service.post('user/login', data, 0).subscribe(result => {
-      
+
       try {
         if (result['status'] == 200) {
+          this.toastr.success('Login Successfully');
           localStorage.setItem("csrftoken", result['current_user']['csrf_token']);
           localStorage.setItem("uid", result['current_user']['uid']);
           localStorage.setItem('userMail', result['current_user']['name']);
@@ -110,13 +115,14 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/sample04']);
         }
         else {
+          this.toastr.error(result.error_message);
           this.util.errorAlertPopup(result.error_message);
         }
       }
 
       catch (error) {
         this.util.errorAlertPopup(result.error_message);
-        
+
       }
 
     })

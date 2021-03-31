@@ -47,6 +47,7 @@ import { TermsOfUseComponent } from './terms-of-use/terms-of-use.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { CalendarComponent } from './calendar/calendar.component';
 import { ProgressComponent } from './progress/progress.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,11 @@ import { ProgressComponent } from './progress/progress.component';
     ProgressComponent
   ],
   imports: [CommonModule,
-    BrowserModule,
+    BrowserModule, ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-center',
+      preventDuplicates: true,
+    }),
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
