@@ -66,10 +66,12 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/forgot-password']);
   }
 
+  // user type
   userType(event) {
     this.userDetails = event.target.value;
   }
 
+  // remember password
   rememberMe() {
     this.isChecked = !this.isChecked;
     if (this.isChecked == true) {
@@ -82,6 +84,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  // set password
   setPassword() {
     this.loginForm.controls.email.setValue(localStorage.getItem('setEmail'));
     this.loginForm.controls.password.setValue(localStorage.getItem('setPassword'));
@@ -128,10 +131,10 @@ export class LoginComponent implements OnInit {
     })
   }
 
+  // get instruction name
   getInstructionName() {
     this.service.post('instruction-name-api', '', 1).subscribe(result => {
       localStorage.setItem('instructionName', result.instruction_name);
     })
   }
-
 }
