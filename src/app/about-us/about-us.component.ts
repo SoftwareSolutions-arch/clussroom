@@ -23,7 +23,7 @@ export class AboutUsComponent implements OnInit {
       "page": "aboutus"
     }
     this.service.post('all-content', params, 0).subscribe(result => {
-      console.log('resulr about', result);
+      
       this.isLoadingBool = false;
       if (result['status'] == 1) {
         this.aboutUsData = result.content

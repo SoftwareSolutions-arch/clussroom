@@ -23,7 +23,7 @@ export class PrivacyPolicyComponent implements OnInit {
       "page": "privacy_policy"
     }
     this.service.post('all-content', params, 0).subscribe(result => {
-      console.log('resulr privacyPoliyData', result);
+      
       this.isLoadingBool = false;
       if (result['status'] == 1) {
         this.privacyPoliyData = result.content

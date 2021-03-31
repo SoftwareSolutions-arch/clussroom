@@ -45,7 +45,7 @@ export class PricingComponent implements OnInit {
 
   // go to the subscription page
   startClass(data) {
-    console.log('data', data)
+    
     localStorage.setItem('nidKey', data.nid);
     localStorage.setItem('title', data.title);
     this.router.navigate(['/subscription']);
@@ -70,7 +70,7 @@ export class PricingComponent implements OnInit {
     }
 
     this.service.post('packages-list', data, 0).subscribe(result => {
-      console.log('result', result)
+      
       if (result['status'] == '1') {
         this.isImageShow = false;
         this.recordList = result['nids'];

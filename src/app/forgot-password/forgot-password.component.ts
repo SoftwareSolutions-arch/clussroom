@@ -42,7 +42,7 @@ export class ForgotPasswordComponent implements OnInit {
     }
 
     this.service.post('forget-password-api', data, 0).subscribe(result => {
-      console.log('result', result)
+      
       if (result['message'] == "Otp Send") {
         localStorage.setItem('otpId', result['id'])
         this.util.showSuccessAlert(result['message'])

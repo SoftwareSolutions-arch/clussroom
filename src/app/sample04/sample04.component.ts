@@ -161,7 +161,7 @@ export class Sample04Component implements OnInit {
 
   // get events of check box for edit or add button show and hide
   isCheckClicked(event, courseList, i) {
-    console.log('courseList', courseList)
+    
     if (event.target.checked == true) {
       this.courseList = courseList;
       this.editSampleForm.controls.courseName.setValue(courseList.title);
@@ -181,7 +181,7 @@ export class Sample04Component implements OnInit {
 
     }
 
-    console.log('is items selected', this.selectedNewItems);
+    
     if (event.target.checked == false) {
       this.courseList = '';
       // this.indexesValue=[];
@@ -198,7 +198,7 @@ export class Sample04Component implements OnInit {
   getAllCoursesList() {
     this.isLoadingBool = true;
     this.service.post('view-all-courses-api', '', 1).subscribe(result => {
-      console.log(result, 'res+++p')
+      
       this.isLoadingBool = false;
       this.allCourseList = result.coursesdata;
       const { tutorials, totalItems } = result.coursesdata;
@@ -217,7 +217,7 @@ export class Sample04Component implements OnInit {
       this.selectedItems.forEach(element => {
         // this.userIdDetails = element.nid
         this.userIdDetails = element
-        console.log(element, 'element++')
+        
       });
       this.editForm = false;
       this.isSaveCourses = true;
@@ -408,7 +408,7 @@ export class Sample04Component implements OnInit {
   updateCourses(courseList): any {
     var x = new Date(this.editSampleForm.value.datagram);
     var y = new Date(this.editSampleForm.value.datagram2);
-    console.log('form valuws', this.editSampleForm.value)
+    
 
     if (x > y) {
       this.util.errorAlertPopup('start date should be less than end date');
@@ -434,11 +434,11 @@ export class Sample04Component implements OnInit {
       }
 
 
-      console.log('params+++', params)
+      
 
       this.isLoadingBool = true;
       this.service.post('update-course-api', params, 0).subscribe(result => {
-        console.log("result", result);
+        
         this.editclosebutton.nativeElement.click();
         if (result['Status'] == 1 || '1') {
           this.isLoadingBool = false;
@@ -492,7 +492,7 @@ export class Sample04Component implements OnInit {
   // do logout setup
   logOut() {
     this.service.post('user-logout-api', '', 0).subscribe(result => {
-      console.log('result', result)
+      
       if (result['status'] == 1) {
         this.util.showSuccessAlert(result['status_message']);
         localStorage.removeItem('csrftoken');

@@ -105,7 +105,7 @@ export class ClassesComponent implements OnInit {
     }
     this.isLoadingBool = true;
     this.service.post('view-all-classes-api', params, 1).subscribe(result => {
-      console.log('result', result)
+      
       this.isLoadingBool = false;
       if (result['status'] == 1) {
         this.allClassesData = result['classesdata'];
@@ -137,7 +137,7 @@ export class ClassesComponent implements OnInit {
       this.selectedNewItems = courseList.nid
 
     }
-    // console.log('this.selectedItems11',this.selectedItems)
+    // 
     if (event.target.checked == false) {
       // this.indexesValue=[];
       this.selectedItems = this.selectedItems.filter(
@@ -151,8 +151,8 @@ export class ClassesComponent implements OnInit {
 
   // create new classes
   createNewClasses() {
-    console.log('this.courseList.class_start', this.courseList.class_start);
-    console.log('this.courseList.class_end', this.courseList.class_end);
+    
+    
     var x = new Date(this.courseList.class_start);
     var y = new Date(this.courseList.class_end);
 
@@ -175,10 +175,10 @@ export class ClassesComponent implements OnInit {
         "course_id": this.selectedCategory
       }
 
-      console.log('params', params)
+      
       this.isLoadingBool = true;
       this.service.post('create-class-api', params, 1).subscribe(result => {
-        console.log('result_++p', result)
+        
         this.isLoadingBool = false;
         this.clearAddClassValues();
         if (result['status'] == "completed" || "ongoing") {
@@ -198,9 +198,9 @@ export class ClassesComponent implements OnInit {
       "step": 1,
       "delete_class_nids": [this.selectedNewItems]
     }
-    console.log('params', params)
+    
     this.service.post('delete-class-api', params, 1).subscribe(result => {
-      console.log('result', result);
+      
       this.classesData = result.classesdata;
 
     })
@@ -250,7 +250,7 @@ export class ClassesComponent implements OnInit {
 
   // update class
   updateClasses(data): any {
-    console.log('index', data);
+    
     var x = new Date(data['field_start_date']);
     var y = new Date(data['field_end_date']);
     if (x > y) {
@@ -263,10 +263,10 @@ export class ClassesComponent implements OnInit {
         "startdate": data['field_start_date'],
         "enddate": data['field_end_date'],
       }
-      console.log('params', params);
+      
       this.isLoadingBool = true;
       this.service.post('update-class-api', params, 1).subscribe(result => {
-        console.log("result", result);
+        
         if (result['Status'] == 1 || '1') {
           this.isLoadingBool = false;
           this.isSaveCourses = false;
@@ -296,7 +296,7 @@ export class ClassesComponent implements OnInit {
   // do logout setup
   logOut() {
     this.service.post('user-logout-api', '', 0).subscribe(result => {
-      console.log('result', result)
+      
       if (result['status'] == 1) {
         this.util.showSuccessAlert(result['status_message']);
         localStorage.removeItem('csrftoken');

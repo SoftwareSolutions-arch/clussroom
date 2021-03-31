@@ -13,7 +13,7 @@ export class StorageComponent implements OnInit {
   }
 
   showHideRow(table) {
-    console.log("Hello", table)
+    
     $("#" + table).toggle();
   }
 }

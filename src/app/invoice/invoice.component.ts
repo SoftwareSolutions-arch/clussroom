@@ -231,7 +231,7 @@ export class InvoiceComponent implements OnInit {
     }
 
     this.service.post('vendor-registration', data, 0).subscribe(result => {
-      console.log('result', result)
+      
       this.isImageShow = false;
       this.invoiceDetails = result['nids'][0];
     })
@@ -262,7 +262,7 @@ export class InvoiceComponent implements OnInit {
     }
 
     this.service.post('vendor-registration', data, 0).subscribe(result => {
-      console.log('result', result)
+      
       if (result['status_message'] == 'User Created Successfully') {
         localStorage.setItem('userMail', result['email']);
         localStorage.setItem('firstName', result['fname']);

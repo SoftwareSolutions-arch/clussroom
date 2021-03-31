@@ -24,7 +24,7 @@ export class ContactUsComponent implements OnInit {
       "page": "contactus"
     }
     this.service.post('all-content', params, 0).subscribe(result => {
-      console.log('resulr contactus', result);
+      
       this.isLoadingBool = false;
       if (result['status'] == 1) {
         this.contactUsData = result.content

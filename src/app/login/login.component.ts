@@ -97,7 +97,7 @@ export class LoginComponent implements OnInit {
 
     }
     this.service.post('user/login', data, 0).subscribe(result => {
-      console.log('resultlogin data', result);
+      
       try {
         if (result['status'] == 200) {
           localStorage.setItem("csrftoken", result['current_user']['csrf_token']);
@@ -116,7 +116,7 @@ export class LoginComponent implements OnInit {
 
       catch (error) {
         this.util.errorAlertPopup(result.error_message);
-        console.log('Exception', error)
+        
       }
 
     })

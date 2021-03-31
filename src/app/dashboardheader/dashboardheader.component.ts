@@ -19,9 +19,9 @@ export class DashboardheaderComponent implements OnInit {
 
 
   public doFilter = (value: string) => {
-    console.log('value',value);
+    
     // this.allCourseList.filter = value.trim().toLocaleLowerCase();
-    // console.log('this.allCourseList.filter', this.allCourseList.filter)
+    // 
     // var searchText = value.trim().toLocaleLowerCase();
 
     // return this.allCourseList.filter(it => {
@@ -31,7 +31,7 @@ export class DashboardheaderComponent implements OnInit {
 
     // search api
     serchCoursesList(value) {
-      console.log(value.trim().toLocaleLowerCase())
+      
       let params={
         "type":"course",
         "course_name":value.trim().toLocaleLowerCase(),
@@ -39,7 +39,7 @@ export class DashboardheaderComponent implements OnInit {
       this.isLoadingBool = true;
       this.service.post('search-api', params, 1).subscribe(result => {
         this.isLoadingBool = false;
-        console.log('result', result)
+        
         if (result['status'] == 1) {
           // const { tutorials, totalItems } = result['coursesdata'];
           this.sampleOject.allCourseList = result['coursesdata'];

@@ -22,8 +22,11 @@ export class ClassListComponent implements OnInit {
   addCourseForm: FormGroup;
   allCourseList: any = '';
   selectedCategory: any = '';
+  selectedCategorys: any = '';
   selectedClass: any = '';
+  selectedClasses: any = '';
   allClassesData: any = [];
+  allClassesDatas: any = [];
 
   allCategories: any = '';
   allLevel: any = '';
@@ -38,7 +41,6 @@ export class ClassListComponent implements OnInit {
   pageSize = 10;
 
   radioMail: any = 'byEmail';
-  // files: any = File;
   base64Files: any = Number;
   selectedItems = [];
   isGoToShow: boolean = false;
@@ -105,6 +107,7 @@ export class ClassListComponent implements OnInit {
   getAllCoursesList() {
     this.isLoadingBool = true;
     this.service.post('view-all-courses-api', '', 1).subscribe(result => {
+      console.log('result',result)
       this.isLoadingBool = false;
       this.allCourseList = result['coursesdata'];
       if (result['status'] == 1) {
@@ -149,6 +152,7 @@ export class ClassListComponent implements OnInit {
   getAllClassesList() {
     this.isLoadingBool = true;
     this.service.post('view-all-learners-api', '', 1).subscribe(result => {
+      console.log('result+++P',result)
       this.isLoadingBool = false;
       this.allClassesList = result;
     })
@@ -165,10 +169,27 @@ export class ClassListComponent implements OnInit {
     }
     this.isLoadingBool = true;
     this.service.post('view-all-classes-api', params, 1).subscribe(result => {
-      console.log('result++;p', result);
+    console.log('result++++',result);
       this.isLoadingBool = false;
       if (result['status'] == 1) {
         this.allClassesData = result['classesdata'];
+      }
+      else {
+        this.util.errorAlertPopup(result['message']);
+      }
+    })
+  }
+
+  // view classes
+  viewAllCoursesLists() {
+    let params = {
+      "course_id": this.selectedCategorys.nid
+    }
+    this.isLoadingBool = true;
+    this.service.post('view-all-classes-api', params, 1).subscribe(result => {
+      this.isLoadingBool = false;
+      if (result['status'] == 1) {
+        this.allClassesDatas = result['classesdata'];
       }
       else {
         this.util.errorAlertPopup(result['message']);
@@ -241,38 +262,17 @@ export class ClassListComponent implements OnInit {
   }
 
   isClickedRadio() {
-    console.log('radioMail', this.radioMail);
+
   }
-
-  // public changeListener(files: FileList){
-  //   var reader = new FileReader();
-  //   reader.readAsDataURL(files[0]);
-  //   this.files=reader.result
-  //   reader.onload = function () {
-  //     let csv: string = reader.result as string;
-  //     console.log('reader.result',csv);
-  //   };
-
-  //   if(files && files.length > 0) {
-  //      let file : File = files.item(0);
-  //        let reader: FileReader = new FileReader();
-  //        reader.readAsText(file);
-  //        reader.onload = (e) => {
-  //          console.log('e data',e.target.result);
-  //           let csv: string = reader.result as string;
-  //           // console.log(csv);`
-  //        }
-  //     }
-  // }
 
   // base 64 csv upload
   public changeListeners(files: FileList) {
-    console.log('tfile', files)
+
     var reader = new FileReader();
     reader.readAsDataURL(files[0]);
     reader.onload = (e) => {
       this.base64Files = reader.result as Int32Array;
-      console.log('this.base64Files', this.base64Files);
+
     }
   }
 
@@ -302,7 +302,7 @@ export class ClassListComponent implements OnInit {
     reader.readAsDataURL(files[0]);
     reader.onload = (e) => {
       this.base64Files = reader.result as Int32Array;
-      console.log('this.base64Files', this.base64Files);
+
     }
     this.prepareFilesList(files);
   }
@@ -313,7 +313,7 @@ export class ClassListComponent implements OnInit {
    */
   deleteFile(index: number) {
     if (this.files[index].progress < 100) {
-      console.log("Upload in progress.");
+
       return;
     }
     this.files.splice(index, 1);
@@ -366,6 +366,20 @@ export class ClassListComponent implements OnInit {
     const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
+  }
+
+  // Transfer learner to another cousrse
+  transferLearner() {
+    let params = {
+      "current_class": this.selectedCategory.nid,
+      "class_transfer_to": this.selectedCategorys.nid,
+      "get_all_user_id": "784"
+    }
+
+    this.isLoadingBool = true;
+    this.service.post('transfer-learner-to-another-course-api', params, 1).subscribe(result => {
+      this.isLoadingBool = false;
+    })
   }
 
 }

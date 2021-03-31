@@ -59,7 +59,7 @@ export class SubscriptionComponent implements OnInit {
     }
 
     this.service.post('vendor-registration', data, 0).subscribe(result => {
-      console.log('result', result)
+      
       this.isImageShow = false;
       this.subscriptionDetails = result['nids']['0'];
     })

@@ -115,7 +115,7 @@ export class ChoosePasswordComponent implements OnInit {
     }
 
     this.service.post('create-password-api', data, 0).subscribe(result => {
-      console.log('result', result['basic_auth_token'])
+      
       if (result['status'] == 1 || '1') {
         this.util.openSnackBarSuccess(result['message']);
         localStorage.setItem("isPasswordSet", '1');
@@ -136,7 +136,7 @@ export class ChoosePasswordComponent implements OnInit {
       "uid": this.userId
     }
     this.service.post('create-password-api', data, 0).subscribe(result => {
-      console.log('result', result);
+      
       if (result['status'] == 1 || '1') {
 
       }

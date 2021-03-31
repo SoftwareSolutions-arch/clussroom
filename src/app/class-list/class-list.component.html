@@ -403,7 +403,8 @@
                 </div>
                 <div class="name-of-course fieldset" style="padding: 0 16px;">
                   <label style="text-align: center;">Course Name:</label>
-                  <select name="level" id="levelcourse" style="width: 390px !important;">
+                  <select (change)="viewAllCoursesLists()" [(ngModel)]="selectedCategorys" name="level" id="levelcourse"
+                    style="width: 390px !important;">
                     <option *ngFor="let courseList of this.allCourseList" [ngValue]="courseList">
                       {{this.courseList.title}}
                     </option>
@@ -430,17 +431,17 @@
                 <div class="name-of-course fieldset"
                   style="border-bottom: 1px solid #F1F6FB; margin: 0; padding-bottom: 1.5em;">
                   <label style="text-align: right; padding: 0 14px; margin: 0 16px 0 0;">class:</label>
-                  <select name="level" id="levelcourse" style="width: 140px !important;">
-                    <option *ngFor="let classesData of this.allClassesData" [ngValue]="classesData">
+                  <select [(ngModel)]="selectedClasses" name="level" id="levelcourse" style="width: 140px !important;">
+                    <option *ngFor="let classesData of this.allClassesDatas" [ngValue]="classesData">
                       {{classesData.title}}
                     </option>
                   </select>
                   <p style="padding: 0 26px; margin: 0; font-size: 15px;">Class code:&nbsp;&nbsp;&nbsp;<span
-                      class="orange">{{selectedClass.field_class_code}}</span></p>
+                      class="orange">{{selectedClasses.field_class_code}}</span></p>
                 </div>
                 <div class="modal-footer">
-                  <button class="back-btn-course add-btn custom-a-btn custom-a-btn-learner" data-toggle="modal"
-                    data-target="#suspend"><a href="#">Confirm</a></button>
+                  <button (click)="transferLearner()" class="back-btn-course add-btn custom-a-btn custom-a-btn-learner"
+                    data-toggle="modal" data-target="#suspend"><a>Confirm</a></button>
                   <button class="next-btn-course" class="close" data-dismiss="modal">Cancel</button>
                 </div>
               </div>
@@ -469,69 +470,78 @@
                   <p style="font-size: 15px !important;">First name:&nbsp;&nbsp;&nbsp;<span>Lorenzo</span></p>
                   <p style="font-size: 15px !important;">Last name:&nbsp;&nbsp;&nbsp;<span>Gomez</span></p>
                 </div>
-
                 <div class="name-of-course fieldset" style="border-bottom: 1px solid #F1F6FB;">
                   <p style="line-height: 2.5; font-size: 15px !important;">Email:
-                    &nbsp;&nbsp;<span>1234567@gmail.com</span></p>
+                    &nbsp;&nbsp;<span>1234567@gmail.com</span>
+                  </p>
                 </div>
                 <div class="name-of-course fieldset fieldset-center">
-                  <p style="font-size: 15px !important;">Current class</p>
+                  <p>Current course</p>
                 </div>
                 <div class="name-of-course fieldset mt-3">
                   <p style="padding: 0 2.6em; font-size: 15px !important;">Course
-                    Name:&nbsp;&nbsp;&nbsp;&nbsp;<span>Geography for Secondary 4&nbsp;-&nbsp;Level 3</span></p>
+                    Name:&nbsp;&nbsp;&nbsp;&nbsp;<span>{{selectedCategory.title}}</span></p>
                 </div>
                 <div class="name-of-course fieldset" style="margin: 0;">
-                  <p style="padding: 0 3.6em; font-size: 15px !important;">Level:&nbsp;&nbsp;&nbsp;<span>Secondary
-                      4</span></p>
-                  <p style="font-size: 15px !important;">Banding:&nbsp;&nbsp;&nbsp;<span>Band 3</span></p>
+                  <p style="padding: 0 3.6em; font-size: 15px !important;">
+                    Level:&nbsp;&nbsp;&nbsp;<span>{{selectedCategory.field_level}}</span>
+                  </p>
+                  <p style="font-size: 15px !important;">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Banding:&nbsp;&nbsp;&nbsp;<span>{{selectedCategory.field_banding}}</span>
+                  </p>
                 </div>
                 <div class="name-of-course fieldset"
                   style="border-bottom: 1px solid #F1F6FB; margin: 0; padding-bottom: 1.5em;">
-                  <p style="padding: 0 3.6em; font-size: 15px !important;">Class:&nbsp;&nbsp;&nbsp;<span>Poppins</span>
+                  <p style="padding: 0 3.6em; font-size: 15px !important;">
+                    Class:&nbsp;&nbsp;&nbsp;<span>{{selectedClass.title}}</span>
                   </p>
                   <p style="padding: 0 5.3em; font-size: 15px !important;">Class code:&nbsp;&nbsp;&nbsp;<span
-                      class="orange">#56782</span></p>
+                      class="orange">{{selectedClass.field_class_code}}</span></p>
                 </div>
                 <div class="name-of-course fieldset fieldset-center mt-3">
                   <p>Transfer to</p>
                 </div>
                 <div class="name-of-course fieldset" style="padding: 0 16px;">
                   <label style="text-align: center;">Course Name:</label>
-                  <select name="level" id="levelcourse" style="width: 390px !important;">
-                    <option selected>Geography for Secondary 3</option>
-                    <option value="Professional Level 1">Geography for Secondary 2</option>
-                    <option value="create new">Geography for Secondary 1</option>
+                  <select (change)="viewAllCoursesLists()" [(ngModel)]="selectedCategorys" name="level" id="levelcourse"
+                    style="width: 390px !important;">
+                    <option *ngFor="let courseList of this.allCourseList" [ngValue]="courseList">
+                      {{this.courseList.title}}
+                    </option>
                   </select>
                 </div>
                 <div class="name-of-course fieldset mt-3" style="padding: 0 16px;">
                   <label style="text-align: right; padding-right: 2em;">Level:</label>
                   <select name="level" id="levelcourse" style="width: 140px !important;">
-                    <option selected>Secondary 3</option>
-                    <option value="Professional Level 1">Secondary 2</option>
-                    <option value="create new">Secondary 1</option>
+                    <option *ngFor="let banding of this.allBanding" value="{{banding.tid}}">{{banding.name}}</option>
                   </select>
+
+
                   <label style="text-align: right; width: 113px; padding-right: 1.5em">Branding:</label>
-                  <select name="level" id="levelcourse" style="width: 140px !important;">
+                  <!-- <select name="level" id="levelcourse" style="width: 140px !important;">
                     <option selected>Brand 3</option>
                     <option value="Professional Level 1">Brand 2</option>
                     <option value="create new">Brand 1</option>
+                  </select> -->
+
+                  <select name="level" id="levelcourse" style="width: 140px !important;">
+                    <option *ngFor="let level of this.allLevel" value="{{level.tid}}">{{level.name}}</option>
                   </select>
                 </div>
                 <div class="name-of-course fieldset"
                   style="border-bottom: 1px solid #F1F6FB; margin: 0; padding-bottom: 1.5em;">
                   <label style="text-align: right; padding: 0 14px; margin: 0 16px 0 0;">class:</label>
-                  <select name="level" id="levelcourse" style="width: 140px !important;">
-                    <option selected>Poppins</option>
-                    <option value="Professional Level 1">Poppings 1</option>
-                    <option value="create new">Poppins 2</option>
+                  <select [(ngModel)]="selectedClasses" name="level" id="levelcourse" style="width: 140px !important;">
+                    <option *ngFor="let classesData of this.allClassesDatas" [ngValue]="classesData">
+                      {{classesData.title}}
+                    </option>
                   </select>
                   <p style="padding: 0 26px; margin: 0; font-size: 15px;">Class code:&nbsp;&nbsp;&nbsp;<span
-                      class="orange">{{selectedClass.field_class_code}}</span></p>
+                      class="orange">{{selectedClasses.field_class_code}}</span></p>
                 </div>
                 <div class="modal-footer">
-                  <button class="back-btn-course add-btn custom-a-btn custom-a-btn-learner" data-toggle="modal"
-                    data-target="#suspend"><a href="#">Confirm</a></button>
+                  <button (click)="transferLearner()" class="back-btn-course add-btn custom-a-btn custom-a-btn-learner"
+                    data-toggle="modal" data-target="#suspend"><a>Confirm</a></button>
                   <button class="next-btn-course" class="close" data-dismiss="modal">Cancel</button>
                 </div>
               </div>
@@ -650,7 +660,7 @@
                   elsewhere. All other data or format cannot be accepted.</p>
               </div>
               <!-- <input type="file" accept=".csv" class="upload custom-input-file" name="&nbsp;" (change)="changeListeners($event.target.files)" /> -->
-              <input type="file" accept=".csv" class="upload custom-input-file" #fileDropRef id="fileDropRef" multiple
+              <input type="file" accept=".csv" class="upload custom-input-file" #fileDropRef id="fileDropRef"
                 (change)="fileBrowseHandler($event.target.files)" />
               <div class="files-list">
                 <div class="single-file" *ngFor="let file of files; let i = index"

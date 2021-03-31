@@ -97,7 +97,7 @@ export class ChangePasswordComponent implements OnInit {
     }
 
     this.service.post('forget-password-api', data, 0).subscribe(result => {
-      console.log('result', result)
+      
       if (result['message'] == "Password Reset Successfully ") {
         this.util.openSnackBarSuccess(result['message'])
         this.router.navigate(['/login']);

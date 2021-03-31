@@ -55,7 +55,7 @@ export class SidebarComponent implements OnInit {
   // do logout setup
   logOut() {
     this.service.post('user-logout-api', '', 0).subscribe(result => {
-      console.log('result', result)
+      
       if (result['status'] == 1) {
         this.util.showSuccessAlert(result['status_message']);
         localStorage.removeItem('csrftoken');
