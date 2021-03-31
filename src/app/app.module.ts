@@ -27,7 +27,6 @@ import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { OtpComponent } from './otp/otp.component';
-import * as $ from 'jquery';
 import { Sample04Component } from './sample04/sample04.component';
 import { DeletePopupComponent } from './delete-popup/delete-popup.component';
 import { DashboardheaderComponent } from './dashboardheader/dashboardheader.component';
@@ -38,7 +37,6 @@ import { CommonModule } from '@angular/common';
 import { PasswordStrengthComponent } from './password-strength/password-strength.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import {MatTableModule} from '@angular/material/table';
-import {CookieService} from 'ngx-cookie-service';
 import { ClassListComponent } from './class-list/class-list.component';
 import { LearnersComponent } from './learners/learners.component';
 import { StorageComponent } from './storage/storage.component';
@@ -48,10 +46,7 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
 import { TermsOfUseComponent } from './terms-of-use/terms-of-use.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { CalendarComponent } from './calendar/calendar.component';
-
-
-// import {MatPaginator} from '@angular/material/paginator';
-// import {MatSort} from '@angular/material/sort';
+import { ProgressComponent } from './progress/progress.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +81,8 @@ import { CalendarComponent } from './calendar/calendar.component';
     LiveSessionsComponent,
     PrivacyPolicyComponent,
     TermsOfUseComponent,
-    CalendarComponent
+    CalendarComponent,
+    ProgressComponent
   ],
   imports: [CommonModule,
     BrowserModule,
@@ -99,7 +95,7 @@ import { CalendarComponent } from './calendar/calendar.component';
     MatProgressSpinnerModule,
     SlickCarouselModule,MatTabsModule,NgxPaginationModule,AngularEditorModule
   ],
-  providers: [CookieService,Sample04Component,ClassesComponent],
+  providers: [Sample04Component,ClassesComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

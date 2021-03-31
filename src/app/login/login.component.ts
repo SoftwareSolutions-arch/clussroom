@@ -4,7 +4,6 @@ import { SharedServiceService } from '../shared-service.service';
 import { Router } from '@angular/router';
 import { HttpHeaders } from '@angular/common/http';
 import { UtilService } from '../../providers/util.service';
-import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -23,7 +22,7 @@ export class LoginComponent implements OnInit {
   userDetails: any = '';
   // cookieDetails: any = '';
   constructor(public router: Router, public util: UtilService, public service: SharedServiceService,
-    public formBuilder: FormBuilder, public cookie: CookieService) {
+    public formBuilder: FormBuilder) {
     this.setupLoginFormData();
   }
 
@@ -31,8 +30,7 @@ export class LoginComponent implements OnInit {
     this.getmy();
   }
 
-  selectPaymentmethod(event) {
-    console.log('selectpayment', this.selectpayment)
+  selectPaymentmethod() {
   }
 
   togglePasswordFieldType() {
@@ -99,7 +97,7 @@ export class LoginComponent implements OnInit {
 
     }
     this.service.post('user/login', data, 0).subscribe(result => {
-      console.log('resultlogin data',result);
+      console.log('resultlogin data', result);
       try {
         if (result['status'] == 200) {
           localStorage.setItem("csrftoken", result['current_user']['csrf_token']);
@@ -124,10 +122,8 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  // do login
   getInstructionName() {
     this.service.post('instruction-name-api', '', 1).subscribe(result => {
-      console.log('instruction_nameinstruction_name+++', result.instruction_name);
       localStorage.setItem('instructionName', result.instruction_name);
     })
   }

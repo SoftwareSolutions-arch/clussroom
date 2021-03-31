@@ -61,14 +61,15 @@
         <div class="col-sm-2 text-right" style="padding: 0; margin: 0 2em;">
           Level:&nbsp;&nbsp;&nbsp;{{selectedCategory.field_level}}
         </div>
-        <div class="col-sm-2 text-right" style="padding: 0;">
+        <div class="col-sm-3 text-right" style="padding: 0; padding-right: 86px;">
           Start Date:&nbsp;&nbsp;&nbsp;{{selectedClass.field_start_date}}
         </div>
       </form>
       <form class="mb-5" style="display: flex;">
         <div class="fieldset course-name mt-5">
           <label>Class Name : </label>
-          <select [(ngModel)]="selectedClass" name="class" id="class-name" style="width: 140px !important;">
+          <select [(ngModel)]="selectedClass" name="class" id="class-name"
+            style="width: 140px !important; margin-left: 24px;">
             <option *ngFor="let classesData of this.allClassesData" [ngValue]="classesData">{{classesData.title}}
             </option>
           </select>
@@ -79,8 +80,9 @@
         <div class="col-sm-2 org-btn mt-5" *ngIf="selectedClass!=0">
           Class code:&nbsp;&nbsp;&nbsp;<span>{{selectedClass.field_class_code}}</span>
         </div>
-        <div class="col-sm-2 mt-5 text-right" style="margin: 0 74px 0 0; padding: 0 35px; text-align:center;">
-          Branding:&nbsp;&nbsp;&nbsp;{{selectedCategory.field_banding}}
+        <div class="col-sm-2 mt-5 text-right"
+          style="margin: 0 74px 0 0; padding: 0 35px; text-align:center; padding-right: 18px;">
+          Banding:&nbsp;&nbsp;&nbsp;{{selectedCategory.field_banding}}
         </div>
         <div class="col-sm-2 mt-5 text-right" style="padding: 0 50px;">
           End Date:&nbsp;&nbsp;&nbsp;{{selectedClass.field_end_date}}
@@ -547,7 +549,7 @@
     <div class="modal-dialog modal-dialog-width">
       <div class="modal-content">
         <div class="green-modal-header">
-          <h4>Add Learner</h4>
+          <h4 style="position: relative; left: 16em;">Add Learner</h4>
           <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"
               style="color: #fff;"></i></button>
         </div>
@@ -563,27 +565,29 @@
               </div>
             </div>
             <div class="name-of-course fieldset mt-3" style="padding: 0 16px;">
-              <label style="text-align: right; padding-right: 2em;">Level:</label>
-              <select name="level" id="levelcourse" style="width: 140px !important;">
+              <label style="text-align: right; padding-right: 27px;">Level:</label>
+              <select name="level" id="levelcourse" style="width: 140px !important; -webkit-appearance: none;"
+                disabled="disabled" id="sel_test">
                 <option *ngFor="let level of this.allLevel" value="{{level.tid}}">{{level.name}}</option>
               </select>
 
-              <label style="text-align: right; width: 113px; padding-right: 1.5em">Branding:</label>
-              <select name="level" id="bandingcourse" style="width: 140px !important;">
+              <label style="text-align: right; width: 113px; padding-right: 1.5em; margin-right: 4px;">Banding:</label>
+              <select name="level" id="bandingcourse" style="width: 140px !important; -webkit-appearance: none;"
+                disabled="disabled" id="sel_test">
                 <option *ngFor="let banding of this.allBanding" value="{{banding.tid}}">{{banding.name}}</option>
               </select>
             </div>
-            <div class="name-of-course fieldset"
+            <div class="name-of-course fieldset mt-4"
               style="border-bottom: 1px solid #F1F6FB; margin: 0; padding-bottom: 1.5em;">
-              <label style="text-align: right; padding: 0 14px; margin: 0 16px 0 0;">class:</label>
+              <label style="text-align: right; padding-right: 12px; margin: 0 16px 0 0;">Class:</label>
               <select name="level" id="levelcourse" style="width: 140px !important;">
                 <option *ngFor="let classesData of this.allClassesData" [ngValue]="classesData">{{classesData.title}}
                 </option>
               </select>
-              <p style="padding: 0 26px; margin: 0; font-size: 15px;">Class code:&nbsp;&nbsp;&nbsp;<span
-                  class="orange">{{selectedClass.field_class_code}}</span></p>
+              <p style="padding: 0 32px; margin: 0; font-size: 15px; font-family: 'Barlow'; font-weight: 500;">Class
+                code:&nbsp;<span class="orange" style="margin-left:1px;">{{selectedClass.field_class_code}}</span></p>
             </div>
-            <div class="name-of-course fieldset mt-3">
+            <div class="name-of-course fieldset mt-3 border-bottom">
               <div class="radio-check" style="width: 100%;">
                 <label class="radio-check" style="padding: 0 37px; justify-content: center;"
                   (change)="isClickedRadio()">By Email
@@ -631,7 +635,7 @@
                   </div>
                 </div>
                 <div class="sub-title">
-                  <button type="button" class="add-button" (click)="addEmployeeSkill(empIndex)">Add</button>
+                  <button type="button" class="add-button mt-3" (click)="addEmployeeSkill(empIndex)">Add</button>
                   <div class="modal-footer" style="box-shadow: none;">
                     <button (click)="addLearner()" class="back-btn-course-blue"><a>Confirm</a></button>
                     <button class="next-btn-course" data-dismiss="modal">Cancel</button>
@@ -640,9 +644,38 @@
               </div>
             </div>
 
-            <div *ngIf="radioMail!='byEmail' ">
-              <input type="file" accept=".csv" class="upload" (change)="changeListeners($event.target.files)" />
-              <div class="sub-title">
+            <div *ngIf="radioMail!='byEmail'" class="input-file col-lg-12 mt-5" style="padding: 0 20px;">
+              <div class="col-lg-12 common-p" style="padding: 0 20px;">
+                <p>Please upload an excel or csv file with emails on a single column only. There should not be data
+                  elsewhere. All other data or format cannot be accepted.</p>
+              </div>
+              <!-- <input type="file" accept=".csv" class="upload custom-input-file" name="&nbsp;" (change)="changeListeners($event.target.files)" /> -->
+              <input type="file" accept=".csv" class="upload custom-input-file" #fileDropRef id="fileDropRef" multiple
+                (change)="fileBrowseHandler($event.target.files)" />
+              <div class="files-list">
+                <div class="single-file" *ngFor="let file of files; let i = index"
+                  style="padding-top: 8px; padding-bottom: 0; padding-right: 0;">
+                  <img src="../../assets/img/images/ic-file.png" alt="file"
+                    style="height:48px; margin-right:10px; margin-bottom: 5px;">
+                  <div class="info">
+                    <h4 class="name">
+                      {{ file?.name }}
+                    </h4>
+                    <p class="size">
+                      {{ formatBytes(file?.size) }}
+                    </p>
+                    <app-progress [progress]="file?.progress">
+                    </app-progress>
+                    <span *ngIf="file.progress==100" class="after-progress"><i class="fa fa-check"
+                        aria-hidden="true"></i>
+                    </span>
+                  </div>
+                  <div class="delete" alt="file" (click)="deleteFile(i)">
+                    <i class="fa fa-times-circle" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="sub-title" style=" margin-top: 8em;">
                 <div class="modal-footer" style="box-shadow: none;">
                   <button (click)="addLearner()" class="back-btn-course-blue"><a>Confirm</a></button>
                   <button class="next-btn-course" data-dismiss="modal">Cancel</button>
@@ -655,3 +688,11 @@
     </div>
   </div>
 </div>
+
+<script>
+  $(function () {
+    var select_val = $('#sel_test option:selected').val();
+    $('#hdn_test').val(select_val);
+    $('#output').text('Selected value is: ' + select_val);
+  });
+</script>

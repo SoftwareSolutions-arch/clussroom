@@ -26,6 +26,7 @@ import { ClassListComponent } from './class-list/class-list.component';
 import { LearnersComponent } from './learners/learners.component';
 import { CalendarComponent } from './calendar/calendar.component';
 
+
 const routes: Routes = [
   {
     path: 'pricing', component: PricingComponent,canActivate:[AuthGuardGuard]
