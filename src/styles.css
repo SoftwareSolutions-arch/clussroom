@@ -97,3 +97,7 @@ button.swal2-confirm.swal2-styled {
       position: absolute;
       top: 45px;
 }
+
+.toast-top-center {
+  margin-top: 5% !important;
+}

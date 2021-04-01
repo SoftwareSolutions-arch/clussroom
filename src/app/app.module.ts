@@ -90,6 +90,7 @@ import { ToastrModule } from 'ngx-toastr';
       timeOut: 3000,
       positionClass: 'toast-top-center',
       preventDuplicates: true,
+      onActivateTick:true
     }),
     AppRoutingModule,
     BrowserAnimationsModule,

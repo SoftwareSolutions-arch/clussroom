@@ -5,6 +5,7 @@ import {
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
 import Swal from 'sweetalert2'
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ import Swal from 'sweetalert2'
 export class UtilService {
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
-  constructor(public snackBar: MatSnackBar,) { }
+  constructor(public snackBar: MatSnackBar, private toastr: ToastrService) { }
 
 
   //error message
@@ -51,5 +52,10 @@ export class UtilService {
       showConfirmButton: false,
       timer: 1500
     })
+  }
+
+
+  showSuccessToast(msg) {
+    this.toastr.success(msg);
   }
 }

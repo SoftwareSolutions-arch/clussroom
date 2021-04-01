@@ -34,6 +34,8 @@ export class ClassListComponent implements OnInit {
   data: any = [];
   @ViewChild('closeModal') private closeModal: ElementRef;
   @ViewChildren("checkboxes") checkboxes: QueryList<ElementRef>;
+  @ViewChild('suspendModal') private suspendModal: ElementRef;
+  @ViewChild('cancelModal') private cancelModal: ElementRef;
 
   currentIndex = -1;
   page = 1;
@@ -45,7 +47,7 @@ export class ClassListComponent implements OnInit {
   selectedItems = [];
   isGoToShow: boolean = false;
   files: any[] = [];
-
+  selectedCourseList: any = '';
   constructor(public service: SharedServiceService, public router: Router, public util: UtilService, private fb: FormBuilder,
     private http: HttpClient) {
 
@@ -107,7 +109,7 @@ export class ClassListComponent implements OnInit {
   getAllCoursesList() {
     this.isLoadingBool = true;
     this.service.post('view-all-courses-api', '', 1).subscribe(result => {
-      console.log('result',result)
+      
       this.isLoadingBool = false;
       this.allCourseList = result['coursesdata'];
       if (result['status'] == 1) {
@@ -152,7 +154,7 @@ export class ClassListComponent implements OnInit {
   getAllClassesList() {
     this.isLoadingBool = true;
     this.service.post('view-all-learners-api', '', 1).subscribe(result => {
-      console.log('result+++P',result)
+      
       this.isLoadingBool = false;
       this.allClassesList = result;
     })
@@ -169,7 +171,7 @@ export class ClassListComponent implements OnInit {
     }
     this.isLoadingBool = true;
     this.service.post('view-all-classes-api', params, 1).subscribe(result => {
-    console.log('result++++',result);
+      
       this.isLoadingBool = false;
       if (result['status'] == 1) {
         this.allClassesData = result['classesdata'];
@@ -261,10 +263,6 @@ export class ClassListComponent implements OnInit {
     }
   }
 
-  isClickedRadio() {
-
-  }
-
   // base 64 csv upload
   public changeListeners(files: FileList) {
 
@@ -276,7 +274,8 @@ export class ClassListComponent implements OnInit {
     }
   }
 
-  isCheckClicked(event, courseList, i) {
+  isCheckClicked(event, courseList, i) {    
+    this.selectedCourseList = courseList;
     this.isGoToShow = true;
   }
 
@@ -285,6 +284,12 @@ export class ClassListComponent implements OnInit {
     this.checkboxes.forEach((element) => {
       element.nativeElement.checked = false;
     });
+  }
+  
+  isModelOpen(){
+    if(this.isGoToShow==false){
+      this.util.showSuccessToast('please select row');
+    }
   }
 
   /**
@@ -382,4 +387,37 @@ export class ClassListComponent implements OnInit {
     })
   }
 
+  // Suspend learner step 1
+  suspendLearner() {
+    let params = {
+      "step": 1,
+      "userids": this.selectedCourseList.learner_id
+    }
+
+    
+
+    this.isLoadingBool = true;
+    this.service.post('suspend-learner-api', params, 1).subscribe(result => {
+      
+      this.isLoadingBool = false;
+    })
+  }
+
+  // Suspend learner step 2
+  confirmSuspendLearner() {
+    this.cancelModal.nativeElement.click();
+    let params = {
+      "step": 2,
+      "userids": this.selectedCourseList.learner_id
+    }
+    this.isLoadingBool = true;
+    this.service.post('suspend-learner-api', params, 1).subscribe(result => {
+      this.suspendModal.nativeElement.click();
+      if (result.status == 1) {
+        this.isLoadingBool = false;
+        this.getClassesListData();
+        this.util.showSuccessAlert(result.error_message);
+      }
+    })
+  }
 }
