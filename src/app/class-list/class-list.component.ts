@@ -35,6 +35,7 @@ export class ClassListComponent implements OnInit {
   @ViewChild('closeModal') private closeModal: ElementRef;
   @ViewChildren("checkboxes") checkboxes: QueryList<ElementRef>;
   @ViewChild('suspendModal') private suspendModal: ElementRef;
+  @ViewChild('cancelClassModal') private cancelClassModal: ElementRef;
   @ViewChild('cancelModal') private cancelModal: ElementRef;
 
   currentIndex = -1;
@@ -109,7 +110,7 @@ export class ClassListComponent implements OnInit {
   getAllCoursesList() {
     this.isLoadingBool = true;
     this.service.post('view-all-courses-api', '', 1).subscribe(result => {
-      
+
       this.isLoadingBool = false;
       this.allCourseList = result['coursesdata'];
       if (result['status'] == 1) {
@@ -154,7 +155,7 @@ export class ClassListComponent implements OnInit {
   getAllClassesList() {
     this.isLoadingBool = true;
     this.service.post('view-all-learners-api', '', 1).subscribe(result => {
-      
+
       this.isLoadingBool = false;
       this.allClassesList = result;
     })
@@ -171,7 +172,7 @@ export class ClassListComponent implements OnInit {
     }
     this.isLoadingBool = true;
     this.service.post('view-all-classes-api', params, 1).subscribe(result => {
-      
+
       this.isLoadingBool = false;
       if (result['status'] == 1) {
         this.allClassesData = result['classesdata'];
@@ -274,7 +275,7 @@ export class ClassListComponent implements OnInit {
     }
   }
 
-  isCheckClicked(event, courseList, i) {    
+  isCheckClicked(event, courseList, i) {
     this.selectedCourseList = courseList;
     this.isGoToShow = true;
   }
@@ -285,9 +286,9 @@ export class ClassListComponent implements OnInit {
       element.nativeElement.checked = false;
     });
   }
-  
-  isModelOpen(){
-    if(this.isGoToShow==false){
+
+  isModelOpen() {
+    if (this.isGoToShow == false) {
       this.util.showSuccessToast('please select row');
     }
   }
@@ -394,11 +395,11 @@ export class ClassListComponent implements OnInit {
       "userids": this.selectedCourseList.learner_id
     }
 
-    
+
 
     this.isLoadingBool = true;
     this.service.post('suspend-learner-api', params, 1).subscribe(result => {
-      
+
       this.isLoadingBool = false;
     })
   }
@@ -413,6 +414,44 @@ export class ClassListComponent implements OnInit {
     this.isLoadingBool = true;
     this.service.post('suspend-learner-api', params, 1).subscribe(result => {
       this.suspendModal.nativeElement.click();
+      if (result.status == 1) {
+        this.isLoadingBool = false;
+        this.getClassesListData();
+        this.util.showSuccessAlert(result.error_message);
+      }
+    })
+  }
+
+  // cancel invite step 1
+  cancelInvite() {
+    let params = {
+      "step": 1,
+      "userids": this.selectedCourseList.learner_id
+    }
+    
+    this.isLoadingBool = true;
+    this.service.post('cancel-invite-learner-api', params, 1).subscribe(result => {
+      
+      if (result.status == 1) {
+        this.isLoadingBool = false;
+        // this.getClassesListData();
+        // this.util.showSuccessAlert(result.error_message);
+      }
+    })
+  }
+
+  // cancel invite step 2
+  cancelInviteConfirm() {
+    this.cancelModal.nativeElement.click();
+    let params = {
+      "step": 2,
+      "userids": this.selectedCourseList.learner_id
+    }
+    
+    this.isLoadingBool = true;
+    this.service.post('cancel-invite-learner-api', params, 1).subscribe(result => {
+      this.cancelClassModal.nativeElement.click();
+      
       if (result.status == 1) {
         this.isLoadingBool = false;
         this.getClassesListData();

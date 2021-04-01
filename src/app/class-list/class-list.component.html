@@ -119,8 +119,8 @@
                     <th scope="col" class="table-filter">Status</th>
                     <th scope="col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                     <th scope="col" (click)="isModelOpen()">
-                      <a class="custom-a-btn" data-toggle="modal" data-target="#cancel"><i
-                          class="fa fa-ellipsis-v" aria-hidden="true" style="color: #7990B4"></i>
+                      <a class="custom-a-btn" data-toggle="modal" data-target="#cancel"><i class="fa fa-ellipsis-v"
+                          aria-hidden="true" style="color: #7990B4"></i>
                       </a>
                     </th>
                   </tr>
@@ -288,7 +288,7 @@
                         class="add-btn custom-a-btn custom-a-btn-learner" data-toggle="modal"
                         data-target="#suspendlearner"><i class="fa fa-times-circle-o"
                           aria-hidden="true"></i>&nbsp;&nbsp;Suspend</a></button></div>
-                  <div class="my-modal">
+                  <div class="my-modal" (click)="cancelInvite()">
                     <button><a class="add-btn custom-a-btn custom-a-btn-learner" data-toggle="modal"
                         data-target="#cancelClass"><i class="fa fa-minus-circle"
                           aria-hidden="true"></i>&nbsp;&nbsp;Cancel
@@ -331,7 +331,7 @@
 
       <!--Cancel Class Invite popup start-->
 
-      <div id="cancelClass" class="modal addcourse-modal" role="dialog">
+      <div id="cancelClass" class="modal addcourse-modal" role="dialog" #cancelClassModal>
         <div class="modal-dialog modal-dialog-width">
           <div class="modal-content">
             <div class="modal-body">
@@ -345,8 +345,8 @@
                 <div class="modal-mid-section mt-5">
                   <h3>Cancel class Invite?</h3>
                 </div>
-                <div class="center-btn-orange mt-3">
-                  <button><a href="#">Yes</a></button>
+                <div class="center-btn-orange mt-3" (click)="cancelInviteConfirm()">
+                  <button><a>Yes</a></button>
                 </div>
               </div>
             </div>
