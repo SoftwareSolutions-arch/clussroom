@@ -521,6 +521,10 @@ export class Sample04Component implements OnInit {
 
   goToClassList() {
     this.router.navigate(['/classes-list'])
+  }
 
+  goToLearner(){
+    console.log('hello user hello')
+    this.router.navigate(['/learners']);
   }
 }

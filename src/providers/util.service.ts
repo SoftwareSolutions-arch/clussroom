@@ -38,7 +38,7 @@ export class UtilService {
   // error message through alert
   errorAlertPopup(msg) {
     Swal.fire({
-      title: 'Error',
+      title: 'Shucks',
       text: msg,
     })
   }

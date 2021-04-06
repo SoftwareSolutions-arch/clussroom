@@ -29,76 +29,76 @@ import { CalendarComponent } from './calendar/calendar.component';
 
 const routes: Routes = [
   {
-    path: 'pricing', component: PricingComponent,canActivate:[AuthGuardGuard]
+    path: 'pricing', component: PricingComponent
   },
   {
-    path: 'subscription', component: SubscriptionComponent,canActivate:[AuthGuardGuard]
+    path: 'subscription', component: SubscriptionComponent
   },
   {
-    path: 'invoice', component: InvoiceComponent,canActivate:[AuthGuardGuard]
+    path: 'invoice', component: InvoiceComponent
   },
   {
-    path: 'login', component: LoginComponent,canActivate:[AuthGuardGuard]
+    path: 'login', component: LoginComponent
   },
   {
-    path: 'school-name', component: SchoolNameComponent,canActivate:[AuthGuardGuard]
+    path: 'school-name', component: SchoolNameComponent
   },
   {
-    path: 'instruction-name', component: InstructionNameComponent,canActivate:[AuthGuardGuard]
+    path: 'instruction-name', component: InstructionNameComponent
   },
   {
-    path: 'home', component: HomeComponent,canActivate:[AuthGuardGuard]
+    path: 'home', component: HomeComponent
   },
   {
-    path: 'choose-password', component: ChoosePasswordComponent,canActivate:[AuthGuardGuard]
+    path: 'choose-password', component: ChoosePasswordComponent
   },
   {
-    path: 'thanks-screen', component: ThanksScreenComponent,canActivate:[AuthGuardGuard]
+    path: 'thanks-screen', component: ThanksScreenComponent
   },
   {
-    path: 'contact-us', component: ContactUsComponent,canActivate:[AuthGuardGuard]
+    path: 'contact-us', component: ContactUsComponent
   },
   {
-    path: 'about-us', component: AboutUsComponent,canActivate:[AuthGuardGuard]
+    path: 'about-us', component: AboutUsComponent
   },
   {
-    path: 'forgot-password', component: ForgotPasswordComponent,canActivate:[AuthGuardGuard]
+    path: 'forgot-password', component: ForgotPasswordComponent
   },
   {
-    path: 'change-password', component: ChangePasswordComponent,canActivate:[AuthGuardGuard]
+    path: 'change-password', component: ChangePasswordComponent
   },
   {
-    path: 'footer', component: FooterComponent,canActivate:[AuthGuardGuard]
+    path: 'footer', component: FooterComponent
   },
   {
-    path: 'otp', component: OtpComponent,canActivate:[AuthGuardGuard]
+    path: 'otp', component: OtpComponent
   },
   {
-    path: 'sidebar', component: SidebarComponent,canActivate:[AuthGuardGuard]
+    path: 'sidebar', component: SidebarComponent
   },
   {
-    path: 'sample04', component: Sample04Component,canActivate:[AuthGuardGuard]
+    path: 'sample04', component: Sample04Component
   },
   {
-    path: 'dashoardheader',component:DashboardheaderComponent,canActivate:[AuthGuardGuard]
+    path: 'dashoardheader',component:DashboardheaderComponent
   },
   {
-    path: 'classes',component:ClassesComponent,canActivate:[AuthGuardGuard]
+    path: 'classes',component:ClassesComponent
   },
   {
-    path: 'classes-list',component:ClassListComponent,canActivate:[AuthGuardGuard]
+    path: 'classes-list',component:ClassListComponent
   },
   {
-    path: 'learners',component:LearnersComponent,canActivate:[AuthGuardGuard]
+    path: 'learners',component:LearnersComponent
   },
   {
-    path: 'privacy-policy',component:PrivacyPolicyComponent,canActivate:[AuthGuardGuard]
+    path: 'privacy-policy',component:PrivacyPolicyComponent
   },
   {
-    path: 'terms-of-use',component:TermsOfUseComponent,canActivate:[AuthGuardGuard]
+    path: 'terms-of-use',component:TermsOfUseComponent
   },
   {
-    path: 'calendar',component:CalendarComponent,canActivate:[AuthGuardGuard]
+    path: 'calendar',component:CalendarComponent
   },
   {
     path: '', redirectTo: '/home', pathMatch: 'full'

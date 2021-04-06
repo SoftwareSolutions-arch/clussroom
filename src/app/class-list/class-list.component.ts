@@ -395,8 +395,6 @@ export class ClassListComponent implements OnInit {
       "userids": this.selectedCourseList.learner_id
     }
 
-
-
     this.isLoadingBool = true;
     this.service.post('suspend-learner-api', params, 1).subscribe(result => {
 
@@ -428,10 +426,10 @@ export class ClassListComponent implements OnInit {
       "step": 1,
       "userids": this.selectedCourseList.learner_id
     }
-    
+
     this.isLoadingBool = true;
     this.service.post('cancel-invite-learner-api', params, 1).subscribe(result => {
-      
+
       if (result.status == 1) {
         this.isLoadingBool = false;
         // this.getClassesListData();
@@ -447,16 +445,21 @@ export class ClassListComponent implements OnInit {
       "step": 2,
       "userids": this.selectedCourseList.learner_id
     }
-    
+
     this.isLoadingBool = true;
     this.service.post('cancel-invite-learner-api', params, 1).subscribe(result => {
       this.cancelClassModal.nativeElement.click();
-      
+
       if (result.status == 1) {
         this.isLoadingBool = false;
         this.getClassesListData();
         this.util.showSuccessAlert(result.error_message);
       }
     })
+  }
+
+  // go To Learner
+  goToLearner() {
+    this.router.navigate(['/learners']);
   }
 }

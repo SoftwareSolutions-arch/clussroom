@@ -317,6 +317,10 @@ export class ClassesComponent implements OnInit {
   }
 
   goToClassList() {
-    this.router.navigate(['/classes-list'])
+    this.router.navigate(['/classes-list']);
+  }
+
+  goToLearners(){
+    this.router.navigate(['/learners']);
   }
 }

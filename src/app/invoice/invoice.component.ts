@@ -19,12 +19,14 @@ export class InvoiceComponent implements OnInit {
   invoiceDetails: any = {};
   isImageShow: boolean = true;
   isSpinnerShow: boolean = false;
+  backButtonClicked: boolean = false;
   enablePaymemtForm: boolean = true;
   error_messages: any = '';
   invoiceForm: FormGroup;
   paymentForm: FormGroup;
   passwordNotMatch: any = '';
   title: any = '';
+  myValue: boolean = false;
   constructor(public formBuilder: FormBuilder, public util: UtilService,
     public router: Router, public http: HttpClient, public service: SharedServiceService
   ) {
@@ -213,6 +215,7 @@ export class InvoiceComponent implements OnInit {
 
   // enable or disable form
   add() {
+    this.myValue = false;
     this.paymentForm.enable();
     this.invoiceForm.disable();
     this.enablePaymemtForm = false;
@@ -220,6 +223,7 @@ export class InvoiceComponent implements OnInit {
 
   // enable previous page
   back() {
+    this.myValue = true;
     this.invoiceForm.enable()
   }
 
@@ -231,7 +235,7 @@ export class InvoiceComponent implements OnInit {
     }
 
     this.service.post('vendor-registration', data, 0).subscribe(result => {
-      
+
       this.isImageShow = false;
       this.invoiceDetails = result['nids'][0];
     })
@@ -262,10 +266,11 @@ export class InvoiceComponent implements OnInit {
     }
 
     this.service.post('vendor-registration', data, 0).subscribe(result => {
-      
+
       if (result['status_message'] == 'User Created Successfully') {
         localStorage.setItem('userMail', result['email']);
         localStorage.setItem('firstName', result['fname']);
+        localStorage.setItem('isPasswordSet', '0');
         this.isSpinnerShow = false;
         this.util.openSnackBarSuccess(result['status_message'])
         this.router.navigate(['/thanks-screen']);

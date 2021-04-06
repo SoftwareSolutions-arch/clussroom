@@ -9,11 +9,10 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'clussroom';
 
-  constructor(public router: Router){
-    var data=localStorage.getItem('isLogin');
-    if(data=='1'){
+  constructor(public router: Router) {
+    var data = localStorage.getItem('isLogin');
+    if (data == '1') {
       this.router.navigate(['/sample04']);
     }
   }
-
 }
