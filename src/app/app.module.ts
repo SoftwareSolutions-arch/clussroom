@@ -16,12 +16,12 @@ import { InvoiceComponent } from './invoice/invoice.component';
 import { SchoolNameComponent } from './school-name/school-name.component';
 import { SubscriptionComponent } from './subscription/subscription.component';
 import { ThanksScreenComponent } from './thanks-screen/thanks-screen.component';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { HeaderComponent } from './header/header.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import {MatInputModule} from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -32,11 +32,11 @@ import { DeletePopupComponent } from './delete-popup/delete-popup.component';
 import { DashboardheaderComponent } from './dashboardheader/dashboardheader.component';
 import { CoursesComponent } from './courses/courses.component';
 import { ClassesComponent } from './classes/classes.component';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 import { CommonModule } from '@angular/common';
 import { PasswordStrengthComponent } from './password-strength/password-strength.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 import { ClassListComponent } from './class-list/class-list.component';
 import { LearnersComponent } from './learners/learners.component';
 import { StorageComponent } from './storage/storage.component';
@@ -48,6 +48,8 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
 import { CalendarComponent } from './calendar/calendar.component';
 import { ProgressComponent } from './progress/progress.component';
 import { ToastrModule } from 'ngx-toastr';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 @NgModule({
   declarations: [
@@ -90,18 +92,22 @@ import { ToastrModule } from 'ngx-toastr';
       timeOut: 3000,
       positionClass: 'toast-top-center',
       preventDuplicates: true,
-      onActivateTick:true
+      onActivateTick: true
+    }),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
     }),
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSnackBarModule,MatInputModule,MatTableModule,
+    MatSnackBarModule, MatInputModule, MatTableModule,
     MatProgressSpinnerModule,
-    SlickCarouselModule,MatTabsModule,NgxPaginationModule,AngularEditorModule
+    SlickCarouselModule, MatTabsModule, NgxPaginationModule, AngularEditorModule
   ],
-  providers: [Sample04Component,ClassesComponent],
+  providers: [Sample04Component, ClassesComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
