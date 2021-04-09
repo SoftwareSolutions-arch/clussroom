@@ -35,7 +35,8 @@ export class InvoiceComponent implements OnInit {
     this.getAllInvoiceList();
     this.paymentForm.disable();
     this.title = localStorage.getItem('title');
-    this.getAllCountry();
+    this.getCountry();
+
   }
 
   ngOnInit(): void {
@@ -288,23 +289,56 @@ export class InvoiceComponent implements OnInit {
   }
 
   // get invoice list
-  getAllCountry() {
+  // getAllCountry() {
+  //   this.allStateList = '';
+  //   this.allCityList = null;
+  //   this.service.getData('countries').subscribe(result => {
+  //     
+  //     this.allCountryList = result
+  //   })
+  // }
+
+  // getallState() {
+  //   this.isImageShow = true;
+  //   this.allCityList = null;
+  //   this.service.getData('countries/' + this.invoiceForm.value.country.iso2 + '/states').subscribe(result => {
+  //     this.isImageShow = false;
+  //     this.allStateList = result;
+  //   })
+  // }
+
+  // getallCity() {
+  //   this.isImageShow = true;
+  //   this.service.getData('countries/' + this.invoiceForm.value.country.iso2 + '/states/' + this.invoiceForm.value.state.iso2 + '/cities').subscribe(result => {
+  //     this.allCityList = result;
+  //     this.isImageShow = false;
+  //   })
+  // }
+
+  // get country 
+
+  getCountry() {
     this.allStateList = '';
-    this.allCityList = '';
-    this.service.getData('countries').subscribe(result => {
+    this.allCityList = null;
+    this.service.getData('countries/').subscribe(result => {
       this.allCountryList = result
     })
   }
 
   getState() {
-    this.service.getData('countries/' + this.invoiceForm.value.country.iso2 + '/states').subscribe(result => {
-      this.allStateList = result
+    this.isImageShow = true;
+    this.allCityList = null;
+    this.service.getData('states/' + this.invoiceForm.value.country.country_name).subscribe(result => {
+      this.isImageShow = false;
+      this.allStateList = result;
     })
   }
 
   getCity() {
-    this.service.getData('countries/' + this.invoiceForm.value.country.iso2 + '/states/' + this.invoiceForm.value.state.iso2 + '/cities').subscribe(result => {
-      this.allCityList = result
+    this.isImageShow = true;
+    this.service.getData('cities/' + this.invoiceForm.value.state.state_name).subscribe(result => {
+      this.allCityList = result;
+      this.isImageShow = false;
     })
   }
 }

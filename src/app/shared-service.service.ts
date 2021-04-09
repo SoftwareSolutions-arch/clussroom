@@ -7,7 +7,9 @@ import { Observable } from 'rxjs';
 })
 export class SharedServiceService {
   baseurl = "https://classroom.auxesisdevelopment.com/api/";
-  tempUrl = "https://api.countrystatecity.in/v1/"
+  // tempUrl = "https://api.countrystatecity.in/v1/"
+  tempUrl = "https://www.universal-tutorial.com/api/"
+
   constructor(public http: HttpClient) { }
 
   // post  method
@@ -62,7 +64,7 @@ export class SharedServiceService {
     let httpOptions;
     httpOptions = {
       headers: new HttpHeaders({
-        'X-CSCAPI-KEY': 'UDJMdHl1NktVZk95U2NlNkFvOHFKNmdIYnhPVGRDbEJya1gxT2VVYg=='
+        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJ1bWFuZ2Nob3ByYTc1QGdtYWlsLmNvbSIsImFwaV90b2tlbiI6Inc3LU1QLTJDdmxrbUVwVEhRSWE5NFNjRG5rZ2haYklLalRhNzhjVFZhaGxYQXZLZ2x3TjB3VUtVNm9fdDZLVGM1X3cifSwiZXhwIjoxNjE3ODYyODgwfQ.Ms3kdaKTlN2R5Ot-VUlRhEfTarHlvfAZ4svvjl5CLTY'
       }),
     };
     return this.http.get(this.tempUrl + endPoint, httpOptions);

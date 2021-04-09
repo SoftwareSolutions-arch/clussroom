@@ -49,17 +49,20 @@ export class ClassListComponent implements OnInit {
   isGoToShow: boolean = false;
   files: any[] = [];
   selectedCourseList: any = '';
+  instructionName: any = '';
+
   constructor(public service: SharedServiceService, public router: Router, public util: UtilService, private fb: FormBuilder,
     private http: HttpClient) {
 
-    this.getAllClassesList();
+    // this.getAllClassesList();
     this.getAllCoursesList();
     this.addCourseForm = this.fb.group({
       employees: this.fb.array([]),
-
     })
     this.addInitialForms();
     this.getallListingDropdown();
+    this.instructionName = localStorage.getItem('instructionName')
+
   }
 
 
@@ -218,6 +221,7 @@ export class ClassListComponent implements OnInit {
     }
     this.isLoadingBool = true;
     this.service.post('view-all-learners-api', params, 1).subscribe(result => {
+      console.log('result',result);
       this.allClassesList = result;
       this.isTableShow = true;
       this.isLoadingBool = false;
@@ -397,7 +401,6 @@ export class ClassListComponent implements OnInit {
 
     this.isLoadingBool = true;
     this.service.post('suspend-learner-api', params, 1).subscribe(result => {
-
       this.isLoadingBool = false;
     })
   }

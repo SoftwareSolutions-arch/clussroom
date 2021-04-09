@@ -9,7 +9,7 @@
         <ul class="nav nav-tabs">
           <li (click)="goToCourses()"><a data-toggle="tab" href="#course-content" class="clip-item">
               <img src="assets/images/dashboard/second/course-grey.png" class="hover-out">
-              <img src="assets/images/dashboard/second/course-blue.png" class="hover-in">Courses</a>
+              <img src="assets/images/dashboard/second/course-blue.png" class="hover-in">{{this.instructionName}}</a>
           </li>
 
           <li><a data-toggle="tab" href="#classes-content" class="clip-item" (click)="goToclasses()">
@@ -91,7 +91,11 @@
         <button class="center-btn" [disabled]="selectedClass=='' " (click)="getClassesListData()">Go</button>
       </div>
 
-      <div class="prospectus-section" *ngIf="isTableShow">
+      <div *ngIf="isLoadingBool" class="loading-indicator">
+        <mat-spinner></mat-spinner>
+      </div>
+
+      <div class="prospectus-section" *ngIf="isTableShow && !isLoadingBool">
         <div class="prospectus-tabs">
           <div class="prospectus-action">
             <a *ngIf="isGoToShow" class="go-to-class-btn custom-a-btn"
@@ -261,10 +265,10 @@
                 </tbody>
               </table>
             </div>
-            <div class="table-result-wrapper">
+            <!-- <div class="table-result-wrapper">
               <pagination-controls previousLabel="Prev" nextLabel="Next" responsive="true"
                 (pageChange)="handlePageChange($event)"></pagination-controls>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

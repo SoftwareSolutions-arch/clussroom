@@ -9,11 +9,11 @@
   <div class="container">
     <div class="invoice-wrapper">
       <div class="invoice-details">
-        <h2>Invoice Details</h2>
+        <h2>Invoice details</h2>
         <!-- <span>Fill your details for invoice </span> -->
         <form [formGroup]="invoiceForm">
           <div class="company-name fieldset">
-            <label>Company Name</label>
+            <label>Company name</label>
             <input formControlName="companyName" type="text">
             <!-- <div> -->
             <ng-container *ngFor="let error of error_messages.companyName">
@@ -26,7 +26,7 @@
 
           <div class="flex-curve">
             <div class="first-name fieldset col-md-6">
-              <label>First Name<span style="color: red; margin-left: 4px;">*</span></label>
+              <label>First name<span style="color: red; margin-left: 4px;">*</span></label>
               <input formControlName="firstName" type="text">
               <!-- <div> -->
               <ng-container *ngFor="let error of error_messages.firstName">
@@ -39,7 +39,7 @@
 
             </div>
             <div class="last-name fieldset col-md-6">
-              <label>Last Name<span style="color: red; margin-left: 4px;">*</span></label>
+              <label>Last name<span style="color: red; margin-left: 4px;">*</span></label>
               <input formControlName="lastName" type="text">
               <!-- <div> -->
               <ng-container *ngFor="let error of error_messages.lastName">
@@ -68,7 +68,7 @@
             <select formControlName="country" name="category" id="categorycourse" (change)="getState()"
               style="padding: 0 11px;">
               <option *ngFor="let countryName of this.allCountryList" [ngValue]="countryName">
-                {{countryName.name}}
+                {{countryName.country_name}}
               </option>
             </select>
           </div>
@@ -79,7 +79,7 @@
               <select formControlName="state" name="category" id="categorycourse" (change)="getCity()"
                 style="padding: 0 11px;">
                 <option *ngFor="let stateName of this.allStateList" [ngValue]="stateName">
-                  {{stateName.name}}
+                  {{stateName.state_name}}
                 </option>
               </select>
             </div>
@@ -87,7 +87,7 @@
               <label>City</label>
               <select formControlName="city" name="category" id="categorycourse" style="padding: 0 11px;">
                 <option *ngFor="let cityName of this.allCityList" [ngValue]="cityName">
-                  {{cityName.name}}
+                  {{cityName.city_name}}
                 </option>
               </select>
             </div>
@@ -129,10 +129,12 @@
       <!-- disable payment-->
       <div class="order-summary" *ngIf="enablePaymemtForm">
         <div class="order-summary-flex">
-          <h3>Order Summary</h3>
+          <h3>Order summary</h3>
           <div class="lite-subscription-flex">
             <div class="lite-subscription">
-              <h5>{{this.title}} subscription</h5>
+              <h5>{{this.title}} <span
+                  style="text-transform: none; font-size: 15px; font-weight: 500; font-family: 'Barlow';">subscription</span>
+              </h5>
               <span>(at ${{this.invoiceDetails.amount}} yearly)</span>
             </div>
             <h5>$ {{this.invoiceDetails.yearly_amount}}</h5>
@@ -144,7 +146,7 @@
           </div>
           <div class="net-total-flex">
             <div class="net-total">
-              <h6>Net Total&nbsp;&nbsp;</h6>
+              <h6>Net total&nbsp;&nbsp;</h6>
               <span>(Incl Vat)</span>
             </div>
             <h5>$ {{this.invoiceDetails.yearly_amount_after_vat}}</h5>
@@ -182,7 +184,7 @@
                 </ng-container>
               </div>
               <div class="cardnumber fieldset">
-                <label>Card Number</label>
+                <label>Card number</label>
                 <input formControlName="cardNumber" type="number">
                 <!-- <div> -->
                 <ng-container *ngFor="let error of error_messages.cardNumber">
@@ -196,7 +198,7 @@
               </div>
               <div class="payment-flex-curve">
                 <div class="expire-date fieldset">
-                  <label>Card Expiry</label>
+                  <label>Card expiry</label>
                   <input type="number" formControlName="expiryDate">
                   <ng-container *ngFor="let error of error_messages.expiryDate">
                     <div class="error-message"
@@ -220,7 +222,7 @@
               <div class="button-wrapper">
                 <button [disabled]="!paymentForm.valid && this.myValue==true" class="btn" (click)="submit()"
                   *ngIf="!isSpinnerShow">Make
-                  Payment {{this.myValue}}</button>
+                  Payment</button>
                 <div class="spinner-loader" *ngIf="isSpinnerShow">
                   <img style="width:100px" src="assets/spinner.gif">
                 </div>
@@ -287,7 +289,7 @@
                 </ng-container>
               </div>
               <div class="cardnumber fieldset">
-                <label>Card Number</label>
+                <label>Card number</label>
                 <input type="number" ng-model="number" onKeyPress="if(this.value.length==4) return false;" min="0"
                   style="width:20%; margin-right: 5px;">
                 <input type="number" ng-model="number" onKeyPress="if(this.value.length==4) return false;" min="0"
@@ -308,7 +310,7 @@
               </div>
               <div class="payment-flex-curve">
                 <div class="expire-date fieldset">
-                  <label>Card Expiry</label>
+                  <label>Card expiry</label>
                   <input type="number" formControlName="expiryDate">
                   <ng-container *ngFor="let error of error_messages.expiryDate">
                     <div class="error-message"
