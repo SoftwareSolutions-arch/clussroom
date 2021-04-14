@@ -531,4 +531,8 @@ export class Sample04Component implements OnInit {
     this.router.navigate(['/storage']);
   }
 
+  goToAdmin(){
+    this.router.navigate(['/admin']);
+  }
+
 }

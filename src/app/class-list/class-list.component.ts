@@ -470,4 +470,8 @@ export class ClassListComponent implements OnInit {
   goToStorage(){
     this.router.navigate(['/storage']);
   }
+
+  goToAdmin(){
+    this.router.navigate(['/admin']);
+  }
 }

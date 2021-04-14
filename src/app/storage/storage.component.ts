@@ -37,4 +37,8 @@ export class StorageComponent implements OnInit {
   goToLearner(){
     this.router.navigate(['/learners']);
   }
+
+  goToAdmin(){
+    this.router.navigate(['/admin']);
+  }
 }

@@ -107,6 +107,10 @@ export class LearnersComponent implements OnInit {
     this.router.navigate(['/storage']);
   }
 
+  goToAdmin(){
+    this.router.navigate(['/admin']);
+  }
+
   // get all courses list
   getAllClassesList() {
     this.isLoadingBool = true;

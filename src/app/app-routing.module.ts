@@ -26,7 +26,10 @@ import { ClassListComponent } from './class-list/class-list.component';
 import { LearnersComponent } from './learners/learners.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { StorageComponent } from './storage/storage.component';
-import {LoaderComponent} from './loader/loader.component'
+import {LoaderComponent} from './loader/loader.component';
+import {AdminComponent} from './admin/admin.component';
+import {LiveSessionsComponent} from './live-sessions/live-sessions.component';
+
 const routes: Routes = [
   {
     path: 'pricing', component: PricingComponent
@@ -105,6 +108,12 @@ const routes: Routes = [
   },
   {
     path: 'loader',component:LoaderComponent
+  },
+  {
+    path: 'admin',component:AdminComponent
+  },
+  {
+    path: 'live-session',component:LiveSessionsComponent
   },
   {
     path: '', redirectTo: '/home', pathMatch: 'full'

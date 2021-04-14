@@ -1,338 +1,396 @@
-<div class="prospectus-section">
-  <div class="prospectus-tabs">
-    <ul class="nav nav-tabs">
-      <li><a data-toggle="tab" href="#summary" class="active">Admin</a></li>
-      <li><a data-toggle="tab" href="#instructions">Method of Instructions</a></li>
-    </ul>
-    <div class="prospectus-action">
-      <a class="add-btn custom-a-btn" data-toggle="modal" data-target="#addCourse"><i class="fa fa-plus"
-          aria-hidden="true"></i> Name</a>
-      <!-- <a class="edit-btn custom-a-btn" data-toggle="modal" data-target="#editCourse"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
-                <a class="delete-btn custom-a-btn" data-toggle="modal" data-target="#deleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                <a  class="delete-btn custom-a-btn" data-toggle="modal" data-target="#unabledeleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="dashboard">
+  <app-sidebar></app-sidebar>
+  <div class="control-panel">
+    <!-- <app-header></app-header> -->
+    <app-dashboardheader></app-dashboardheader>
+    <div class="nav-clip">
+      <ul class="nav nav-tabs">
+        <li (click)="goToCourses()"><a data-toggle="tab" href="#course-content" class="clip-item">
+            <img src="assets/images/dashboard/second/course-grey.png" class="hover-out">
+            <img src="assets/images/dashboard/second/course-blue.png" class="hover-in">{{this.instructionName}}</a>
+        </li>
+
+        <li (click)="goToclasses()"><a data-toggle="tab" href="#classes-content" class="clip-item">
+            <img src="assets/images/dashboard/second/clip-classes-grey.png" class="hover-out">
+            <img src="assets/images/dashboard/second/clip-classes-blue.png" class="hover-in">Classes</a>
+        </li>
+
+        <li (click)="goToClassList()"><a data-toggle="tab" href="#class-list-content" class="clip-item">
+            <img src="assets/images/dashboard/second/list-grey.png" class="hover-out">
+            <img src="assets/images/dashboard/second/list-blue.png" class="hover-in">
+            Class list</a>
+        </li>
+
+        <li (click)="goToLearner()"><a data-toggle="tab" href="#learners-content" class="clip-item">
+            <img src="assets/images/dashboard/second/clip-learner-grey.png" class="hover-out">
+            <img src="assets/images/dashboard/second/clip-learner-blue.png" class="hover-in">
+            Learners</a>
+        </li>
+
+        <li (click)="goToStroage()"><a data-toggle="tab" href="#storage-content" class="clip-item">
+            <img src="assets/images/dashboard/second/clip-storage-grey.png" class="hover-out">
+            <img src="assets/images/dashboard/second/clip-storage-blue.png" class="hover-in">
+            Storage</a>
+        </li>
+
+        <li><a data-toggle="tab" href="#admin-content" class="active clip-item">
+            <img src="assets/images/dashboard/second/clip-user-grey.png" class="hover-out">
+            <img src="assets/images/dashboard/second/clip-user-blue.png" class="hover-in">
+            Admin</a>
+        </li>
+
+        <li><a data-toggle="tab" href="#live-sessions-content" class="clip-item">
+            <img src="assets/images/dashboard/second/session-grey.png" class="hover-out">
+            <img src="assets/images/dashboard/second/session-blue.png" class="hover-in">
+            Live Sessions</a>
+        </li>
+      </ul>
     </div>
-  </div>
-  <div class="tab-content class-table-user">
-    <div id="summary" class="tab-pane active">
-      <div class="table-path">
-        <p>&lt;Course&gt;/&lt;Activity&gt;/&lt;Subject&gt;/&lt;Topic&gt; Administrator</p>
+
+
+    <div *ngIf="isLoadingBool" class="loading-indicator">
+      <mat-spinner></mat-spinner>
+    </div>
+
+
+    <div class="prospectus-section">
+      <div class="prospectus-tabs">
+        <ul class="nav nav-tabs">
+          <li><a data-toggle="tab" href="#summary" class="active">Admin</a></li>
+          <li><a data-toggle="tab" href="#instructions">Method of Instructions</a></li>
+        </ul>
+        <div class="prospectus-action">
+          <a class="add-btn custom-a-btn" data-toggle="modal" data-target="#addCourse"><i class="fa fa-plus"
+              aria-hidden="true"></i> Name</a>
+          <!-- <a class="edit-btn custom-a-btn" data-toggle="modal" data-target="#editCourse"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+                    <a class="delete-btn custom-a-btn" data-toggle="modal" data-target="#deleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                    <a  class="delete-btn custom-a-btn" data-toggle="modal" data-target="#unabledeleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
+        </div>
       </div>
-      <div class="table-responsive admin-button">
-        <table class="table dashboard-table">
-          <thead>
-            <tr>
-              <th scope="col">No.</th>
-              <th scope="col" class="text-left">&lt;Course&gt;</th>
-              <th scope="col">Level</th>
-              <th scope="col">Banding</th>
-              <th scope="col" class="table-filter">Course admin</th>
-              <th scope="col" class="table-filter">Email</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
+      <div class="tab-content class-table-user">
+        <div id="summary" class="tab-pane active">
+          <div class="table-path">
+            <p>&lt;Course&gt;/&lt;Activity&gt;/&lt;Subject&gt;/&lt;Topic&gt; Administrator</p>
+          </div>
+          <div class="table-responsive admin-button">
+            <table class="table dashboard-table">
+              <thead>
+                <tr>
+                  <th scope="col">No.</th>
+                  <th scope="col" class="text-left">&lt;Course&gt;</th>
+                  <th scope="col">Level</th>
+                  <th scope="col">Banding</th>
+                  <th scope="col" class="table-filter">Course admin</th>
+                  <th scope="col" class="table-filter">Email</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
 
-              <td>1</td>
-              <td class="text-left">Main Library</td>
-              <td>Secondary 1</td>
-              <td>1</td>
-              <td>Darren Leow</td>
-              <td>abc@email.com</td>
-              <td><button><a href="#">Edit</a></button></td>
+                  <td>1</td>
+                  <td class="text-left">Main Library</td>
+                  <td>Secondary 1</td>
+                  <td>1</td>
+                  <td>Darren Leow</td>
+                  <td>abc@email.com</td>
+                  <td><button><a href="#">Edit</a></button></td>
 
-            </tr>
-            <tr>
+                </tr>
+                <tr>
 
-              <td>2</td>
-              <td class="text-left">&lt;Course name 1&gt;</td>
-              <td>Senior Professionals</td>
-              <td>-</td>
-              <td>Shannon Doherty</td>
-              <td>abcdefghi@email.com</td>
-              <td><button><a href="#">Edit</a></button></td>
-            </tr>
-            <tr>
+                  <td>2</td>
+                  <td class="text-left">&lt;Course name 1&gt;</td>
+                  <td>Senior Professionals</td>
+                  <td>-</td>
+                  <td>Shannon Doherty</td>
+                  <td>abcdefghi@email.com</td>
+                  <td><button><a href="#">Edit</a></button></td>
+                </tr>
+                <tr>
 
-              <td>3</td>
-              <td class="text-left">&lt;Course name 2&gt;</td>
-              <td>Working professionals</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td><button class="admin-button-green" style="padding: 0 !important;"><a class="custom-a-btn"
-                    data-toggle="modal" data-target="#learners">Assign</a></button></td>
+                  <td>3</td>
+                  <td class="text-left">&lt;Course name 2&gt;</td>
+                  <td>Working professionals</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td><button class="admin-button-green" style="padding: 0 !important;"><a class="custom-a-btn"
+                        data-toggle="modal" data-target="#learners">Assign</a></button></td>
 
-            </tr>
-            <tr>
+                </tr>
+                <tr>
 
-              <td>4</td>
-              <td class="text-left">&lt;Course name 3&gt;</td>
-              <td>University Graduation year</td>
-              <td>3</td>
-              <td>Marie Bron Holidays</td>
-              <td>repository123456@gmail.com</td>
-              <td><button><a href="#">Edit</a></button></td>
+                  <td>4</td>
+                  <td class="text-left">&lt;Course name 3&gt;</td>
+                  <td>University Graduation year</td>
+                  <td>3</td>
+                  <td>Marie Bron Holidays</td>
+                  <td>repository123456@gmail.com</td>
+                  <td><button><a href="#">Edit</a></button></td>
 
-            </tr>
-            <tr>
+                </tr>
+                <tr>
 
-              <td>5</td>
-              <td class="text-left">&lt;Course name 4&gt;</td>
-              <td>Primary 4</td>
-              <td>1</td>
-              <td>Jarques Chirac</td>
-              <td>education123456@gmail.com</td>
-              <td><button><a href="#">Edit</a></button></td>
+                  <td>5</td>
+                  <td class="text-left">&lt;Course name 4&gt;</td>
+                  <td>Primary 4</td>
+                  <td>1</td>
+                  <td>Jarques Chirac</td>
+                  <td>education123456@gmail.com</td>
+                  <td><button><a href="#">Edit</a></button></td>
 
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="table-result-wrapper bottom-select row">
-        <select name="course" id="course-name">
-          <option selected>10</option>
-          <option value="Course 1">1</option>
-          <option value="Course 2">2</option>
-          <option value="Course 3">3</option>
-        </select>
-        <p>Results: 1-15 of 324</p>
-        <div class="selector col-lg-10">
-          <ul>
-            <li><a href="#"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li class="active"><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">...</a></li>
-            <li><a href="#" class="right-arrow"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
-          </ul>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-result-wrapper bottom-select row">
+            <select name="course" id="course-name">
+              <option selected>10</option>
+              <option value="Course 1">1</option>
+              <option value="Course 2">2</option>
+              <option value="Course 3">3</option>
+            </select>
+            <p>Results: 1-15 of 324</p>
+            <div class="selector col-lg-10">
+              <ul>
+                <li><a href="#"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li class="active"><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">...</a></li>
+                <li><a href="#" class="right-arrow"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div id="instructions" class="tab-pane">
+          <div class="table=-responsive">
+            <table class="table dashboard-table">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">No.</th>
+                  <th scope="col" class="text-left">Course Name</th>
+                  <th scope="col">Code</th>
+                  <th scope="col" class="table-filter">Cateory/Dept</th>
+                  <th scope="col" class="table-filter">Level</th>
+                  <th scope="col" class="table-filter">Banding</th>
+                  <th scope="col" class="table-filter">No. of classes</th>
+                  <th scope="col" class="table-filter">No. of learners</th>
+                  <th scope="col" class="table-filter">Admin</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>1</td>
+                  <td class="text-left">Biology for Primary 1</td>
+                  <td>A3K</td>
+                  <td>Math</td>
+                  <td>Professional medical</td>
+                  <td>1</td>
+                  <td>12</td>
+                  <td>189</td>
+                  <td>Aeriel Connelly</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>2</td>
+                  <td class="text-left">Geography for Primary 2</td>
+                  <td>4CE</td>
+                  <td>Science</td>
+                  <td>Secondary</td>
+                  <td>2</td>
+                  <td>8</td>
+                  <td>874</td>
+                  <td>Darren Leow</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>3</td>
+                  <td class="text-left">Bull in share market</td>
+                  <td>3AC</td>
+                  <td>Social studies</td>
+                  <td>Primary</td>
+                  <td>3</td>
+                  <td>4</td>
+                  <td>234</td>
+                  <td>Finelly Abrodobe</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>4</td>
+                  <td class="text-left">Balance Sheet making</td>
+                  <td>R6T</td>
+                  <td>Psychology</td>
+                  <td>University</td>
+                  <td>4</td>
+                  <td>11</td>
+                  <td>431</td>
+                  <td>Prena Abdullah</td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table"><input type="checkbox"></div>
+                  </th>
+                  <td>5</td>
+                  <td class="text-left">Cash flow </td>
+                  <td>2UY</td>
+                  <td>Accounting</td>
+                  <td>Primary</td>
+                  <td>2</td>
+                  <td>7</td>
+                  <td>501</td>
+                  <td>Nisha Fasa</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-result-wrapper">
+            <p>Results: 1-15 of 324</p>
+          </div>
         </div>
       </div>
     </div>
-    <div id="instructions" class="tab-pane">
-      <div class="table=-responsive">
-        <table class="table dashboard-table">
-          <thead>
-            <tr>
-              <th scope="col"></th>
-              <th scope="col">No.</th>
-              <th scope="col" class="text-left">Course Name</th>
-              <th scope="col">Code</th>
-              <th scope="col" class="table-filter">Cateory/Dept</th>
-              <th scope="col" class="table-filter">Level</th>
-              <th scope="col" class="table-filter">Banding</th>
-              <th scope="col" class="table-filter">No. of classes</th>
-              <th scope="col" class="table-filter">No. of learners</th>
-              <th scope="col" class="table-filter">Admin</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th>
-                <div class="radio-table"><input type="checkbox"></div>
-              </th>
-              <td>1</td>
-              <td class="text-left">Biology for Primary 1</td>
-              <td>A3K</td>
-              <td>Math</td>
-              <td>Professional medical</td>
-              <td>1</td>
-              <td>12</td>
-              <td>189</td>
-              <td>Aeriel Connelly</td>
-            </tr>
-            <tr>
-              <th>
-                <div class="radio-table"><input type="checkbox"></div>
-              </th>
-              <td>2</td>
-              <td class="text-left">Geography for Primary 2</td>
-              <td>4CE</td>
-              <td>Science</td>
-              <td>Secondary</td>
-              <td>2</td>
-              <td>8</td>
-              <td>874</td>
-              <td>Darren Leow</td>
-            </tr>
-            <tr>
-              <th>
-                <div class="radio-table"><input type="checkbox"></div>
-              </th>
-              <td>3</td>
-              <td class="text-left">Bull in share market</td>
-              <td>3AC</td>
-              <td>Social studies</td>
-              <td>Primary</td>
-              <td>3</td>
-              <td>4</td>
-              <td>234</td>
-              <td>Finelly Abrodobe</td>
-            </tr>
-            <tr>
-              <th>
-                <div class="radio-table"><input type="checkbox"></div>
-              </th>
-              <td>4</td>
-              <td class="text-left">Balance Sheet making</td>
-              <td>R6T</td>
-              <td>Psychology</td>
-              <td>University</td>
-              <td>4</td>
-              <td>11</td>
-              <td>431</td>
-              <td>Prena Abdullah</td>
-            </tr>
-            <tr>
-              <th>
-                <div class="radio-table"><input type="checkbox"></div>
-              </th>
-              <td>5</td>
-              <td class="text-left">Cash flow </td>
-              <td>2UY</td>
-              <td>Accounting</td>
-              <td>Primary</td>
-              <td>2</td>
-              <td>7</td>
-              <td>501</td>
-              <td>Nisha Fasa</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="table-result-wrapper">
-        <p>Results: 1-15 of 324</p>
-      </div>
-    </div>
-  </div>
-</div>
 
-<!--PopUp Start-->
-<div id="learners" class="modal addcourse-modal" role="dialog">
-  <div class="modal-dialog" style="max-width: 829px !important;">
-    <div class="modal-content">
-      <div class="green-modal-header">
-        <h4>Add Admin</h4>
-        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"
-            style="color: #fff;"></i></button>
-      </div>
-      <div class="modal-body">
-        <form>
-
-          <div class="name-of-course fieldset admin-popup-button"
-            style="padding: 20px 16px;border-bottom: 1px solid #F1F6FB;">
-            <label style="text-align: center; margin: 0 -2em;">Email:</label>
-            <input type="text" placeholder="Enter email">
-
-            <label style="text-align: center; margin: 0 -1em;">Admin type:</label>
-            <button type="button">&lt;Course&gt;admin</button>
+    <!--PopUp Start-->
+    <div id="addCourse" class="modal addcourse-modal" role="dialog">
+      <div class="modal-dialog" style="max-width: 829px !important;">
+        <div class="modal-content">
+          <div class="green-modal-header">
+            <h4>Add Admin</h4>
+            <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"
+                style="color: #fff;"></i></button>
           </div>
+          <div class="modal-body">
+            <form>
 
-          <div class="addCourse-form row mt-3" class="align-items:center;">
+              <div class="name-of-course fieldset admin-popup-button"
+                style="padding: 20px 16px;border-bottom: 1px solid #F1F6FB;">
+                <label style="text-align: center; margin: 0 -2em;">Email:</label>
+                <input type="text" placeholder="Enter email">
 
-            <div class="name-of-course fieldset" style="padding: 0 16px;">
-              <label style="text-align: center;color: #5B73A0 !important;">Course Name:</label>
-              <p class="label-p">Coursename2</p>
-            </div>
-            <div class="name-of-course fieldset mt-3" style="padding: 0 17px;">
-              <label style="text-align: right; padding-right: 2em;color: #5B73A0 !important;">Level:</label>
-              <select name="level" id="levelcourse" style="width: 140px !important;">
-                <option selected>Secondary 3</option>
-                <option value="Professional Level 1">Secondary 2</option>
-                <option value="create new">Secondary 1</option>
-              </select>
-              <label class="banding-adjust">Banding:</label>
-              <select name="level" id="levelcourse" style="width: 140px !important;">
-                <option selected>Band 3</option>
-                <option value="Professional Level 1">Band 2</option>
-                <option value="create new">Band 1</option>
-              </select>
-            </div>
-            <div class="name-of-course fieldset" style="border-bottom: 1px solid #F1F6FB; padding: 0 12px;">
-              <label class="adjust" style="color: #5B73A0 !important;">Class:</label>
-              <select name="level" id="levelcourse" style="width: 140px !important;">
-                <option selected>Poppins</option>
-                <option value="Professional Level 1">Poppings 1</option>
-                <option value="create new">Poppins 2</option>
-              </select>
-              <p class="para"><span class="orange">#56782</span></p>
-            </div>
-          </div>
-          <div class="name-of-course fieldset admin-table">
-            <div class="table-responsive">
-              <table class="table dashboard-table">
+                <label style="text-align: center; margin: 0 -1em;">Admin type:</label>
+                <button type="button">&lt;Course&gt;admin</button>
+              </div>
 
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td class="text-left admin-table-width">&lt;Course&gt; creation</td>
-                    <td>Poppins</td>
-                    <th>
-                      <div class="radio-table"><input type="checkbox"></div>
-                    </th>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td class="text-left admin-table-width">Class creation</td>
-                    <td></td>
-                    <th>
-                      <div class="radio-table"><input type="checkbox"></div>
-                    </th>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td class="text-left admin-table-width">Add learners</td>
-                    <td></td>
-                    <th>
-                      <div class="radio-table"><input type="checkbox"></div>
-                    </th>
-                  </tr>
-                  <tr>
-                    <td>4</td>
-                    <td class="text-left admin-table-width">Main library file upload/edit</td>
-                    <td></td>
-                    <th>
-                      <div class="radio-table"><input type="checkbox"></div>
-                    </th>
-                  </tr>
-                  <tr>
-                    <td>5</td>
-                    <td class="text-left admin-table-width">&lt;Course&gt; library file upload/edit</td>
-                    <td></td>
-                    <th>
-                      <div class="radio-table"><input type="checkbox"></div>
-                    </th>
-                  </tr>
-                  <tr>
-                    <td>6</td>
-                    <td class="text-left admin-table-width">Class deletion</td>
-                    <td></td>
-                    <th>
-                      <div class="radio-table"><input type="checkbox"></div>
-                    </th>
-                  </tr>
-                  <tr>
-                    <td>7</td>
-                    <td class="text-left admin-table-width">Class deletion</td>
-                    <td></td>
-                    <th>
-                      <div class="radio-table"><input type="checkbox"></div>
-                    </th>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+              <div class="addCourse-form row mt-3" class="align-items:center;">
+
+                <div class="name-of-course fieldset" style="padding: 0 16px;">
+                  <label style="text-align: center;color: #5B73A0 !important;">Course Name:</label>
+                  <p class="label-p">Coursename2</p>
+                </div>
+                <div class="name-of-course fieldset mt-3" style="padding: 0 17px;">
+                  <label style="text-align: right; padding-right: 2em;color: #5B73A0 !important;">Level:</label>
+                  <select name="level" id="levelcourse" style="width: 140px !important;">
+                    <option selected>Secondary 3</option>
+                    <option value="Professional Level 1">Secondary 2</option>
+                    <option value="create new">Secondary 1</option>
+                  </select>
+                  <label class="banding-adjust">Banding:</label>
+                  <select name="level" id="levelcourse" style="width: 140px !important;">
+                    <option selected>Band 3</option>
+                    <option value="Professional Level 1">Band 2</option>
+                    <option value="create new">Band 1</option>
+                  </select>
+                </div>
+                <div class="name-of-course fieldset" style="border-bottom: 1px solid #F1F6FB; padding: 0 12px;">
+                  <label class="adjust" style="color: #5B73A0 !important;">Class:</label>
+                  <select name="level" id="levelcourse" style="width: 140px !important;">
+                    <option selected>Poppins</option>
+                    <option value="Professional Level 1">Poppings 1</option>
+                    <option value="create new">Poppins 2</option>
+                  </select>
+                  <p class="para"><span class="orange">#56782</span></p>
+                </div>
+              </div>
+              <div class="name-of-course fieldset admin-table">
+                <div class="table-responsive">
+                  <table class="table dashboard-table">
+
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td class="text-left admin-table-width">&lt;Course&gt; creation</td>
+                        <td>Poppins</td>
+                        <th>
+                          <div class="radio-table"><input type="checkbox"></div>
+                        </th>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td class="text-left admin-table-width">Class creation</td>
+                        <td></td>
+                        <th>
+                          <div class="radio-table"><input type="checkbox"></div>
+                        </th>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td class="text-left admin-table-width">Add learners</td>
+                        <td></td>
+                        <th>
+                          <div class="radio-table"><input type="checkbox"></div>
+                        </th>
+                      </tr>
+                      <tr>
+                        <td>4</td>
+                        <td class="text-left admin-table-width">Main library file upload/edit</td>
+                        <td></td>
+                        <th>
+                          <div class="radio-table"><input type="checkbox"></div>
+                        </th>
+                      </tr>
+                      <tr>
+                        <td>5</td>
+                        <td class="text-left admin-table-width">&lt;Course&gt; library file upload/edit</td>
+                        <td></td>
+                        <th>
+                          <div class="radio-table"><input type="checkbox"></div>
+                        </th>
+                      </tr>
+                      <tr>
+                        <td>6</td>
+                        <td class="text-left admin-table-width">Class deletion</td>
+                        <td></td>
+                        <th>
+                          <div class="radio-table"><input type="checkbox"></div>
+                        </th>
+                      </tr>
+                      <tr>
+                        <td>7</td>
+                        <td class="text-left admin-table-width">Class deletion</td>
+                        <td></td>
+                        <th>
+                          <div class="radio-table"><input type="checkbox"></div>
+                        </th>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!--modal footer start-->
+              <div class="admin-modal-footer" style="box-shadow: none;">
+                <button class="back-btn-course-blue"><a href="#">Confirm</a></button>
+                <button class="next-btn-course">Cancel</button>
+              </div>
+              <!--modal footer end-->
+            </form>
           </div>
-          <!--modal footer start-->
-          <div class="admin-modal-footer" style="box-shadow: none;">
-            <button class="back-btn-course-blue"><a href="#">Confirm</a></button>
-            <button class="next-btn-course">Cancel</button>
-          </div>
-          <!--modal footer end-->
-        </form>
+        </div>
       </div>
     </div>
+    <!--PopUp End    -->
   </div>
 </div>
-<!--PopUp End    -->
