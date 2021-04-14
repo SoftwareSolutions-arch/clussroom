@@ -508,7 +508,7 @@ export class Sample04Component implements OnInit {
   }
 
   goToclasses() {
-    this.router.navigate(['/classes'])
+    this.router.navigate(['/classes']);
   }
 
   getRadio(event) {
@@ -524,7 +524,11 @@ export class Sample04Component implements OnInit {
   }
 
   goToLearner(){
-    
     this.router.navigate(['/learners']);
   }
+
+  goToStroage(){
+    this.router.navigate(['/storage']);
+  }
+
 }

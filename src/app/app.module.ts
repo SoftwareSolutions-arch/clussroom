@@ -50,7 +50,7 @@ import { ProgressComponent } from './progress/progress.component';
 import { ToastrModule } from 'ngx-toastr';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
-
+import {LoaderComponent} from './loader/loader.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -107,7 +107,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     MatProgressSpinnerModule,
     SlickCarouselModule, MatTabsModule, NgxPaginationModule, AngularEditorModule
   ],
-  providers: [Sample04Component, ClassesComponent],
+  providers: [Sample04Component, ClassesComponent,LoaderComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

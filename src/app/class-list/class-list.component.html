@@ -20,7 +20,7 @@
           <li><a data-toggle="tab" href="#class-list-content" class="active clip-item">
               <img src="assets/images/dashboard/second/list-grey.png" class="hover-out">
               <img src="assets/images/dashboard/second/list-blue.png" class="hover-in">
-              Class List</a>
+              Class list</a>
           </li>
 
           <li (click)="goToLearner()"><a data-toggle="tab" href="#learners-content" class="clip-item">
@@ -29,7 +29,7 @@
               Learners</a>
           </li>
 
-          <li><a data-toggle="tab" href="#storage-content" class="clip-item">
+          <li (click)="goToStorage()"><a data-toggle="tab" href="#storage-content" class="clip-item">
               <img src="assets/images/dashboard/second/clip-storage-grey.png" class="hover-out">
               <img src="assets/images/dashboard/second/clip-storage-blue.png" class="hover-in">
               Storage</a>
@@ -149,30 +149,18 @@
               </table>
 
             </div>
-            <div class="table-result-wrapper bottom-select row">
+            <div class="table-result-wrapper">
+              <pagination-controls previousLabel="Prev" nextLabel="Next" responsive="true"
+                (pageChange)="handlePageChange($event)"></pagination-controls>
+            </div>
+            <!-- <div class="table-result-wrapper bottom-select row">
               <select name="course" id="course-name">
                 <option selected>10</option>
                 <option value="Course 1">1</option>
                 <option value="Course 2">2</option>
                 <option value="Course 3">3</option>
               </select>
-              <div class="table-result-wrapper">
-                <pagination-controls previousLabel="Prev" nextLabel="Next" responsive="true"
-                  (pageChange)="handlePageChange($event)"></pagination-controls>
-              </div>
-              <!-- <div class="selector col-lg-10">
-              <ul>
-                <li><a href="#"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li class="active"><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">...</a></li>
-                <li><a href="#" class="right-arrow"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
-              </ul>
             </div> -->
-            </div>
           </div>
           <div id="instructions" class="tab-pane">
             <div class="table=-responsive">

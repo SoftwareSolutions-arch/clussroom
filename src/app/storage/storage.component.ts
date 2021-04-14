@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-storage',
@@ -6,8 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./storage.component.css']
 })
 export class StorageComponent implements OnInit {
-
-  constructor() { }
+  instructionName:any='';
+  isLoadingBool:boolean=false;
+  constructor(public router: Router) {
+    this.instructionName=localStorage.getItem('instructionName')
+   }
 
   ngOnInit(): void {
   }
@@ -15,5 +19,22 @@ export class StorageComponent implements OnInit {
   showHideRow(table) {
     
     $("#" + table).toggle();
+  }
+
+  goToclasses(){
+    this.router.navigate(['/classes']);
+  }
+
+   // navigate to courses tab
+   goToCourses() {
+    this.router.navigate(['/sample04']);
+  }
+
+  goToClassList() {
+    this.router.navigate(['/classes-list']);
+  }
+
+  goToLearner(){
+    this.router.navigate(['/learners']);
   }
 }

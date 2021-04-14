@@ -221,7 +221,7 @@ export class ClassListComponent implements OnInit {
     }
     this.isLoadingBool = true;
     this.service.post('view-all-learners-api', params, 1).subscribe(result => {
-      console.log('result',result);
+      console.log('result', result);
       this.allClassesList = result;
       this.isTableShow = true;
       this.isLoadingBool = false;
@@ -280,6 +280,7 @@ export class ClassListComponent implements OnInit {
   }
 
   isCheckClicked(event, courseList, i) {
+    console.log('courseList', courseList);
     this.selectedCourseList = courseList;
     this.isGoToShow = true;
   }
@@ -464,5 +465,9 @@ export class ClassListComponent implements OnInit {
   // go To Learner
   goToLearner() {
     this.router.navigate(['/learners']);
+  }
+
+  goToStorage(){
+    this.router.navigate(['/storage']);
   }
 }

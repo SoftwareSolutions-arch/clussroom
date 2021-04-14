@@ -100,7 +100,11 @@ export class LearnersComponent implements OnInit {
   }
 
   goToClassList() {
-    this.router.navigate(['/classes-list'])
+    this.router.navigate(['/classes-list']);
+  }
+
+  goToStorage(){
+    this.router.navigate(['/storage']);
   }
 
   // get all courses list

@@ -25,8 +25,8 @@ import { TermsOfUseComponent } from './terms-of-use/terms-of-use.component';
 import { ClassListComponent } from './class-list/class-list.component';
 import { LearnersComponent } from './learners/learners.component';
 import { CalendarComponent } from './calendar/calendar.component';
-
-
+import { StorageComponent } from './storage/storage.component';
+import {LoaderComponent} from './loader/loader.component'
 const routes: Routes = [
   {
     path: 'pricing', component: PricingComponent
@@ -99,6 +99,12 @@ const routes: Routes = [
   },
   {
     path: 'calendar',component:CalendarComponent
+  },
+  {
+    path: 'storage',component:StorageComponent
+  },
+  {
+    path: 'loader',component:LoaderComponent
   },
   {
     path: '', redirectTo: '/home', pathMatch: 'full'

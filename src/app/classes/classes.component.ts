@@ -323,4 +323,8 @@ export class ClassesComponent implements OnInit {
   goToLearners(){
     this.router.navigate(['/learners']);
   }
+
+  goToStorage(){
+    this.router.navigate(['/storage']);
+  }
 }
