@@ -52,63 +52,56 @@
   </div>
   <div class="prospectus-section" style="padding-left: 79px;padding-right: 20px;" *ngIf="!isLoadingBool">
     <div class="prospectus-tabs">
-      <ul class="nav nav-tabs">
-        <li><a data-toggle="tab" href="#summary" class="active">Learners</a></li>
-        <li><a data-toggle="tab" href="#instructions">Method of Instructions</a></li>
-      </ul>
       <div class="prospectus-action">
         <a class="add-btn custom-a-btn" data-toggle="modal" data-target="#addLearner"><i class="fa fa-plus"
             aria-hidden="true"></i> Learners</a>
       </div>
     </div>
     <div class="tab-content">
-      <div id="summary" class="tab-pane active">
-
-        <div class="table-responsive">
-          <table class="table dashboard-table">
-            <thead class="learner-text-left text-left">
-              <tr>
-                <th scope="col">No.</th>
-                <th scope="col">First Name</th>
-                <th scope="col">Last Name</th>
-                <th scope="col">Email</th>
-                <th scope="col" class="table-filter">Start date</th>
-                <th scope="col" class="table-filter">End date</th>
-                <th scope="col" class="table-filter">Course</th>
-                <th scope="col">Class Name</th>
-                <th scope="col">Class Code</th>
-                <th scope="col" class="table-filter">Grade</th>
-                <th scope="col" class="table-filter">Status</th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody class="learner-text-left">
-              <tr
-                *ngFor="let classList of this.allClassesList| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;"
-                [class.active]="i == currentIndex">
-                <td>{{this.classList.sno}}</td>
-                <td class="text-left">{{this.classList.first_name}}</td>
-                <td class="text-left">{{this.classList.last_name}}</td>
-                <td class="text-left">{{this.classList.email}}</td>
-                <td class="text-left">{{this.classList.class_start_date}}</td>
-                <td class="text-left">{{this.classList.class_end_date}}</td>
-                <td class="text-left">{{this.classList.coursename}}</td>
-                <td class="text-left">{{this.classList.classname}}</td>
-                <td>{{this.classList.class_class_code}}</td>
-                <td>{{this.classList.learner_status}}</td>
-                <td>
-                  <div class="danger-text">Suspended</div>
-                </td>
-                <button><a href="#">Go to Class</a></button>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="table-result-wrapper bottom-select row">
-          <div class="table-result-wrapper">
-            <pagination-controls previousLabel="Prev" nextLabel="Next" responsive="true"
-              (pageChange)="handlePageChange($event)"></pagination-controls>
-          </div>
+      <div class="table-responsive">
+        <table class="table dashboard-table">
+          <thead class="learner-text-left text-left">
+            <tr>
+              <th scope="col">No.</th>
+              <th scope="col">First Name</th>
+              <th scope="col">Last Name</th>
+              <th scope="col">Email</th>
+              <th scope="col" class="table-filter">Start date</th>
+              <th scope="col" class="table-filter">End date</th>
+              <th scope="col" class="table-filter">Course</th>
+              <th scope="col">Class Name</th>
+              <th scope="col">Class Code</th>
+              <th scope="col" class="table-filter">Grade</th>
+              <th scope="col" class="table-filter">Status</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody class="learner-text-left">
+            <tr
+              *ngFor="let classList of this.allClassesList| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;"
+              [class.active]="i == currentIndex">
+              <td>{{this.classList.sno}}</td>
+              <td class="text-left">{{this.classList.first_name}}</td>
+              <td class="text-left">{{this.classList.last_name}}</td>
+              <td class="text-left">{{this.classList.email}}</td>
+              <td class="text-left">{{this.classList.class_start_date}}</td>
+              <td class="text-left">{{this.classList.class_end_date}}</td>
+              <td class="text-left">{{this.classList.coursename}}</td>
+              <td class="text-left">{{this.classList.classname}}</td>
+              <td>{{this.classList.class_class_code}}</td>
+              <td>{{this.classList.learner_status}}</td>
+              <td>
+                <div class="danger-text">Suspended</div>
+              </td>
+              <button><a href="#">Go to Class</a></button>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="table-result-wrapper bottom-select row">
+        <div class="table-result-wrapper">
+          <pagination-controls previousLabel="Prev" nextLabel="Next" responsive="true"
+            (pageChange)="handlePageChange($event)"></pagination-controls>
         </div>
       </div>
     </div>

@@ -107,6 +107,7 @@ export class LoginComponent implements OnInit {
     this.service.post('user/login', data, 0).subscribe(result => {
       try {
         if (result['status'] == 200) {
+          this.getInstructionName();
           this.util.showSuccessToast(result['message']);;
           localStorage.setItem("csrftoken", result['current_user']['csrf_token']);
           localStorage.setItem("uid", result['current_user']['uid']);
@@ -114,7 +115,6 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('isLogin', '1');
           localStorage.setItem('Authorization', result['current_user']['basic_auth_token'])
           // this.util.showSuccessAlert(result['message']);
-          this.getInstructionName();
           this.router.navigate(['/sample04']);
         }
         else {

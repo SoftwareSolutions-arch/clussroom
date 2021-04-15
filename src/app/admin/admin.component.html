@@ -55,234 +55,132 @@
 
 
     <div class="prospectus-section">
-      <div class="prospectus-tabs">
-        <ul class="nav nav-tabs">
-          <li><a data-toggle="tab" href="#summary" class="active">Admin</a></li>
-          <li><a data-toggle="tab" href="#instructions">Method of Instructions</a></li>
-        </ul>
-        <div class="prospectus-action">
-          <a class="add-btn custom-a-btn" data-toggle="modal" data-target="#addCourse"><i class="fa fa-plus"
-              aria-hidden="true"></i> Name</a>
-          <!-- <a class="edit-btn custom-a-btn" data-toggle="modal" data-target="#editCourse"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
-                    <a class="delete-btn custom-a-btn" data-toggle="modal" data-target="#deleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                    <a  class="delete-btn custom-a-btn" data-toggle="modal" data-target="#unabledeleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
-        </div>
-      </div>
+
       <div class="tab-content class-table-user">
-        <div id="summary" class="tab-pane active">
-          <div class="table-path">
-            <p>&lt;Course&gt;/&lt;Activity&gt;/&lt;Subject&gt;/&lt;Topic&gt; Administrator</p>
-          </div>
-          <div class="table-responsive admin-button">
-            <table class="table dashboard-table">
-              <thead>
-                <tr>
-                  <th scope="col">No.</th>
-                  <th scope="col" class="text-left">&lt;Course&gt;</th>
-                  <th scope="col">Level</th>
-                  <th scope="col">Banding</th>
-                  <th scope="col" class="table-filter">Course admin</th>
-                  <th scope="col" class="table-filter">Email</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
+        <div class="table-path">
+          <!-- <p>&lt;Course&gt;/&lt;Activity&gt;/&lt;Subject&gt;/&lt;Topic&gt; Administrator</p> -->
+          <p>{{this.instructionName}} Administrator</p>
 
-                  <td>1</td>
-                  <td class="text-left">Main Library</td>
-                  <td>Secondary 1</td>
-                  <td>1</td>
-                  <td>Darren Leow</td>
-                  <td>abc@email.com</td>
-                  <td><button><a href="#">Edit</a></button></td>
-
-                </tr>
-                <tr>
-
-                  <td>2</td>
-                  <td class="text-left">&lt;Course name 1&gt;</td>
-                  <td>Senior Professionals</td>
-                  <td>-</td>
-                  <td>Shannon Doherty</td>
-                  <td>abcdefghi@email.com</td>
-                  <td><button><a href="#">Edit</a></button></td>
-                </tr>
-                <tr>
-
-                  <td>3</td>
-                  <td class="text-left">&lt;Course name 2&gt;</td>
-                  <td>Working professionals</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td><button class="admin-button-green" style="padding: 0 !important;"><a class="custom-a-btn"
-                        data-toggle="modal" data-target="#learners">Assign</a></button></td>
-
-                </tr>
-                <tr>
-
-                  <td>4</td>
-                  <td class="text-left">&lt;Course name 3&gt;</td>
-                  <td>University Graduation year</td>
-                  <td>3</td>
-                  <td>Marie Bron Holidays</td>
-                  <td>repository123456@gmail.com</td>
-                  <td><button><a href="#">Edit</a></button></td>
-
-                </tr>
-                <tr>
-
-                  <td>5</td>
-                  <td class="text-left">&lt;Course name 4&gt;</td>
-                  <td>Primary 4</td>
-                  <td>1</td>
-                  <td>Jarques Chirac</td>
-                  <td>education123456@gmail.com</td>
-                  <td><button><a href="#">Edit</a></button></td>
-
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="table-result-wrapper bottom-select row">
-            <select name="course" id="course-name">
-              <option selected>10</option>
-              <option value="Course 1">1</option>
-              <option value="Course 2">2</option>
-              <option value="Course 3">3</option>
-            </select>
-            <p>Results: 1-15 of 324</p>
-            <div class="selector col-lg-10">
-              <ul>
-                <li><a href="#"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li class="active"><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">...</a></li>
-                <li><a href="#" class="right-arrow"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
-              </ul>
-            </div>
-          </div>
         </div>
-        <div id="instructions" class="tab-pane">
-          <div class="table=-responsive">
-            <table class="table dashboard-table">
-              <thead>
-                <tr>
-                  <th scope="col"></th>
-                  <th scope="col">No.</th>
-                  <th scope="col" class="text-left">Course Name</th>
-                  <th scope="col">Code</th>
-                  <th scope="col" class="table-filter">Cateory/Dept</th>
-                  <th scope="col" class="table-filter">Level</th>
-                  <th scope="col" class="table-filter">Banding</th>
-                  <th scope="col" class="table-filter">No. of classes</th>
-                  <th scope="col" class="table-filter">No. of learners</th>
-                  <th scope="col" class="table-filter">Admin</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th>
-                    <div class="radio-table"><input type="checkbox"></div>
-                  </th>
-                  <td>1</td>
-                  <td class="text-left">Biology for Primary 1</td>
-                  <td>A3K</td>
-                  <td>Math</td>
-                  <td>Professional medical</td>
-                  <td>1</td>
-                  <td>12</td>
-                  <td>189</td>
-                  <td>Aeriel Connelly</td>
-                </tr>
-                <tr>
-                  <th>
-                    <div class="radio-table"><input type="checkbox"></div>
-                  </th>
-                  <td>2</td>
-                  <td class="text-left">Geography for Primary 2</td>
-                  <td>4CE</td>
-                  <td>Science</td>
-                  <td>Secondary</td>
-                  <td>2</td>
-                  <td>8</td>
-                  <td>874</td>
-                  <td>Darren Leow</td>
-                </tr>
-                <tr>
-                  <th>
-                    <div class="radio-table"><input type="checkbox"></div>
-                  </th>
-                  <td>3</td>
-                  <td class="text-left">Bull in share market</td>
-                  <td>3AC</td>
-                  <td>Social studies</td>
-                  <td>Primary</td>
-                  <td>3</td>
-                  <td>4</td>
-                  <td>234</td>
-                  <td>Finelly Abrodobe</td>
-                </tr>
-                <tr>
-                  <th>
-                    <div class="radio-table"><input type="checkbox"></div>
-                  </th>
-                  <td>4</td>
-                  <td class="text-left">Balance Sheet making</td>
-                  <td>R6T</td>
-                  <td>Psychology</td>
-                  <td>University</td>
-                  <td>4</td>
-                  <td>11</td>
-                  <td>431</td>
-                  <td>Prena Abdullah</td>
-                </tr>
-                <tr>
-                  <th>
-                    <div class="radio-table"><input type="checkbox"></div>
-                  </th>
-                  <td>5</td>
-                  <td class="text-left">Cash flow </td>
-                  <td>2UY</td>
-                  <td>Accounting</td>
-                  <td>Primary</td>
-                  <td>2</td>
-                  <td>7</td>
-                  <td>501</td>
-                  <td>Nisha Fasa</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="table-result-wrapper">
-            <p>Results: 1-15 of 324</p>
+        <div class="table-responsive admin-button">
+          <table class="table dashboard-table">
+            <thead>
+              <tr>
+                <th scope="col">No.</th>
+                <th scope="col" class="text-left">{{this.instructionName}}</th>
+                <th scope="col">Level</th>
+                <th scope="col">Banding</th>
+                <th scope="col" class="table-filter">Course admin</th>
+                <th scope="col" class="table-filter">Email</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+
+                <td>1</td>
+                <td class="text-left">Main Library</td>
+                <td>Secondary 1</td>
+                <td>1</td>
+                <td>Darren Leow</td>
+                <td>abc@email.com</td>
+                <td><button><a>Edit</a></button></td>
+
+              </tr>
+              <tr>
+
+                <td>2</td>
+                <td class="text-left">&lt;Course name 1&gt;</td>
+                <td>Senior Professionals</td>
+                <td>-</td>
+                <td>Shannon Doherty</td>
+                <td>abcdefghi@email.com</td>
+                <td><button><a>Edit</a></button></td>
+              </tr>
+              <tr>
+
+                <td>3</td>
+                <td class="text-left">&lt;Course name 2&gt;</td>
+                <td>Working professionals</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td><button class="admin-button-green" style="padding: 0 !important;"><a class="custom-a-btn"
+                      data-toggle="modal" data-target="#learners">Assign</a></button></td>
+
+              </tr>
+              <tr>
+
+                <td>4</td>
+                <td class="text-left">&lt;Course name 3&gt;</td>
+                <td>University Graduation year</td>
+                <td>3</td>
+                <td>Marie Bron Holidays</td>
+                <td>repository123456@gmail.com</td>
+                <td><button><a data-toggle="modal" data-target="#edit-admin">Edit</a></button></td>
+
+              </tr>
+              <tr>
+
+                <td>5</td>
+                <td class="text-left">&lt;Course name 4&gt;</td>
+                <td>Primary 4</td>
+                <td>1</td>
+                <td>Jarques Chirac</td>
+                <td>education123456@gmail.com</td>
+                <td><button><a>Edit</a></button></td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-result-wrapper bottom-select row">
+          <select name="course" id="course-name">
+            <option selected>10</option>
+            <option value="Course 1">1</option>
+            <option value="Course 2">2</option>
+            <option value="Course 3">3</option>
+          </select>
+          <p>Results: 1-15 of 324</p>
+          <div class="selector col-lg-10">
+            <ul>
+              <li><a><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+              <li><a>1</a></li>
+              <li><a>2</a></li>
+              <li class="active"><a>3</a></li>
+              <li><a>4</a></li>
+              <li><a>5</a></li>
+              <li><a>...</a></li>
+              <li><a class="right-arrow"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+            </ul>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</div>
 
-    <!--PopUp Start-->
-    <div id="addCourse" class="modal addcourse-modal" role="dialog">
+    <!--Add admin PopUp Start-->
+    <div id="learners" class="modal addcourse-modal" role="dialog">
       <div class="modal-dialog" style="max-width: 829px !important;">
         <div class="modal-content">
           <div class="green-modal-header">
-            <h4>Add Admin</h4>
+            <h4 style="padding-left: 21em;">Add Admin</h4>
             <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"
                 style="color: #fff;"></i></button>
           </div>
           <div class="modal-body">
             <form>
 
-              <div class="name-of-course fieldset admin-popup-button"
-                style="padding: 20px 16px;border-bottom: 1px solid #F1F6FB;">
-                <label style="text-align: center; margin: 0 -2em;">Email:</label>
+              <div class="name-of-course fieldset admin-popup-button col-lg-12"
+                style="border-bottom: 1px solid #F1F6FB;">
+                <div class="col-md-6" style="padding: 0 0 0 95px; display: flex; align-items: center;">
+                <label style="width:85px;">Email:</label>
                 <input type="text" placeholder="Enter email">
-
+                </div>
+                <div class="col-md-6 text-center" style="padding-right:46px;">
                 <label style="text-align: center; margin: 0 -1em;">Admin type:</label>
-                <button type="button">&lt;Course&gt;admin</button>
+                <button type="button">{{this.instructionName}} admin</button>
+                </div>
               </div>
 
               <div class="addCourse-form row mt-3" class="align-items:center;">
@@ -322,7 +220,7 @@
                     <tbody>
                       <tr>
                         <td>1</td>
-                        <td class="text-left admin-table-width">&lt;Course&gt; creation</td>
+                        <td class="text-left admin-table-width">{{this.instructionName}} creation</td>
                         <td>Poppins</td>
                         <th>
                           <div class="radio-table"><input type="checkbox"></div>
@@ -354,7 +252,7 @@
                       </tr>
                       <tr>
                         <td>5</td>
-                        <td class="text-left admin-table-width">&lt;Course&gt; library file upload/edit</td>
+                        <td class="text-left admin-table-width">{{this.instructionName}} library file upload/edit</td>
                         <td></td>
                         <th>
                           <div class="radio-table"><input type="checkbox"></div>
@@ -383,7 +281,7 @@
               <!--modal footer start-->
               <div class="admin-modal-footer" style="box-shadow: none;">
                 <button class="back-btn-course-blue"><a href="#">Confirm</a></button>
-                <button class="next-btn-course">Cancel</button>
+                <button class="next-btn-course" data-dismiss="modal">Cancel</button>
               </div>
               <!--modal footer end-->
             </form>
@@ -391,6 +289,142 @@
         </div>
       </div>
     </div>
-    <!--PopUp End    -->
-  </div>
-</div>
+    <!--Add admin PopUp End    -->
+
+        <!--Edit admin PopUp Start-->
+        <div id="edit-admin" class="modal addcourse-modal" role="dialog">
+          <div class="modal-dialog" style="max-width: 829px !important;">
+            <div class="modal-content">
+              <div class="green-modal-header">
+                <h4 style="padding-left: 21em;">Edit admin</h4>
+                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"
+                    style="color: #fff;"></i></button>
+              </div>
+              <div class="modal-body">
+                <form>
+    
+                  <div class="name-of-course fieldset admin-popup-button col-lg-12"
+                    style="border-bottom: 1px solid #F1F6FB;">
+                    <div class="col-md-6" style="padding: 0 0 0 95px; display: flex; align-items: center;">
+                    <label style="width:85px;">Email:</label>
+                    <input type="text" placeholder="Enter email">
+                    </div>
+                    <div class="col-md-6 text-center" style="padding-right:46px;">
+                    <label style="text-align: center; margin: 0 -1em;">Admin type:</label>
+                    <button type="button">{{this.instructionName}} admin</button>
+                    </div>
+                  </div>
+    
+                  <div class="addCourse-form row mt-3" class="align-items:center;">
+    
+                    <div class="name-of-course fieldset" style="padding: 0 16px;">
+                      <label style="text-align: center;color: #5B73A0 !important;">Course Name:</label>
+                      <select style="width: 565px;">
+                        <option>Design art tactics and skills</option>
+                        <option>Design art tactics and skills1</option>
+                        <option>Design art tactics and skills2</option>
+                        <option>Design art tactics and skills3</option>
+                      </select>
+                    </div>
+                    <div class="name-of-course fieldset mt-3" style="padding: 0 17px;">
+                      <label style="text-align: right; padding-right: 2em;color: #5B73A0 !important;">Level:</label>
+                      <select name="level" id="levelcourse" style="width: 140px !important;">
+                        <option selected>Secondary 3</option>
+                        <option value="Professional Level 1">Secondary 2</option>
+                        <option value="create new">Secondary 1</option>
+                      </select>
+                      <label class="banding-adjust">Banding:</label>
+                      <select name="level" id="levelcourse" style="width: 140px !important;">
+                        <option selected>Band 3</option>
+                        <option value="Professional Level 1">Band 2</option>
+                        <option value="create new">Band 1</option>
+                      </select>
+                    </div>
+                    <div class="name-of-course fieldset">
+                      <label class="adjust" style="color: #5B73A0 !important;">Class:</label>
+                      <select name="level" id="levelcourse" style="width: 140px !important;">
+                        <option selected>Poppins</option>
+                        <option value="Professional Level 1">Poppings 1</option>
+                        <option value="create new">Poppins 2</option>
+                      </select>
+                      <p class="para"><span class="orange">#56782</span></p><br>
+                    </div>
+                    <div class="col-lg-12 text-center" style="font-size: 15px; font-weight: 400; color: #7990B4; font-family: 'Barlow'; font-style: normal;">
+                      <p>Secondary 4</p>
+                    </div>
+                  </div>
+                  <div class="name-of-course fieldset admin-table" style="display: contents !important;">
+                    <div class="table-responsive">
+                      <table class="table dashboard-table">
+    
+                        <tbody>
+                          <tr>
+                            <td>1</td>
+                            <td class="text-left admin-table-width">{{this.instructionName}} creation</td>
+                            <td>Poppins</td>
+                            <th>
+                              <div class="radio-table"><input type="checkbox"></div>
+                            </th>
+                          </tr>
+                          <tr>
+                            <td>2</td>
+                            <td class="text-left admin-table-width">Class creation</td>
+                            <td></td>
+                            <th>
+                              <div class="radio-table"><input type="checkbox"></div>
+                            </th>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td class="text-left admin-table-width">Add learners</td>
+                            <td></td>
+                            <th>
+                              <div class="radio-table"><input type="checkbox"></div>
+                            </th>
+                          </tr>
+                          <tr>
+                            <td>4</td>
+                            <td class="text-left admin-table-width">Main library file upload/edit</td>
+                            <td></td>
+                            <th>
+                              <div class="radio-table"><input type="checkbox"></div>
+                            </th>
+                          </tr>
+                          <tr>
+                            <td>5</td>
+                            <td class="text-left admin-table-width">{{this.instructionName}} library file upload/edit</td>
+                            <td></td>
+                            <th>
+                              <div class="radio-table"><input type="checkbox"></div>
+                            </th>
+                          </tr>
+                          <tr>
+                            <td>6</td>
+                            <td class="text-left admin-table-width">Class deletion</td>
+                            <td></td>
+                            <th>
+                              <div class="radio-table"><input type="checkbox"></div>
+                            </th>
+                          </tr>
+                          <tr>
+                            <td>7</td>
+                            <td class="text-left admin-table-width">Class deletion</td>
+                            <td></td>
+                            <th>
+                              <div class="radio-table"><input type="checkbox"></div>
+                            </th>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="admin-modal-footer" style="box-shadow: none;">
+                    <button class="edit-admin mr-3" href="">Edit</button>
+                    <button class="next-btn-course" data-dismiss="modal">Cancel</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--edit admin PopUp End    -->

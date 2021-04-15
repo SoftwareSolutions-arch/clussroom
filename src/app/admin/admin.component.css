@@ -4047,8 +4047,26 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .adjust {
     text-align: right !important;
-    padding: 0 26px;
-    margin: 0 6px 0 0;
+    padding: 0 16px;
+    margin: 0 14px 0 0;
+}
+
+.edit-admin {
+    width: 92px !important;
+    height: 35px !important;
+    border-radius: 6px !important;
+    background-color: #FFA26B !important;
+    border: 2px solid #FFA26B !important;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'Barlow';
+    color: #FFE8DA !important;
+    transition: .5s ease-in-out;
+}
+
+.edit-admin:hover {
+    background-color: transparent !important;
+    color: #ffa26b !important;
 }
 
 
