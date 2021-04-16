@@ -137,7 +137,7 @@
                         <input #checkboxes (click)="isCheckClicked($event,classList,i)" name="checkbox" type="radio">
                       </div>
                     </th>
-                    <td>1</td>
+                    <td>{{i+1}}</td>
                     <td class="text-left">{{classList.coursename}}</td>
                     <td class="text-left">{{classList.last_name}}</td>
                     <td>{{classList.email}}</td>
@@ -348,7 +348,6 @@
       <!--    Cancel Class Invite Popup End-->
 
       <!--Transfer to another course popup start-->
-
       <div id="transfer" class="modal addcourse-modal" role="dialog">
         <div class="modal-dialog modal-dialog-width">
           Modal content
@@ -412,19 +411,12 @@
                   </div>
                   <div class="name-of-course fieldset mt-3" style="padding: 0 16px;">
                     <label style="text-align: right; padding-right: 2em;">Level:</label>
-                    <select name="level" id="levelcourse" style="width: 140px !important;">
+                    <select disabled name="level" id="levelcourse" style="width: 140px !important;">
                       <option *ngFor="let banding of this.allBanding" value="{{banding.tid}}">{{banding.name}}</option>
                     </select>
 
-
                     <label style="text-align: right; width: 113px; padding-right: 1.5em">Branding:</label>
-                    <!-- <select name="level" id="levelcourse" style="width: 140px !important;">
-                    <option selected>Brand 3</option>
-                    <option value="Professional Level 1">Brand 2</option>
-                    <option value="create new">Brand 1</option>
-                  </select> -->
-
-                    <select name="level" id="levelcourse" style="width: 140px !important;">
+                    <select disabled name="level" id="levelcourse" style="width: 140px !important;">
                       <option *ngFor="let level of this.allLevel" value="{{level.tid}}">{{level.name}}</option>
                     </select>
                   </div>
@@ -441,9 +433,8 @@
                         class="orange">{{selectedClasses.field_class_code}}</span></p>
                   </div>
                   <div class="modal-footer">
-                    <button (click)="transferLearner()"
-                      class="back-btn-course add-btn custom-a-btn custom-a-btn-learner" data-toggle="modal"
-                      data-target="#suspend"><a>Confirm</a></button>
+                    <button (click)="transferCourse()" class="back-btn-course add-btn custom-a-btn custom-a-btn-learner"
+                      data-toggle="modal" data-target="#suspend"><a>Confirm</a></button>
                     <button class="next-btn-course" class="close" data-dismiss="modal">Cancel</button>
                   </div>
                 </div>
@@ -453,6 +444,7 @@
         </div>
       </div>
 
+      <!--Transfer to another class popup end-->
       <div id="transferClass" class="modal addcourse-modal" role="dialog">
         <div class="modal-dialog modal-dialog-width">
           Modal content
@@ -543,9 +535,8 @@
                         class="orange">{{selectedClasses.field_class_code}}</span></p>
                   </div>
                   <div class="modal-footer">
-                    <button (click)="transferLearner()"
-                      class="back-btn-course add-btn custom-a-btn custom-a-btn-learner" data-toggle="modal"
-                      data-target="#suspend"><a>Confirm</a></button>
+                    <button (click)="transferClass()" class="back-btn-course add-btn custom-a-btn custom-a-btn-learner"
+                      data-toggle="modal" data-target="#suspend"><a>Confirm</a></button>
                     <button class="next-btn-course" class="close" data-dismiss="modal">Cancel</button>
                   </div>
                 </div>
@@ -554,8 +545,6 @@
           </div>
         </div>
       </div>
-
-      <!--Transfer to another class popup end-->
     </div>
 
     <!--Add learner -->

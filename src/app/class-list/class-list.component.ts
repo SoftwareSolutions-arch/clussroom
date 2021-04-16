@@ -379,12 +379,28 @@ export class ClassListComponent implements OnInit {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
   }
 
-  // Transfer learner to another cousrse
-  transferLearner() {
+  // Transfer to another course
+  transferCourse() {
+    console.log('this.selectedCategorys', this.selectedCategorys);
+    console.log('this **', this.selectedCategory);
     let params = {
       "current_class": this.selectedCategory.nid,
       "class_transfer_to": this.selectedCategorys.nid,
-      "get_all_user_id": "784"
+      "get_all_user_id": this.selectedCourseList.learner_id
+    }
+
+    this.isLoadingBool = true;
+    this.service.post('transfer-learner-to-another-course-api', params, 1).subscribe(result => {
+      this.isLoadingBool = false;
+    })
+  }
+
+  // Transfer to another course
+  transferClass() {
+    let params = {
+      "current_class": this.selectedCategory.nid,
+      "class_transfer_to": this.selectedClasses.nid,
+      "get_all_user_id": this.selectedCourseList.learner_id
     }
 
     this.isLoadingBool = true;
@@ -467,11 +483,11 @@ export class ClassListComponent implements OnInit {
     this.router.navigate(['/learners']);
   }
 
-  goToStorage(){
+  goToStorage() {
     this.router.navigate(['/storage']);
   }
 
-  goToAdmin(){
+  goToAdmin() {
     this.router.navigate(['/admin']);
   }
 }
