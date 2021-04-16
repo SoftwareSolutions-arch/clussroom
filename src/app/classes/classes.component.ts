@@ -105,7 +105,7 @@ export class ClassesComponent implements OnInit {
     }
     this.isLoadingBool = true;
     this.service.post('view-all-classes-api', params, 1).subscribe(result => {
-      
+
       this.isLoadingBool = false;
       if (result['status'] == 1) {
         this.allClassesData = result['classesdata'];
@@ -151,8 +151,8 @@ export class ClassesComponent implements OnInit {
 
   // create new classes
   createNewClasses() {
-    
-    
+
+
     var x = new Date(this.courseList.class_start);
     var y = new Date(this.courseList.class_end);
 
@@ -175,10 +175,10 @@ export class ClassesComponent implements OnInit {
         "course_id": this.selectedCategory
       }
 
-      
+
       this.isLoadingBool = true;
       this.service.post('create-class-api', params, 1).subscribe(result => {
-        
+
         this.isLoadingBool = false;
         this.clearAddClassValues();
         if (result['status'] == "completed" || "ongoing") {
@@ -198,9 +198,9 @@ export class ClassesComponent implements OnInit {
       "step": 1,
       "delete_class_nids": [this.selectedNewItems]
     }
-    
+
     this.service.post('delete-class-api', params, 1).subscribe(result => {
-      
+
       this.classesData = result.classesdata;
 
     })
@@ -250,7 +250,7 @@ export class ClassesComponent implements OnInit {
 
   // update class
   updateClasses(data): any {
-    
+
     var x = new Date(data['field_start_date']);
     var y = new Date(data['field_end_date']);
     if (x > y) {
@@ -263,10 +263,10 @@ export class ClassesComponent implements OnInit {
         "startdate": data['field_start_date'],
         "enddate": data['field_end_date'],
       }
-      
+
       this.isLoadingBool = true;
       this.service.post('update-class-api', params, 1).subscribe(result => {
-        
+
         if (result['Status'] == 1 || '1') {
           this.isLoadingBool = false;
           this.isSaveCourses = false;
@@ -296,7 +296,7 @@ export class ClassesComponent implements OnInit {
   // do logout setup
   logOut() {
     this.service.post('user-logout-api', '', 0).subscribe(result => {
-      
+
       if (result['status'] == 1) {
         this.util.showSuccessAlert(result['status_message']);
         localStorage.removeItem('csrftoken');
@@ -320,15 +320,20 @@ export class ClassesComponent implements OnInit {
     this.router.navigate(['/classes-list']);
   }
 
-  goToLearners(){
+  goToLearners() {
     this.router.navigate(['/learners']);
   }
 
-  goToStorage(){
+  goToStorage() {
     this.router.navigate(['/storage']);
   }
 
-  goToAdmin(){
+  goToAdmin() {
     this.router.navigate(['/admin']);
+  }
+
+  // go to live sessions
+  goToLiveSession() {
+    this.router.navigate(['/live-session']);
   }
 }

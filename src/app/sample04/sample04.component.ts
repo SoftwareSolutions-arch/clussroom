@@ -78,13 +78,13 @@ export class Sample04Component implements OnInit {
   selectedNewItems: any = '';
   edit_allow_msg_learner: any = '';
   edit_allow_msg_coach: any = '';
-  instructionName:any='';
+  instructionName: any = '';
   constructor(public router: Router, public util: UtilService, public service: SharedServiceService,
     public formBuilder: FormBuilder, public classes: ClassesComponent) {
     this.getAllCoursesList();
     this.getallListingDropdown();
     this.setupLoginFormData();
-    this.instructionName=localStorage.getItem('instructionName')
+    this.instructionName = localStorage.getItem('instructionName')
   }
 
   parseDate(dateString: string): Date {
@@ -161,7 +161,7 @@ export class Sample04Component implements OnInit {
 
   // get events of check box for edit or add button show and hide
   isCheckClicked(event, courseList, i) {
-    
+
     if (event.target.checked == true) {
       this.courseList = courseList;
       this.editSampleForm.controls.courseName.setValue(courseList.title);
@@ -181,7 +181,7 @@ export class Sample04Component implements OnInit {
 
     }
 
-    
+
     if (event.target.checked == false) {
       this.courseList = '';
       // this.indexesValue=[];
@@ -198,7 +198,7 @@ export class Sample04Component implements OnInit {
   getAllCoursesList() {
     this.isLoadingBool = true;
     this.service.post('view-all-courses-api', '', 1).subscribe(result => {
-      
+
       this.isLoadingBool = false;
       this.allCourseList = result.coursesdata;
       const { tutorials, totalItems } = result.coursesdata;
@@ -217,7 +217,7 @@ export class Sample04Component implements OnInit {
       this.selectedItems.forEach(element => {
         // this.userIdDetails = element.nid
         this.userIdDetails = element
-        
+
       });
       this.editForm = false;
       this.isSaveCourses = true;
@@ -408,7 +408,7 @@ export class Sample04Component implements OnInit {
   updateCourses(courseList): any {
     var x = new Date(this.editSampleForm.value.datagram);
     var y = new Date(this.editSampleForm.value.datagram2);
-    
+
 
     if (x > y) {
       this.util.errorAlertPopup('start date should be less than end date');
@@ -434,11 +434,11 @@ export class Sample04Component implements OnInit {
       }
 
 
-      
+
 
       this.isLoadingBool = true;
       this.service.post('update-course-api', params, 0).subscribe(result => {
-        
+
         this.editclosebutton.nativeElement.click();
         if (result['Status'] == 1 || '1') {
           this.isLoadingBool = false;
@@ -492,7 +492,7 @@ export class Sample04Component implements OnInit {
   // do logout setup
   logOut() {
     this.service.post('user-logout-api', '', 0).subscribe(result => {
-      
+
       if (result['status'] == 1) {
         this.util.showSuccessAlert(result['status_message']);
         localStorage.removeItem('csrftoken');
@@ -523,16 +523,21 @@ export class Sample04Component implements OnInit {
     this.router.navigate(['/classes-list'])
   }
 
-  goToLearner(){
+  goToLearner() {
     this.router.navigate(['/learners']);
   }
 
-  goToStroage(){
+  goToStroage() {
     this.router.navigate(['/storage']);
   }
 
-  goToAdmin(){
+  goToAdmin() {
     this.router.navigate(['/admin']);
+  }
+
+  // go to live sessions
+  goToLiveSession() {
+    this.router.navigate(['/live-session']);
   }
 
 }

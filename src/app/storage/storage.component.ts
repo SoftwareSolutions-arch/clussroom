@@ -41,4 +41,8 @@ export class StorageComponent implements OnInit {
   goToAdmin(){
     this.router.navigate(['/admin']);
   }
+
+  goToLiveSession() {
+    this.router.navigate(['/live-session']);
+  }
 }

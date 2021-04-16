@@ -1,207 +1,59 @@
-<div class="prospectus-section">
-    <div class="prospectus-tabs">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="dashboard">
+  <app-sidebar></app-sidebar>
+  <div class="control-panel">
+    <app-dashboardheader></app-dashboardheader>
+    <div class="nav-clip">
       <ul class="nav nav-tabs">
-        <li><a data-toggle="tab" href="#summary" class="active">Live Sessions</a></li>
-        <li><a data-toggle="tab" href="#instructions">Method of Instructions</a></li>
+        <li (click)="goToCourses()"><a data-toggle="tab" href="#course-content" class="clip-item">
+            <img src="assets/images/dashboard/second/course-grey.png" class="hover-out">
+            <img src="assets/images/dashboard/second/course-blue.png" class="hover-in">{{this.instructionName}}</a>
+        </li>
+
+        <li (click)="goToclasses()"><a data-toggle="tab" href="#classes-content" class="clip-item">
+            <img src="assets/images/dashboard/second/clip-classes-grey.png" class="hover-out">
+            <img src="assets/images/dashboard/second/clip-classes-blue.png" class="hover-in">Classes</a>
+        </li>
+
+        <li (click)="goToClassList()"><a data-toggle="tab" href="#class-list-content" class="clip-item">
+            <img src="assets/images/dashboard/second/list-grey.png" class="hover-out">
+            <img src="assets/images/dashboard/second/list-blue.png" class="hover-in">
+            Class list</a>
+        </li>
+
+        <li (click)="goToLearner()"><a data-toggle="tab" href="#learners-content" class="clip-item">
+            <img src="assets/images/dashboard/second/clip-learner-grey.png" class="hover-out">
+            <img src="assets/images/dashboard/second/clip-learner-blue.png" class="hover-in">
+            Learners</a>
+        </li>
+
+        <li><a data-toggle="tab" href="#storage-content" class="clip-item">
+            <img src="assets/images/dashboard/second/clip-storage-grey.png" class="hover-out">
+            <img src="assets/images/dashboard/second/clip-storage-blue.png" class="hover-in">
+            Storage</a>
+        </li>
+
+        <li (click)="goToAdmin()"><a data-toggle="tab" href="#admin-content" class="clip-item">
+            <img src="assets/images/dashboard/second/clip-user-grey.png" class="hover-out">
+            <img src="assets/images/dashboard/second/clip-user-blue.png" class="hover-in">
+            Admin</a>
+        </li>
+
+        <li><a data-toggle="tab" href="#live-sessions-content" class="active clip-item">
+            <img src="assets/images/dashboard/second/session-grey.png" class="hover-out">
+            <img src="assets/images/dashboard/second/session-blue.png" class="hover-in">
+            Live Sessions</a>
+        </li>
       </ul>
-      <div class="prospectus-action">
-        <a class="add-btn custom-a-btn" data-toggle="modal" data-target="#addCourse"><i class="fa fa-plus"
-            aria-hidden="true"></i> Name</a>
-        <!-- <a class="edit-btn custom-a-btn" data-toggle="modal" data-target="#editCourse"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
-                  <a class="delete-btn custom-a-btn" data-toggle="modal" data-target="#deleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                  <a  class="delete-btn custom-a-btn" data-toggle="modal" data-target="#unabledeleteCourse"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
-      </div>
     </div>
-    <div class="tab-content">
-      <div id="summary" class="tab-pane active">
-        <div class="table-responsive">
-          <table class="table dashboard-table">
-            <thead>
-              <tr>
-                <th scope="col"></th>
-                <th scope="col">No.</th>
-                <th scope="col" class="text-left">Course Name</th>
-                <th scope="col">Code</th>
-                <th scope="col" class="table-filter">Cateory/Dept</th>
-                <th scope="col" class="table-filter">Level</th>
-                <th scope="col" class="table-filter">Banding</th>
-                <th scope="col" class="table-filter">No. of classes</th>
-                <th scope="col" class="table-filter">No. of learners</th>
-                <th scope="col" class="table-filter">Admin</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th>
-                  <div class="radio-table"><input type="checkbox"></div>
-                </th>
-                <td>1</td>
-                <td class="text-left">Biology for Primary 1</td>
-                <td>A3K</td>
-                <td>Math</td>
-                <td>Professional medical</td>
-                <td>1</td>
-                <td>12</td>
-                <td>189</td>
-                <td>Aeriel Connelly</td>
-              </tr>
-              <tr>
-                <th>
-                  <div class="radio-table"><input type="checkbox"></div>
-                </th>
-                <td>2</td>
-                <td class="text-left">Geography for Primary 2</td>
-                <td>4CE</td>
-                <td>Science</td>
-                <td>Secondary</td>
-                <td>2</td>
-                <td>8</td>
-                <td>874</td>
-                <td>Darren Leow</td>
-              </tr>
-              <tr>
-                <th>
-                  <div class="radio-table"><input type="checkbox"></div>
-                </th>
-                <td>3</td>
-                <td class="text-left">Bull in share market</td>
-                <td>3AC</td>
-                <td>Social studies</td>
-                <td>Primary</td>
-                <td>3</td>
-                <td>4</td>
-                <td>234</td>
-                <td>Finelly Abrodobe</td>
-              </tr>
-              <tr>
-                <th>
-                  <div class="radio-table"><input type="checkbox"></div>
-                </th>
-                <td>4</td>
-                <td class="text-left">Balance Sheet making</td>
-                <td>R6T</td>
-                <td>Psychology</td>
-                <td>University</td>
-                <td>4</td>
-                <td>11</td>
-                <td>431</td>
-                <td>Prena Abdullah</td>
-              </tr>
-              <tr>
-                <th>
-                  <div class="radio-table"><input type="checkbox"></div>
-                </th>
-                <td>5</td>
-                <td class="text-left">Cash flow </td>
-                <td>2UY</td>
-                <td>Accounting</td>
-                <td>Primary</td>
-                <td>2</td>
-                <td>7</td>
-                <td>501</td>
-                <td>Nisha Fasa</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="table-result-wrapper">
-          <p>Results: 1-15 of 324</p>
-        </div>
-      </div>
-      <div id="instructions" class="tab-pane">
-        <div class="table=-responsive">
-          <table class="table dashboard-table">
-            <thead>
-              <tr>
-                <th scope="col"></th>
-                <th scope="col">No.</th>
-                <th scope="col" class="text-left">Course Name</th>
-                <th scope="col">Code</th>
-                <th scope="col" class="table-filter">Cateory/Dept</th>
-                <th scope="col" class="table-filter">Level</th>
-                <th scope="col" class="table-filter">Banding</th>
-                <th scope="col" class="table-filter">No. of classes</th>
-                <th scope="col" class="table-filter">No. of learners</th>
-                <th scope="col" class="table-filter">Admin</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th>
-                  <div class="radio-table"><input type="checkbox"></div>
-                </th>
-                <td>1</td>
-                <td class="text-left">Biology for Primary 1</td>
-                <td>A3K</td>
-                <td>Math</td>
-                <td>Professional medical</td>
-                <td>1</td>
-                <td>12</td>
-                <td>189</td>
-                <td>Aeriel Connelly</td>
-              </tr>
-              <tr>
-                <th>
-                  <div class="radio-table"><input type="checkbox"></div>
-                </th>
-                <td>2</td>
-                <td class="text-left">Geography for Primary 2</td>
-                <td>4CE</td>
-                <td>Science</td>
-                <td>Secondary</td>
-                <td>2</td>
-                <td>8</td>
-                <td>874</td>
-                <td>Darren Leow</td>
-              </tr>
-              <tr>
-                <th>
-                  <div class="radio-table"><input type="checkbox"></div>
-                </th>
-                <td>3</td>
-                <td class="text-left">Bull in share market</td>
-                <td>3AC</td>
-                <td>Social studies</td>
-                <td>Primary</td>
-                <td>3</td>
-                <td>4</td>
-                <td>234</td>
-                <td>Finelly Abrodobe</td>
-              </tr>
-              <tr>
-                <th>
-                  <div class="radio-table"><input type="checkbox"></div>
-                </th>
-                <td>4</td>
-                <td class="text-left">Balance Sheet making</td>
-                <td>R6T</td>
-                <td>Psychology</td>
-                <td>University</td>
-                <td>4</td>
-                <td>11</td>
-                <td>431</td>
-                <td>Prena Abdullah</td>
-              </tr>
-              <tr>
-                <th>
-                  <div class="radio-table"><input type="checkbox"></div>
-                </th>
-                <td>5</td>
-                <td class="text-left">Cash flow </td>
-                <td>2UY</td>
-                <td>Accounting</td>
-                <td>Primary</td>
-                <td>2</td>
-                <td>7</td>
-                <td>501</td>
-                <td>Nisha Fasa</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="table-result-wrapper">
-          <p>Results: 1-15 of 324</p>
+
+    <div class="prospectus-section">
+      <div class="container">
+        <img src="assets/images/bigbluebutton.jfif" alt="Avatar" class="image">
+        <div class="overlay">
+          <div class="text">Big Blue Button</div>
         </div>
       </div>
     </div>
   </div>
+</div>

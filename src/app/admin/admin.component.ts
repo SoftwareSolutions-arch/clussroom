@@ -39,4 +39,8 @@ export class AdminComponent implements OnInit {
     this.router.navigate(['/storage']);
   }
 
+  goToLiveSession() {
+    this.router.navigate(['/live-session']);
+  }
+
 }

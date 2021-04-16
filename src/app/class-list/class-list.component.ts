@@ -145,15 +145,6 @@ export class ClassListComponent implements OnInit {
     })
   }
 
-  // navigate to courses tab
-  goToCourses() {
-    this.router.navigate(['/sample04']);
-  }
-
-  goToclasses() {
-    this.router.navigate(['/classes']);
-  }
-
   // get all courses list
   getAllClassesList() {
     this.isLoadingBool = true;
@@ -162,10 +153,6 @@ export class ClassListComponent implements OnInit {
       this.isLoadingBool = false;
       this.allClassesList = result;
     })
-  }
-
-  goToLearners() {
-    this.router.navigate(['/learners']);
   }
 
   // view classes
@@ -478,16 +465,27 @@ export class ClassListComponent implements OnInit {
     })
   }
 
-  // go To Learner
-  goToLearner() {
-    this.router.navigate(['/learners']);
-  }
-
   goToStorage() {
     this.router.navigate(['/storage']);
   }
 
   goToAdmin() {
     this.router.navigate(['/admin']);
+  }
+
+  goToCourses() {
+    this.router.navigate(['/sample04']);
+  }
+
+  goToclasses() {
+    this.router.navigate(['/classes']);
+  }
+
+  goToLiveSession() {
+    this.router.navigate(['/live-session']);
+  }
+
+  goToLearner() {
+    this.router.navigate(['/learners']);
   }
 }
