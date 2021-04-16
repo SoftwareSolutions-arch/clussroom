@@ -505,16 +505,16 @@
                   </div>
                   <div class="name-of-course fieldset" style="padding: 0 16px;">
                     <label style="text-align: center;">Course Name:</label>
-                    <select (change)="viewAllCoursesLists()" [(ngModel)]="selectedCategorys" name="level"
+                    <select (change)="viewAllCoursesLists()" disabled [(ngModel)]="selectedCategorys" name="level"
                       id="levelcourse" style="width: 390px !important;">
-                      <option *ngFor="let courseList of this.allCourseList" [ngValue]="courseList">
+                      <option *ngFor="let courseList of this.allCourseList">
                         {{this.courseList.title}}
                       </option>
                     </select>
                   </div>
                   <div class="name-of-course fieldset mt-3" style="padding: 0 16px;">
                     <label style="text-align: right; padding-right: 2em;">Level:</label>
-                    <select name="level" id="levelcourse" style="width: 140px !important;">
+                    <select disabled name="level" id="levelcourse" style="width: 140px !important;">
                       <option *ngFor="let banding of this.allBanding" value="{{banding.tid}}">{{banding.name}}</option>
                     </select>
 
@@ -526,7 +526,7 @@
                     <option value="create new">Brand 1</option>
                   </select> -->
 
-                    <select name="level" id="levelcourse" style="width: 140px !important;">
+                    <select disabled name="level" id="levelcourse" style="width: 140px !important;">
                       <option *ngFor="let level of this.allLevel" value="{{level.tid}}">{{level.name}}</option>
                     </select>
                   </div>
@@ -535,7 +535,7 @@
                     <label style="text-align: right; padding: 0 14px; margin: 0 16px 0 0;">class:</label>
                     <select [(ngModel)]="selectedClasses" name="level" id="levelcourse"
                       style="width: 140px !important;">
-                      <option *ngFor="let classesData of this.allClassesDatas" [ngValue]="classesData">
+                      <option *ngFor="let classesData of this.allClassesData" [ngValue]="classesData">
                         {{classesData.title}}
                       </option>
                     </select>

@@ -411,7 +411,7 @@ export class ClassListComponent implements OnInit {
     this.cancelModal.nativeElement.click();
     let params = {
       "step": 2,
-      "userids": this.selectedCourseList.learner_id
+      "userids": [this.selectedCourseList.learner_id]
     }
     this.isLoadingBool = true;
     this.service.post('suspend-learner-api', params, 1).subscribe(result => {
@@ -428,7 +428,7 @@ export class ClassListComponent implements OnInit {
   cancelInvite() {
     let params = {
       "step": 1,
-      "userids": this.selectedCourseList.learner_id
+      "userids": [this.selectedCourseList.learner_id]
     }
 
     this.isLoadingBool = true;
@@ -447,7 +447,7 @@ export class ClassListComponent implements OnInit {
     this.cancelModal.nativeElement.click();
     let params = {
       "step": 2,
-      "userids": this.selectedCourseList.learner_id
+      "userids": [this.selectedCourseList.learner_id]
     }
 
     this.isLoadingBool = true;
