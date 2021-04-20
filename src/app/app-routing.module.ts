@@ -19,17 +19,17 @@ import { OtpComponent } from './otp/otp.component';
 import { Sample04Component } from './sample04/sample04.component';
 import { DashboardheaderComponent } from './dashboardheader/dashboardheader.component';
 import { ClassesComponent } from './classes/classes.component';
-import {AuthGuardGuard} from './auth-guard.guard';
+import { AuthGuardGuard } from './auth-guard.guard';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { TermsOfUseComponent } from './terms-of-use/terms-of-use.component';
 import { ClassListComponent } from './class-list/class-list.component';
 import { LearnersComponent } from './learners/learners.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { StorageComponent } from './storage/storage.component';
-import {LoaderComponent} from './loader/loader.component';
-import {AdminComponent} from './admin/admin.component';
-import {LiveSessionsComponent} from './live-sessions/live-sessions.component';
-
+import { LoaderComponent } from './loader/loader.component';
+import { AdminComponent } from './admin/admin.component';
+import { LiveSessionsComponent } from './live-sessions/live-sessions.component';
+import { ProgressComponent } from './progress/progress.component';
 const routes: Routes = [
   {
     path: 'pricing', component: PricingComponent
@@ -83,37 +83,40 @@ const routes: Routes = [
     path: 'sample04', component: Sample04Component
   },
   {
-    path: 'dashoardheader',component:DashboardheaderComponent
+    path: 'dashoardheader', component: DashboardheaderComponent
   },
   {
-    path: 'classes',component:ClassesComponent
+    path: 'classes', component: ClassesComponent
   },
   {
-    path: 'classes-list',component:ClassListComponent
+    path: 'classes-list', component: ClassListComponent
   },
   {
-    path: 'learners',component:LearnersComponent
+    path: 'learners', component: LearnersComponent
   },
   {
-    path: 'privacy-policy',component:PrivacyPolicyComponent
+    path: 'privacy-policy', component: PrivacyPolicyComponent
   },
   {
-    path: 'terms-of-use',component:TermsOfUseComponent
+    path: 'terms-of-use', component: TermsOfUseComponent
   },
   {
-    path: 'calendar',component:CalendarComponent
+    path: 'calendar', component: CalendarComponent
   },
   {
-    path: 'storage',component:StorageComponent
+    path: 'storage', component: StorageComponent
   },
   {
-    path: 'loader',component:LoaderComponent
+    path: 'loader', component: LoaderComponent
   },
   {
-    path: 'admin',component:AdminComponent
+    path: 'admin', component: AdminComponent
   },
   {
-    path: 'live-session',component:LiveSessionsComponent
+    path: 'live-session', component: LiveSessionsComponent
+  },
+  {
+    path: 'progress-bar', component: ProgressComponent
   },
   {
     path: '', redirectTo: '/home', pathMatch: 'full'

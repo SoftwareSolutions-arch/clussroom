@@ -148,7 +148,7 @@ export class CalendarComponent  {
   activeDayIsOpen: boolean = true;
 
   constructor(private modal: NgbModal) {
-    console.log(this.events);
+    
   }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {

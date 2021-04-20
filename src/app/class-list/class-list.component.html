@@ -11,7 +11,7 @@
               <img src="assets/images/dashboard/second/course-blue.png" class="hover-in">{{this.instructionName}}</a>
           </li>
 
-          <li (click)="goToclasses()"><a data-toggle="tab" href="#classes-content" class="clip-item" >
+          <li (click)="goToclasses()"><a data-toggle="tab" href="#classes-content" class="clip-item">
               <img src="assets/images/dashboard/second/clip-classes-grey.png" class="hover-out">
               <img src="assets/images/dashboard/second/clip-classes-blue.png" class="hover-in">Classes</a>
           </li>
@@ -137,8 +137,8 @@
                         <input #checkboxes (click)="isCheckClicked($event,classList,i)" name="checkbox" type="radio">
                       </div>
                     </th>
-                    <td>{{i+1}}</td>
-                    <td class="text-left">{{classList.coursename}}</td>
+                    <td>{{classList.s_no}}</td>
+                    <td class="text-left">{{classList.first_name}}</td>
                     <td class="text-left">{{classList.last_name}}</td>
                     <td>{{classList.email}}</td>
                     <td>{{classList.grades}}</td>
@@ -348,7 +348,7 @@
       <!--    Cancel Class Invite Popup End-->
 
       <!--Transfer to another course popup start-->
-      <div id="transfer" class="modal addcourse-modal" role="dialog">
+      <div id="transfer" class="modal addcourse-modal" role="dialog" #transferCourseModal>
         <div class="modal-dialog modal-dialog-width">
           Modal content
           <div class="modal-content">
@@ -445,7 +445,7 @@
       </div>
 
       <!--Transfer to another class popup end-->
-      <div id="transferClass" class="modal addcourse-modal" role="dialog">
+      <div id="transferClass" class="modal addcourse-modal" role="dialog" #transferClassModal>
         <div class="modal-dialog modal-dialog-width">
           Modal content
           <div class="modal-content">
@@ -461,12 +461,14 @@
                     <p>Learner</p>
                   </div>
                   <div class="name-of-course fieldset" style="margin: 0;">
-                    <p style="font-size: 15px !important;">First name:&nbsp;&nbsp;&nbsp;<span>Lorenzo</span></p>
-                    <p style="font-size: 15px !important;">Last name:&nbsp;&nbsp;&nbsp;<span>Gomez</span></p>
+                    <p style="font-size: 15px !important;">First
+                      name:&nbsp;&nbsp;&nbsp;<span>{{selectedCourseList.first_name}}</span></p>
+                    <p style="font-size: 15px !important;">Last
+                      name:&nbsp;&nbsp;&nbsp;<span>{{selectedCourseList.last_name}}</span></p>
                   </div>
                   <div class="name-of-course fieldset" style="border-bottom: 1px solid #F1F6FB;">
                     <p style="line-height: 2.5; font-size: 15px !important;">Email:
-                      &nbsp;&nbsp;<span>1234567@gmail.com</span>
+                      &nbsp;&nbsp;<span>{{selectedCourseList.email}}</span>
                     </p>
                   </div>
                   <div class="name-of-course fieldset fieldset-center">
@@ -497,10 +499,9 @@
                   </div>
                   <div class="name-of-course fieldset" style="padding: 0 16px;">
                     <label style="text-align: center;">Course Name:</label>
-                    <select (change)="viewAllCoursesLists()" disabled [(ngModel)]="selectedCategorys" name="level"
-                      id="levelcourse" style="width: 390px !important;">
-                      <option *ngFor="let courseList of this.allCourseList">
-                        {{this.courseList.title}}
+                    <select disabled name="level" id="levelcourse" style="width: 390px !important;">
+                      <option>
+                        {{selectedCourseList.coursename}}
                       </option>
                     </select>
                   </div>

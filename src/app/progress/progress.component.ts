@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-progress',
@@ -8,9 +9,10 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ProgressComponent implements OnInit {
   @Input() progress = 0;
 
-  constructor() { }
+  constructor(private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
+    this.spinner.show();
   }
 
 }

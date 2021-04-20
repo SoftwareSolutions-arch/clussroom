@@ -6,6 +6,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { UtilService } from '../../providers/util.service';
 import { ToastrService } from 'ngx-toastr';
 import { LoaderComponent } from '../loader/loader.component';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -22,16 +23,14 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   error_messages: any = '';
   userDetails: any = '';
-  constructor(public router: Router, public loader: LoaderComponent, private toastr: ToastrService, public util: UtilService, public service: SharedServiceService,
+  constructor(public router: Router, private spinner: NgxSpinnerService, public loader: LoaderComponent, private toastr: ToastrService, public util: UtilService, public service: SharedServiceService,
     public formBuilder: FormBuilder) {
     this.setupLoginFormData();
+    this.spinner.show();
   }
 
   ngOnInit(): void {
     this.setPassword();
-  }
-
-  selectPaymentmethod() {
   }
 
   togglePasswordFieldType() {

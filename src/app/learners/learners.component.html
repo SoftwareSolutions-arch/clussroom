@@ -82,7 +82,7 @@
               *ngFor="let classList of this.allClassesList| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;"
               [class.active]="i == currentIndex">
               <!-- <td>{{this.classList.sno}}</td> -->
-              <td style="text-align: center !important;">{{i+1}}</td>
+              <td style="text-align: center !important;">{{classList.s_no}}</td>
               <td class="text-left">{{this.classList.first_name}}</td>
               <td class="text-left">{{this.classList.last_name}}</td>
               <td class="text-left">{{this.classList.email}}</td>

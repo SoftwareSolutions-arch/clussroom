@@ -37,6 +37,8 @@ export class ClassListComponent implements OnInit {
   @ViewChild('suspendModal') private suspendModal: ElementRef;
   @ViewChild('cancelClassModal') private cancelClassModal: ElementRef;
   @ViewChild('cancelModal') private cancelModal: ElementRef;
+  @ViewChild('transferCourseModal') private transferCourseModal: ElementRef;
+  @ViewChild('transferClassModal') private transferClassModal: ElementRef;
 
   currentIndex = -1;
   page = 1;
@@ -208,7 +210,7 @@ export class ClassListComponent implements OnInit {
     }
     this.isLoadingBool = true;
     this.service.post('view-all-learners-api', params, 1).subscribe(result => {
-      console.log('result', result);
+
       this.allClassesList = result;
       this.isTableShow = true;
       this.isLoadingBool = false;
@@ -368,31 +370,47 @@ export class ClassListComponent implements OnInit {
 
   // Transfer to another course
   transferCourse() {
-    console.log('this.selectedCategorys', this.selectedCategorys);
-    console.log('this **', this.selectedCategory);
-    let params = {
-      "current_class": this.selectedCategory.nid,
-      "class_transfer_to": this.selectedCategorys.nid,
-      "get_all_user_id": this.selectedCourseList.learner_id
+    if (this.selectedClasses == '') {
+      this.util.showSuccessToast('if class is not availble, you can not change the class');
+      return
     }
 
-    this.isLoadingBool = true;
+    this.cancelModal.nativeElement.click();
+    let params = {
+      "current_class": this.selectedCourseList.class_id,
+      "class_transfer_to": this.selectedClasses.nid,
+      "get_all_user_id": this.selectedCourseList.learner_id
+    }
+    // this.isLoadingBool = true;
     this.service.post('transfer-learner-to-another-course-api', params, 1).subscribe(result => {
-      this.isLoadingBool = false;
+      this.isGoToShow = false;
+      this.transferCourseModal.nativeElement.click();
+      this.getClassesListData();
+      this.util.showSuccessAlert(result.error_message);
+      // this.isLoadingBool = false;
     })
   }
 
-  // Transfer to another course
+  // Transfer to another class
   transferClass() {
+    if (this.selectedClasses == '') {
+      this.util.showSuccessToast('if class is not availble, you can not change the class');
+      return
+    }
+    this.cancelModal.nativeElement.click();
     let params = {
-      "current_class": this.selectedCategory.nid,
+      "current_class": this.selectedCourseList.class_id,
       "class_transfer_to": this.selectedClasses.nid,
       "get_all_user_id": this.selectedCourseList.learner_id
     }
 
-    this.isLoadingBool = true;
+    // this.isLoadingBool = true;
     this.service.post('transfer-learner-to-another-course-api', params, 1).subscribe(result => {
-      this.isLoadingBool = false;
+      this.isGoToShow = false;
+      this.transferClassModal.nativeElement.click();
+      // this.isLoadingBool = false;
+      this.getClassesListData();
+      this.util.showSuccessAlert(result.error_message);
     })
   }
 
@@ -436,7 +454,6 @@ export class ClassListComponent implements OnInit {
 
     this.isLoadingBool = true;
     this.service.post('cancel-invite-learner-api', params, 1).subscribe(result => {
-
       if (result.status == 1) {
         this.isLoadingBool = false;
         // this.getClassesListData();
@@ -456,7 +473,6 @@ export class ClassListComponent implements OnInit {
     this.isLoadingBool = true;
     this.service.post('cancel-invite-learner-api', params, 1).subscribe(result => {
       this.cancelClassModal.nativeElement.click();
-
       if (result.status == 1) {
         this.isLoadingBool = false;
         this.getClassesListData();
