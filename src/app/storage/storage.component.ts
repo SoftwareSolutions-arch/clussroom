@@ -17,7 +17,6 @@ export class StorageComponent implements OnInit {
   }
 
   showHideRow(table) {
-    
     $("#" + table).toggle();
   }
 

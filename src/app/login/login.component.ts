@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
   constructor(public router: Router, private spinner: NgxSpinnerService, public loader: LoaderComponent, private toastr: ToastrService, public util: UtilService, public service: SharedServiceService,
     public formBuilder: FormBuilder) {
     this.setupLoginFormData();
-    this.spinner.show();
   }
 
   ngOnInit(): void {
@@ -129,7 +128,8 @@ export class LoginComponent implements OnInit {
 
   // get instruction name
   getInstructionName() {
-    this.service.post('instruction-name-api', '', 1).subscribe(result => {
+    this.service.post('instruction-name-api', '', 0).subscribe(result => {
+      console.log('result data from inst', result)
       localStorage.setItem('instructionName', result.instruction_name);
     })
   }

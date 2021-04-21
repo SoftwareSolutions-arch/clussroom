@@ -19,7 +19,7 @@
         <li (click)="goToClassList()"><a data-toggle="tab" href="#class-list-content" class="clip-item">
             <img src="assets/images/dashboard/second/list-grey.png" class="hover-out">
             <img src="assets/images/dashboard/second/list-blue.png" class="hover-in">
-            Class list</a>
+            Class List</a>
         </li>
 
         <li (click)="goToLearner()"><a data-toggle="tab" href="#learners-content" class="clip-item">
@@ -54,7 +54,7 @@
     </div>
 
 
-    <div class="prospectus-section">
+    <div class="prospectus-section" *ngIf="!isLoadingBool">
 
       <div class="tab-content class-table-user">
         <div class="table-path">
@@ -75,18 +75,21 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr
+                *ngFor="let adminList of this.adminData| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;"
+                [class.active]="i == currentIndex">
 
-                <td>1</td>
-                <td class="text-left">Main Library</td>
-                <td>Secondary 1</td>
-                <td>1</td>
-                <td>Darren Leow</td>
-                <td>abc@email.com</td>
-                <td><button><a>Edit</a></button></td>
-
+                <td>{{adminList.sno}}</td>
+                <td class="text-left">{{adminList.title}}</td>
+                <td>{{adminList.field_level}}</td>
+                <td>{{adminList.field_banding}}</td>
+                <td>{{adminList.admin_name}}</td>
+                <td>{{adminList.admin_email}}</td>
+                <td data-toggle="modal" data-target="#edit-admin"><button><a>Edit</a></button></td>
+                <td (click)="isClicked(adminList)"><button class="admin-button-green" style="padding: 0 !important;"><a
+                      class="custom-a-btn" data-toggle="modal" data-target="#learners">Assign</a></button></td>
               </tr>
-              <tr>
+              <!-- <tr>
 
                 <td>2</td>
                 <td class="text-left">&lt;Course name 1&gt;</td>
@@ -129,30 +132,13 @@
                 <td>education123456@gmail.com</td>
                 <td><button><a>Edit</a></button></td>
 
-              </tr>
+              </tr> -->
             </tbody>
           </table>
         </div>
         <div class="table-result-wrapper bottom-select row">
-          <select name="course" id="course-name">
-            <option selected>10</option>
-            <option value="Course 1">1</option>
-            <option value="Course 2">2</option>
-            <option value="Course 3">3</option>
-          </select>
-          <p>Results: 1-15 of 324</p>
-          <div class="selector col-lg-10">
-            <ul>
-              <li><a><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
-              <li><a>1</a></li>
-              <li><a>2</a></li>
-              <li class="active"><a>3</a></li>
-              <li><a>4</a></li>
-              <li><a>5</a></li>
-              <li><a>...</a></li>
-              <li><a class="right-arrow"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
-            </ul>
-          </div>
+          <pagination-controls previousLabel="Prev" nextLabel="Next" responsive="true"
+            (pageChange)="handlePageChange($event)"></pagination-controls>
         </div>
       </div>
     </div>
@@ -186,30 +172,27 @@
 
             <div class="name-of-course fieldset" style="padding: 0 16px;">
               <label style="text-align: center;color: #5B73A0 !important;">Course Name:</label>
-              <p class="label-p">Coursename2</p>
+              <p class="label-p">{{this.adminDataList.title}}</p>
             </div>
             <div class="name-of-course fieldset mt-3" style="padding: 0 17px;">
               <label style="text-align: right; padding-right: 2em;color: #5B73A0 !important;">Level:</label>
               <select name="level" id="levelcourse" style="width: 140px !important;">
-                <option selected>Secondary 3</option>
-                <option value="Professional Level 1">Secondary 2</option>
-                <option value="create new">Secondary 1</option>
+                <option *ngFor="let level of this.allLevel" value="{{level.tid}}">{{level.name}}</option>
               </select>
               <label class="banding-adjust">Banding:</label>
               <select name="level" id="levelcourse" style="width: 140px !important;">
-                <option selected>Band 3</option>
-                <option value="Professional Level 1">Band 2</option>
-                <option value="create new">Band 1</option>
+                <option *ngFor="let banding of this.allBanding" value="{{banding.tid}}">{{banding.name}}</option>
               </select>
             </div>
             <div class="name-of-course fieldset" style="border-bottom: 1px solid #F1F6FB; padding: 0 12px;">
               <label class="adjust" style="color: #5B73A0 !important;">Class:</label>
-              <select name="level" id="levelcourse" style="width: 140px !important;">
-                <option selected>Poppins</option>
-                <option value="Professional Level 1">Poppings 1</option>
-                <option value="create new">Poppins 2</option>
+
+              <select [(ngModel)]="classFieldData" name="level" id="levelcourse" style="width: 140px !important;">
+                <option [ngValue]="classesList" *ngFor="let classesList of this.allClassesData"
+                  value="{{classesList.tid}}">{{classesList.title}}</option>
               </select>
-              <p class="para"><span class="orange">#56782</span></p>
+
+              <p class="para"><span class="orange">{{classFieldData.field_class_code}}</span></p>
             </div>
           </div>
           <div class="name-of-course fieldset admin-table">
@@ -279,7 +262,7 @@
           </div>
           <!--modal footer start-->
           <div class="admin-modal-footer" style="box-shadow: none;">
-            <button class="back-btn-course-blue"><a href="#">Confirm</a></button>
+            <button class="back-btn-course-blue"><a>Confirm</a></button>
             <button class="next-btn-course" data-dismiss="modal">Cancel</button>
           </div>
           <!--modal footer end-->
@@ -317,35 +300,37 @@
 
             <div class="name-of-course fieldset" style="padding: 0 16px;">
               <label style="text-align: center;color: #5B73A0 !important;">Course Name:</label>
-              <select style="width: 565px;">
+              <!-- <select style="width: 565px;">
                 <option>Design art tactics and skills</option>
                 <option>Design art tactics and skills1</option>
                 <option>Design art tactics and skills2</option>
                 <option>Design art tactics and skills3</option>
+              </select> -->
+
+              <select (change)="viewAllCoursesLists()" [(ngModel)]="selectedCategory" style="width: 565px;"
+                name="course" id="course-name">
+                <option *ngFor="let courseList of this.allCourseList" [ngValue]="courseList">{{this.courseList.title}}
+                </option>
               </select>
             </div>
             <div class="name-of-course fieldset mt-3" style="padding: 0 17px;">
               <label style="text-align: right; padding-right: 2em;color: #5B73A0 !important;">Level:</label>
               <select name="level" id="levelcourse" style="width: 140px !important;">
-                <option selected>Secondary 3</option>
-                <option value="Professional Level 1">Secondary 2</option>
-                <option value="create new">Secondary 1</option>
+                <option *ngFor="let level of this.allLevel" value="{{level.tid}}">{{level.name}}</option>
               </select>
               <label class="banding-adjust">Banding:</label>
               <select name="level" id="levelcourse" style="width: 140px !important;">
-                <option selected>Band 3</option>
-                <option value="Professional Level 1">Band 2</option>
-                <option value="create new">Band 1</option>
+                <option *ngFor="let banding of this.allBanding" value="{{banding.tid}}">{{banding.name}}</option>
               </select>
             </div>
             <div class="name-of-course fieldset">
               <label class="adjust" style="color: #5B73A0 !important;">Class:</label>
-              <select name="level" id="levelcourse" style="width: 140px !important;">
-                <option selected>Poppins</option>
-                <option value="Professional Level 1">Poppings 1</option>
-                <option value="create new">Poppins 2</option>
+              <select [(ngModel)]="classFieldData" name="level" id="levelcourse" style="width: 140px !important;">
+                <option [ngValue]="classesList" *ngFor="let classesList of this.allClassesData"
+                  value="{{classesList.tid}}">{{classesList.title}}</option>
               </select>
-              <p class="para"><span class="orange">#56782</span></p><br>
+              <p class="para"><span class="orange">{{classFieldData.field_class_code}}</span></p><br>
+
             </div>
             <div class="col-lg-12 text-center"
               style="font-size: 15px; font-weight: 400; color: #7990B4; font-family: 'Barlow'; font-style: normal;">
@@ -426,4 +411,4 @@
     </div>
   </div>
 </div>
-<!--edit admin PopUp End    -->
+<!--edit admin PopUp End-->

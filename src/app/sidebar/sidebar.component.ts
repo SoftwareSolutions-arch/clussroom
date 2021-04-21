@@ -12,6 +12,10 @@ import { Router } from '@angular/router';
 export class SidebarComponent implements OnInit {
   constructor(public classes: ClassesComponent, public util: UtilService, public service: SharedServiceService, public router: Router) { 
     // this.ngOnInit();
+    jQuery(".sidebar-blue").toggleClass("toogleopen");
+    jQuery(".control-panel").toggleClass("toogleopen").removeClass("dashboardtoogleopen").removeClass("dashboardtoogleclose");
+    jQuery(".sidebar-dashboard .dashboard-user-sidebar").removeClass("dashboardtoogleopen").removeClass("dashboardtoogleclose");
+
   }
 
   ngOnInit(): void {
