@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { SharedServiceService } from '../shared-service.service';
 
 @Component({
@@ -19,6 +19,7 @@ export class TestListingComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //
   myFunction() {
     document.getElementById("mytstdown").classList.toggle("show");
     window.onclick = function (event) {
@@ -41,10 +42,10 @@ export class TestListingComponent implements OnInit {
     let params = {
       "class_id": this.classId.data
     }
-    console.log('params', params);
+    
     this.service.post('test-list-api', params, 1).subscribe(result => {
+      
       this.isLoadingBool = false;
-      console.log('result', result)
     })
   }
 }

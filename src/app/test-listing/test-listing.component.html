@@ -254,9 +254,12 @@
               <label>Instruction</label>
             </div>
             <div class="col-lg-10" style="padding-left: 23px;">
-              <textarea name="history" cols="80" label="notes" rows="4" wrap="virtual" style="margin: 0;"
+              <!-- <textarea name="history" cols="80" label="notes" rows="4" wrap="virtual" style="margin: 0;"
                 placeholder="Please read the questions carefully. This test will form part of your final grading this year.">
-                  </textarea>
+                  </textarea> -->
+              <angular-editor name="history" cols="80" label="notes" rows="4" wrap="virtual" style="margin: 0;"
+                [placeholder]="'Please read the questions carefully. This test will form part of your final grading this year.'">
+              </angular-editor>
             </div>
           </div>
           <div class="setting-date-section setting-input bottom-border">

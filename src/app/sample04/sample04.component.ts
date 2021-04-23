@@ -68,7 +68,7 @@ export class Sample04Component implements OnInit {
   class_end_date: any = '';
   allow_msg_learner: any = ''
   allow_msg_coach: any = '';
-  patchCategorieName: any = ''
+  patchCategorieName: any = '';
   patchLevelName: any = '';
   patchBandingName: any = '';
   demoUser = { date: '', dates: '' };
@@ -81,10 +81,11 @@ export class Sample04Component implements OnInit {
   instructionName: any = '';
   constructor(public router: Router, public util: UtilService, public service: SharedServiceService,
     public formBuilder: FormBuilder, public classes: ClassesComponent) {
+    this.instructionName = localStorage.getItem('instructionName');
     this.getAllCoursesList();
     this.getallListingDropdown();
     this.setupLoginFormData();
-    this.instructionName = localStorage.getItem('instructionName')
+
   }
 
   parseDate(dateString: string): Date {

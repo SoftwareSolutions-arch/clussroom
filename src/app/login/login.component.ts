@@ -129,7 +129,6 @@ export class LoginComponent implements OnInit {
   // get instruction name
   getInstructionName() {
     this.service.post('instruction-name-api', '', 0).subscribe(result => {
-      
       localStorage.setItem('instructionName', result.instruction_name);
     })
   }

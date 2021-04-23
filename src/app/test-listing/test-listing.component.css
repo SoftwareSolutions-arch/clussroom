@@ -5527,7 +5527,7 @@ table.dashboard-table td input {
     margin: 0 10px;
 */
 	padding: 35px 0 0 26px;
-	background-image: url(/assets/images/test/word-tool.png);
+	/* background-image: url(/assets/images/test/word-tool.png); */
 	background-repeat: no-repeat;
 	white-space: normal;
 	overflow-wrap: normal;

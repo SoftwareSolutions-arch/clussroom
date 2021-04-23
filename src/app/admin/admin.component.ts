@@ -148,15 +148,15 @@ export class AdminComponent implements OnInit {
   }
 
   getCHeckBOxData(event) {
-    console.log(event.target.checked);
+    
   }
 
   // save details for edit admins 
   editAdmin() {
-    console.log('email', this.email);
-    console.log('selectedCategory', this.selectedCategory.nid);
-    console.log('levelName', this.levelName);
-    console.log('bandingId', this.bandingId);
-    console.log('classFieldData', this.classFieldData.nid);
+    
+    
+    
+    
+    
   }
 }

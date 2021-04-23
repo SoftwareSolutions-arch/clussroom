@@ -108,5 +108,15 @@ button.swal2-confirm.swal2-styled {
   font-size: 13px !important;
 }
 
+.angular-editor-textarea{
+  height: 170px !important;
+}
+
+.angular-editor-toolbar{
+  position: relative;
+  display: block;
+  margin: auto;
+  /* top: 46px; */
+}
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
