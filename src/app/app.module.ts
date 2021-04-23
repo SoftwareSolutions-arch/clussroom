@@ -51,6 +51,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import {LoaderComponent} from './loader/loader.component';
+import { TestListingComponent } from './test-listing/test-listing.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -85,7 +86,8 @@ import {LoaderComponent} from './loader/loader.component';
     PrivacyPolicyComponent,
     TermsOfUseComponent,
     CalendarComponent,
-    ProgressComponent
+    ProgressComponent,
+    TestListingComponent
   ],
   imports: [CommonModule,
     BrowserModule, ToastrModule.forRoot({

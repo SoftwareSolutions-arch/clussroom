@@ -156,11 +156,21 @@
       </div>
       <div class="modal-body">
         <form>
-
           <div class="name-of-course fieldset admin-popup-button col-lg-12" style="border-bottom: 1px solid #F1F6FB;">
             <div class="col-md-6" style="padding: 0 0 0 95px; display: flex; align-items: center;">
               <label style="width:85px;">Email:</label>
-              <input type="text" placeholder="Enter email">
+              <input type="email" name="email" ngModel placeholder="Enter email" #emailWithPatterns="ngModel"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+              <br />
+              <div *ngIf="emailWithPatterns.touched">
+                <p class="error-message" *ngIf="emailWithPatterns.errors?.required">
+                  Email is a required field
+                </p>
+                <p class="error-message" *ngIf="emailWithPatterns.errors?.pattern">
+                  This is not a valid Email
+                </p>
+              </div>
+              <br /><br />
             </div>
             <div class="col-md-6 text-center" style="padding-right:46px;">
               <label style="text-align: center; margin: 0 -1em;">Admin type:</label>
@@ -169,7 +179,6 @@
           </div>
 
           <div class="addCourse-form row mt-3" class="align-items:center;">
-
             <div class="name-of-course fieldset" style="padding: 0 16px;">
               <label style="text-align: center;color: #5B73A0 !important;">Course Name:</label>
               <p class="label-p">{{this.adminDataList.title}}</p>
@@ -186,19 +195,16 @@
             </div>
             <div class="name-of-course fieldset" style="border-bottom: 1px solid #F1F6FB; padding: 0 12px;">
               <label class="adjust" style="color: #5B73A0 !important;">Class:</label>
-
               <select [(ngModel)]="classFieldData" name="level" id="levelcourse" style="width: 140px !important;">
                 <option [ngValue]="classesList" *ngFor="let classesList of this.allClassesData"
                   value="{{classesList.tid}}">{{classesList.title}}</option>
               </select>
-
               <p class="para"><span class="orange">{{classFieldData.field_class_code}}</span></p>
             </div>
           </div>
           <div class="name-of-course fieldset admin-table">
             <div class="table-responsive">
               <table class="table dashboard-table">
-
                 <tbody>
                   <tr>
                     <td>1</td>
@@ -284,11 +290,21 @@
       </div>
       <div class="modal-body">
         <form>
-
           <div class="name-of-course fieldset admin-popup-button col-lg-12" style="border-bottom: 1px solid #F1F6FB;">
             <div class="col-md-6" style="padding: 0 0 0 95px; display: flex; align-items: center;">
               <label style="width:85px;">Email:</label>
-              <input type="text" placeholder="Enter email">
+              <input [(ngModel)]="email" type="email" name="email" ngModel placeholder="Enter email"
+                #emailWithPattern="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+              <br />
+              <div *ngIf="emailWithPattern.touched">
+                <p class="error-message" *ngIf="emailWithPattern.errors?.required">
+                  Email is a required field
+                </p>
+                <p class="error-message" *ngIf="emailWithPattern.errors?.pattern">
+                  This is not a valid Email
+                </p>
+              </div>
+              <br /><br />
             </div>
             <div class="col-md-6 text-center" style="padding-right:46px;">
               <label style="text-align: center; margin: 0 -1em;">Admin type:</label>
@@ -297,16 +313,8 @@
           </div>
 
           <div class="addCourse-form row mt-3" class="align-items:center;">
-
             <div class="name-of-course fieldset" style="padding: 0 16px;">
               <label style="text-align: center;color: #5B73A0 !important;">Course Name:</label>
-              <!-- <select style="width: 565px;">
-                <option>Design art tactics and skills</option>
-                <option>Design art tactics and skills1</option>
-                <option>Design art tactics and skills2</option>
-                <option>Design art tactics and skills3</option>
-              </select> -->
-
               <select (change)="viewAllCoursesLists()" [(ngModel)]="selectedCategory" style="width: 565px;"
                 name="course" id="course-name">
                 <option *ngFor="let courseList of this.allCourseList" [ngValue]="courseList">{{this.courseList.title}}
@@ -315,22 +323,20 @@
             </div>
             <div class="name-of-course fieldset mt-3" style="padding: 0 17px;">
               <label style="text-align: right; padding-right: 2em;color: #5B73A0 !important;">Level:</label>
-              <select name="level" id="levelcourse" style="width: 140px !important;">
+              <select [(ngModel)]="levelName" name="level" id="levelcourse" style="width: 140px !important;">
                 <option *ngFor="let level of this.allLevel" value="{{level.tid}}">{{level.name}}</option>
               </select>
               <label class="banding-adjust">Banding:</label>
-              <select name="level" id="levelcourse" style="width: 140px !important;">
+              <select [(ngModel)]="bandingId" name="level" id="levelcourse" style="width: 140px !important;">
                 <option *ngFor="let banding of this.allBanding" value="{{banding.tid}}">{{banding.name}}</option>
               </select>
             </div>
             <div class="name-of-course fieldset">
               <label class="adjust" style="color: #5B73A0 !important;">Class:</label>
               <select [(ngModel)]="classFieldData" name="level" id="levelcourse" style="width: 140px !important;">
-                <option [ngValue]="classesList" *ngFor="let classesList of this.allClassesData"
-                  value="{{classesList.tid}}">{{classesList.title}}</option>
+                <option [ngValue]="classesList" *ngFor="let classesList of this.allClassesData">{{classesList.title}}</option>
               </select>
               <p class="para"><span class="orange">{{classFieldData.field_class_code}}</span></p><br>
-
             </div>
             <div class="col-lg-12 text-center"
               style="font-size: 15px; font-weight: 400; color: #7990B4; font-family: 'Barlow'; font-style: normal;">
@@ -340,14 +346,13 @@
           <div class="name-of-course fieldset admin-table" style="display: contents !important;">
             <div class="table-responsive">
               <table class="table dashboard-table">
-
                 <tbody>
                   <tr>
                     <td>1</td>
                     <td class="text-left admin-table-width">{{this.instructionName}} creation</td>
                     <td>Poppins</td>
                     <th>
-                      <div class="radio-table"><input type="checkbox"></div>
+                      <div class="radio-table"><input (change)="getCHeckBOxData($event)" type="checkbox"></div>
                     </th>
                   </tr>
                   <tr>
@@ -403,7 +408,7 @@
             </div>
           </div>
           <div class="admin-modal-footer" style="box-shadow: none;">
-            <button class="edit-admin mr-3" href="">Edit</button>
+            <button class="edit-admin mr-3" (click)="editAdmin()">Edit</button>
             <button class="next-btn-course" data-dismiss="modal">Cancel</button>
           </div>
         </form>

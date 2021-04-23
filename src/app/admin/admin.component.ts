@@ -28,6 +28,10 @@ export class AdminComponent implements OnInit {
   classFieldData: any = '';
   allCourseList: any = '';
   selectedCategory: any = '';
+
+  email: any = '';
+  levelName: any = '';
+  bandingId: any = '';
   constructor(public router: Router, public service: SharedServiceService, public util: UtilService,) {
     this.instructionName = localStorage.getItem('instructionName');
     this.getallListingDropdown();
@@ -42,7 +46,6 @@ export class AdminComponent implements OnInit {
     this.router.navigate(['/classes']);
   }
 
-  // navigate to courses tab
   goToCourses() {
     this.router.navigate(['/sample04']);
   }
@@ -73,7 +76,6 @@ export class AdminComponent implements OnInit {
       "step": 1
     }
     this.service.post('create-course-api', params, 1).subscribe(result => {
-      console.log('result', result);
       this.allCategories = result['categories'];
       this.allLevel = result['level'];
       this.allBanding = result['banding'];
@@ -89,7 +91,6 @@ export class AdminComponent implements OnInit {
   }
 
   isClicked(adminList) {
-    console.log('admin', adminList);
     this.adminDataList = adminList;
     this.viewAllCoursesList();
   }
@@ -98,10 +99,10 @@ export class AdminComponent implements OnInit {
     let params = {
       "course_id": this.adminDataList.nid
     }
-    console.log('params', params);
+
     this.isLoadingBool = true;
     this.service.post('view-all-classes-api', params, 1).subscribe(result => {
-      console.log('result', result);
+
       this.isLoadingBool = false;
       if (result['status'] == 1) {
         this.allClassesData = result['classesdata'];
@@ -146,4 +147,16 @@ export class AdminComponent implements OnInit {
     })
   }
 
+  getCHeckBOxData(event) {
+    console.log(event.target.checked);
+  }
+
+  // save details for edit admins 
+  editAdmin() {
+    console.log('email', this.email);
+    console.log('selectedCategory', this.selectedCategory.nid);
+    console.log('levelName', this.levelName);
+    console.log('bandingId', this.bandingId);
+    console.log('classFieldData', this.classFieldData.nid);
+  }
 }

@@ -73,4 +73,8 @@ export class SidebarComponent implements OnInit {
       }
     })
   }
+
+  goToTestListing(){
+    this.router.navigate(['/test-listing'])
+  }
 }

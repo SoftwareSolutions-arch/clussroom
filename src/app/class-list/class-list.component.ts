@@ -269,7 +269,7 @@ export class ClassListComponent implements OnInit {
   }
 
   isCheckClicked(event, courseList, i) {
-    console.log('courseList', courseList);
+
     this.selectedCourseList = courseList;
     this.isGoToShow = true;
   }

@@ -182,7 +182,7 @@ export class LearnersComponent implements OnInit {
         "email": data,
         "class_id": this.selectedClass.nid
       }
-      console.log('parmas', this.selectedClass);
+      
       this.service.post('add-learner-api', params, 1).subscribe(result => {
         if (result['status'] == 1) {
           this.util.showSuccessAlert(result['error_message']);

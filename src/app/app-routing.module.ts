@@ -30,6 +30,7 @@ import { LoaderComponent } from './loader/loader.component';
 import { AdminComponent } from './admin/admin.component';
 import { LiveSessionsComponent } from './live-sessions/live-sessions.component';
 import { ProgressComponent } from './progress/progress.component';
+import { TestListingComponent } from './test-listing/test-listing.component';
 const routes: Routes = [
   {
     path: 'pricing', component: PricingComponent
@@ -117,6 +118,9 @@ const routes: Routes = [
   },
   {
     path: 'progress-bar', component: ProgressComponent
+  },
+  {
+    path: 'test-listing', component: TestListingComponent
   },
   {
     path: '', redirectTo: '/home', pathMatch: 'full'
