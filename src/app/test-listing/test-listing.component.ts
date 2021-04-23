@@ -9,9 +9,14 @@ import { SharedServiceService } from '../shared-service.service';
 })
 export class TestListingComponent implements OnInit {
   classId: any = '';
+  testAllData: any = '';
   isLoadingBool: boolean = true;
-  constructor(public service: SharedServiceService, private router: Router,
-  ) {
+
+  currentIndex = -1;
+  page = 1;
+  count = 0;
+  pageSize = 10;
+  constructor(public service: SharedServiceService, private router: Router) {
     this.classId = this.router.getCurrentNavigation().extras.state;
     this.getTestListing();
   }
@@ -42,10 +47,16 @@ export class TestListingComponent implements OnInit {
     let params = {
       "class_id": this.classId.data
     }
-    
+
     this.service.post('test-list-api', params, 1).subscribe(result => {
-      
+      console.log('result++p', result);
+      this.testAllData = result.test_data
       this.isLoadingBool = false;
     })
+  }
+
+  // handling page events
+  handlePageChange(event): void {
+    this.page = event;
   }
 }
