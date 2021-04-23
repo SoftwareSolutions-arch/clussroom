@@ -119,7 +119,7 @@ export class LearnersComponent implements OnInit {
   getAllClassesList() {
     this.isLoadingBool = true;
     this.service.post('view-all-learners-api', '', 1).subscribe(result => {
-
+      console.log('result', result);
       this.isLoadingBool = false;
       this.allClassesList = result;
     })
@@ -182,7 +182,7 @@ export class LearnersComponent implements OnInit {
         "email": data,
         "class_id": this.selectedClass.nid
       }
-      
+
       this.service.post('add-learner-api', params, 1).subscribe(result => {
         if (result['status'] == 1) {
           this.util.showSuccessAlert(result['error_message']);
@@ -293,5 +293,9 @@ export class LearnersComponent implements OnInit {
     const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
+  }
+
+  goToClasses(classList) {
+    this.router.navigate(['/test-listing'], { state: { data: classList.class_id } })
   }
 }

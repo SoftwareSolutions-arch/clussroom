@@ -336,4 +336,8 @@ export class ClassesComponent implements OnInit {
   goToLiveSession() {
     this.router.navigate(['/live-session']);
   }
+
+  goToClasses(classList) {
+    this.router.navigate(['/test-listing'],{state:{data:classList.nid}})
+  }
 }

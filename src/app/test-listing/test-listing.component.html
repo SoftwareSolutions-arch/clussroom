@@ -53,14 +53,18 @@
       </div>
     </div>
 
-    <div class="row test-button">
-      <button onclick="myFunction()" class="tstbtn">Add Test</button>
+    <div *ngIf="isLoadingBool" class="loading-indicator">
+      <mat-spinner></mat-spinner>
+    </div>
+
+    <div class="row test-button" *ngIf="!isLoadingBool">
+      <button (click)="myFunction()" class="tstbtn">Add Test</button>
       <div id="mytstdown" class="tstdown-content">
-        <a href="#home">Add new</a>
-        <a href="#about" class="custom-button" data-toggle="modal" data-target="#library">Add from library</a>
+        <a>Add new</a>
+        <a class="custom-button" data-toggle="modal" data-target="#library">Add from library</a>
       </div>
     </div>
-    <div class="prospectus-section sequence-list">
+    <div class="prospectus-section sequence-list" *ngIf="!isLoadingBool">
       <div class="prospectus-tabs">
         <ul class="nav nav-tabs">
           <li><a data-toggle="tab" href="#test" class="active">Test</a></li>
@@ -72,7 +76,7 @@
       <div class="tab-content">
         <!-- Schedule start -->
         <div id="test" class="tab-pane active">
-          <div class="table=-responsive">
+          <div class="table-responsive">
             <table class="table dashboard-table">
               <thead class="thead-course">
                 <tr>
@@ -100,7 +104,7 @@
                   <th scope="col" class="table-filter">Attempt</th>
                   <th scope="col" class="table-filter">Marking Status</th>
                   <th scope="col" class="table-filter">Total Score</th>
-                  <th scope="col"><button onclick="myFunction()" class="ellipbtn"><i
+                  <th scope="col"><button (click)="myFunction()" class="ellipbtn"><i
                         class="fa fa-ellipsis-v"></i></button>
                     <!-- <div id="myellip" class="ellip-content">
                               <a href="#home"><i class="fa fa-pencil"></i>Edit</a>
@@ -208,8 +212,6 @@
                   </td>
                   <td></td>
                 </tr>
-
-
               </tbody>
             </table>
           </div>
@@ -343,89 +345,141 @@
             <button type="button" class="blue-border">Cancel</button>
           </div>
         </div>
-
         <!-- Submisssion Log end -->
 
         <!-- Test/Assignment Grading Status start -->
-
         <div id="assignment-grading" class="tab-pane">
-          <div class="table=-responsive">
+          <div class="table-responsive">
             <table class="table dashboard-table">
               <thead class="thead-course">
                 <tr>
                   <th scope="col"></th>
+
+                  <th scope="col" style="width: 10% !important;padding: 0 0 0 5.5em;text-align: center;">Learner</th>
                   <th scope="col"></th>
+                  <th scope="col" style="text-align: right; padding: 0 0;">Attempt</th>
                   <th scope="col"></th>
-                  <th scope="col" colspan="2">Due</th>
                   <th scope="col"></th>
                   <th scope="col"></th>
                 </tr>
               </thead>
               <thead>
                 <tr>
-                  <th scope="col">No.</th>
-                  <th scope="col" class="text-left table-filter">Type</th>
-                  <th scope="col" class="text-left table-filter">Name</th>
-                  <th scope="col">Date</th>
-                  <th scope="col">Time</th>
-                  <th scope="col">Graded?</th>
-                  <th scope="col">Final Grading contribution</th>
+                  <th scope="col" style="padding: 22px 0;">No.</th>
+                  <th scope="col" class="text-left table-filter" style="width: 20%; padding: 22px 12px;">First name</th>
+                  <th scope="col" class=" text-left table-filter" style="padding: 22px 0;">Last Name</th>
+                  <th scope="col" class="text-left table-filter" style="padding: 22px 0;">Total</th>
+                  <th scope="col" class="table-filter" style="padding: 22px 0;">Submitted</th>
+                  <th scope="col" class="table-filter">final<br>score</th>
+                  <th scope="col" style="width: 10%;"></th>
+
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>1</td>
-                  <td class="text-left">Test</td>
-                  <td class="text-left">First Term Test - Preliminary</td>
-                  <td>07/08/2020</td>
-                  <td>18:30 hrs</td>
-                  <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                  <td>-</td>
+
+                  <td style="padding: 19px 0;">1</td>
+                  <td class="text-left" style="padding-top: 19px;">Darren</td>
+                  <td class="text-left" style="padding-top: 19px;">Jake</td>
+                  <td class="text-left" style="padding-top: 19px;">3</td>
+                  <td style="padding-top: 19px;">1</td>
+                  <td>80/120</td>
+                  <td>
+                    <div class="mid-green">
+                      <button type="button">View Attempt</button>
+                    </div>
+                  </td>
+
                 </tr>
-                <tr>
-                  <td>2</td>
-                  <td class="text-left">Discussion</td>
-                  <td class="text-left">Bull in share market</td>
-                  <td>01/07/2020</td>
-                  <td>17:00 hrs</td>
-                  <td>-</td>
-                  <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                </tr>
+
                 <tr>
 
-                  <td>3</td>
-                  <td class="text-left">Assignment</td>
-                  <td class="text-left">Balance Sheet making</td>
-                  <td>02/05/2020</td>
-                  <td>15:00 hrs</td>
-                  <td>-</td>
-                  <td>-</td>
+                  <td style="padding: 19px 0;">2</td>
+                  <td class="text-left" style="padding-top: 19px;">Jake</td>
+                  <td class="text-left" style="padding-top: 19px;">Maybell</td>
+                  <td class="text-left" style="padding-top: 19px;">3</td>
+                  <td style="padding-top: 19px;">2</td>
+                  <td style="padding-top: 19px;">67/120</td>
+                  <td>
+                    <div class="mid-green">
+                      <button type="button">View Attempt</button>
+                    </div>
+                  </td>
+
                 </tr>
+
                 <tr>
 
-                  <td>4</td>
-                  <td class="text-left">Assignment</td>
-                  <td class="text-left">Cash flow</td>
-                  <td>24/06/2020</td>
-                  <td>14:00 hrs</td>
-                  <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                  <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                  <td style="padding: 19px 0;">3</td>
+                  <td class="text-left" style="padding-top: 19px;">Maybell</td>
+                  <td class="text-left" style="padding-top: 19px;">Hazel</td>
+                  <td class="text-left" style="padding-top: 19px;">3</td>
+                  <td style="padding-top: 19px;">-</td>
+                  <td style="padding-top: 19px;">-</td>
+                  <td style="padding-top: 19px;">
+                    <div class="light-pink">
+                      <button type="button">-</button>
+                    </div>
+                  </td>
+
                 </tr>
+
                 <tr>
 
-                  <td>5</td>
-                  <td class="text-left">Test</td>
-                  <td class="text-left">How to handle special entries</td>
-                  <td>24/05/2020</td>
-                  <td>02:00 hrs</td>
-                  <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                  <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                  <td style="padding: 19px 0;">4</td>
+                  <td class="text-left" style="padding-top: 19px;">Hazel</td>
+                  <td class="text-left" style="padding-top: 19px;">Mitt</td>
+                  <td class="text-left" style="padding-top: 19px;">3</td>
+                  <td style="padding-top: 19px;">3</td>
+                  <td style="color: #FF82AC;">Pending<br>review</td>
+                  <td>
+                    <div class="mid-green">
+                      <button type="button">View Attempt</button>
+                    </div>
+                  </td>
+
                 </tr>
+
+                <tr>
+
+                  <td style="padding: 19px 0;">5</td>
+                  <td class="text-left" style="padding-top: 19px;">Mitt</td>
+                  <td class="text-left" style="padding-top: 19px;">Darren</td>
+                  <td class="text-left" style="padding-top: 19px;">3</td>
+                  <td style="padding-top: 19px;">-</td>
+                  <td style="padding-top: 19px;">-</td>
+                  <td style="padding-top: 19px;">
+                    <div class="light-pink">
+                      <button type="button">-</button>
+                    </div>
+                  </td>
+
+                </tr>
+
+
               </tbody>
             </table>
           </div>
-          <div class="table-result-wrapper">
-            <p>Results: 1-15 of 324</p>
+          <div class="table-result-wrapper bottom-select">
+            <select name="course" id="course-name">
+              <option selected>10</option>
+              <option value="Course 1">1</option>
+              <option value="Course 2">2</option>
+              <option value="Course 3">3</option>
+            </select>
+            <p style="width: 10%;">Results: 1-15 of 324</p>
+            <div class="selector">
+              <ul>
+                <li><a href="#"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li class="active"><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">...</a></li>
+                <li><a href="#" class="right-arrow"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+              </ul>
+            </div>
           </div>
         </div>
 
@@ -434,7 +488,7 @@
         <!-- Overall Grading Status start -->
 
         <div id="overall-grading" class="tab-pane">
-          <div class="table=-responsive">
+          <div class="table-responsive">
             <table class="table dashboard-table">
               <thead class="thead-course">
                 <tr>
@@ -626,11 +680,13 @@
 
 <script type="text/javascript" src="js/slick.min.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
-<script>
+<!-- <script>
   function myFunction() {
     document.getElementById("mytstdown").classList.toggle("show");
   }
-  window.onclick = function (event) {
+  
+  
+  window.onclick = function(event) {
     if (!event.target.matches('.tstbtn')) {
       var dropdowns = document.getElementsByClassName("tstdown-content");
       var i;
@@ -642,4 +698,4 @@
       }
     }
   }
-</script>
+</script> -->
