@@ -5642,6 +5642,7 @@ table.dashboard-table td input {
 	font-size: 15px;
 	font-weight: 600;
 	transition: .5s ease-in-out;
+	margin-left: 16px;
 }
 
 .blue-border:hover {

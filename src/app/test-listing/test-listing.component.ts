@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SharedServiceService } from '../shared-service.service';
+import { UtilService } from '../../providers/util.service';
 
 @Component({
   selector: 'app-test-listing',
@@ -16,7 +17,24 @@ export class TestListingComponent implements OnInit {
   page = 1;
   count = 0;
   pageSize = 10;
-  constructor(public service: SharedServiceService, private router: Router) {
+
+
+  SettingsData: any = {
+    test_name: '',
+    instruction: '',
+    test_available_from: '',
+    // test_availble_from_time: '',
+    test_available_to: '',
+    // test_availble_to_time: '',
+    timer: '',
+    timer_time: '',
+    attempts: '',
+    // attempts_score: '',
+    pagination: '',
+    view_ans_after_compliation: '',
+    class_nid: ''
+  }
+  constructor(public service: SharedServiceService, public util: UtilService, private router: Router) {
     this.classId = this.router.getCurrentNavigation().extras.state;
     this.getTestListing();
   }
@@ -49,7 +67,6 @@ export class TestListingComponent implements OnInit {
     }
 
     this.service.post('test-list-api', params, 1).subscribe(result => {
-      console.log('result++p', result);
       this.testAllData = result.test_data
       this.isLoadingBool = false;
     })
@@ -58,5 +75,23 @@ export class TestListingComponent implements OnInit {
   // handling page events
   handlePageChange(event): void {
     this.page = event;
+  }
+
+  // confirm add test
+  confirm() {
+    this.SettingsData.class_nid = this.classId.data;
+    var x = new Date(this.SettingsData.test_available_from);
+    var y = new Date(this.SettingsData.test_available_to);
+
+    if (x > y) {
+      this.util.errorAlertPopup('start date should be less than end date');
+    }
+    else {
+      this.isLoadingBool = true;
+      this.service.post('add-test-api', this.SettingsData, 1).subscribe(result => {
+        this.isLoadingBool = false;
+        this.getTestListing();
+      })
+    }
   }
 }

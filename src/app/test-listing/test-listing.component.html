@@ -122,7 +122,7 @@
                   <th>
                     <div class="radio-table"><input type="checkbox"></div>
                   </th>
-                  <td>1</td>
+                  <td>{{testListing.s_no}}</td>
                   <td class="text-left">{{testListing.test_name}}</td>
                   <td class="text-left">{{testListing.start_date}}</td>
                   <td class="text-left">{{testListing.start_time}}</td>
@@ -130,9 +130,9 @@
                   <td>{{testListing.end_time}}</td>
                   <td>{{testListing.test_timer}}</td>
                   <td>{{testListing.test_attempts}}</td>
-                  <td>1/12</td>
+                  <td>{{testListing.marking_status}}</td>
                   <td>
-                    <div class="purple"><button type="button">150</button></div>
+                    <div class="purple"><button type="button">{{testListing.total_score}} </button></div>
                   </td>
                   <td></td>
                 </tr>
@@ -250,7 +250,7 @@
               <label>Name of test</label>
             </div>
             <div class="col-lg-10 setting-padding">
-              <input type="text">
+              <input [(ngModel)]="SettingsData.test_name" type="text">
             </div>
           </div>
           <div class="text-area setting-input bottom-border">
@@ -261,7 +261,8 @@
               <!-- <textarea name="history" cols="80" label="notes" rows="4" wrap="virtual" style="margin: 0;"
                 placeholder="Please read the questions carefully. This test will form part of your final grading this year.">
                   </textarea> -->
-              <angular-editor name="history" cols="80" label="notes" rows="4" wrap="virtual" style="margin: 0;"
+              <angular-editor [(ngModel)]="SettingsData.instruction" name="history" cols="80" label="notes" rows="4"
+                wrap="virtual" style="margin: 0;"
                 [placeholder]="'Please read the questions carefully. This test will form part of your final grading this year.'">
               </angular-editor>
             </div>
@@ -271,21 +272,23 @@
               <label>Test available from :</label>
             </div>
             <div class="col-md-2" style="padding-left: 21px; margin-right: 2em">
-              <input type="date">
+              <input [(ngModel)]="SettingsData.test_available_from" type="date" name="test_available_from">
             </div>
             <div class="col-md-2">
-              <input type="time" style="width: 148px !important;" value="12:00" class="text-center">
+              <input [(ngModel)]="SettingsData.test_availble_from_time" type="time" style="width: 148px !important;"
+                value="12:00" class="text-center" name="test_availble_from_time">
             </div>
           </div>
           <div class="setting-date-section setting-input bottom-border">
             <div class="col-md-2 text-left">
-              <label>Test available from :</label>
+              <label>Test available to :</label>
             </div>
             <div class="col-md-2" style="padding-left: 21px; margin-right: 2em">
-              <input type="date">
+              <input [(ngModel)]="SettingsData.test_available_to" type="date" name="test_available_to">
             </div>
             <div class="col-md-2">
-              <input type="time" style="width: 148px !important;" value="12:00" class="text-center">
+              <input [(ngModel)]="SettingsData.test_availble_to_time" type="time" style="width: 148px !important;"
+                value="12:00" class="text-center" name="test_availble_to_time">
             </div>
           </div>
           <div class="custom-checkbox setting-input bottom-border">
@@ -293,10 +296,10 @@
               <label>Timer</label>
             </div>
             <div class="col-md-2">
-              <input type="checkbox" id="checkbox1" />
+              <input [(ngModel)]="SettingsData.timer" type="checkbox" id="checkbox1" />
             </div>
             <div class="col-md-4 custom">
-              <input type="text">
+              <input [(ngModel)]="SettingsData.timer_time" type="text">
               <label>Minutes</label>
             </div>
           </div>
@@ -305,7 +308,7 @@
               <label>Attempts</label>
             </div>
             <div class="col-sm-2" style="padding: 0 20px;">
-              <select name="course" id="course-name">
+              <select [(ngModel)]="SettingsData.attempts" name="course" id="course-name">
                 <option selected>1</option>
                 <option value="Course 1">2</option>
                 <option value="Course 2">3</option>
@@ -313,9 +316,8 @@
               </select>
             </div>
             <div class="attempt">
-              <select name="course" id="course-name" style="width: 148px;">
-                <option selected></option>
-                <option value="Course 1">Last attempt</option>
+              <select [(ngModel)]="SettingsData.attempts_score" name="course" id="course-name" style="width: 148px;">
+                <option value="Course 1" selected>Last attempt</option>
                 <option value="Course 2">Best score</option>
                 <option value="Course 3">Average score</option>
               </select>
@@ -326,7 +328,7 @@
               <label>Pagination</label>
             </div>
             <div class="custom">
-              <select name="course" id="course-name">
+              <select [(ngModel)]="SettingsData.pagination" name="course" id="course-name">
                 <option selected>1</option>
                 <option value="Course 1">2</option>
                 <option value="Course 2">3</option>
@@ -340,7 +342,7 @@
               <label>View answers</label>
             </div>
             <div class="custom">
-              <select name="course" id="course-name">
+              <select [(ngModel)]="SettingsData.view_ans_after_compliation" name="course" id="course-name">
                 <option selected>No</option>
                 <option value="Course 1">Yes</option>
               </select>
@@ -348,7 +350,7 @@
             </div>
           </div>
           <div class="container" style="padding: 18px 0 0 0;">
-            <button type="button" class="blue">Confirm</button>
+            <button (click)="confirm()" type="button" class="blue">Confirm</button>
             <button type="button" class="blue-border">Cancel</button>
           </div>
         </div>
