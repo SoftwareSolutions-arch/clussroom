@@ -31,16 +31,6 @@ import { AdminComponent } from './admin/admin.component';
 import { LiveSessionsComponent } from './live-sessions/live-sessions.component';
 import { ProgressComponent } from './progress/progress.component';
 import { TestListingComponent } from './test-listing/test-listing.component';
-import { TestListingHomeComponent } from './test-module/test-listing-home/test-listing-home.component';
-import { SettingsComponent } from './test-module/settings/settings.component';
-import { TestAssessmentComponent } from './test-module/test-assessment/test-assessment.component';
-import { SettingsTabComponent } from './test-module/settings-tab/settings-tab.component';
-import { QuestionScreenComponent } from './test-module/question-screen/question-screen.component';
-import { FillInTheBlanksComponent } from './test-module/fill-in-the-blanks/fill-in-the-blanks.component';
-import { MultipleChoiceQuestionComponent } from './test-module/multiple-choice-question/multiple-choice-question.component';
-import { ShortAnswerComponent } from './test-module/short-answer/short-answer.component';
-import { OrderingComponent } from './test-module/ordering/ordering.component';
-import { TrueOrFalseComponent } from './test-module/true-or-false/true-or-false.component';
 
 const routes: Routes = [
   {
@@ -133,37 +123,8 @@ const routes: Routes = [
   {
     path: 'progress-bar', component: ProgressComponent
   },
-  {
-    path: 'test-listing-home', component: TestListingHomeComponent
-  },
-  {
-    path: 'test-settings', component: SettingsComponent
-  },
-  {
-    path: 'test-assessment', component: TestAssessmentComponent
-  },
-  {
-    path: 'settings-tabs', component: SettingsTabComponent
-  },
-  {
-    path: 'question-screen', component: QuestionScreenComponent
-  },
-  {
-    path: 'fill-in-the-blanks', component: FillInTheBlanksComponent
-  },
-  {
-    path: 'multiple-choice', component: MultipleChoiceQuestionComponent
-  },
-  {
-    path: 'short-answer', component: ShortAnswerComponent
-  },
-  {
-    path: 'ordering', component: OrderingComponent
-  },
-  {
-    path: 'true-false', component: TrueOrFalseComponent
-  },
-  // { path: 'action', loadChildren: './test-module/test-module#TestModule' },
+
+  { path: 'test', loadChildren: './test-module/test-module#TestModule' },
 ];
 
 @NgModule({

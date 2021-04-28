@@ -36,11 +36,11 @@ export class SettingsComponent implements OnInit {
   }
 
   goToTestHome() {
-    this.router.navigate(['/test-listing-home']);
+    this.router.navigate(['/test/test-listing-home']);
   }
 
   goToTestAssessment() {
-    this.router.navigate(['/test-assessment']);
+    this.router.navigate(['/test/test-assessment']);
   }
 
   // confirm add test

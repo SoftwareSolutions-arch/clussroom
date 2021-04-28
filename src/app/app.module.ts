@@ -50,7 +50,7 @@ import { ProgressComponent } from './progress/progress.component';
 import { ToastrModule } from 'ngx-toastr';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
-import {LoaderComponent} from './loader/loader.component';
+import { LoaderComponent } from './loader/loader.component';
 import { TestListingComponent } from './test-listing/test-listing.component';
 import { TestListingHomeComponent } from './test-module/test-listing-home/test-listing-home.component';
 import { SettingsComponent } from './test-module/settings/settings.component';
@@ -63,7 +63,6 @@ import { MultipleChoiceQuestionComponent } from './test-module/multiple-choice-q
 import { OrderingComponent } from './test-module/ordering/ordering.component';
 import { TrueOrFalseComponent } from './test-module/true-or-false/true-or-false.component';
 import { ShortAnswerComponent } from './test-module/short-answer/short-answer.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -132,7 +131,7 @@ import { ShortAnswerComponent } from './test-module/short-answer/short-answer.co
     MatProgressSpinnerModule,
     SlickCarouselModule, MatTabsModule, NgxPaginationModule, AngularEditorModule
   ],
-  providers: [Sample04Component, ClassesComponent,LoaderComponent],
+  providers: [Sample04Component, ClassesComponent, LoaderComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

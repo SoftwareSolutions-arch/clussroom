@@ -14,11 +14,11 @@ export class TestAssessmentComponent implements OnInit {
   }
 
   goToTestHome() {
-    this.router.navigate(['/test-listing-home']);
+    this.router.navigate(['/test/test-listing-home']);
   }
 
   settingsClicked() {
-    this.router.navigate(["/settings-tabs"]);
+    this.router.navigate(["/test/settings-tabs"]);
   }
 
 }

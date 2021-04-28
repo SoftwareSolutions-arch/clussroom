@@ -104,14 +104,14 @@ export class TestListingHomeComponent implements OnInit {
 
   settingsClicked() {
     // this.isTestSelected = false;
-    this.router.navigate(["/settings-tabs"]);
+    this.router.navigate(["/test/settings-tabs"]);
   }
 
   goToTestAssessment(){
-    this.router.navigate(['/test-assessment']);
+    this.router.navigate(['/test/test-assessment']);
   }
 
   addNew(){
-    this.router.navigate(["/test-settings"]);
+    this.router.navigate(["/test/test-settings"]);
   }
 }
