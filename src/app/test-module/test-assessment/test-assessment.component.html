@@ -1,0 +1,223 @@
+<div class="dashboard">
+  <app-sidebar></app-sidebar>
+  <div class="control-panel">
+    <app-dashboardheader></app-dashboardheader>
+
+    <div class="sequence-nav-wrapper dashed-border">
+      <div class="sequence-duration-wrapper">
+        <div class="sequence-class-code">
+          <img src="assets/images/dashboard/orange-book.png">
+          <span>Class Code</span>
+          <p>PT 75</p>
+        </div>
+        <div class="sequence-duration-code">
+          <img src="assets/images/dashboard/date-calender.png">
+          <div class="sequence-start-date">
+            <span>09/30/2020</span>
+            <p>Start Date</p>
+          </div>
+          <div class="sequence-end-date">
+            <span>09/25/2020</span>
+            <p>End Date</p>
+          </div>
+        </div>
+      </div>
+      <div class="sequence-element-wrapper">
+        <a class="sequence-class-curve yellow-wrapper">
+          <div class="sequence-class-caption">
+            <h6>11</h6>
+            <span>Class Material</span>
+          </div>
+          <figure>
+            <img src="assets/images/dashboard/briefcase.png">
+          </figure>
+        </a>
+        <a class="sequence-assignments-curve blue-wrapper">
+          <div class="sequence-assignments-caption">
+            <h6>15</h6>
+            <span>Assignments</span>
+          </div>
+          <figure>
+            <img src="assets/images/dashboard/assignment.png">
+          </figure>
+        </a>
+        <a class="sequence-tests-curve green-wrapper">
+          <div class="sequence-tests-caption">
+            <h6>5</h6>
+            <span>Tests</span>
+          </div>
+          <figure>
+            <img src="assets/images/dashboard/test.png">
+          </figure>
+        </a>
+      </div>
+    </div>
+
+    <!-- <div class="loading-indicator">
+      <mat-spinner></mat-spinner>
+    </div> -->
+
+    <div class="right">
+      <div class="width">
+        <a>Mid-term Test</a>
+      </div>
+      <div class="width">
+        <select name="course" id="course-name">
+          <option value="Course 1">Final Exam</option>
+          <option value="Course 1" selected>Mid-Term Test</option>
+          <option value="Course 2">Test1</option>
+          <option value="Course 3">Test2</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="prospectus-section sequence-list">
+      <div class="prospectus-tabs">
+        <ul class="nav nav-tabs">
+          <li (click)="goToTestHome()"><a data-toggle="tab">Test</a></li>
+          <li (click)="settingsClicked()"><a data-toggle="tab">Settings</a></li>
+          <li><a data-toggle="tab" class="active">Result/Assessment</a></li>
+          <!--<li><a data-toggle="tab" href="#overall-grading">Overall Grading Status</a></li>-->
+        </ul>
+      </div>
+      <div class="tab-content">
+        <!-- Test/Assignment Grading Status start -->
+        <div id="assignment-grading" class="tab-pane active">
+          <div class="table-responsive">
+            <table class="table dashboard-table">
+              <thead class="thead-course">
+                <tr>
+                  <th scope="col"></th>
+
+                  <th scope="col" style="width: 10% !important;padding: 0 0 0 5.5em;text-align: center;">Learner</th>
+                  <th scope="col"></th>
+                  <th scope="col" style="text-align: right; padding: 0 0;">Attempt</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <thead>
+                <tr>
+                  <th scope="col" style="padding: 22px 0;">No.</th>
+                  <th scope="col" class="text-left table-filter" style="width: 20%; padding: 22px 12px;">First name</th>
+                  <th scope="col" class=" text-left table-filter" style="padding: 22px 0;">Last Name</th>
+                  <th scope="col" class="text-left table-filter" style="padding: 22px 0;">Total</th>
+                  <th scope="col" class="table-filter" style="padding: 22px 0;">Submitted</th>
+                  <th scope="col" class="table-filter">final<br>score</th>
+                  <th scope="col" style="width: 10%;"></th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+
+                  <td style="padding: 19px 0;">1</td>
+                  <td class="text-left" style="padding-top: 19px;">Darren</td>
+                  <td class="text-left" style="padding-top: 19px;">Jake</td>
+                  <td class="text-left" style="padding-top: 19px;">3</td>
+                  <td style="padding-top: 19px;">1</td>
+                  <td>80/120</td>
+                  <td>
+                    <div class="mid-green">
+                      <button type="button">View Attempt</button>
+                    </div>
+                  </td>
+
+                </tr>
+
+                <tr>
+
+                  <td style="padding: 19px 0;">2</td>
+                  <td class="text-left" style="padding-top: 19px;">Jake</td>
+                  <td class="text-left" style="padding-top: 19px;">Maybell</td>
+                  <td class="text-left" style="padding-top: 19px;">3</td>
+                  <td style="padding-top: 19px;">2</td>
+                  <td style="padding-top: 19px;">67/120</td>
+                  <td>
+                    <div class="mid-green">
+                      <button type="button">View Attempt</button>
+                    </div>
+                  </td>
+
+                </tr>
+
+                <tr>
+
+                  <td style="padding: 19px 0;">3</td>
+                  <td class="text-left" style="padding-top: 19px;">Maybell</td>
+                  <td class="text-left" style="padding-top: 19px;">Hazel</td>
+                  <td class="text-left" style="padding-top: 19px;">3</td>
+                  <td style="padding-top: 19px;">-</td>
+                  <td style="padding-top: 19px;">-</td>
+                  <td style="padding-top: 19px;">
+                    <div class="light-pink">
+                      <button type="button">-</button>
+                    </div>
+                  </td>
+
+                </tr>
+
+                <tr>
+
+                  <td style="padding: 19px 0;">4</td>
+                  <td class="text-left" style="padding-top: 19px;">Hazel</td>
+                  <td class="text-left" style="padding-top: 19px;">Mitt</td>
+                  <td class="text-left" style="padding-top: 19px;">3</td>
+                  <td style="padding-top: 19px;">3</td>
+                  <td style="color: #FF82AC;">Pending<br>review</td>
+                  <td>
+                    <div class="mid-green">
+                      <button type="button">View Attempt</button>
+                    </div>
+                  </td>
+
+                </tr>
+
+                <tr>
+
+                  <td style="padding: 19px 0;">5</td>
+                  <td class="text-left" style="padding-top: 19px;">Mitt</td>
+                  <td class="text-left" style="padding-top: 19px;">Darren</td>
+                  <td class="text-left" style="padding-top: 19px;">3</td>
+                  <td style="padding-top: 19px;">-</td>
+                  <td style="padding-top: 19px;">-</td>
+                  <td style="padding-top: 19px;">
+                    <div class="light-pink">
+                      <button type="button">-</button>
+                    </div>
+                  </td>
+
+                </tr>
+
+
+              </tbody>
+            </table>
+          </div>
+          <div class="table-result-wrapper bottom-select">
+            <select name="course" id="course-name">
+              <option selected>10</option>
+              <option value="Course 1">1</option>
+              <option value="Course 2">2</option>
+              <option value="Course 3">3</option>
+            </select>
+            <p style="width: 10%;">Results: 1-15 of 324</p>
+            <div class="selector">
+              <ul>
+                <li><a href="#"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li class="active"><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">...</a></li>
+                <li><a href="#" class="right-arrow"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- Overall Grading Status end -->
+      </div>
+    </div>
+  </div>
+</div>

@@ -338,6 +338,9 @@ export class ClassesComponent implements OnInit {
   }
 
   goToClasses(classList) {
-    this.router.navigate(['/test-listing'],{state:{data:classList.nid}})
+    // this.router.navigate(['/test-listing'],{state:{data:classList.nid}})
+    localStorage.setItem('classListId',classList.nid)
+    this.router.navigate(['/test-listing-home'])
+
   }
 }

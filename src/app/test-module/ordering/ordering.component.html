@@ -1,0 +1,230 @@
+<div class="dashboard">
+  <app-sidebar></app-sidebar>
+  <div class="control-panel">
+    <app-dashboardheader></app-dashboardheader>
+
+    <div class="sequence-nav-wrapper dashed-border">
+      <div class="sequence-duration-wrapper">
+        <div class="sequence-class-code">
+          <img src="assets/images/dashboard/orange-book.png">
+          <span>Class Code</span>
+          <p>PT 75</p>
+        </div>
+        <div class="sequence-duration-code">
+          <img src="assets/images/dashboard/date-calender.png">
+          <div class="sequence-start-date">
+            <span>09/30/2020</span>
+            <p>Start Date</p>
+          </div>
+          <div class="sequence-end-date">
+            <span>09/25/2020</span>
+            <p>End Date</p>
+          </div>
+        </div>
+      </div>
+      <div class="sequence-element-wrapper">
+        <a class="sequence-class-curve yellow-wrapper">
+          <div class="sequence-class-caption">
+            <h6>11</h6>
+            <span>Class Material</span>
+          </div>
+          <figure>
+            <img src="assets/images/dashboard/briefcase.png">
+          </figure>
+        </a>
+        <a class="sequence-assignments-curve blue-wrapper">
+          <div class="sequence-assignments-caption">
+            <h6>15</h6>
+            <span>Assignments</span>
+          </div>
+          <figure>
+            <img src="assets/images/dashboard/assignment.png">
+          </figure>
+        </a>
+        <a class="sequence-tests-curve green-wrapper">
+          <div class="sequence-tests-caption">
+            <h6>5</h6>
+            <span>Tests</span>
+          </div>
+          <figure>
+            <img src="assets/images/dashboard/test.png">
+          </figure>
+        </a>
+      </div>
+    </div>
+
+    <div *ngIf="isLoadingBool" class="loading-indicator">
+      <mat-spinner></mat-spinner>
+    </div>
+
+    <div class="row test-button">
+      <button type="button"><a>Add Test</a></button>
+    </div>
+
+    <div class="prospectus-section sequence-list">
+      <div class="prospectus-tabs">
+         <ul class="nav nav-tabs">
+            <li><a data-toggle="tab" href="#test" class="active">Test</a></li>
+            <li><a data-toggle="tab" href="#settings">Settings</a></li>
+            <li><a data-toggle="tab" href="#assignment-grading">Result/Assessment</a></li>
+            <!--				    <li><a data-toggle="tab" href="#overall-grading">Overall Grading Status</a></li>-->
+         </ul>
+      </div>
+      <div class="tab-content">
+         <!-- Schedule start -->
+         <div class="heading" style="padding: 0 10px;">
+            <h2>Multiple Choice Question</h2>
+         </div>
+         <div class="multiple-text">
+            <textarea name="shortanswer"></textarea>
+            <div class="col-md-4"></div>
+         </div>
+          
+          <div class="test-option sample custom-control custom-checkbox mt-4 box-shadow">
+               <div class="col-sm-3 text-center">
+                  <button type="button">
+                      <span><a href="#"><i class="fa fa-times-circle" aria-hidden="true"></i></a></span>
+                     <h2>Sample image</h2>
+                  </button>
+                  <input type="text" placeholder="Description" class="mt-3">
+               </div>
+               <div class="col-sm-3 text-center">
+                  <button type="button">
+                      <span><a href="#"><i class="fa fa-times-circle" aria-hidden="true"></i></a></span>
+                     <h2>Sample image</h2>
+                  </button>
+                  <input type="text" placeholder="Description" class="mt-3">
+               </div>
+               <div class="col-sm-3 text-center">
+                  <button type="button">
+                      <span><a href="#"><i class="fa fa-times-circle" aria-hidden="true"></i></a></span>
+                     <h2>Sample image</h2>
+                  </button>
+                  <input type="text" placeholder="Description" class="mt-3">
+               </div>
+               <div class="col-sm-3 text-center">                             
+               </div>
+            </div>
+          
+         <div class="attach mt-3 border-bottom mb-3" style="padding-bottom: 1em;">
+            <a href="#"><img src="assets/images/test/Mask.png"></a>
+            <h2>Attachments (0/4)</h2>
+            <button type="button"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add</button>
+         </div>
+         <div class="col-lg-12 box-shadow border-bottom">
+            <h6 class="mb-4" style="padding: 0 5em">Correct order</h6>
+             <div class="col-lg-8 mb-3" style="display: flex; align-items: center;">
+               <label class="col-sm-2 text-center" style="margin: 0; padding:0;">
+                   <i class="fa fa-random" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;1.  
+               </label>
+                 <div class="col-md-8 custom-order" style="padding:0;">
+                   <input type="text">
+                     <button type="button" class="orange-cross"><i class="fa fa-times" aria-hidden="true"></i></button>
+                 </div>
+             </div>
+             <div class="col-lg-8 mb-3" style="display: flex; align-items: center;">
+               <label class="col-sm-2 text-center" style="margin: 0; padding:0;">
+                   <i class="fa fa-random" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;2.  
+               </label>
+                 <div class="col-md-8 custom-order" style="padding:0;">
+                   <input type="text">
+                     <button type="button" class="orange-cross"><i class="fa fa-times" aria-hidden="true"></i></button>
+                 </div>
+             </div>
+             <div class="col-lg-8 mb-3" style="display: flex; align-items: center;">
+               <label class="col-sm-2 text-center" style="margin: 0; padding:0;">
+                   <i class="fa fa-random" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;3.  
+               </label>
+                 <div class="col-md-8 custom-order" style="padding:0;">
+                   <input type="text">
+                     <button type="button" class="orange-cross"><i class="fa fa-times" aria-hidden="true"></i></button>
+                 </div>
+             </div>
+             <div class="col-lg-8 mb-3" style="display: flex; align-items: center;">
+               <label class="col-sm-2 text-center" style="margin: 0; padding:0;">
+                   <i class="fa fa-random" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;4.  
+               </label>
+                 <div class="col-md-8 custom-order" style="padding:0;">
+                   <input type="text">
+                     <button type="button" class="orange-cross"><i class="fa fa-times" aria-hidden="true"></i></button>
+                 </div>
+             </div>
+             <div class="col-lg-8 mb-3" style="display: flex; align-items: center;">
+               <label class="col-sm-2 text-center" style="margin: 0; padding:0;">
+                   <i class="fa fa-random" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;5.  
+               </label>
+                 <div class="col-md-8 custom-order" style="padding:0;">
+                   <input type="text">
+                     <button type="button" class="orange-cross"><i class="fa fa-times" aria-hidden="true"></i></button>
+                 </div>
+             </div>
+             <div class="col-lf-12" style="display: flex;">
+             <div class="attach col-sm-2 text-right mb-3" style="display: block; padding: 0 !important;">
+               <button type="button" style="margin: 0 !important;"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add</button>
+             </div>
+             <div class="col-md-6 question-label mb-3">
+                 <p style="padding: 0 19px;"><span style="color: #81c8c1;">Note:</span>&nbsp;&nbsp;Numbers indicate the correct sequence. Jumble the sequence by dragging the arrow, or select to  randomise the order in the checkbox below.</p>
+             </div>
+             </div>
+
+         </div>
+         <div class="custom-control custom-checkbox mb-3 multi-checkbox" style="display: block;">
+            <!--
+               <div class="char-box border-bottom">
+               <label class="col-md-4 mb-3 mt-3">Rich-text responses for learners?
+               <input type="checkbox">
+               <span class="mark" style="border-radius: 50% !important; height: 20px; width:20px;"></span>
+               </label>
+               </div>
+               -->
+            <div class="char-box border-bottom box-shadow question-label">
+               <label class="col-md-3">Jumble question sequence?
+               <input type="checkbox" checked="checked">
+               <span class="mark" style="border-radius: 50% !important; height: 20px; width:20px;"></span>
+               </label>
+               <div class="col-md-4 mb-3 mt-3">
+<!--                           <input type="text">-->&nbsp;
+               </div>
+            </div>
+            <div class="char-box border-bottom question-label">
+               <label class="col-sm-2 mb-3 mt-3">Partial Points
+               <input type="checkbox">
+               <span class="mark" style="border-radius: 50% !important; height: 20px; width:20px;"></span>
+               </label>
+           <select name="course" id="course-name" class="col-sm-2">
+            <option value="Course 1" selected>Sequence</option>
+            <option value="Course 1">1</option>
+            <option value="Course 2">2</option>
+            <option value="Course 3">3</option>
+           </select>
+               <p class="col-md-6 mb-3 mt-3 ml-5"><span style="color: #81c8c1;">Note:</span>Learners are able to get a fraction of the points by getting any of part of a sequence right. A continual sequence is made up of 2 items. If there are a total of 5 items, <br>total number of sequences is 4.</p>
+            </div>
+            <div class="char-box border-bottom box-shadow question-label">
+               <label class="col-md-3 mb-3 mt-3">Partial Points
+               </label>
+<!--
+               <div class="col-md-4 mb-3 mt-3">
+                  <input type="text">
+               </div>
+-->
+            </div>
+         </div>
+         <div class="container" style="padding: 18px 0 0 0; display: flex;">
+            <!--
+               <button type="button" class="blue">Confirm</button>
+               <button type="button" class="blue-border">Cancel</button>
+               <button type="button" class="lime"><a href="#">Edit</a></button>
+               <button type="button" class="Org"><a href="#">Confirm Edit</a></button>
+               -->
+            <a href="#" class="addbutton custom-button">Save Question</a>                        
+            <a href="#" class="edit-points-btn custom-button">Cancel</a>   
+         </div>
+<!--
+         <div class="container multi-choice-orange" style="padding: 6px 0 0 0;">
+            <button type="button">Confirm Edit</button>
+         </div>
+-->
+      </div>
+   </div>
+  </div>
+</div>

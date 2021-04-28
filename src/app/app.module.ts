@@ -52,6 +52,18 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import {LoaderComponent} from './loader/loader.component';
 import { TestListingComponent } from './test-listing/test-listing.component';
+import { TestListingHomeComponent } from './test-module/test-listing-home/test-listing-home.component';
+import { SettingsComponent } from './test-module/settings/settings.component';
+import { TestAssessmentComponent } from './test-module/test-assessment/test-assessment.component';
+import { SettingsTabComponent } from './test-module/settings-tab/settings-tab.component';
+import { QuestionScreenComponent } from './test-module/question-screen/question-screen.component';
+import { FillInTheBlanksComponent } from './test-module/fill-in-the-blanks/fill-in-the-blanks.component';
+import { MatchingComponent } from './test-module/matching/matching.component';
+import { MultipleChoiceQuestionComponent } from './test-module/multiple-choice-question/multiple-choice-question.component';
+import { OrderingComponent } from './test-module/ordering/ordering.component';
+import { TrueOrFalseComponent } from './test-module/true-or-false/true-or-false.component';
+import { ShortAnswerComponent } from './test-module/short-answer/short-answer.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -87,7 +99,18 @@ import { TestListingComponent } from './test-listing/test-listing.component';
     TermsOfUseComponent,
     CalendarComponent,
     ProgressComponent,
-    TestListingComponent
+    TestListingComponent,
+    TestListingHomeComponent,
+    SettingsComponent,
+    TestAssessmentComponent,
+    SettingsTabComponent,
+    QuestionScreenComponent,
+    FillInTheBlanksComponent,
+    MatchingComponent,
+    MultipleChoiceQuestionComponent,
+    OrderingComponent,
+    TrueOrFalseComponent,
+    ShortAnswerComponent
   ],
   imports: [CommonModule,
     BrowserModule, ToastrModule.forRoot({

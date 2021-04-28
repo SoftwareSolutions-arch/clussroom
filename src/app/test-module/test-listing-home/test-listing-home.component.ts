@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SharedServiceService } from '../shared-service.service';
-import { UtilService } from '../../providers/util.service';
+import { SharedServiceService } from '../../shared-service.service';
+import { UtilService } from '../../../providers/util.service';
 
 @Component({
-  selector: 'app-test-listing',
-  templateUrl: './test-listing.component.html',
-  styleUrls: ['./test-listing.component.css']
+  selector: 'app-test-listing-home',
+  templateUrl: './test-listing-home.component.html',
+  styleUrls: ['./test-listing-home.component.css']
 })
-export class TestListingComponent implements OnInit {
-  isTestSelected:boolean=false
+export class TestListingHomeComponent implements OnInit {
+  isTestSelected: boolean = false
   classId: any = '';
   testAllData: any = '';
   isLoadingBool: boolean = true;
@@ -35,7 +35,10 @@ export class TestListingComponent implements OnInit {
     class_nid: ''
   }
   constructor(public service: SharedServiceService, public util: UtilService, private router: Router) {
-    this.classId = this.router.getCurrentNavigation().extras.state;
+    // this.classId = this.router.getCurrentNavigation().extras.state;
+    this.classId = localStorage.getItem('classListId');
+    console.log('this.classId', this.classId)
+
     this.getTestListing();
   }
 
@@ -63,7 +66,7 @@ export class TestListingComponent implements OnInit {
   getTestListing() {
     this.isLoadingBool = true;
     let params = {
-      "class_id": this.classId.data
+      "class_id": this.classId
     }
 
     this.service.post('test-list-api', params, 1).subscribe(result => {
@@ -94,18 +97,21 @@ export class TestListingComponent implements OnInit {
       })
     }
   }
-  
-  testClicked(){
-    this.isTestSelected=false;
+
+  testClicked() {
+    this.isTestSelected = false;
   }
 
-  settingsClicked(){
-    this.isTestSelected=false;
+  settingsClicked() {
+    // this.isTestSelected = false;
+    this.router.navigate(["/settings-tabs"]);
   }
 
-  assignmentClicked(){
-    this.isTestSelected=true;
+  goToTestAssessment(){
+    this.router.navigate(['/test-assessment']);
   }
 
-
+  addNew(){
+    this.router.navigate(["/test-settings"]);
+  }
 }

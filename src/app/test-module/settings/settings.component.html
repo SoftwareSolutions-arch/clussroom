@@ -1,0 +1,185 @@
+<div class="dashboard">
+  <app-sidebar></app-sidebar>
+  <div class="control-panel">
+    <app-dashboardheader></app-dashboardheader>
+
+    <div class="sequence-nav-wrapper dashed-border">
+      <div class="sequence-duration-wrapper">
+        <div class="sequence-class-code">
+          <img src="assets/images/dashboard/orange-book.png">
+          <span>Class Code</span>
+          <p>PT 75</p>
+        </div>
+        <div class="sequence-duration-code">
+          <img src="assets/images/dashboard/date-calender.png">
+          <div class="sequence-start-date">
+            <span>09/30/2020</span>
+            <p>Start Date</p>
+          </div>
+          <div class="sequence-end-date">
+            <span>09/25/2020</span>
+            <p>End Date</p>
+          </div>
+        </div>
+      </div>
+      <div class="sequence-element-wrapper">
+        <a class="sequence-class-curve yellow-wrapper">
+          <div class="sequence-class-caption">
+            <h6>11</h6>
+            <span>Class Material</span>
+          </div>
+          <figure>
+            <img src="assets/images/dashboard/briefcase.png">
+          </figure>
+        </a>
+        <a class="sequence-assignments-curve blue-wrapper">
+          <div class="sequence-assignments-caption">
+            <h6>15</h6>
+            <span>Assignments</span>
+          </div>
+          <figure>
+            <img src="assets/images/dashboard/assignment.png">
+          </figure>
+        </a>
+        <a class="sequence-tests-curve green-wrapper">
+          <div class="sequence-tests-caption">
+            <h6>5</h6>
+            <span>Tests</span>
+          </div>
+          <figure>
+            <img src="assets/images/dashboard/test.png">
+          </figure>
+        </a>
+      </div>
+    </div>
+
+    <div *ngIf="isLoadingBool" class="loading-indicator">
+      <mat-spinner></mat-spinner>
+    </div>
+
+    <div class="prospectus-section sequence-list">
+      <div class="prospectus-tabs">
+        <ul class="nav nav-tabs">
+          <li (click)="goToTestHome()"><a data-toggle="tab">Test</a></li>
+          <li><a data-toggle="tab" href="#settings" class="active">Settings</a></li>
+          <li (click)="goToTestAssessment()"><a data-toggle="tab">Result/Assessment</a></li>
+          <!--<li><a data-toggle="tab" href="#overall-grading">Overall Grading Status</a></li>-->
+        </ul>
+      </div>
+      <div class="tab-content">
+        <!-- Submisssion Log start -->
+        <div id="settings" class="tab-pane active box-shadow">
+          <div class="setting-input bottom-border">
+            <div class="text-left col-md-2">
+              <label>Name of test</label>
+            </div>
+            <div class="col-lg-10 setting-padding">
+              <input [(ngModel)]="SettingsData.test_name" type="text">
+            </div>
+          </div>
+          <div class="text-area setting-input bottom-border">
+            <div class="text-left col-md-2">
+              <label>Instruction</label>
+            </div>
+            <div class="col-lg-10" style="padding-left: 23px;">
+              <!-- <textarea name="history" cols="80" label="notes" rows="4" wrap="virtual" style="margin: 0;"
+                placeholder="Please read the questions carefully. This test will form part of your final grading this year.">
+                  </textarea> -->
+              <angular-editor [(ngModel)]="SettingsData.instruction" name="history" cols="80" label="notes" rows="4"
+                wrap="virtual" style="margin: 0;"
+                [placeholder]="'Please read the questions carefully. This test will form part of your final grading this year.'">
+              </angular-editor>
+            </div>
+          </div>
+          <div class="setting-date-section setting-input bottom-border">
+            <div class="col-md-2 text-left">
+              <label>Test available from :</label>
+            </div>
+            <div class="col-md-2" style="padding-left: 21px; margin-right: 2em">
+              <input [(ngModel)]="SettingsData.test_available_from" type="date" name="test_available_from">
+            </div>
+            <div class="col-md-2">
+              <input [(ngModel)]="SettingsData.test_availble_from_time" type="time" style="width: 148px !important;"
+                value="12:00" class="text-center" name="test_availble_from_time">
+            </div>
+          </div>
+          <div class="setting-date-section setting-input bottom-border">
+            <div class="col-md-2 text-left">
+              <label>Test available to :</label>
+            </div>
+            <div class="col-md-2" style="padding-left: 21px; margin-right: 2em">
+              <input [(ngModel)]="SettingsData.test_available_to" type="date" name="test_available_to">
+            </div>
+            <div class="col-md-2">
+              <input [(ngModel)]="SettingsData.test_availble_to_time" type="time" style="width: 148px !important;"
+                value="12:00" class="text-center" name="test_availble_to_time">
+            </div>
+          </div>
+          <div class="custom-checkbox setting-input bottom-border">
+            <div class="col-md-2 text-left">
+              <label>Timer</label>
+            </div>
+            <div class="col-md-2">
+              <input [(ngModel)]="SettingsData.timer" type="checkbox" id="checkbox1" />
+            </div>
+            <div class="col-md-4 custom">
+              <input [(ngModel)]="SettingsData.timer_time" type="text">
+              <label>Minutes</label>
+            </div>
+          </div>
+          <div class="setting-select setting-input border-bottom">
+            <div class="col-md-2 text-left">
+              <label>Attempts</label>
+            </div>
+            <div class="col-sm-2" style="padding: 0 20px;">
+              <select [(ngModel)]="SettingsData.attempts" name="course" id="course-name">
+                <option selected>1</option>
+                <option value="Course 1">2</option>
+                <option value="Course 2">3</option>
+                <option value="Course 3">4</option>
+              </select>
+            </div>
+            <div class="attempt">
+              <select [(ngModel)]="SettingsData.attempts_score" name="course" id="course-name" style="width: 148px;">
+                <option value="Course 1" selected>Last attempt</option>
+                <option value="Course 2">Best score</option>
+                <option value="Course 3">Average score</option>
+              </select>
+            </div>
+          </div>
+          <div class="setting-select setting-input border-bottom">
+            <div class="col-md-2 text-left">
+              <label>Pagination</label>
+            </div>
+            <div class="custom">
+              <select [(ngModel)]="SettingsData.pagination" name="course" id="course-name">
+                <option selected>1</option>
+                <option value="Course 1">2</option>
+                <option value="Course 2">3</option>
+                <option value="Course 3">4</option>
+              </select>
+              <label>Questions per page</label>
+            </div>
+          </div>
+          <div class="setting-select setting-input border-bottom">
+            <div class="col-md-2 text-left">
+              <label>View answers</label>
+            </div>
+            <div class="custom">
+              <select [(ngModel)]="SettingsData.view_ans_after_compliation" name="course" id="course-name">
+                <option selected>No</option>
+                <option value="Course 1">Yes</option>
+              </select>
+              <label>After completion</label>
+            </div>
+          </div>
+          <div class="container" style="padding: 18px 0 0 0;">
+            <button (click)="confirm()" type="button" class="blue">Confirm</button>
+            <button type="button" class="blue-border">Cancel</button>
+          </div>
+        </div>
+        <!-- Submisssion Log end -->
+      </div>
+    </div>
+  </div>
+</div>
