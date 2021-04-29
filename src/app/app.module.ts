@@ -63,6 +63,11 @@ import { MultipleChoiceQuestionComponent } from './test-module/multiple-choice-q
 import { OrderingComponent } from './test-module/ordering/ordering.component';
 import { TrueOrFalseComponent } from './test-module/true-or-false/true-or-false.component';
 import { ShortAnswerComponent } from './test-module/short-answer/short-answer.component';
+import { ReorderScreenComponent } from './test-module/reorder-screen/reorder-screen.component';
+import { MidtermPreviewComponent } from './test-module/midterm-preview/midterm-preview.component';
+import { MidtermPreviewSecondComponent } from './test-module/midterm-preview-second/midterm-preview-second.component';
+import { EditPointsScreenComponent } from './test-module/edit-points-screen/edit-points-screen.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -109,7 +114,11 @@ import { ShortAnswerComponent } from './test-module/short-answer/short-answer.co
     MultipleChoiceQuestionComponent,
     OrderingComponent,
     TrueOrFalseComponent,
-    ShortAnswerComponent
+    ShortAnswerComponent,
+    ReorderScreenComponent,
+    MidtermPreviewComponent,
+    MidtermPreviewSecondComponent,
+    EditPointsScreenComponent
   ],
   imports: [CommonModule,
     BrowserModule, ToastrModule.forRoot({

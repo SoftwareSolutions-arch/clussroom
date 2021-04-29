@@ -61,6 +61,7 @@ export class SettingsComponent implements OnInit {
         if(result.status=='1'){
           this.isLoadingBool = false;
           this.util.showSuccessAlert('Test added successfully');
+          this.router.navigate(['/test/question-screen']);
         }
       })
     }

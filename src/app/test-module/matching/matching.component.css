@@ -14797,3 +14797,10 @@ i .grade-tip .grade-text {
 	background-color: transparent;
 	color: #FF5A64;
 }
+
+.final-order label{
+	font-size: 15px;
+	font-weight: 500;
+	font-family: 'Barlow';
+	color: #5B73A0;
+}

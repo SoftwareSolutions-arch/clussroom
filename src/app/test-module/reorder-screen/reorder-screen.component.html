@@ -53,9 +53,9 @@
       </div>
     </div>
 
-    <!-- <div *ngIf="isLoadingBool" class="loading-indicator">
+    <div *ngIf="isLoadingBool" class="loading-indicator">
       <mat-spinner></mat-spinner>
-    </div> -->
+    </div>
 
     <div class="right">
       <div class="question-width">
@@ -79,36 +79,32 @@
           <li><a data-toggle="tab" href="#assignment-grading">Result/Assessment</a></li>
         </ul>
       </div>
-      <div class="user-action-wrapper mt-3">
-        <div class="question-action-list">
-          <div class="delete-button">
-            <a class="delete-btn custom-button" data-toggle="modal" data-target="#deletetest">Delete Test</a>
-          </div>
-          <div class="button-wrapper">
-            <a  class="edit-points-btn custom-button" data-toggle="midal" data-target="#ReOrder">Re-Order</a>
-            <a  class="edit-points-btn custom-button" data-toggle="midal" data-target="#Editpoints">Edit
-              points</a>
-            <a  class="preview-btn custom-button" data-toggle="midal" data-target="#preview">Preview</a>
-            <a  class="addbutton custom-button" data-toggle="modal" data-target="#addQues">Add Questions</a>
+      <div class="tab-content">
+        <div class="user-action-wrapper">
+          <div class="question-action-list">
+            <div class="delete-button col-md-5">
+              <h4>Questions re-order</h4>
+            </div>
+            <div class="button-wrapper">
+              <button type="button" class="Org"><a>Confirm Edit</a></button>
+              <button type="button" class="pink">Cancel</button>
+            </div>
           </div>
         </div>
-      </div>
-      <!-- Submisssion Log start -->
-      <div class="tab-content" style="height: 238vh;">
+        <!-- Submisssion Log start -->
         <div id="settings" class="tab-pane active box-shadow">
           <div class="custom-control custom-checkbox mb-3 question-label">
+            <i class="fa fa-random" aria-hidden="true"></i>
             <label class="question-checkbox col-md-8">Q 1.&nbsp;&nbsp;The Statement of Profit and Loss is also called
               the<span>(Multiple Choice)</span>
-              <input type="checkbox" checked="checked">
-              <span class="mark"></span>
             </label>
             <div class="ellipdown col-md-4">
               <label style="padding: 0;">5 Points</label>
-              <button onclick="myFunction()" class="ellipbtn"><i class="fa fa-ellipsis-v"></i></button>
+              <button onclick="myFunction()" class="ellipbtn"><i class="fa fa-ellipsis-v"
+                  style="color:#5B73A0;"></i></button>
               <div id="myellipdown" class="ellipdown-content">
                 <a href="#home"><i class="fa fa-pencil"></i>Edit</a>
-                <a href="#about" class="custom-button" data-toggle="modal" data-target="#remove"><i class="fa fa-trash"
-                    aria-hidden="true"></i>Remove</a>
+                <a href="#about"><i class="fa fa-trash" aria-hidden="true"></i>Remove</a>
               </div>
             </div>
           </div>
@@ -133,14 +129,14 @@
             </ul>
           </div>
           <div class="custom-control custom-checkbox mb-3 question-label" style="padding-top: 2em;">
+            <i class="fa fa-random" aria-hidden="true"></i>
             <label class="question-checkbox col-md-8">Q 2.&nbsp;&nbsp;Choose the correct image for preposition near.
               <span>(Multiple Choice)</span>
-              <input type="checkbox">
-              <span class="mark"></span>
             </label>
             <div class="ellipdown col-md-4">
               <label style="padding: 0;">5 Points</label>
-              <button onclick="myFunction()" class="ellipbtn"><i class="fa fa-ellipsis-v"></i></button>
+              <button onclick="myFunction()" class="ellipbtn"><i class="fa fa-ellipsis-v"
+                  style="color:#5B73A0;"></i></button>
               <div id="myellipdown" class="ellipdown-content">
                 <a href="#home"><i class="fa fa-pencil"></i>Edit</a>
                 <a href="#about"><i class="fa fa-trash" aria-hidden="true"></i>Remove</a>
@@ -153,7 +149,7 @@
                 <h2>Sample image</h2>
               </button>
               <p>Description 1</p>
-              <label class="choice-checkbox" style="padding-left: 55px;">
+              <label class="choice-checkbox" style="padding-left: 37px;">
                 <input type="checkbox">
                 <span class="mark2"></span>
                 <h6>Choice 1</h6>
@@ -164,7 +160,7 @@
                 <h2>Sample image</h2>
               </button>
               <p>Description 2</p>
-              <label class="choice-checkbox" style="padding-left: 55px;">
+              <label class="choice-checkbox" style="padding-left: 37px;">
                 <input type="checkbox">
                 <span class="mark2"></span>
                 <h6>Choice 2</h6>
@@ -175,7 +171,7 @@
                 <h2>Sample image</h2>
               </button>
               <p>Description 3</p>
-              <label class="choice-checkbox" style="padding-left: 55px;">
+              <label class="choice-checkbox" style="padding-left: 37px;">
                 <input type="checkbox">
                 <span class="mark2"></span>
                 <h6>Choice 3</h6>
@@ -186,22 +182,22 @@
                 <h2>Sample image</h2>
               </button>
               <p>Description 4</p>
-              <label class="choice-checkbox" style="padding-left: 55px;">
+              <label class="choice-checkbox" style="padding-left: 37px;">
                 <input type="checkbox">
                 <span class="mark2"></span>
                 <h6>Choice 4</h6>
               </label>
             </div>
           </div>
-          <div class="custom-control custom-checkbox mb-3 question-label" style="padding-top: 3em;">
+          <div class="custom-control custom-checkbox mb-3 question-label" style="padding-top: 1em;">
+            <i class="fa fa-random" aria-hidden="true"></i>
             <label class="question-checkbox col-md-8">Q 3.&nbsp;&nbsp;The Statement of Profit and Loss is also called
               the P/L Statement. <span>(True &amp; False)</span>
-              <input type="checkbox">
-              <span class="mark"></span>
             </label>
             <div class="ellipdown col-md-4">
               <label style="padding: 0;">5 Points</label>
-              <button onclick="myFunction()" class="ellipbtn"><i class="fa fa-ellipsis-v"></i></button>
+              <button onclick="myFunction()" class="ellipbtn"><i class="fa fa-ellipsis-v"
+                  style="color:#5B73A0;"></i></button>
               <div id="myellipdown" class="ellipdown-content">
                 <a href="#home"><i class="fa fa-pencil"></i>Edit</a>
                 <a href="#about"><i class="fa fa-trash" aria-hidden="true"></i>Remove</a>
@@ -219,35 +215,35 @@
               </li>
             </ul>
           </div>
-          <div class="custom-control custom-checkbox mb-3 mt-4 question-label"
+          <div class="custom-control custom-checkbox mb-3 question-label"
             style="padding-top: 1em; padding-bottom: 1em;">
+            <i class="fa fa-random" aria-hidden="true"></i>
             <label class="question-checkbox col-md-8">Q 4.&nbsp;&nbsp;The Statement of Profit and Loss is also called
               the P/L Statement. <span>(True &amp; False)</span>
-              <input type="checkbox">
-              <span class="mark"></span>
             </label>
             <div class="ellipdown col-md-4">
               <label style="padding: 0;">5 Points</label>
-              <button onclick="myFunction()" class="ellipbtn"><i class="fa fa-ellipsis-v"></i></button>
+              <button onclick="myFunction()" class="ellipbtn"><i class="fa fa-ellipsis-v"
+                  style="color:#5B73A0;"></i></button>
               <div id="myellipdown" class="ellipdown-content">
                 <a href="#home"><i class="fa fa-pencil"></i>Edit</a>
                 <a href="#about"><i class="fa fa-trash" aria-hidden="true"></i>Remove</a>
               </div>
             </div>
           </div>
-          <div class="fill border-bottom" style="padding-bottom: 3em;">
+          <div class="fill border-bottom" style="padding-bottom: 1em;">
             <h6 style="font-size: 15px; font-weight: 400;">I don't want to argue&nbsp;<input
                 type="text">&nbsp;you&nbsp;<input type="text">&nbsp;that matter at this time.</h6>
           </div>
           <div class="custom-control custom-checkbox mb-3 question-label" style="padding-top: 1em;">
+            <i class="fa fa-random" aria-hidden="true"></i>
             <label class="question-checkbox col-md-8">Q 5.&nbsp;&nbsp;Describe the nature of nuclear fission within an
               atom.<span>(Short Answer)</span>
-              <input type="checkbox">
-              <span class="mark"></span>
             </label>
             <div class="ellipdown col-md-4">
               <label style="padding: 0;">5 Points</label>
-              <button onclick="myFunction()" class="ellipbtn"><i class="fa fa-ellipsis-v"></i></button>
+              <button onclick="myFunction()" class="ellipbtn"><i class="fa fa-ellipsis-v"
+                  style="color:#5B73A0;"></i></button>
               <div id="myellipdown" class="ellipdown-content">
                 <a href="#home"><i class="fa fa-pencil"></i>Edit</a>
                 <a href="#about"><i class="fa fa-trash" aria-hidden="true"></i>Remove</a>
@@ -267,14 +263,14 @@
             <div class="col-md-4"></div>
           </div>
           <div class="custom-control custom-checkbox mb-3 question-label" style="padding-top: 2em;">
+            <i class="fa fa-random" aria-hidden="true"></i>
             <label class="question-checkbox col-md-8">Q 6.&nbsp;&nbsp;Choose the correct image for preposition near.
               <span>(Ordering)</span>
-              <input type="checkbox">
-              <span class="mark"></span>
             </label>
             <div class="ellipdown col-md-4">
               <label style="padding: 0;">5 Points</label>
-              <button onclick="myFunction()" class="ellipbtn"><i class="fa fa-ellipsis-v"></i></button>
+              <button onclick="myFunction()" class="ellipbtn"><i class="fa fa-ellipsis-v"
+                  style="color:#5B73A0;"></i></button>
               <div id="myellipdown" class="ellipdown-content">
                 <a href="#home"><i class="fa fa-pencil"></i>Edit</a>
                 <a href="#about"><i class="fa fa-trash" aria-hidden="true"></i>Remove</a>
@@ -303,52 +299,53 @@
             <div class="col-sm-3 text-center">
             </div>
           </div>
-          <div class="match-option" style="font-size: 15px; font-weight: 400; border-bottom: 1px solid #F1F6FB;">
-            <div class="col-lg-12 mt-3" style="display: flex; margin-bottom:1em;">
-              <div class="col-md-6" style="padding-left: 5.5em;">1.&nbsp;&nbsp;Explosion
+          <div class="match-option border-bottom"
+            style="display: block !important; padding-bottom: 1em; font-size: 15px; font-weight: 400;">
+            <div class="col-md-8" style="display: flex; margin-bottom:1em;">
+              <div class="col-sm-6">1.&nbsp;&nbsp;Explosion
               </div>
-
-              <div class="col-md-3 text-center"><button type="button">2</button>
-              </div>
-            </div>
-            <div class="col-lg-12" style="display: flex; margin-bottom:1em;">
-              <div class="col-md-6" style="padding-left: 5.5em;">2.&nbsp;&nbsp;Fusion
-              </div>
-
-              <div class="col-md-3 text-center"><button type="button">1</button>
+              <div class="col-sm-3"></div>
+              <div class="col-sm-6 text-center"><button type="button">2</button>
               </div>
             </div>
-            <div class="col-lg-12" style="display: flex; margin-bottom:1em;">
-              <div class="col-md-6" style="padding-left: 5.5em;">3.&nbsp;&nbsp;Fission
+            <div class="col-md-8" style="display: flex; margin-bottom:1em;">
+              <div class="col-sm-6">2.&nbsp;&nbsp;Fusion
               </div>
-
-              <div class="col-md-3 text-center"><button>4</button>
+              <div class="col-sm-3"></div>
+              <div class="col-sm-6 text-center"><button type="button">1</button>
               </div>
             </div>
-            <div class="col-lg-12" style="display: flex; margin-bottom:1em;">
-              <div class="col-md-6" style="padding-left: 5.5em;">4.&nbsp;&nbsp;Reaction
+            <div class="col-md-8" style="display: flex; margin-bottom:1em;">
+              <div class="col-sm-6">3.&nbsp;&nbsp;Fission
               </div>
-
-              <div class="col-md-3 text-center"><button type="button">2</button>
+              <div class="col-sm-3"></div>
+              <div class="col-sm-6 text-center"><button>4</button>
+              </div>
+            </div>
+            <div class="col-md-8" style="display: flex; margin-bottom:1em;">
+              <div class="col-sm-6">4.&nbsp;&nbsp;Reaction
+              </div>
+              <div class="col-sm-3"></div>
+              <div class="col-sm-6 text-center"><button type="button">2</button>
               </div>
             </div>
           </div>
-          <div class="custom-control custom-checkbox mb-3 question-label col-lg-12" style="padding-top: 2em;">
-            <label class="question-checkbox col-lg-10">Q 7.&nbsp;&nbsp;Please match the following
+          <div class="custom-control custom-checkbox mb-3 question-label" style="padding-top: 2em;">
+            <i class="fa fa-random" aria-hidden="true"></i>
+            <label class="question-checkbox col-md-8">Q 7.&nbsp;&nbsp;Please match the following
               items.<span>(Matching)</span>
-              <input type="checkbox">
-              <span class="mark"></span>
             </label>
-            <div class="ellipdown col-sm-2">
+            <div class="ellipdown col-md-4">
               <label style="padding: 0;">5 Points</label>
-              <button onclick="myFunction()" class="ellipbtn"><i class="fa fa-ellipsis-v"></i></button>
+              <button onclick="myFunction()" class="ellipbtn"><i class="fa fa-ellipsis-v"
+                  style="color:#5B73A0;"></i></button>
               <div id="myellipdown" class="ellipdown-content">
                 <a href="#home"><i class="fa fa-pencil"></i>Edit</a>
                 <a href="#about"><i class="fa fa-trash" aria-hidden="true"></i>Remove</a>
               </div>
             </div>
           </div>
-          <div class="test-option sample custom-control custom-checkbox col-lg-12">
+          <div class="test-option sample custom-control custom-checkbox">
             <div class="col-sm-3 text-center">
               <button type="button">
                 <h2>Sample image</h2>
@@ -370,129 +367,58 @@
             <div class="col-sm-3 text-center">
             </div>
           </div>
-          <div class="match-option"
+          <div class="match-option border-bottom"
             style="display: block !important; padding-bottom: 1em; font-size: 15px; font-weight: 400;">
-            <div class="col-lg-12" style="display: flex; margin-bottom:1em;">
-              <div class="col-md-6" style="padding-left: 5.5em;">1.&nbsp;&nbsp;Explosion
+            <div class="col-md-8" style="display: flex; margin-bottom:1em;">
+              <div class="col-sm-6">1.&nbsp;&nbsp;Explosion
               </div>
-
-              <div class="col-md-3">A.&nbsp;&nbsp;Rejoining
-              </div>
-            </div>
-            <div class="col-lg-12" style="display: flex; margin-bottom:1em;">
-              <div class="col-md-6" style="padding-left: 5.5em;">2.&nbsp;&nbsp;Fusion
-              </div>
-
-              <div class="col-md-3">B.&nbsp;&nbsp;Glueing
+              <div class="col-sm-3"></div>
+              <div class="col-sm-6">A.&nbsp;&nbsp;Rejoining
               </div>
             </div>
-            <div class="col-lg-12" style="display: flex; margin-bottom:1em;">
-              <div class="col-md-6" style="padding-left: 5.5em;">3.&nbsp;&nbsp;Fission
+            <div class="col-md-8" style="display: flex; margin-bottom:1em;">
+              <div class="col-sm-6">2.&nbsp;&nbsp;Fusion
               </div>
-
-              <div class="col-md-3">C.&nbsp;&nbsp;Banding
+              <div class="col-sm-3"></div>
+              <div class="col-sm-6">B.&nbsp;&nbsp;Glueing
               </div>
             </div>
-            <div class="col-lg-12" style="display: flex; margin-bottom:1em;">
-              <div class="col-md-6" style="padding-left: 5.5em;">4.&nbsp;&nbsp;Reaction
+            <div class="col-md-8" style="display: flex; margin-bottom:1em;">
+              <div class="col-sm-6">3.&nbsp;&nbsp;Fission
               </div>
-
-              <div class="col-md-3">D.&nbsp;&nbsp;Welding
+              <div class="col-sm-3"></div>
+              <div class="col-sm-6">C.&nbsp;&nbsp;Banding
+              </div>
+            </div>
+            <div class="col-md-8" style="display: flex; margin-bottom:1em;">
+              <div class="col-sm-6">4.&nbsp;&nbsp;Reaction
+              </div>
+              <div class="col-sm-3"></div>
+              <div class="col-sm-6">D.&nbsp;&nbsp;Welding
               </div>
             </div>
           </div>
-          <div class="col-lg-12" style="padding: 22px 0; display: flex;">
+          <div class="col-lg-12" style="padding: 18px 0 0 0; display: flex; margin: 0;">
+            <div class="delete-button">
+
+              <button type="button" class="Org"><a>Confirm Edit</a></button>
+              <button type="button" class="pink">Cancel</button>
+            </div>
+
             <!--
                   <button type="button" class="blue">Confirm</button>
                   <button type="button" class="blue-border">Cancel</button>
-                  <button type="button" class="lime"><a >Edit</a></button>
-                  <button type="button" class="Org"><a >Confirm Edit</a></button>
+                  <button type="button" class="lime"><a>Edit</a></button>
+                   <div class="button-wrapper">
+                <a class="done-blue custom-button" data-toggle="modal" data-target="#ReOrder">Done</a>
+                </div> 
+               <a class="addbutton custom-button" data-toggle="modal" data-target="#addClass">Add Question</a>                        
+               <a class="edit-points-btn custom-button" data-toggle="midal" data-target="#ReOrder">Re-Order</a>
                   -->
-            <a class="addbutton custom-button" data-toggle="modal" data-target="#addQues">Add Question</a>
-            <a class="edit-points-btn custom-button" data-toggle="midal" data-target="#ReOrder">Re-Order</a>
           </div>
         </div>
+        <!-- Submisssion Log end -->
       </div>
     </div>
   </div>
 </div>
-
-<!-- Delete Test modal popup start -->
-
-
-<div id="deletetest" class="modal deletetest-modal" role="dialog">
-  <div class="modal-dialog">
-
-    <!--     Modal content-->
-    <div class="modal-content">
-
-      <div class="modal-header">
-        <h4>Delete class</h4>
-        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
-      </div>
-      <div class="modal-body">
-        <div class="class-delete-list">
-          <div class="delete-field">
-            <i class="fa fa-trash" aria-hidden="true"></i>
-            <h1>Delete Test</h1>
-          </div>
-          <div class="class-del-caption">
-            <p>This test may or may not been completed by learners.Once deleted, you cannot retrieve the test and the
-              submission by learners. Please confirm if you would like to proceed.</p>
-          </div>
-        </div>
-
-        <div class="deleteportion container col-lg-12" style="padding: 0 38px;">
-          <div class="col-md-6 displayflex-items">
-            <i class="fa fa-file-text" aria-hidden="true"></i>
-            <p>Hanson Deck</p>
-          </div>
-          <div class="col-md-6">
-            <button type="button" class="deleteclose"><i class="fa fa-times" aria-hidden="true"></i></button>
-          </div>
-        </div>
-
-        <div class="class-deltest-btn">
-          <button type="button" class="delete-test">Delete Test</button>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-</div>
-
-<!-- Delete Class modal popup end -->
-<!-- Add Ques popup start -->
-
-<div id="addQues" class="modal addlibrary-modal" role="dialog" #cancelClassModal>
-  <div class="modal-dialog" style="max-width: 250px; position: relative; top: 25em; left: 57em;">
-
-    <!-- Modal content-->
-    <div class="modal-content" style="border-radius: 12px;">
-      <div class="modal-body my-modal-body" style="padding: 7px 27px;">
-        <ul>
-          <li style="margin-bottom: .7em;" (click)="goToFillBlanks()">
-            <button type="button">Fill in the blanks</button>
-          </li>
-          <li style="margin-bottom: .7em;" (click)="goToMatching()">
-            <button type="button">Matching</button>
-          </li>
-          <li style="margin-bottom: .7em;" (click)="goToMultipleQuestion()">
-            <button type="button">Multiple Choice question</button>
-          </li>
-          <li style="margin-bottom: .7em;" (click)="goToOrdering()">
-            <button type="button">Ordering</button>
-          </li>
-          <li style="margin-bottom: .7em;" (click)="goToTrueFalse()">
-            <button type="button" data-toggle="modal" data-target="#remove">True or False</button>
-          </li>
-          <li (click)="goToShortAnswer()">
-            <button type="button">Short Answer</button>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Add Ques popup end -->

@@ -9,6 +9,11 @@ import { MultipleChoiceQuestionComponent } from './multiple-choice-question/mult
 import { ShortAnswerComponent } from './short-answer/short-answer.component';
 import { OrderingComponent } from './ordering/ordering.component';
 import { TrueOrFalseComponent } from './true-or-false/true-or-false.component';
+import { MatchingComponent } from './matching/matching.component';
+import { ReorderScreenComponent } from './reorder-screen/reorder-screen.component';
+import { MidtermPreviewComponent } from './midterm-preview/midterm-preview.component';
+import { MidtermPreviewSecondComponent } from './midterm-preview-second/midterm-preview-second.component';
+import { EditPointsScreenComponent } from './edit-points-screen/edit-points-screen.component';
 
 const routes: Routes = [
   {
@@ -27,7 +32,7 @@ const routes: Routes = [
     path: 'question-screen', component: QuestionScreenComponent
   },
   {
-    path: 'fill-in-the-blanks', component: FillInTheBlanksComponent
+    path: 'fill-blanks', component: FillInTheBlanksComponent
   },
   {
     path: 'multiple-choice', component: MultipleChoiceQuestionComponent
@@ -41,6 +46,21 @@ const routes: Routes = [
   {
     path: 'true-false', component: TrueOrFalseComponent
   },  
+  {
+    path: 'matching', component: MatchingComponent
+  },  
+  {
+    path: 'reorder-screen', component: ReorderScreenComponent
+  },  
+  {
+    path: 'midterm-preview-1', component: MidtermPreviewComponent
+  }, 
+  {
+    path: 'midterm-preview-2', component: MidtermPreviewSecondComponent
+  }, 
+  {
+    path: 'edit-points', component: EditPointsScreenComponent
+  }, 
 ];
 
 export const TestRoutes = RouterModule.forChild(routes);

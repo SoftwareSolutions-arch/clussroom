@@ -1,0 +1,343 @@
+<div class="dashboard">
+  <app-sidebar></app-sidebar>
+  <div class="control-panel">
+    <app-dashboardheader></app-dashboardheader>
+
+    <div class="sequence-nav-wrapper dashed-border">
+      <div class="sequence-duration-wrapper">
+        <div class="sequence-class-code">
+          <img src="assets/images/dashboard/orange-book.png">
+          <span>Class Code</span>
+          <p>PT 75</p>
+        </div>
+        <div class="sequence-duration-code">
+          <img src="assets/images/dashboard/date-calender.png">
+          <div class="sequence-start-date">
+            <span>09/30/2020</span>
+            <p>Start Date</p>
+          </div>
+          <div class="sequence-end-date">
+            <span>09/25/2020</span>
+            <p>End Date</p>
+          </div>
+        </div>
+      </div>
+      <div class="sequence-element-wrapper">
+        <a class="sequence-class-curve yellow-wrapper">
+          <div class="sequence-class-caption">
+            <h6>11</h6>
+            <span>Class Material</span>
+          </div>
+          <figure>
+            <img src="assets/images/dashboard/briefcase.png">
+          </figure>
+        </a>
+        <a class="sequence-assignments-curve blue-wrapper">
+          <div class="sequence-assignments-caption">
+            <h6>15</h6>
+            <span>Assignments</span>
+          </div>
+          <figure>
+            <img src="assets/images/dashboard/assignment.png">
+          </figure>
+        </a>
+        <a class="sequence-tests-curve green-wrapper">
+          <div class="sequence-tests-caption">
+            <h6>5</h6>
+            <span>Tests</span>
+          </div>
+          <figure>
+            <img src="assets/images/dashboard/test.png">
+          </figure>
+        </a>
+      </div>
+    </div>
+
+    <div *ngIf="isLoadingBool" class="loading-indicator">
+      <mat-spinner></mat-spinner>
+    </div>
+
+    <div class="right">
+      <div class="question-width">
+        <h4>Mid Term Test</h4>
+      </div>
+      <div class="width">
+        <select name="course" id="course-name">
+          <option value="Course 1">Final Exam</option>
+          <option value="Course 1" selected>Mid-Term Test</option>
+          <option value="Course 2">Test1</option>
+          <option value="Course 3">Test2</option>
+        </select>
+      </div>
+      <button type="button">Back</button>
+    </div>
+    <div class="prospectus-section sequence-list">
+      <div class="prospectus-tabs">
+        <ul class="nav nav-tabs">
+          <li><a data-toggle="tab" href="#test" class="active">Tests</a></li>
+          <li><a data-toggle="tab" href="#settings">Settings</a></li>
+          <li><a data-toggle="tab" href="#assignment-grading">Result/Assessment</a></li>
+          <!--				    <li><a data-toggle="tab" href="#overall-grading">Overall Grading Status</a></li>-->
+        </ul>
+      </div>
+      <div class="tab-content">
+        <div class="user-action-wrapper">
+          <div class="question-action-list">
+            <div class="delete-button">
+              <!--                           <a class="delete-btn custom-button" data-toggle="modal" data-target="#deleteClass">Delete Test</a>-->
+              <h3>Preview</h3>
+            </div>
+            <div class="button-wrapper">
+              <!--
+                    <a href="#" class="edit-points-btn custom-button" data-toggle="midal" data-target="#ReOrder">Re-Order</a>    
+                    <a href="#" class="edit-points-btn custom-button" data-toggle="midal" data-target="#Editpoints">Edit points</a>    
+                    <a href="#" class="preview-btn custom-button" data-toggle="midal" data-target="#preview">Preview</a>    
+                    <a href="#" class="addbutton custom-button" data-toggle="modal" data-target="#addClass">Add Questions</a> 
+-->
+              <button type="button" class="done-blue">Done</button>
+            </div>
+          </div>
+        </div>
+        <!-- Submisssion Log start -->
+        <div id="settings" class="tab-pane active box-shadow">
+          <div class="custom-control custom-checkbox mb-3 question-label"
+            style="padding-top: 1em; padding-bottom: 1em;">
+            <label class="question-checkbox col-md-8">Q 4.&nbsp;&nbsp;Fill in the blanks with the most appropriate
+              words.<span>(Fill in the blanks) </span>
+              <input type="checkbox">
+              <span class="mark"></span>
+            </label>
+            <div class="ellipdown col-md-4">
+              <label style="padding: 0;">5 Points</label>
+            </div>
+          </div>
+          <div class="fill">
+            <h6 style="font-size: 15px; font-weight: 400;">I don't want to argue&nbsp;<input
+                type="text">&nbsp;you&nbsp;<input type="text">&nbsp;that matter at this time.</h6>
+          </div>
+          <div class="col-lg-8 container"
+            style="display: flex; position: relative; left: 14.5em; bottom: 6px; margin: 0;">
+            <div class="col-sm-1 small-button">
+              <ul>
+                <li>
+                  <button type="button">1</button>
+                </li>
+                <li>
+                  <button type="button">2</button>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="blank-section box-shadow mt-3 text-center border-bottom" style="padding-bottom: 8em;">
+            <ul class="hint-section mb-3">
+              <li><label>Blank 1.</label><input type="text"></li>
+              <li style="color: #81c8c1;">Word Hint</li>
+              <li><button>With</button></li>
+              <li><button>On</button></li>
+              <li><button>In</button></li>
+            </ul>
+            <ul class="hint-section">
+              <li><label>Blank 2.</label><input type="text"></li>
+              <li style="color: #81c8c1;">Word Hint</li>
+              <li><button>On</button></li>
+              <li><button>In</button></li>
+            </ul>
+          </div>
+
+          <div class="custom-control custom-checkbox mb-3 question-label" style="padding-top: 1em;">
+            <label class="question-checkbox col-md-8">Q 5.&nbsp;&nbsp;Describe the nature of nuclear fission within an
+              atom.<span>(Short Answer)</span>
+              <input type="checkbox">
+              <span class="mark"></span>
+            </label>
+            <div class="ellipdown col-md-4">
+              <label style="padding: 0;">5 Points</label>
+            </div>
+          </div>
+          <div class="question-text text-area container" style="padding-left: 5.5em; margin: 0 !important;">
+            <textarea name="shortanswer"></textarea>
+            <div class="col-md-4"></div>
+          </div>
+          <div class="word-tag container mt-2">
+            <p style="margin-left: 29em;">0/500</p>
+          </div>
+          <div class="custom-control custom-checkbox mb-3 question-label" style="padding-top: 2em;">
+            <label class="question-checkbox col-md-8">Q 6.&nbsp;&nbsp;Please re-order the sequence of events of a
+              nuclear fussion.<span>(Ordering)</span>
+              <input type="checkbox">
+              <span class="mark"></span>
+            </label>
+            <div class="ellipdown col-md-4">
+              <label style="padding: 0;">5 Points</label>
+            </div>
+          </div>
+          <div class="test-option sample custom-control custom-checkbox">
+            <div class="col-sm-3 text-center">
+              <button type="button">
+                <h2>Sample image</h2>
+              </button>
+              <p>Title for image</p>
+            </div>
+            <div class="col-sm-3 text-center">
+              <button type="button">
+                <h2>Sample image</h2>
+              </button>
+              <p>Title for image</p>
+            </div>
+            <div class="col-sm-3 text-center">
+              <button type="button">
+                <h2>Sample image</h2>
+              </button>
+              <p>Title for image</p>
+            </div>
+            <div class="col-sm-3 text-center">
+            </div>
+          </div>
+          <div class="mid-section">
+            <div class="col-lg-12 hint-section mb-3">
+              <div class="col-sm-1 text-right">
+                1.
+              </div>
+
+              <div class="col-lg-10">
+                <button class="blue-blank"><span><i class="fa fa-random"
+                      aria-hidden="true"></i></span>Explosion</button>
+              </div>
+            </div>
+
+            <div class="col-lg-12 hint-section mb-3">
+              <div class="col-sm-1 text-right">
+                2.
+              </div>
+
+              <div class="col-lg-10">
+                <button class="green-blank"><span><i class="fa fa-random" aria-hidden="true"></i></span>Fusion</button>
+              </div>
+            </div>
+
+            <div class="col-lg-12 hint-section mb-3">
+              <div class="col-sm-1 text-right">
+                3.
+              </div>
+
+              <div class="col-lg-10">
+                <button class="blue-blank"><span><i class="fa fa-random" aria-hidden="true"></i></span>Fission</button>
+              </div>
+            </div>
+
+            <div class="col-lg-12 hint-section mb-3">
+              <div class="col-sm-1 text-right">
+                4.
+              </div>
+
+              <div class="col-lg-10">
+                <button class="green-blank"><span><i class="fa fa-random"
+                      aria-hidden="true"></i></span>Reaction</button>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="custom-control custom-checkbox mb-3 question-label" style="padding-top: 2em;">
+            <label class="question-checkbox col-md-8">Q 7.&nbsp;&nbsp;Please match the following
+              items.<span>(Matching)</span>
+              <input type="checkbox">
+              <span class="mark"></span>
+            </label>
+            <div class="ellipdown col-md-4">
+              <label style="padding: 0;">5 Points</label>
+            </div>
+          </div>
+          <div class="test-option sample custom-control custom-checkbox">
+            <div class="col-sm-3 text-center">
+              <button type="button">
+                <h2>Sample image</h2>
+              </button>
+              <p>Title for image</p>
+            </div>
+            <div class="col-sm-3 text-center">
+              <button type="button">
+                <h2>Sample image</h2>
+              </button>
+              <p>Title for image</p>
+            </div>
+            <div class="col-sm-3 text-center">
+              <button type="button">
+                <h2>Sample image</h2>
+              </button>
+              <p>Title for image</p>
+            </div>
+            <div class="col-sm-3 text-center">
+            </div>
+          </div>
+          <div class="border-bottom" style="padding-bottom: 1em; font-size: 15px; font-weight: 400;">
+            <div class="col-lg-12" style="display: flex; margin-bottom:1em;">
+              <div class="col-sm-6 hint-section">
+                <div class="col-sm-2 text-right"><input type="text"></div>
+                <div class="col-md-5">
+                  <button class="lft-btn text-left">1.&nbsp;&nbsp;&nbsp;Explosion</button></div>
+              </div>
+
+              <div class="col-sm-6">
+                <button class="rit-btn text-left">A.&nbsp;&nbsp;&nbsp;Rejoining</button>
+              </div>
+            </div>
+            <div class="col-lg-12" style="display: flex; margin-bottom:1em;">
+              <div class="col-sm-6 hint-section">
+                <div class="col-sm-2 text-right"><input type="text"></div>
+                <div class="col-md-5">
+                  <button class="lft-btn text-left">2.&nbsp;&nbsp;&nbsp;Fusion</button></div>
+              </div>
+
+              <div class="col-sm-6">
+                <button class="rit-btn text-left">A.&nbsp;&nbsp;&nbsp;Rejoining</button>
+              </div>
+            </div>
+            <div class="col-lg-12" style="display: flex; margin-bottom:1em;">
+              <div class="col-sm-6 hint-section">
+                <div class="col-sm-2 text-right"><input type="text"></div>
+                <div class="col-md-5">
+                  <button class="lft-btn text-left">3.&nbsp;&nbsp;&nbsp;Fission</button></div>
+              </div>
+
+              <div class="col-sm-6">
+                <button class="rit-btn text-left">A.&nbsp;&nbsp;&nbsp;Rejoining</button>
+              </div>
+            </div>
+
+            <div class="col-lg-12" style="display: flex; margin-bottom:1em;">
+              <div class="col-sm-6 hint-section">
+                <div class="col-sm-2 text-right"><input type="text"></div>
+                <div class="col-md-5">
+                  <button class="lft-btn text-left">4.&nbsp;&nbsp;&nbsp;Reaction</button></div>
+              </div>
+
+              <div class="col-sm-6">
+                <button class="rit-btn text-left">A.&nbsp;&nbsp;&nbsp;Rejoining</button>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-lg-12" style="padding: 18px 0 0 0; display: flex; margin: 0;">
+            <div class="delete-button">
+              <a href="#" class="addbutton custom-button">Previous Page</a>
+            </div>
+            <div class="button-wrapper">
+              <a href="#" class="done-blue custom-button" data-toggle="modal" data-target="#ReOrder">Done</a>
+            </div>
+            <!--
+                    <button type="button" class="blue">Confirm</button>
+                    <button type="button" class="blue-border">Cancel</button>
+                    <button type="button" class="lime"><a href="#">Edit</a></button>
+                    <button type="button" class="Org"><a href="#">Confirm Edit</a></button>
+                 <a href="#" class="addbutton custom-button" data-toggle="modal" data-target="#addClass">Add Question</a>                        
+                 <a href="#" class="edit-points-btn custom-button" data-toggle="midal" data-target="#ReOrder">Re-Order</a>
+                    -->
+          </div>
+        </div>
+        <!-- Submisssion Log end -->
+      </div>
+    </div>
+  </div>
+</div>

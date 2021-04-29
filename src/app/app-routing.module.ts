@@ -31,6 +31,7 @@ import { AdminComponent } from './admin/admin.component';
 import { LiveSessionsComponent } from './live-sessions/live-sessions.component';
 import { ProgressComponent } from './progress/progress.component';
 import { TestListingComponent } from './test-listing/test-listing.component';
+import { TestModule } from './test-module/test-module';
 
 const routes: Routes = [
   {
