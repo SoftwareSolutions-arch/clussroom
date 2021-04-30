@@ -34,6 +34,7 @@ export class TestListingHomeComponent implements OnInit {
     view_ans_after_compliation: '',
     class_nid: ''
   }
+
   constructor(public service: SharedServiceService, public util: UtilService, private router: Router) {
     // this.classId = this.router.getCurrentNavigation().extras.state;
     this.classId = localStorage.getItem('classListId');
@@ -45,7 +46,6 @@ export class TestListingHomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  //
   myFunction() {
     document.getElementById("mytstdown").classList.toggle("show");
     window.onclick = function (event) {
@@ -107,11 +107,15 @@ export class TestListingHomeComponent implements OnInit {
     this.router.navigate(["/test/settings-tabs"]);
   }
 
-  goToTestAssessment(){
+  goToTestAssessment() {
     this.router.navigate(['/test/test-assessment']);
   }
 
-  addNew(){
+  addNew() {
     this.router.navigate(["/test/test-settings"]);
+  }
+
+  isCheckBoxClicked(testListing) {
+    console.log('testListing', testListing)
   }
 }

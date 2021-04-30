@@ -77,7 +77,8 @@
         </div>
         <div class="multiple-text">
           <!-- <textarea name="shortanswer"></textarea> -->
-          <angular-editor name="shortanswer" cols="80" label="notes" rows="4" wrap="virtual" style="margin: 0;">
+          <angular-editor [(ngModel)]="fillData.question" name="shortanswer" cols="80" label="notes" rows="4"
+            wrap="virtual" style="margin: 0;">
           </angular-editor>
           <p>Type the questions above, and adding an underscore <span>("_")</span> which is a blank. Blanks numbering is
             in sequence.</p>
@@ -115,52 +116,53 @@
         </div>
         <div class="col-lg-12 box-shadow final-order border-bottom" style="padding-bottom: 1em;">
           <h2 class="mb-4" style="padding: 0 2.7em">Blanks</h2>
-          <div class="col-lg-6 custom-answer mb-5" style="padding: 0 35px;">
-            <label class="col-sm-1">1.</label>
-            <input type="text" placeholder="Enter answer">
-            <button type="button" class="blue-plus"><i class="fa fa-plus" aria-hidden="true"></i></button>
-            <button type="button" class="orange-cross"><i class="fa fa-times" aria-hidden="true"></i></button>
-            <p class="col-sm-4">Answer 1</p>
-          </div>
-          <div class="col-lg-12 mb-4" style="display: flex; padding: 0;">
-            <div class="col-lg-6 custom-answer"  style="padding: 0 35px;">
-              <label class="col-sm-1">2.</label>
-              <input type="text" placeholder="Enter answer">
-              <p class="col-sm-4">Answer 1</p>
-              <!--
-                       <button type="button" class="blue-plus"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                       <button type="button" class="orange-cross"><i class="fa fa-times" aria-hidden="true"></i></button>
-                       -->
+          <ng-container [formGroup]="addCourseForm">
+            <div formArrayName="employees">
+              <ng-container *ngFor="let employee of employees().controls; let empIndex=index">
+                <div [formGroupName]="empIndex">
+                  <div class="col-lg-6 custom-answer mb-5" style="padding: 0 35px;">
+                    <label class="col-sm-1">{{empIndex+1}}.</label>
+                    <input type="text" formControlName="answer1" placeholder="Enter answer">
+                    <button type="button" class="blue-plus" (click)="addEmployeeSkill(empIndex)"><i class="fa fa-plus"
+                        aria-hidden="true"></i></button>
+                    <button (click)="deleteUser(empIndex,skillIndex)" type="button" class="orange-cross"><i
+                        class="fa fa-times" aria-hidden="true"></i></button>
+                    <p class="col-sm-4">Answer {{empIndex+1}}</p>
+                  </div>
+
+                  <!-- row-->
+                  <div formArrayName="skills">
+                    <ng-container *ngFor="let skill of employeeSkills(empIndex).controls; let skillIndex=index">
+                      <div class="col-lg-12 mb-4" style="display: flex; padding: 0;" [formGroupName]="skillIndex">
+                        <div class="col-lg-6 custom-answer" style="padding: 0 35px;">
+                          <label class="col-sm-1">{{skillIndex+1}}.</label>
+                          <input type="text" formControlName="answer2" placeholder="Enter answer">
+                          <p class="col-sm-4">Answer {{skillIndex+1}}</p>
+                        </div>
+                      </div>
+                    </ng-container>
+                  </div>
+                </div>
+              </ng-container>
             </div>
-            <div class="col-lg-6 custom-answer" style="padding: 0 35px;">
-              <input type="text" placeholder="Enter answer">
-              <p class="col-sm-4 text-left" style="padding: 0;">Answer 2</p>
-              <!--
-                       <button type="button" class="blue-plus"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                       <button type="button" class="orange-cross"><i class="fa fa-times" aria-hidden="true"></i></button>
-                       -->
-            </div>
-          </div>
-          <div class="col-lg-12" style="display: flex; padding: 0;">
+          </ng-container>
+
+          <button type="button" (click)="addEmployee()" class="blue-plus"><i class="fa fa-plus"
+              aria-hidden="true"></i></button>
+          <button type="button" class="orange-cross"><i class="fa fa-times" aria-hidden="true"></i></button>
+
+          <!-- <div class="col-lg-12" style="display: flex; padding: 0;">
             <div class="col-lg-6 custom-answer" style="padding: 0 35px;">
               <label class="col-sm-1">3.</label>
               <input type="text" placeholder="Enter answer">
               <p class="col-sm-4">Answer 1</p>
-              <!--
-                       <button type="button" class="blue-plus"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                       <button type="button" class="orange-cross"><i class="fa fa-times" aria-hidden="true"></i></button>
-                       -->
             </div>
             <div class="col-lg-6 custom-answer" style="padding: 0 35px;">
               <input type="text" placeholder="Enter answer">
               <p class="col-sm-4 text-left" style="padding: 0;">Answer 2</p>
-              <!--
-                       <button type="button" class="blue-plus"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                       <button type="button" class="orange-cross"><i class="fa fa-times" aria-hidden="true"></i></button>
-                       -->
             </div>
             <br>
-          </div>
+          </div> -->
         </div>
         <div class="custom-control custom-checkbox mb-3 mt-3 multi-checkbox" style="display: block;">
 
@@ -229,8 +231,8 @@
                  <button type="button" class="lime"><a href="#">Edit</a></button>
                  <button type="button" class="Org"><a href="#">Confirm Edit</a></button>
                  -->
-          <a href="#" class="addbutton custom-button">Save Question</a>
-          <a href="#" class="edit-points-btn custom-button">Cancel</a>
+          <a (click)="saveQuestion()" class="addbutton custom-button">Save Question</a>
+          <a (click)="cancel()" class="edit-points-btn custom-button">Cancel</a>
         </div>
         <!--
            <div class="container multi-choice-orange" style="padding: 6px 0 0 0;">

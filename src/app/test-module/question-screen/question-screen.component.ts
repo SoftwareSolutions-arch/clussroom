@@ -46,4 +46,15 @@ export class QuestionScreenComponent implements OnInit {
     this.router.navigate(['/test/short-answer']);
   }
 
+  goToReOrder() {
+    this.router.navigate(['/test/reorder-screen']);
+  }
+
+  goToEditPoints() {
+    this.router.navigate(['/test/edit-points']);
+  }
+
+  goToPreview() {
+    this.router.navigate(['/test/midterm-preview-1']);
+  }
 }

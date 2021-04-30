@@ -7642,8 +7642,12 @@ a.done-btn:hover {
 }
 
 .blank-section li label {
-    padding: 0px 24px 0 6em;
+    padding: 0px 24px 0 3.5em;
     margin: 0;
+	font-size: 15px;
+	font-weight: 500;
+	font-family: 'Barlow';
+	color: #5B73A0;
 }
 
 .blue-blank {
@@ -14803,4 +14807,11 @@ i .grade-tip .grade-text {
 	font-weight: 500;
 	font-family: 'Barlow';
 	color: #5B73A0;
+}
+
+.final-order {
+	font-size: 15px;
+	font-weight: 500;
+	font-family: 'Barlow';
+	color: #7990B4;
 }

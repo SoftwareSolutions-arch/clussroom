@@ -33,5 +33,4 @@ export class SettingsTabComponent implements OnInit {
   goToTestAssessment(){
     this.router.navigate(['/test/test-assessment']);
   }
-
 }

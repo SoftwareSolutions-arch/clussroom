@@ -85,10 +85,10 @@
             <a class="delete-btn custom-button" data-toggle="modal" data-target="#deletetest">Delete Test</a>
           </div>
           <div class="button-wrapper">
-            <a  class="edit-points-btn custom-button" data-toggle="midal" data-target="#ReOrder">Re-Order</a>
-            <a  class="edit-points-btn custom-button" data-toggle="midal" data-target="#Editpoints">Edit
+            <a (click)="goToReOrder()" class="edit-points-btn custom-button">Re-Order</a>
+            <a (click)="goToEditPoints()" class="edit-points-btn custom-button">Edit
               points</a>
-            <a  class="preview-btn custom-button" data-toggle="midal" data-target="#preview">Preview</a>
+            <a (click)="goToPreview()" class="preview-btn custom-button">Preview</a>
             <a  class="addbutton custom-button" data-toggle="modal" data-target="#addQues">Add Questions</a>
           </div>
         </div>

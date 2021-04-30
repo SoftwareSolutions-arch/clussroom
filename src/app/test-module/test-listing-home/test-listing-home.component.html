@@ -132,7 +132,7 @@
                 <tr
                   *ngFor="let testListing of this.testAllData| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;"
                   [class.active]="i == currentIndex">
-                  <th>
+                  <th (click)="isCheckBoxClicked(testListing)">
                     <div class="radio-table"><input type="checkbox"></div>
                   </th>
                   <td>{{testListing.s_no}}</td>
