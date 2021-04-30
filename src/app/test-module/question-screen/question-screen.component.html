@@ -112,7 +112,7 @@
               </div>
             </div>
           </div>
-          <div class="test-option border-bottom">
+          <div class="test-option border-bottom" *ngFor="let item of this.multiChoiceQuestion">
             <ul class="col-md-5">
               <li><input type="radio" id="option1" name="option" value="option1" checked>
                 <label for="option1">Option1</label>

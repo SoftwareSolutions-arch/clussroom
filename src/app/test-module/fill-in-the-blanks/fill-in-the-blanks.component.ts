@@ -56,6 +56,7 @@ export class FillInTheBlanksComponent implements OnInit {
   }
 
   addEmployeeSkill(empIndex: number) {
+    console.log('empIndex',empIndex)
     this.employeeSkills(empIndex).push(this.newSkill());
   }
 

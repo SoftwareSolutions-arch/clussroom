@@ -10,8 +10,13 @@ import { UtilService } from 'src/providers/util.service';
 })
 export class QuestionScreenComponent implements OnInit {
   @ViewChild('cancelClassModal') private cancelClassModal: ElementRef;
+  isLoadingBool: boolean = true;
+  questionData: any = [];
+  multiChoiceQuestion: any=[];
 
-  constructor(public service: SharedServiceService, public util: UtilService, private router: Router) { }
+  constructor(public service: SharedServiceService, public util: UtilService, private router: Router) {
+    this.getAllQuestion();
+  }
 
   ngOnInit() {
   }
@@ -56,5 +61,23 @@ export class QuestionScreenComponent implements OnInit {
 
   goToPreview() {
     this.router.navigate(['/test/midterm-preview-1']);
+  }
+
+  // get all courses list
+  getAllQuestion() {
+    let params = {
+      "test_id": "348"
+    }
+    this.service.post('questions-list-api', params, 1).subscribe(result => {
+      console.log('result', result);
+      this.questionData = result.question_data
+
+      this.questionData.forEach(element => {
+        if(element.multiple_choices!=undefined ){
+          this.multiChoiceQuestion.push(element.multiple_choices)
+        }
+      });
+      console.log('element.multiple_choices', this.multiChoiceQuestion)
+    })
   }
 }

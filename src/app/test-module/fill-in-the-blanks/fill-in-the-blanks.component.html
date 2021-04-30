@@ -135,9 +135,9 @@
                     <ng-container *ngFor="let skill of employeeSkills(empIndex).controls; let skillIndex=index">
                       <div class="col-lg-12 mb-4" style="display: flex; padding: 0;" [formGroupName]="skillIndex">
                         <div class="col-lg-6 custom-answer" style="padding: 0 35px;">
-                          <label class="col-sm-1">{{skillIndex+1}}.</label>
+                          <!-- <label class="col-sm-1">{{skillIndex+1}}.</label> -->
                           <input type="text" formControlName="answer2" placeholder="Enter answer">
-                          <p class="col-sm-4">Answer {{skillIndex+1}}</p>
+                          <p class="col-sm-4">Answers {{skillIndex+2}}</p>
                         </div>
                       </div>
                     </ng-container>
@@ -146,11 +146,10 @@
               </ng-container>
             </div>
           </ng-container>
-
           <button type="button" (click)="addEmployee()" class="blue-plus"><i class="fa fa-plus"
-              aria-hidden="true"></i></button>
-          <button type="button" class="orange-cross"><i class="fa fa-times" aria-hidden="true"></i></button>
-
+            aria-hidden="true"></i></button>
+        <button type="button" class="orange-cross"><i class="fa fa-times" aria-hidden="true"></i></button>
+         
           <!-- <div class="col-lg-12" style="display: flex; padding: 0;">
             <div class="col-lg-6 custom-answer" style="padding: 0 35px;">
               <label class="col-sm-1">3.</label>
@@ -164,6 +163,8 @@
             <br>
           </div> -->
         </div>
+       
+
         <div class="custom-control custom-checkbox mb-3 mt-3 multi-checkbox" style="display: block;">
 
           <div class="char-box border-bottom box-shadow question-label col-lg-12 mt-5" style="display: block;">
