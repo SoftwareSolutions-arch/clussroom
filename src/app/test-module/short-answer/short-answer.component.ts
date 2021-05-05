@@ -20,17 +20,11 @@ export class ShortAnswerComponent implements OnInit {
     "insert_limit": "1000"
   }
 
-  imageSrc;
-
   ExteriorPicFile: any = [];
-
   ExteriorPicString: any = [];
   baseString: string = 'data:image/png;base64,';
-  fileList: any = []
-  //json
-  finalJson = {};
+  fileList: any = [];
 
-  currentId: number = 0;
   constructor(public util: UtilService) { }
 
   ngOnInit(): void {
@@ -44,7 +38,7 @@ export class ShortAnswerComponent implements OnInit {
       for (i = 0; i < this.fileList.length; i++) {
         const file: File = this.fileList[i];
         this.ExteriorPicFile = file;
-        this.handleInputChange(file); //turn into base64
+        this.handleInputChange(file);
       }
     }
 
