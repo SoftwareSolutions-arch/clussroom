@@ -6,7 +6,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./ordering.component.css']
 })
 export class OrderingComponent implements OnInit {
-  isLoadingBool:boolean=false;
+  isLoadingBool: boolean = false;
 
   imageSrc;
 
@@ -21,6 +21,17 @@ export class OrderingComponent implements OnInit {
   fileList: File[] = [];
   listOfFiles: any[] = [];
   constructor() { }
+  fillData: any = {
+    question: '',
+    rich_text_responses_for_learner: '',
+    character_limit: '',
+    characterInput: '',
+    partialPoints: '',
+    points: '',
+    attachment: '',
+    "test_assignment_question_type": "short_answer",
+    "insert_limit": "1000"
+  }
 
   ngOnInit(): void {
   }

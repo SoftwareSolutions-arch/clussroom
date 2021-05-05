@@ -19,6 +19,17 @@ export class MultipleChoiceQuestionComponent implements OnInit {
 
   fileList: File[] = [];
   listOfFiles: any[] = [];
+  fillData: any = {
+    question: '',
+    rich_text_responses_for_learner: '',
+    character_limit: '',
+    characterInput: '',
+    partialPoints: '',
+    points: '',
+    attachment: '',
+    "test_assignment_question_type": "short_answer",
+    "insert_limit": "1000"
+  }
   constructor() { }
 
   ngOnInit(): void {
