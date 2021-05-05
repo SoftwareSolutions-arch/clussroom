@@ -58,7 +58,7 @@
     </div>
 
     <div class="row test-button">
-      <button type="button"><a href="#">Add Test</a></button>
+      <button type="button"><a>Add Test</a></button>
     </div>
     <div class="prospectus-section sequence-list">
       <div class="prospectus-tabs">
@@ -66,58 +66,55 @@
           <li><a data-toggle="tab" href="#test" class="active">Test</a></li>
           <li><a data-toggle="tab" href="#settings">Settings</a></li>
           <li><a data-toggle="tab" href="#assignment-grading">Result/Assessment</a></li>
-          <!--				    <li><a data-toggle="tab" href="#overall-grading">Overall Grading Status</a></li>-->
         </ul>
       </div>
       <div class="tab-content">
         <!-- Schedule start -->
         <div class="heading" style="padding: 0 10px;">
-          <h2>Multiple Choice Question</h2>
+          <h2>Short Answer</h2>
         </div>
         <div class="multiple-text">
-          <textarea name="shortanswer"></textarea>
+          <angular-editor [(ngModel)]="fillData.question" name="shortanswer" cols="80" label="notes" rows="4"
+            wrap="virtual" style="margin: 0;">
+          </angular-editor>
           <div class="col-md-4"></div>
         </div>
 
         <div class="test-option sample custom-control custom-checkbox mt-4 box-shadow">
-          <div class="col-sm-3 text-center">
+          <div class="col-sm-3 text-center" *ngFor="let item of ExteriorPicString;let i = index;">
             <button type="button">
-              <span><a href="#"><i class="fa fa-times-circle" aria-hidden="true"></i></a></span>
-              <h2>Sample image</h2>
+              <span (click)="removeImage(i)"><a><i class="fa fa-times-circle" aria-hidden="true"></i></a></span>
+              <img style="height: 100%;width: 100%;" src={{baseString+item}}>
             </button>
             <input type="text" placeholder="Description" class="mt-3">
           </div>
-          <div class="col-sm-3 text-center">
-            <button type="button">
-              <span><a href="#"><i class="fa fa-times-circle" aria-hidden="true"></i></a></span>
-              <h2>Sample image</h2>
-            </button>
-            <input type="text" placeholder="Description" class="mt-3">
-          </div>
-          <div class="col-sm-3 text-center">
-            <button type="button">
-              <span><a href="#"><i class="fa fa-times-circle" aria-hidden="true"></i></a></span>
-              <h2>Sample image</h2>
-            </button>
-            <input type="text" placeholder="Description" class="mt-3">
-          </div>
-          <div class="col-sm-3 text-center">
-          </div>
+
         </div>
 
         <div class="attach mt-3 mb-5">
-          <a href="#"><img src="assets/images/test/Mask.png"></a>
-          <h2>Attachments (0/4)</h2>
-          <button type="button"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add</button>
+          <a><img src="assets/images/test/Mask.png"></a>
+
+
+          <h2>Attachments ({{ExteriorPicString.length}}/4)</h2>
+          <!-- <button type="button"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;
+            
+            Add</button> -->
+
+          <!-- <label for="imageUpload" class="btn btn-primary btn-block btn-outlined">Seleccionar imagenes</label>
+          <input type="file" id="imageUpload" accept="image/*" style="display: none"> -->
+
+
+          <label style="margin-left:1em !important;margin: 0px;" for="imageUpload" class="btn-add-1"><i
+              class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add</label>
+          <input id="imageUpload" style="display: none" multiple type="file" accept="image/png, image/jpeg"
+            class="upload custom-input-file" (change)="picked($event)" />
         </div>
-
-
 
         <div class="box-shadow">
           <div class="custom-control custom-checkbox question-label mt-3"
             style="padding: 1.5em 26px; border-bottom:1px solid #F1F6FB; border-top:1px solid #F1F6FB;">
             <label class="question-checkbox col-md-8">Rich-text responses for learners?
-              <input type="checkbox">
+              <input [(ngModel)]="fillData.rich_text_responses_for_learner" type="checkbox">
               <span class="mark"></span>
             </label>
           </div>
@@ -125,11 +122,11 @@
           <div class="custom-control custom-checkbox question-label"
             style="padding: 1.5em 26px; border-bottom:1px solid #F1F6FB;">
             <label class="question-checkbox col-sm-2">Character Limit
-              <input type="checkbox" checked="checked">
+              <input [(ngModel)]="fillData.character_limit" type="checkbox" checked="checked">
               <span class="mark"></span>
             </label>
 
-            <input type="text" class="ml-3">
+            <input [(ngModel)]="fillData.characterInput" type="text" class="ml-3">
           </div>
 
 
@@ -137,7 +134,7 @@
           <div class="custom-control custom-checkbox question-label"
             style="padding: 1.5em 26px; border-bottom:1px solid #F1F6FB;">
             <label class="question-checkbox col-sm-2">Partial Points
-              <input type="checkbox" checked="checked">
+              <input [(ngModel)]="fillData.partialPoints" type="checkbox" checked="checked">
               <span class="mark"></span>
             </label>
             <p class="col-md-6"><span style="color: #81c8c1;">Note:</span> Points are rounded to the nearest 1 decimal
@@ -147,18 +144,18 @@
             style="padding: 1.5em 26px; border-bottom:1px solid #F1F6FB;">
             <label class="col-sm-2">Points
             </label>
-            <input type="text" class="ml-3">
+            <input [(ngModel)]="fillData.points" type="text" class="ml-3">
           </div>
         </div>
         <div class="container" style="padding: 18px 0 0 0; display: flex;">
           <!--
                   <button type="button" class="blue">Confirm</button>
                   <button type="button" class="blue-border">Cancel</button>
-                  <button type="button" class="lime"><a href="#">Edit</a></button>
-                  <button type="button" class="Org"><a href="#">Confirm Edit</a></button>
+                  <button type="button" class="lime"><a>Edit</a></button>
+                  <button type="button" class="Org"><a>Confirm Edit</a></button>
                   -->
-          <a href="#" class="addbutton custom-button">Save Question</a>
-          <a href="#" class="edit-points-btn custom-button">Cancel</a>
+          <a class="addbutton custom-button" (click)="saveQuestion()">Save Question</a>
+          <a class="edit-points-btn custom-button">Cancel</a>
         </div>
         <!--
             <div class="container multi-choice-orange" style="padding: 6px 0 0 0;">

@@ -45,22 +45,22 @@ const routes: Routes = [
   },
   {
     path: 'true-false', component: TrueOrFalseComponent
-  },  
+  },
   {
     path: 'matching', component: MatchingComponent
-  },  
+  },
   {
     path: 'reorder-screen', component: ReorderScreenComponent
-  },  
+  },
   {
     path: 'midterm-preview-1', component: MidtermPreviewComponent
-  }, 
+  },
   {
     path: 'midterm-preview-2', component: MidtermPreviewSecondComponent
-  }, 
+  },
   {
     path: 'edit-points', component: EditPointsScreenComponent
-  }, 
+  },
 ];
 
 export const TestRoutes = RouterModule.forChild(routes);
