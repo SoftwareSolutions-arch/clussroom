@@ -76,37 +76,23 @@
             <div class="col-md-4"></div>
          </div>
           
-          <div class="test-option sample custom-control custom-checkbox mt-4 box-shadow">
-               <div class="col-sm-3 text-center">
-                  <button type="button">
-                      <span><a href="#"><i class="fa fa-times-circle" aria-hidden="true"></i></a></span>
-                     <h2>Sample image</h2>
-                  </button>
-                  <input type="text" placeholder="Description" class="mt-3">
-               </div>
-               <div class="col-sm-3 text-center">
-                  <button type="button">
-                      <span><a href="#"><i class="fa fa-times-circle" aria-hidden="true"></i></a></span>
-                     <h2>Sample image</h2>
-                  </button>
-                  <input type="text" placeholder="Description" class="mt-3">
-               </div>
-               <div class="col-sm-3 text-center">
-                  <button type="button">
-                      <span><a href="#"><i class="fa fa-times-circle" aria-hidden="true"></i></a></span>
-                     <h2>Sample image</h2>
-                  </button>
-                  <input type="text" placeholder="Description" class="mt-3">
-               </div>
-               <div class="col-sm-3 text-center">                             
-               </div>
+         <div class="test-option sample custom-control custom-checkbox mt-4 box-shadow">
+            <div class="col-sm-3 text-center" *ngFor="let item of ExteriorPicString;let i = index;">
+              <button type="button">
+                <span (click)="removeImage(i)"><a><i class="fa fa-times-circle" aria-hidden="true"></i></a></span>
+                <img style="height: 100%;width: 100%;" src={{baseString+item}}>
+              </button>
+              <input type="text" placeholder="Description" class="mt-3">
             </div>
-          
-         <div class="attach mt-3">
-            <a href="#"><img src="assets/images/test/Mask.png"></a>
-            <h2>Attachments (0/4)</h2>
-             <a class="attach-btn custom-button" data-toggle="modal" data-target="#attach"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add</a>
-         </div>
+          </div>
+          <div class="attach mt-3 mb-5">
+            <a><img src="assets/images/test/Mask.png"></a>
+            <h2>Attachments ({{ExteriorPicString.length}}/4)</h2>
+            <label style="margin-left:1em !important;margin: 0px;" for="imageUpload" class="btn-add-1"><i
+                class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add</label>
+            <input id="imageUpload" #attachments style="display: none" multiple type="file" accept="image/png, image/jpeg"
+              class="upload custom-input-file" (change)="picked($event)" />
+          </div>
 
          <div class="col-lg-12 common-p display-center">
             <div class="col-md-5">&nbsp;</div>

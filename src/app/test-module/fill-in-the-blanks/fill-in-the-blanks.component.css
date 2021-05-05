@@ -4657,3 +4657,27 @@ font-size: 15px;
 	font-family: 'Barlow';
 	color: #5B73A0;
 }
+
+
+
+.btn-add-1{
+	width: 69px;
+    height: 35px;
+    border-radius: 6px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eef5ff !important;
+    border: 2px solid #eef5ff !important;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: 'Barlow';
+    color: #396aff !important;
+	transition: .5s ease-in-out !important;
+
+}
+.btn-add-1:hover{
+	background: transparent !important;
+	border: 2px solid #396aff !important;
+
+}
