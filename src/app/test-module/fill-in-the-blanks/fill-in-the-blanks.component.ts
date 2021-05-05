@@ -56,7 +56,7 @@ export class FillInTheBlanksComponent implements OnInit {
   }
 
   addEmployeeSkill(empIndex: number) {
-    console.log('empIndex',empIndex)
+    
     this.employeeSkills(empIndex).push(this.newSkill());
   }
 
@@ -68,7 +68,7 @@ export class FillInTheBlanksComponent implements OnInit {
 
   saveQuestion() {
     // this.router.navigate(['/'])
-    console.log('fillData', this.fillData);
+    
   }
 
 }

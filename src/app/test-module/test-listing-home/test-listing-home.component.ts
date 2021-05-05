@@ -38,7 +38,7 @@ export class TestListingHomeComponent implements OnInit {
   constructor(public service: SharedServiceService, public util: UtilService, private router: Router) {
     // this.classId = this.router.getCurrentNavigation().extras.state;
     this.classId = localStorage.getItem('classListId');
-    console.log('this.classId', this.classId)
+    
 
     this.getTestListing();
   }
@@ -116,6 +116,6 @@ export class TestListingHomeComponent implements OnInit {
   }
 
   isCheckBoxClicked(testListing) {
-    console.log('testListing', testListing)
+    
   }
 }

@@ -73,7 +73,7 @@ export class QuestionScreenComponent implements OnInit {
     }
     this.service.post('questions-list-api', params, 1).subscribe(result => {
       this.isLoadingBool = false;
-      console.log('result', result);
+      
       this.questionData = result.question_data
 
       this.questionData.forEach(element => {
@@ -96,10 +96,10 @@ export class QuestionScreenComponent implements OnInit {
           this.matchingQuestion.push(element)
         }
       });
-      // console.log('multiChoiceQuestion', this.multiChoiceQuestion);
-      // console.log('fillBlanksQuestion', this.fillBlanksQuestion);
-      // console.log('trueFalseQuestion', this.trueFalseQuestion);
-      console.log('matchingQuestion', this.matchingQuestion);
+      // 
+      // 
+      // 
+      
 
     })
   }

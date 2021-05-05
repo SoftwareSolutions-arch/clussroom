@@ -31,7 +31,7 @@ export class ShortAnswerComponent implements OnInit {
   }
 
   public picked(event) {
-    console.log('this.fileList.length', this.fileList);
+    
     if (event.target.files.length < 5 && this.fileList.length < 4) {
       this.fileList = FileList = event.target.files;
       let i;
@@ -48,10 +48,10 @@ export class ShortAnswerComponent implements OnInit {
   }
 
   removeImage(i) {
-    console.log('this.fileList', this.fileList, i)
+    
     this.fileList = Array.from(this.fileList);
     this.fileList.splice(i, 1);
-    console.log('this.fileList', this.fileList)
+    
     this.ExteriorPicString.splice(i, 1);
   }
 
@@ -71,11 +71,11 @@ export class ShortAnswerComponent implements OnInit {
     let reader = e.target;
     var base64result = reader.result.substr(reader.result.indexOf(',') + 1);
     this.ExteriorPicString.push(base64result);
-    console.log('this.ExteriorPicString', this.ExteriorPicString);
+    
   }
 
   saveQuestion() {
     this.fillData.attachment = this.fileList
-    console.log('afterfillData', this.fillData);
+    
   }
 }

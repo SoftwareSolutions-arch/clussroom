@@ -29,7 +29,7 @@ export class SettingsComponent implements OnInit {
   classId: any = '';
   constructor(public service: SharedServiceService, public util: UtilService, private router: Router) {
     this.classId = localStorage.getItem('classListId');
-    console.log('this.classId', this.classId)
+    
   }
 
   ngOnInit() {
@@ -57,7 +57,7 @@ export class SettingsComponent implements OnInit {
     else {
       this.isLoadingBool = true;
       this.service.post('add-test-api', this.SettingsData, 1).subscribe(result => {
-        console.log('result',result)
+        
         if(result.status=='1'){
           this.isLoadingBool = false;
           this.util.showSuccessAlert('Test added successfully');
