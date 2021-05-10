@@ -433,10 +433,6 @@ export class Sample04Component implements OnInit {
         "new_category": this.editSampleForm.value.newCategory,
         "new_level": this.editSampleForm.value.newLevel,
       }
-
-
-
-
       this.isLoadingBool = true;
       this.service.post('update-course-api', params, 0).subscribe(result => {
 

@@ -1,0 +1,42 @@
+<form *ngIf="mainFormArray" [formGroup]="usersForm" (ngSubmit)="createUsers()">
+  <table class="table table-sm table-bordered">
+    <thead>
+      <tr class="text-center">
+        <th>Address</th>
+        <th>Phone</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <ng-container *ngFor='let eachForm of mainFormArray ;let i = index'>
+      <input class="form-control" type="text" formControlName="name"/>
+
+      <tbody formArrayName="users">
+        <tr *ngFor="let item of eachForm.myFormsList.controls.users.controls; let j =index">
+          <td style="min-width: 120px">
+            <input class="form-control" type="text" />
+            <!-- <div class="text-danger" *ngIf="usersForm.controls['users'].controls[$index].controls['address'].touched
+                             && usersForm.controls['users'].controls[$index].controls['address'].hasError('required')">
+              Please enter address!
+            </div> -->
+          </td>
+
+          <td style="min-width: 120px">
+            <input class="form-control" type="text" />
+            <!-- <div class="text-danger" *ngIf="usersForm.controls['users'].controls[$index].controls['phone'].touched
+                             && usersForm.controls['users'].controls[$index].controls['phone'].hasError('required')">
+              Please enter phone number!
+            </div> -->
+          </td>
+
+          <td style="width: 100px">
+            <button (click)="addUserRow(i)" class="btn btn-success btn-sm mr-1" type="button">add</button>
+            <button (click)="removeUserRow(i,j)" class="btn btn-danger btn-sm" type="button">delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </ng-container>
+
+  </table>
+
+  <button (click)="submit()"> submit</button>
+</form>

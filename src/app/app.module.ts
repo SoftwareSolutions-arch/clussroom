@@ -67,9 +67,11 @@ import { ReorderScreenComponent } from './test-module/reorder-screen/reorder-scr
 import { MidtermPreviewComponent } from './test-module/midterm-preview/midterm-preview.component';
 import { MidtermPreviewSecondComponent } from './test-module/midterm-preview-second/midterm-preview-second.component';
 import { EditPointsScreenComponent } from './test-module/edit-points-screen/edit-points-screen.component';
+import { TestCompomentComponent } from './test-compoment/test-compoment.component';
+import { AddressTestComponent } from './address-test/address-test.component';
 
 @NgModule({
-  declarations: [
+  declarations: [		
     AppComponent,
     LoginComponent,
     PricingComponent,
@@ -118,8 +120,10 @@ import { EditPointsScreenComponent } from './test-module/edit-points-screen/edit
     ReorderScreenComponent,
     MidtermPreviewComponent,
     MidtermPreviewSecondComponent,
-    EditPointsScreenComponent
-  ],
+    EditPointsScreenComponent,
+      TestCompomentComponent,
+      AddressTestComponent
+   ],
   imports: [CommonModule,
     BrowserModule, ToastrModule.forRoot({
       timeOut: 3000,

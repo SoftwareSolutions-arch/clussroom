@@ -1,3 +1,699 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="dashboard">
+  <app-sidebar></app-sidebar>
+  <div class="control-panel mb-5" style="padding: 0 0 0 56px;">
+    <app-dashboardheader></app-dashboardheader>
+
+  </div>
+  <div class="prospectus-section" style="padding-left: 79px;padding-right: 20px;">
+    <div class="row text-center">
+        <div class="col-md-4 text-left" style="display: flex; align-items: center;">
+          <div class="btn-group" style="background-color: #FFA26B !important; padding: 6px 6px !important; border-radius: 4px !important; height: 40px;">
+            <div class="btn btn-primary-1" (click)="view = CalendarView.Month" [class.active]="view === CalendarView.Month" style="padding: 13px 8px;">
+              Month
+            </div>
+            <div class="btn btn-primary-1" (click)="view = CalendarView.Week" [class.active]="view === CalendarView.Week">
+              Week
+            </div>
+          </div>
+          <div class="class-select">
+          <select>
+            <option>April 2021</option>
+            <option selected>May 2021</option>
+            <option>June 2021</option>
+            <option>July 2021</option>
+          </select>
+          </div>
+        </div>
+      
+        <div class="col-md-4">
+          
+        </div>
+      
+        <div class="col-md-4 text-right">
+          <div class="btn-group">
+            <div class="btn btn-outline-second" mwlCalendarToday [(viewDate)]="viewDate">
+              Today
+            </div>
+          </div>
+          <button class="btn btn-primary-4 pull-right" (click)="addEvent()" style="margin-left: 1em;" data-toggle="modal" data-target="#addremind">
+            Add new event
+          </button>
+        </div>
+      </div>
+      <br>
+      <ng-template #eventTemplate let-weekEvent="weekEvent">
+        <div *ngIf="weekEvent.event.meta.type === 'calendarEvent'" class="built-in-event">
+          <ul>
+            <li data-toggle="modal" data-target="#"><span>{{ weekEvent.event.title }}</span></li>
+          </ul>
+        </div>
+        <div *ngIf="weekEvent.event.meta.type !== 'calendarEvent'" class="week-view-event">
+      
+          <div class="employee-calendar-display-name">
+            <span>{{ weekEvent.event.title }}</span>
+          </div>
+        </div>
+      </ng-template>
+      
+      <div [ngSwitch]="view">
+        <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events"
+          [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)"
+          (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)"  style="background-color: #000;">
+        </mwl-calendar-month-view>
+        <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
+          [eventTemplate]="eventTemplate" (eventClicked)="handleEvent('Clicked', $event.event)"
+          (eventTimesChanged)="eventTimesChanged($event)" class="event-font">
+        </mwl-calendar-week-view>
+        <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
+          (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+        </mwl-calendar-day-view>
+      </div>
+      
+      <br><br><br>
+      
+      <h3 style="font-size: 22px;">
+        Edit events
+        <div class="clearfix"></div>
+      </h3>
+      
+      <table class="table table-bordered">
+      
+        <thead class="cal-table">
+          <tr>
+            <th>Class Reminder</th>
+            <th>Personal Reminder</th>
+            <th>Class activity</th>
+            <th>Primary color</th>
+            <th>Secondary color</th>
+            <th>Starts at</th>
+            <th>Ends at</th>
+            <th>Remove</th>
+          </tr>
+        </thead>
+      
+        <tbody>
+          <tr *ngFor="let event of events; let index = index">
+            <td class="text-center">
+              <button type="button" class="form-control-1" [(ngModel)]="event.title" (keyup)="refresh.next()" data-toggle="modal" data-target="#classremind">Edit</button>
+            </td>
+            <td class="text-center">
+              <button type="button" class="form-control-2" [(ngModel)]="event.title" (keyup)="refresh.next()" data-toggle="modal" data-target="#personalremind">Edit</button>
+            </td>
+            <td class="text-center">
+              <button type="button" class="form-control-3" [(ngModel)]="event.title" (keyup)="refresh.next()" data-toggle="modal" data-target="#classactivity">Edit</button>
+            </td>
+            <td class="text-center" style="padding: 14px 0;">
+              <input type="color" [(ngModel)]="event.color.primary" (change)="refresh.next()">
+            </td>
+            <td class="text-center" style="padding: 14px 0;">
+              <input type="color" [(ngModel)]="event.color.secondary" (change)="refresh.next()">
+            </td>
+            <td>
+              <input class="form-control" type="text" mwlFlatpickr [(ngModel)]="event.start" (ngModelChange)="refresh.next()"
+                [altInput]="true" [convertModelValue]="true" [enableTime]="true" dateFormat="Y-m-dTH:i" altFormat="F j, Y H:i"
+                placeholder="Not set" style="font-size: 14px; font-weight: 400; font-style: normal; font-family: 'Barlow';">
+            </td>
+            <td>
+              <input class="form-control" type="text" mwlFlatpickr [(ngModel)]="event.end" (ngModelChange)="refresh.next()"
+                [altInput]="true" [convertModelValue]="true" [enableTime]="true" dateFormat="Y-m-dTH:i" altFormat="F j, Y H:i"
+                placeholder="Not set" style="font-size: 14px; font-weight: 400; font-style: normal; font-family: 'Barlow';">
+            </td>
+            <td>
+              <button class="btn btn-danger-1" (click)="events.splice(index, 1); refresh.next()">
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      
+      </table>
+
+      <!-- Add Reminder modal popup start -->
+<div id="addremind" class="modal deletecourse-modal" role="dialog">
+  <div class="modal-dialog" style="max-width: 642px;">
+
+    
+    <div class="modal-content">
+      <div class="modal-body" style="padding: 0;">
+        <div class="modal-remind-header">
+          <div class="col-md-8 text-right">
+          <h3>Add Reminder</h3>
+          </div>
+          <div class="col-sm-4">
+      	<button type="button" class="remind-close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+        </div>
+        </div>
+      	<div class="col-lg-12 container border-bottom remind-radio mt-3" style="padding-bottom: .8em;">
+          <ul>
+            <li style="margin-right: 4em;"><input type="radio" id="male" name="gender" value="male">
+              <label for="male">Personal reminder</label></li>
+            <li><input type="radio" id="female" name="gender" value="female">
+              <label for="female">Class reminder</label></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-12 container border-bottom remind-radio mt-3" style="padding-bottom: .8em;">
+          <ul>
+            <li style="margin-right: 5em; align-items: center;">
+              <label style="padding-right: 12px;">Date:</label>
+              <input type="date">
+              </li>
+            <li style="align-items: center;">
+              <label style="padding-right: 12px;">Time:</label>
+              <input type="time" value="hh:mm">
+              </li>
+          </ul>
+          <div class="col-lg-12 mt-5">
+            <label class="label-font">Course name:</label>
+            <select style="width: 425px;">
+              <option selected>Geography for Secondary 4 - Level 3</option>
+              <option>Geography for Secondary 3 - Level 2</option>
+              <option>Geography for Secondary 2 - Level 1</option>
+            </select>            
+          </div>
+
+          <div class="col-lg-12 mt-2 remind-input">
+            <ul class="display-center">
+              <li style="margin-right: 5.2em;"><label style="padding-right: 14px;">Level:</label>
+                  <select style="width: 140px;">
+                    <option>Secondary 1</option>
+                    <option>Secondary 2</option>
+                    <option>Secondary 3</option>
+                    <option selected>Secondary 4</option>
+                  </select>
+              </li>
+              <li><label style="padding-right: 13px;">Banding:</label>
+                <select style="width: 140px;">
+                  <option>Band 1</option>
+                  <option>Band 2</option>
+                  <option selected>Band 3</option>
+                </select>
+            </li>
+            </ul>
+          </div>
+          <div class="col-lg-12 mt-2 remind-input">
+            <ul class="display-center">
+              <li style="margin-right: 4.4em;"><label style="padding-right: 14px;">Class:</label>
+                  <select style="width: 140px;">
+                    <option>Secondary 1</option>
+                    <option>Secondary 2</option>
+                    <option>Secondary 3</option>
+                    <option selected>Secondary 4</option>
+                  </select>
+              </li>
+              <li><label style="padding-right: 13px;">Class code:</label>
+                <p>#56782</p>
+            </li>
+            </ul>            
+          </div>
+
+          <div class="col-lg-12 mt-3 remind-text" style="display: flex; padding: 0 29px;">
+            <label>Reminder :</label>
+            <textarea name="reminder"></textarea>
+          </div>
+
+        </div>
+          <div class="col-lg-12 container display-center mt-3 mb-3" style="justify-content: center;">
+            <button type="button" class="remind-blue" style="margin-right: 1em;">Confirm</button>
+            <button type="button" class="remind-green" data-dismiss="modal">Cancel</button>
+          </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Add Reminder modal popup end -->
+
+      <!-- Class Reminder modal popup start -->
+    <div id="classremind" class="modal class-remind-modal" role="dialog">
+      <div class="modal-dialog" style="max-width: 625px;">
+    
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header" style="padding: 6px 0;">
+              <h4>Class Reminder</h4>
+              <button type="button" class="close" data-dismiss="modal" style="padding: 6px 0;"><i class="fa fa-times" aria-hidden="true"></i></button>
+            </div>
+            <div class="col-lg-12 class-remind-p mt-3" style="border-bottom: 1px solid #F1F6FB;">
+              <p>Class Calendar</p>
+            </div>
+            <div class="modal-body" style="padding:26px 26px 0px 26px !important">
+                <div class="col-lg-12 class-remind-list" style="border-bottom:1px solid #f1f6fb; padding-bottom: 1.5rem;">
+                  <ul>
+                    <li style="margin-right: 10em;">
+                      <label>Date:</label>
+                      <p>01/11/2020</p>
+                    </li>
+                    <li>
+                      <label>Time:</label>
+                      <p>17:15</p>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-lg-12 class-remind-list mt-4" style="border-bottom:1px solid #f1f6fb; padding-bottom: 1.5rem;">
+                  <ul>
+                    <li style="margin-right: 6.5em;">
+                      <label>&lt;Course&gt;:</label>
+                      <p>Geography for Secondary 4 - Level 3</p>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="col-lg-12 class-remind-list mt-4" style="padding-bottom: 1.5rem;">
+                  <ul>
+                    <li style="margin-right: 7.5em;">
+                      <label>Level:</label>
+                      <p>Secondary 4</p>
+                    </li>
+                    <li>
+                      <label>Banding:</label>
+                      <p>Band 3</p>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="col-lg-12 class-remind-list" style="padding-bottom: 1.5rem;">
+                  <ul>
+                    <li style="margin-right: 8em;">
+                      <label>Class:</label>
+                      <p>Poppins</p>
+                    </li>
+                    <li>
+                      <label>Class code:</label>
+                      <p style="color: #FFA26B !important;">#56782</p>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="col-lg-12 class-remind-list mt-4 mb-5" style="border-bottom:1px solid #f1f6fb; padding-bottom: 1.5rem;">
+                  <ul>
+                    <li style="margin-right: 6.5em;">
+                      <label>Reminder:</label>
+                      <p>Test paper for first Semester grading</p>
+                    </li>
+                  </ul>
+                </div>
+            </div>
+            <div class="class-remind-modal-footer mb-3">
+              <button type="button" class="class-remind-blue" data-toggle="modal" data-target="#addremind" data-dismiss="modal">Edit</button>
+              <button type="button" class="class-remind-btn"  data-toggle="modal" data-target="#deletereminder" data-dismiss="modal">Delete</button>
+            </div>
+        </div>
+      </div>
+    </div>
+<!-- Class Reminder modal popup end -->
+
+<!-- Edit Class Reminder modal popup start -->
+<div id="addremind" class="modal deletecourse-modal" role="dialog">
+  <div class="modal-dialog" style="max-width: 642px;">
+
+    
+    <div class="modal-content">
+      <div class="modal-body" style="padding: 0;">
+        <div class="modal-remind-header">
+          <div class="col-md-8 text-right">
+          <h3>Edit Class Reminder</h3>
+          </div>
+          <div class="col-sm-4">
+      	<button type="button" class="remind-close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+        </div>
+        </div>
+      	<div class="col-lg-12 container border-bottom remind-radio mt-3" style="padding-bottom: .8em;">
+          <p style="text-align: left; color: #7990B4;">Class calendar</p>
+        </div>
+
+        <div class="col-lg-12 container border-bottom remind-radio mt-3" style="padding-bottom: .8em;">
+          <ul>
+            <li style="margin-right: 5em; align-items: center;">
+              <label style="padding-right: 12px;">Date:</label>
+              <input type="date">
+              </li>
+            <li style="align-items: center;">
+              <label style="padding-right: 12px;">Time:</label>
+              <input type="time" value="hh:mm">
+              </li>
+          </ul>
+          <div class="col-lg-12 mt-5">
+            <label class="label-font">Course name:</label>
+            <select style="width: 425px;">
+              <option selected>Geography for Secondary 4 - Level 3</option>
+              <option>Geography for Secondary 3 - Level 2</option>
+              <option>Geography for Secondary 2 - Level 1</option>
+            </select>            
+          </div>
+
+          <div class="col-lg-12 mt-2 remind-input">
+            <ul class="display-center">
+              <li style="margin-right: 5.2em;"><label style="padding-right: 14px;">Level:</label>
+                  <select style="width: 140px;">
+                    <option>Secondary 1</option>
+                    <option>Secondary 2</option>
+                    <option>Secondary 3</option>
+                    <option selected>Secondary 4</option>
+                  </select>
+              </li>
+              <li><label style="padding-right: 13px;">Banding:</label>
+                <select style="width: 140px;">
+                  <option>Band 1</option>
+                  <option>Band 2</option>
+                  <option selected>Band 3</option>
+                </select>
+            </li>
+            </ul>
+          </div>
+          <div class="col-lg-12 mt-2 remind-input">
+            <ul class="display-center">
+              <li style="margin-right: 4.4em;"><label style="padding-right: 14px;">Class:</label>
+                  <select style="width: 140px;">
+                    <option>Secondary 1</option>
+                    <option>Secondary 2</option>
+                    <option>Secondary 3</option>
+                    <option selected>Secondary 4</option>
+                  </select>
+              </li>
+              <li><label style="padding-right: 13px;">Class code:</label>
+                <p>#56782</p>
+            </li>
+            </ul>            
+          </div>
+
+          <div class="col-lg-12 mt-3 remind-text" style="display: flex; padding: 0 29px;">
+            <label>Reminder :</label>
+            <textarea name="reminder"></textarea>
+          </div>
+
+        </div>
+          <div class="col-lg-12 container display-center mt-3 mb-3" style="justify-content: center;">
+            <button type="button" class="remind-blue" style="margin-right: 1em;" data-dismiss="modal">Confirm</button>
+            <button type="button" class="remind-green" data-dismiss="modal" data-toggle="modal" data-target="#classremind">Cancel</button>
+          </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Edit Class Reminder modal popup end -->
+
+
+<!-- Delete reminder modal popup start -->
+        <div id="deletereminder" class="modal delete-remind-modal" role="dialog" #deleteclosebutton>
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-body">
+                <button type="button" class="remind-close" data-dismiss="modal" style="padding: 0;"><i class="fa fa-times" aria-hidden="true"></i></button>
+                <figure>
+                  <img src="assets/images/dashboard/delete-course.png">
+                </figure>
+                <h4 class="modal-title mb-4">Delete class reminder?</h4>
+                <a class="delete-btn-course" data-dismiss="modal">Delete</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+<!-- Delete reminder modal popup start -->
+
+<!-- Personal Reminder modal popup start -->
+<div id="personalremind" class="modal class-remind-modal" role="dialog">
+  <div class="modal-dialog" style="max-width: 625px;">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header" style="padding: 6px 0;">
+          <h4>Personal Reminder</h4>
+          <button type="button" class="close" data-dismiss="modal" style="padding: 6px 0;"><i class="fa fa-times" aria-hidden="true"></i></button>
+        </div>
+        <div class="col-lg-12 class-remind-p mt-3" style="border-bottom: 1px solid #F1F6FB;">
+          <p>Class Calendar</p>
+        </div>
+        <div class="modal-body" style="padding:26px 26px 0px 26px !important">
+            <div class="col-lg-12 class-remind-list" style="border-bottom:1px solid #f1f6fb; padding-bottom: 1.5rem;">
+              <ul>
+                <li style="margin-right: 10em;">
+                  <label>Date:</label>
+                  <p>01/11/2020</p>
+                </li>
+                <li>
+                  <label>Time:</label>
+                  <p>17:15</p>
+                </li>
+              </ul>
+            </div>
+            <div class="col-lg-12 class-remind-list mt-4" style="border-bottom:1px solid #f1f6fb; padding-bottom: 1.5rem;">
+              <ul>
+                <li style="margin-right: 6.5em;">
+                  <label>&lt;Course&gt;:</label>
+                  <p>Geography for Secondary 4 - Level 3</p>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-lg-12 class-remind-list mt-4" style="padding-bottom: 1.5rem;">
+              <ul>
+                <li style="margin-right: 7.5em;">
+                  <label>Level:</label>
+                  <p>Secondary 4</p>
+                </li>
+                <li>
+                  <label>Banding:</label>
+                  <p>Band 3</p>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-lg-12 class-remind-list" style="padding-bottom: 1.5rem;">
+              <ul>
+                <li style="margin-right: 8em;">
+                  <label>Class:</label>
+                  <p>Poppins</p>
+                </li>
+                <li>
+                  <label>Class code:</label>
+                  <p style="color: #FFA26B !important;">#56782</p>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-lg-12 class-remind-list mt-4 mb-5" style="border-bottom:1px solid #f1f6fb; padding-bottom: 1.5rem;">
+              <ul>
+                <li style="margin-right: 6.5em;">
+                  <label>Reminder:</label>
+                  <p>Test paper for first Semester grading</p>
+                </li>
+              </ul>
+            </div>
+        </div>
+        <div class="class-remind-modal-footer mb-3">
+          <button type="button" class="class-remind-blue" data-toggle="modal" data-target="#editpersonal">Edit</button>
+          <button type="button" class="class-remind-btn"  data-toggle="modal" data-target="#deletepersonal" data-dismiss="modal">Delete</button>
+        </div>
+    </div>
+  </div>
+</div>
+<!-- Personal Reminder modal popup end -->
+
+<!-- Edit personal Reminder modal popup start -->
+<div id="editpersonal" class="modal deletecourse-modal" role="dialog">
+  <div class="modal-dialog" style="max-width: 642px;">
+
+    
+    <div class="modal-content">
+      <div class="modal-body" style="padding: 0;">
+        <div class="modal-remind-header">
+          <div class="col-md-8 text-right">
+          <h3>Edit Personal Reminder</h3>
+          </div>
+          <div class="col-sm-4">
+      	<button type="button" class="remind-close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+        </div>
+        </div>
+      	<div class="col-lg-12 container border-bottom remind-radio mt-3" style="padding-bottom: .8em;">
+          <p style="text-align: left; color: #7990B4;">Personal calendar</p>
+        </div>
+
+        <div class="col-lg-12 container border-bottom remind-radio mt-3" style="padding-bottom: .8em;">
+          <ul>
+            <li style="margin-right: 5em; align-items: center;">
+              <label style="padding-right: 12px;">Date:</label>
+              <input type="date">
+              </li>
+            <li style="align-items: center;">
+              <label style="padding-right: 12px;">Time:</label>
+              <input type="time" value="hh:mm">
+              </li>
+          </ul>
+          <div class="col-lg-12 mt-5">
+            <label class="label-font">Course name:</label>
+            <select style="width: 425px;">
+              <option selected>Geography for Secondary 4 - Level 3</option>
+              <option>Geography for Secondary 3 - Level 2</option>
+              <option>Geography for Secondary 2 - Level 1</option>
+            </select>            
+          </div>
+
+          <div class="col-lg-12 mt-2 remind-input">
+            <ul class="display-center">
+              <li style="margin-right: 5.2em;"><label style="padding-right: 14px;">Level:</label>
+                  <select style="width: 140px;">
+                    <option>Secondary 1</option>
+                    <option>Secondary 2</option>
+                    <option>Secondary 3</option>
+                    <option selected>Secondary 4</option>
+                  </select>
+              </li>
+              <li><label style="padding-right: 13px;">Banding:</label>
+                <select style="width: 140px;">
+                  <option>Band 1</option>
+                  <option>Band 2</option>
+                  <option selected>Band 3</option>
+                </select>
+            </li>
+            </ul>
+          </div>
+          <div class="col-lg-12 mt-2 remind-input">
+            <ul class="display-center">
+              <li style="margin-right: 4.4em;"><label style="padding-right: 14px;">Class:</label>
+                  <select style="width: 140px;">
+                    <option>Secondary 1</option>
+                    <option>Secondary 2</option>
+                    <option>Secondary 3</option>
+                    <option selected>Secondary 4</option>
+                  </select>
+              </li>
+              <li><label style="padding-right: 13px;">Class code:</label>
+                <p>#56782</p>
+            </li>
+            </ul>            
+          </div>
+
+          <div class="col-lg-12 mt-3 remind-text" style="display: flex; padding: 0 29px;">
+            <label>Reminder :</label>
+            <textarea name="reminder"></textarea>
+          </div>
+
+        </div>
+          <div class="col-lg-12 container display-center mt-3 mb-3" style="justify-content: center;">
+            <button type="button" class="remind-blue" style="margin-right: 1em;" data-dismiss="modal">Confirm</button>
+            <button type="button" class="remind-green" data-dismiss="modal">Cancel</button>
+          </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Edit personal Reminder modal popup end -->
+
+<!-- Delete personal reminder modal popup start -->
+<div id="deletepersonal" class="modal delete-remind-modal" role="dialog" #deleteclosebutton>
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="remind-close" data-dismiss="modal" style="padding: 0;"><i class="fa fa-times" aria-hidden="true"></i></button>
+        <figure>
+          <img src="assets/images/dashboard/delete-course.png">
+        </figure>
+        <h4 class="modal-title mb-4">Delete personal reminder?</h4>
+        <a class="delete-btn-course" data-dismiss="modal">Delete</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Delete personal reminder modal popup start -->
+
+<!-- Class activity modal popup start -->
+<div id="classactivity" class="modal class-remind-modal" role="dialog">
+  <div class="modal-dialog" style="max-width: 625px;">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header" style="padding: 6px 0;">
+          <h4>Class activity</h4>
+          <button type="button" class="close" data-dismiss="modal" style="padding: 6px 0;"><i class="fa fa-times" aria-hidden="true"></i></button>
+        </div>
+        <div class="col-lg-12 class-remind-p mt-3" style="border-bottom: 1px solid #F1F6FB;">
+          <p>Class Calendar</p>
+        </div>
+        <div class="modal-body" style="padding:26px 26px 0px 26px !important">
+            <div class="col-lg-12 class-remind-list" style="border-bottom:1px solid #f1f6fb; padding-bottom: 1.5rem;">
+              <ul>
+                <li style="margin-right: 10em;">
+                  <label>Date:</label>
+                  <p>01/11/2020</p>
+                </li>
+                <li>
+                  <label>Time:</label>
+                  <p>17:15</p>
+                </li>
+              </ul>
+            </div>
+            <div class="col-lg-12 class-remind-list mt-4" style="border-bottom:1px solid #f1f6fb; padding-bottom: 1.5rem;">
+              <ul>
+                <li style="margin-right: 6.5em;">
+                  <label>&lt;Course&gt;:</label>
+                  <p>Geography for Secondary 4 - Level 3</p>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-lg-12 class-remind-list mt-4" style="padding-bottom: 1.5rem;">
+              <ul>
+                <li style="margin-right: 7.5em;">
+                  <label>Level:</label>
+                  <p>Secondary 4</p>
+                </li>
+                <li>
+                  <label>Banding:</label>
+                  <p>Band 3</p>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-lg-12 class-remind-list" style="padding-bottom: 1.5rem;">
+              <ul>
+                <li style="margin-right: 8em;">
+                  <label>Class:</label>
+                  <p>Poppins</p>
+                </li>
+                <li>
+                  <label>Class code:</label>
+                  <p style="color: #FFA26B !important;">#56782</p>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-lg-12 class-remind-list mt-4">
+              <ul>
+                <li style="margin-right: 3em;">
+                  <label>Document:</label>
+                  <p>&lt;Test name&gt; or &lt;Assignment name&gt; or "N.A."</p>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-lg-12 class-remind-list mt-4 mb-5">
+              <ul>
+                <li style="padding: 0 41px;">
+                  <label>Description:</label>
+                  <p>Tests starts/Test ends/Assignment starts/Assignment ends/
+                    Live session/Class starts/Class ends</p>
+                </li>
+              </ul>
+            </div>
+        </div>
+        <div class="class-remind-modal-footer mb-3">
+          <button type="button" class="class-remind-blue" style="width:94px;" data-dismiss="modal">Ok</button>
+        </div>
+    </div>
+  </div>
+</div>
+<!-- Class activity modal popup end -->
+<!-- 
 <ng-template #modalContent let-close="close">
   <div class="modal-header">
     <h5 class="modal-title">Event action occurred</h5>
@@ -18,122 +714,4 @@
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-secondary" (click)="close()">OK</button>
   </div>
-</ng-template>
-
-<div class="row text-center">
-  <div class="col-md-4">
-    <div class="btn-group">
-      <div class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
-        (viewDateChange)="activeDayIsOpen = false">
-        Previous
-      </div>
-      <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
-        Today
-      </div>
-      <div class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
-        (viewDateChange)="activeDayIsOpen = false">
-        Next
-      </div>
-    </div>
-  </div>
-  <div class="col-md-4">
-    <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
-  </div>
-  <div class="col-md-4">
-    <div class="btn-group">
-      <div class="btn btn-primary" (click)="view = CalendarView.Month" [class.active]="view === CalendarView.Month">
-        Month
-      </div>
-      <div class="btn btn-primary" (click)="view = CalendarView.Week" [class.active]="view === CalendarView.Week">
-        Week
-      </div>
-      <div class="btn btn-primary" (click)="view = CalendarView.Day" [class.active]="view === CalendarView.Day">
-        Day
-      </div>
-    </div>
-  </div>
-</div>
-<br>
-<ng-template #eventTemplate let-weekEvent="weekEvent">
-  <div *ngIf="weekEvent.event.meta.type === 'calendarEvent'" class="built-in-event">
-    <ul>
-      <li><span>{{ weekEvent.event.title }}</span></li>
-    </ul>
-  </div>
-  <div *ngIf="weekEvent.event.meta.type !== 'calendarEvent'" [ngStyle]="{
-        'background-color': weekEvent.event.color
-       }" class="week-view-event">
-
-    <div class="employee-calendar-display-name">
-      <span>{{ weekEvent.event.title }}</span>
-    </div>
-  </div>
-</ng-template>
-
-<div [ngSwitch]="view">
-  <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events"
-    [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)"
-    (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
-  </mwl-calendar-month-view>
-  <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
-    [eventTemplate]="eventTemplate" (eventClicked)="handleEvent('Clicked', $event.event)"
-    (eventTimesChanged)="eventTimesChanged($event)">
-  </mwl-calendar-week-view>
-  <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
-    (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
-  </mwl-calendar-day-view>
-</div>
-
-<br><br><br>
-
-<h3>
-  Edit events
-  <button class="btn btn-primary pull-right" (click)="addEvent()">
-    Add new
-  </button>
-  <div class="clearfix"></div>
-</h3>
-
-<table class="table table-bordered">
-
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Primary color</th>
-      <th>Secondary color</th>
-      <th>Starts at</th>
-      <th>Ends at</th>
-      <th>Remove</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr *ngFor="let event of events; let index = index">
-      <td>
-        <input type="text" class="form-control" [(ngModel)]="event.title" (keyup)="refresh.next()">
-      </td>
-      <td>
-        <input type="color" [(ngModel)]="event.color.primary" (change)="refresh.next()">
-      </td>
-      <td>
-        <input type="color" [(ngModel)]="event.color.secondary" (change)="refresh.next()">
-      </td>
-      <td>
-        <input class="form-control" type="text" mwlFlatpickr [(ngModel)]="event.start" (ngModelChange)="refresh.next()"
-          [altInput]="true" [convertModelValue]="true" [enableTime]="true" dateFormat="Y-m-dTH:i" altFormat="F j, Y H:i"
-          placeholder="Not set">
-      </td>
-      <td>
-        <input class="form-control" type="text" mwlFlatpickr [(ngModel)]="event.end" (ngModelChange)="refresh.next()"
-          [altInput]="true" [convertModelValue]="true" [enableTime]="true" dateFormat="Y-m-dTH:i" altFormat="F j, Y H:i"
-          placeholder="Not set">
-      </td>
-      <td>
-        <button class="btn btn-danger" (click)="events.splice(index, 1); refresh.next()">
-          Delete
-        </button>
-      </td>
-    </tr>
-  </tbody>
-
-</table>
+</ng-template> -->

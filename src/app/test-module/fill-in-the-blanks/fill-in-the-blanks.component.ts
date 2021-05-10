@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
-import { UtilService } from 'src/providers/util.service';
+import { UtilService } from '../../../providers/util.service';
 
 @Component({
   selector: 'app-fill-in-the-blanks',
@@ -9,11 +9,16 @@ import { UtilService } from 'src/providers/util.service';
   styleUrls: ['./fill-in-the-blanks.component.css']
 })
 export class FillInTheBlanksComponent implements OnInit {
+
   isLoadingBool: boolean = false;
+  totalWords: any;
+  isCheckBoxChecked: any = '';
   fillData: any = {
     question: ''
   }
-  addCourseForm: FormGroup;
+  usersForm: FormGroup;
+  errorMessage: string;
+  mainFormArray: Array<any> = [];
 
   imageSrc;
 
@@ -27,56 +32,84 @@ export class FillInTheBlanksComponent implements OnInit {
 
   fileList: File[] = [];
   listOfFiles: any[] = [];
+  constructor(private formBuilder: FormBuilder,public util:UtilService) { }
+  users: FormArray;
 
+  ngOnInit() {
+    this.usersForm = this.formBuilder.group({
+      address: '',
+      users: this.formBuilder.array([
+        this.formBuilder.group({
+          address: ['', [Validators.required]],
+          phone: ['', [Validators.required]]
+        })
+      ])
+    });
 
-  constructor(private router: Router, private fb: FormBuilder, public util: UtilService) {
-    this.addCourseForm = this.fb.group({
-      employees: this.fb.array([]),
-    })
-    this.addInitialForms();
+    // Get total words and generate forms array list\
+    // this.counter(1);
   }
 
-  ngOnInit(): void {
+  initUserRow(): FormGroup {
+    return this.formBuilder.group({
+      // address: [null, [Validators.required]],
+      // phone: [null, [Validators.required]],
+      name: '',
+    });
   }
 
-  employees(): FormArray {
-    return this.addCourseForm.get("employees") as FormArray
+  addUserRow(parent): void {
+    const usersArray = this.mainFormArray[parent];
+    let arrayTOPush = usersArray.myFormsList.controls['users'];
+    var data =arrayTOPush.controls.length;
+    console.log('data',data);
+    if(data<3){
+      arrayTOPush.push(this.initUserRow());
+    }
+    else{
+      this.util.errorAlertPopup("can't add more than three items");
+    }
+
   }
 
-  newEmployee(): FormGroup {
-    return this.fb.group({
-      answer1: '',
-      skills: this.fb.array([])
-    })
+  removeUserRow(parent: number, rowIndex: number): void {
+    console.log(parent, rowIndex)
+    let userForm = this.mainFormArray[parent].myFormsList;
+    const usersArray = <FormArray>userForm.controls['users'];
+    console.log(userForm, usersArray)
+    console.log('usersArray.length', usersArray.length)
+    if (usersArray.length > 1) {
+      usersArray.removeAt(rowIndex);
+    } else {
+      this.errorMessage =
+        'You cannot delete this row!  form should contain at least one row!';
+      setTimeout(() => {
+        this.errorMessage = null;
+      }, 4000);
+    }
   }
 
-  addEmployee() {
-    this.employees().push(this.newEmployee());
+  submit() {
+    console.log(this.usersForm.value);
   }
 
-  addInitialForms() {
-    this.addEmployee();
-    this.addEmployeeSkill(this.employees().controls.length - 1);
+  counter(i: number) {
+    this.mainFormArray = []
+    // return new Array(2);
+    // gegerate no of forms array based on 'i'
+    for (let j = 0; j < i; j++) {
+      this.mainFormArray.push({ myFormsList: this.getNewUserFrom() });
+    }
   }
 
-
-  employeeSkills(empIndex: number): FormArray {
-    return this.employees().at(empIndex).get("skills") as FormArray
-  }
-
-  newSkill(): FormGroup {
-    return this.fb.group({
-      answer2: ['', [Validators.required]]
-    })
-  }
-
-  addEmployeeSkill(empIndex: number) {
-
-    this.employeeSkills(empIndex).push(this.newSkill());
-  }
-
-  deleteUser(empIndex, skillIndex) {
-    this.employeeSkills(empIndex).removeAt(skillIndex);
+  getNewUserFrom() {
+    return this.formBuilder.group({
+      users: this.formBuilder.array([
+        this.formBuilder.group({
+          name: [null, [Validators.required]],
+        })
+      ])
+    });
   }
 
   cancel() { }
@@ -125,9 +158,30 @@ export class FillInTheBlanksComponent implements OnInit {
     console.log('this.ExteriorPicString', this.ExteriorPicString);
   }
 
-  saveQuestion() {
-    this.fillData.attachment = this.fileList
-    console.log('afterfillData', this.fillData);
+
+  countWords(str) {
+    var matches = str.match(/_+/gi);
+    return matches ? matches.length : 0;
   }
 
+  countTotalWords() {
+    var data = this.fillData.question
+    this.totalWords = this.countWords(data)
+    this.counter(this.totalWords)
+  }
+
+
+  counters(i: number) {
+    return new Array(i);
+  }
+
+  isClicked(event) {
+    console.log('isClicked', event.target.checked);
+    this.isCheckBoxChecked = event.target.checked
+  }
+
+  saveQuestion() {
+    console.log('this.mainFormArray', this.mainFormArray);
+    console.log('this.usersForm', this.usersForm.value);
+  }
 }

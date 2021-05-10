@@ -21,9 +21,11 @@ import {
   CalendarEvent,
   CalendarEventAction,
   CalendarEventTimesChangedEvent,
+  CalendarEventTitleFormatter,
   CalendarView,
 } from 'angular-calendar';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { CustomEventTitleFormatter } from './custom-event-title-formatter.provider';
 
 const colors: any = {
   red: {
@@ -44,9 +46,15 @@ const colors: any = {
   selector: 'app-calendar',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './calendar.component.html',
-  styleUrls: ['./calendar.component.css']
+  styleUrls: ['./calendar.component.css'],
+  // providers: [
+  //   {
+  //     provide: CalendarEventTitleFormatter,
+  //     useClass: CustomEventTitleFormatter,
+  //   },
+  // ],
 })
-export class CalendarComponent  {
+export class CalendarComponent {
   @ViewChild('modalContent')
   modalContent: TemplateRef<any>;
 
@@ -60,6 +68,8 @@ export class CalendarComponent  {
     action: string;
     event: CalendarEvent;
   };
+
+
 
   actions: CalendarEventAction[] = [
     {
@@ -83,7 +93,7 @@ export class CalendarComponent  {
     {
       start: subDays(startOfDay(new Date()), 1),
       end: addDays(new Date(), 2),
-      title: 'A 3 day event',
+      title: 'Aniket',
       color: colors.red,
       actions: this.actions,
       allDay: true,
@@ -110,7 +120,7 @@ export class CalendarComponent  {
     {
       start: subDays(startOfDay(new Date()), 1),
       end: addDays(new Date(), 2),
-      title: 'An event that is the same length as the one above',
+      title: 'Aniket Tyagi',
       color: colors.blue,
       allDay: true,
       meta: {
@@ -148,7 +158,7 @@ export class CalendarComponent  {
   activeDayIsOpen: boolean = true;
 
   constructor(private modal: NgbModal) {
-    
+
   }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {

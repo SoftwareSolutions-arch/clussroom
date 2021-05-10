@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { UtilService } from '../../../providers/util.service';
+import { SharedServiceService } from '../../shared-service.service';
 
 @Component({
   selector: 'app-short-answer',
@@ -12,12 +13,13 @@ export class ShortAnswerComponent implements OnInit {
     question: '',
     rich_text_responses_for_learner: '',
     character_limit: '',
-    characterInput: '',
-    partialPoints: '',
+    // characterInput: '',
+    // partialPoints: '',
     points: '',
     attachment: '',
     "test_assignment_question_type": "short_answer",
-    "insert_limit": "1000"
+    "insert_limit": "1000",
+    "test_assignment_nid": "184",
   }
 
   imageSrc;
@@ -32,7 +34,7 @@ export class ShortAnswerComponent implements OnInit {
 
   fileList: File[] = [];
   listOfFiles: any[] = [];
-    constructor(public util: UtilService) { }
+  constructor(public util: UtilService, public service: SharedServiceService) { }
 
   ngOnInit(): void {
   }
@@ -81,8 +83,28 @@ export class ShortAnswerComponent implements OnInit {
     console.log('this.ExteriorPicString', this.ExteriorPicString);
   }
 
+  // save question
   saveQuestion() {
     this.fillData.attachment = this.fileList
-    console.log('afterfillData', this.fillData);
+    console.log('this.',this.fillData.question)
+
+    let params = {
+      "test_assignment_nid": "184",
+      "test_assignment_question_type": "short_answer",
+      "question": this.fillData.question,
+      "attachment": this.fillData.attachment,
+      "rich_text_responses_for_learner": (this.fillData.rich_text_responses_for_learner == true) ? "1" : "0",
+      "points": this.fillData.points,
+      "character_limit": (this.fillData.character_limit == true) ? "1" : "0",
+      "insert_limit": "1000"
+
+    }
+    // console.log('parmas', params);
+    this.isLoadingBool = true;
+    this.service.post('add-question-api', params, 1).subscribe(result => {
+      console.log('result', result);
+      this.util.showSuccessAlert('Answer Saved Successfully');
+      this.isLoadingBool = false;
+    })
   }
 }
