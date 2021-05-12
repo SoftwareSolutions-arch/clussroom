@@ -1,354 +1,285 @@
 <!-- loader showing-->
 <div *ngIf="isImageShow" class="loading-indicator">
-  <mat-spinner></mat-spinner>
+	<mat-spinner></mat-spinner>
 </div>
 <!-- close loader showing-->
-
 <app-header *ngIf="!isImageShow"></app-header>
 <section class="invoice-section" *ngIf="!isImageShow">
-  <div class="container">
-    <div class="invoice-wrapper">
-      <div class="invoice-details">
-        <h2>Invoice details</h2>
-        <!-- <span>Fill your details for invoice </span> -->
-        <form [formGroup]="invoiceForm">
-          <div class="company-name fieldset">
-            <label>Company name</label>
-            <input formControlName="companyName" type="text">
-            <!-- <div> -->
-            <ng-container *ngFor="let error of error_messages.companyName">
-              <div class="error-message" *ngIf="invoiceForm.get('companyName').hasError(error.type) &&
-                                  (invoiceForm.get('companyName').dirty || invoiceForm.get('companyName').touched)">
-                {{ error.message }}
-              </div>
-            </ng-container>
-          </div>
-
-          <div class="flex-curve">
-            <div class="first-name fieldset col-md-6">
-              <label>First name<span style="color: red; margin-left: 4px;">*</span></label>
-              <input formControlName="firstName" type="text">
-              <!-- <div> -->
-              <ng-container *ngFor="let error of error_messages.firstName">
-                <div class="error-message"
-                  *ngIf="invoiceForm.get('firstName').hasError(error.type) &&
-                                          (invoiceForm.get('firstName').dirty || invoiceForm.get('firstName').touched)">
-                  {{ error.message }}
-                </div>
-              </ng-container>
-
-            </div>
-            <div class="last-name fieldset col-md-6">
-              <label>Last name<span style="color: red; margin-left: 4px;">*</span></label>
-              <input formControlName="lastName" type="text">
-              <!-- <div> -->
-              <ng-container *ngFor="let error of error_messages.lastName">
-                <div class="error-message" *ngIf="invoiceForm.get('lastName').hasError(error.type) &&
-                                          (invoiceForm.get('lastName').dirty || invoiceForm.get('lastName').touched)">
-                  {{ error.message }}
-                </div>
-              </ng-container>
-
-            </div>
-          </div>
-          <div class="address fieldset">
-            <label>Address</label>
-            <input formControlName="address" type="text">
-            <!-- <div> -->
-            <ng-container *ngFor="let error of error_messages.address">
-              <div class="error-message" *ngIf="invoiceForm.get('address').hasError(error.type) &&
-                                      (invoiceForm.get('address').dirty || invoiceForm.get('address').touched)">
-                {{ error.message }}
-              </div>
-            </ng-container>
-          </div>
-
-          <div class="country fieldset">
-            <label>Country</label>
-            <select formControlName="country" name="category" id="categorycourse" (change)="getState()"
-              style="padding: 0 11px;">
-              <option *ngFor="let countryName of this.allCountryList" [ngValue]="countryName">
-                {{countryName.country_name}}
-              </option>
-            </select>
-          </div>
-
-          <div class="flex-curve">
-            <div class="city fieldset col-md-6">
-              <label>State</label>
-              <select formControlName="state" name="category" id="categorycourse" (change)="getCity()"
-                style="padding: 0 11px;">
-                <option *ngFor="let stateName of this.allStateList" [ngValue]="stateName">
-                  {{stateName.state_name}}
-                </option>
-              </select>
-            </div>
-            <div class="state fieldset col-md-6">
-              <label>City</label>
-              <select formControlName="city" name="category" id="categorycourse" style="padding: 0 11px;">
-                <option *ngFor="let cityName of this.allCityList" [ngValue]="cityName">
-                  {{cityName.city_name}}
-                </option>
-              </select>
-            </div>
-          </div>
-
-          <div class="flex-curve">
-            <div class="email fieldset col-md-6">
-              <label>Email<span style="color: red; margin-left: 4px;">*</span></label>
-              <input formControlName="email" type="email">
-              <ng-container *ngFor="let error of error_messages.email">
-                <div class="error-message" *ngIf="invoiceForm.get('email').hasError(error.type) &&
-                                        (invoiceForm.get('email').dirty || invoiceForm.get('email').touched)">
-                  {{ error.message }}
-                </div>
-              </ng-container>
-            </div>
-            <div class="second-email fieldset col-md-6">
-              <label>Confirm email<span style="color: red; margin-left: 4px;">*</span></label>
-              <input type="email" formControlName="cmail">
-              <ng-container *ngFor="let error of error_messages.cmail">
-                <div class="error-message" *ngIf="invoiceForm.get('cmail').hasError(error.type) &&
-                                        (invoiceForm.get('cmail').dirty || invoiceForm.get('cmail').touched)">
-                  {{ error.message }}
-                </div>
-              </ng-container>
-              <div class="error-message"
-                *ngIf="invoiceForm.get('cmail').hasError('equalTo') && invoiceForm.get('cmail').dirty || invoiceForm.get('cmail').hasError('equalTo') && invoiceForm.get('cmail').touched">
-                Email mismatch
-              </div>
-            </div>
-          </div>
-          <div class="row" style="padding: 0 1.5em;">
-            <button class="btn" [disabled]="!invoiceForm.valid" (click)="add()">Next</button>
-            <button class="btn back-btn" (click)="backToPreviousPage()">Back</button>
-          </div>
-        </form>
-      </div>
-
-      <!-- disable payment-->
-      <div class="order-summary" *ngIf="enablePaymemtForm">
-        <div class="order-summary-flex">
-          <h3>Order summary</h3>
-          <div class="lite-subscription-flex">
-            <div class="lite-subscription">
-              <h5>{{this.title}} <span
+	<div class="container">
+		<div class="invoice-wrapper">
+			<div class="invoice-details">
+				<h2>Invoice details</h2>
+				<!-- <span>Fill your details for invoice </span> -->
+				<form [formGroup]="invoiceForm">
+					<div class="company-name fieldset">
+						<label>Company name</label>
+						<input formControlName="companyName" type="text">
+						<!-- <div> -->
+						<ng-container *ngFor="let error of error_messages.companyName">
+							<div class="error-message" *ngIf="invoiceForm.get('companyName').hasError(error.type) &&
+                                  (invoiceForm.get('companyName').dirty || invoiceForm.get('companyName').touched)">{{ error.message }}</div>
+						</ng-container>
+					</div>
+					<div class="flex-curve">
+						<div class="first-name fieldset col-md-6">
+							<label>First name<span style="color: red; margin-left: 4px;">*</span>
+							</label>
+							<input formControlName="firstName" type="text">
+							<!-- <div> -->
+							<ng-container *ngFor="let error of error_messages.firstName">
+								<div class="error-message" *ngIf="invoiceForm.get('firstName').hasError(error.type) &&
+                                          (invoiceForm.get('firstName').dirty || invoiceForm.get('firstName').touched)">{{ error.message }}</div>
+							</ng-container>
+						</div>
+						<div class="last-name fieldset col-md-6">
+							<label>Last name<span style="color: red; margin-left: 4px;">*</span>
+							</label>
+							<input formControlName="lastName" type="text">
+							<!-- <div> -->
+							<ng-container *ngFor="let error of error_messages.lastName">
+								<div class="error-message" *ngIf="invoiceForm.get('lastName').hasError(error.type) &&
+                                          (invoiceForm.get('lastName').dirty || invoiceForm.get('lastName').touched)">{{ error.message }}</div>
+							</ng-container>
+						</div>
+					</div>
+					<div class="address fieldset">
+						<label>Address</label>
+						<input formControlName="address" type="text">
+						<!-- <div> -->
+						<ng-container *ngFor="let error of error_messages.address">
+							<div class="error-message" *ngIf="invoiceForm.get('address').hasError(error.type) &&
+                                      (invoiceForm.get('address').dirty || invoiceForm.get('address').touched)">{{ error.message }}</div>
+						</ng-container>
+					</div>
+					<div class="country fieldset">
+						<label>Country</label>
+						<select formControlName="country" name="category" id="categorycourse" (change)="getState()" style="padding: 0 11px;">
+							<option *ngFor="let countryName of this.allCountryList" [ngValue]="countryName">{{countryName.country_name}}</option>
+						</select>
+					</div>
+					<div class="flex-curve">
+						<div class="city fieldset col-md-6">
+							<label>State</label>
+							<select formControlName="state" name="category" id="categorycourse" (change)="getCity()" style="padding: 0 11px;">
+								<option *ngFor="let stateName of this.allStateList" [ngValue]="stateName">{{stateName.state_name}}</option>
+							</select>
+						</div>
+						<div class="state fieldset col-md-6">
+							<label>City</label>
+							<select formControlName="city" name="category" id="categorycourse" style="padding: 0 11px;">
+								<option *ngFor="let cityName of this.allCityList" [ngValue]="cityName">{{cityName.city_name}}</option>
+							</select>
+						</div>
+					</div>
+					<div class="flex-curve">
+						<div class="email fieldset col-md-6">
+							<label>Email<span style="color: red; margin-left: 4px;">*</span>
+							</label>
+							<input formControlName="email" type="email">
+							<ng-container *ngFor="let error of error_messages.email">
+								<div class="error-message" *ngIf="invoiceForm.get('email').hasError(error.type) &&
+                                        (invoiceForm.get('email').dirty || invoiceForm.get('email').touched)">{{ error.message }}</div>
+							</ng-container>
+						</div>
+						<div class="second-email fieldset col-md-6">
+							<label>Confirm email<span style="color: red; margin-left: 4px;">*</span>
+							</label>
+							<input type="email" formControlName="cmail">
+							<ng-container *ngFor="let error of error_messages.cmail">
+								<div class="error-message" *ngIf="invoiceForm.get('cmail').hasError(error.type) &&
+                                        (invoiceForm.get('cmail').dirty || invoiceForm.get('cmail').touched)">{{ error.message }}</div>
+							</ng-container>
+							<div class="error-message" *ngIf="invoiceForm.get('cmail').hasError('equalTo') && invoiceForm.get('cmail').dirty || invoiceForm.get('cmail').hasError('equalTo') && invoiceForm.get('cmail').touched">Email mismatch</div>
+						</div>
+					</div>
+					<div class="row" style="padding: 0 1.5em;">
+						<button class="btn" [disabled]="!invoiceForm.valid" (click)="add()">Next</button>
+						<button class="btn back-btn" (click)="backToPreviousPage()">Back</button>
+					</div>
+				</form>
+			</div>
+			<!-- disable payment-->
+			<div class="order-summary" *ngIf="enablePaymemtForm">
+				<div class="order-summary-flex">
+					<h3>Order summary</h3>
+					<div class="lite-subscription-flex">
+						<div class="lite-subscription">
+							<h5>{{this.title}} <span
                   style="text-transform: none; font-size: 15px; font-weight: 500; font-family: 'Barlow';">subscription</span>
               </h5>
-              <span>(at ${{this.invoiceDetails.amount}} yearly)</span>
-            </div>
-            <h5>$ {{this.invoiceDetails.yearly_amount}}</h5>
-          </div>
-          <div class="vat-section">
-            <span>Vat {{this.invoiceDetails.vat_percentage}}% <b class="custom-tooltip" data-toggle="tooltip"
+							<span>(at ${{this.invoiceDetails.amount}} yearly)</span>
+						</div>
+						<h5>$ {{this.invoiceDetails.yearly_amount}}</h5>
+					</div>
+					<div class="vat-section"> <span>Vat {{this.invoiceDetails.vat_percentage}}% <b class="custom-tooltip" data-toggle="tooltip"
                 title="vat">?</b></span>
-            <em>$ {{this.invoiceDetails.vat_amount}}</em>
-          </div>
-          <div class="net-total-flex">
-            <div class="net-total">
-              <h6>Net total&nbsp;&nbsp;</h6>
-              <span>(Incl Vat)</span>
-            </div>
-            <h5>$ {{this.invoiceDetails.yearly_amount_after_vat}}</h5>
-          </div>
-          <div class="payment-order">
-            <h3>Payment</h3>
-            <form [formGroup]="paymentForm">
-              <div class="payment-mode login-radio">
-
-                <div class="wrapper-visa">
-                  <input class="radio-btn" type="radio" id="visa" name="visa" value="visa"
-                    style="width: 100% !important;">
-                  <img src="../../assets/images/visa-copy.png">
-                </div>
-                <div class="wrapper-visa">
-                  <input class="radio-btn" type="radio" id="visa" name="visa" value="visa"
-                    style="width: 100% !important;">
-                  <img src="../../assets/images/mastercard-copy.png">
-                </div>
-                <div class="wrapper-visa">
-                  <input class="radio-btn" type="radio" id="visa" name="visa" value="visa"
-                    style="width: 100% !important;">
-                  <img src="../../assets/images/american-copy.png">
-                </div>
-              </div>
-              <div class="cardholder fieldset">
-                <label>Cardholder name</label>
-                <input type="text" formControlName="cardHolderName">
-                <ng-container *ngFor="let error of error_messages.cardHolderName">
-                  <div class="error-message"
-                    *ngIf="paymentForm.get('cardHolderName').hasError(error.type) &&
-                                            (paymentForm.get('cardHolderName').dirty || paymentForm.get('cardHolderName').touched)">
-                    {{ error.message }}
-                  </div>
-                </ng-container>
-              </div>
-              <div class="cardnumber fieldset">
-                <label>Card number</label>
-                <input formControlName="cardNumber" type="number">
-                <!-- <div> -->
-                <ng-container *ngFor="let error of error_messages.cardNumber">
-                  <div class="error-message"
-                    *ngIf="paymentForm.get('cardNumber').hasError(error.type) &&
-                                              (paymentForm.get('cardNumber').dirty || paymentForm.get('cardNumber').touched)">
-                    {{ error.message }}
-                  </div>
-                </ng-container>
-
-              </div>
-              <div class="payment-flex-curve">
-                <div class="expire-date fieldset">
-                  <label>Card expiry</label>
-                  <input type="number" formControlName="expiryDate">
-                  <ng-container *ngFor="let error of error_messages.expiryDate">
-                    <div class="error-message"
-                      *ngIf="paymentForm.get('expiryDate').hasError(error.type) &&
-                                                (paymentForm.get('expiryDate').dirty || paymentForm.get('expiryDate').touched)">
-                      {{ error.message }}
-                    </div>
-                  </ng-container>
-                </div>
-                <div class="cvv fieldset">
-                  <label>CVV <b class="custom-tooltip" data-toggle="tooltip" title="CVV">?</b></label>
-                  <input type="number" formControlName="cvv">
-                  <ng-container *ngFor="let error of error_messages.cvv">
-                    <div class="error-message" *ngIf="paymentForm.get('cvv').hasError(error.type) &&
-                                                (paymentForm.get('cvv').dirty || paymentForm.get('cvv').touched)">
-                      {{ error.message }}
-                    </div>
-                  </ng-container>
-                </div>
-              </div>
-              <div class="button-wrapper">
-                <button [disabled]="!paymentForm.valid && this.myValue==true" class="btn" (click)="submit()"
-                  *ngIf="!isSpinnerShow">Make
-                  Payment</button>
-                <div class="spinner-loader" *ngIf="isSpinnerShow">
-                  <img style="width:100px" src="assets/spinner.gif">
-                </div>
-                <button class="-back-btn" (click)="back()">Back</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-
-      <!-- enable payment-->
-      <div class="order-summary-enable" *ngIf="!enablePaymemtForm">
-        <div class="order-summary-flex">
-          <h3>Order summary</h3>
-          <div class="lite-subscription-flex">
-            <div class="lite-subscription">
-              <h5>{{this.title}} subscription</h5>
-              <span>(at ${{this.invoiceDetails.amount}} monthly)</span>
-            </div>
-            <h5>$ {{this.invoiceDetails.yearly_amount}}</h5>
-          </div>
-          <div class="vat-section">
-            <span>Vat {{this.invoiceDetails.vat_percentage}}% <b class="custom-tooltip" data-toggle="tooltip"
+						<em>$ {{this.invoiceDetails.vat_amount}}</em>
+					</div>
+					<div class="net-total-flex">
+						<div class="net-total">
+							<h6>Net total&nbsp;&nbsp;</h6>
+							<span>(Incl Vat)</span>
+						</div>
+						<h5>$ {{this.invoiceDetails.yearly_amount_after_vat}}</h5>
+					</div>
+					<div class="payment-order">
+						<h3>Payment</h3>
+						<form [formGroup]="paymentForm">
+							<div class="payment-mode login-radio">
+								<div class="wrapper-visa">
+									<input class="radio-btn" type="radio" id="visa" name="visa" value="visa" style="width: 100% !important;">
+									<img src="../../assets/images/visa-copy.png">
+								</div>
+								<div class="wrapper-visa">
+									<input class="radio-btn" type="radio" id="visa" name="visa" value="visa" style="width: 100% !important;">
+									<img src="../../assets/images/mastercard-copy.png">
+								</div>
+								<div class="wrapper-visa">
+									<input class="radio-btn" type="radio" id="visa" name="visa" value="visa" style="width: 100% !important;">
+									<img src="../../assets/images/american-copy.png">
+								</div>
+							</div>
+							<div class="cardholder fieldset">
+								<label>Cardholder name</label>
+								<input type="text" formControlName="cardHolderName">
+								<ng-container *ngFor="let error of error_messages.cardHolderName">
+									<div class="error-message" *ngIf="paymentForm.get('cardHolderName').hasError(error.type) &&
+                                            (paymentForm.get('cardHolderName').dirty || paymentForm.get('cardHolderName').touched)">{{ error.message }}</div>
+								</ng-container>
+							</div>
+							<div class="cardnumber fieldset">
+								<label>Card number</label>
+								<input formControlName="cardNumber" type="number">
+								<!-- <div> -->
+								<ng-container *ngFor="let error of error_messages.cardNumber">
+									<div class="error-message" *ngIf="paymentForm.get('cardNumber').hasError(error.type) &&
+                                              (paymentForm.get('cardNumber').dirty || paymentForm.get('cardNumber').touched)">{{ error.message }}</div>
+								</ng-container>
+							</div>
+							<div class="payment-flex-curve">
+								<div class="expire-date fieldset">
+									<label>Card expiry</label>
+									<input type="number" formControlName="expiryDate">
+									<ng-container *ngFor="let error of error_messages.expiryDate">
+										<div class="error-message" *ngIf="paymentForm.get('expiryDate').hasError(error.type) &&
+                                                (paymentForm.get('expiryDate').dirty || paymentForm.get('expiryDate').touched)">{{ error.message }}</div>
+									</ng-container>
+								</div>
+								<div class="cvv fieldset">
+									<label>CVV <b class="custom-tooltip" data-toggle="tooltip" title="CVV">?</b>
+									</label>
+									<input type="number" formControlName="cvv">
+									<ng-container *ngFor="let error of error_messages.cvv">
+										<div class="error-message" *ngIf="paymentForm.get('cvv').hasError(error.type) &&
+                                                (paymentForm.get('cvv').dirty || paymentForm.get('cvv').touched)">{{ error.message }}</div>
+									</ng-container>
+								</div>
+							</div>
+							<div class="button-wrapper">
+								<button [disabled]="!paymentForm.valid && this.myValue==true" class="btn" (click)="submit()" *ngIf="!isSpinnerShow">Make Payment</button>
+								<div class="spinner-loader" *ngIf="isSpinnerShow">
+									<img style="width:100px" src="assets/spinner.gif">
+								</div>
+								<button class="-back-btn" (click)="back()">Back</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<!-- enable payment-->
+			<div class="order-summary-enable" *ngIf="!enablePaymemtForm">
+				<div class="order-summary-flex">
+					<h3>Order summary</h3>
+					<div class="lite-subscription-flex">
+						<div class="lite-subscription">
+							<h5>{{this.title}} subscription</h5>
+							<span>(at ${{this.invoiceDetails.amount}} monthly)</span>
+						</div>
+						<h5>$ {{this.invoiceDetails.yearly_amount}}</h5>
+					</div>
+					<div class="vat-section"> <span>Vat {{this.invoiceDetails.vat_percentage}}% <b class="custom-tooltip" data-toggle="tooltip"
                 title="vat">?</b></span>
-            <em>$ {{this.invoiceDetails.vat_amount}}</em>
-          </div>
-          <div class="net-total-flex">
-            <div class="net-total">
-              <h6>Net Total&nbsp;&nbsp;</h6>
-              <span>(Incl Vat)</span>
-            </div>
-            <h5>$ {{this.invoiceDetails.yearly_amount_after_vat}}</h5>
-          </div>
-          <div class="payment-order">
-            <h3>Payment</h3>
-            <form [formGroup]="paymentForm">
-              <div class="payment-mode login-radio">
-
-                <div class="wrapper-visa">
-                  <input class="radio-btn" type="radio" id="visa" name="visa" value="visa"
-                    style="width: 100% !important;">
-                  <img src="../../assets/images/visa-copy.png">
-                </div>
-                <div class="wrapper-visa">
-                  <input class="radio-btn" type="radio" id="visa" name="visa" value="visa"
-                    style="width: 100% !important;">
-                  <img src="../../assets/images/mastercard-copy.png">
-                </div>
-                <div class="wrapper-visa">
-                  <input class="radio-btn" type="radio" id="visa" name="visa" value="visa"
-                    style="width: 100% !important;">
-                  <img src="../../assets/images/american-copy.png">
-                </div>
-              </div>
-              <div class="cardholder fieldset">
-                <label>Cardholder name</label>
-                <input type="text" formControlName="cardHolderName">
-                <ng-container *ngFor="let error of error_messages.cardHolderName">
-                  <div class="error-message"
-                    *ngIf="paymentForm.get('cardHolderName').hasError(error.type) &&
-                                            (paymentForm.get('cardHolderName').dirty || paymentForm.get('cardHolderName').touched)">
-                    {{ error.message }}
-                  </div>
-                </ng-container>
-              </div>
-              <div class="cardnumber fieldset">
-                <label>Card number</label>
-                <input type="number" ng-model="number" onKeyPress="if(this.value.length==4) return false;" min="0"
-                  style="width:20%; margin-right: 5px;">
-                <input type="number" ng-model="number" onKeyPress="if(this.value.length==4) return false;" min="0"
-                  style="width:20%; margin-right: 5px;">
-                <input type="number" ng-model="number" onKeyPress="if(this.value.length==4) return false;" min="0"
-                  style="width:20%; margin-right: 5px;">
-                <input type="number" ng-model="number" onKeyPress="if(this.value.length==4) return false;" min="0"
-                  style="width:20%; margin-right: 5px;">
-                <!-- <div> -->
-                <!-- <ng-container *ngFor="let error of error_messages.cardNumber">
+						<em>$ {{this.invoiceDetails.vat_amount}}</em>
+					</div>
+					<div class="net-total-flex">
+						<div class="net-total">
+							<h6>Net Total&nbsp;&nbsp;</h6>
+							<span>(Incl Vat)</span>
+						</div>
+						<h5>$ {{this.invoiceDetails.yearly_amount_after_vat}}</h5>
+					</div>
+					<div class="payment-order">
+						<h3>Payment</h3>
+						<form [formGroup]="paymentForm">
+							<div class="payment-mode login-radio">
+								<div class="wrapper-visa">
+									<input class="radio-btn" type="radio" id="visa" name="visa" value="visa" style="width: 100% !important;">
+									<img src="../../assets/images/visa-copy.png">
+								</div>
+								<div class="wrapper-visa">
+									<input class="radio-btn" type="radio" id="visa" name="visa" value="visa" style="width: 100% !important;">
+									<img src="../../assets/images/mastercard-copy.png">
+								</div>
+								<div class="wrapper-visa">
+									<input class="radio-btn" type="radio" id="visa" name="visa" value="visa" style="width: 100% !important;">
+									<img src="../../assets/images/american-copy.png">
+								</div>
+							</div>
+							<div class="cardholder fieldset">
+								<label>Cardholder name</label>
+								<input type="text" formControlName="cardHolderName">
+								<ng-container *ngFor="let error of error_messages.cardHolderName">
+									<div class="error-message" *ngIf="paymentForm.get('cardHolderName').hasError(error.type) &&
+                                            (paymentForm.get('cardHolderName').dirty || paymentForm.get('cardHolderName').touched)">{{ error.message }}</div>
+								</ng-container>
+							</div>
+							<div class="cardnumber fieldset">
+								<label>Card number</label>
+								<input type="number" ng-model="number" onKeyPress="if(this.value.length==4) return false;" min="0" style="width:20%; margin-right: 5px;">
+								<input type="number" ng-model="number" onKeyPress="if(this.value.length==4) return false;" min="0" style="width:20%; margin-right: 5px;">
+								<input type="number" ng-model="number" onKeyPress="if(this.value.length==4) return false;" min="0" style="width:20%; margin-right: 5px;">
+								<input type="number" ng-model="number" onKeyPress="if(this.value.length==4) return false;" min="0" style="width:20%; margin-right: 5px;">
+								<!-- <div> -->
+								<!-- <ng-container *ngFor="let error of error_messages.cardNumber">
                   <div class="error-message"
                     *ngIf="paymentForm.get('cardNumber').hasError(error.type) &&
                                               (paymentForm.get('cardNumber').dirty || paymentForm.get('cardNumber').touched)">
                     {{ error.message }}
                   </div>
                 </ng-container> -->
-
-              </div>
-              <div class="payment-flex-curve">
-                <div class="expire-date fieldset">
-                  <label>Card expiry</label>
-                  <input type="number" formControlName="expiryDate">
-                  <ng-container *ngFor="let error of error_messages.expiryDate">
-                    <div class="error-message"
-                      *ngIf="paymentForm.get('expiryDate').hasError(error.type) &&
-                                                (paymentForm.get('expiryDate').dirty || paymentForm.get('expiryDate').touched)">
-                      {{ error.message }}
-                    </div>
-                  </ng-container>
-                </div>
-                <div class="cvv fieldset">
-                  <label>CVV <b class="custom-tooltip" data-toggle="tooltip" title="CVV">?</b></label>
-                  <input type="number" formControlName="cvv" onKeyPress="if(this.value.length==3) return false;"
-                    min="0">
-                  <ng-container *ngFor="let error of error_messages.cvv">
-                    <div class="error-message" *ngIf="paymentForm.get('cvv').hasError(error.type) &&
-                                                (paymentForm.get('cvv').dirty || paymentForm.get('cvv').touched)">
-                      {{ error.message }}
-                    </div>
-                  </ng-container>
-                </div>
-              </div>
-              <div class="button-wrapper">
-                <button [disabled]="!paymentForm.valid" class="btn" (click)="submit()"
-                  *ngIf="!isSpinnerShow && this.myValue!=true">Make
-                  Payment</button>
-
-                <button [disabled]="this.myValue==true" class="btn" *ngIf="this.myValue==true">Make
-                  Payment</button>
-                <div class="spinner-loader" *ngIf="isSpinnerShow">
-                  <img style="width:100px" src="assets/spinner.gif">
-                </div>
-                <button class="-back-btn" (click)="back()">Back</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+							</div>
+							<div class="payment-flex-curve">
+								<div class="expire-date fieldset">
+									<label>Card expiry</label>
+									<input type="number" formControlName="expiryDate">
+									<ng-container *ngFor="let error of error_messages.expiryDate">
+										<div class="error-message" *ngIf="paymentForm.get('expiryDate').hasError(error.type) &&
+                                                (paymentForm.get('expiryDate').dirty || paymentForm.get('expiryDate').touched)">{{ error.message }}</div>
+									</ng-container>
+								</div>
+								<div class="cvv fieldset">
+									<label>CVV <b class="custom-tooltip" data-toggle="tooltip" title="CVV">?</b>
+									</label>
+									<input type="number" formControlName="cvv" onKeyPress="if(this.value.length==3) return false;" min="0">
+									<ng-container *ngFor="let error of error_messages.cvv">
+										<div class="error-message" *ngIf="paymentForm.get('cvv').hasError(error.type) &&
+                                                (paymentForm.get('cvv').dirty || paymentForm.get('cvv').touched)">{{ error.message }}</div>
+									</ng-container>
+								</div>
+							</div>
+							<div class="button-wrapper">
+								<button [disabled]="!paymentForm.valid" class="btn" (click)="submit()" *ngIf="!isSpinnerShow && this.myValue!=true">Make Payment</button>
+								<button [disabled]="this.myValue==true" class="btn" *ngIf="this.myValue==true">Make Payment</button>
+								<div class="spinner-loader" *ngIf="isSpinnerShow">
+									<img style="width:100px" src="assets/spinner.gif">
+								</div>
+								<button class="-back-btn" (click)="back()">Back</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
 <app-footer *ngIf="!isImageShow"></app-footer>

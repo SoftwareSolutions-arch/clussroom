@@ -3,9 +3,7 @@
   <mat-spinner></mat-spinner>
 </div>
 <!-- close loader showing-->
-
 <app-header *ngIf="!isImageShow"></app-header>
-
 <section class="subscription-summary-section" *ngIf="!isImageShow">
   <div class="container">
     <div class="subscription-content-flex">
@@ -13,159 +11,78 @@
         <h2>Subscription</h2>
         <ul>
           <li>
-            <div class="label-subscription">
-              Subscription type
+            <div class="label-subscription">Subscription type</div>
+            <div class="estimate-subscription">{{this.title}} <span *ngIf="this.title=='tutor'">(for individuals)</span>
             </div>
-            <div class="estimate-subscription">
-              {{this.title}}
-              <span *ngIf="this.title=='tutor'">(for individuals)</span>
-            </div>
-            <div class="combine-subscription">
-
-            </div>
-            <div class="price-subscription">
-              $ {{this.subscriptionDetails.amount}}
-            </div>
-          </li>
-
-          <li>
-            <div class="label-subscription">
-              Course administrators
-            </div>
-            <div class="estimate-subscription">
-              {{this.subscriptionDetails.course_administrators}}
-            </div>
-            <div class="combine-subscription">
-              <img src="assets/images/blue-tick.png">
-              Included
-            </div>
-            <div class="price-subscription">
-              -
-            </div>
+            <div class="combine-subscription"></div>
+            <div class="price-subscription">$ {{this.subscriptionDetails.amount}}</div>
           </li>
           <li>
-            <div class="label-subscription">
-              Administrators
-            </div>
-            <div class="estimate-subscription">
-              {{this.subscriptionDetails.course_administrators}}
-            </div>
+            <div class="label-subscription">Course administrators</div>
+            <div class="estimate-subscription">{{this.subscriptionDetails.course_administrators}}</div>
             <div class="combine-subscription">
-              <img src="assets/images/blue-tick.png">
-              Included
-            </div>
-            <div class="price-subscription">
-              -
-            </div>
+              <img src="assets/images/blue-tick.png">Included</div>
+            <div class="price-subscription">-</div>
           </li>
           <li>
-            <div class="label-subscription">
-              Storage&nbsp;(GB)
-            </div>
-            <div class="estimate-subscription">
-              {{this.subscriptionDetails.gb_storage}}
-            </div>
+            <div class="label-subscription">Administrators</div>
+            <div class="estimate-subscription">{{this.subscriptionDetails.course_administrators}}</div>
             <div class="combine-subscription">
-              <img src="assets/images/blue-tick.png">
-              Included
-            </div>
-            <div class="price-subscription">
-              -
-            </div>
+              <img src="assets/images/blue-tick.png">Included</div>
+            <div class="price-subscription">-</div>
           </li>
           <li>
-            <div class="label-subscription">
-              Video minutes (monthly)
-            </div>
-            <div class="estimate-subscription">
-              {{this.subscriptionDetails.video_minutes}} minutes <b class="custom-tooltip">?<span class="tooltiptext" style="width: 12%; top: 62%; left: 35.5%;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</span></b>
-
-            </div>
+            <div class="label-subscription">Storage&nbsp;(GB)</div>
+            <div class="estimate-subscription">{{this.subscriptionDetails.gb_storage}}</div>
             <div class="combine-subscription">
-              <img src="assets/images/blue-tick.png">
-              Included
-            </div>
-            <div class="price-subscription">
-              -
-            </div>
+              <img src="assets/images/blue-tick.png">Included</div>
+            <div class="price-subscription">-</div>
           </li>
           <li>
-            <div class="label-subscription">
-              Subscription from
-            </div>
-            <div class="estimate-subscription">
-              {{this.subscriptionDetails.subscription_from}}
+            <div class="label-subscription">Video minutes (monthly)</div>
+            <div class="estimate-subscription">{{this.subscriptionDetails.video_minutes}} minutes <b
+                class="custom-tooltip">?<span class="tooltiptext" style="width: 12%; top: 62%; left: 35.5%;">Lorem ipsum
+                  dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                  magna aliqua</span></b>
             </div>
             <div class="combine-subscription">
-              <img src="assets/images/blue-tick.png">
-              Included
-            </div>
-            <div class="price-subscription">
-              -
-            </div>
+              <img src="assets/images/blue-tick.png">Included</div>
+            <div class="price-subscription">-</div>
           </li>
           <li>
-            <div class="label-subscription">
-              Subscription to
-            </div>
-            <div class="estimate-subscription">
-              {{this.subscriptionDetails.subscription_to}}
-            </div>
+            <div class="label-subscription">Subscription from</div>
+            <div class="estimate-subscription">{{this.subscriptionDetails.subscription_from}}</div>
             <div class="combine-subscription">
-              <img src="assets/images/blue-tick.png">
-              Included
-            </div>
-            <div class="price-subscription">
-              -
-            </div>
+              <img src="assets/images/blue-tick.png">Included</div>
+            <div class="price-subscription">-</div>
           </li>
-
           <li>
-            <div class="label-subscription">
-              Active Students
-            </div>
-            <div class="estimate-subscription">
-              {{this.subscriptionDetails.active_students}}
-            </div>
+            <div class="label-subscription">Subscription to</div>
+            <div class="estimate-subscription">{{this.subscriptionDetails.subscription_to}}</div>
             <div class="combine-subscription">
-              <img src="assets/images/blue-tick.png">
-              Included
-            </div>
-            <div class="price-subscription">
-              -
-            </div>
+              <img src="assets/images/blue-tick.png">Included</div>
+            <div class="price-subscription">-</div>
           </li>
-
           <li>
-            <div class="label-subscription">
-              Sub Admin
-            </div>
-            <div class="estimate-subscription">
-              {{this.subscriptionDetails.sub_admin}}
-            </div>
+            <div class="label-subscription">Active Students</div>
+            <div class="estimate-subscription">{{this.subscriptionDetails.active_students}}</div>
             <div class="combine-subscription">
-              <img src="assets/images/blue-tick.png">
-              Included
-            </div>
-            <div class="price-subscription">
-              -
-            </div>
+              <img src="assets/images/blue-tick.png">Included</div>
+            <div class="price-subscription">-</div>
           </li>
-
           <li>
-            <div class="label-subscription">
-              Live Session
-            </div>
-            <div class="estimate-subscription">
-              {{this.subscriptionDetails.live_session}}
-            </div>
+            <div class="label-subscription">Sub Admin</div>
+            <div class="estimate-subscription">{{this.subscriptionDetails.sub_admin}}</div>
             <div class="combine-subscription">
-              <img src="assets/images/blue-tick.png">
-              Included
-            </div>
-            <div class="price-subscription">
-              -
-            </div>
+              <img src="assets/images/blue-tick.png">Included</div>
+            <div class="price-subscription">-</div>
+          </li>
+          <li>
+            <div class="label-subscription">Live Session</div>
+            <div class="estimate-subscription">{{this.subscriptionDetails.live_session}}</div>
+            <div class="combine-subscription">
+              <img src="assets/images/blue-tick.png">Included</div>
+            <div class="price-subscription">-</div>
           </li>
           <div class="subscription-total">
             <h6>Total Amount</h6><span>$ {{this.subscriptionDetails.amount}}</span>
@@ -173,29 +90,19 @@
         </ul>
         <div class="terms-of-use">
           <input type="checkbox" ng-model="termsCondition" (click)="agreeTerms($event)">
-          <p class="term-button">I agree to the accompanying <button (click)="goToTermsUse()"><a style="text-decoration: underline;">Terms of
-            use</a></button> and
-            <button (click)="goToPrivacyPolicy()"><a style="text-decoration: underline;">Privacy Policy</a></button></p>
+          <p class="term-button">I agree to the accompanying
+            <button (click)="goToTermsUse()"><a style="text-decoration: underline;">Terms of
+                use</a>
+            </button>and
+            <button (click)="goToPrivacyPolicy()"><a style="text-decoration: underline;">Privacy Policy</a>
+            </button>
+          </p>
         </div>
         <div class="subscription-buttons">
-          <button [disabled]="this.termsCondition!=true" class="btn" (click)="next()">
-            Next
-          </button>
-          <button class="back-btn" (click)="back()">
-            Back
-          </button>
+          <button [disabled]="this.termsCondition!=true" class="btn" (click)="next()">Next</button>
+          <button class="back-btn" (click)="back()">Back</button>
         </div>
       </div>
-      <!-- <div class="subscription-content-right">
-          <div class="about-subscription-caption">
-            <h5>About Subscription </h5>
-            <div class="about-subscription-flex">
-              <h6>{{this.title}} subscription</h6>
-              <span>$ {{this.subscriptionDetails.amount}}</span>
-            </div>
-            <p>{{this.subscriptionDetails.field_package_description}}</p>
-          </div>
-        </div> -->
     </div>
   </div>
 </section>

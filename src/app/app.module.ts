@@ -68,11 +68,20 @@ import { MidtermPreviewComponent } from './test-module/midterm-preview/midterm-p
 import { MidtermPreviewSecondComponent } from './test-module/midterm-preview-second/midterm-preview-second.component';
 import { EditPointsScreenComponent } from './test-module/edit-points-screen/edit-points-screen.component';
 import { TestCompomentComponent } from './test-compoment/test-compoment.component';
-import {DragDropModule} from '@angular/cdk/drag-drop';
-import {MatButtonModule} from '@angular/material/button';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGrigPlugin from '@fullcalendar/timegrid';
+import interactionPlugin from '@fullcalendar/interaction';
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin,
+  interactionPlugin,
+  timeGrigPlugin
+]);
 @NgModule({
-  declarations: [		
+  declarations: [
     AppComponent,
     LoginComponent,
     PricingComponent,
@@ -122,8 +131,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MidtermPreviewComponent,
     MidtermPreviewSecondComponent,
     EditPointsScreenComponent,
-      TestCompomentComponent
-   ],
+    TestCompomentComponent
+  ],
   imports: [CommonModule,
     BrowserModule, ToastrModule.forRoot({
       timeOut: 3000,
@@ -140,12 +149,12 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSnackBarModule, MatInputModule, MatTableModule,  DragDropModule,
+    MatSnackBarModule, MatInputModule, MatTableModule, DragDropModule,
     DragDropModule,
     MatButtonModule,
     MatCheckboxModule,
     MatProgressSpinnerModule,
-    SlickCarouselModule, MatTabsModule, NgxPaginationModule, AngularEditorModule
+    SlickCarouselModule, MatTabsModule, NgxPaginationModule, AngularEditorModule, FullCalendarModule
   ],
   providers: [Sample04Component, ClassesComponent, LoaderComponent],
   bootstrap: [AppComponent]

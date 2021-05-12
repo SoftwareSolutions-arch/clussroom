@@ -1,231 +1,215 @@
 <div class="dashboard">
-  <app-sidebar></app-sidebar>
-  <div class="control-panel">
-    <app-dashboardheader></app-dashboardheader>
-
-    <div class="sequence-nav-wrapper dashed-border">
-      <div class="sequence-duration-wrapper">
-        <div class="sequence-class-code">
-          <img src="assets/images/dashboard/orange-book.png">
-          <span>Class Code</span>
-          <p>PT 75</p>
-        </div>
-        <div class="sequence-duration-code">
-          <img src="assets/images/dashboard/date-calender.png">
-          <div class="sequence-start-date">
-            <span>09/30/2020</span>
-            <p>Start Date</p>
-          </div>
-          <div class="sequence-end-date">
-            <span>09/25/2020</span>
-            <p>End Date</p>
-          </div>
-        </div>
-      </div>
-      <div class="sequence-element-wrapper">
-        <a class="sequence-class-curve yellow-wrapper">
-          <div class="sequence-class-caption">
-            <h6>11</h6>
-            <span>Class Material</span>
-          </div>
-          <figure>
-            <img src="assets/images/dashboard/briefcase.png">
-          </figure>
-        </a>
-        <a class="sequence-assignments-curve blue-wrapper">
-          <div class="sequence-assignments-caption">
-            <h6>15</h6>
-            <span>Assignments</span>
-          </div>
-          <figure>
-            <img src="assets/images/dashboard/assignment.png">
-          </figure>
-        </a>
-        <a class="sequence-tests-curve green-wrapper">
-          <div class="sequence-tests-caption">
-            <h6>5</h6>
-            <span>Tests</span>
-          </div>
-          <figure>
-            <img src="assets/images/dashboard/test.png">
-          </figure>
-        </a>
-      </div>
-    </div>
-
-    <div *ngIf="isLoadingBool" class="loading-indicator">
-      <mat-spinner></mat-spinner>
-    </div>
-
-    <div class="right">
-      <div class="question-width">
-        <h4>Mid Term Test</h4>
-      </div>
-      <div class="width">
-        <select name="course" id="course-name">
-          <option value="Course 1">Final Exam</option>
-          <option value="Course 1" selected>Mid-Term Test</option>
-          <option value="Course 2">Test1</option>
-          <option value="Course 3">Test2</option>
-        </select>
-      </div>
-      <button type="button">Back</button>
-    </div>
-    <div class="prospectus-section sequence-list">
-      <div class="prospectus-tabs">
-        <ul class="nav nav-tabs">
-          <li><a data-toggle="tab" href="#test" class="active">Test</a></li>
-          <li><a data-toggle="tab" href="#settings">Settings</a></li>
-          <li><a data-toggle="tab" href="#assignment-grading">Result/Assessment</a></li>
-          <!--				    <li><a data-toggle="tab" href="#overall-grading">Overall Grading Status</a></li>-->
-        </ul>
-      </div>
-      <div class="tab-content">
-        <div class="user-action-wrapper">
-          <div class="question-action-list">
-            <!--
+	<app-sidebar></app-sidebar>
+	<div class="control-panel">
+		<app-dashboardheader></app-dashboardheader>
+		<div class="sequence-nav-wrapper dashed-border">
+			<div class="sequence-duration-wrapper">
+				<div class="sequence-class-code">
+					<img src="assets/images/dashboard/orange-book.png"> <span>Class Code</span>
+					<p>PT 75</p>
+				</div>
+				<div class="sequence-duration-code">
+					<img src="assets/images/dashboard/date-calender.png">
+					<div class="sequence-start-date"> <span>09/30/2020</span>
+						<p>Start Date</p>
+					</div>
+					<div class="sequence-end-date"> <span>09/25/2020</span>
+						<p>End Date</p>
+					</div>
+				</div>
+			</div>
+			<div class="sequence-element-wrapper">
+				<a class="sequence-class-curve yellow-wrapper">
+					<div class="sequence-class-caption">
+						<h6>11</h6>
+						<span>Class Material</span>
+					</div>
+					<figure>
+						<img src="assets/images/dashboard/briefcase.png">
+					</figure>
+				</a>
+				<a class="sequence-assignments-curve blue-wrapper">
+					<div class="sequence-assignments-caption">
+						<h6>15</h6>
+						<span>Assignments</span>
+					</div>
+					<figure>
+						<img src="assets/images/dashboard/assignment.png">
+					</figure>
+				</a>
+				<a class="sequence-tests-curve green-wrapper">
+					<div class="sequence-tests-caption">
+						<h6>5</h6>
+						<span>Tests</span>
+					</div>
+					<figure>
+						<img src="assets/images/dashboard/test.png">
+					</figure>
+				</a>
+			</div>
+		</div>
+		<div *ngIf="isLoadingBool" class="loading-indicator">
+			<mat-spinner></mat-spinner>
+		</div>
+		<div class="right">
+			<div class="question-width">
+				<h4>Mid Term Test</h4>
+			</div>
+			<div class="width">
+				<select name="course" id="course-name">
+					<option value="Course 1">Final Exam</option>
+					<option value="Course 1" selected>Mid-Term Test</option>
+					<option value="Course 2">Test1</option>
+					<option value="Course 3">Test2</option>
+				</select>
+			</div>
+			<button type="button">Back</button>
+		</div>
+		<div class="prospectus-section sequence-list">
+			<div class="prospectus-tabs">
+				<ul class="nav nav-tabs">
+					<li><a data-toggle="tab" href="#test" class="active">Test</a>
+					</li>
+					<li><a data-toggle="tab" href="#settings">Settings</a>
+					</li>
+					<li><a data-toggle="tab" href="#assignment-grading">Result/Assessment</a>
+					</li>
+					<!--				    <li><a data-toggle="tab" href="#overall-grading">Overall Grading Status</a></li>-->
+				</ul>
+			</div>
+			<div class="tab-content">
+				<div class="user-action-wrapper">
+					<div class="question-action-list">
+						<!--
                  <div class="delete-button">
                     <a class="delete-btn custom-button" data-toggle="modal" data-target="#deleteClass">Delete Test</a>
                  </div>
 -->
-            <div class="button-wrapper">
-              <a class="done-btn custom-button" data-toggle="modal" data-target="#ReOrder">Done</a>
-              <!--
+						<div class="button-wrapper"> <a class="done-btn custom-button" data-toggle="modal" data-target="#ReOrder">Done</a>
+							<!--
                     <a class="edit-points-btn custom-button" data-toggle="modal" data-target="#ReOrder">Re-Order</a>    
                     <a class="edit-points-btn custom-button" data-toggle="modal" data-target="#Editpoints">Edit points</a>    
                     <a class="preview-btn custom-button" data-toggle="modal" data-target="#preview">Preview</a>    
                     <a class="addbutton custom-button" data-toggle="modal" data-target="#addClass">Add Questions</a> 
 -->
-            </div>
-          </div>
-        </div>
-        <!-- Submisssion Log start -->
-        <div id="settings" class="tab-pane active box-shadow">
-          <div class="custom-control custom-checkbox mb-3 question-label">
-            <label class="question-checkbox col-md-8">Q 1.&nbsp;&nbsp;The Statement of Profit and Loss is also called
-              the<span>(Multiple Choice)</span>
-            </label>
-            <div class="ellipdown col-md-4">
-              <label style="padding: 0;">5 Points</label>
-            </div>
-          </div>
-          <div class="test-option border-bottom">
-            <ul class="col-md-5">
-              <li><input type="radio" id="choice1" name="choice" value="choice1" checked>
-                <label for="choice1">Choice 1</label>
-              </li>
-              <li>
-                <input type="radio" id="choice2" name="choice" value="choice2">
-                <label for="choice2">Choice 2</label>
-              </li>
-            </ul>
-            <ul class="col-md-5">
-              <li><input type="radio" id="choice3" name="choice" value="choice3">
-                <label for="choice3">Choice 3</label>
-              </li>
-              <li>
-                <input type="radio" id="choice4" name="choice" value="choice4">
-                <label for="choice4">Choice 4</label>
-              </li>
-            </ul>
-          </div>
-          <div class="custom-control custom-checkbox mb-3 question-label" style="padding-top: 2em;">
-            <label class="question-checkbox col-md-8">Q 2.&nbsp;&nbsp;Choose the correct image for preposition near.
-              <span>(Multiple Choice)</span>
-            </label>
-            <div class="ellipdown col-md-4">
-              <label style="padding: 0;">5 Points</label>
-            </div>
-          </div>
-          <div class="test-option border-bottom sample custom-control custom-checkbox">
-            <div class="col-sm-3 text-center">
-              <button type="button">
-                <h2>Sample image</h2>
-              </button>
-              <p>Description 1</p>
-              <label class="choice-checkbox" style="padding-left: 37px;">
-                <input type="checkbox">
-                <span class="mark2"></span>
-                <h6>Choice 1</h6>
-              </label>
-            </div>
-            <div class="col-sm-3 text-center">
-              <button type="button">
-                <h2>Sample image</h2>
-              </button>
-              <p>Description 2</p>
-              <label class="choice-checkbox" style="padding-left: 37px;">
-                <input type="checkbox">
-                <span class="mark2"></span>
-                <h6>Choice 2</h6>
-              </label>
-            </div>
-            <div class="col-sm-3 text-center">
-              <button type="button">
-                <h2>Sample image</h2>
-              </button>
-              <p>Description 3</p>
-              <label class="choice-checkbox" style="padding-left: 37px;">
-                <input type="checkbox">
-                <span class="mark2"></span>
-                <h6>Choice 3</h6>
-              </label>
-            </div>
-            <div class="col-sm-3 text-center">
-              <button type="button">
-                <h2>Sample image</h2>
-              </button>
-              <p>Description 4</p>
-              <label class="choice-checkbox" style="padding-left: 37px;">
-                <input type="checkbox">
-                <span class="mark2"></span>
-                <h6>Choice 4</h6>
-              </label>
-            </div>
-          </div>
-          <div class="custom-control custom-checkbox mb-3 question-label" style="padding-top: 1em;">
-            <label class="question-checkbox col-md-8">Q 3.&nbsp;&nbsp;The Statement of Profit and Loss is also called
-              the P/L Statement. <span>(True &amp; False)</span>
-            </label>
-            <div class="ellipdown col-md-4">
-              <label style="padding: 0;">5 Points</label>
-            </div>
-          </div>
-          <div class="test-option">
-            <ul class="col-md-5" style="display: flex;">
-              <li><input type="radio" id="true1" name="true" value="true1">
-                <label for="true1">True</label>
-              </li>
-              <li>
-                <input type="radio" id="false1" name="false" value="false1">
-                <label for="false1">False</label>
-              </li>
-            </ul>
-          </div>
-
-
-
-
-
-          <div class="container" style="padding: 18px 0 0 0; display: flex; margin: 0 23px;">
-            <!--
+						</div>
+					</div>
+				</div>
+				<!-- Submisssion Log start -->
+				<div id="settings" class="tab-pane active box-shadow">
+					<div class="custom-control custom-checkbox mb-3 question-label">
+						<label class="question-checkbox col-md-8">Q 1.&nbsp;&nbsp;The Statement of Profit and Loss is also called the<span>(Multiple Choice)</span>
+						</label>
+						<div class="ellipdown col-md-4">
+							<label style="padding: 0;">5 Points</label>
+						</div>
+					</div>
+					<div class="test-option border-bottom">
+						<ul class="col-md-5">
+							<li>
+								<input type="radio" id="choice1" name="choice" value="choice1" checked>
+								<label for="choice1">Choice 1</label>
+							</li>
+							<li>
+								<input type="radio" id="choice2" name="choice" value="choice2">
+								<label for="choice2">Choice 2</label>
+							</li>
+						</ul>
+						<ul class="col-md-5">
+							<li>
+								<input type="radio" id="choice3" name="choice" value="choice3">
+								<label for="choice3">Choice 3</label>
+							</li>
+							<li>
+								<input type="radio" id="choice4" name="choice" value="choice4">
+								<label for="choice4">Choice 4</label>
+							</li>
+						</ul>
+					</div>
+					<div class="custom-control custom-checkbox mb-3 question-label" style="padding-top: 2em;">
+						<label class="question-checkbox col-md-8">Q 2.&nbsp;&nbsp;Choose the correct image for preposition near. <span>(Multiple Choice)</span>
+						</label>
+						<div class="ellipdown col-md-4">
+							<label style="padding: 0;">5 Points</label>
+						</div>
+					</div>
+					<div class="test-option border-bottom sample custom-control custom-checkbox">
+						<div class="col-sm-3 text-center">
+							<button type="button">
+								<h2>Sample image</h2>
+							</button>
+							<p>Description 1</p>
+							<label class="choice-checkbox" style="padding-left: 37px;">
+								<input type="checkbox"> <span class="mark2"></span>
+								<h6>Choice 1</h6>
+							</label>
+						</div>
+						<div class="col-sm-3 text-center">
+							<button type="button">
+								<h2>Sample image</h2>
+							</button>
+							<p>Description 2</p>
+							<label class="choice-checkbox" style="padding-left: 37px;">
+								<input type="checkbox"> <span class="mark2"></span>
+								<h6>Choice 2</h6>
+							</label>
+						</div>
+						<div class="col-sm-3 text-center">
+							<button type="button">
+								<h2>Sample image</h2>
+							</button>
+							<p>Description 3</p>
+							<label class="choice-checkbox" style="padding-left: 37px;">
+								<input type="checkbox"> <span class="mark2"></span>
+								<h6>Choice 3</h6>
+							</label>
+						</div>
+						<div class="col-sm-3 text-center">
+							<button type="button">
+								<h2>Sample image</h2>
+							</button>
+							<p>Description 4</p>
+							<label class="choice-checkbox" style="padding-left: 37px;">
+								<input type="checkbox"> <span class="mark2"></span>
+								<h6>Choice 4</h6>
+							</label>
+						</div>
+					</div>
+					<div class="custom-control custom-checkbox mb-3 question-label" style="padding-top: 1em;">
+						<label class="question-checkbox col-md-8">Q 3.&nbsp;&nbsp;The Statement of Profit and Loss is also called the P/L Statement. <span>(True &amp; False)</span>
+						</label>
+						<div class="ellipdown col-md-4">
+							<label style="padding: 0;">5 Points</label>
+						</div>
+					</div>
+					<div class="test-option">
+						<ul class="col-md-5" style="display: flex;">
+							<li>
+								<input type="radio" id="true1" name="true" value="true1">
+								<label for="true1">True</label>
+							</li>
+							<li>
+								<input type="radio" id="false1" name="false" value="false1">
+								<label for="false1">False</label>
+							</li>
+						</ul>
+					</div>
+					<div class="container" style="padding: 18px 0 0 0; display: flex; margin: 0 23px;">
+						<!--
                     <button type="button" class="blue">Confirm</button>
                     <button type="button" class="blue-border">Cancel</button>
                     <button type="button" class="lime"><a>Edit</a></button>
                     <button type="button" class="Org"><a>Confirm Edit</a></button>
                     <a class="edit-points-btn custom-button" data-toggle="midal" data-target="#ReOrder">Re-Order</a>
                     -->
-            <div class="delete-button" (click)="nextPage()">
-              <a class="addbutton custom-button">Next Page</a>
-            </div>
-            <div class="button-wrapper" style="position: relative; left: 14.9em;">
-              <a class="done-btn custom-button" data-toggle="modal" data-target="#ReOrder">Done</a>
-            </div>
-          </div>
-
-        </div>
-        <!-- Submisssion Log end -->
-      </div>
-    </div>
-  </div>
+						<div class="delete-button" (click)="nextPage()"> <a class="addbutton custom-button">Next Page</a>
+						</div>
+						<div class="button-wrapper" style="position: relative; left: 14.9em;"> <a class="done-btn custom-button" data-toggle="modal" data-target="#ReOrder">Done</a>
+						</div>
+					</div>
+				</div>
+				<!-- Submisssion Log end -->
+			</div>
+		</div>
+	</div>
 </div>

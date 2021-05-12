@@ -2,22 +2,18 @@
   <app-sidebar></app-sidebar>
   <div class="control-panel">
     <app-dashboardheader></app-dashboardheader>
-
     <div class="sequence-nav-wrapper dashed-border">
       <div class="sequence-duration-wrapper">
         <div class="sequence-class-code">
-          <img src="assets/images/dashboard/orange-book.png">
-          <span>Class Code</span>
+          <img src="assets/images/dashboard/orange-book.png"> <span>Class Code</span>
           <p>PT 75</p>
         </div>
         <div class="sequence-duration-code">
           <img src="assets/images/dashboard/date-calender.png">
-          <div class="sequence-start-date">
-            <span>09/30/2020</span>
+          <div class="sequence-start-date"> <span>09/30/2020</span>
             <p>Start Date</p>
           </div>
-          <div class="sequence-end-date">
-            <span>09/25/2020</span>
+          <div class="sequence-end-date"> <span>09/25/2020</span>
             <p>End Date</p>
           </div>
         </div>
@@ -52,21 +48,22 @@
         </a>
       </div>
     </div>
-
     <div *ngIf="isLoadingBool" class="loading-indicator">
       <mat-spinner></mat-spinner>
     </div>
-
     <div class="row test-button">
-      <button type="button"><a>Add Test</a></button>
+      <button type="button"><a>Add Test</a>
+      </button>
     </div>
-
     <div class="prospectus-section sequence-list">
       <div class="prospectus-tabs">
         <ul class="nav nav-tabs">
-          <li><a data-toggle="tab" href="#test" class="active">Test</a></li>
-          <li><a data-toggle="tab" href="#settings">Settings</a></li>
-          <li><a data-toggle="tab" href="#assignment-grading">Result/Assessment</a></li>
+          <li><a data-toggle="tab" href="#test" class="active">Test</a>
+          </li>
+          <li><a data-toggle="tab" href="#settings">Settings</a>
+          </li>
+          <li><a data-toggle="tab" href="#assignment-grading">Result/Assessment</a>
+          </li>
           <!--				    <li><a data-toggle="tab" href="#overall-grading">Overall Grading Status</a></li>-->
         </ul>
       </div>
@@ -78,24 +75,24 @@
         <div class="multiple-text">
           <!-- <textarea name="shortanswer"></textarea> -->
           <angular-editor (focusout)="countTotalWords()" [(ngModel)]="fillData.question" name="shortanswer" cols="80"
-            label="notes" rows="4" wrap="virtual" style="margin: 0;">
-          </angular-editor>
+            label="notes" rows="4" wrap="virtual" style="margin: 0;"></angular-editor>
           <p>Type the questions above, and adding an underscore <span>("_")</span> which is a blank. Blanks numbering is
             in sequence.</p>
           <div class="col-md-4"></div>
         </div>
-
         <div class="test-option sample custom-control custom-checkbox mt-4 box-shadow">
           <div class="col-sm-3 text-center" *ngFor="let item of ExteriorPicString;let i = index;">
-            <button type="button">
-              <span (click)="removeImage(i)"><a><i class="fa fa-times-circle" aria-hidden="true"></i></a></span>
+            <button type="button"> <span (click)="removeImage(i)"><a><i class="fa fa-times-circle"
+                    aria-hidden="true"></i></a></span>
               <img style="height: 100%;width: 100%;" src={{baseString+item}}>
             </button>
             <input type="text" placeholder="Description" class="mt-3">
           </div>
         </div>
         <div class="attach mt-3 mb-5">
-          <a><img src="assets/images/test/Mask.png"></a>
+          <a>
+            <img src="assets/images/test/Mask.png">
+          </a>
           <h2>Attachments ({{ExteriorPicString.length}}/4)</h2>
           <label style="margin-left:1em !important;margin: 0px;" for="imageUpload" class="btn-add-1"><i
               class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add</label>
@@ -103,7 +100,6 @@
             class="upload custom-input-file" (change)="picked($event)" />
         </div>
 
-        <!--by aniket-->
         <form *ngIf="mainFormArray" [formGroup]="usersForm" (ngSubmit)="createUsers()">
           <div class="col-lg-12 box-shadow final-order border-bottom" style="padding-bottom: 1em;">
             <h2 class="mb-4" style="padding: 0 2.7em">Blanks</h2>
@@ -111,14 +107,17 @@
               style="padding: 0 26px; display: flex; overflow: auto;">
               <label style="margin: 7px 8px 7px -4px;">{{i+1}}.</label>
               <div formArrayName="users" style="display: flex;" class="col-md-4">
-                <ng-container *ngFor="let item of eachForm.myFormsList.controls.users.controls; let j =index" formGroupName="{j}">
+                <ng-container *ngFor="let item of eachForm.myFormsList.controls.users.controls; let j =index"
+                  formGroupName="{{j}}">
                   <div class="col-lg-12 mb-4" style="display: flex; padding: 0;">
                     <div class="col-lg-12 custom-answer" style="padding: 0 35px;">
                       <input formControlName="address" type="text" placeholder="Enter answer">
                       <button style="margin: 0 7px" (click)="addUserRow(i)" type="button" class="blue-plus"><i
-                          class="fa fa-plus" aria-hidden="true"></i></button>
+                          class="fa fa-plus" aria-hidden="true"></i>
+                      </button>
                       <button style="margin: 0 7px" (click)="removeUserRow(i,j)" type="button" class="orange-cross"><i
-                          class="fa fa-times" aria-hidden="true"></i></button>
+                          class="fa fa-times" aria-hidden="true"></i>
+                      </button>
                       <p style="padding: .5em 1em;">Answer {{j+1}}</p>
                     </div>
                   </div>
@@ -127,49 +126,43 @@
             </div>
           </div>
         </form>
-
+        
         <div class="custom-control custom-checkbox mb-3 mt-3 multi-checkbox" style="display: block;">
           <div class="char-box border-bottom box-shadow question-label col-lg-12 mt-5" style="display: block;">
             <div class="col-lg-12" style="display: flex; align-items: center; padding: 0 0 10px 8px;">
               <div class="col-md-3">
                 <label>Word Hint
-                  <input type="checkbox" checked="checked">
-                  <span class="mark" style="border-radius: 50% !important; height: 20px; width:20px;"></span>
+                  <input type="checkbox" checked="checked"> <span class="mark"
+                    style="border-radius: 50% !important; height: 20px; width:20px;"></span>
                 </label>
               </div>
-
               <div class="col-lg-9 mb-3 mt-3" style="padding: 0;">
-                <p><span>Note:</span> Word hints are meant to assist learners answer the question. </p>
+                <p><span>Note:</span> Word hints are meant to assist learners answer the question.</p>
               </div>
-
             </div>
             <div class="container col-lg-12">
               <div class="col-md-6 fillups">
                 <ul>
                   <li *ngFor='let eachForm of mainFormArray;let i = index;' class="custom-answer mb-4"
-                    style="display: block;">{{i+1}}.&nbsp;&nbsp;<input type="text" placeholder="Enter answer">
+                    style="display: block;">{{i+1}}.&nbsp;&nbsp;
+                    <input type="text" placeholder="Enter answer">
                     <p style="padding: 2px 26px !important;">Hint for Blank {{i+1}}</p>
                   </li>
                 </ul>
               </div>
-
-              <div class="col-md-6">
-                &nbsp;
-              </div>
+              <div class="col-md-6">&nbsp;</div>
             </div>
           </div>
-
           <div class="char-box question-label col-lg-12">
             <label class="col-md-3 mb-3 mt-3">Partial Points
-              <input type="checkbox">
-              <span class="mark" style="border-radius: 50% !important; height: 20px; width:20px;"></span>
+              <input type="checkbox"> <span class="mark"
+                style="border-radius: 50% !important; height: 20px; width:20px;"></span>
             </label>
             <p class="col-md-6"><span style="color: #81c8c1;">Note:</span> Points are rounded to the nearest 1 decimal
             </p>
           </div>
           <div class="char-box border-bottom box-shadow question-label col-lg-12">
-            <label class="col-md-3 mb-3 mt-3">Points
-            </label>
+            <label class="col-md-3 mb-3 mt-3">Points</label>
             <div class="col-md-4 mb-3 mt-3">
               <input type="text">
             </div>
@@ -181,8 +174,7 @@
                  <button type="button" class="blue-border">Cancel</button>
                  <button type="button" class="lime"><a href="#">Edit</a></button>
                  <button type="button" class="Org"><a href="#">Confirm Edit</a></button>
-                 -->
-          <a (click)="saveQuestion()" class="addbutton custom-button">Save Question</a>
+                 --> <a (click)="saveQuestion()" class="addbutton custom-button">Save Question</a>
           <a (click)="cancel()" class="edit-points-btn custom-button">Cancel</a>
         </div>
         <!--
@@ -194,5 +186,3 @@
     </div>
   </div>
 </div>
-
-{{usersForm.value | json}}

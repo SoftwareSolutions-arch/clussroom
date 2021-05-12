@@ -1,156 +1,151 @@
 <div class="dashboard">
-  <app-sidebar></app-sidebar>
-  <div class="control-panel">
-    <app-dashboardheader></app-dashboardheader>
-
-    <div class="sequence-nav-wrapper dashed-border">
-      <div class="sequence-duration-wrapper">
-        <div class="sequence-class-code">
-          <img src="assets/images/dashboard/orange-book.png">
-          <span>Class Code</span>
-          <p>PT 75</p>
-        </div>
-        <div class="sequence-duration-code">
-          <img src="assets/images/dashboard/date-calender.png">
-          <div class="sequence-start-date">
-            <span>09/30/2020</span>
-            <p>Start Date</p>
-          </div>
-          <div class="sequence-end-date">
-            <span>09/25/2020</span>
-            <p>End Date</p>
-          </div>
-        </div>
-      </div>
-      <div class="sequence-element-wrapper">
-        <a class="sequence-class-curve yellow-wrapper">
-          <div class="sequence-class-caption">
-            <h6>11</h6>
-            <span>Class Material</span>
-          </div>
-          <figure>
-            <img src="assets/images/dashboard/briefcase.png">
-          </figure>
-        </a>
-        <a class="sequence-assignments-curve blue-wrapper">
-          <div class="sequence-assignments-caption">
-            <h6>15</h6>
-            <span>Assignments</span>
-          </div>
-          <figure>
-            <img src="assets/images/dashboard/assignment.png">
-          </figure>
-        </a>
-        <a class="sequence-tests-curve green-wrapper">
-          <div class="sequence-tests-caption">
-            <h6>5</h6>
-            <span>Tests</span>
-          </div>
-          <figure>
-            <img src="assets/images/dashboard/test.png">
-          </figure>
-        </a>
-      </div>
-    </div>
-
-    <div *ngIf="isLoadingBool" class="loading-indicator">
-      <mat-spinner></mat-spinner>
-    </div>
-
-    <div class="row test-button" *ngIf="!isLoadingBool && !isTestSelected">
-      <button (click)="myFunction()" class="tstbtn">Add Test</button>
-      <div id="mytstdown" class="tstdown-content">
-        <a (click)="addNew()">Add new</a>
-        <a class="custom-button" data-toggle="modal" data-target="#library">Add from library</a>
-      </div>
-    </div>
-
-    <div class="right" *ngIf="!isLoadingBool && isTestSelected">
-      <div class="width">
-        <a href="index.html">Mid-term Test</a>
-      </div>
-      <div class="width">
-        <select name="course" id="course-name">
-          <option value="Course 1">Final Exam</option>
-          <option value="Course 1" selected>Mid-Term Test</option>
-          <option value="Course 2">Test1</option>
-          <option value="Course 3">Test2</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="prospectus-section sequence-list" *ngIf="!isLoadingBool">
-      <div class="prospectus-tabs">
-        <ul class="nav nav-tabs">
-          <li><a data-toggle="tab" class="active">Test</a></li>
-          <li (click)="settingsClicked()"><a data-toggle="tab">Settings</a></li>
-          <li (click)="goToTestAssessment()"><a data-toggle="tab">Result/Assessment</a></li>
-          <!--<li><a data-toggle="tab" href="#overall-grading">Overall Grading Status</a></li>-->
-        </ul>
-      </div>
-      <div class="tab-content">
-        <!-- Schedule start -->
-        <div id="test" class="tab-pane active">
-          <div class="table-responsive">
-            <table class="table dashboard-table">
-              <thead class="thead-course">
-                <tr>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col" style="width: 10% !important;padding: 0 0 0 5.5em;text-align: center;">From</th>
-                  <th scope="col"></th>
-                  <th scope="col" style="text-align: right; padding: 0 0;">To</th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                </tr>
-              </thead>
-              <thead>
-                <tr>
-                  <th scope="col"></th>
-                  <th scope="col">No.</th>
-                  <th scope="col" class="text-left table-filter" style="width: 20%;">Test name</th>
-                  <th scope="col" class=" text-left table-filter">Date</th>
-                  <th scope="col" class="text-left table-filter">To</th>
-                  <th scope="col" class="table-filter">Date</th>
-                  <th scope="col" class="table-filter">To</th>
-                  <th scope="col" class="table-filter">Timer (Min)</th>
-                  <th scope="col" class="table-filter">Attempt</th>
-                  <th scope="col" class="table-filter">Marking Status</th>
-                  <th scope="col" class="table-filter">Total Score</th>
-                  <!-- <th scope="col"><button (click)="myFunction()" class="ellipbtn"><i
+	<app-sidebar></app-sidebar>
+	<div class="control-panel">
+		<app-dashboardheader></app-dashboardheader>
+		<div class="sequence-nav-wrapper dashed-border">
+			<div class="sequence-duration-wrapper">
+				<div class="sequence-class-code">
+					<img src="assets/images/dashboard/orange-book.png"> <span>Class Code</span>
+					<p>PT 75</p>
+				</div>
+				<div class="sequence-duration-code">
+					<img src="assets/images/dashboard/date-calender.png">
+					<div class="sequence-start-date"> <span>09/30/2020</span>
+						<p>Start Date</p>
+					</div>
+					<div class="sequence-end-date"> <span>09/25/2020</span>
+						<p>End Date</p>
+					</div>
+				</div>
+			</div>
+			<div class="sequence-element-wrapper">
+				<a class="sequence-class-curve yellow-wrapper">
+					<div class="sequence-class-caption">
+						<h6>11</h6>
+						<span>Class Material</span>
+					</div>
+					<figure>
+						<img src="assets/images/dashboard/briefcase.png">
+					</figure>
+				</a>
+				<a class="sequence-assignments-curve blue-wrapper">
+					<div class="sequence-assignments-caption">
+						<h6>15</h6>
+						<span>Assignments</span>
+					</div>
+					<figure>
+						<img src="assets/images/dashboard/assignment.png">
+					</figure>
+				</a>
+				<a class="sequence-tests-curve green-wrapper">
+					<div class="sequence-tests-caption">
+						<h6>5</h6>
+						<span>Tests</span>
+					</div>
+					<figure>
+						<img src="assets/images/dashboard/test.png">
+					</figure>
+				</a>
+			</div>
+		</div>
+		<div *ngIf="isLoadingBool" class="loading-indicator">
+			<mat-spinner></mat-spinner>
+		</div>
+		<div class="row test-button" *ngIf="!isLoadingBool && !isTestSelected">
+			<button (click)="myFunction()" class="tstbtn">Add Test</button>
+			<div id="mytstdown" class="tstdown-content"> <a (click)="addNew()">Add new</a>
+				<a class="custom-button" data-toggle="modal" data-target="#library">Add from library</a>
+			</div>
+		</div>
+		<div class="right" *ngIf="!isLoadingBool && isTestSelected">
+			<div class="width"> <a href="index.html">Mid-term Test</a>
+			</div>
+			<div class="width">
+				<select name="course" id="course-name">
+					<option value="Course 1">Final Exam</option>
+					<option value="Course 1" selected>Mid-Term Test</option>
+					<option value="Course 2">Test1</option>
+					<option value="Course 3">Test2</option>
+				</select>
+			</div>
+		</div>
+		<div class="prospectus-section sequence-list" *ngIf="!isLoadingBool">
+			<div class="prospectus-tabs">
+				<ul class="nav nav-tabs">
+					<li><a data-toggle="tab" class="active">Test</a>
+					</li>
+					<li (click)="settingsClicked()"><a data-toggle="tab">Settings</a>
+					</li>
+					<li (click)="goToTestAssessment()"><a data-toggle="tab">Result/Assessment</a>
+					</li>
+					<!--<li><a data-toggle="tab" href="#overall-grading">Overall Grading Status</a></li>-->
+				</ul>
+			</div>
+			<div class="tab-content">
+				<!-- Schedule start -->
+				<div id="test" class="tab-pane active">
+					<div class="table-responsive">
+						<table class="table dashboard-table">
+							<thead class="thead-course">
+								<tr>
+									<th scope="col"></th>
+									<th scope="col"></th>
+									<th scope="col"></th>
+									<th scope="col" style="width: 10% !important;padding: 0 0 0 5.5em;text-align: center;">From</th>
+									<th scope="col"></th>
+									<th scope="col" style="text-align: right; padding: 0 0;">To</th>
+									<th scope="col"></th>
+									<th scope="col"></th>
+									<th scope="col"></th>
+								</tr>
+							</thead>
+							<thead>
+								<tr>
+									<th scope="col"></th>
+									<th scope="col">No.</th>
+									<th scope="col" class="text-left table-filter" style="width: 20%;">Test name</th>
+									<th scope="col" class=" text-left table-filter">Date</th>
+									<th scope="col" class="text-left table-filter">To</th>
+									<th scope="col" class="table-filter">Date</th>
+									<th scope="col" class="table-filter">To</th>
+									<th scope="col" class="table-filter">Timer (Min)</th>
+									<th scope="col" class="table-filter">Attempt</th>
+									<th scope="col" class="table-filter">Marking Status</th>
+									<th scope="col" class="table-filter">Total Score</th>
+									<!-- <th scope="col"><button (click)="myFunction()" class="ellipbtn"><i
                         class="fa fa-ellipsis-v"></i></button>
                    
                   </th> -->
-                  <th scope="col"><button data-toggle="modal" data-target="#iconsEdit"
-                      style="background: transparent; border: none;"><i class="fa fa-ellipsis-v"></i></button>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr
-                  *ngFor="let testListing of this.testAllData| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;"
-                  [class.active]="i == currentIndex">
-                  <th (click)="isCheckBoxClicked(testListing)">
-                    <div class="radio-table"><input type="checkbox"></div>
-                  </th>
-                  <td>{{testListing.s_no}}</td>
-                  <td class="text-left">{{testListing.test_name}}</td>
-                  <td class="text-left">{{testListing.start_date}}</td>
-                  <td class="text-left">{{testListing.start_time}}</td>
-                  <td>{{testListing.end_date}}</td>
-                  <td>{{testListing.end_time}}</td>
-                  <td>{{testListing.test_timer}}</td>
-                  <td>{{testListing.test_attempts}}</td>
-                  <td>{{testListing.marking_status}}</td>
-                  <td>
-                    <div class="purple"><button type="button">{{testListing.total_score}} </button></div>
-                  </td>
-                  <td></td>
-                </tr>
-
-                <!-- <tr>
+									<th scope="col">
+										<button data-toggle="modal" data-target="#iconsEdit" style="background: transparent; border: none;"><i class="fa fa-ellipsis-v"></i>
+										</button>
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr *ngFor="let testListing of this.testAllData| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;" [class.active]="i == currentIndex">
+									<th (click)="isCheckBoxClicked(testListing)">
+										<div class="radio-table">
+											<input type="checkbox">
+										</div>
+									</th>
+									<td>{{testListing.s_no}}</td>
+									<td class="text-left">{{testListing.test_name}}</td>
+									<td class="text-left">{{testListing.start_date}}</td>
+									<td class="text-left">{{testListing.start_time}}</td>
+									<td>{{testListing.end_date}}</td>
+									<td>{{testListing.end_time}}</td>
+									<td>{{testListing.test_timer}}</td>
+									<td>{{testListing.test_attempts}}</td>
+									<td>{{testListing.marking_status}}</td>
+									<td>
+										<div class="purple">
+											<button type="button">{{testListing.total_score}}</button>
+										</div>
+									</td>
+									<td></td>
+								</tr>
+								<!-- <tr>
                   <th>
                     <div class="radio-table"><input type="checkbox"></div>
                   </th>
@@ -227,21 +222,20 @@
                   </td>
                   <td></td>
                 </tr> -->
-              </tbody>
-            </table>
-          </div>
-          <div class="table-result-wrapper bottom-select">
-            <select name="course" id="course-name">
-              <option selected>10</option>
-              <option value="Course 1">1</option>
-              <option value="Course 2">2</option>
-              <option value="Course 3">3</option>
-            </select>
-            <p style="width: 10%;">Results: 1-15 of 324</p>
-            <div class="selector">
-              <pagination-controls previousLabel="Prev" nextLabel="Next" responsive="true"
-                (pageChange)="handlePageChange($event)"></pagination-controls>
-              <!-- <ul>
+							</tbody>
+						</table>
+					</div>
+					<div class="table-result-wrapper bottom-select">
+						<select name="course" id="course-name">
+							<option selected>10</option>
+							<option value="Course 1">1</option>
+							<option value="Course 2">2</option>
+							<option value="Course 3">3</option>
+						</select>
+						<p style="width: 10%;">Results: 1-15 of 324</p>
+						<div class="selector">
+							<pagination-controls previousLabel="Prev" nextLabel="Next" responsive="true" (pageChange)="handlePageChange($event)"></pagination-controls>
+							<!-- <ul>
                 <li><a><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
                 <li><a>1</a></li>
                 <li><a>2</a></li>
@@ -251,169 +245,160 @@
                 <li><a>...</a></li>
                 <li><a class="right-arrow"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
               </ul> -->
-            </div>
-          </div>
-        </div>
-        <!-- Schedule start -->
-      </div>
-    </div>
-  </div>
+						</div>
+					</div>
+				</div>
+				<!-- Schedule start -->
+			</div>
+		</div>
+	</div>
 </div>
-
 <!-- Add From Library popup start -->
-
-
 <!-- Add From Library popup start -->
-
 <div id="library" class="modal addlibrary-modal" role="dialog">
-  <div class="modal-dialog" style="max-width: 869px;">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-
-      <div class="modal-header">
-        <h4 style="padding: 0 345px;">Add from Library</h4>
-        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"
-            style="color: #396aff;"></i></button>
-      </div>
-      <div class="modal-body" style="padding: 0 56px;">
-
-
-        <div class="addlibraryportion container">
-          <div class="col-lg-10 displayflex-items">
-            <i class="fa fa-arrow-left" aria-hidden="true"></i>
-            <p>Course library > Scienctific computation</p>
-          </div>
-        </div>
-
-        <div class="addlibraryportion container col-lg-10 mt-4" style="border: none; margin: 0 12px;">
-          <div class="col-sm-3 add-field">
-            <button><img src="assets/images/test/folder.png"></button>
-            <p>Mathematics</p>
-          </div>
-
-          <div class="col-sm-3 add-field">
-            <button><img src="assets/images/test/folder.png"></button>
-            <p>Engineering & Science</p>
-          </div>
-
-          <div class="col-sm-3 add-field">
-            <button><img src="assets/images/test/folder.png"></button>
-            <p>Engineering & Science</p>
-          </div>
-
-          <div class="col-sm-3 add-field">
-            <button><img src="assets/images/test/folder.png"></button>
-            <p>Engineering & Science</p>
-          </div>
-
-          <div class="col-sm-3 add-field">
-            <button><img src="assets/images/test/folder.png"></button>
-            <p>Engineering & Science</p>
-          </div>
-        </div>
-        <div class="addlibraryportion container col-lg-10 mt-4" style="border: none; margin: 0 12px;">
-          <div class="col-sm-3 add-field">
-            <button><img src="assets/images/test/folder.png"></button>
-            <p>Mathematics</p>
-          </div>
-
-          <div class="col-sm-3 add-field">
-            <button><img src="assets/images/test/folder.png"></button>
-            <p>Engineering & Science</p>
-          </div>
-
-          <div class="col-sm-3 add-field">
-            <button><img src="assets/images/test/folder.png"></button>
-            <p>Engineering & Science</p>
-          </div>
-
-          <div class="col-sm-3 add-field">
-            <button><img src="assets/images/test/folder.png"></button>
-            <p>Engineering & Science</p>
-          </div>
-
-          <div class="col-sm-3 add-field mb-3">
-            <button><img src="assets/images/test/folder.png"></button>
-            <p>Engineering & Science</p>
-          </div>
-
-
-        </div>
-
-        <div class="col-lg-12 container modal-para mb-3" style="padding: 0 2em;">
-          <!-- <p>Mathematics.tst</p>-->
-          <ul>
-            <li><a>Mathematics.tst</a></li>
-            <li><a>Ready-made test.tst</a></li>
-            <li><a>Ready-made test.tst</a></li>
-            <li><a>Ready-made test.tst</a></li>
-          </ul>
-        </div>
-
-        <div class="class-remove-btn" style="padding: 21px 39px 0 39px;">
-          <button type="button" class="modal-para-btn" style="margin: 8px auto;">Yes</button>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
+	<div class="modal-dialog" style="max-width: 869px;">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 style="padding: 0 345px;">Add from Library</h4>
+				<button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true" style="color: #396aff;"></i>
+				</button>
+			</div>
+			<div class="modal-body" style="padding: 0 56px;">
+				<div class="addlibraryportion container">
+					<div class="col-lg-10 displayflex-items"> <i class="fa fa-arrow-left" aria-hidden="true"></i>
+						<p>Course library > Scienctific computation</p>
+					</div>
+				</div>
+				<div class="addlibraryportion container col-lg-10 mt-4" style="border: none; margin: 0 12px;">
+					<div class="col-sm-3 add-field">
+						<button>
+							<img src="assets/images/test/folder.png">
+						</button>
+						<p>Mathematics</p>
+					</div>
+					<div class="col-sm-3 add-field">
+						<button>
+							<img src="assets/images/test/folder.png">
+						</button>
+						<p>Engineering & Science</p>
+					</div>
+					<div class="col-sm-3 add-field">
+						<button>
+							<img src="assets/images/test/folder.png">
+						</button>
+						<p>Engineering & Science</p>
+					</div>
+					<div class="col-sm-3 add-field">
+						<button>
+							<img src="assets/images/test/folder.png">
+						</button>
+						<p>Engineering & Science</p>
+					</div>
+					<div class="col-sm-3 add-field">
+						<button>
+							<img src="assets/images/test/folder.png">
+						</button>
+						<p>Engineering & Science</p>
+					</div>
+				</div>
+				<div class="addlibraryportion container col-lg-10 mt-4" style="border: none; margin: 0 12px;">
+					<div class="col-sm-3 add-field">
+						<button>
+							<img src="assets/images/test/folder.png">
+						</button>
+						<p>Mathematics</p>
+					</div>
+					<div class="col-sm-3 add-field">
+						<button>
+							<img src="assets/images/test/folder.png">
+						</button>
+						<p>Engineering & Science</p>
+					</div>
+					<div class="col-sm-3 add-field">
+						<button>
+							<img src="assets/images/test/folder.png">
+						</button>
+						<p>Engineering & Science</p>
+					</div>
+					<div class="col-sm-3 add-field">
+						<button>
+							<img src="assets/images/test/folder.png">
+						</button>
+						<p>Engineering & Science</p>
+					</div>
+					<div class="col-sm-3 add-field mb-3">
+						<button>
+							<img src="assets/images/test/folder.png">
+						</button>
+						<p>Engineering & Science</p>
+					</div>
+				</div>
+				<div class="col-lg-12 container modal-para mb-3" style="padding: 0 2em;">
+					<!-- <p>Mathematics.tst</p>-->
+					<ul>
+						<li><a>Mathematics.tst</a>
+						</li>
+						<li><a>Ready-made test.tst</a>
+						</li>
+						<li><a>Ready-made test.tst</a>
+						</li>
+						<li><a>Ready-made test.tst</a>
+						</li>
+					</ul>
+				</div>
+				<div class="class-remove-btn" style="padding: 21px 39px 0 39px;">
+					<button type="button" class="modal-para-btn" style="margin: 8px auto;">Yes</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 <i class="fa fa-file-text" aria-hidden="true"></i>
-
 <!-- Add From Library popup end -->
 <i class="fa fa-file-text" aria-hidden="true"></i>
-
 <!-- Icons popup start -->
-
 <div id="iconsEdit" class="modal addlibrary-modal" role="dialog">
-  <div class="modal-dialog" style="max-width: 122px; position: relative; top: 38em; left: 67em;">
-
-    <!-- Modal content-->
-    <div class="modal-content" style="border-radius: 12px;">
-      <div class="modal-body my-modal-body" style="padding: 7px 27px;">
-        <ul>
-          <li style="margin-bottom: .7em;">
-            <button type="button"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</button>
-          </li>
-          <li style="margin-bottom: .7em;">
-            <button type="button"><i class="fa fa-files-o" aria-hidden="true"></i>Copy to</button>
-          </li>
-          <li>
-            <button type="button" data-toggle="modal" data-target="#remove"><i class="fa fa-trash"
-                aria-hidden="true"></i>Remove</button>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
+	<div class="modal-dialog" style="max-width: 122px; position: relative; top: 38em; left: 67em;">
+		<!-- Modal content-->
+		<div class="modal-content" style="border-radius: 12px;">
+			<div class="modal-body my-modal-body" style="padding: 7px 27px;">
+				<ul>
+					<li style="margin-bottom: .7em;">
+						<button type="button"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</button>
+					</li>
+					<li style="margin-bottom: .7em;">
+						<button type="button"><i class="fa fa-files-o" aria-hidden="true"></i>Copy to</button>
+					</li>
+					<li>
+						<button type="button" data-toggle="modal" data-target="#remove"><i class="fa fa-trash" aria-hidden="true"></i>Remove</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
 </div>
 <!-- Icons popup end -->
-
 <!-- Remove Question modal popup start -->
 <div id="remove" class="modal removetest-modal" role="dialog">
-  <div class="modal-dialog">
-
-    <div class="modal-content">
-
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
-      </div>
-      <div class="modal-body">
-        <div class="class-delete-list">
-          <div class="remove-field">
-            <img src="assets/images/test/allert-1.png" style="padding: 0 25em !important;">
-            <h1>Remove Questions?</h1>
-          </div>
-        </div>
-        <div class="class-remove-btn">
-          <button type="button" class="remove-test" data-dismiss="modal">Yes</button>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="class-delete-list">
+					<div class="remove-field">
+						<img src="assets/images/test/allert-1.png" style="padding: 0 25em !important;">
+						<h1>Remove Questions?</h1>
+					</div>
+				</div>
+				<div class="class-remove-btn">
+					<button type="button" class="remove-test" data-dismiss="modal">Yes</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 <!-- Remove Question modal popup end -->

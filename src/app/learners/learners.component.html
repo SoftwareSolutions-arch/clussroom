@@ -1,257 +1,213 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="dashboard">
-  <app-sidebar></app-sidebar>
-  <div class="control-panel mb-5">
-    <app-dashboardheader></app-dashboardheader>
-    <div class="nav-clip">
-      <ul class="nav nav-tabs">
-        <li (click)="goToCourses()"><a data-toggle="tab" href="#course-content" class="clip-item">
-            <img src="assets/images/dashboard/second/course-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/course-blue.png" class="hover-in">{{this.instructionName}}</a>
-        </li>
-
-        <li (click)="goToclasses()"><a data-toggle="tab" href="#classes-content" class="clip-item">
-            <img src="assets/images/dashboard/second/clip-classes-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/clip-classes-blue.png" class="hover-in">Classes</a>
-        </li>
-
-        <li (click)="goToClassList()"><a data-toggle="tab" href="#class-list-content" class="clip-item">
-            <img src="assets/images/dashboard/second/list-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/list-blue.png" class="hover-in">
-            Class List</a>
-        </li>
-
-        <li><a data-toggle="tab" href="#learners-content" class="active clip-item">
-            <img src="assets/images/dashboard/second/clip-learner-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/clip-learner-blue.png" class="hover-in">
-            Learners</a>
-        </li>
-
-        <li (click)="goToStorage()"><a data-toggle="tab" href="#storage-content" class="clip-item">
-            <img src="assets/images/dashboard/second/clip-storage-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/clip-storage-blue.png" class="hover-in">
-            Storage</a>
-        </li>
-
-        <li (click)="goToAdmin()"><a data-toggle="tab" href="#admin-content" class="clip-item">
-            <img src="assets/images/dashboard/second/clip-user-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/clip-user-blue.png" class="hover-in">
-            Admin</a>
-        </li>
-
-        <li (click)="goToLiveSession()"><a data-toggle="tab" href="#live-sessions-content" class="clip-item">
-            <img src="assets/images/dashboard/second/session-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/session-blue.png" class="hover-in">
-            Live Sessions</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <div *ngIf="isLoadingBool" class="loading-indicator">
-    <mat-spinner></mat-spinner>
-  </div>
-  <div class="prospectus-section" style="padding-left: 79px;padding-right: 20px;" *ngIf="!isLoadingBool">
-    <div class="prospectus-tabs">
-      <div class="col-lg-12" style="padding: 0 52px;">
-
-        <a class="add-btn custom-a-btn" data-toggle="modal" data-target="#addLearner" style="float: right;"><i
+	<app-sidebar></app-sidebar>
+	<div class="control-panel mb-5">
+		<app-dashboardheader></app-dashboardheader>
+		<div class="nav-clip">
+			<ul class="nav nav-tabs">
+				<li (click)="goToCourses()">
+					<a data-toggle="tab" href="#course-content" class="clip-item">
+						<img src="assets/images/dashboard/second/course-grey.png" class="hover-out">
+						<img src="assets/images/dashboard/second/course-blue.png" class="hover-in">{{this.instructionName}}</a>
+				</li>
+				<li (click)="goToclasses()">
+					<a data-toggle="tab" href="#classes-content" class="clip-item">
+						<img src="assets/images/dashboard/second/clip-classes-grey.png" class="hover-out">
+						<img src="assets/images/dashboard/second/clip-classes-blue.png" class="hover-in">Classes</a>
+				</li>
+				<li (click)="goToClassList()">
+					<a data-toggle="tab" href="#class-list-content" class="clip-item">
+						<img src="assets/images/dashboard/second/list-grey.png" class="hover-out">
+						<img src="assets/images/dashboard/second/list-blue.png" class="hover-in">Class List</a>
+				</li>
+				<li>
+					<a data-toggle="tab" href="#learners-content" class="active clip-item">
+						<img src="assets/images/dashboard/second/clip-learner-grey.png" class="hover-out">
+						<img src="assets/images/dashboard/second/clip-learner-blue.png" class="hover-in">Learners</a>
+				</li>
+				<li (click)="goToStorage()">
+					<a data-toggle="tab" href="#storage-content" class="clip-item">
+						<img src="assets/images/dashboard/second/clip-storage-grey.png" class="hover-out">
+						<img src="assets/images/dashboard/second/clip-storage-blue.png" class="hover-in">Storage</a>
+				</li>
+				<li (click)="goToAdmin()">
+					<a data-toggle="tab" href="#admin-content" class="clip-item">
+						<img src="assets/images/dashboard/second/clip-user-grey.png" class="hover-out">
+						<img src="assets/images/dashboard/second/clip-user-blue.png" class="hover-in">Admin</a>
+				</li>
+				<li (click)="goToLiveSession()">
+					<a data-toggle="tab" href="#live-sessions-content" class="clip-item">
+						<img src="assets/images/dashboard/second/session-grey.png" class="hover-out">
+						<img src="assets/images/dashboard/second/session-blue.png" class="hover-in">Live Sessions</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div *ngIf="isLoadingBool" class="loading-indicator">
+		<mat-spinner></mat-spinner>
+	</div>
+	<div class="prospectus-section" style="padding-left: 79px;padding-right: 20px;" *ngIf="!isLoadingBool">
+		<div class="prospectus-tabs">
+			<div class="col-lg-12" style="padding: 0 52px;"> <a class="add-btn custom-a-btn" data-toggle="modal" data-target="#addLearner" style="float: right;"><i
             class="fa fa-plus" aria-hidden="true"></i> Learners</a>
-      </div>
-    </div>
-    <div class="tab-content">
-      <div class="table-responsive">
-        <table class="table dashboard-table">
-          <thead class="learner-text-left text-left">
-            <tr>
-              <th scope="col">No.</th>
-              <th scope="col">First Name</th>
-              <th scope="col">Last Name</th>
-              <th scope="col">Email</th>
-              <th scope="col" class="table-filter">Start date</th>
-              <th scope="col" class="table-filter">End date</th>
-              <th scope="col" class="table-filter">Course</th>
-              <th scope="col">Class Name</th>
-              <th scope="col">Class Code</th>
-              <th scope="col" class="table-filter">Grade</th>
-              <th scope="col" class="table-filter">Status</th>
-              <th scope="col"></th>
-            </tr>
-          </thead>
-          <tbody class="learner-text-left">
-            <tr
-              *ngFor="let classList of this.allClassesList| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;"
-              [class.active]="i == currentIndex">
-              <!-- <td>{{this.classList.sno}}</td> -->
-              <td style="text-align: center !important;">{{classList.s_no}}</td>
-              <td class="text-left">{{this.classList.first_name}}</td>
-              <td class="text-left">{{this.classList.last_name}}</td>
-              <td class="text-left">{{this.classList.email}}</td>
-              <td class="text-left">{{this.classList.class_start_date}}</td>
-              <td class="text-left">{{this.classList.class_end_date}}</td>
-              <td class="text-left">{{this.classList.coursename}}</td>
-              <td class="text-left">{{this.classList.classname}}</td>
-              <td>{{this.classList.class_class_code}}</td>
-              <td>{{this.classList.learner_status}}</td>
-              <td>
-                <div class="danger-text">Suspended</div>
-              </td>
-              <button (click)="goToClasses(classList)"><a>Go to Class</a></button>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="table-result-wrapper bottom-select row">
-        <div class="table-result-wrapper">
-          <pagination-controls previousLabel="Prev" nextLabel="Next" responsive="true"
-            (pageChange)="handlePageChange($event)"></pagination-controls>
-        </div>
-      </div>
-    </div>
-  </div>
+			</div>
+		</div>
+		<div class="tab-content">
+			<div class="table-responsive">
+				<table class="table dashboard-table">
+					<thead class="learner-text-left text-left">
+						<tr>
+							<th scope="col">No.</th>
+							<th scope="col">First Name</th>
+							<th scope="col">Last Name</th>
+							<th scope="col">Email</th>
+							<th scope="col" class="table-filter">Start date</th>
+							<th scope="col" class="table-filter">End date</th>
+							<th scope="col" class="table-filter">Course</th>
+							<th scope="col">Class Name</th>
+							<th scope="col">Class Code</th>
+							<th scope="col" class="table-filter">Grade</th>
+							<th scope="col" class="table-filter">Status</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody class="learner-text-left">
+						<tr *ngFor="let classList of this.allClassesList| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;" [class.active]="i == currentIndex">
+							<!-- <td>{{this.classList.sno}}</td> -->
+							<td style="text-align: center !important;">{{classList.s_no}}</td>
+							<td class="text-left">{{this.classList.first_name}}</td>
+							<td class="text-left">{{this.classList.last_name}}</td>
+							<td class="text-left">{{this.classList.email}}</td>
+							<td class="text-left">{{this.classList.class_start_date}}</td>
+							<td class="text-left">{{this.classList.class_end_date}}</td>
+							<td class="text-left">{{this.classList.coursename}}</td>
+							<td class="text-left">{{this.classList.classname}}</td>
+							<td>{{this.classList.class_class_code}}</td>
+							<td>{{this.classList.learner_status}}</td>
+							<td>
+								<div class="danger-text">Suspended</div>
+							</td>
+							<button (click)="goToClasses(classList)"><a>Go to Class</a>
+							</button>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="table-result-wrapper bottom-select row">
+				<div class="table-result-wrapper">
+					<pagination-controls previousLabel="Prev" nextLabel="Next" responsive="true" (pageChange)="handlePageChange($event)"></pagination-controls>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
-
 <!--Add learner -->
 <div id="addLearner" class="modal addcourse-modal" role="dialog" #closeModal>
-  <div class="modal-dialog modal-dialog-width">
-    <div class="modal-content">
-      <div class="green-modal-header">
-        <h4 style="position: relative; left: 16em;">Invite Learner</h4>
-        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"
-            style="color: #fff;"></i></button>
-      </div>
-      <div class="modal-body">
-        <form [formGroup]="addCourseForm">
-          <div class="addCourse-form" style="display: block !important;">
-            <div class="name-of-course fieldset" style="padding: 0 16px;">
-              <label style="text-align: center;">Course Name:</label>
-              <select [(ngModel)]="selectedCategory" [ngModelOptions]="{standalone: true}" name="level" id="levelcourse"
-                style="width: 390px !important;" (change)="viewAllCoursesList()">
-                <option *ngFor="let allCourses of this.allCourseList" [ngValue]="allCourses">
-                  {{this.allCourses.title}}
-                </option>
-              </select>
-            </div>
-          </div>
-          <div class="name-of-course fieldset mt-3" style="padding: 0 16px;">
-            <label style="text-align: right; padding-right: 27px;">Level:</label>
-            <select name="level" id="levelcourse" style="width: 140px !important; -webkit-appearance: none;"
-              disabled="disabled" id="sel_test">
-              <option *ngFor="let level of this.allLevel" value="{{level.tid}}">{{level.name}}</option>
-            </select>
-
-            <label style="text-align: right; width: 113px; padding-right: 1.5em; margin-right: 4px;">Banding:</label>
-            <select name="level" id="bandingcourse" style="width: 140px !important; -webkit-appearance: none;"
-              disabled="disabled" id="sel_test">
-              <option *ngFor="let banding of this.allBanding" value="{{banding.tid}}">{{banding.name}}</option>
-            </select>
-          </div>
-          <div class="name-of-course fieldset mt-4"
-            style="border-bottom: 1px solid #F1F6FB; margin: 0; padding-bottom: 1.5em;">
-            <label style="text-align: right; padding-right: 12px; margin: 0 16px 0 0;">Class:</label>
-            <select [(ngModel)]="selectedClass" [ngModelOptions]="{standalone: true}" name="level" id="levelcourse"
-              style="width: 140px !important;">
-              <option *ngFor="let classesData of this.allClassesData" [ngValue]="classesData">{{classesData.title}}
-              </option>
-            </select>
-            <p style="padding: 0 32px; margin: 0; font-size: 15px; font-family: 'Barlow'; font-weight: 500;">Class
-              code:&nbsp;<span class="orange" style="margin-left:1px;">{{selectedClass.field_class_code}}</span></p>
-          </div>
-          <div class="name-of-course fieldset mt-3 border-bottom">
-            <div class="radio-check" style="width: 100%;">
-              <label class="radio-check" style="padding: 0 37px; justify-content: center;">By Email
-                <input [(ngModel)]="radioMail" [ngModelOptions]="{standalone: true}" type="radio" name="radio"
-                  value="byEmail">
-                <span class="checkmark"></span>
-              </label>
-              <label class="radio-check">Bulk Upload
-                <input [(ngModel)]="radioMail" [ngModelOptions]="{standalone: true}" type="radio" name="radio"
-                  value="byBulkUpload">
-                <span class="checkmark"></span>
-              </label>
-            </div>
-          </div>
-
-          <div formArrayName="employees" *ngIf="radioMail=='byEmail' ">
-            <div *ngFor="let employee of employees().controls; let empIndex=index">
-              <div class="course-title" [formGroupName]="empIndex">
-                <div formArrayName="sub_title">
-                  <div class="name-of-course fieldset mt-3" style="display: block;"
-                    *ngFor="let skill of employeeSkills(empIndex).controls; let skillIndex=index"
-                    [formGroupName]="skillIndex">
-                    <label class="modal-input" style="display: flex"><a>{{skillIndex+1}} <i class="fa fa-envelope"
+	<div class="modal-dialog modal-dialog-width">
+		<div class="modal-content">
+			<div class="green-modal-header">
+				<h4 style="position: relative; left: 16em;">Invite Learner</h4>
+				<button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true" style="color: #fff;"></i>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form [formGroup]="addCourseForm">
+					<div class="addCourse-form" style="display: block !important;">
+						<div class="name-of-course fieldset" style="padding: 0 16px;">
+							<label style="text-align: center;">Course Name:</label>
+							<select [(ngModel)]="selectedCategory" [ngModelOptions]="{standalone: true}" name="level" id="levelcourse" style="width: 390px !important;" (change)="viewAllCoursesList()">
+								<option *ngFor="let allCourses of this.allCourseList" [ngValue]="allCourses">{{this.allCourses.title}}</option>
+							</select>
+						</div>
+					</div>
+					<div class="name-of-course fieldset mt-3" style="padding: 0 16px;">
+						<label style="text-align: right; padding-right: 27px;">Level:</label>
+						<select name="level" id="levelcourse" style="width: 140px !important; -webkit-appearance: none;" disabled="disabled" id="sel_test">
+							<option *ngFor="let level of this.allLevel" value="{{level.tid}}">{{level.name}}</option>
+						</select>
+						<label style="text-align: right; width: 113px; padding-right: 1.5em; margin-right: 4px;">Banding:</label>
+						<select name="level" id="bandingcourse" style="width: 140px !important; -webkit-appearance: none;" disabled="disabled" id="sel_test">
+							<option *ngFor="let banding of this.allBanding" value="{{banding.tid}}">{{banding.name}}</option>
+						</select>
+					</div>
+					<div class="name-of-course fieldset mt-4" style="border-bottom: 1px solid #F1F6FB; margin: 0; padding-bottom: 1.5em;">
+						<label style="text-align: right; padding-right: 12px; margin: 0 16px 0 0;">Class:</label>
+						<select [(ngModel)]="selectedClass" [ngModelOptions]="{standalone: true}" name="level" id="levelcourse" style="width: 140px !important;">
+							<option *ngFor="let classesData of this.allClassesData" [ngValue]="classesData">{{classesData.title}}</option>
+						</select>
+						<p style="padding: 0 32px; margin: 0; font-size: 15px; font-family: 'Barlow'; font-weight: 500;">Class code:&nbsp;<span class="orange" style="margin-left:1px;">{{selectedClass.field_class_code}}</span>
+						</p>
+					</div>
+					<div class="name-of-course fieldset mt-3 border-bottom">
+						<div class="radio-check" style="width: 100%;">
+							<label class="radio-check" style="padding: 0 37px; justify-content: center;">By Email
+								<input [(ngModel)]="radioMail" [ngModelOptions]="{standalone: true}" type="radio" name="radio" value="byEmail"> <span class="checkmark"></span>
+							</label>
+							<label class="radio-check">Bulk Upload
+								<input [(ngModel)]="radioMail" [ngModelOptions]="{standalone: true}" type="radio" name="radio" value="byBulkUpload"> <span class="checkmark"></span>
+							</label>
+						</div>
+					</div>
+					<div formArrayName="employees" *ngIf="radioMail=='byEmail' ">
+						<div *ngFor="let employee of employees().controls; let empIndex=index">
+							<div class="course-title" [formGroupName]="empIndex">
+								<div formArrayName="sub_title">
+									<div class="name-of-course fieldset mt-3" style="display: block;" *ngFor="let skill of employeeSkills(empIndex).controls; let skillIndex=index" [formGroupName]="skillIndex">
+										<label class="modal-input" style="display: flex"><a>{{skillIndex+1}} <i class="fa fa-envelope"
                           aria-hidden="true"></i></a>
-                      <input type="sub-menu" class="form-control" formControlName="sub_title"
-                        placeholder="Kellyamine@gmail.com">
-                      <button (click)="deleteUser(empIndex,skillIndex)" type="button" data-dismiss="#"
-                        style="margin: 0 5px;"><i class="fa fa-times" aria-hidden="true"></i>
-                      </button>
-                    </label>
-                    <div class="fieldRequired"
-                      *ngIf="skill.get('sub_title').hasError('required') && skill.get('sub_title').touched || skill.get('sub_title').submitted"
-                      style="font-size: 10px;
-                         color: #ec3232; font-size: 13px;margin-left: 9em;">
-                      *Email is required.
-                    </div>
-
-                    <div class="fieldRequired"
-                      *ngIf="skill.get('sub_title').hasError('pattern') && skill.get('sub_title').touched || skill.get('sub_title').submitted"
-                      style="font-size: 10px;
-                         color: #ec3232; font-size: 13px;margin-left: 9em;">
-                      *Please insert a valid mail
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="sub-title">
-                <button type="button" class="add-button mt-3" (click)="addEmployeeSkill(empIndex)">Add</button>
-                <div class="modal-footer" style="box-shadow: none;">
-                  <button (click)="addLearner()" class="back-btn-course-blue"><a>Confirm</a></button>
-                  <button class="next-btn-course" data-dismiss="modal">Cancel</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div *ngIf="radioMail!='byEmail'" class="input-file col-lg-12 mt-5" style="padding: 0 20px;">
-            <div class="col-lg-12 common-p" style="padding: 0 20px;">
-              <p>Please upload an excel or csv file with emails on a single column only. There should not be data
-                elsewhere. All other data or format cannot be accepted.</p>
-            </div>
-            <!-- <input type="file" accept=".csv" class="upload custom-input-file" name="&nbsp;" (change)="changeListeners($event.target.files)" /> -->
-            <input type="file" accept=".csv" class="upload custom-input-file" #fileDropRef id="fileDropRef"
-              (change)="fileBrowseHandler($event.target.files)" />
-            <div class="files-list">
-              <div class="single-file" *ngFor="let file of files; let i = index"
-                style="padding-top: 8px; padding-bottom: 0; padding-right: 0;">
-                <img src="../../assets/img/images/ic-file.png" alt="file"
-                  style="height:48px; margin-right:10px; margin-bottom: 5px;">
-                <div class="info">
-                  <h4 class="name">
+											<input type="sub-menu" class="form-control" formControlName="sub_title" placeholder="Kellyamine@gmail.com">
+											<button (click)="deleteUser(empIndex,skillIndex)" type="button" data-dismiss="#" style="margin: 0 5px;"><i class="fa fa-times" aria-hidden="true"></i>
+											</button>
+										</label>
+										<div class="fieldRequired" *ngIf="skill.get('sub_title').hasError('required') && skill.get('sub_title').touched || skill.get('sub_title').submitted" style="font-size: 10px;
+                         color: #ec3232; font-size: 13px;margin-left: 9em;">*Email is required.</div>
+										<div class="fieldRequired" *ngIf="skill.get('sub_title').hasError('pattern') && skill.get('sub_title').touched || skill.get('sub_title').submitted" style="font-size: 10px;
+                         color: #ec3232; font-size: 13px;margin-left: 9em;">*Please insert a valid mail</div>
+									</div>
+								</div>
+							</div>
+							<div class="sub-title">
+								<button type="button" class="add-button mt-3" (click)="addEmployeeSkill(empIndex)">Add</button>
+								<div class="modal-footer" style="box-shadow: none;">
+									<button (click)="addLearner()" class="back-btn-course-blue"><a>Confirm</a>
+									</button>
+									<button class="next-btn-course" data-dismiss="modal">Cancel</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div *ngIf="radioMail!='byEmail'" class="input-file col-lg-12 mt-5" style="padding: 0 20px;">
+						<div class="col-lg-12 common-p" style="padding: 0 20px;">
+							<p>Please upload an excel or csv file with emails on a single column only. There should not be data elsewhere. All other data or format cannot be accepted.</p>
+						</div>
+						<!-- <input type="file" accept=".csv" class="upload custom-input-file" name="&nbsp;" (change)="changeListeners($event.target.files)" /> -->
+						<input type="file" accept=".csv" class="upload custom-input-file" #fileDropRef id="fileDropRef" (change)="fileBrowseHandler($event.target.files)" />
+						<div class="files-list">
+							<div class="single-file" *ngFor="let file of files; let i = index" style="padding-top: 8px; padding-bottom: 0; padding-right: 0;">
+								<img src="../../assets/img/images/ic-file.png" alt="file" style="height:48px; margin-right:10px; margin-bottom: 5px;">
+								<div class="info">
+									<h4 class="name">
                     {{ file?.name }}
                   </h4>
-                  <p class="size">
-                    {{ formatBytes(file?.size) }}
-                  </p>
-                  <app-progress [progress]="file?.progress">
-                  </app-progress>
-                  <span *ngIf="file.progress==100" class="after-progress"><i class="fa fa-check" aria-hidden="true"></i>
+									<p class="size">{{ formatBytes(file?.size) }}</p>
+									<app-progress [progress]="file?.progress"></app-progress> <span *ngIf="file.progress==100" class="after-progress"><i class="fa fa-check" aria-hidden="true"></i>
                   </span>
-                </div>
-                <div class="delete" alt="file" (click)="deleteFile(i)">
-                  <i class="fa fa-times-circle" aria-hidden="true"></i>
-                </div>
-              </div>
-            </div>
-            <div class="sub-title" style=" margin-top: 8em;">
-              <div class="modal-footer" style="box-shadow: none;">
-                <button (click)="addLearner()" class="back-btn-course-blue"><a>Confirm</a></button>
-                <button class="next-btn-course" data-dismiss="modal">Cancel</button>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
+								</div>
+								<div class="delete" alt="file" (click)="deleteFile(i)"> <i class="fa fa-times-circle" aria-hidden="true"></i>
+								</div>
+							</div>
+						</div>
+						<div class="sub-title" style=" margin-top: 8em;">
+							<div class="modal-footer" style="box-shadow: none;">
+								<button (click)="addLearner()" class="back-btn-course-blue"><a>Confirm</a>
+								</button>
+								<button class="next-btn-course" data-dismiss="modal">Cancel</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 </div>
 <!--clsoe Add learner -->

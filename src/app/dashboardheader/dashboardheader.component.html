@@ -1,24 +1,23 @@
-<!-- loader showing-->
 <div *ngIf="isLoadingBool" class="loading-indicator">
-  <mat-spinner></mat-spinner>
+	<mat-spinner></mat-spinner>
 </div>
-<!-- close loader showing-->
-<!-- dashboard header start -->
-         <div class="dashboard-header">
-            <div class="user-search-setting">
-              <form>
-                <input (input)="serchCoursesList($event.target.value)" type="search" placeholder="Search now ...">
-                <button class="search-btn"><img src="assets/images/dashboard/search.png"></button>
-              </form>
-              <div class="user-notification">
-                <img src="assets/images/dashboard/notification.png">
-              </div>
-              <div class="user-setting">
-                <img src="assets/images/dashboard/setting.png">
-              </div>
-            </div>
-            <div class="site-logo">
-              <img src="assets/images/LOGO.png">
-            </div>
-          </div>
-          <!-- dashboard header end -->
+
+<div class="dashboard-header">
+	<div class="user-search-setting">
+		<form>
+			<input (input)="serchCoursesList($event.target.value)" type="search" placeholder="Search now ...">
+			<button class="search-btn">
+				<img src="assets/images/dashboard/search.png">
+			</button>
+		</form>
+		<div class="user-notification">
+			<img src="assets/images/dashboard/notification.png">
+		</div>
+		<div class="user-setting">
+			<img src="assets/images/dashboard/setting.png">
+		</div>
+	</div>
+	<div class="site-logo">
+		<img src="assets/images/LOGO.png">
+	</div>
+</div>

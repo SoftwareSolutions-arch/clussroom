@@ -1,120 +1,97 @@
 <!-- loader showing-->
 <div *ngIf="isImageShow" class="loading-indicator">
-  <mat-spinner></mat-spinner>
+	<mat-spinner></mat-spinner>
 </div>
 <!-- close loader showing-->
 <app-header *ngIf="!isImageShow"></app-header>
 <section class="pricing-section" *ngIf="!isImageShow">
-  <div class="container">
-    <div class="pricing-header">
-      <h1 style="margin-bottom:0;">Pricing</h1>
-      <!-- <span>Choose the best plan for your business</span> -->
-    </div>
-    <div class="pricing-content">
-      <span class="previous-btn">
+	<div class="container">
+		<div class="pricing-header">
+			<h1 style="margin-bottom:0;">Pricing</h1>
+			<!-- <span>Choose the best plan for your business</span> -->
+		</div>
+		<div class="pricing-content"> <span class="previous-btn">
         <i (click)="prev()" style="margin-right: 40px;" (click)="previous()" *ngIf="currentPage"
           class="fa fa-arrow-left" aria-hidden="true"></i>
       </span>
-      <ngx-slick-carousel style="width: 100%;" class="carousel pricing-content" #slickModal="slick-carousel"
-        [config]="slideConfig">
-        <div ngxSlickItem *ngFor="let i of recordList" class="slide pricing-content-box">
-          <div class="pricing-caption-flex">
-            <div class="pricing-header-caption">
-              <h5 style="font-size: 24px !important;">{{ i?.title}}</h5>
-              <div class="pricing-showing">
-                <h4 style="font-size: 36px !important;">${{ i?.amount}}</h4>
-                <span style="font-size:22px !important;">{{ i?.monthly}}</span>
-                <p style="font-size: 22px !important;">/{{ i?.duration}}</p>
-              </div>
-              <em>Billed yearly</em>
-            </div>
-            <div class="pricing-content-showing">
-              <ul>
-                <!-- for course_administrators-->
-                <li *ngIf="i.course_administrators==0;else courseAdministratorsTemp">
-                  <img src="/assets/images/grey-tick.png">
-                  <span style="color: #dadfea;">
+			<ngx-slick-carousel style="width: 100%;" class="carousel pricing-content" #slickModal="slick-carousel" [config]="slideConfig">
+				<div ngxSlickItem *ngFor="let i of recordList" class="slide pricing-content-box">
+					<div class="pricing-caption-flex">
+						<div class="pricing-header-caption">
+							<h5 style="font-size: 24px !important;">{{ i?.title}}</h5>
+							<div class="pricing-showing">
+								<h4 style="font-size: 36px !important;">${{ i?.amount}}</h4>
+								<span style="font-size:22px !important;">{{ i?.monthly}}</span>
+								<p style="font-size: 22px !important;">/{{ i?.duration}}</p>
+							</div> <em>Billed yearly</em>
+						</div>
+						<div class="pricing-content-showing">
+							<ul>
+								<!-- for course_administrators-->
+								<li *ngIf="i.course_administrators==0;else courseAdministratorsTemp">
+									<img src="/assets/images/grey-tick.png"> <span style="color: #dadfea;">
                     {{i?.course_administrators}} Course Adminstrator
                   </span>
-                </li>
-                <ng-template #courseAdministratorsTemp>
-                  <li>
-                    <img src="/assets/images/green-tick.png">
-                    <span *ngIf="i.course_administrators==1">
+								</li>
+								<ng-template #courseAdministratorsTemp>
+									<li>
+										<img src="/assets/images/green-tick.png"> <span *ngIf="i.course_administrators==1">
                       {{i?.course_administrators}} Course Adminstrator
                     </span>
-                    <span *ngIf="i.course_administrators>1">
+										<span *ngIf="i.course_administrators>1">
                       {{i?.course_administrators}} Course Adminstrators
                     </span>
-                  </li>
-                </ng-template>
-
-                <!-- for gb_storage-->
-                <li *ngIf="i.gb_storage==0;else gbStorageTemp">
-                  <img src="/assets/images/grey-tick.png">
-                  <span style="color: #dadfea;">
+									</li>
+								</ng-template>
+								<!-- for gb_storage-->
+								<li *ngIf="i.gb_storage==0;else gbStorageTemp">
+									<img src="/assets/images/grey-tick.png"> <span style="color: #dadfea;">
                     {{i?.gb_storage}} GB storage
                   </span>
-                </li>
-                <ng-template #gbStorageTemp>
-                  <li>
-                    <img src="/assets/images/green-tick.png">{{i?.gb_storage}} GB storage
-                  </li>
-                </ng-template>
-
-                <!-- for active students-->
-                <li *ngIf="i.active_students==0;else activeStudents">
-                  <img src="/assets/images/grey-tick.png">
-                  <span style="color: #dadfea;">
+								</li>
+								<ng-template #gbStorageTemp>
+									<li>
+										<img src="/assets/images/green-tick.png">{{i?.gb_storage}} GB storage</li>
+								</ng-template>
+								<!-- for active students-->
+								<li *ngIf="i.active_students==0;else activeStudents">
+									<img src="/assets/images/grey-tick.png"> <span style="color: #dadfea;">
                     {{i?.active_students}} active students
                   </span>
-                </li>
-                <ng-template #activeStudents>
-                  <li>
-                    <img src="/assets/images/green-tick.png">
-                    {{i?.active_students}} active students
-                  </li>
-                </ng-template>
-
-                <!-- for Sub-admin-->
-                <li *ngIf="i.sub_admin==0;else subAdmin">
-                  <img src="/assets/images/grey-tick.png">
-                  <span style="color: #dadfea;">
+								</li>
+								<ng-template #activeStudents>
+									<li>
+										<img src="/assets/images/green-tick.png">{{i?.active_students}} active students</li>
+								</ng-template>
+								<!-- for Sub-admin-->
+								<li *ngIf="i.sub_admin==0;else subAdmin">
+									<img src="/assets/images/grey-tick.png"> <span style="color: #dadfea;">
                     {{i?.sub_admin}} Sub-admin
                   </span>
-                </li>
-                <ng-template #subAdmin>
-                  <li>
-                    <img src="/assets/images/green-tick.png">{{i?.sub_admin}} Sub-admin
-                  </li>
-                </ng-template>
-
-                <!-- for Live session-->
-                <li *ngIf="i.live_session==0;else liveSession">
-                  <img src="/assets/images/grey-tick.png">
-                  <span style="color: #dadfea;">
+								</li>
+								<ng-template #subAdmin>
+									<li>
+										<img src="/assets/images/green-tick.png">{{i?.sub_admin}} Sub-admin</li>
+								</ng-template>
+								<!-- for Live session-->
+								<li *ngIf="i.live_session==0;else liveSession">
+									<img src="/assets/images/grey-tick.png"> <span style="color: #dadfea;">
                     {{i?.live_session}} Live session
                   </span>
-                </li>
-                <ng-template #liveSession>
-                  <li>
-                    <img src="/assets/images/green-tick.png">{{i?.live_session}} Live session
-                  </li>
-                </ng-template>
-              </ul>
-
-              <button class="btn" (click)="startClass(i)">
-                Start Class
-              </button>
-            </div>
-          </div>
-        </div>
-      </ngx-slick-carousel>
-
-      <span class="next-btn">
+								</li>
+								<ng-template #liveSession>
+									<li>
+										<img src="/assets/images/green-tick.png">{{i?.live_session}} Live session</li>
+								</ng-template>
+							</ul>
+							<button class="btn" (click)="startClass(i)">Start Class</button>
+						</div>
+					</div>
+				</div>
+			</ngx-slick-carousel> <span class="next-btn">
         <i (click)="next()" style="margin-left: 100px;" class="fa fa-arrow-right" aria-hidden="true"></i>
       </span>
-    </div>
-  </div>
+		</div>
+	</div>
 </section>
 <app-footer *ngIf="!isImageShow"></app-footer>

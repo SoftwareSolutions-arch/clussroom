@@ -1,27 +1,12 @@
-<button mat-raised-button color="primary" class="mt-40" (click)="addNew()">
-  Add New <i class="material-icons">add_circle_outline</i>
-</button>
-<i class="material-icons material-icons--outline">
-screen_share
-</i>
-<div cdkDropList class="example-list mt-20" (cdkDropListDropped)="drop($event)">  
-	<div class="example-box" *ngFor="let movie of movies, index as i" cdkDrag>
-    <div class="drag-index">{{i+1}}</div>
-		<div class="w-10 drag-icon">
-      <i *ngIf="!movie.isDisable" class="material-icons disable">reorder</i>
-      <i  class="material-icons" cdkDragHandle>reorder</i>
-    </div>
-    <div class="w-100 drag-content">
-      <mat-checkbox (change)="movie.isDisable = !movie.isDisable">Click and drop only through icon</mat-checkbox>  
-    </div> 
-    <div class="w-10 delete-icon">
-      <button mat-icon-button>
-        <i class="material-icons" (click)="delete(i)">delete_outline</i>
-      </button>
-    </div>
-  </div>
-</div>
-
-<div class="alert-text">
-Click Checkbox for drag your Div. 
-</div>
+<full-calendar
+      #calendar
+      schedulerLicenseKey="GPL-My-Project-Is-Open-Source"
+      locale="pl"
+      weekNumberCalculation="ISO"
+      slotDuration="00:30:00"
+      nowIndicator=true
+      editable=true
+      fixedWeekCount=false
+      showNonCurrentDates=false
+     
+    ></full-calendar>

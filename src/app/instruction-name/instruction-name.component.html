@@ -1,51 +1,41 @@
-  <app-header></app-header>
-  <section class="instruction-section">
-    <div class="container">
-      <div class="instruction-form">
-        <ul id="instruction-progressbar">
-
-          <li class="completed">
-            <div class="instruction-progressbaar-line line-1"></div>
-            <strong><img src="assets/images/blue-path.png">1</strong>
-
-          </li>
-
-          <li class="active">
-            <div class="instruction-progressbaar-line line-2"></div>
-            <strong><img src="assets/images/blue-path.png">2</strong>
-          </li>
-
-          <li>
-            <div class="instruction-progressbaar-line line-2"></div>
-            <strong><img src="assets/images/blue-path.png">3</strong>
-            <div class="instruction-progressbaar-line line-1"></div>
-          </li>
-        </ul>
-        <h2>Name of your instructions</h2>
-        <p>What name would you like to give for your instructions?</p>
-
-        <form>
-          <div class="instruction-name fieldset">
-            <div class="instruction-checkbox">
-              <div class="chiller_cb" *ngFor="let listItems of  this.instructionList"
-                (click)="selectedItems(listItems)">
-                <input name="unique" type="radio">
-                <label for="myCheckbox">{{listItems.name}}</label>
-              </div>
-            </div>
-          </div>
-          <div class="instruction-obliterate">
-            <button class="btn" [disabled]="this.termsCondition!=true" (click)="nextPage()">Next</button>
-            <button class="back-btn" (click)="back()">Back</button>
-          </div>
-          <div class="terms-of-use">
-
-            <label><input (click)="agreeTerms($event)" type="checkbox"> I agree to Clussroom's &nbsp;<a href="#"
-                style="text-decoration: underline;">Terms of use</a></label>
-          </div>
-        </form>
-
-      </div>
-    </div>
-  </section>
-  <app-footer></app-footer>
+<app-header></app-header>
+<section class="instruction-section">
+	<div class="container">
+		<div class="instruction-form">
+			<ul id="instruction-progressbar">
+				<li class="completed">
+					<div class="instruction-progressbaar-line line-1"></div> <strong><img src="assets/images/blue-path.png">1</strong>
+				</li>
+				<li class="active">
+					<div class="instruction-progressbaar-line line-2"></div> <strong><img src="assets/images/blue-path.png">2</strong>
+				</li>
+				<li>
+					<div class="instruction-progressbaar-line line-2"></div> <strong><img src="assets/images/blue-path.png">3</strong>
+					<div class="instruction-progressbaar-line line-1"></div>
+				</li>
+			</ul>
+			<h2>Name of your instructions</h2>
+			<p>What name would you like to give for your instructions?</p>
+			<form>
+				<div class="instruction-name fieldset">
+					<div class="instruction-checkbox">
+						<div class="chiller_cb" *ngFor="let listItems of  this.instructionList" (click)="selectedItems(listItems)">
+							<input name="unique" type="radio">
+							<label for="myCheckbox">{{listItems.name}}</label>
+						</div>
+					</div>
+				</div>
+				<div class="instruction-obliterate">
+					<button class="btn" [disabled]="this.termsCondition!=true" (click)="nextPage()">Next</button>
+					<button class="back-btn" (click)="back()">Back</button>
+				</div>
+				<div class="terms-of-use">
+					<label>
+						<input (click)="agreeTerms($event)" type="checkbox">I agree to Clussroom's &nbsp;<a href="#" style="text-decoration: underline;">Terms of use</a>
+					</label>
+				</div>
+			</form>
+		</div>
+	</div>
+</section>
+<app-footer></app-footer>

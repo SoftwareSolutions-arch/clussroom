@@ -1,118 +1,112 @@
 <!-- loader showing-->
 <div *ngIf="isLoadingBool" class="loading-indicator">
-  <mat-spinner></mat-spinner>
+	<mat-spinner></mat-spinner>
 </div>
 <!-- close loader showing-->
-
 <app-header *ngIf="!isLoadingBool"></app-header>
-
 <!-- <angular-editor></angular-editor> -->
 <section *ngIf="!isLoadingBool" class="home-section-banner">
-  <div class="container">
-    <div class="home-banner-wrapper">
-      <div class="home-banner-caption">
-        <h1>{{this.contentData.banner_content}}</h1>
-        <a class="btn" (click)="startClass()" *ngIf="this.isLogin==1">{{this.contentData.banner_link_text}}</a>
-        <a class="btn" (click)="loginAlert()" *ngIf="this.isLogin!=1">{{this.contentData.banner_link_text}}</a>
-      </div>
-      <div class="home-banner-image">
-        <figure>
-          <img src="{{this.contentData.banner_image}}">
-        </figure>
-      </div>
-    </div>
-  </div>
+	<div class="container">
+		<div class="home-banner-wrapper">
+			<div class="home-banner-caption">
+				<h1>{{this.contentData.banner_content}}</h1>
+				<a class="btn" (click)="startClass()" *ngIf="this.isLogin==1">{{this.contentData.banner_link_text}}</a>
+				<a class="btn" (click)="loginAlert()" *ngIf="this.isLogin!=1">{{this.contentData.banner_link_text}}</a>
+			</div>
+			<div class="home-banner-image">
+				<figure>
+					<img src="{{this.contentData.banner_image}}">
+				</figure>
+			</div>
+		</div>
+	</div>
 </section>
-
 <section *ngIf="!isLoadingBool" class="why-clussroom-section">
-  <div class="container">
-    <div class="why-clussroom-header">
-      <h2>{{this.contentData.why_clussroom_title}}</h2>
-    </div>
-    <div class="why-clussroom-wrapper mt-5">
-      <div class="why-clussroom-box" *ngFor="let clussRoomList of this.contentData.why_clussroom">
-        <figure>
-          <img src="{{this.clussRoomList.image}}">
-        </figure>
-        <div class="why-clussroom-caption">
-          <h4>{{this.clussRoomList.title}}</h4>
-          <p>{{this.clussRoomList.content}}</p>
-          <!-- <a>{{this.clussRoomList.link_text}} <span>›</span></a> -->
-        </div>
-      </div>
-    </div>
-  </div>
+	<div class="container">
+		<div class="why-clussroom-header">
+			<h2>{{this.contentData.why_clussroom_title}}</h2>
+		</div>
+		<div class="why-clussroom-wrapper mt-5">
+			<div class="why-clussroom-box" *ngFor="let clussRoomList of this.contentData.why_clussroom">
+				<figure>
+					<img src="{{this.clussRoomList.image}}">
+				</figure>
+				<div class="why-clussroom-caption">
+					<h4>{{this.clussRoomList.title}}</h4>
+					<p>{{this.clussRoomList.content}}</p>
+					<!-- <a>{{this.clussRoomList.link_text}} <span>›</span></a> -->
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
-
 <section *ngIf="!isLoadingBool" class="tasks-robust-section">
-  <div class="container">
-    <div class="tasks-wrapper">
-      <figure>
-        <img src="{{this.contentData.home_task[0].image}}">
-      </figure>
-      <div class="tasks-caption">
-        <div class="tasks-caption-flex">
-          <h3>{{this.contentData.home_task[0].title}}</h3>
-          <p>{{this.contentData.home_task[0].content}}</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="robust-wrapper">
-      <div class="robust-caption">
-        <div class="robust-caption-flex">
-          <h3>{{this.contentData.home_task[1].title}}</h3>
-          <p>{{this.contentData.home_task[1].content}}</p>
-        </div>
-      </div>
-      <figure>
-        <img src="{{this.contentData.home_task[1].image}}">
-      </figure>
-    </div>
-  </div>
+	<div class="container">
+		<div class="tasks-wrapper">
+			<figure>
+				<img src="{{this.contentData.home_task[0].image}}">
+			</figure>
+			<div class="tasks-caption">
+				<div class="tasks-caption-flex">
+					<h3>{{this.contentData.home_task[0].title}}</h3>
+					<p>{{this.contentData.home_task[0].content}}</p>
+				</div>
+			</div>
+		</div>
+		<div class="robust-wrapper">
+			<div class="robust-caption">
+				<div class="robust-caption-flex">
+					<h3>{{this.contentData.home_task[1].title}}</h3>
+					<p>{{this.contentData.home_task[1].content}}</p>
+				</div>
+			</div>
+			<figure>
+				<img src="{{this.contentData.home_task[1].image}}">
+			</figure>
+		</div>
+	</div>
 </section>
-
 <section *ngIf="!isLoadingBool" class="home-testimonial-section">
-  <div class="container">
-    <div class="home-testimonial-header">
-      <h2>Trusted by teachers &<br> learners</h2>
-    </div>
-    <ngx-slick-carousel class="carousel home-testimonial-wrapper" #slickModal="slick-carousel" [config]="slideConfig">
-      <div ngxSlickItem *ngFor="let slide of this.contentData.testimonial" class="slide home-testimonial-box">
-        <div class="home-testimonial-caption">
-          <figure>
-            <img src="/assets/images/blue-quote.png">
-          </figure>
-          <p>{{ slide.review }}</p>
-        </div>
-        <div class="testimonial-user-caption">
-          <figure>
-            <img src="{{ slide.reviewer_image }}">
-          </figure>
-          <div class="testimonial-user">
-            <h6>{{ slide.reviewer_name }}</h6>
-            <span>{{ slide.reviewer_designation }}</span>
-          </div>
-        </div>
-      </div>
-      <div ngxSlickItem *ngFor="let slide of this.contentData.testimonial" class="slide home-testimonial-box">
-        <div class="home-testimonial-caption">
-          <figure>
-            <img src="/assets/images/blue-quote.png">
-          </figure>
-          <p>{{ slide.review }}</p>
-        </div>
-        <div class="testimonial-user-caption">
-          <figure>
-            <img src="{{ slide.reviewer_image }}">
-          </figure>
-          <div class="testimonial-user">
-            <h6>{{ slide.reviewer_name }}</h6>
-            <span>{{ slide.reviewer_designation }}</span>
-          </div>
-        </div>
-      </div>
-    </ngx-slick-carousel>
-  </div>
+	<div class="container">
+		<div class="home-testimonial-header">
+			<h2>Trusted by teachers &<br> learners</h2>
+		</div>
+		<ngx-slick-carousel class="carousel home-testimonial-wrapper" #slickModal="slick-carousel" [config]="slideConfig">
+			<div ngxSlickItem *ngFor="let slide of this.contentData.testimonial" class="slide home-testimonial-box">
+				<div class="home-testimonial-caption">
+					<figure>
+						<img src="/assets/images/blue-quote.png">
+					</figure>
+					<p>{{ slide.review }}</p>
+				</div>
+				<div class="testimonial-user-caption">
+					<figure>
+						<img src="{{ slide.reviewer_image }}">
+					</figure>
+					<div class="testimonial-user">
+						<h6>{{ slide.reviewer_name }}</h6>
+						<span>{{ slide.reviewer_designation }}</span>
+					</div>
+				</div>
+			</div>
+			<div ngxSlickItem *ngFor="let slide of this.contentData.testimonial" class="slide home-testimonial-box">
+				<div class="home-testimonial-caption">
+					<figure>
+						<img src="/assets/images/blue-quote.png">
+					</figure>
+					<p>{{ slide.review }}</p>
+				</div>
+				<div class="testimonial-user-caption">
+					<figure>
+						<img src="{{ slide.reviewer_image }}">
+					</figure>
+					<div class="testimonial-user">
+						<h6>{{ slide.reviewer_name }}</h6>
+						<span>{{ slide.reviewer_designation }}</span>
+					</div>
+				</div>
+			</div>
+		</ngx-slick-carousel>
+	</div>
 </section>
 <app-footer *ngIf="!isLoadingBool"></app-footer>
