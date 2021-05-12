@@ -1,42 +1,27 @@
-<form *ngIf="mainFormArray" [formGroup]="usersForm" (ngSubmit)="createUsers()">
-  <table class="table table-sm table-bordered">
-    <thead>
-      <tr class="text-center">
-        <th>Address</th>
-        <th>Phone</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <ng-container *ngFor='let eachForm of mainFormArray ;let i = index'>
-      <input class="form-control" type="text" formControlName="name"/>
+<button mat-raised-button color="primary" class="mt-40" (click)="addNew()">
+  Add New <i class="material-icons">add_circle_outline</i>
+</button>
+<i class="material-icons material-icons--outline">
+screen_share
+</i>
+<div cdkDropList class="example-list mt-20" (cdkDropListDropped)="drop($event)">  
+	<div class="example-box" *ngFor="let movie of movies, index as i" cdkDrag>
+    <div class="drag-index">{{i+1}}</div>
+		<div class="w-10 drag-icon">
+      <i *ngIf="!movie.isDisable" class="material-icons disable">reorder</i>
+      <i  class="material-icons" cdkDragHandle>reorder</i>
+    </div>
+    <div class="w-100 drag-content">
+      <mat-checkbox (change)="movie.isDisable = !movie.isDisable">Click and drop only through icon</mat-checkbox>  
+    </div> 
+    <div class="w-10 delete-icon">
+      <button mat-icon-button>
+        <i class="material-icons" (click)="delete(i)">delete_outline</i>
+      </button>
+    </div>
+  </div>
+</div>
 
-      <tbody formArrayName="users">
-        <tr *ngFor="let item of eachForm.myFormsList.controls.users.controls; let j =index">
-          <td style="min-width: 120px">
-            <input class="form-control" type="text" />
-            <!-- <div class="text-danger" *ngIf="usersForm.controls['users'].controls[$index].controls['address'].touched
-                             && usersForm.controls['users'].controls[$index].controls['address'].hasError('required')">
-              Please enter address!
-            </div> -->
-          </td>
-
-          <td style="min-width: 120px">
-            <input class="form-control" type="text" />
-            <!-- <div class="text-danger" *ngIf="usersForm.controls['users'].controls[$index].controls['phone'].touched
-                             && usersForm.controls['users'].controls[$index].controls['phone'].hasError('required')">
-              Please enter phone number!
-            </div> -->
-          </td>
-
-          <td style="width: 100px">
-            <button (click)="addUserRow(i)" class="btn btn-success btn-sm mr-1" type="button">add</button>
-            <button (click)="removeUserRow(i,j)" class="btn btn-danger btn-sm" type="button">delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </ng-container>
-
-  </table>
-
-  <button (click)="submit()"> submit</button>
-</form>
+<div class="alert-text">
+Click Checkbox for drag your Div. 
+</div>

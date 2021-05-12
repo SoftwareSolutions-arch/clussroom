@@ -58,7 +58,7 @@
     </div>
 
     <div class="row test-button">
-      <button type="button"><a href="#">Add Test</a></button>
+      <button type="button"><a>Add Test</a></button>
     </div>
     <div class="prospectus-section sequence-list">
       <div class="prospectus-tabs">
@@ -86,21 +86,21 @@
         <!-- <div class="test-option sample custom-control custom-checkbox mt-4 box-shadow">
           <div class="col-sm-3 text-center">
             <button type="button">
-              <span><a href="#"><i class="fa fa-times-circle" aria-hidden="true"></i></a></span>
+              <span><a><i class="fa fa-times-circle" aria-hidden="true"></i></a></span>
               <h2>Sample image</h2>
             </button>
             <input type="text" placeholder="Description" class="mt-3">
           </div>
           <div class="col-sm-3 text-center">
             <button type="button">
-              <span><a href="#"><i class="fa fa-times-circle" aria-hidden="true"></i></a></span>
+              <span><a><i class="fa fa-times-circle" aria-hidden="true"></i></a></span>
               <h2>Sample image</h2>
             </button>
             <input type="text" placeholder="Description" class="mt-3">
           </div>
           <div class="col-sm-3 text-center">
             <button type="button">
-              <span><a href="#"><i class="fa fa-times-circle" aria-hidden="true"></i></a></span>
+              <span><a><i class="fa fa-times-circle" aria-hidden="true"></i></a></span>
               <h2>Sample image</h2>
             </button>
             <input type="text" placeholder="Description" class="mt-3">
@@ -110,7 +110,7 @@
         </div>
 
         <div class="attach mt-3 border-bottom mb-3" style="padding-bottom: 1em;">
-          <a href="#"><img src="assets/images/test/Mask.png"></a>
+          <a><img src="assets/images/test/Mask.png"></a>
           <h2>Attachments (0/4)</h2>
           <button type="button"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add</button>
         </div> -->
@@ -135,7 +135,7 @@
         </div>
 
 
-        <div class="col-lg-12 box-shadow qa mb-3" style="justify-content: normal;">
+        <!-- <div class="col-lg-12 box-shadow qa mb-3" style="justify-content: normal;">
           <div class="col-md-5">
             <p>Question</p>
             <label>1.</label>
@@ -145,34 +145,33 @@
             <p>Answer</p>
             <input type="text" placeholder="Enter your choice">
           </div>
+        </div> -->
 
-
-        </div>
-
-        <div class="col-lg-12 box-shadow qa mb-3" style="justify-content: normal;">
-          <div class="col-md-5">
-            <label>2.</label>
-            <input type="text" placeholder="Enter your choice">
+        <div class="col-lg-12 box-shadow ques-ans">
+          <div class="col-md-3">
+            <p style="padding: 0 31px;">Question</p>
           </div>
-          <div class="col-md-5">
-            <input type="text" placeholder="Enter your choice">
-          </div>
-
-
-        </div>
-
-        <div class="col-lg-12 box-shadow qa mb-3" style="justify-content: normal;">
-          <div class="col-md-5">
-            <label>3.</label>
-            <input type="text" placeholder="Enter your choice">
-          </div>
-          <div class="col-md-5">
-            <input type="text" placeholder="Enter your choice">
+          <div class="col-md-3">
+            <p>Answer</p>
           </div>
         </div>
-
+        <div [formGroup]="myForm">
+          <div formArrayName="arr" *ngFor="let a of myForm.get('arr')?.controls; let i = index">
+            <div class="col-lg-12 box-shadow qa mb-3" style="justify-content: normal;" [formGroupName]="i">
+              <div class="col-md-3">
+                <label>{{i+1}}.</label>
+                <input type="text" name="question" formControlName="question" placeholder="Enter your choice">
+              </div>
+              <div class="col-md-3" style="display: flex; align-items: center;">
+                <input type="text" name="answer" formControlName="answer" placeholder="Enter your choice"
+                  style="margin-right: .5em;">
+                <button (click)="deleteUser(i)" class="delete-ans text-left"><i class="fa fa-times" aria-hidden="true"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="attach col-lg-12 mb-3 border-bottom display-center" style="padding-bottom: 1em;">
-          <div class="col-sm-1">
+          <div (click)="addItem()" class="col-sm-1">
             <button type="button"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add</button>
           </div>
           <div class="col-lg-11 question-label" style="padding: 0 50px;">
@@ -190,17 +189,17 @@
                -->
           <div class="char-box border-bottom box-shadow question-label col-lg-12">
             <label class="col-md-3">Jumble question sequence?
-              <input type="checkbox" checked="checked">
+              <input [(ngModel)]="fillData.jumble_questions_placement" type="checkbox">
               <span class="mark" style="border-radius: 50% !important; height: 20px; width:20px;"></span>
             </label>
             <div class="col-md-4 mb-3 mt-3">
-              <input type="text">
+              <input [(ngModel)]="fillData.jumble_points" type="text">
             </div>
           </div>
           <!--
                <div class="char-box border-bottom box-shadow">
                <label class="col-md-3 mb-3 mt-3">Character Limit
-               <input type="checkbox" checked="checked">
+               <input type="checkbox">
                <span class="mark" style="border-radius: 50% !important; height: 20px; width:20px;"></span>
                </label>
                    <div class="col-md-4 mb-3 mt-3">
@@ -210,16 +209,16 @@
                -->
           <div class="char-box border-bottom question-label col-lg-12">
             <label class="col-md-3 mb-3 mt-3">Partial Points
-              <input type="checkbox">
+              <input [(ngModel)]="fillData.partial_points" type="checkbox">
               <span class="mark" style="border-radius: 50% !important; height: 20px; width:20px;"></span>
             </label>
             <p class="col-md-5 mb-3 mt-3">Points are rounded to the nearest 1 decimal</p>
           </div>
           <div class="char-box border-bottom box-shadow question-label col-lg-12">
-            <label class="col-md-3 mb-3 mt-3">Partial Points
+            <label class="col-md-3 mb-3 mt-3">Points
             </label>
             <div class="col-md-4 mb-3 mt-3">
-              <input type="text">
+              <input [(ngModel)]="fillData.points" type="text">
             </div>
           </div>
         </div>
@@ -227,11 +226,11 @@
           <!--
                <button type="button" class="blue">Confirm</button>
                <button type="button" class="blue-border">Cancel</button>
-               <button type="button" class="lime"><a href="#">Edit</a></button>
-               <button type="button" class="Org"><a href="#">Confirm Edit</a></button>
+               <button type="button" class="lime"><a>Edit</a></button>
+               <button type="button" class="Org"><a>Confirm Edit</a></button>
                -->
-          <a href="#" class="addbutton custom-button mr-2">Save Question</a>
-          <a href="#" class="edit-points-btn custom-button">Cancel</a>
+          <a (click)="saveQuestion()" class="addbutton custom-button mr-2">Save Question</a>
+          <a class="edit-points-btn custom-button">Cancel</a>
         </div>
         <!-- <div class="container multi-choice-orange" style="padding: 6px 0 0 0;">
             <button type="button">Confirm Edit</button>

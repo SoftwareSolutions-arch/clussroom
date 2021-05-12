@@ -72,6 +72,7 @@ export class QuestionScreenComponent implements OnInit {
       "test_id": "348"
     }
     this.service.post('questions-list-api', params, 1).subscribe(result => {
+      console.log('result',result); 
       this.isLoadingBool = false;
       
       this.questionData = result.question_data

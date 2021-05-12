@@ -101,55 +101,32 @@
 
         <div class="col-lg-12 box-shadow border-bottom final-order">
           <h6 class="mb-4" style="padding: 0 4.5em">Correct order</h6>
-          <div class="col-lg-8 mb-3" style="display: flex; align-items: center;">
-            <label class="col-sm-2 text-center" style="margin: 0; padding:0;">
-              <i class="fa fa-random" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;1.
-            </label>
-            <div class="col-md-8 custom-order" style="padding:0;">
-              <input type="text">
-              <button type="button" class="orange-cross"><i class="fa fa-times" aria-hidden="true"></i></button>
-            </div>
-          </div>
-          <div class="col-lg-8 mb-3" style="display: flex; align-items: center;">
-            <label class="col-sm-2 text-center" style="margin: 0; padding:0;">
-              <i class="fa fa-random" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;2.
-            </label>
-            <div class="col-md-8 custom-order" style="padding:0;">
-              <input type="text">
-              <button type="button" class="orange-cross"><i class="fa fa-times" aria-hidden="true"></i></button>
-            </div>
-          </div>
-          <div class="col-lg-8 mb-3" style="display: flex; align-items: center;">
-            <label class="col-sm-2 text-center" style="margin: 0; padding:0;">
-              <i class="fa fa-random" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;3.
-            </label>
-            <div class="col-md-8 custom-order" style="padding:0;">
-              <input type="text">
-              <button type="button" class="orange-cross"><i class="fa fa-times" aria-hidden="true"></i></button>
-            </div>
-          </div>
-          <div class="col-lg-8 mb-3" style="display: flex; align-items: center;">
-            <label class="col-sm-2 text-center" style="margin: 0; padding:0;">
-              <i class="fa fa-random" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;4.
-            </label>
-            <div class="col-md-8 custom-order" style="padding:0;">
-              <input type="text">
-              <button type="button" class="orange-cross"><i class="fa fa-times" aria-hidden="true"></i></button>
-            </div>
-          </div>
-          <div class="col-lg-8 mb-3" style="display: flex; align-items: center;">
-            <label class="col-sm-2 text-center" style="margin: 0; padding:0;">
-              <i class="fa fa-random" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;5.
-            </label>
-            <div class="col-md-8 custom-order" style="padding:0;">
-              <input type="text">
-              <button type="button" class="orange-cross"><i class="fa fa-times" aria-hidden="true"></i></button>
-            </div>
-          </div>
+
+          <ng-container  [formGroup]="myForm">
+            <ng-container  formArrayName="arr" *ngFor="let a of myForm.get('arr')?.controls; let i = index">
+              <ng-container [formGroupName]="i" >
+                <div class="col-lg-8 mb-3" style="display: flex; align-items: center;">
+                  <label  class="col-sm-2 text-center" style="margin: 0; padding:0;">
+                    <i class="fa fa-random" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;{{i+1}}.
+                  </label>
+                  <div  class="col-md-8 custom-order" style="padding:0;">
+                    <input formControlName="question" type="text">
+                    <button (click)="deleteUser(i)" type="button" class="orange-cross"><i class="fa fa-times"
+                        aria-hidden="true"></i></button>
+                  </div>
+                </div>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+<!-- 
+          <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let movie of movies" cdkDrag>{{movie.name}}</div>
+          </div> -->
+
           <div class="col-lg-12" style="display: flex;">
             <div class="attach col-sm-2 text-right mb-3"
               style="display: block; padding: 0 !important; padding-right: 10px !important;">
-              <button type="button" style="margin: 0 !important;"><i class="fa fa-plus"
+              <button (click)="addItem()" type="button" style="margin: 0 !important;"><i class="fa fa-plus"
                   aria-hidden="true"></i>&nbsp;Add</button>
             </div>
             <div class="col-md-6 question-label mb-3">
@@ -171,7 +148,7 @@
                -->
           <div class="char-box border-bottom box-shadow question-label">
             <label class="col-md-3">Jumble question sequence?
-              <input type="checkbox" checked="checked">
+              <input type="checkbox" [(ngModel)]="fillData.jumble_questions_placement">
               <span class="mark" style="border-radius: 50% !important; height: 20px; width:20px;"></span>
             </label>
             <div class="col-md-4 mb-3 mt-3">
@@ -180,10 +157,10 @@
           </div>
           <div class="char-box border-bottom question-label">
             <label class="col-sm-2 mb-3 mt-3">Partial Points
-              <input type="checkbox">
+              <input [(ngModel)]="fillData.partial_points" type="checkbox">
               <span class="mark" style="border-radius: 50% !important; height: 20px; width:20px;"></span>
             </label>
-            <select name="course" id="course-name" class="col-sm-2">
+            <select name="course" id="course-name" class="col-sm-2" [(ngModel)]="fillData.minimum_sequence">
               <option value="Course 1" selected>Sequence</option>
               <option value="Course 1">1</option>
               <option value="Course 2">2</option>
@@ -207,11 +184,11 @@
           <!--
                <button type="button" class="blue">Confirm</button>
                <button type="button" class="blue-border">Cancel</button>
-               <button type="button" class="lime"><a href="#">Edit</a></button>
-               <button type="button" class="Org"><a href="#">Confirm Edit</a></button>
+               <button type="button" class="lime"><a>Edit</a></button>
+               <button type="button" class="Org"><a>Confirm Edit</a></button>
                -->
-          <a href="#" class="addbutton custom-button">Save Question</a>
-          <a href="#" class="edit-points-btn custom-button">Cancel</a>
+          <a (click)="saveQuestion()" class="addbutton custom-button">Save Question</a>
+          <a class="edit-points-btn custom-button">Cancel</a>
         </div>
         <!--
          <div class="container multi-choice-orange" style="padding: 6px 0 0 0;">

@@ -1,4 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { UtilService } from '../../../providers/util.service';
+import { SharedServiceService } from '../../shared-service.service';
 
 @Component({
   selector: 'app-true-or-false',
@@ -6,7 +9,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./true-or-false.component.css']
 })
 export class TrueOrFalseComponent implements OnInit {
-  isLoadingBool:boolean=false;
+  isLoadingBool: boolean = false;
   imageSrc;
 
   ExteriorPicFile: any = [];
@@ -20,17 +23,17 @@ export class TrueOrFalseComponent implements OnInit {
   fileList: File[] = [];
   listOfFiles: any[] = [];
   fillData: any = {
-    question: '',
-    rich_text_responses_for_learner: '',
-    character_limit: '',
-    characterInput: '',
-    partialPoints: '',
-    points: '',
-    attachment: '',
-    "test_assignment_question_type": "short_answer",
-    "insert_limit": "1000"
+    test_assignment_nid: "184",
+    test_assignment_question_type: "true_false",
+    question: "",
+    attachment: "",
+    points: "",
+    checkstatus:"1",
+    true_false_answers: [],
+    correct_answer: ""
   }
-  constructor() { }
+  constructor(public util: UtilService, public service: SharedServiceService, private router: Router) { }
+
 
   ngOnInit(): void {
   }
@@ -78,5 +81,30 @@ export class TrueOrFalseComponent implements OnInit {
     this.ExteriorPicString.push(base64result);
     console.log('this.ExteriorPicString', this.ExteriorPicString);
   }
+
+  // save question
+  saveQuestion() {
+    this.fillData.attachment = this.fileList
+
+    let params = {
+      "test_assignment_nid": "184",
+      "test_assignment_question_type": "true_false",
+      "question": this.fillData.question,
+      "attachment": this.fillData.attachment,
+      "points": this.fillData.points,
+      "checkstatus":"1",
+      "true_false_answers":["1","2","4","8"],
+      "correct_answer":this.fillData.correct_answer
+    }
+    console.log('parmas', params);
+    this.isLoadingBool = true;
+    this.service.post('add-question-api', params, 1).subscribe(result => {
+      console.log('result', result);
+      this.isLoadingBool = false;
+      this.util.showSuccessAlert('Answer Saved Successfully');
+      this.router.navigate(['/test/question-screen']);
+    })
+  }
+
 
 }

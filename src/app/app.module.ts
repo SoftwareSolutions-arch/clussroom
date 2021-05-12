@@ -68,8 +68,9 @@ import { MidtermPreviewComponent } from './test-module/midterm-preview/midterm-p
 import { MidtermPreviewSecondComponent } from './test-module/midterm-preview-second/midterm-preview-second.component';
 import { EditPointsScreenComponent } from './test-module/edit-points-screen/edit-points-screen.component';
 import { TestCompomentComponent } from './test-compoment/test-compoment.component';
-import { AddressTestComponent } from './address-test/address-test.component';
-
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 @NgModule({
   declarations: [		
     AppComponent,
@@ -121,8 +122,7 @@ import { AddressTestComponent } from './address-test/address-test.component';
     MidtermPreviewComponent,
     MidtermPreviewSecondComponent,
     EditPointsScreenComponent,
-      TestCompomentComponent,
-      AddressTestComponent
+      TestCompomentComponent
    ],
   imports: [CommonModule,
     BrowserModule, ToastrModule.forRoot({
@@ -140,7 +140,10 @@ import { AddressTestComponent } from './address-test/address-test.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSnackBarModule, MatInputModule, MatTableModule,
+    MatSnackBarModule, MatInputModule, MatTableModule,  DragDropModule,
+    DragDropModule,
+    MatButtonModule,
+    MatCheckboxModule,
     MatProgressSpinnerModule,
     SlickCarouselModule, MatTabsModule, NgxPaginationModule, AngularEditorModule
   ],

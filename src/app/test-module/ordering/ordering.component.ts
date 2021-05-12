@@ -1,4 +1,9 @@
+import { UtilService } from '../../../providers/util.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { SharedServiceService } from '../../shared-service.service';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ordering',
@@ -20,21 +25,24 @@ export class OrderingComponent implements OnInit {
 
   fileList: File[] = [];
   listOfFiles: any[] = [];
-  constructor() { }
+
+  myForm: FormGroup;
+  arr: FormArray;
+
   fillData: any = {
+    test_assignment_nid:'184',
+    test_assignment_question_type: "ordering",
     question: '',
-    rich_text_responses_for_learner: '',
-    character_limit: '',
-    characterInput: '',
-    partialPoints: '',
-    points: '',
     attachment: '',
-    "test_assignment_question_type": "short_answer",
-    "insert_limit": "1000"
+    jumble_questions_placement:'',
+    points: '',
+    checkstatus:"1",
+    partial_points: '',
+    drag_drop_sequenece_answers:[],
+    minimum_sequence:'' 
   }
 
-  ngOnInit(): void {
-  }
+  constructor(public util: UtilService,private router: Router, private fb: FormBuilder, public service: SharedServiceService) { }
 
 
   picked(event: any) {
@@ -78,7 +86,56 @@ export class OrderingComponent implements OnInit {
     let reader = e.target;
     var base64result = reader.result.substr(reader.result.indexOf(',') + 1);
     this.ExteriorPicString.push(base64result);
-    console.log('this.ExteriorPicString', this.ExteriorPicString);
   }
 
+  ngOnInit() {
+    this.myForm = this.fb.group({
+      arr: this.fb.array([this.createItem()])
+    })
+  }
+
+  createItem() {
+    return this.fb.group({
+      question: ['']
+    })
+  }
+
+  addItem() {
+    this.arr = this.myForm.get('arr') as FormArray;
+    this.arr.push(this.createItem());
+  }
+
+  deleteUser(skillIndex) {
+    if (skillIndex > 0) {
+      this.arr.removeAt(skillIndex);
+    }
+  }
+
+  saveQuestion() {
+    var userA = [];
+    this.myForm.value.arr.forEach(element => {
+      userA.push(element.question);
+    });
+
+    let params = {
+      test_assignment_nid: "184",
+      test_assignment_question_type: "ordering",
+      question: this.fillData.question,
+      attachment: this.fileList,
+      jumble_questions_placement: (this.fillData.jumble_questions_placement == true) ? "1" : "0",
+      points: this.fillData.points,
+      partial_points: (this.fillData.partial_points == true) ? "1" : "0",
+      checkstatus: 1,
+      drag_drop_sequenece_answers:userA,
+      minimum_sequence:"1"
+    }
+
+    this.isLoadingBool = true;
+    this.service.post('add-question-api', params, 1).subscribe(result => {
+      console.log('result', result);
+      this.util.showSuccessAlert(result.message);
+      this.isLoadingBool = false;
+      this.router.navigate(['/test/question-screen']);
+    })
+  }
 }

@@ -111,10 +111,10 @@
               style="padding: 0 26px; display: flex; overflow: auto;">
               <label style="margin: 7px 8px 7px -4px;">{{i+1}}.</label>
               <div formArrayName="users" style="display: flex;" class="col-md-4">
-                <ng-container *ngFor="let item of eachForm.myFormsList.controls.users.controls; let j =index">
+                <ng-container *ngFor="let item of eachForm.myFormsList.controls.users.controls; let j =index" formGroupName="{j}">
                   <div class="col-lg-12 mb-4" style="display: flex; padding: 0;">
                     <div class="col-lg-12 custom-answer" style="padding: 0 35px;">
-                      <input type="text" placeholder="Enter answer">
+                      <input formControlName="address" type="text" placeholder="Enter answer">
                       <button style="margin: 0 7px" (click)="addUserRow(i)" type="button" class="blue-plus"><i
                           class="fa fa-plus" aria-hidden="true"></i></button>
                       <button style="margin: 0 7px" (click)="removeUserRow(i,j)" type="button" class="orange-cross"><i
@@ -194,3 +194,5 @@
     </div>
   </div>
 </div>
+
+{{usersForm.value | json}}

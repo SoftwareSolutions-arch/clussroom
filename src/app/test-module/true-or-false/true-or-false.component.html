@@ -77,8 +77,8 @@
         </div>
         <div class="multiple-text">
           <angular-editor [(ngModel)]="fillData.question" name="shortanswer" cols="80" label="notes" rows="4"
-          wrap="virtual" style="margin: 0;">
-        </angular-editor>
+            wrap="virtual" style="margin: 0;">
+          </angular-editor>
           <div class="col-md-4"></div>
         </div>
 
@@ -106,25 +106,33 @@
           <h5>Correct answer</h5>
           <div class="test-option border-bottom mt-3">
             <ul class="col-md-5" style="display: flex;">
-              <li><input type="radio" id="True" name="true" value="True">
+              <li><input [(ngModel)]="fillData.correct_answer" type="radio" id="True" name="true" value="1">
                 <label for="True">True</label>
               </li>
               <li>
-                <input type="radio" id="True" name="false" value="False">
+                <input [(ngModel)]="fillData.correct_answer" type="radio" id="True" name="false" value="0">
                 <label for="False">False</label>
               </li>
             </ul>
           </div>
         </div>
+
+        <div class="custom-control custom-checkbox mb-3 question-label"
+          style="padding: 1.5em 26px; border-bottom:1px solid #F1F6FB;">
+          <label class="col-sm-2">Points
+          </label>
+          <input [(ngModel)]="fillData.points" type="text" class="ml-3">
+        </div>
+
         <div class="container" style="padding: 18px 0 0 0; display: flex;">
           <!--
                  <button type="button" class="blue">Confirm</button>
                  <button type="button" class="blue-border">Cancel</button>
-                 <button type="button" class="lime"><a href="#">Edit</a></button>
-                 <button type="button" class="Org"><a href="#">Confirm Edit</a></button>
+                 <button type="button" class="lime"><a>Edit</a></button>
+                 <button type="button" class="Org"><a>Confirm Edit</a></button>
                  -->
-          <a href="#" class="addbutton custom-button">Save Question</a>
-          <a href="#" class="edit-points-btn custom-button">Cancel</a>
+          <a (click)="saveQuestion()" class="addbutton custom-button">Save Question</a>
+          <a class="edit-points-btn custom-button">Cancel</a>
         </div>
         <!--
            <div class="container multi-choice-orange" style="padding: 6px 0 0 0;">

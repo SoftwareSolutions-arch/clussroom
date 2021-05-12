@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { UtilService } from '../../../providers/util.service';
 
 @Component({
@@ -32,41 +32,68 @@ export class FillInTheBlanksComponent implements OnInit {
 
   fileList: File[] = [];
   listOfFiles: any[] = [];
-  constructor(private formBuilder: FormBuilder,public util:UtilService) { }
-  users: FormArray;
+  constructor(private formBuilder: FormBuilder, public util: UtilService) { }
 
   ngOnInit() {
     this.usersForm = this.formBuilder.group({
-      address: '',
       users: this.formBuilder.array([
         this.formBuilder.group({
-          address: ['', [Validators.required]],
-          phone: ['', [Validators.required]]
+          address: '',
         })
       ])
     });
-
-    // Get total words and generate forms array list\
-    // this.counter(1);
+    console.log('mainFormArray',this.mainFormArray)
   }
+
+  countWords(str) {
+    var matches = str.match(/_+/gi);
+    return matches ? matches.length : 0;
+  }
+
+  countTotalWords() {
+    var data = this.fillData.question
+    this.totalWords = this.countWords(data)
+    this.counter(this.totalWords)
+  }
+
+  counters(i: number) {
+    return new Array(i);
+  }
+
 
   initUserRow(): FormGroup {
     return this.formBuilder.group({
-      // address: [null, [Validators.required]],
-      // phone: [null, [Validators.required]],
-      name: '',
+      address: new FormControl(""),
+    });
+  }
+
+
+  counter(i: number) {
+    this.mainFormArray = []
+    for (let j = 0; j < i; j++) {
+      this.mainFormArray.push({ myFormsList: this.getNewUserFrom() });
+    }
+  }
+
+  getNewUserFrom() {
+    return this.formBuilder.group({
+      users: this.formBuilder.array([
+        this.formBuilder.group({
+          address: new FormControl(""),
+        })
+      ])
     });
   }
 
   addUserRow(parent): void {
     const usersArray = this.mainFormArray[parent];
     let arrayTOPush = usersArray.myFormsList.controls['users'];
-    var data =arrayTOPush.controls.length;
-    console.log('data',data);
-    if(data<3){
+    var data = arrayTOPush.controls.length;
+    console.log('data', this.mainFormArray);
+    if (data < 3) {
       arrayTOPush.push(this.initUserRow());
     }
-    else{
+    else {
       this.util.errorAlertPopup("can't add more than three items");
     }
 
@@ -87,29 +114,6 @@ export class FillInTheBlanksComponent implements OnInit {
         this.errorMessage = null;
       }, 4000);
     }
-  }
-
-  submit() {
-    console.log(this.usersForm.value);
-  }
-
-  counter(i: number) {
-    this.mainFormArray = []
-    // return new Array(2);
-    // gegerate no of forms array based on 'i'
-    for (let j = 0; j < i; j++) {
-      this.mainFormArray.push({ myFormsList: this.getNewUserFrom() });
-    }
-  }
-
-  getNewUserFrom() {
-    return this.formBuilder.group({
-      users: this.formBuilder.array([
-        this.formBuilder.group({
-          name: [null, [Validators.required]],
-        })
-      ])
-    });
   }
 
   cancel() { }
@@ -159,21 +163,6 @@ export class FillInTheBlanksComponent implements OnInit {
   }
 
 
-  countWords(str) {
-    var matches = str.match(/_+/gi);
-    return matches ? matches.length : 0;
-  }
-
-  countTotalWords() {
-    var data = this.fillData.question
-    this.totalWords = this.countWords(data)
-    this.counter(this.totalWords)
-  }
-
-
-  counters(i: number) {
-    return new Array(i);
-  }
 
   isClicked(event) {
     console.log('isClicked', event.target.checked);

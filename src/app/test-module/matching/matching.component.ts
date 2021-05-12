@@ -1,5 +1,8 @@
 import { UtilService } from '../../../providers/util.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { SharedServiceService } from '../../shared-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-matching',
@@ -9,15 +12,18 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 export class MatchingComponent implements OnInit {
   isLoadingBool: boolean = false;
   fillData: any = {
-    question: '',
-    rich_text_responses_for_learner: '',
-    character_limit: '',
-    characterInput: '',
-    partialPoints: '',
-    points: '',
-    attachment: '',
-    "test_assignment_question_type": "short_answer",
-    "insert_limit": "1000"
+    test_assignment_nid: "184",
+    test_assignment_question_type: "matching",
+    question: "",
+    attachment: "",
+    jumble_questions_placement: "",
+    points: "",
+    checkstatus: "",
+    match_answer_text: [],
+    match_question_text: [],
+    jumble_points: '',
+    partial_points: '',
+
   }
 
   imageSrc;
@@ -32,10 +38,27 @@ export class MatchingComponent implements OnInit {
 
   fileList: File[] = [];
   listOfFiles: any[] = [];
-  constructor(public util: UtilService) { }
 
+  myForm: FormGroup;
+  arr: FormArray;
+  constructor(public util: UtilService, private router: Router, private fb: FormBuilder, public service: SharedServiceService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.myForm = this.fb.group({
+      arr: this.fb.array([this.createItem()])
+    })
+  }
+
+  createItem() {
+    return this.fb.group({
+      question: [''],
+      answer: ['']
+    })
+  }
+
+  addItem() {
+    this.arr = this.myForm.get('arr') as FormArray;
+    this.arr.push(this.createItem());
   }
 
   picked(event: any) {
@@ -83,8 +106,44 @@ export class MatchingComponent implements OnInit {
   }
 
   saveQuestion() {
+    var userA = [];
+    var userB = [];
+    this.myForm.value.arr.forEach(element => {
+      userA.push(element.question);
+      userB.push(element.answer);
+    });
     this.fillData.attachment = this.fileList
-    console.log('afterfillData', this.fillData);
+    this.fillData.match_question_text = userA
+    this.fillData.match_answer_text = userB
+
+    let params = {
+      test_assignment_nid: "184",
+      test_assignment_question_type: "matching",
+      question: this.fillData.question,
+      attachment: this.fillData.attachment,
+      jumble_questions_placement: (this.fillData.jumble_questions_placement == true) ? "1" : "0",
+      points: this.fillData.points,
+      partial_points: (this.fillData.partial_points == true) ? "1" : "0",
+      checkstatus: 1,
+      match_answer_text: this.fillData.match_answer_text,
+      match_question_text: this.fillData.match_question_text,
+      jumble_points: this.fillData.jumble_points
+    }
+    console.log('params', params);
+
+    this.isLoadingBool = true;
+    this.service.post('add-question-api', this.fillData, 1).subscribe(result => {
+      console.log('result', result);
+      this.util.showSuccessAlert('Answer Saved Successfully');
+      this.isLoadingBool = false;
+      this.router.navigate(['/test/question-screen']);
+    })
   }
 
+  deleteUser(skillIndex) {
+    console.log('skillIndex', skillIndex)
+    if (skillIndex > 0) {
+      this.arr.removeAt(skillIndex);
+    }
+  }
 }
