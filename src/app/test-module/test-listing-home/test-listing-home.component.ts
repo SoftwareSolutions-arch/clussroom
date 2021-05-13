@@ -18,7 +18,6 @@ export class TestListingHomeComponent implements OnInit {
   page = 1;
   count = 0;
   pageSize = 10;
-
   SettingsData: any = {
     test_name: '',
     instruction: '',
@@ -32,13 +31,14 @@ export class TestListingHomeComponent implements OnInit {
     // attempts_score: '',
     pagination: '',
     view_ans_after_compliation: '',
-    class_nid: ''
+    class_nid: '',
+    checkboxClicked: ''
   }
 
   constructor(public service: SharedServiceService, public util: UtilService, private router: Router) {
     // this.classId = this.router.getCurrentNavigation().extras.state;
     this.classId = localStorage.getItem('classListId');
-    
+
 
     this.getTestListing();
   }
@@ -115,7 +115,20 @@ export class TestListingHomeComponent implements OnInit {
     this.router.navigate(["/test/test-settings"]);
   }
 
-  isCheckBoxClicked(testListing) {
+
+  // get events of check box for edit or add button show and hide 
+  isCheckBoxClicked(event, testListing, i) {
+    console.log('testListing',event, testListing);
+
+    if (event.target.checked == true) {
     
+    }
+    if (event.target.checked == false) {
+     
+    }
+  }
+
+  goToTest(){   
+     this.router.navigate(['/test/question-screen'],{state:{data:'1'}})
   }
 }

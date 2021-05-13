@@ -1,0 +1,46 @@
+<div class="sequence-nav-wrapper dashed-border">
+    <div class="sequence-duration-wrapper">
+      <div class="sequence-class-code">
+        <img src="assets/images/dashboard/orange-book.png"> <span>Class Code</span>
+        <p>{{this.headerData.class_code}}</p>
+      </div>
+      <div class="sequence-duration-code">
+        <img src="assets/images/dashboard/date-calender.png">
+        <div class="sequence-start-date"> <span>{{this.headerData.start_date}}</span>
+          <p>Start Date</p>
+        </div>
+        <div class="sequence-end-date"> <span>{{this.headerData.end_date}}</span>
+          <p>End Date</p>
+        </div>
+      </div>
+    </div>
+    <div class="sequence-element-wrapper">
+      <a class="sequence-class-curve yellow-wrapper">
+        <div class="sequence-class-caption">
+          <h6>{{this.headerData.class_material}}</h6>
+          <span>Class Material</span>
+        </div>
+        <figure>
+          <img src="assets/images/dashboard/briefcase.png">
+        </figure>
+      </a>
+      <a class="sequence-assignments-curve blue-wrapper">
+        <div class="sequence-assignments-caption">
+          <h6>{{this.headerData.assignments}}</h6>
+          <span>Assignments</span>
+        </div>
+        <figure>
+          <img src="assets/images/dashboard/assignment.png">
+        </figure>
+      </a>
+      <a click="goTotest()" class="sequence-tests-curve green-wrapper">
+        <div class="sequence-tests-caption">
+          <h6>{{this.headerData.tests}}</h6>
+          <span>Tests</span>
+        </div>
+        <figure>
+          <img src="assets/images/dashboard/test.png">
+        </figure>
+      </a>
+    </div>
+  </div>

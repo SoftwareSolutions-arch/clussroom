@@ -80,6 +80,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   interactionPlugin,
   timeGrigPlugin
 ]);
+import {AppDashboardHeaderComponent} from './test-module/app-dashboard-header/app-dashboard-header.component'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -131,7 +133,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     MidtermPreviewComponent,
     MidtermPreviewSecondComponent,
     EditPointsScreenComponent,
-    TestCompomentComponent
+    TestCompomentComponent,
+    AppDashboardHeaderComponent
   ],
   imports: [CommonModule,
     BrowserModule, ToastrModule.forRoot({

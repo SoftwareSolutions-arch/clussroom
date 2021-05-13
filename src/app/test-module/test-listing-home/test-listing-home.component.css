@@ -1148,17 +1148,17 @@ table.dashboard-table td i.fa-check {
 	top: 50%;
 	transform: translate(5px, -50%);
 }
-table.dashboard-table th .radio-table {
+table.dashboard-table th .radio-table-latest {
 	text-align: center;
 }
-table.dashboard-table th .radio-table input[type="checkbox"] {
+table.dashboard-table th .radio-table-latest input[type="radio"] {
 	width: 20px;
 	height: 20px;
 	position: relative;
 	visibility: hidden;
 	cursor: pointer;
 }
-table.dashboard-table th .radio-table input[type="checkbox"]:before {
+table.dashboard-table th .radio-table-latest input[type="radio"]:before {
 	content: "\f1db";
 	font: normal normal normal 14px/1 FontAwesome;
 	background-color: #F3F6FF;
@@ -1172,7 +1172,7 @@ table.dashboard-table th .radio-table input[type="checkbox"]:before {
 	z-index: 1;
 	position: absolute;
 }
-table.dashboard-table th .radio-table input[type="checkbox"]:after {
+table.dashboard-table th .radio-table-latest input[type="radio"]:after {
 	content: "";
 	font: normal normal normal 14px/1 FontAwesome;
 	background-color: #396AFF;
@@ -1185,7 +1185,7 @@ table.dashboard-table th .radio-table input[type="checkbox"]:after {
 	height: 20px;
 	position: absolute;
 }
-table.dashboard-table th .radio-table input[type="checkbox"]:checked:after {
+table.dashboard-table th .radio-table-latest input[type="radio"]:checked:after {
 	content: "\f111";
 	z-index: 1;
 }

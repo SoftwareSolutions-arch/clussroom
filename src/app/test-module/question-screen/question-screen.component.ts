@@ -11,14 +11,18 @@ import { UtilService } from 'src/providers/util.service';
 export class QuestionScreenComponent implements OnInit {
   @ViewChild('cancelClassModal') private cancelClassModal: ElementRef;
   isLoadingBool: boolean = true;
-  questionData: any = [];
-  multiChoiceQuestion: any = [];
-  fillBlanksQuestion: any = [];
-  trueFalseQuestion: any = [];
-  orderingQuestion: any = [];
-  matchingQuestion: any = [];
+  allData: any = [];
+
+  testId: any = '';
+  classId: any = '';
+  headerData: any = '';
   constructor(public service: SharedServiceService, public util: UtilService, private router: Router) {
     this.getAllQuestion();
+    // this.testId = this.router.getCurrentNavigation().extras.state;
+    this.classId = localStorage.getItem('classListId');
+    console.log('testId', this.classId);
+    this.getDashboardHeaderData();
+
   }
 
   ngOnInit() {
@@ -72,36 +76,20 @@ export class QuestionScreenComponent implements OnInit {
       "test_id": "348"
     }
     this.service.post('questions-list-api', params, 1).subscribe(result => {
-      console.log('result',result); 
+      this.allData = result.question_data;
       this.isLoadingBool = false;
-      
-      this.questionData = result.question_data
+    })
+  }
 
-      this.questionData.forEach(element => {
-        if (element.questiontypename == "Multiple Choice Answer") {
-          this.multiChoiceQuestion.push(element)
-        }
 
-        if (element.questiontypename == "Fill in the blanks") {
-          this.fillBlanksQuestion.push(element)
-        }
-        if (element.questiontypename == "True False ") {
-          this.trueFalseQuestion.push(element)
-        }
-
-        if (element.questiontypename == "Ordering Type") {
-          this.orderingQuestion.push(element)
-        }
-
-        if (element.questiontypename == "Matching ") {
-          this.matchingQuestion.push(element)
-        }
-      });
-      // 
-      // 
-      // 
-      
-
+  getDashboardHeaderData() {
+    let params = {
+      "class_id": this.classId
+    }
+    this.service.post('class-material-dashboard-api', params, 1).subscribe(result => {
+      console.log('class-material-dashboard-api', result);
+      this.headerData = result
+      this.isLoadingBool = false;
     })
   }
 }
