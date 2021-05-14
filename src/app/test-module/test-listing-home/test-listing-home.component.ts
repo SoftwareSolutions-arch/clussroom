@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { SharedServiceService } from '../../shared-service.service';
 import { UtilService } from '../../../providers/util.service';
@@ -9,6 +9,8 @@ import { UtilService } from '../../../providers/util.service';
   styleUrls: ['./test-listing-home.component.css']
 })
 export class TestListingHomeComponent implements OnInit {
+  @ViewChild('deleteclosebutton') deleteclosebutton;
+
   isTestSelected: boolean = false
   classId: any = '';
   testAllData: any = '';
@@ -118,17 +120,18 @@ export class TestListingHomeComponent implements OnInit {
 
   // get events of check box for edit or add button show and hide 
   isCheckBoxClicked(event, testListing, i) {
-    console.log('testListing',event, testListing);
+    console.log('testListing', event, testListing);
 
     if (event.target.checked == true) {
-    
+
     }
     if (event.target.checked == false) {
-     
+
     }
   }
 
-  goToTest(){   
-     this.router.navigate(['/test/question-screen'],{state:{data:'1'}})
+  goToTest() {
+    this.deleteclosebutton.nativeElement.click();
+    this.router.navigate(['/test/question-screen'], { state: { data: '1' } })
   }
 }

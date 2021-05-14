@@ -52,7 +52,7 @@
               <!-- select and option list-->
               <div *ngSwitchCase="'multiple_choice_type_paper'">
                 <div class="custom-control custom-checkbox mb-3 question-label">
-                  <label class="question-checkbox col-md-8 mt-3">Q 1.&nbsp;&nbsp;The Statement of Profit and Loss is also
+                  <label class="question-checkbox col-md-8 mt-3">Q {{i+1}}.&nbsp;&nbsp;The Statement of Profit and Loss is also
                     called
                     the<span>(Multiple Choice)</span>
                     <input type="checkbox">
@@ -91,7 +91,7 @@
               <!-- choose the correct images-->
               <div *ngSwitchCase="'images'">
                 <div class="custom-control custom-checkbox mb-3 question-label" style="padding-top: 2em;">
-                  <label class="question-checkbox col-md-8">Q 2.&nbsp;&nbsp;Choose the correct image for preposition
+                  <label class="question-checkbox col-md-8">Q {{i+1}}.&nbsp;&nbsp;Choose the correct image for preposition
                     near. <span>(Multiple Choice)</span>
                     <input type="checkbox"> <span class="mark"></span>
                   </label>
@@ -155,7 +155,7 @@
 
               <div *ngSwitchCase="'true_false_type_paper'">
                 <div class="custom-control custom-checkbox mb-3 question-label" style="padding-top: 1em;">
-                  <label class="question-checkbox col-md-8">Q 3.&nbsp;&nbsp;{{data.question}}
+                  <label class="question-checkbox col-md-8">Q {{i+1}}.&nbsp;&nbsp;{{data.question}}
                     <span>({{data.questiontypename}})</span>
                     <input type="checkbox">
                     <span class="mark"></span>
@@ -190,7 +190,7 @@
               <div *ngSwitchCase="'fill_in_the_blanks_type_paper'">
                 <div class="custom-control custom-checkbox mb-3 question-label col-lg-12"
                   style="padding-top: 1em; padding-bottom: 1em;">
-                  <label class="question-checkbox col-md-8">Q 4.&nbsp;&nbsp;{{data.question}}
+                  <label class="question-checkbox col-md-8">Q {{i+1}}.&nbsp;&nbsp;{{data.question}}
                     <span>({{data.questiontypename}})</span>
                     <input type="checkbox">
                     <span class="mark"></span>
@@ -218,7 +218,7 @@
 
               <div *ngSwitchCase="'short_answer'">
                 <div class="custom-control custom-checkbox mb-3 question-label" style="padding-top: 1em;">
-                  <label class="question-checkbox col-md-8">Q 5.&nbsp;&nbsp;Describe the nature of nuclear fission
+                  <label class="question-checkbox col-md-8">Q {{i+1}}.&nbsp;&nbsp;Describe the nature of nuclear fission
                     within an atom.<span>(Short Answer)</span>
                     <input type="checkbox"> <span class="mark"></span>
                   </label>
@@ -252,7 +252,7 @@
 
               <div *ngSwitchCase="'ordering_type_paper'">
                 <div class="custom-control custom-checkbox mb-3 question-label col-lg-12" style="padding-top: 2em;">
-                  <label class="question-checkbox col-md-8">Q 6.&nbsp;&nbsp;{{data.question}} <span>(Ordering)</span>
+                  <label class="question-checkbox col-md-8">Q {{i+1}}.&nbsp;&nbsp;{{data.question}} <span>(Ordering)</span>
                     <input type="checkbox"> <span class="mark"></span>
                   </label>
                   <div class="col-md-3"></div>
@@ -321,7 +321,7 @@
               <div *ngSwitchCase="'matching_type_paper'">
                 <div class="custom-control custom-checkbox mb-3 question-label col-lg-12" style="padding-top: 2em;">
                   <label class="question-checkbox col-lg-8">Q
-                    7.&nbsp;&nbsp;{{data.question}}<span>({{data.questiontypename}})</span>
+                    {{i+1}}.&nbsp;&nbsp;{{data.question}}<span>({{data.questiontypename}})</span>
                     <input type="checkbox"> <span class="mark"></span>
                   </label>
                   <div class="col-md-3"></div>

@@ -9,31 +9,31 @@ import { UtilService } from '../../../providers/util.service';
   styleUrls: ['./fill-in-the-blanks.component.css']
 })
 export class FillInTheBlanksComponent implements OnInit {
+  @ViewChild('attachments') attachment: any;
 
+  leagueForm: FormGroup;
   isLoadingBool: boolean = false;
   totalWords: any;
   isCheckBoxChecked: any = '';
-  fillData: any = {
-    question: ''
-  }
-  usersForm: FormGroup;
   errorMessage: string;
-  mainFormArray: Array<any> = [];
-
-  imageSrc;
-
   ExteriorPicFile: any = [];
-
   ExteriorPicString: any = [];
-  baseString: string = 'data:image/png;base64,';
   fileLists: any = [];
-
-  @ViewChild('attachments') attachment: any;
-
   fileList: File[] = [];
   listOfFiles: any[] = [];
-
-  leagueForm: FormGroup;
+  baseString: string = 'data:image/png;base64,';
+  registerForm:FormGroup
+  fillData: any = {
+    test_assignment_nid: "184",
+    test_assignment_question_type: "fill_in_the_blanks",
+    attachment:"",
+    question: "",
+    words_hint: "",
+    points: "",
+    words_hint_text: [],
+    partial_points: "",
+    fill_inthe_blanks_options: "",
+  }
 
   constructor(private fb: FormBuilder, public util: UtilService) { }
 
@@ -160,7 +160,8 @@ export class FillInTheBlanksComponent implements OnInit {
   }
 
   saveQuestion() {
-    console.log('this.mainFormArray', this.mainFormArray);
-    console.log('this.usersForm', this.usersForm.value);
+    this.fillData.attachment = this.fileList;
+    this.fillData.fill_inthe_blanks_options=this.leagueForm.value.answerList;
+    console.log('this.fillData', this.fillData);
   }
 }
