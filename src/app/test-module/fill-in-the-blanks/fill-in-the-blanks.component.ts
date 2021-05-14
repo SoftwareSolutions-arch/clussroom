@@ -32,17 +32,61 @@ export class FillInTheBlanksComponent implements OnInit {
 
   fileList: File[] = [];
   listOfFiles: any[] = [];
-  constructor(private formBuilder: FormBuilder, public util: UtilService) { }
+
+  leagueForm: FormGroup;
+
+  constructor(private fb: FormBuilder, public util: UtilService) { }
 
   ngOnInit() {
-    this.usersForm = this.formBuilder.group({
-      users: this.formBuilder.array([
-        this.formBuilder.group({
-          address: '',
-        })
-      ])
+    this.leagueForm = this.fb.group({
+      answerList: this.fb.array([this.answerList])
     });
-    console.log('mainFormArray',this.mainFormArray)
+  }
+
+  get answerList(): FormGroup {
+    return this.fb.group({
+      question: this.fb.array([this.question])
+    });
+  }
+
+  get question(): FormGroup {
+    return this.fb.group({
+      answer: "",
+    });
+  }
+
+  addTeams(i: number) {
+    for (let j = 0; j < i; j++) {
+      (this.leagueForm.get("answerList") as FormArray).push(this.answerList);
+    }
+  }
+
+  deleteTeam(index) {
+    (this.leagueForm.get("answerList") as FormArray).removeAt(index);
+  }
+
+  addPlayer(team) {
+    var data = team.controls.question.controls;
+    if (data.length < 3) {
+      team.get("question").push(this.question);
+    }
+
+    else {
+      this.util.errorAlertPopup("can't add more than three items");
+    }
+
+  }
+
+  deletePlayer(team, index) {
+    console.log(index, team)
+    if (index < 1) {
+      this.util.errorAlertPopup("can't delete last item");
+      return
+    }
+
+    else {
+      team.get("question").removeAt(index);
+    }
   }
 
   countWords(str) {
@@ -51,70 +95,18 @@ export class FillInTheBlanksComponent implements OnInit {
   }
 
   countTotalWords() {
+    this.leagueForm = this.fb.group({
+      answerList: this.fb.array([])
+    });
     var data = this.fillData.question
     this.totalWords = this.countWords(data)
-    this.counter(this.totalWords)
+    this.addTeams(this.totalWords)
   }
 
-  counters(i: number) {
+  counter(i: number) {
     return new Array(i);
   }
 
-
-  initUserRow(): FormGroup {
-    return this.formBuilder.group({
-      address: new FormControl(""),
-    });
-  }
-
-
-  counter(i: number) {
-    this.mainFormArray = []
-    for (let j = 0; j < i; j++) {
-      this.mainFormArray.push({ myFormsList: this.getNewUserFrom() });
-    }
-  }
-
-  getNewUserFrom() {
-    return this.formBuilder.group({
-      users: this.formBuilder.array([
-        this.formBuilder.group({
-          address: new FormControl(""),
-        })
-      ])
-    });
-  }
-
-  addUserRow(parent): void {
-    const usersArray = this.mainFormArray[parent];
-    let arrayTOPush = usersArray.myFormsList.controls['users'];
-    var data = arrayTOPush.controls.length;
-    console.log('data', this.mainFormArray);
-    if (data < 3) {
-      arrayTOPush.push(this.initUserRow());
-    }
-    else {
-      this.util.errorAlertPopup("can't add more than three items");
-    }
-
-  }
-
-  removeUserRow(parent: number, rowIndex: number): void {
-    console.log(parent, rowIndex)
-    let userForm = this.mainFormArray[parent].myFormsList;
-    const usersArray = <FormArray>userForm.controls['users'];
-    console.log(userForm, usersArray)
-    console.log('usersArray.length', usersArray.length)
-    if (usersArray.length > 1) {
-      usersArray.removeAt(rowIndex);
-    } else {
-      this.errorMessage =
-        'You cannot delete this row!  form should contain at least one row!';
-      setTimeout(() => {
-        this.errorMessage = null;
-      }, 4000);
-    }
-  }
 
   cancel() { }
 
@@ -161,8 +153,6 @@ export class FillInTheBlanksComponent implements OnInit {
     this.ExteriorPicString.push(base64result);
     console.log('this.ExteriorPicString', this.ExteriorPicString);
   }
-
-
 
   isClicked(event) {
     console.log('isClicked', event.target.checked);

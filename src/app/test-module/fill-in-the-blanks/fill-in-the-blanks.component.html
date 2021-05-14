@@ -20,7 +20,6 @@
           </li>
           <li><a data-toggle="tab" href="#assignment-grading">Result/Assessment</a>
           </li>
-          <!--				    <li><a data-toggle="tab" href="#overall-grading">Overall Grading Status</a></li>-->
         </ul>
       </div>
       <div class="tab-content">
@@ -29,7 +28,6 @@
           <h2>Multiple Choice Question</h2>
         </div>
         <div class="multiple-text">
-          <!-- <textarea name="shortanswer"></textarea> -->
           <angular-editor (focusout)="countTotalWords()" [(ngModel)]="fillData.question" name="shortanswer" cols="80"
             label="notes" rows="4" wrap="virtual" style="margin: 0;"></angular-editor>
           <p>Type the questions above, and adding an underscore <span>("_")</span> which is a blank. Blanks numbering is
@@ -56,33 +54,35 @@
             class="upload custom-input-file" (change)="picked($event)" />
         </div>
 
-        <form *ngIf="mainFormArray" [formGroup]="usersForm" (ngSubmit)="createUsers()">
+        <form [formGroup]="leagueForm">
           <div class="col-lg-12 box-shadow final-order border-bottom" style="padding-bottom: 1em;">
             <h2 class="mb-4" style="padding: 0 2.7em">Blanks</h2>
-            <div *ngFor='let eachForm of mainFormArray ;let i = index' class="col-lg-12 custom-answer mb-5"
-              style="padding: 0 26px; display: flex; overflow: auto;">
-              <label style="margin: 7px 8px 7px -4px;">{{i+1}}.</label>
-              <div formArrayName="users" style="display: flex;" class="col-md-4">
-                <ng-container *ngFor="let item of eachForm.myFormsList.controls.users.controls; let j =index"
-                  formGroupName="{{j}}">
-                  <div class="col-lg-12 mb-4" style="display: flex; padding: 0;">
-                    <div class="col-lg-12 custom-answer" style="padding: 0 35px;">
-                      <input formControlName="address" type="text" placeholder="Enter answer">
-                      <button style="margin: 0 7px" (click)="addUserRow(i)" type="button" class="blue-plus"><i
-                          class="fa fa-plus" aria-hidden="true"></i>
-                      </button>
-                      <button style="margin: 0 7px" (click)="removeUserRow(i,j)" type="button" class="orange-cross"><i
-                          class="fa fa-times" aria-hidden="true"></i>
-                      </button>
-                      <p style="padding: .5em 1em;">Answer {{j+1}}</p>
+            <ng-container formArrayName="answerList">
+              <div *ngFor="let team of leagueForm.get('answerList')?.controls;let teamIndex = index"
+                [formGroupName]="teamIndex" class="col-lg-12 custom-answer mb-5"
+                style="padding: 0 26px; display: flex; overflow: auto;">
+                <label style="margin: 7px 8px 7px -4px;">{{teamIndex+1}}.</label>
+                <div formArrayName="question" style="display: flex;" class="col-md-4">
+                  <ng-container *ngFor="let player of team.get('question').controls;let playerIndex = index"
+                    [formGroupName]="playerIndex">
+                    <div class="col-lg-12 mb-4" style="display: flex; padding: 0;">
+                      <div class="col-lg-12 custom-answer" style="padding: 0 35px;">
+                        <input formControlName="answer" type="text" placeholder="Enter answer">
+                        <button style="margin: 0 7px" (click)="addPlayer(team)" type="button" class="blue-plus"><i
+                            class="fa fa-plus" aria-hidden="true"></i>
+                        </button>
+                        <button *ngIf="playerIndex>0" style="margin: 0 7px" (click)="deletePlayer(team,playerIndex)" type="button"
+                          class="orange-cross"><i class="fa fa-times" aria-hidden="true"></i>
+                        </button>
+                        <p style="padding: .5em 1em;">Answer {{playerIndex+1}}</p>
+                      </div>
                     </div>
-                  </div>
-                </ng-container>
+                  </ng-container>
+                </div>
               </div>
-            </div>
+            </ng-container>
           </div>
         </form>
-        
         <div class="custom-control custom-checkbox mb-3 mt-3 multi-checkbox" style="display: block;">
           <div class="char-box border-bottom box-shadow question-label col-lg-12 mt-5" style="display: block;">
             <div class="col-lg-12" style="display: flex; align-items: center; padding: 0 0 10px 8px;">
@@ -99,8 +99,8 @@
             <div class="container col-lg-12">
               <div class="col-md-6 fillups">
                 <ul>
-                  <li *ngFor='let eachForm of mainFormArray;let i = index;' class="custom-answer mb-4"
-                    style="display: block;">{{i+1}}.&nbsp;&nbsp;
+                  <li *ngFor="let team of leagueForm.get('answerList')?.controls;let i = index"
+                    class="custom-answer mb-4" style="display: block;">{{i+1}}.&nbsp;&nbsp;
                     <input type="text" placeholder="Enter answer">
                     <p style="padding: 2px 26px !important;">Hint for Blank {{i+1}}</p>
                   </li>
