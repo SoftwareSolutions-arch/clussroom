@@ -13,7 +13,7 @@ export class AppDashboardHeaderComponent implements OnInit {
   classId: any = '';
   constructor(public service: SharedServiceService, public util: UtilService, private router: Router) {
     this.classId = localStorage.getItem('classListId');
-    console.log('testId', this.classId);
+    
     this.getDashboardHeaderData();
 
   }
@@ -26,7 +26,7 @@ export class AppDashboardHeaderComponent implements OnInit {
       "class_id": this.classId
     }
     this.service.post('class-material-dashboard-api', params, 1).subscribe(result => {
-      console.log('class-material-dashboard-api', result);
+      
       this.headerData = result
       this.isLoadingBool = false;
     })

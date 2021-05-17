@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray } from "@angular/forms";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-test-compoment',
@@ -8,12 +9,15 @@ import { FormGroup, FormBuilder, FormArray } from "@angular/forms";
 })
 export class TestCompomentComponent implements OnInit {
   leagueForm: FormGroup;
-
-  constructor(private fb: FormBuilder) { }
+  hasPreviousNavigation
+  constructor(private fb: FormBuilder,public router:Router) {
+    this.hasPreviousNavigation = Boolean(this.router.getCurrentNavigation().previousNavigation);
+      
+   }
 
 
   logToConsole(object: any) {
-    console.log(object);
+    
   }
 
   ngOnInit() {

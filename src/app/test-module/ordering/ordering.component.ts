@@ -60,12 +60,12 @@ export class OrderingComponent implements OnInit {
   }
 
   removeImage(index) {
-    console.log('fileList', this.fileList, this.listOfFiles)
+    
     // Delete the item from fileNames list
     this.listOfFiles.splice(index, 1);
     // delete file from FileList
     this.fileList.splice(index, 1);
-    console.log('fileList2', this.fileList, this.listOfFiles)
+    
     this.ExteriorPicString.splice(index, 1);
 
   }
@@ -132,7 +132,7 @@ export class OrderingComponent implements OnInit {
 
     this.isLoadingBool = true;
     this.service.post('add-question-api', params, 1).subscribe(result => {
-      console.log('result', result);
+      
       this.util.showSuccessAlert(result.message);
       this.isLoadingBool = false;
       this.router.navigate(['/test/question-screen']);

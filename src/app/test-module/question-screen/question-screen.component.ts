@@ -20,7 +20,7 @@ export class QuestionScreenComponent implements OnInit {
     this.getAllQuestion();
     // this.testId = this.router.getCurrentNavigation().extras.state;
     this.classId = localStorage.getItem('classListId');
-    console.log('testId', this.classId);
+    
     this.getDashboardHeaderData();
 
   }
@@ -87,7 +87,7 @@ export class QuestionScreenComponent implements OnInit {
       "class_id": this.classId
     }
     this.service.post('class-material-dashboard-api', params, 1).subscribe(result => {
-      console.log('class-material-dashboard-api', result);
+      
       this.headerData = result
       this.isLoadingBool = false;
     })

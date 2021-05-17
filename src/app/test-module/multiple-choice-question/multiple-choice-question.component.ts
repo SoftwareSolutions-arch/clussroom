@@ -53,12 +53,12 @@ export class MultipleChoiceQuestionComponent implements OnInit {
   }
 
   removeImage(index) {
-    console.log('fileList', this.fileList, this.listOfFiles)
+    
     // Delete the item from fileNames list
     this.listOfFiles.splice(index, 1);
     // delete file from FileList
     this.fileList.splice(index, 1);
-    console.log('fileList2', this.fileList, this.listOfFiles)
+    
     this.ExteriorPicString.splice(index, 1);
 
   }
@@ -79,7 +79,7 @@ export class MultipleChoiceQuestionComponent implements OnInit {
     let reader = e.target;
     var base64result = reader.result.substr(reader.result.indexOf(',') + 1);
     this.ExteriorPicString.push(base64result);
-    console.log('this.ExteriorPicString', this.ExteriorPicString);
+    
   }
 
 
@@ -120,12 +120,12 @@ export class MultipleChoiceQuestionComponent implements OnInit {
     this.fillData.partial_points = ((this.fillData.partial_points == true) ? "1" : "0")
     this.fillData.jumble_questions_placement = ((this.fillData.jumble_questions_placement == true) ? "1" : "0")
 
-    console.log('this.fillData', this.fillData);
+    
 
    
     this.isLoadingBool = true;
     this.service.post('add-question-api', this.fillData, 1).subscribe(result => {
-      console.log('result', result);
+      
       this.util.showSuccessAlert(result.message);
       this.isLoadingBool = false;
       this.router.navigate(['/test/question-screen']);

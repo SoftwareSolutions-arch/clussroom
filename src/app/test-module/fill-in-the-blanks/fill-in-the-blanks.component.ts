@@ -78,7 +78,7 @@ export class FillInTheBlanksComponent implements OnInit {
   }
 
   deletePlayer(team, index) {
-    console.log(index, team)
+    
     if (index < 1) {
       this.util.errorAlertPopup("can't delete last item");
       return
@@ -125,12 +125,12 @@ export class FillInTheBlanksComponent implements OnInit {
   }
 
   removeImage(index) {
-    console.log('fileList', this.fileList, this.listOfFiles)
+    
     // Delete the item from fileNames list
     this.listOfFiles.splice(index, 1);
     // delete file from FileList
     this.fileList.splice(index, 1);
-    console.log('fileList2', this.fileList, this.listOfFiles)
+    
     this.ExteriorPicString.splice(index, 1);
 
   }
@@ -151,17 +151,17 @@ export class FillInTheBlanksComponent implements OnInit {
     let reader = e.target;
     var base64result = reader.result.substr(reader.result.indexOf(',') + 1);
     this.ExteriorPicString.push(base64result);
-    console.log('this.ExteriorPicString', this.ExteriorPicString);
+    
   }
 
   isClicked(event) {
-    console.log('isClicked', event.target.checked);
+    
     this.isCheckBoxChecked = event.target.checked
   }
 
   saveQuestion() {
     this.fillData.attachment = this.fileList;
     this.fillData.fill_inthe_blanks_options=this.leagueForm.value.answerList;
-    console.log('this.fillData', this.fillData);
+    
   }
 }

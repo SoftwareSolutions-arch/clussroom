@@ -9,6 +9,7 @@ export class SharedServiceService {
   baseurl = "https://classroom.auxesisdevelopment.com/api/";
   // tempUrl = "https://api.countrystatecity.in/v1/"
   tempUrl = "https://www.universal-tutorial.com/api/"
+  private _yourComponentNameLoadedAlready: boolean;
 
   constructor(public http: HttpClient) { }
 
@@ -60,13 +61,34 @@ export class SharedServiceService {
     }
   }
 
-  getData(endPoint): Observable<any> {
+  getData(endPoint,token): Observable<any> {
     let httpOptions;
     httpOptions = {
       headers: new HttpHeaders({
-        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJ1bWFuZ2Nob3ByYTc1QGdtYWlsLmNvbSIsImFwaV90b2tlbiI6Inc3LU1QLTJDdmxrbUVwVEhRSWE5NFNjRG5rZ2haYklLalRhNzhjVFZhaGxYQXZLZ2x3TjB3VUtVNm9fdDZLVGM1X3cifSwiZXhwIjoxNjE3ODYyODgwfQ.Ms3kdaKTlN2R5Ot-VUlRhEfTarHlvfAZ4svvjl5CLTY'
+        'Authorization': 'Bearer '+token
       }),
     };
     return this.http.get(this.tempUrl + endPoint, httpOptions);
+  }
+
+  getAuthToken(endPoint): Observable<any> {
+    let httpOptions;
+    httpOptions = {
+      headers: new HttpHeaders({
+        'api-token': '9JGxGPezIYmnpGWJdScyI7Yembf01mN3J1Oh1NslbvkjtX4Vj6Q0eaBNRPfeoCypI-Q',
+        'user-email': 'umangchopra833@gmail.com',
+      }),
+    };
+    return this.http.get(this.tempUrl + endPoint, httpOptions);
+  }
+
+
+
+  public set YourComponentNameLoadedAlready(v: boolean) {
+    this._yourComponentNameLoadedAlready = v;
+  }
+
+  public get YourComponentNameLoadedAlready(): boolean {
+    return this._yourComponentNameLoadedAlready;
   }
 }

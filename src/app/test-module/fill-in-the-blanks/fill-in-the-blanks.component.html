@@ -81,6 +81,7 @@
                           <button *ngIf="playerIndex>0" style="margin: 0 7px" (click)="deletePlayer(team,playerIndex)"
                             type="button" class="orange-cross"><i class="fa fa-times" aria-hidden="true"></i>
                           </button>
+                          <span *ngIf="player.get('answer').touched || player.get('answer').dirty" class="text-danger">* Required!</span>
                           <p style="padding: .5em 1em;">Answer {{playerIndex+1}}</p>
                         </div>
                       </div>
@@ -107,7 +108,7 @@
               <div class="container col-lg-12">
                 <div class="col-md-6 fillups">
                   <ul>
-                    <li *ngFor="let team of leagueForm.get('answerList')?.controls;let i = index"
+                    <li style="border: 1px solid red;" *ngFor="let team of leagueForm.get('answerList')?.controls;let i = index"
                       class="custom-answer mb-4" style="display: block;">{{i+1}}.&nbsp;&nbsp;
                       <input [(ngModel)]="fillData.words_hint_text[i]" [ngModelOptions]="{standalone: true}"
                         [disabled]="fillData.words_hint!=true" type="text" placeholder="Enter answer" name="hint"

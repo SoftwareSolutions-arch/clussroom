@@ -55,12 +55,12 @@ export class ShortAnswerComponent implements OnInit {
   }
 
   removeImage(index) {
-    console.log('fileList', this.fileList, this.listOfFiles)
+    
     // Delete the item from fileNames list
     this.listOfFiles.splice(index, 1);
     // delete file from FileList
     this.fileList.splice(index, 1);
-    console.log('fileList2', this.fileList, this.listOfFiles)
+    
     this.ExteriorPicString.splice(index, 1);
 
   }
@@ -81,7 +81,7 @@ export class ShortAnswerComponent implements OnInit {
     let reader = e.target;
     var base64result = reader.result.substr(reader.result.indexOf(',') + 1);
     this.ExteriorPicString.push(base64result);
-    console.log('this.ExteriorPicString', this.ExteriorPicString);
+    
   }
 
   // save question
@@ -100,10 +100,10 @@ export class ShortAnswerComponent implements OnInit {
       "partial_point": (this.fillData.partial_point == true) ? "1" : "0",
 
     }
-    console.log('parmas', params);
+    
     this.isLoadingBool = true;
     this.service.post('add-question-api', params, 1).subscribe(result => {
-      console.log('result', result);
+      
       this.isLoadingBool = false;
       this.util.showSuccessAlert('Answer Saved Successfully');
       this.router.navigate(['/test/question-screen']);

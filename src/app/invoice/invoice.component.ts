@@ -27,6 +27,7 @@ export class InvoiceComponent implements OnInit {
   passwordNotMatch: any = '';
   title: any = '';
   myValue: boolean = false;
+  authToken: any = '';
   constructor(public formBuilder: FormBuilder, public util: UtilService,
     public router: Router, public http: HttpClient, public service: SharedServiceService
   ) {
@@ -35,8 +36,7 @@ export class InvoiceComponent implements OnInit {
     this.getAllInvoiceList();
     this.paymentForm.disable();
     this.title = localStorage.getItem('title');
-    this.getCountry();
-
+    this.getNewToken();
   }
 
   ngOnInit(): void {
@@ -288,39 +288,17 @@ export class InvoiceComponent implements OnInit {
     this.router.navigate(['/subscription'])
   }
 
-  // get invoice list
-  // getAllCountry() {
-  //   this.allStateList = '';
-  //   this.allCityList = null;
-  //   this.service.getData('countries').subscribe(result => {
-  //     
-  //     this.allCountryList = result
-  //   })
-  // }
-
-  // getallState() {
-  //   this.isImageShow = true;
-  //   this.allCityList = null;
-  //   this.service.getData('countries/' + this.invoiceForm.value.country.iso2 + '/states').subscribe(result => {
-  //     this.isImageShow = false;
-  //     this.allStateList = result;
-  //   })
-  // }
-
-  // getallCity() {
-  //   this.isImageShow = true;
-  //   this.service.getData('countries/' + this.invoiceForm.value.country.iso2 + '/states/' + this.invoiceForm.value.state.iso2 + '/cities').subscribe(result => {
-  //     this.allCityList = result;
-  //     this.isImageShow = false;
-  //   })
-  // }
-
-  // get country 
+  getNewToken() {
+    this.service.getAuthToken('getaccesstoken/').subscribe(result => {
+      this.authToken = result.auth_token;
+      this.getCountry();
+    })
+  }
 
   getCountry() {
     this.allStateList = '';
     this.allCityList = null;
-    this.service.getData('countries/').subscribe(result => {
+    this.service.getData('countries/', this.authToken).subscribe(result => {
       this.allCountryList = result
     })
   }
@@ -328,7 +306,7 @@ export class InvoiceComponent implements OnInit {
   getState() {
     this.isImageShow = true;
     this.allCityList = null;
-    this.service.getData('states/' + this.invoiceForm.value.country.country_name).subscribe(result => {
+    this.service.getData('states/' + this.invoiceForm.value.country.country_name, this.authToken).subscribe(result => {
       this.isImageShow = false;
       this.allStateList = result;
     })
@@ -336,7 +314,7 @@ export class InvoiceComponent implements OnInit {
 
   getCity() {
     this.isImageShow = true;
-    this.service.getData('cities/' + this.invoiceForm.value.state.state_name).subscribe(result => {
+    this.service.getData('cities/' + this.invoiceForm.value.state.state_name, this.authToken).subscribe(result => {
       this.allCityList = result;
       this.isImageShow = false;
     })

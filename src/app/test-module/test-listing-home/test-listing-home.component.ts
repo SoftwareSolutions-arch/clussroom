@@ -14,7 +14,7 @@ export class TestListingHomeComponent implements OnInit {
   isTestSelected: boolean = false
   classId: any = '';
   testAllData: any = '';
-  isLoadingBool: boolean = true;
+  isLoadingBool: boolean;
 
   currentIndex = -1;
   page = 1;
@@ -41,11 +41,20 @@ export class TestListingHomeComponent implements OnInit {
     // this.classId = this.router.getCurrentNavigation().extras.state;
     this.classId = localStorage.getItem('classListId');
 
-
     this.getTestListing();
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    if (this.service.YourComponentNameLoadedAlready) {
+      //This component has already been executed
+      
+
+    } else {
+      //This is the first time that this component executes
+      this.service.YourComponentNameLoadedAlready = true;
+      
+
+    }
   }
 
   myFunction() {
@@ -120,7 +129,7 @@ export class TestListingHomeComponent implements OnInit {
 
   // get events of check box for edit or add button show and hide 
   isCheckBoxClicked(event, testListing, i) {
-    console.log('testListing', event, testListing);
+    
 
     if (event.target.checked == true) {
 
