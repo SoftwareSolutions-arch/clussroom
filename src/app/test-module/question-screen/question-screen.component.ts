@@ -17,7 +17,9 @@ export class QuestionScreenComponent implements OnInit {
   classId: any = '';
   headerData: any = '';
   selectedTestDetails: any = "";
-
+  deleteTestData: any = '';
+  questionId: any = '';
+  questionSequence: any = '';
   constructor(public service: SharedServiceService, public util: UtilService, private router: Router) {
     this.testId = localStorage.getItem('test_id');
     console.log('++++++++++++', this.testId);
@@ -81,6 +83,7 @@ export class QuestionScreenComponent implements OnInit {
     this.service.post('questions-list-api', params, 1).subscribe(result => {
       console.log('result', result);
       this.allData = result.question_data;
+      this.questionSequence = result.question_sequence
       this.isLoadingBool = false;
     })
   }
@@ -123,7 +126,92 @@ export class QuestionScreenComponent implements OnInit {
       console.log('resut', result);
       this.isLoadingBool = false;
       this.allData = result.question_data;
+      this.questionSequence = result.question_sequence
       this.isLoadingBool = false;
     })
+  }
+
+  // Delete test
+
+  deleteStep1Test() {
+    // this.isLoadingBool = true;
+    let params = {
+      "step": 1,
+      "test_id": [localStorage.getItem('classListId')]
+    }
+    this.service.post('delete-test-api', params, 1).subscribe(result => {
+      // this.isLoadingBool = false;
+      console.log('result', result);
+      this.deleteTestData = result.test_data
+    })
+  }
+
+  deleteStep2Test() {
+    console.log('hello')
+    let params = {
+      "step": 2,
+      "test_id": [localStorage.getItem('classListId')]
+    }
+    this.isLoadingBool = true;
+    this.service.post('delete-test-api', params, 1).subscribe(result => {
+      this.isLoadingBool = false;
+      console.log('result', result);
+      this.router.navigate(['/classes'])
+    })
+  }
+
+  // get events of check box for edit or add button show and hide 
+  isCheckClicked(data) {
+    console.log('data', data.question_id);
+    this.questionId = data.question_id
+    // if (event.target.checked == true) {
+
+    // }
+    // if (event.target.checked == false) {
+
+    // }
+  }
+
+  deleteQuestion() {
+    console.log('this.allData', this.questionSequence)
+    let params = {
+      "question_id": this.questionId,
+      "question_sequence": this.questionSequence
+    }
+    console.log('parmas', params)
+    this.isLoadingBool = true;
+    this.service.post('delete-question-api', params, 1).subscribe(result => {
+      this.isLoadingBool = false;
+      console.log('result', result);
+      this.router.navigate(['/classes'])
+    })
+  }
+
+  editQuestion(data) {
+    let dataType = data;
+    console.log('dataType', dataType);
+    switch (dataType) {
+      case 'multiple_choice_type_paper':
+        this.router.navigate(['/test/multiple-choice']);
+        break;
+      case 'ordering_type_paper':
+        this.router.navigate(['/test/ordering']);
+        break;
+      case 'matching_type_paper':
+        this.router.navigate(['/test/matching']);
+        break;
+      case 'true_false_type_paper':
+        this.router.navigate(['/test/true-false']);
+        break;
+      case 'short_ques_ans_type_paper':
+        this.router.navigate(['/test/short-answer']);
+        break;
+      case 'fill_in_the_blanks_type_paper':
+        this.router.navigate(['/test/fill-blanks']);
+        break;
+      default:
+        console.log("No such day exists!");
+        break;
+    }
   }
 }

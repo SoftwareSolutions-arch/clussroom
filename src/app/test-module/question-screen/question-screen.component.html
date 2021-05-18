@@ -31,8 +31,8 @@
       </div>
       <div class="user-action-wrapper mt-3 mb-3">
         <div class="question-action-list">
-          <div class="delete-button"> <a class="delete-btn custom-button" data-toggle="modal"
-              data-target="#deletetest">Delete Test</a>
+          <div (click)="deleteStep1Test()" class="delete-button"> <a class="delete-btn custom-button"
+              data-toggle="modal" data-target="#deletetest">Delete Test</a>
           </div>
           <div class="button-wrapper"> <a (click)="goToReOrder()" class="edit-points-btn custom-button">Re-Order</a>
             <a (click)="goToEditPoints()" class="edit-points-btn custom-button">Edit
@@ -50,31 +50,28 @@
               <!-- select and option list-->
               <div *ngSwitchCase="'multiple_choice_type_paper'">
                 <div class="custom-control custom-checkbox mb-3 question-label col-lg-12">
-                  <label class="question-checkbox col-md-8 mt-3">Q {{i+1}}.&nbsp;&nbsp;The Statement of Profit and Loss
-                    is also
-                    called
-                    the<span>(Multiple Choice)</span>
-                    <input type="checkbox">
+                  <label class="question-checkbox col-lg-11 mt-3">Q {{i+1}}.&nbsp;&nbsp;{{data.question}}<span>(Multiple
+                      Choice)</span>
+                    <input type="checkbox" (click)="isCheckClicked(data)">
                     <span class="mark"></span>
                   </label>
-                  <div class="col-md-3"></div>
                   <div class="ellipdown col-sm-1 dropdown-1 text-right"
                     style="display: flex !important; align-items: center !important;">
-                    <label style="padding: 0;">{{data.points}}Points</label>
+                    <label style="padding: 0;">{{data.points}} Points</label>
                     <button class="dropbtn-1" onclick="myFunction()"
                       style="background-color: transparent; border: none; width: 22px; height: 22px;">
                       <i class="fa fa-ellipsis-v"></i>
                     </button>
                     <div class="dropdown-content-1" id="myDropdown">
-                      <a>Edit</a>
-                      <a>Remove</a>
+                      <a (click)="editQuestion('multiple_choice_type_paper')">Edit</a>
+                      <a (click)="deleteQuestion()">Remove</a>
                     </div>
                   </div>
                 </div>
                 <div class="test-option border-bottom col-lg-12">
                   <ul class="col-md-5">
                     <li *ngFor="let optionList of data.multiple_choices[0] | slice:0:2;"><input type="radio"
-                        id="option1" name="option" value="option1" checked>
+                        id="option1" name="option" value="option1">
                       <label for="option1">{{optionList.option_text}}</label>
                     </li>
                   </ul>
@@ -90,22 +87,21 @@
               <!-- choose the correct images-->
               <div *ngSwitchCase="'images'">
                 <div class="custom-control custom-checkbox mb-3 question-label col-lg-12" style="padding-top: 2em;">
-                  <label class="question-checkbox col-md-8">Q {{i-1}}.&nbsp;&nbsp;Choose the correct image for
+                  <label class="question-checkbox col-lg-11">Q {{i}}.&nbsp;&nbsp;Choose the correct image for
                     preposition
                     near. <span>(Multiple Choice)</span>
                     <input type="checkbox"> <span class="mark"></span>
                   </label>
-                  <div class="col-md-3"></div>
                   <div class="ellipdown col-sm-1 dropdown-1 text-right"
                     style="display: flex !important; align-items: center !important;">
-                    <label style="padding: 0;">{{data.points}}Points</label>
+                    <label style="padding: 0;">{{data.points}} Points</label>
                     <button class="dropbtn-1" onclick="myFunction()"
                       style="background-color: transparent; border: none; width: 22px; height: 22px;">
                       <i class="fa fa-ellipsis-v"></i>
                     </button>
                     <div class="dropdown-content-1" id="myDropdown">
-                      <a>Edit</a>
-                      <a>Remove</a>
+                      <a (click)="editQuestion('images')">Edit</a>
+                      <a (click)="deleteQuestion()">Remove</a>
                     </div>
                   </div>
                 </div>
@@ -116,7 +112,7 @@
                     </button>
                     <p>Description 1</p>
                     <label class="choice-checkbox" style="padding-left: 55px;">
-                      <input type="checkbox"> <span class="mark2"></span>
+                      <input type="checkbox" (click)="isCheckClicked(data)"> <span class="mark2"></span>
                       <h6>Choice 1</h6>
                     </label>
                   </div>
@@ -126,7 +122,7 @@
                     </button>
                     <p>Description 2</p>
                     <label class="choice-checkbox" style="padding-left: 55px;">
-                      <input type="checkbox"> <span class="mark2"></span>
+                      <input type="checkbox" (click)="isCheckClicked(data)"> <span class="mark2"></span>
                       <h6>Choice 2</h6>
                     </label>
                   </div>
@@ -136,7 +132,7 @@
                     </button>
                     <p>Description 3</p>
                     <label class="choice-checkbox" style="padding-left: 55px;">
-                      <input type="checkbox"> <span class="mark2"></span>
+                      <input type="checkbox" (click)="isCheckClicked(data)"> <span class="mark2"></span>
                       <h6>Choice 3</h6>
                     </label>
                   </div>
@@ -146,7 +142,7 @@
                     </button>
                     <p>Description 4</p>
                     <label class="choice-checkbox" style="padding-left: 55px;">
-                      <input type="checkbox"> <span class="mark2"></span>
+                      <input type="checkbox" (click)="isCheckClicked(data)"> <span class="mark2"></span>
                       <h6>Choice 4</h6>
                     </label>
                   </div>
@@ -155,22 +151,21 @@
 
               <div *ngSwitchCase="'true_false_type_paper'">
                 <div class="custom-control custom-checkbox mb-3 question-label col-lg-12" style="padding-top: 1em;">
-                  <label class="question-checkbox col-md-8">Q {{i+1}}.&nbsp;&nbsp;{{data.question}}
+                  <label class="question-checkbox col-lg-11">Q {{i+1}}.&nbsp;&nbsp;{{data.question}}
                     <span>({{data.questiontypename}})</span>
-                    <input type="checkbox">
+                    <input type="checkbox" (click)="isCheckClicked(data)">
                     <span class="mark"></span>
                   </label>
-                  <div class="col-md-3"></div>
                   <div class="ellipdown col-sm-1 dropdown-1 text-right"
                     style="display: flex !important; align-items: center !important;">
-                    <label style="padding: 0;">{{data.points}}Points</label>
+                    <label style="padding: 0;">{{data.points}} Points</label>
                     <button class="dropbtn-1" onclick="myFunction()"
                       style="background-color: transparent; border: none; width: 22px; height: 22px;">
                       <i class="fa fa-ellipsis-v"></i>
                     </button>
                     <div class="dropdown-content-1" id="myDropdown">
-                      <a>Edit</a>
-                      <a>Remove</a>
+                      <a (click)="editQuestion('true_false_type_paper')">Edit</a>
+                      <a (click)="deleteQuestion()">Remove</a>
                     </div>
                   </div>
                 </div>
@@ -190,22 +185,21 @@
               <div *ngSwitchCase="'fill_in_the_blanks_type_paper'">
                 <div class="custom-control custom-checkbox mb-3 question-label col-lg-12"
                   style="padding-top: 1em; padding-bottom: 1em;">
-                  <label class="question-checkbox col-md-8">Q {{i+1}}.&nbsp;&nbsp;{{data.question}}
+                  <label class="question-checkbox col-lg-11">Q {{i+1}}.&nbsp;&nbsp;{{data.question}}
                     <span>({{data.questiontypename}})</span>
-                    <input type="checkbox">
+                    <input type="checkbox" (click)="isCheckClicked(data)">
                     <span class="mark"></span>
                   </label>
-                  <div class="col-md-3"></div>
                   <div class="ellipdown col-sm-1 dropdown-1 text-right"
                     style="display: flex !important; align-items: center !important;">
-                    <label style="padding: 0;">{{data.points}}Points</label>
+                    <label style="padding: 0;">{{data.points}} Points</label>
                     <button class="dropbtn-1" onclick="myFunction()"
                       style="background-color: transparent; border: none; width: 22px; height: 22px;">
                       <i class="fa fa-ellipsis-v"></i>
                     </button>
                     <div class="dropdown-content-1" id="myDropdown">
-                      <a>Edit</a>
-                      <a>Remove</a>
+                      <a (click)="editQuestion('fill_in_the_blanks_type_paper')">Edit</a>
+                      <a (click)="deleteQuestion()">Remove</a>
                     </div>
                   </div>
                 </div>
@@ -217,23 +211,22 @@
               </div>
 
 
-              <ng-container  *ngSwitchCase="'short_ques_ans_type_paper'" >
+              <ng-container *ngSwitchCase="'short_ques_ans_type_paper'">
                 <div class="custom-control custom-checkbox mb-3 col-lg-12 question-label" style="padding-top: 1em;">
-                  <label class="question-checkbox col-md-8">Q {{i+1}}.&nbsp;&nbsp;Describe the nature of nuclear fission
-                    within an atom.<span>(Short Answer)</span>
-                    <input type="checkbox"> <span class="mark"></span>
+                  <label class="question-checkbox col-lg-11">Q {{i+1}}.&nbsp;&nbsp;{{data.question}}<span>(Short
+                      Answer)</span>
+                    <input type="checkbox" (click)="isCheckClicked(data)"> <span class="mark"></span>
                   </label>
-                  <div class="col-md-3"></div>
                   <div class="ellipdown col-sm-1 dropdown-1 text-right"
                     style="display: flex !important; align-items: center !important;">
-                    <label style="padding: 0;">{{data.points}}Points</label>
+                    <label style="padding: 0;">{{data.points}} Points</label>
                     <button class="dropbtn-1" onclick="myFunction()"
                       style="background-color: transparent; border: none; width: 22px; height: 22px;">
                       <i class="fa fa-ellipsis-v"></i>
                     </button>
                     <div class="dropdown-content-1" id="myDropdown">
-                      <a>Edit</a>
-                      <a>Remove</a>
+                      <a (click)="editQuestion('short_ques_ans_type_paper')">Edit</a>
+                      <a (click)="deleteQuestion()">Remove</a>
                     </div>
                   </div>
                 </div>
@@ -250,25 +243,24 @@
                   <div class="col-md-4"></div>
                 </div>
               </ng-container>
-              
+
 
               <div *ngSwitchCase="'ordering_type_paper'">
                 <div class="custom-control custom-checkbox mb-3 question-label col-lg-12" style="padding-top: 2em;">
-                  <label class="question-checkbox col-md-8">Q {{i+1}}.&nbsp;&nbsp;{{data.question}}
+                  <label class="question-checkbox col-lg-11">Q {{i+1}}.&nbsp;&nbsp;{{data.question}}
                     <span>(Ordering)</span>
-                    <input type="checkbox"> <span class="mark"></span>
+                    <input type="checkbox" (click)="isCheckClicked(data)"> <span class="mark"></span>
                   </label>
-                  <div class="col-md-3"></div>
                   <div class="ellipdown col-sm-1 dropdown-1 text-right"
                     style="display: flex !important; align-items: center !important;">
-                    <label style="padding: 0;">{{data.points}}Points</label>
+                    <label style="padding: 0;">{{data.points}} Points</label>
                     <button class="dropbtn-1" onclick="myFunction()"
                       style="background-color: transparent; border: none; width: 22px; height: 22px;">
                       <i class="fa fa-ellipsis-v"></i>
                     </button>
                     <div class="dropdown-content-1" id="myDropdown">
-                      <a>Edit</a>
-                      <a>Remove</a>
+                      <a (click)="editQuestion('ordering_type_paper')">Edit</a>
+                      <a (click)="deleteQuestion()">Remove</a>
                     </div>
                   </div>
                 </div>
@@ -294,13 +286,14 @@
                   <div class="col-sm-3 text-center"></div>
                 </div>
                 <div class="match-option" style="font-size: 15px; font-weight: 400; border-bottom: 1px solid #F1F6FB;">
-                  <div class="col-lg-12 mt-3" style="display: flex; margin-bottom:1em;">
-                    <div class="col-md-6" style="padding-left: 5.5em;">1.&nbsp;&nbsp;Explosion</div>
+                  <div *ngFor="let item of data.odering_option" class="col-lg-12 mt-3"
+                    style="display: flex; margin-bottom:1em;">
+                    <div class="col-md-6" style="padding-left: 5.5em;">1.&nbsp;&nbsp;{{item.odering_option_text}}</div>
                     <div class="col-md-3 text-center">
                       <button type="button">2</button>
                     </div>
                   </div>
-                  <div class="col-lg-12" style="display: flex; margin-bottom:1em;">
+                  <!-- <div class="col-lg-12" style="display: flex; margin-bottom:1em;">
                     <div class="col-md-6" style="padding-left: 5.5em;">2.&nbsp;&nbsp;Fusion</div>
                     <div class="col-md-3 text-center">
                       <button type="button">1</button>
@@ -317,27 +310,26 @@
                     <div class="col-md-3 text-center">
                       <button type="button">2</button>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
               </div>
 
               <div *ngSwitchCase="'matching_type_paper'">
                 <div class="custom-control custom-checkbox mb-3 question-label col-lg-12" style="padding-top: 2em;">
-                  <label class="question-checkbox col-lg-8">Q
+                  <label class="question-checkbox col-lg-11">Q
                     {{i+1}}.&nbsp;&nbsp;{{data.question}}<span>({{data.questiontypename}})</span>
-                    <input type="checkbox"> <span class="mark"></span>
+                    <input type="checkbox" (click)="isCheckClicked(data)"> <span class="mark"></span>
                   </label>
-                  <div class="col-md-3"></div>
                   <div class="ellipdown col-sm-1 dropdown-1 text-right"
                     style="display: flex !important; align-items: center !important;">
-                    <label style="padding: 0;">{{data.points}}Points</label>
+                    <label style="padding: 0;">{{data.points}} Points</label>
                     <button class="dropbtn-1" onclick="myFunction()"
                       style="background-color: transparent; border: none; width: 22px; height: 22px;">
                       <i class="fa fa-ellipsis-v"></i>
                     </button>
                     <div class="dropdown-content-1" id="myDropdown">
-                      <a>Edit</a>
-                      <a>Remove</a>
+                      <a (click)="editQuestion('matching_type_paper')">Edit</a>
+                      <a (click)="deleteQuestion()">Remove</a>
                     </div>
                   </div>
                 </div>
@@ -364,11 +356,12 @@
                 </div>
                 <div class="match-option"
                   style="display: block !important; padding-bottom: 1em; font-size: 15px; font-weight: 400;">
-                  <div class="col-lg-12" style="display: flex; margin-bottom:1em;">
-                    <div class="col-md-6" style="padding-left: 5.5em;">1.&nbsp;&nbsp;Explosion</div>
-                    <div class="col-md-3">A.&nbsp;&nbsp;Rejoining</div>
+                  <div *ngFor="let item of data.matching_question_answers;let j=index" class="col-lg-12"
+                    style="display: flex; margin-bottom:1em;">
+                    <div class="col-md-6" style="padding-left: 5.5em;">{{j+1}}.&nbsp;&nbsp;{{item.question}}</div>
+                    <div class="col-md-3">{{j+1}}.&nbsp;&nbsp;{{item.answer}}</div>
                   </div>
-                  <div class="col-lg-12" style="display: flex; margin-bottom:1em;">
+                  <!-- <div class="col-lg-12" style="display: flex; margin-bottom:1em;">
                     <div class="col-md-6" style="padding-left: 5.5em;">2.&nbsp;&nbsp;Fusion</div>
                     <div class="col-md-3">B.&nbsp;&nbsp;Glueing</div>
                   </div>
@@ -379,7 +372,7 @@
                   <div class="col-lg-12" style="display: flex; margin-bottom:1em;">
                     <div class="col-md-6" style="padding-left: 5.5em;">4.&nbsp;&nbsp;Reaction</div>
                     <div class="col-md-3">D.&nbsp;&nbsp;Welding</div>
-                  </div>
+                  </div> -->
                 </div>
               </div>
 
@@ -423,7 +416,7 @@
             </button>
           </div>
         </div>
-        <div class="class-deltest-btn">
+        <div (click)="deleteStep2Test()" class="class-deltest-btn">
           <button type="button" class="delete-test">Delete Test</button>
         </div>
       </div>

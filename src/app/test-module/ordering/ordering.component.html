@@ -1,83 +1,93 @@
 <div class="dashboard">
-	<app-sidebar></app-sidebar>
-	<div class="control-panel">
-		<app-dashboardheader></app-dashboardheader>
-		<app-app-dashboard-header></app-app-dashboard-header>
+  <app-sidebar></app-sidebar>
+  <div class="control-panel">
+    <app-dashboardheader></app-dashboardheader>
+    <app-app-dashboard-header></app-app-dashboard-header>
 
-		<div *ngIf="isLoadingBool" class="loading-indicator">
-			<mat-spinner></mat-spinner>
-		</div>
-		<div class="row test-button">
-			<button type="button"><a>Add Test</a>
-			</button>
-		</div>
-		<div class="prospectus-section sequence-list">
-			<div class="prospectus-tabs">
-				<ul class="nav nav-tabs">
-					<li><a data-toggle="tab" href="#test" class="active">Test</a>
-					</li>
-					<li><a data-toggle="tab" href="#settings">Settings</a>
-					</li>
-					<li><a data-toggle="tab" href="#assignment-grading">Result/Assessment</a>
-					</li>
-				</ul>
-			</div>
-			<div class="tab-content">
-				<!-- Schedule start -->
-				<div class="heading" style="padding: 0 10px;">
-					<h2>Multiple Choice Question</h2>
-				</div>
-				<div class="multiple-text">
-					<angular-editor [(ngModel)]="fillData.question" name="shortanswer" cols="80" label="notes" rows="4" wrap="virtual" style="margin: 0;"></angular-editor>
-					<div class="col-md-4"></div>
-				</div>
-				<div class="test-option sample custom-control custom-checkbox mt-4 box-shadow">
-					<div class="col-sm-3 text-center" *ngFor="let item of ExteriorPicString;let i = index;">
-						<button type="button"> <span (click)="removeImage(i)"><a><i class="fa fa-times-circle" aria-hidden="true"></i></a></span>
-							<img style="height: 100%;width: 100%;" src={{baseString+item}}>
-						</button>
-						<input type="text" placeholder="Description" class="mt-3">
-					</div>
-				</div>
-				<div class="attach mt-3 mb-5">
-					<a>
-						<img src="assets/images/test/Mask.png">
-					</a>
-					<h2>Attachments ({{ExteriorPicString.length}}/4)</h2>
-					<label style="margin-left:1em !important;margin: 0px;" for="imageUpload" class="btn-add-1"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add</label>
-					<input id="imageUpload" #attachments style="display: none" multiple type="file" accept="image/png, image/jpeg" class="upload custom-input-file" (change)="picked($event)" />
-				</div>
-				<div class="col-lg-12 box-shadow border-bottom final-order">
-					<h6 class="mb-4" style="padding: 0 4.5em">Correct order</h6>
-					<ng-container [formGroup]="myForm">
-						<ng-container formArrayName="arr" *ngFor="let a of myForm.get('arr')?.controls; let i = index">
-							<ng-container [formGroupName]="i">
-								<div class="col-lg-8 mb-3" style="display: flex; align-items: center;">
-									<label class="col-sm-2 text-center" style="margin: 0; padding:0;"> <i class="fa fa-random" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;{{i+1}}.</label>
-									<div class="col-md-8 custom-order" style="padding:0;">
-										<input formControlName="question" type="text">
-										<button (click)="deleteUser(i)" type="button" class="orange-cross"><i class="fa fa-times" aria-hidden="true"></i>
-										</button>
-									</div>
-								</div>
-							</ng-container>
-						</ng-container>
-					</ng-container>
-					<!-- 
+    <div *ngIf="isLoadingBool" class="loading-indicator">
+      <mat-spinner></mat-spinner>
+    </div>
+    <div class="row test-button">
+      <button type="button"><a>Add Test</a>
+      </button>
+    </div>
+    <div class="prospectus-section sequence-list">
+      <div class="prospectus-tabs">
+        <ul class="nav nav-tabs">
+          <li><a data-toggle="tab" href="#test" class="active">Test</a>
+          </li>
+          <li><a data-toggle="tab" href="#settings">Settings</a>
+          </li>
+          <li><a data-toggle="tab" href="#assignment-grading">Result/Assessment</a>
+          </li>
+        </ul>
+      </div>
+      <div class="tab-content">
+        <!-- Schedule start -->
+        <div class="heading" style="padding: 0 10px;">
+          <h2>Multiple Choice Question</h2>
+        </div>
+        <div class="multiple-text">
+          <angular-editor [(ngModel)]="fillData.question" name="shortanswer" cols="80" label="notes" rows="4"
+            wrap="virtual" style="margin: 0;"></angular-editor>
+          <div class="col-md-4"></div>
+        </div>
+        <div class="test-option sample custom-control custom-checkbox mt-4 box-shadow">
+          <div class="col-sm-3 text-center" *ngFor="let item of ExteriorPicString;let i = index;">
+            <button type="button"> <span (click)="removeImage(i)"><a><i class="fa fa-times-circle"
+                    aria-hidden="true"></i></a></span>
+              <img style="height: 100%;width: 100%;" src={{baseString+item}}>
+            </button>
+            <input type="text" placeholder="Description" class="mt-3">
+          </div>
+        </div>
+        <div class="attach mt-3 mb-5">
+          <a>
+            <img src="assets/images/test/Mask.png">
+          </a>
+          <h2>Attachments ({{ExteriorPicString.length}}/4)</h2>
+          <label style="margin-left:1em !important;margin: 0px;" for="imageUpload" class="btn-add-1"><i
+              class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add</label>
+          <input id="imageUpload" #attachments style="display: none" multiple type="file" accept="image/png, image/jpeg"
+            class="upload custom-input-file" (change)="picked($event)" />
+        </div>
+        <div class="col-lg-12 box-shadow border-bottom final-order">
+          <h6 class="mb-4" style="padding: 0 4.5em">Correct order</h6>
+          <ng-container [formGroup]="myForm">
+            <ng-container formArrayName="arr" *ngFor="let a of myForm.get('arr')?.controls; let i = index">
+              <ng-container [formGroupName]="i">
+                <div class="col-lg-8 mb-3" style="display: flex; align-items: center;">
+                  <label class="col-sm-2 text-center" style="margin: 0; padding:0;"> <i class="fa fa-random"
+                      aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;{{i+1}}.</label>
+                  <div class="col-md-8 custom-order" style="padding:0;">
+                    <input formControlName="question" type="text">
+                    <button (click)="deleteUser(i)" type="button" class="orange-cross"><i class="fa fa-times"
+                        aria-hidden="true"></i>
+                    </button>
+                  </div>
+                </div>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+          <!-- 
           <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
             <div class="example-box" *ngFor="let movie of movies" cdkDrag>{{movie.name}}</div>
           </div> -->
-					<div class="col-lg-12" style="display: flex;">
-						<div class="attach col-sm-2 text-right mb-3" style="display: block; padding: 0 !important; padding-right: 10px !important;">
-							<button (click)="addItem()" type="button" style="margin: 0 !important;"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add</button>
-						</div>
-						<div class="col-md-6 question-label mb-3">
-							<p style="padding: 0 19px;"><span style="color: #81c8c1;">Note:</span>&nbsp;&nbsp;Numbers indicate the correct sequence. Jumble the sequence by dragging the arrow, or select to randomise the order in the checkbox below.</p>
-						</div>
-					</div>
-				</div>
-				<div class="custom-control custom-checkbox mb-3 multi-checkbox col-lg-12" style="display: block;">
-					<!--
+          <div class="col-lg-12" style="display: flex;">
+            <div class="attach col-sm-2 text-right mb-3"
+              style="display: block; padding: 0 !important; padding-right: 10px !important;">
+              <button (click)="addItem()" type="button" style="margin: 0 !important;"><i class="fa fa-plus"
+                  aria-hidden="true"></i>&nbsp;Add</button>
+            </div>
+            <div class="col-md-6 question-label mb-3">
+              <p style="padding: 0 19px;"><span style="color: #81c8c1;">Note:</span>&nbsp;&nbsp;Numbers indicate the
+                correct sequence. Jumble the sequence by dragging the arrow, or select to randomise the order in the
+                checkbox below.</p>
+            </div>
+          </div>
+        </div>
+        <div class="custom-control custom-checkbox mb-3 multi-checkbox col-lg-12" style="display: block;">
+          <!--
                <div class="char-box border-bottom">
                <label class="col-md-4 mb-3 mt-3">Rich-text responses for learners?
                <input type="checkbox">
@@ -85,48 +95,54 @@
                </label>
                </div>
                -->
-					<div class="char-box border-bottom box-shadow question-label">
-						<label class="col-md-3">Jumble question sequence?
-							<input type="checkbox" [(ngModel)]="fillData.jumble_questions_placement"> <span class="mark" style="border-radius: 50% !important; height: 20px; width:20px;"></span>
-						</label>
-						<div class="col-md-4 mb-3 mt-3">
-							<!--                           <input type="text">-->&nbsp;</div>
-					</div>
-					<div class="char-box border-bottom question-label">
-						<label class="col-sm-2 mb-3 mt-3">Partial Points
-							<input [(ngModel)]="fillData.partial_points" type="checkbox"> <span class="mark" style="border-radius: 50% !important; height: 20px; width:20px;"></span>
-						</label>
-						<select name="course" id="course-name" class="col-sm-2" [(ngModel)]="fillData.minimum_sequence">
-							<option value="Course 1" selected>Sequence</option>
-							<option value="Course 1">1</option>
-							<option value="Course 2">2</option>
-							<option value="Course 3">3</option>
-						</select>
-						<p class="col-md-6 mb-3 mt-3 ml-5"><span style="color: #81c8c1;">Note:</span>Learners are able to get a fraction of the points by getting any of part of a sequence right. A continual sequence is made up of 2 items. If there are a total of 5 items,
-							<br>total number of sequences is 4.</p>
-					</div>
-					<div class="char-box border-bottom box-shadow question-label">
-						<label class="col-md-3 mb-3 mt-3">Partial Points</label>
-						<!--
-               <div class="col-md-4 mb-3 mt-3">
-                  <input type="text">
-               </div>
---></div>
-				</div>
-				<div class="container" style="padding: 18px 0 0 0; display: flex;">
-					<!--
+          <div class="char-box border-bottom box-shadow question-label">
+            <label class="col-md-3">Jumble question sequence?
+              <input type="checkbox" [(ngModel)]="fillData.jumble_questions_placement"> <span class="mark"
+                style="border-radius: 50% !important; height: 20px; width:20px;"></span>
+            </label>
+            <div class="col-md-4 mb-3 mt-3">
+              <!--                           <input type="text">-->&nbsp;</div>
+          </div>
+          <div class="char-box border-bottom question-label">
+            <label class="col-sm-2 mb-3 mt-3">Partial Points
+              <input [(ngModel)]="fillData.partial_points" type="checkbox"> <span class="mark"
+                style="border-radius: 50% !important; height: 20px; width:20px;"></span>
+            </label>
+            <select name="course" id="course-name" class="col-sm-2" [(ngModel)]="fillData.minimum_sequence">
+              <option value="Course 1" selected>Sequence</option>
+              <option value="Course 1">1</option>
+              <option value="Course 2">2</option>
+              <option value="Course 3">3</option>
+            </select>
+            <p class="col-md-6 mb-3 mt-3 ml-5"><span style="color: #81c8c1;">Note:</span>Learners are able to get a
+              fraction of the points by getting any of part of a sequence right. A continual sequence is made up of 2
+              items. If there are a total of 5 items,
+              <br>total number of sequences is 4.</p>
+          </div>
+          <div class="char-box border-bottom box-shadow question-label">
+            <label class="col-md-3 mb-3 mt-3">Partial Points</label>
+
+            <div class="col-md-4 mb-3 mt-3">
+              <input [(ngModel)]="fillData.points" type="text">
+            </div>
+
+          </div>
+        </div>
+        <div class="container" style="padding: 18px 0 0 0; display: flex;">
+          <!--
                <button type="button" class="blue">Confirm</button>
                <button type="button" class="blue-border">Cancel</button>
                <button type="button" class="lime"><a>Edit</a></button>
                <button type="button" class="Org"><a>Confirm Edit</a></button>
                --> <a (click)="saveQuestion()" class="addbutton custom-button">Save Question</a>
-					<a class="edit-points-btn custom-button">Cancel</a>
-				</div>
-				<!--
+          <a class="edit-points-btn custom-button">Cancel</a>
+        </div>
+        <!--
          <div class="container multi-choice-orange" style="padding: 6px 0 0 0;">
             <button type="button">Confirm Edit</button>
          </div>
---></div>
-		</div>
-	</div>
+-->
+      </div>
+    </div>
+  </div>
 </div>
