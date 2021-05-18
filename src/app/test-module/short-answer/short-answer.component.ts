@@ -20,7 +20,7 @@ export class ShortAnswerComponent implements OnInit {
     attachment: '',
     test_assignment_question_type: "short_answer",
     insert_limit: "1000",
-    test_assignment_nid: "184",
+    test_assignment_nid: "",
   }
 
   imageSrc;
@@ -35,7 +35,10 @@ export class ShortAnswerComponent implements OnInit {
 
   fileList: File[] = [];
   listOfFiles: any[] = [];
-  constructor(public util: UtilService, public service: SharedServiceService, private router: Router) { }
+  testId:any='';
+  constructor(public util: UtilService, public service: SharedServiceService, private router: Router) { 
+    this.testId = localStorage.getItem('test_id');
+  }
 
   ngOnInit(): void {
   }
@@ -89,7 +92,7 @@ export class ShortAnswerComponent implements OnInit {
     this.fillData.attachment = this.fileList
 
     let params = {
-      "test_assignment_nid": "184",
+      "test_assignment_nid": this.testId,
       "test_assignment_question_type": "short_answer",
       "question": this.fillData.question,
       "attachment": this.fillData.attachment,

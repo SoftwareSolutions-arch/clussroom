@@ -24,7 +24,7 @@ export class MultipleChoiceQuestionComponent implements OnInit {
   fileList: File[] = [];
   listOfFiles: any[] = [];
   fillData: any = {
-    test_assignment_nid: "184",
+    test_assignment_nid: "",
     test_assignment_question_type: "mcq",
     question: "",
     attachment: [],
@@ -36,7 +36,10 @@ export class MultipleChoiceQuestionComponent implements OnInit {
   }
   myForm: FormGroup;
   arr: FormArray;
-  constructor(public util: UtilService, private router: Router, private fb: FormBuilder, public service: SharedServiceService) { }
+  testId:any='';
+  constructor(public util: UtilService, private router: Router, private fb: FormBuilder, public service: SharedServiceService) { 
+    this.testId = localStorage.getItem('test_id');
+  }
 
   picked(event: any) {
     this.fileLists = FileList = event.target.files;
@@ -119,9 +122,7 @@ export class MultipleChoiceQuestionComponent implements OnInit {
     this.fillData.attachment = this.fileList;
     this.fillData.partial_points = ((this.fillData.partial_points == true) ? "1" : "0")
     this.fillData.jumble_questions_placement = ((this.fillData.jumble_questions_placement == true) ? "1" : "0")
-
-    
-
+    this.fillData.test_assignment_nid=this.testId
    
     this.isLoadingBool = true;
     this.service.post('add-question-api', this.fillData, 1).subscribe(result => {

@@ -12,16 +12,19 @@ export class QuestionScreenComponent implements OnInit {
   @ViewChild('cancelClassModal') private cancelClassModal: ElementRef;
   isLoadingBool: boolean = true;
   allData: any = [];
-
+  testAllData: any = '';
   testId: any = '';
   classId: any = '';
   headerData: any = '';
+  selectedTestDetails: any = "";
+
   constructor(public service: SharedServiceService, public util: UtilService, private router: Router) {
-    this.getAllQuestion();
-    // this.testId = this.router.getCurrentNavigation().extras.state;
+    this.testId = localStorage.getItem('test_id');
+    console.log('++++++++++++', this.testId);
     this.classId = localStorage.getItem('classListId');
-    
     this.getDashboardHeaderData();
+    this.getTestListing();
+    this.getAllQuestion();
 
   }
 
@@ -73,22 +76,53 @@ export class QuestionScreenComponent implements OnInit {
   // get all courses list
   getAllQuestion() {
     let params = {
-      "test_id": "348"
+      "test_id": this.testId
     }
     this.service.post('questions-list-api', params, 1).subscribe(result => {
+      console.log('result', result);
       this.allData = result.question_data;
       this.isLoadingBool = false;
     })
   }
-
 
   getDashboardHeaderData() {
     let params = {
       "class_id": this.classId
     }
     this.service.post('class-material-dashboard-api', params, 1).subscribe(result => {
-      
+
       this.headerData = result
+      this.isLoadingBool = false;
+    })
+  }
+
+  // get test listing data
+  getTestListing() {
+    this.isLoadingBool = true;
+    let params = {
+      "class_id": this.classId
+    }
+
+    this.service.post('test-list-api', params, 1).subscribe(result => {
+      this.testAllData = result.test_data
+      this.isLoadingBool = false;
+    })
+  }
+
+  selectNewCourse() {
+    console.log('this.selectedTestDetails', this.selectedTestDetails);
+  }
+
+  onChange() {
+    localStorage.setItem('test_id', this.selectedTestDetails.test_id);
+    this.isLoadingBool = true;
+    let params = {
+      "test_id": this.selectedTestDetails.test_id
+    }
+    this.service.post('questions-list-api', params, 1).subscribe(result => {
+      console.log('resut', result);
+      this.isLoadingBool = false;
+      this.allData = result.question_data;
       this.isLoadingBool = false;
     })
   }

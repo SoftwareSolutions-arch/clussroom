@@ -23,16 +23,21 @@ export class TrueOrFalseComponent implements OnInit {
   fileList: File[] = [];
   listOfFiles: any[] = [];
   fillData: any = {
-    test_assignment_nid: "184",
+    test_assignment_nid: "",
     test_assignment_question_type: "true_false",
     question: "",
     attachment: "",
     points: "",
-    checkstatus:"1",
+    checkstatus: "1",
     true_false_answers: [],
     correct_answer: ""
   }
-  constructor(public util: UtilService, public service: SharedServiceService, private router: Router) { }
+  testId: any = '';
+
+  constructor(public util: UtilService, public service: SharedServiceService, private router: Router) {
+    this.testId = localStorage.getItem('test_id');
+
+  }
 
 
   ngOnInit(): void {
@@ -53,12 +58,12 @@ export class TrueOrFalseComponent implements OnInit {
   }
 
   removeImage(index) {
-    
+
     // Delete the item from fileNames list
     this.listOfFiles.splice(index, 1);
     // delete file from FileList
     this.fileList.splice(index, 1);
-    
+
     this.ExteriorPicString.splice(index, 1);
 
   }
@@ -79,7 +84,7 @@ export class TrueOrFalseComponent implements OnInit {
     let reader = e.target;
     var base64result = reader.result.substr(reader.result.indexOf(',') + 1);
     this.ExteriorPicString.push(base64result);
-    
+
   }
 
   // save question
@@ -87,19 +92,19 @@ export class TrueOrFalseComponent implements OnInit {
     this.fillData.attachment = this.fileList
 
     let params = {
-      "test_assignment_nid": "184",
+      "test_assignment_nid": this.testId,
       "test_assignment_question_type": "true_false",
       "question": this.fillData.question,
       "attachment": this.fillData.attachment,
       "points": this.fillData.points,
-      "checkstatus":"1",
-      "true_false_answers":["1","2","4","8"],
-      "correct_answer":this.fillData.correct_answer
+      "checkstatus": "1",
+      "true_false_answers": ["1", "2", "4", "8"],
+      "correct_answer": this.fillData.correct_answer
     }
-    
+
     this.isLoadingBool = true;
     this.service.post('add-question-api', params, 1).subscribe(result => {
-      
+
       this.isLoadingBool = false;
       this.util.showSuccessAlert('Answer Saved Successfully');
       this.router.navigate(['/test/question-screen']);

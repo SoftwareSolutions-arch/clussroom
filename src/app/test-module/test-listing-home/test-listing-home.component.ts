@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { SharedServiceService } from '../../shared-service.service';
 import { UtilService } from '../../../providers/util.service';
@@ -10,7 +10,6 @@ import { UtilService } from '../../../providers/util.service';
 })
 export class TestListingHomeComponent implements OnInit {
   @ViewChild('deleteclosebutton') deleteclosebutton;
-
   isTestSelected: boolean = false
   classId: any = '';
   testAllData: any = '';
@@ -37,24 +36,14 @@ export class TestListingHomeComponent implements OnInit {
     checkboxClicked: ''
   }
 
-  constructor(public service: SharedServiceService, public util: UtilService, private router: Router) {
-    // this.classId = this.router.getCurrentNavigation().extras.state;
-    this.classId = localStorage.getItem('classListId');
+  testId: any = '';
 
+  constructor(public service: SharedServiceService, public util: UtilService, private router: Router) {
+    this.classId = localStorage.getItem('classListId');
     this.getTestListing();
   }
 
   ngOnInit() {
-    if (this.service.YourComponentNameLoadedAlready) {
-      //This component has already been executed
-      
-
-    } else {
-      //This is the first time that this component executes
-      this.service.YourComponentNameLoadedAlready = true;
-      
-
-    }
   }
 
   myFunction() {
@@ -128,19 +117,15 @@ export class TestListingHomeComponent implements OnInit {
 
 
   // get events of check box for edit or add button show and hide 
-  isCheckBoxClicked(event, testListing, i) {
-    
-
-    if (event.target.checked == true) {
-
-    }
-    if (event.target.checked == false) {
-
-    }
+  isCheckBoxClicked(testListing, i) {
+    console.log(testListing);
+    this.testId = testListing.test_id;
   }
 
   goToTest() {
+    console.log('this.testId', this.testId);
     this.deleteclosebutton.nativeElement.click();
-    this.router.navigate(['/test/question-screen'], { state: { data: '1' } })
+    localStorage.setItem('test_id', this.testId);
+    this.router.navigate(['/test/question-screen'])
   }
 }

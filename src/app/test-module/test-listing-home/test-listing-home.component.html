@@ -84,7 +84,7 @@
                   [class.active]="i == currentIndex">
                   <th>
                     <div class="radio-table-latest"><input name="radio"
-                        (click)="isCheckBoxClicked($event,testListing,i)" type="radio"></div>
+                        (click)="isCheckBoxClicked(testListing,i)" type="radio"></div>
                   </th>
                   <td>{{testListing.s_no}}</td>
                   <td class="text-left">{{testListing.test_name}}</td>
@@ -213,7 +213,7 @@
 </div>
 <!-- Add From Library popup start -->
 <!-- Add From Library popup start -->
-<div id="library" class="modal addlibrary-modal" role="dialog" #deleteclosebutton>
+<div id="library" class="modal addlibrary-modal" role="dialog">
   <div class="modal-dialog" style="max-width: 869px;">
     <!-- Modal content-->
     <div class="modal-content">
@@ -317,7 +317,7 @@
 <!-- Add From Library popup end -->
 <i class="fa fa-file-text" aria-hidden="true"></i>
 <!-- Icons popup start -->
-<div id="iconsEdit" class="modal addlibrary-modal" role="dialog">
+<div id="iconsEdit" class="modal addlibrary-modal" role="dialog" #deleteclosebutton>
   <div class="modal-dialog" style="max-width: 122px; position: relative; top: 38em; left: 67em;">
     <!-- Modal content-->
     <div class="modal-content" style="border-radius: 12px;">

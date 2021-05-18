@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, Validators, FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { UtilService } from '../../../providers/util.service';
+import { SharedServiceService } from '../../shared-service.service';
 
 @Component({
   selector: 'app-fill-in-the-blanks',
@@ -22,11 +23,11 @@ export class FillInTheBlanksComponent implements OnInit {
   fileList: File[] = [];
   listOfFiles: any[] = [];
   baseString: string = 'data:image/png;base64,';
-  registerForm:FormGroup
+  registerForm: FormGroup
   fillData: any = {
-    test_assignment_nid: "184",
+    test_assignment_nid: "",
     test_assignment_question_type: "fill_in_the_blanks",
-    attachment:"",
+    attachment: "",
     question: "",
     words_hint: "",
     points: "",
@@ -34,8 +35,11 @@ export class FillInTheBlanksComponent implements OnInit {
     partial_points: "",
     fill_inthe_blanks_options: "",
   }
-
-  constructor(private fb: FormBuilder, public util: UtilService) { }
+  testId: any = '';
+  constructor(private router: Router, private fb: FormBuilder,public service: SharedServiceService, public util: UtilService) {
+    this.testId = localStorage.getItem('test_id');
+    console.log('****',this.testId);
+  }
 
   ngOnInit() {
     this.leagueForm = this.fb.group({
@@ -78,7 +82,7 @@ export class FillInTheBlanksComponent implements OnInit {
   }
 
   deletePlayer(team, index) {
-    
+
     if (index < 1) {
       this.util.errorAlertPopup("can't delete last item");
       return
@@ -125,12 +129,12 @@ export class FillInTheBlanksComponent implements OnInit {
   }
 
   removeImage(index) {
-    
+
     // Delete the item from fileNames list
     this.listOfFiles.splice(index, 1);
     // delete file from FileList
     this.fileList.splice(index, 1);
-    
+
     this.ExteriorPicString.splice(index, 1);
 
   }
@@ -151,17 +155,25 @@ export class FillInTheBlanksComponent implements OnInit {
     let reader = e.target;
     var base64result = reader.result.substr(reader.result.indexOf(',') + 1);
     this.ExteriorPicString.push(base64result);
-    
+
   }
 
   isClicked(event) {
-    
+
     this.isCheckBoxChecked = event.target.checked
   }
 
   saveQuestion() {
-    this.fillData.attachment = this.fileList;
-    this.fillData.fill_inthe_blanks_options=this.leagueForm.value.answerList;
-    
+    this.fillData.attachment =this.ExteriorPicString;
+    this.fillData.fill_inthe_blanks_options = this.leagueForm.value.answerList;
+    this.fillData.test_assignment_nid=this.testId
+    this.isLoadingBool = true;
+    console.log('this.fillData',this.testId,this.fillData)
+    this.service.post('add-question-api', this.fillData, 1).subscribe(result => {
+      console.log('result from fill blanks',result);
+      this.util.showSuccessAlert('Answer saved successfully');
+      this.isLoadingBool = false;
+      this.router.navigate(['/test/question-screen']);
+    })
   }
 }
