@@ -10,6 +10,7 @@ import { UtilService } from 'src/providers/util.service';
 })
 export class QuestionScreenComponent implements OnInit {
   @ViewChild('cancelClassModal') private cancelClassModal: ElementRef;
+  @ViewChild('deleteclassModal') private deleteclassModal: ElementRef;
   isLoadingBool: boolean = true;
   allData: any = [];
   testAllData: any = '';
@@ -22,8 +23,8 @@ export class QuestionScreenComponent implements OnInit {
   questionSequence: any = '';
   constructor(public service: SharedServiceService, public util: UtilService, private router: Router) {
     this.testId = localStorage.getItem('test_id');
-    console.log('++++++++++++', this.testId);
     this.classId = localStorage.getItem('classListId');
+    console.log("*******",this.testId,this.classId)
     this.getDashboardHeaderData();
     this.getTestListing();
     this.getAllQuestion();
@@ -77,6 +78,7 @@ export class QuestionScreenComponent implements OnInit {
 
   // get all courses list
   getAllQuestion() {
+    this.allData=[];
     let params = {
       "test_id": this.testId
     }
@@ -131,13 +133,12 @@ export class QuestionScreenComponent implements OnInit {
     })
   }
 
-  // Delete test
-
+  // Delete test step 1
   deleteStep1Test() {
     // this.isLoadingBool = true;
     let params = {
       "step": 1,
-      "test_id": [localStorage.getItem('classListId')]
+      "test_id": [this.testId]
     }
     this.service.post('delete-test-api', params, 1).subscribe(result => {
       // this.isLoadingBool = false;
@@ -146,44 +147,41 @@ export class QuestionScreenComponent implements OnInit {
     })
   }
 
+  // Delete test step 2
   deleteStep2Test() {
     console.log('hello')
     let params = {
       "step": 2,
-      "test_id": [localStorage.getItem('classListId')]
+      "test_id":  [this.testId]
     }
     this.isLoadingBool = true;
     this.service.post('delete-test-api', params, 1).subscribe(result => {
+      this.deleteclassModal.nativeElement.click();
       this.isLoadingBool = false;
       console.log('result', result);
-      this.router.navigate(['/classes'])
+      this.router.navigate(['/test/test-listing-home'])
     })
   }
 
   // get events of check box for edit or add button show and hide 
   isCheckClicked(data) {
-    console.log('data', data.question_id);
+    console.log('data', data, data.question_id);
     this.questionId = data.question_id
-    // if (event.target.checked == true) {
-
-    // }
-    // if (event.target.checked == false) {
-
-    // }
   }
 
+  // Delete question
   deleteQuestion() {
     console.log('this.allData', this.questionSequence)
     let params = {
-      "question_id": this.questionId,
-      "question_sequence": this.questionSequence
+      "test_id": this.testId,
+      "questions_ids_for_delete": this.questionId
     }
     console.log('parmas', params)
     this.isLoadingBool = true;
     this.service.post('delete-question-api', params, 1).subscribe(result => {
       this.isLoadingBool = false;
-      console.log('result', result);
-      this.router.navigate(['/classes'])
+      this
+      this.getAllQuestion();
     })
   }
 

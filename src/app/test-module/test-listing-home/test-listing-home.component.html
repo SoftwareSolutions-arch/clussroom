@@ -78,7 +78,7 @@
                   </th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody *ngIf="this.testAllData.length>0">
                 <tr
                   *ngFor="let testListing of this.testAllData| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;"
                   [class.active]="i == currentIndex">

@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { SharedServiceService } from '../../shared-service.service';
 import { UtilService } from '../../../providers/util.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-test-listing-home',
@@ -38,7 +39,7 @@ export class TestListingHomeComponent implements OnInit {
 
   testId: any = '';
 
-  constructor(public service: SharedServiceService, public util: UtilService, private router: Router) {
+  constructor(public service: SharedServiceService,private toastr: ToastrService, public util: UtilService, private router: Router) {
     this.classId = localStorage.getItem('classListId');
     this.getTestListing();
   }
@@ -70,8 +71,14 @@ export class TestListingHomeComponent implements OnInit {
     }
 
     this.service.post('test-list-api', params, 1).subscribe(result => {
-      this.testAllData = result.test_data
-      this.isLoadingBool = false;
+      if(result.test_data=="No Test Available"){
+        this.toastr.error(result.test_data);
+        this.isLoadingBool = false;
+      }
+      else{
+        this.testAllData = result.test_data
+        this.isLoadingBool = false;
+      }
     })
   }
 

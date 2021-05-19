@@ -210,7 +210,6 @@
                 </div>
               </div>
 
-
               <ng-container *ngSwitchCase="'short_ques_ans_type_paper'">
                 <div class="custom-control custom-checkbox mb-3 col-lg-12 question-label" style="padding-top: 1em;">
                   <label class="question-checkbox col-lg-11">Q {{i+1}}.&nbsp;&nbsp;{{data.question}}<span>(Short
@@ -243,7 +242,6 @@
                   <div class="col-md-4"></div>
                 </div>
               </ng-container>
-
 
               <div *ngSwitchCase="'ordering_type_paper'">
                 <div class="custom-control custom-checkbox mb-3 question-label col-lg-12" style="padding-top: 2em;">
@@ -388,7 +386,7 @@
   </div>
 </div>
 <!-- Delete Test modal popup start -->
-<div id="deletetest" class="modal deletetest-modal" role="dialog">
+<div id="deletetest" class="modal deletetest-modal" role="dialog" #deleteclassModal>
   <div class="modal-dialog">
     <!--     Modal content-->
     <div class="modal-content">

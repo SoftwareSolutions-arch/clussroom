@@ -36,9 +36,9 @@ export class FillInTheBlanksComponent implements OnInit {
     fill_inthe_blanks_options: "",
   }
   testId: any = '';
-  constructor(private router: Router, private fb: FormBuilder,public service: SharedServiceService, public util: UtilService) {
+  constructor(private router: Router, private fb: FormBuilder, public service: SharedServiceService, public util: UtilService) {
     this.testId = localStorage.getItem('test_id');
-    console.log('****',this.testId);
+    console.log('****', this.testId);
   }
 
   ngOnInit() {
@@ -164,16 +164,24 @@ export class FillInTheBlanksComponent implements OnInit {
   }
 
   saveQuestion() {
-    this.fillData.attachment =this.ExteriorPicString;
+    // this.fillData.attachment = this.ExteriorPicString;
     this.fillData.fill_inthe_blanks_options = this.leagueForm.value.answerList;
-    this.fillData.test_assignment_nid=this.testId
-    this.isLoadingBool = true;
-    console.log('this.fillData',this.testId,this.fillData)
-    this.service.post('add-question-api', this.fillData, 1).subscribe(result => {
-      console.log('result from fill blanks',result);
-      this.util.showSuccessAlert('Answer saved successfully');
-      this.isLoadingBool = false;
-      this.router.navigate(['/test/question-screen']);
-    })
+    var data = [];
+
+    this.fillData.fill_inthe_blanks_options.forEach(element => {
+      data.push(element.question);
+    });
+    console.log('data', JSON.stringify(data));
+   
+
+    // this.fillData.test_assignment_nid = this.testId
+    // this.isLoadingBool = true;
+    // console.log('this.fillData', this.testId, this.fillData)
+    // this.service.post('add-question-api', this.fillData, 1).subscribe(result => {
+    //   console.log('result from fill blanks', result);
+    //   this.util.showSuccessAlert('Answer saved successfully');
+    //   this.isLoadingBool = false;
+    //   this.router.navigate(['/test/question-screen']);
+    // })
   }
 }
