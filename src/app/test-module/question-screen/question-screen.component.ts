@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { SharedServiceService } from 'src/app/shared-service.service';
 import { UtilService } from 'src/providers/util.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-question-screen',
@@ -21,10 +22,9 @@ export class QuestionScreenComponent implements OnInit {
   deleteTestData: any = '';
   questionId: any = '';
   questionSequence: any = '';
-  constructor(public service: SharedServiceService, public util: UtilService, private router: Router) {
+  constructor(public service: SharedServiceService, private toastr: ToastrService, public util: UtilService, private router: Router) {
     this.testId = localStorage.getItem('test_id');
     this.classId = localStorage.getItem('classListId');
-    console.log("*******",this.testId,this.classId)
     this.getDashboardHeaderData();
     this.getTestListing();
     this.getAllQuestion();
@@ -32,6 +32,7 @@ export class QuestionScreenComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('hello');
   }
 
   goToFillBlanks() {
@@ -78,15 +79,19 @@ export class QuestionScreenComponent implements OnInit {
 
   // get all courses list
   getAllQuestion() {
-    this.allData=[];
+    this.allData = [];
     let params = {
       "test_id": this.testId
     }
     this.service.post('questions-list-api', params, 1).subscribe(result => {
-      console.log('result', result);
-      this.allData = result.question_data;
-      this.questionSequence = result.question_sequence
       this.isLoadingBool = false;
+      if (result.question_data = "No Question Available") {
+        this.toastr.error(result.question_data);
+      }
+      else {
+        this.allData = result.question_data;
+        this.questionSequence = result.question_sequence
+      }
     })
   }
 
@@ -125,11 +130,14 @@ export class QuestionScreenComponent implements OnInit {
       "test_id": this.selectedTestDetails.test_id
     }
     this.service.post('questions-list-api', params, 1).subscribe(result => {
-      console.log('resut', result);
       this.isLoadingBool = false;
-      this.allData = result.question_data;
-      this.questionSequence = result.question_sequence
-      this.isLoadingBool = false;
+      if (result.question_data = "No Question Available") {
+        this.toastr.error(result.question_data);
+      }
+      else {
+        this.allData = result.question_data;
+        this.questionSequence = result.question_sequence
+      }
     })
   }
 
@@ -152,7 +160,7 @@ export class QuestionScreenComponent implements OnInit {
     console.log('hello')
     let params = {
       "step": 2,
-      "test_id":  [this.testId]
+      "test_id": [this.testId]
     }
     this.isLoadingBool = true;
     this.service.post('delete-test-api', params, 1).subscribe(result => {
