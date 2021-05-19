@@ -72,9 +72,11 @@
                    
                   </th> -->
                   <th scope="col">
-                    <button data-toggle="modal" data-target="#iconsEdit"
+                    <button *ngIf="isEditClicked" data-toggle="modal" data-target="#iconsEdit"
                       style="background: transparent; border: none;"><i class="fa fa-ellipsis-v"></i>
                     </button>
+                    <button (click)="showErrorMessage()"  *ngIf="!isEditClicked"style="background: transparent; border: none;"><i class="fa fa-ellipsis-v"></i>
+                  </button>
                   </th>
                 </tr>
               </thead>
@@ -102,83 +104,6 @@
                   </td>
                   <td></td>
                 </tr>
-                <!-- <tr>
-                  <th>
-                    <div class="radio-table"><input type="checkbox"></div>
-                  </th>
-                  <td>2</td>
-                  <td class="text-left">Mid-Term Test</td>
-                  <td class="text-left">10 May 20</td>
-                  <td class="text-left">09:00</td>
-                  <td>10 May 20</td>
-                  <td>09:00</td>
-                  <td>180</td>
-                  <td>1</td>
-                  <td>0/12</td>
-                  <td>
-                    <div class="purple"><button type="button">150</button></div>
-                  </td>
-                  <td></td>
-                </tr>
-
-                <tr>
-                  <th>
-                    <div class="radio-table"><input type="checkbox"></div>
-                  </th>
-                  <td>3</td>
-                  <td class="text-left">Test1</td>
-                  <td class="text-left">15 April 20</td>
-                  <td class="text-left">10:00</td>
-                  <td>15 April 20</td>
-                  <td>10:00</td>
-                  <td>-</td>
-                  <td>1</td>
-                  <td>10/12</td>
-                  <td>
-                    <div class="purple"><button type="button">150</button></div>
-                  </td>
-                  <td></td>
-                </tr>
-
-                <tr>
-                  <th>
-                    <div class="radio-table"><input type="checkbox"></div>
-                  </th>
-                  <td>4</td>
-                  <td class="text-left">Test2</td>
-                  <td class="text-left">29 March 20</td>
-                  <td class="text-left">12:00</td>
-                  <td>29 March 20</td>
-                  <td>12:00</td>
-                  <td>30</td>
-                  <td>2</td>
-                  <td>
-                    <div class="light-pink"><button type="button">-</button></div>
-                  </td>
-                  <td>
-                    <div class="purple"><button type="button">150</button></div>
-                  </td>
-                  <td></td>
-                </tr>
-
-                <tr>
-                  <th>
-                    <div class="radio-table"><input type="checkbox"></div>
-                  </th>
-                  <td>5</td>
-                  <td class="text-left">Periodic Test</td>
-                  <td class="text-left">3 March 20</td>
-                  <td class="text-left">14:00</td>
-                  <td>3 March 20</td>
-                  <td>14:00</td>
-                  <td>120</td>
-                  <td>1</td>
-                  <td>12/12</td>
-                  <td>
-                    <div class="light-pink"><button type="button">-</button></div>
-                  </td>
-                  <td></td>
-                </tr> -->
               </tbody>
             </table>
           </div>
@@ -193,16 +118,6 @@
             <div class="selector">
               <pagination-controls previousLabel="Prev" nextLabel="Next" responsive="true"
                 (pageChange)="handlePageChange($event)"></pagination-controls>
-              <!-- <ul>
-                <li><a><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
-                <li><a>1</a></li>
-                <li><a>2</a></li>
-                <li class="active"><a>3</a></li>
-                <li><a>4</a></li>
-                <li><a>5</a></li>
-                <li><a>...</a></li>
-                <li><a class="right-arrow"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
-              </ul> -->
             </div>
           </div>
         </div>

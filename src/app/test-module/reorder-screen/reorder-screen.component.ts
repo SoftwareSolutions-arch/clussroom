@@ -36,11 +36,11 @@ export class ReorderScreenComponent implements OnInit {
     this.service.post('questions-list-api', params, 1).subscribe(result => {
       console.log('result', result);
       this.isLoadingBool = false;
-      if (result.question_data = "No Question Available") {
-        this.toastr.error(result.question_data);
+      if (result.question_data.length>0) {
+        this.allData = result.question_data;
       }
       else {
-        this.allData = result.question_data;
+        this.toastr.error(result.question_data);
       }
     })
   }
@@ -58,6 +58,7 @@ export class ReorderScreenComponent implements OnInit {
   }
 
   onChange() {
+    this.allData = [];
     localStorage.setItem('test_id', this.selectedTestDetails.test_id);
     this.isLoadingBool = true;
     let params = {
@@ -66,9 +67,12 @@ export class ReorderScreenComponent implements OnInit {
     this.service.post('questions-list-api', params, 1).subscribe(result => {
       console.log('resut', result);
       this.isLoadingBool = false;
-      this.allData = result.question_data;
-      // this.questionSequence = result.question_sequence
-      this.isLoadingBool = false;
+      if (result.question_data.length>0) {
+        this.allData = result.question_data;
+      }
+      else {
+        this.toastr.error(result.question_data);
+      }
     })
   }
 

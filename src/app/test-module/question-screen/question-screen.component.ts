@@ -32,7 +32,6 @@ export class QuestionScreenComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('hello');
   }
 
   goToFillBlanks() {
@@ -66,11 +65,22 @@ export class QuestionScreenComponent implements OnInit {
   }
 
   goToReOrder() {
-    this.router.navigate(['/test/reorder-screen']);
+    if (this.allData.length > 0) {
+      this.router.navigate(['/test/reorder-screen']);
+    }
+    else {
+      this.toastr.error('No question is availble for edit points')
+    }
   }
 
   goToEditPoints() {
-    this.router.navigate(['/test/edit-points']);
+    if (this.allData.length > 0) {
+      this.router.navigate(['/test/edit-points']);
+    }
+
+    else {
+      this.toastr.error('No question is availble for edit points')
+    }
   }
 
   goToPreview() {
@@ -84,13 +94,14 @@ export class QuestionScreenComponent implements OnInit {
       "test_id": this.testId
     }
     this.service.post('questions-list-api', params, 1).subscribe(result => {
+      console.log('result.question_data',result);
       this.isLoadingBool = false;
-      if (result.question_data = "No Question Available") {
-        this.toastr.error(result.question_data);
-      }
-      else {
+      if (result.question_data.length>0) {
         this.allData = result.question_data;
         this.questionSequence = result.question_sequence
+      }
+      else {
+        this.toastr.error(result.question_data);
       }
     })
   }
@@ -124,6 +135,7 @@ export class QuestionScreenComponent implements OnInit {
   }
 
   onChange() {
+    this.allData = [];
     localStorage.setItem('test_id', this.selectedTestDetails.test_id);
     this.isLoadingBool = true;
     let params = {
@@ -131,12 +143,12 @@ export class QuestionScreenComponent implements OnInit {
     }
     this.service.post('questions-list-api', params, 1).subscribe(result => {
       this.isLoadingBool = false;
-      if (result.question_data = "No Question Available") {
-        this.toastr.error(result.question_data);
-      }
-      else {
+      if (result.question_data.length>0) {
         this.allData = result.question_data;
         this.questionSequence = result.question_sequence
+      }
+      else {
+        this.toastr.error(result.question_data);
       }
     })
   }
@@ -151,7 +163,7 @@ export class QuestionScreenComponent implements OnInit {
     this.service.post('delete-test-api', params, 1).subscribe(result => {
       // this.isLoadingBool = false;
       console.log('result', result);
-      this.deleteTestData = result.test_data
+      this.deleteTestData = result.test_data[0].test_name
     })
   }
 

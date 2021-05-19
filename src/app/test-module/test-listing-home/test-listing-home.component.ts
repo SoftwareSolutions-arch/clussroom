@@ -38,7 +38,7 @@ export class TestListingHomeComponent implements OnInit {
   }
 
   testId: any = '';
-
+  isEditClicked:boolean=false;
   constructor(public service: SharedServiceService,private toastr: ToastrService, public util: UtilService, private router: Router) {
     this.classId = localStorage.getItem('classListId');
     this.getTestListing();
@@ -61,6 +61,10 @@ export class TestListingHomeComponent implements OnInit {
         }
       }
     }
+  }
+
+  showErrorMessage(){
+    this.toastr.error('please select row');
   }
 
   // get test listing data
@@ -125,6 +129,7 @@ export class TestListingHomeComponent implements OnInit {
 
   // get events of check box for edit or add button show and hide 
   isCheckBoxClicked(testListing, i) {
+    this.isEditClicked=true;
     console.log(testListing);
     this.testId = testListing.test_id;
   }
