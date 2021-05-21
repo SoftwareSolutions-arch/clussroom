@@ -119,7 +119,7 @@ export class MultipleChoiceQuestionComponent implements OnInit {
       this.fillData.mcq_option_text.push(element.question);
       this.fillData.mcq_option_check.push((element.question_checkbox == true) ? "1" : "0");
     });
-    this.fillData.attachment = this.fileList;
+    this.fillData.attachment = this.ExteriorPicString;
     this.fillData.partial_points = ((this.fillData.partial_points == true) ? "1" : "0")
     this.fillData.jumble_questions_placement = ((this.fillData.jumble_questions_placement == true) ? "1" : "0")
     this.fillData.test_assignment_nid=this.testId

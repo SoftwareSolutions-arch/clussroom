@@ -94,9 +94,9 @@ export class QuestionScreenComponent implements OnInit {
       "test_id": this.testId
     }
     this.service.post('questions-list-api', params, 1).subscribe(result => {
-      console.log('result.question_data',result);
+      console.log('result.question_data', result);
       this.isLoadingBool = false;
-      if (result.question_data.length>0) {
+      if (result.question_data.length > 0) {
         this.allData = result.question_data;
         this.questionSequence = result.question_sequence
       }
@@ -143,7 +143,7 @@ export class QuestionScreenComponent implements OnInit {
     }
     this.service.post('questions-list-api', params, 1).subscribe(result => {
       this.isLoadingBool = false;
-      if (result.question_data.length>0) {
+      if (result.question_data.length > 0) {
         this.allData = result.question_data;
         this.questionSequence = result.question_sequence
       }
@@ -190,11 +190,10 @@ export class QuestionScreenComponent implements OnInit {
   }
 
   // Delete question
-  deleteQuestion() {
-    console.log('this.allData', this.questionSequence)
+  deleteQuestion(data) {
     let params = {
       "test_id": this.testId,
-      "questions_ids_for_delete": this.questionId
+      "questions_ids_for_delete": data.question_id
     }
     console.log('parmas', params)
     this.isLoadingBool = true;

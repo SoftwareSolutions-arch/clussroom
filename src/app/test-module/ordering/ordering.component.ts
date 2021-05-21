@@ -123,7 +123,7 @@ export class OrderingComponent implements OnInit {
       test_assignment_nid: this.testId,
       test_assignment_question_type: "ordering",
       question: this.fillData.question,
-      attachment: this.fileList,
+      attachment: this.ExteriorPicString,
       jumble_questions_placement: (this.fillData.jumble_questions_placement == true) ? "1" : "0",
       points: this.fillData.points,
       partial_points: (this.fillData.partial_points == true) ? "1" : "0",

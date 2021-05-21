@@ -78,24 +78,24 @@ export class ReorderScreenComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<string[]>) {
-    this.question_sequence=[];
+    this.question_sequence = [];
     moveItemInArray(this.allData, event.previousIndex, event.currentIndex);
     this.allData.forEach(element => {
       this.question_sequence.push(element.question_id);
     });
   }
 
-  confirmEdit(){
+  confirmEdit() {
     let params = {
       'test_id': this.testId,
       'question_sequence': this.question_sequence
     }
     console.log('params', params);
-    // this.service.post('reorder-all-questions-api', params, 1).subscribe(result => {
-    //   this.isLoadingBool = false;
-    //   console.log('result', result);
-    //   this.toastr.success(result.message);
-    //   this.router.navigate(['/test/question-screen']);
-    // })
+    this.service.post('reorder-all-questions-api', params, 1).subscribe(result => {
+      this.isLoadingBool = false;
+      console.log('result', result);
+      this.toastr.success(result.message);
+      this.router.navigate(['/test/question-screen']);
+    })
   }
 }

@@ -2587,6 +2587,16 @@ a.attach-btn i {
   cursor: default !important;
 }
 
+
+.sample button img {
+  width: 183.62px;
+  height: 115px;
+  border: 1px dashed #DCE2EC;
+  box-sizing: border-box;
+  background: #fff;
+  cursor: default !important;
+}
+
 .sample p {
   padding: 6px 98px 0 0;
   font-size: 13px;

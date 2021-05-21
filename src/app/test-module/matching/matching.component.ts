@@ -15,7 +15,7 @@ export class MatchingComponent implements OnInit {
     test_assignment_nid: "",
     test_assignment_question_type: "matching",
     question: "",
-    attachment: "",
+    attachment: [],
     jumble_questions_placement: "",
     points: "",
     checkstatus: "",
@@ -44,7 +44,7 @@ export class MatchingComponent implements OnInit {
   testId: any = '';
   constructor(public util: UtilService, private router: Router, private fb: FormBuilder, public service: SharedServiceService) {
     this.testId = localStorage.getItem('test_id');
-    console.log('thisID',this.testId)
+    console.log('thisID', this.testId)
   }
 
   ngOnInit() {
@@ -110,32 +110,17 @@ export class MatchingComponent implements OnInit {
   }
 
   saveQuestion() {
+    this.isLoadingBool = true;
+    this.fillData.attachment = this.ExteriorPicString
+    this.fillData.match_question_text = userA
+    this.fillData.match_answer_text = userB
+    this.fillData.test_assignment_nid = this.testId
     var userA = [];
     var userB = [];
     this.myForm.value.arr.forEach(element => {
       userA.push(element.question);
       userB.push(element.answer);
     });
-    this.fillData.attachment = this.fileList
-    this.fillData.match_question_text = userA
-    this.fillData.match_answer_text = userB
-    this.fillData.test_assignment_nid = this.testId
-    // let params = {
-    //   test_assignment_nid: "184",
-    //   test_assignment_question_type: "matching",
-    //   question: this.fillData.question,
-    //   attachment: this.fillData.attachment,
-    //   jumble_questions_placement: (this.fillData.jumble_questions_placement == true) ? "1" : "0",
-    //   points: this.fillData.points,
-    //   partial_points: (this.fillData.partial_points == true) ? "1" : "0",
-    //   checkstatus: 1,
-    //   match_answer_text: this.fillData.match_answer_text,
-    //   match_question_text: this.fillData.match_question_text,
-    //   jumble_points: this.fillData.jumble_points
-    // }
-
-
-    this.isLoadingBool = true;
     console.log('this.fillData', this.fillData);
     this.service.post('add-question-api', this.fillData, 1).subscribe(result => {
       console.log('result', result)

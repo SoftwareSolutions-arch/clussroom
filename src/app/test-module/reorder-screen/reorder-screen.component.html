@@ -30,7 +30,7 @@
           </li>
         </ul>
       </div>
-      <div class="tab-content">
+      <div class="tab-content" *ngIf="this.allData.length>0">
         <div class="user-action-wrapper">
           <div class="question-action-list">
             <div class="delete-button col-md-5">
@@ -48,7 +48,7 @@
           <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
             <div class="example-box" *ngFor="let data of this.allData;let i = index" cdkDrag style="display: grid;">
               <div [ngSwitch]="data.questiontype">
-                
+
                 <div *ngSwitchCase="'multiple_choice_type_paper'">
                   <div class="custom-control custom-checkbox mb-3 question-label col-lg-12"> <i class="fa fa-random"
                       aria-hidden="true"></i>
@@ -90,7 +90,7 @@
                     </ul>
                   </div>
                 </div>
-  
+
                 <div *ngSwitchCase="'images'">
                   <div class="custom-control custom-checkbox mb-3 question-label col-lg-12" style="padding-top: 2em;">
                     <i class="fa fa-random" aria-hidden="true"></i>
@@ -152,7 +152,7 @@
                     </div>
                   </div>
                 </div>
-  
+
                 <div *ngSwitchCase="'true_false_type_paper'">
                   <div class="custom-control custom-checkbox mb-3 question-label col-lg-12" style="padding-top: 1em;">
                     <i class="fa fa-random" aria-hidden="true"></i>
@@ -184,7 +184,7 @@
                     </ul>
                   </div>
                 </div>
-  
+
                 <div *ngSwitchCase="'fill_in_the_blanks_type_paper'">
                   <div class="custom-control custom-checkbox mb-3 question-label col-lg-12"
                     style="padding-top: 1em; padding-bottom: 1em;"> <i class="fa fa-random" aria-hidden="true"></i>
@@ -209,7 +209,7 @@
                     <h6 style="font-size: 15px; font-weight: 400;">{{data.questiontype}}<input type="text"></h6>
                   </div>
                 </div>
-  
+
                 <ng-container *ngSwitchCase="'short_ques_ans_type_paper'">
                   <div class="custom-control custom-checkbox mb-3 question-label col-lg-12" style="padding-top: 1em;">
                     <i class="fa fa-random" aria-hidden="true"></i>
@@ -241,7 +241,7 @@
                     <div class="col-md-4"></div>
                   </div>
                 </ng-container>
-  
+
                 <div *ngSwitchCase="'ordering_type_paper'">
                   <div class="custom-control custom-checkbox mb-3 question-label col-lg-12" style="padding-top: 2em;">
                     <i class="fa fa-random" aria-hidden="true"></i>
@@ -292,8 +292,8 @@
                     </div>
                   </div>
                 </div>
-  
-                <div *ngSwitchCase="'matching_type_paper'" >
+
+                <div *ngSwitchCase="'matching_type_paper'">
                   <div class="custom-control custom-checkbox mb-3 question-label col-lg-12" style="padding-top: 2em;">
                     <i class="fa fa-random" aria-hidden="true"></i>
                     <label class="question-checkbox col-md-8">Q {{i+1}}.&nbsp;&nbsp;
@@ -344,10 +344,10 @@
               </div>
             </div>
           </div>
-        
+
           <div class="container" style="padding: 18px 0 0 0; display: flex; margin: 0 !important;">
             <div class="delete-button">
-              <button type="button" class="Org"><a>Confirm Edit</a>
+              <button (click)="confirmEdit()" type="button" class="Org"><a>Confirm Edit</a>
               </button>
               <button type="button" class="pink">Cancel</button>
             </div>

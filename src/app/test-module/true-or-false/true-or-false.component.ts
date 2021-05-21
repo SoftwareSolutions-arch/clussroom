@@ -89,7 +89,7 @@ export class TrueOrFalseComponent implements OnInit {
 
   // save question
   saveQuestion() {
-    this.fillData.attachment = this.fileList
+    this.fillData.attachment = this.ExteriorPicString
 
     let params = {
       "test_assignment_nid": this.testId,

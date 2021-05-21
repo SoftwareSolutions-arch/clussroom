@@ -49,104 +49,75 @@
             <div [ngSwitch]="data.questiontype">
               <!-- select and option list-->
               <div *ngSwitchCase="'multiple_choice_type_paper'">
-                <div class="custom-control custom-checkbox mb-3 question-label col-lg-12">
-                  <label class="question-checkbox col-lg-11 mt-3">Q {{i+1}}.&nbsp;&nbsp;
-                    <span style="color: black;" [innerHtml]="data.question"></span>
-                    <span>(Multiple
-                      Choice)</span>
-                    <input type="checkbox" (click)="isCheckClicked(data)">
-                    <span class="mark"></span>
-                  </label>
-                  <div class="ellipdown col-sm-1 dropdown-1 text-right"
-                    style="display: flex !important; align-items: center !important;">
-                    <label style="padding: 0;">{{data.points}} Points</label>
-                    <button class="dropbtn-1" onclick="myFunction()"
-                      style="background-color: transparent; border: none; width: 22px; height: 22px;">
-                      <i class="fa fa-ellipsis-v"></i>
-                    </button>
-                    <div class="dropdown-content-1" id="myDropdown">
-                      <a (click)="editQuestion('multiple_choice_type_paper')">Edit</a>
-                      <a (click)="deleteQuestion()">Remove</a>
+                <div *ngIf="!data.attachment">
+                  <div class="custom-control custom-checkbox mb-3 question-label col-lg-12">
+                    <label class="question-checkbox col-lg-11 mt-3">Q {{i+1}}.&nbsp;&nbsp;
+                      <span style="color: black;" [innerHtml]="data.question"></span>
+                      <span>(Multiple
+                        Choice)</span>
+                      <input type="checkbox" (click)="isCheckClicked(data)">
+                      <span class="mark"></span>
+                    </label>
+                    <div class="ellipdown col-sm-1 dropdown-1 text-right"
+                      style="display: flex !important; align-items: center !important;">
+                      <label style="padding: 0;">{{data.points}} Points</label>
+                      <button class="dropbtn-1" onclick="myFunction()"
+                        style="background-color: transparent; border: none; width: 22px; height: 22px;">
+                        <i class="fa fa-ellipsis-v"></i>
+                      </button>
+                      <div class="dropdown-content-1" id="myDropdown">
+                        <a (click)="editQuestion('multiple_choice_type_paper')">Edit</a>
+                        <a (click)="deleteQuestion(data)">Remove</a>
+                      </div>
                     </div>
                   </div>
+                  <div class="test-option border-bottom col-lg-12">
+                    <ul class="col-md-5">
+                      <li *ngFor="let optionList of data.multiple_choices[0] | slice:0:2;"><input type="radio"
+                          id="option1" name="option" value="option1">
+                        <label for="option1">{{optionList.option_text}}</label>
+                      </li>
+                    </ul>
+                    <ul class="col-md-5">
+                      <li *ngFor="let optionList of data.multiple_choices[0] | slice:2:3;">
+                        <input type="radio" id="option3" name="option" value="option3">
+                        <label for="option3">{{optionList.option_text}}</label>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-                <div class="test-option border-bottom col-lg-12">
-                  <ul class="col-md-5">
-                    <li *ngFor="let optionList of data.multiple_choices[0] | slice:0:2;"><input type="radio"
-                        id="option1" name="option" value="option1">
-                      <label for="option1">{{optionList.option_text}}</label>
-                    </li>
-                  </ul>
-                  <ul class="col-md-5">
-                    <li *ngFor="let optionList of data.multiple_choices[0] | slice:2:3;">
-                      <input type="radio" id="option3" name="option" value="option3">
-                      <label for="option3">{{optionList.option_text}}</label>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+                <div *ngIf="data.attachment">
+                  <div class="custom-control custom-checkbox mb-3 question-label col-lg-12" style="padding-top: 2em;">
+                    <label class="question-checkbox col-lg-11">Q {{i}}.&nbsp;&nbsp;Choose the correct image for
+                      preposition
+                      near. <span>(Multiple Choice)</span>
+                      <input type="checkbox"> <span class="mark"></span>
+                    </label>
+                    <div class="ellipdown col-sm-1 dropdown-1 text-right"
+                      style="display: flex !important; align-items: center !important;">
+                      <label style="padding: 0;">{{data.points}} Points</label>
+                      <button class="dropbtn-1" onclick="myFunction()"
+                        style="background-color: transparent; border: none; width: 22px; height: 22px;">
+                        <i class="fa fa-ellipsis-v"></i>
+                      </button>
+                      <div class="dropdown-content-1" id="myDropdown">
+                        <a (click)="editQuestion('images')">Edit</a>
+                        <a (click)="deleteQuestion(data)">Remove</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="test-option border-bottom sample custom-control custom-checkbox col-lg-12">
+                    <div *ngFor="let item of data.attachment" class="col-sm-3 text-center">
+                      <button type="button">
+                        <h2><img src="{{item.image}}"></h2>
+                      </button>
+                      <p>Description 1</p>
+                      <label class="choice-checkbox" style="padding-left: 55px;">
+                        <input type="checkbox" (click)="isCheckClicked(data)"> <span class="mark2"></span>
+                        <h6>Choice 1</h6>
+                      </label>
+                    </div>
 
-              <!-- choose the correct images-->
-              <div *ngSwitchCase="'images'">
-                <div class="custom-control custom-checkbox mb-3 question-label col-lg-12" style="padding-top: 2em;">
-                  <label class="question-checkbox col-lg-11">Q {{i}}.&nbsp;&nbsp;Choose the correct image for
-                    preposition
-                    near. <span>(Multiple Choice)</span>
-                    <input type="checkbox"> <span class="mark"></span>
-                  </label>
-                  <div class="ellipdown col-sm-1 dropdown-1 text-right"
-                    style="display: flex !important; align-items: center !important;">
-                    <label style="padding: 0;">{{data.points}} Points</label>
-                    <button class="dropbtn-1" onclick="myFunction()"
-                      style="background-color: transparent; border: none; width: 22px; height: 22px;">
-                      <i class="fa fa-ellipsis-v"></i>
-                    </button>
-                    <div class="dropdown-content-1" id="myDropdown">
-                      <a (click)="editQuestion('images')">Edit</a>
-                      <a (click)="deleteQuestion()">Remove</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="test-option border-bottom sample custom-control custom-checkbox col-lg-12">
-                  <div class="col-sm-3 text-center">
-                    <button type="button">
-                      <h2>Sample image</h2>
-                    </button>
-                    <p>Description 1</p>
-                    <label class="choice-checkbox" style="padding-left: 55px;">
-                      <input type="checkbox" (click)="isCheckClicked(data)"> <span class="mark2"></span>
-                      <h6>Choice 1</h6>
-                    </label>
-                  </div>
-                  <div class="col-sm-3 text-center">
-                    <button type="button">
-                      <h2>Sample image</h2>
-                    </button>
-                    <p>Description 2</p>
-                    <label class="choice-checkbox" style="padding-left: 55px;">
-                      <input type="checkbox" (click)="isCheckClicked(data)"> <span class="mark2"></span>
-                      <h6>Choice 2</h6>
-                    </label>
-                  </div>
-                  <div class="col-sm-3 text-center">
-                    <button type="button">
-                      <h2>Sample image</h2>
-                    </button>
-                    <p>Description 3</p>
-                    <label class="choice-checkbox" style="padding-left: 55px;">
-                      <input type="checkbox" (click)="isCheckClicked(data)"> <span class="mark2"></span>
-                      <h6>Choice 3</h6>
-                    </label>
-                  </div>
-                  <div class="col-sm-3 text-center">
-                    <button type="button">
-                      <h2>Sample image</h2>
-                    </button>
-                    <p>Description 4</p>
-                    <label class="choice-checkbox" style="padding-left: 55px;">
-                      <input type="checkbox" (click)="isCheckClicked(data)"> <span class="mark2"></span>
-                      <h6>Choice 4</h6>
-                    </label>
                   </div>
                 </div>
               </div>
@@ -168,10 +139,22 @@
                     </button>
                     <div class="dropdown-content-1" id="myDropdown">
                       <a (click)="editQuestion('true_false_type_paper')">Edit</a>
-                      <a (click)="deleteQuestion()">Remove</a>
+                      <a (click)="deleteQuestion(data)">Remove</a>
                     </div>
                   </div>
                 </div>
+
+                <div class="test-option sample custom-control custom-checkbox col-lg-12">
+                  <div *ngFor="let item of data.attachment" class="col-sm-3 text-center">
+                    <button type="button">
+                      <h2><img src="{{item.image}}"></h2>
+                    </button>
+                    <p>Title for image</p>
+                  </div>
+
+                  <div class="col-sm-3 text-center"></div>
+                </div>
+
                 <div class="test-option col-lg-12">
                   <ul class="col-md-5" style="display: flex;">
                     <li><input type="radio" id="true1" name="true" value="true1">
@@ -203,15 +186,31 @@
                     </button>
                     <div class="dropdown-content-1" id="myDropdown">
                       <a (click)="editQuestion('fill_in_the_blanks_type_paper')">Edit</a>
-                      <a (click)="deleteQuestion()">Remove</a>
+                      <a (click)="deleteQuestion(data)">Remove</a>
                     </div>
                   </div>
-                </div>
-                <div class="fill border-bottom" style="padding-bottom: 1em;">
-                  <!-- <h6 style="font-size: 15px; font-weight: 400;">I don't want to argue&nbsp;<input type="text">&nbsp;you&nbsp;<input type="text">&nbsp;that matter at this time.</h6> -->
-                  <h6 style="font-size: 15px; font-weight: 400;">{{data.questiontype}}<input type="text"></h6>
 
                 </div>
+
+
+                <div class="fill mb-4" style="padding-bottom: 1em;">
+                  <!-- <h6 style="font-size: 15px; font-weight: 400;">I don't want to argue&nbsp;<input type="text">&nbsp;you&nbsp;<input type="text">&nbsp;that matter at this time.</h6> -->
+                  <h6 style="font-size: 15px; font-weight: 400;">{{data.questiontype}}<input type="text"></h6>
+                </div>
+
+                <div class="test-option border-bottom sample custom-control custom-checkbox col-lg-12">
+                  <div *ngFor="let item of data.attachment" class="col-sm-3 text-center">
+                    <button type="button">
+                      <h2><img src="{{item.image}}"></h2>
+                    </button>
+                    <p>Description 1</p>
+                    <!-- <label class="choice-checkbox" style="padding-left: 55px;">
+                      <input type="checkbox" (click)="isCheckClicked(data)"> <span class="mark2"></span>
+                      <h6>Choice 1</h6>
+                    </label> -->
+                  </div>
+                </div>
+
               </div>
 
               <ng-container *ngSwitchCase="'short_ques_ans_type_paper'">
@@ -230,15 +229,26 @@
                     </button>
                     <div class="dropdown-content-1" id="myDropdown">
                       <a (click)="editQuestion('short_ques_ans_type_paper')">Edit</a>
-                      <a (click)="deleteQuestion()">Remove</a>
+                      <a (click)="deleteQuestion(data)">Remove</a>
                     </div>
                   </div>
                 </div>
+                <div class="test-option sample custom-control custom-checkbox col-lg-12">
+                  <div *ngFor="let item of data.attachment" class="col-sm-3 text-center">
+                    <button type="button">
+                      <h2><img src="{{item.image}}"></h2>
+                    </button>
+                    <p>Title for image</p>
+                  </div>
+
+                  <div class="col-sm-3 text-center"></div>
+                </div>
                 <div class="question-text col-lg-12">
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <angular-editor name="shortanswer" cols="80" label="notes" rows="4" wrap="virtual" style="margin: 0;" name="question"  required>
-								  </angular-editor>
-                <div class="col-md-4"></div>
+                  <angular-editor name="shortanswer" cols="80" label="notes" rows="4" wrap="virtual" style="margin: 0;"
+                    name="question" required>
+                  </angular-editor>
+                  <div class="col-md-4"></div>
                 </div>
                 <div class="word-tag col-lg-12">
                   <div class="col-md-4">&nbsp;</div>
@@ -265,29 +275,18 @@
                     </button>
                     <div class="dropdown-content-1" id="myDropdown">
                       <a (click)="editQuestion('ordering_type_paper')">Edit</a>
-                      <a (click)="deleteQuestion()">Remove</a>
+                      <a (click)="deleteQuestion(data)">Remove</a>
                     </div>
                   </div>
                 </div>
                 <div class="test-option sample custom-control custom-checkbox col-lg-12">
-                  <div class="col-sm-3 text-center">
+                  <div *ngFor="let item of data.attachment" class="col-sm-3 text-center">
                     <button type="button">
-                      <h2>Sample image</h2>
+                      <h2><img src="{{item.image}}"></h2>
                     </button>
                     <p>Title for image</p>
                   </div>
-                  <div class="col-sm-3 text-center">
-                    <button type="button">
-                      <h2>Sample image</h2>
-                    </button>
-                    <p>Title for image</p>
-                  </div>
-                  <div class="col-sm-3 text-center">
-                    <button type="button">
-                      <h2>Sample image</h2>
-                    </button>
-                    <p>Title for image</p>
-                  </div>
+
                   <div class="col-sm-3 text-center"></div>
                 </div>
                 <div class="match-option" style="font-size: 15px; font-weight: 400; border-bottom: 1px solid #F1F6FB;">
@@ -336,26 +335,14 @@
                     </button>
                     <div class="dropdown-content-1" id="myDropdown">
                       <a (click)="editQuestion('matching_type_paper')">Edit</a>
-                      <a (click)="deleteQuestion()">Remove</a>
+                      <a (click)="deleteQuestion(data)">Remove</a>
                     </div>
                   </div>
                 </div>
                 <div class="test-option sample custom-control custom-checkbox col-lg-12">
-                  <div class="col-sm-3 text-center">
+                  <div *ngFor="let item of data.attachment" class="col-sm-3 text-center">
                     <button type="button">
-                      <h2>Sample image</h2>
-                    </button>
-                    <p>Title for image</p>
-                  </div>
-                  <div class="col-sm-3 text-center">
-                    <button type="button">
-                      <h2>Sample image</h2>
-                    </button>
-                    <p>Title for image</p>
-                  </div>
-                  <div class="col-sm-3 text-center">
-                    <button type="button">
-                      <h2>Sample image</h2>
+                      <h2><img src="{{item.image}}"></h2>
                     </button>
                     <p>Title for image</p>
                   </div>
