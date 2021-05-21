@@ -111,16 +111,17 @@ export class MatchingComponent implements OnInit {
 
   saveQuestion() {
     this.isLoadingBool = true;
-    this.fillData.attachment = this.ExteriorPicString
-    this.fillData.match_question_text = userA
-    this.fillData.match_answer_text = userB
-    this.fillData.test_assignment_nid = this.testId
+   
     var userA = [];
     var userB = [];
     this.myForm.value.arr.forEach(element => {
       userA.push(element.question);
       userB.push(element.answer);
     });
+    this.fillData.attachment = this.ExteriorPicString
+    this.fillData.match_question_text = userA
+    this.fillData.match_answer_text = userB
+    this.fillData.test_assignment_nid = this.testId
     console.log('this.fillData', this.fillData);
     this.service.post('add-question-api', this.fillData, 1).subscribe(result => {
       console.log('result', result)

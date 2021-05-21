@@ -259,18 +259,18 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i>
+        <button type="button" class="close" ><i class="fa fa-times" aria-hidden="true"></i>
         </button>
       </div>
-      <div class="modal-body">
-        <div class="class-delete-list">
+      <div  class="modal-body">
+        <div class="class-delete-list" >
           <div class="remove-field">
             <img src="assets/images/test/allert-1.png" style="padding: 0 25em !important;">
             <h1>Remove Questions?</h1>
           </div>
         </div>
-        <div class="class-remove-btn">
-          <button type="button" class="remove-test" data-dismiss="modal">Yes</button>
+        <div (click)="deleteTest()" class="class-remove-btn">
+          <button data-dismiss="modal" type="button" class="remove-test" >Yes</button>
         </div>
       </div>
     </div>

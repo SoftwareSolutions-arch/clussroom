@@ -16,7 +16,7 @@
           <option *ngFor="let user of testAllData" [ngValue]="user">{{user.test_name}}</option>
         </select>
       </div>
-      <button type="button">Back</button>
+      <button type="button" (click)="goToBackPage()">Back</button>
     </div>
     <div class="prospectus-section sequence-list" *ngIf="!isLoadingBool">
       <div class="prospectus-tabs">
@@ -243,17 +243,17 @@
 
                   <div class="col-sm-3 text-center"></div>
                 </div>
-                <div class="question-text col-lg-12">
+                <div [formGroup]="loginForm"  class="question-text col-lg-12">
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <angular-editor name="shortanswer" cols="80" label="notes" rows="4" wrap="virtual" style="margin: 0;"
-                    name="question" required>
+                    name="question" required (keyup)="onkeyup()" formControlName="description" maxlength="5">
                   </angular-editor>
                   <div class="col-md-4"></div>
                 </div>
                 <div class="word-tag col-lg-12">
                   <div class="col-md-4">&nbsp;</div>
                   <div class="col-md-4 text-right" style="padding: 0 4px !important;">
-                    <p>0/255</p>
+                    <p>{{this.totalCount}}/255</p>
                   </div>
                   <div class="col-md-4"></div>
                 </div>

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { SharedServiceService } from 'src/app/shared-service.service';
 import { UtilService } from 'src/providers/util.service';
 import { ToastrService } from 'ngx-toastr';
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-question-screen',
@@ -22,14 +23,37 @@ export class QuestionScreenComponent implements OnInit {
   deleteTestData: any = '';
   questionId: any = '';
   questionSequence: any = '';
-  constructor(public service: SharedServiceService, private toastr: ToastrService, public util: UtilService, private router: Router) {
+  boxLength:any='';
+  public totalCount : string='0' ;
+  loginForm: FormGroup;
+
+
+  constructor(public service: SharedServiceService,public formBuilder: FormBuilder, private toastr: ToastrService, public util: UtilService, private router: Router) {
     this.testId = localStorage.getItem('test_id');
     this.classId = localStorage.getItem('classListId');
     this.getDashboardHeaderData();
     this.getTestListing();
     this.getAllQuestion();
 
+
+    this.loginForm = this.formBuilder.group(
+      {
+        description: new FormControl(
+          "",
+          Validators.compose([
+            Validators.required,
+            Validators.max(10)
+          ])
+        ),
+      }
+    );
+
   }
+  onkeyup(){
+    this.loginForm.value.description.length;
+    this.totalCount = this.loginForm.value.description.length;
+    console.log('this.totalCount',this.totalCount)
+    }
 
   ngOnInit() {
   }
@@ -85,6 +109,10 @@ export class QuestionScreenComponent implements OnInit {
 
   goToPreview() {
     this.router.navigate(['/test/midterm-preview-1']);
+  }
+
+  goToBackPage(){
+    this.router.navigate(['/test/test-listing-home']);
   }
 
   // get all courses list

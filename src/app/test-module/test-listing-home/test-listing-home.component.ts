@@ -11,6 +11,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class TestListingHomeComponent implements OnInit {
   @ViewChild('deleteclosebutton') deleteclosebutton;
+  @ViewChild('deleteTestModal') private deleteTestModal: ElementRef;
+
   isTestSelected: boolean = false
   classId: any = '';
   testAllData: any = '';
@@ -38,8 +40,8 @@ export class TestListingHomeComponent implements OnInit {
   }
 
   testId: any = '';
-  isEditClicked:boolean=false;
-  constructor(public service: SharedServiceService,private toastr: ToastrService, public util: UtilService, private router: Router) {
+  isEditClicked: boolean = false;
+  constructor(public service: SharedServiceService, private toastr: ToastrService, public util: UtilService, private router: Router) {
     this.classId = localStorage.getItem('classListId');
     this.getTestListing();
   }
@@ -63,7 +65,7 @@ export class TestListingHomeComponent implements OnInit {
     }
   }
 
-  showErrorMessage(){
+  showErrorMessage() {
     this.toastr.error('please select row');
   }
 
@@ -75,11 +77,11 @@ export class TestListingHomeComponent implements OnInit {
     }
 
     this.service.post('test-list-api', params, 1).subscribe(result => {
-      if(result.test_data=="No Test Available"){
+      if (result.test_data == "No Test Available") {
         this.toastr.error(result.test_data);
         this.isLoadingBool = false;
       }
-      else{
+      else {
         this.testAllData = result.test_data
         this.isLoadingBool = false;
       }
@@ -129,7 +131,7 @@ export class TestListingHomeComponent implements OnInit {
 
   // get events of check box for edit or add button show and hide 
   isCheckBoxClicked(testListing, i) {
-    this.isEditClicked=true;
+    this.isEditClicked = true;
     console.log(testListing);
     this.testId = testListing.test_id;
   }
@@ -139,5 +141,20 @@ export class TestListingHomeComponent implements OnInit {
     this.deleteclosebutton.nativeElement.click();
     localStorage.setItem('test_id', this.testId);
     this.router.navigate(['/test/question-screen'])
+  }
+
+  // Delete test step 2
+  deleteTest() {
+    let params = {
+      "step": 2,
+      "test_id": [this.testId]
+    }
+    console.log('params',params);
+    this.isLoadingBool = true;
+    this.service.post('delete-test-api', params, 1).subscribe(result => {
+      this.isLoadingBool = false;
+      this.deleteclosebutton.nativeElement.click();
+      this.getTestListing();
+    })
   }
 }
