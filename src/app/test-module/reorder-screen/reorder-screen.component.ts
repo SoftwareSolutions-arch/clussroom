@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { SharedServiceService } from 'src/app/shared-service.service';
 import { UtilService } from 'src/providers/util.service';
 import { ToastrService } from 'ngx-toastr';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-reorder-screen',
@@ -17,8 +18,8 @@ export class ReorderScreenComponent implements OnInit {
   headerData: any = '';
   testAllData: any = '';
   selectedTestDetails: any = "";
-
-  constructor(public service: SharedServiceService,private toastr: ToastrService,  public util: UtilService, private router: Router) {
+  question_sequence: any = [];
+  constructor(public service: SharedServiceService, private toastr: ToastrService, public util: UtilService, private router: Router) {
     this.testId = localStorage.getItem('test_id');
     this.classId = localStorage.getItem('classListId');
     this.getTestListing();
@@ -36,7 +37,7 @@ export class ReorderScreenComponent implements OnInit {
     this.service.post('questions-list-api', params, 1).subscribe(result => {
       console.log('result', result);
       this.isLoadingBool = false;
-      if (result.question_data.length>0) {
+      if (result.question_data.length > 0) {
         this.allData = result.question_data;
       }
       else {
@@ -67,7 +68,7 @@ export class ReorderScreenComponent implements OnInit {
     this.service.post('questions-list-api', params, 1).subscribe(result => {
       console.log('resut', result);
       this.isLoadingBool = false;
-      if (result.question_data.length>0) {
+      if (result.question_data.length > 0) {
         this.allData = result.question_data;
       }
       else {
@@ -76,4 +77,25 @@ export class ReorderScreenComponent implements OnInit {
     })
   }
 
+  drop(event: CdkDragDrop<string[]>) {
+    this.question_sequence=[];
+    moveItemInArray(this.allData, event.previousIndex, event.currentIndex);
+    this.allData.forEach(element => {
+      this.question_sequence.push(element.question_id);
+    });
+  }
+
+  confirmEdit(){
+    let params = {
+      'test_id': this.testId,
+      'question_sequence': this.question_sequence
+    }
+    console.log('params', params);
+    // this.service.post('reorder-all-questions-api', params, 1).subscribe(result => {
+    //   this.isLoadingBool = false;
+    //   console.log('result', result);
+    //   this.toastr.success(result.message);
+    //   this.router.navigate(['/test/question-screen']);
+    // })
+  }
 }

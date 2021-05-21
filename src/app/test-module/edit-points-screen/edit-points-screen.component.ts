@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { SharedServiceService } from 'src/app/shared-service.service';
 import { UtilService } from 'src/providers/util.service';
 import { ToastrService } from 'ngx-toastr';
+import { param } from 'jquery';
 @Component({
   selector: 'app-edit-points-screen',
   templateUrl: './edit-points-screen.component.html',
@@ -16,7 +17,7 @@ export class EditPointsScreenComponent implements OnInit {
   headerData: any = '';
   testAllData: any = '';
   selectedTestDetails: any = "";
-
+  arrayList:any=[];
   constructor(public service: SharedServiceService, private toastr: ToastrService, public util: UtilService, private router: Router) {
     this.testId = localStorage.getItem('test_id');
     this.classId = localStorage.getItem('classListId');
@@ -25,6 +26,10 @@ export class EditPointsScreenComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  submit() {
+    console.log('allData', this.allData);
   }
 
   // get all courses list
@@ -73,6 +78,27 @@ export class EditPointsScreenComponent implements OnInit {
         this.toastr.error(result.question_data);
       }
     })
+  }
+
+  confirmButton() {
+    this.isLoadingBool = true;
+    this.allData.forEach(element => {
+      this.arrayList.push({
+        'question_id':element.question_id,
+        'question_points':element.points
+      })
+    });
+
+    let params={
+    'id_and_points':this.arrayList
+    }
+    console.log('this.allData',params);
+    this.service.post('edit-all-questions-points-api', params, 1).subscribe(result => {
+      this.isLoadingBool = false;
+      this.toastr.success(result.message);
+      this.router.navigate(['/test/question-screen']);
+    })
+
   }
 
 }

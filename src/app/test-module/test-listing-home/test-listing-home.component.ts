@@ -45,7 +45,6 @@ export class TestListingHomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('hell0')
   }
 
   myFunction() {

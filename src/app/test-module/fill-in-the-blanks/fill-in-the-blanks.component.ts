@@ -164,24 +164,26 @@ export class FillInTheBlanksComponent implements OnInit {
   }
 
   saveQuestion() {
-    // this.fillData.attachment = this.ExteriorPicString;
+    this.fillData.attachment = this.ExteriorPicString;
     this.fillData.fill_inthe_blanks_options = this.leagueForm.value.answerList;
     var data = [];
 
     this.fillData.fill_inthe_blanks_options.forEach(element => {
       data.push(element.question);
     });
-    console.log('data', JSON.stringify(data));
-   
 
-    // this.fillData.test_assignment_nid = this.testId
-    // this.isLoadingBool = true;
-    // console.log('this.fillData', this.testId, this.fillData)
-    // this.service.post('add-question-api', this.fillData, 1).subscribe(result => {
-    //   console.log('result from fill blanks', result);
-    //   this.util.showSuccessAlert('Answer saved successfully');
-    //   this.isLoadingBool = false;
-    //   this.router.navigate(['/test/question-screen']);
-    // })
+
+    this.fillData.fill_inthe_blanks_options = data
+    this.fillData.partial_points= (this.fillData.partial_points == true) ? "1" : "0";
+    this.fillData.words_hint= (this.fillData.words_hint == true) ? "1" : "0"
+    this.fillData.test_assignment_nid = this.testId
+    this.isLoadingBool = true;
+    console.log('this.fillData', JSON.stringify(this.fillData));
+    this.service.post('add-question-api', this.fillData, 1).subscribe(result => {
+      console.log('result from fill blanks', result);
+      this.util.showSuccessAlert('Answer saved successfully');
+      this.isLoadingBool = false;
+      this.router.navigate(['/test/question-screen']);
+    })
   }
 }
