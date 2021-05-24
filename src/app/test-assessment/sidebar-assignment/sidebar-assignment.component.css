@@ -230,7 +230,9 @@ textarea:focus,
 }
 
 input[type="date"]{   
-    background-image: url(/assets/images/input-date.png);
+    /* background-image: url(/assets/images/input-date.png); */
+    /* background-image: url(/assets/images/input); */
+
     background-repeat: no-repeat;
     background-position: right 15px bottom 9px;
 

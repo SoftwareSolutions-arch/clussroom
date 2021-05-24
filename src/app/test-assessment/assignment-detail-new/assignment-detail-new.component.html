@@ -1,0 +1,211 @@
+<div class="dashboard">
+  <app-sidebar-assignment></app-sidebar-assignment>
+  <div class="control-panel">
+    <app-assignment-dashboard-header></app-assignment-dashboard-header>
+		<app-assignment-header></app-assignment-header>
+        <div class="col-lg-12 display-center mt-4">
+			<div class="col-md-6 text-left">
+				<h3 style="font-size: 22px; font-weight: 500;">Mid-Term Assignment</h3>
+			</div>
+			<div class="col-md-6 text-right display-center learner-select" style="justify-content: flex-end;">
+					<button type="button">Back</button>
+			</div>
+		</div>
+		<div class="prospectus-section sequence-list">
+			<div class="prospectus-tabs">
+				<ul class="nav nav-tabs">
+				    <li><a data-toggle="tab" href="#test" class="active">Assignment</a></li>
+				    <li><a data-toggle="tab" href="#submissions">Submissions</a></li>
+				</ul>
+			</div>
+		  <div class="tab-content">
+
+            <div class="col-lg-12 test-header" style="height: 45px;">
+                <div class="col-sm-2 text-right">
+                    <p style="margin: 0;">Instructions:</p>
+                </div>
+
+                <div class="col-lg-10">
+                    <h3 style="margin: 0;">Please read the questions carefully and the marks shown. Good luck!</h3>
+                </div>
+
+            </div>
+
+            <div class="col-lg-12 test-click-mid mt-4 test-name-click" style="display: flex;">
+                <div class="col-sm-2 text-right">
+                    <p>Commencement:</p>
+                </div>
+                <div class="col-lg-12 text-left">
+                    <p style="font-weight:400; color: #7990B4;">15 May 2020, &nbsp;&nbsp;&nbsp;&nbsp;14:00 hrs</p>
+                </div>
+	  		</div>
+
+            <div class="col-lg-12 test-click-mid mt-4 test-name-click" style="display: flex; border-bottom: 1px solid #F1F6FB; padding-bottom: 1em;">
+                <div class="col-sm-2 text-right">
+                    <p>Due date/time:</p>
+                </div>
+                <div class="col-lg-12 text-left">
+                    <p style="font-weight:400; color: #7990B4;">15 May 2020, &nbsp;&nbsp;&nbsp;&nbsp;14:00 hrs</p>
+                </div>
+	  		</div>
+
+              <div class="col-lg-12 display-center assignment-detail mt-3">
+                  <ul class="display-center">
+                      <li class="display-center" style="margin-right: 18em;">
+                          <label>Character limit:</label>
+                          <p>120 min</p>
+                      </li>
+                      <li class="display-center">
+                          <label>Attachments allowed:</label>
+                          <p>Yes</p>
+                      </li>
+                  </ul>
+              </div>
+              
+            <div class="col-lg-12 test-click-mid mt-4 test-name-click" style="display: flex;">
+                <div class="col-sm-2 text-right">
+                    <p>Submission status:</p>
+                </div>
+                <div class="col-lg-12 text-left">
+                    <p style="font-weight:400; color: #7990B4;">No</p>
+                </div>
+	  		</div> 
+              
+            <div class="col-lg-12 test-click-mid mt-4 test-name-click" style="display: flex;">
+                <div class="col-sm-2 text-right">
+                    <p>Last edited:</p>
+                </div>
+                <div class="col-lg-12 text-left">
+                    <p style="color: #7990B4; font-weight: 400;">15 May 2020, &nbsp;&nbsp;&nbsp;&nbsp;14:00 hrs</p>
+                </div>
+	  		</div>
+              
+              <div class="col-lg-12 display-center assignment-detail mt-3">
+                <ul class="display-center">
+                    <li class="display-center" style="margin-right: 12em;">
+                        <label>Rubric(if any):</label>
+                        <p style="padding-left: 42px; padding-right: 25px;">&lt;Title of rubric&gt;</p><button type="button" class="assignment-rubric" style="position:unset;">View rubric</button>
+                    </li>
+                    <li class="display-center">
+                        <label>Total Points:</label>
+                        <p>N.A.</p>
+                    </li>
+                </ul>
+            </div>
+
+              
+            <div class="col-lg-12 display-center" style="padding-top: 3em; padding-bottom: 1.5em ;">
+                <div class="col-sm-2 text-center">
+                <button type="submit" class="learner-take-test" style="height: 35px; font-weight: 600;">Start</button>
+                <!-- <button type="button" class="done-blue">View</button> -->
+                </div>
+            </div>
+    
+            <!-- <div class="col-lg-12 display-center" style="justify-content: center; padding: 3em 0 1.5em 0">
+                <button type="submit" class="learner-test-purple">You have completed all attempts</button>
+            </div> -->
+	  	</div>
+	</div>
+</div>
+    
+    <!-- Add From Library popup start -->
+
+
+<div id="library" class="modal addlibrary-modal" role="dialog">
+  <div class="modal-dialog" style="max-width: 869px;">
+
+<!--     Modal content-->
+    <div class="modal-content">
+
+    	<div class="modal-header">
+            <h4>Add from Library</h4>
+	        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true" style="color: #396aff;"></i></button>
+      	</div>
+		<div class="modal-body">
+
+            
+            <div class="addlibraryportion container">
+                <div class="col-lg-10 displayflex-items">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                <p>Course library > Scienctific computation</p>
+                </div>
+            </div> 
+            
+            <div class="addlibraryportion container col-lg-10 mt-4" style="border: none; margin: 0 12px;">
+               <div class="col-sm-3 add-field">
+                   <button><img src="assets/images/test/folder.png"></button>
+                   <p>Mathematics</p>
+                </div>
+                
+               <div class="col-sm-3 add-field">
+                   <button><img src="assets/images/test/folder.png"></button>
+                   <p>Engineering & Science</p>
+                </div>
+                
+               <div class="col-sm-3 add-field">
+                   <button><img src="assets/images/test/folder.png"></button>
+                   <p>Engineering & Science</p>
+                </div>
+                
+               <div class="col-sm-3 add-field">
+                   <button><img src="assets/images/test/folder.png"></button>
+                   <p>Engineering & Science</p>
+                </div>
+                
+               <div class="col-sm-3 add-field">
+                   <button><img src="assets/images/test/folder.png"></button>
+                   <p>Engineering & Science</p>
+                </div>                
+                
+            
+            </div>
+            <div class="addlibraryportion container col-lg-10 mt-4" style="border: none; margin: 0 12px;">
+               <div class="col-sm-3 add-field">
+                   <button><img src="assets/images/test/folder.png"></button>
+                   <p>Mathematics</p>
+                </div>
+                
+               <div class="col-sm-3 add-field">
+                   <button><img src="assets/images/test/folder.png"></button>
+                   <p>Engineering & Science</p>
+                </div>
+                
+               <div class="col-sm-3 add-field">
+                   <button><img src="assets/images/test/folder.png"></button>
+                   <p>Engineering & Science</p>
+                </div>
+                
+               <div class="col-sm-3 add-field">
+                   <button><img src="assets/images/test/folder.png"></button>
+                   <p>Engineering & Science</p>
+                </div>
+                
+               <div class="col-sm-3 add-field mb-3">
+                   <button><img src="assets/images/test/folder.png"></button>
+                   <p>Engineering & Science</p>
+                </div>                
+                
+            
+            </div>     
+            
+            <div class="col-lg-12 container modal-para" style="padding: 0 2em;">
+<!--                <p>Mathematics.tst</p>-->
+                <ul>
+                    <li><a href="#">Mathematics.tst</a></li>
+                    <li><a href="#">Ready-made test.tst</a></li>
+                    <li><a href="#">Ready-made test.tst</a></li>
+                    <li><a href="#">Ready-made test.tst</a></li>
+                </ul>
+            </div>
+            
+			<div class="class-remove-btn" style="padding: 21px 39px;">
+                <button type="button" class="modal-para-btn">Yes</button>
+			</div>
+		</div>
+
+    </div>
+
+  </div>
+</div>
+<i class="fa fa-file-text" aria-hidden="true"></i>
+</div>

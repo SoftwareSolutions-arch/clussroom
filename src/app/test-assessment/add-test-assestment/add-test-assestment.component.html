@@ -1,0 +1,471 @@
+<div class="dashboard">
+   <app-sidebar-assignment></app-sidebar-assignment>
+   <div class="control-panel">
+      <app-assignment-dashboard-header></app-assignment-dashboard-header>
+      <app-assignment-header></app-assignment-header>
+      <div class="col-lg-12 display-center mt-4">
+			<div class="col-md-6 text-left">
+				<h3 style="font-size: 22px; font-weight: 500;">Add Assignment</h3>
+			</div>
+		</div>
+      <div class="prospectus-section sequence-list">
+         <div class="prospectus-tabs">
+            <ul class="nav nav-tabs">
+               <li><a data-toggle="tab" href="#test" class="active">Test</a></li>
+               <li><a data-toggle="tab" href="#settings">Settings</a></li>
+               <li><a data-toggle="tab" href="#assignment-grading">Result/Assessment</a></li>
+               <!--				    <li><a data-toggle="tab" href="#overall-grading">Overall Grading Status</a></li>-->
+            </ul>
+         </div>
+         <div class="tab-content">
+            <!-- Submisssion Log start -->
+            <div id="settings" class="tab-pane active box-shadow">
+               <form [formGroup]="addAssignmentForm">
+                  <div class="setting-input bottom-border">
+                     <div class="text-left col-md-2">
+                        <label>Name of assignment</label>
+                     </div>
+                     <div class="col-lg-10 setting-padding input-fonts">
+                        <input type="text" formControlName="assignment_name">
+                     </div>
+                  </div>
+                  <div class="text-area setting-input bottom-border">
+                     <div class="text-left col-md-2">
+                        <label>Instruction</label>
+                     </div>
+                     <div class="col-lg-10" style="padding-left: 23px;">
+                        <textarea formControlName="instruction" cols="80" label="notes" rows="4" wrap="virtual"
+                           style="margin: 0;"
+                           placeholder="Please read the questions carefully. This test will form part of your final grading this year.">
+                    </textarea>
+                     </div>
+                  </div>
+                  <div class="setting-date-section setting-input bottom-border">
+                     <div class="col-md-2 text-left">
+                        <label>Available from :</label>
+                     </div>
+                     <div class="col-md-2 input-fonts" style="padding-left: 21px; margin-right: 2em">
+                        <input type="date" formControlName="available_date">
+                     </div>
+                     <div class="col-md-2 input-fonts">
+                        <input type="time" formControlName="available_time" style="width: 148px !important;"
+                           class="text-center">
+                     </div>
+                  </div>
+                  <div class="setting-date-section setting-input bottom-border">
+                     <div class="col-md-2 text-left">
+                        <label>Available to:</label>
+                     </div>
+                     <div class="col-md-2 input-fonts" style="padding-left: 21px; margin-right: 2em">
+                        <input type="date" formControlName="available_dateTo">
+                     </div>
+                     <div class="col-md-2 input-fonts">
+                        <input type="time" formControlName="available_timeTo" style="width: 148px !important;"
+                           value="12:00" class="text-center">
+                     </div>
+                  </div>
+                  <div class="custom-checkbox-assign setting-input bottom-border">
+                     <div class="col-md-2 text-left">
+                        <label>Allow attachments</label>
+                     </div>
+                     <div class="col-md-2 input-fonts">
+                        <input type="checkbox" id="checkbox1" formControlName="attachment_limit_checked"
+                           [(ngModel)]="isChecked" />
+                     </div>
+                     <div class="col-md-4 custom input-fonts" *ngIf="isChecked">
+                        <input type="text" placeholder="20" formControlName="attachment">
+                        <label style="color: #16DBCC;">Enter attachment limit (Mb)</label>
+                     </div>
+                  </div>
+
+                  <div class="custom-checkbox-assign setting-input bottom-border">
+                     <div class="col-md-2 text-left">
+                        <label>Character limit</label>
+                     </div>
+                     <div class="col-md-2 input-fonts">
+                        <input type="checkbox" id="checkbox1" formControlName="character_limit_checked"
+                           [(ngModel)]="myCheckbox" />
+                     </div>
+                     <div class="col-md-4 custom input-fonts" *ngIf="myCheckbox">
+                        <input type="text" placeholder="10,000" formControlName="character_limit">
+                     </div>
+                  </div>
+
+                  <div class="custom-checkbox-assign setting-input bottom-border">
+                     <div class="col-md-2 text-left">
+                        <label>Insert rubric?</label>
+                     </div>
+                     <div class="col-md-2">
+                        <input type="checkbox" id="checkbox1" formControlName="rubric" [(ngModel)]="rubricChecked" />
+                     </div>
+                     <div class="col-md-4 custom" *ngIf="rubricChecked">
+                        <div class="dropdown-1 " style="margin: 0 26px;">
+                           <button class="dropbtn-1">Dropdown &nbsp;<i class="fa fa-caret-down" aria-hidden="true"
+                                 style="margin-left: 1em;"></i></button>
+                           <div class="dropdown-content-1">
+                              <a href="#">Rubric 1</a>
+                              <a href="#">Rubric 2</a>
+                              <a href="#" data-toggle="modal" data-target="#createRubric">Create New</a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div class="setting-select setting-input border-bottom">
+                     <div class="col-md-2 text-left">
+                        <label>Points</label>
+                     </div>
+                     <div class="custom">
+                        <input type="text" formControlName="points" style="margin: 0; width: 94px !important;">
+                     </div>
+                  </div>
+                  <div class="container" style="padding: 18px 0 0 14px; margin: 0;">
+                     <button type="button" class="light-green" (click)="goToQuestion()">Go to
+                        question</button>
+                     <button type="button" class="blue" (click)="addData()">Save</button>
+                     <button type="button" class="blue-border" routerLink="/assignment/test-assignment-home">Cancel</button>
+                  </div>
+               </form>
+
+            </div>
+            <!-- Submisssion Log end -->
+         </div>
+      </div>
+   </div>
+</div>
+
+<!-- Add Rubric modal popup start -->
+
+
+<div id="createRubric-1" class="modal deletetest-modal" role="dialog">
+   <div class="modal-dialog">
+
+      <!--     Modal content-->
+      <div class="modal-content">
+
+         <div class="modal-header">
+            <h4>Delete class</h4>
+            <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times"
+                  aria-hidden="true"></i></button>
+         </div>
+         <div class="modal-body">
+            <table class="table table-bordered new-table" style="background-color: #81c8c1;">
+               <thead>
+                  <tr>
+                     <th style="width: 200px;">Criterion <button type="button" class="plus-button"
+                           style="margin-left: 7.7em;"><i class="fa fa-plus" aria-hidden="true"></i></button></th>
+
+                     <th colspan="4" style="text-align: center;">Scale</th>
+
+                     <th>Total points</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="display-center">
+                        <div class="input-box" style="margin-right: 1.5em;">
+                           <input type="text">
+                        </div>
+                        <ul>
+                           <li><button type="button" class="plus-button"><i class="fa fa-plus"
+                                    aria-hidden="true"></i></button></li>
+                           <li><button type="button" class="minus-button"><i class="fa fa-minus"
+                                    aria-hidden="true"></i></button></li>
+                        </ul>
+                     </td>
+                     <td style="padding-right: 2px;">
+                        <div class="input-box">
+                           <input type="text" style="margin-right: 6px; width: 210px;">
+                           <input type="number">
+                        </div>
+                     </td>
+                     <td style="padding-right: 2px;">
+                        <div class="input-box">
+                           <input type="text" style="margin-right: 6px; width: 210px;">
+                           <input type="number">
+                        </div>
+                     </td>
+                     <td style="padding-right: 2px;" colspan="2">
+                        <div class="input-box">
+                           <input type="text" style="margin-right: 6px; width: 230px;">
+                           <input type="number">
+                        </div>
+                     </td>
+                     <td>3</td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="display-center">
+                        <div class="input-box" style="margin-right: 1.5em;">
+                           <input type="text">
+                        </div>
+                        <ul>
+                           <li><button type="button" class="plus-button"><i class="fa fa-plus"
+                                    aria-hidden="true"></i></button></li>
+                           <li><button type="button" class="minus-button"><i class="fa fa-minus"
+                                    aria-hidden="true"></i></button></li>
+                        </ul>
+                     </td>
+                     <td style="padding-right: 2px;">
+                        <div class="input-box">
+                           <input type="text" style="margin-right: 6px; width: 210px;">
+                           <input type="number">
+                        </div>
+                     </td>
+                     <td style="padding-right: 2px;">
+                        <div class="input-box">
+                           <input type="text" style="margin-right: 6px; width: 210px;">
+                           <input type="number">
+                        </div>
+                     </td>
+                     <td style="padding-right: 2px;">
+                        <div class="input-box">
+                           <input type="text" style="margin-right: 6px; width: 141px;">
+                           <input type="number">
+                        </div>
+                     </td>
+                     <td style="padding-right: 2px;">
+                        <div class="input-box">
+                           <input type="text" style="margin-right: 6px; width: 141px;">
+                           <input type="number">
+                        </div>
+                     </td>
+                     <td>7</td>
+                  </tr>
+
+                  <tr>
+                     <td class="display-center">
+                        <div class="input-box" style="margin-right: 1.5em;">
+                           <input type="text">
+                        </div>
+                        <ul>
+                           <li><button type="button" class="plus-button"><i class="fa fa-plus"
+                                    aria-hidden="true"></i></button></li>
+                           <li><button type="button" class="minus-button"><i class="fa fa-minus"
+                                    aria-hidden="true"></i></button></li>
+                        </ul>
+                     </td>
+                     <td style="padding-right: 2px;">
+                        <div class="input-box">
+                           <input type="text" style="margin-right: 6px; width: 210px;">
+                           <input type="number">
+                        </div>
+                     </td>
+                     <td style="padding-right: 2px;">
+                        <div class="input-box">
+                           <input type="text" style="margin-right: 6px; width: 210px;">
+                           <input type="number">
+                        </div>
+                     </td>
+                     <td style="padding-right: 2px;" colspan="2">
+                        <div class="input-box">
+                           <input type="text" style="margin-right: 6px; width: 230px;">
+                           <input type="number">
+                        </div>
+                     </td>
+                     <td>4</td>
+
+                  </tr>
+
+               </tbody>
+            </table>
+         </div>
+
+      </div>
+
+   </div>
+</div>
+
+<!-- Add Rubric modal popup end -->
+  <!--View rubric modal popup start -->
+
+
+  <div id="createRubric" class="modal deletetest-modal" role="dialog">
+	<div class="modal-dialog" style="max-width: 1300px;">
+  
+	  <div class="modal-content">
+        <div class="rubric-header col-lg-12 display-center">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 text-center">
+            <h3>Add rubric</h3>
+            </div>
+            <div class="col-md-4 text-right">
+                <i class="fa fa-times" aria-hidden="true" style="color: #396aff; margin-right: .7em; font-size: 15px; cursor: pointer;" data-dismiss="modal"></i>
+            </div>
+        </div>
+		<div class="modal-body mt-5 col-lg-12 rubric-back mb-5" style="padding: 20px 30px 30px 30px; margin: 0 auto; width: 1200px;">
+         <div style="display: flex; align-items: center;">
+         <p class="i-position"><button type="button"><i class="fa fa-minus-circle" aria-hidden="true"></i></button></p>
+            <p class="i-position"><button type="button"><i class="fa fa-minus-circle" aria-hidden="true" style="top:18em; right: 2.3em;"></i></button></p>
+            <p class="i-position"><button type="button"><i class="fa fa-minus-circle" aria-hidden="true" style="top:14em; right:3.2em"></i></button></p>
+            </div>
+
+            <div class="col-lg-12 display-center" style="justify-content: center;">
+                <input type="text" placeholder="&lt;Title of rubric&gt;" class="rubric-title mb-3">
+            </div>
+            <div class="col-lg-12 rubric-heading display-center" style="border-top-left-radius: 6px; border-top-right-radius: 6px; padding: 0;">
+
+                <div class="col-md-2 display-center custom-add" style="padding: 14px 0;; justify-content: center;border-right: 1px solid #DCE2EC; padding-left: 29px;">
+                    <div class="col-lg-8" style="padding: 0; text-align: right;">
+                    <p>Criterion</p></div>
+                    <div class="col-md-4" style="padding: 0 50px;">
+                    <button type="button" style="position: relative; left: 3.5px;">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    </button></div>
+                </div>
+
+                <div class="col-md-9 text-center" style="padding: 14px 0;border-right: 1px solid #DCE2EC;">
+                    <p>Scale</p>
+                </div>
+                
+                <div class="col-sm-1 text-center" style="padding: 14px 0;;">
+                    <p>Total points</p>
+                </div>
+
+            </div>
+
+            <div class="col-lg-12 rubric-heading display-center" style="padding: 0;">
+                
+                <div class="col-md-2 custom-add rubric-1-section display-center" style="padding: 4px 0;border-right: 1px solid #DCE2EC;padding-left: 4px;">
+                    <textarea>
+Comprehension & 
+understanding ability
+                    </textarea>
+                    <button type="button" style="position: relative; left: 15px;">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                    </button>
+                </div>
+
+                <div class="col-md-9 display-center" style="padding: 0;">
+                    <div class="first-mid-section display-center col-md-4"style="justify-content:center; border-right: 1px solid #DCE2EC;">
+                        <textarea style="padding: 10px 4px;">Poor</textarea>
+                        <input type="text" value="1">
+                    <button type="button" class="area-delete">
+                        <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                    </button>                       
+                    </div>
+
+                    <div class="first-mid-section display-center col-md-4"style="justify-content:center; border-right: 1px solid #DCE2EC;">
+                        <textarea style="padding: 10px 4px;">Can be improved</textarea>
+                        <input type="text" value="3">
+                    <button type="button" class="area-delete">
+                        <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                    </button>                        
+                    </div>
+
+                    <div class="first-mid-section display-center col-md-4"style="justify-content:center; border-right: 1px solid #DCE2EC;">
+                        <textarea>
+Excellent & exceeded 
+comprehension ability                            
+                        </textarea>
+                        <input type="text" value="5">
+                    <button type="button" class="area-delete">
+                        <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                    </button>                        
+                    </div>
+                </div>
+
+                <div class="col-sm-1 total-pointsp">
+                    <p>3</p>
+                </div>
+            </div>
+            <div class="col-lg-12 rubric-heading display-center" style="padding: 0;">
+                
+                <div class="col-md-2 custom-add rubric-1-section display-center" style="padding: 4px 0;border-right: 1px solid #DCE2EC; padding-left: 4px;">
+                    <textarea style="padding: 9px 4px;">Delivery</textarea>
+                    <button type="button" style="position: relative; left: 15px;">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                    </button>
+                </div>
+
+                <div class="col-md-9 display-center" style="padding: 0;">
+                    <div class="second-mid-section display-center col-md-3"style="justify-content:center; border-right: 1px solid #DCE2EC; padding-left:12px;">
+                        <textarea style="padding: 10px 4px;">Poor</textarea>
+                        <input type="text" value="1">
+                    <button type="button" class="area-delete">
+                        <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                    </button>                        
+                    </div>
+
+                    <div class="second-mid-section display-center col-md-3"style="justify-content:center; border-right: 1px solid #DCE2EC;">
+                        <textarea style="padding: 10px 4px;">Satisfactory</textarea>
+                        <input type="text" value="3">
+                    <button type="button" class="area-delete">
+                        <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                    </button>                        
+                    </div>
+
+                    <div class="second-mid-section display-center col-md-3"style="justify-content:center; border-right: 1px solid #DCE2EC;">
+                        <textarea style="padding: 10px 4px;">Good</textarea>
+                        <input type="text" value="3">
+                    <button type="button" class="area-delete">
+                        <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                    </button>                        
+                    </div>
+
+                    <div class="second-mid-section display-center col-md-3"style="justify-content:center; border-right: 1px solid #DCE2EC;">
+                        <textarea>
+Well & 
+effective delivery                          
+                        </textarea>
+                        <input type="text" value="5">
+                    <button type="button" class="area-delete">
+                        <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                    </button>                        
+                    </div>
+                </div>
+
+                <div class="col-sm-1 total-pointsp">
+                    <p>7</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-12 rubric-heading display-center" style="border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; padding: 0;">
+                
+                <div class="col-md-2 custom-add rubric-1-section display-center" style="padding: 4px 0;border-right: 1px solid #DCE2EC; padding-left: 4px;">
+                    <textarea style="padding: 9px 4px;">Grammar</textarea>
+                    <button type="button" style="position: relative; left: 15px; bottom: 12px; font-size: 15px;">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" style="position: relative; left: 1px; top: 14px; background-color: transparent; color: #FF82AC;">
+                        <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                    </button>
+                </div>
+
+                <div class="col-md-9 display-center" style="padding: 0;">
+                    <div class="first-mid-section display-center col-md-4"style="justify-content:center; border-right: 1px solid #DCE2EC;">
+                        <textarea style="padding: 10px 4px;">Poor</textarea>
+                        <input type="text" value="1">
+                    </div>
+
+                    <div class="first-mid-section display-center col-md-4"style="justify-content:center; border-right: 1px solid #DCE2EC;">
+                        <textarea style="padding: 10px 4px;">Can be improved</textarea>
+                        <input type="text" value="3">
+                    </div>
+
+                    <div class="first-mid-section display-center col-md-4"style="justify-content:center; border-right: 1px solid #DCE2EC;">
+                        <textarea>
+Excellent & exceeded 
+comprehension ability                            
+                        </textarea>
+                        <input type="text" value="5">
+                    </div>
+                </div>
+
+                <div class="col-sm-1 total-pointsp">
+                    <p>3</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-12 display-center mb-5" style="justify-content: center;">
+         <button type="submit" class="confirm-rubric" data-dismiss="modal">Add rubric</button>
+     </div>
+		</div>
+        
+		  </div>
+  
+	  </div>
+  
+<!-- View rubric modal popup end -->

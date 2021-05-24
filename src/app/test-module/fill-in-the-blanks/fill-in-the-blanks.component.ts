@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormGroup, Validators, FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { UtilService } from '../../../providers/util.service';
 import { SharedServiceService } from '../../shared-service.service';
@@ -36,47 +36,15 @@ export class FillInTheBlanksComponent implements OnInit {
     fill_inthe_blanks_options: "",
   }
   testId: any = '';
-  getQuestionId:any='';
-  isEditQuestion:boolean;
-
-  constructor(private router: Router, private route: ActivatedRoute,private fb: FormBuilder, public service: SharedServiceService, public util: UtilService) {
+  constructor(private router: Router, private fb: FormBuilder, public service: SharedServiceService, public util: UtilService) {
     this.testId = localStorage.getItem('test_id');
-    this.getQuestionId = this.route.snapshot.paramMap.get('id');
-    this.getQuestionDetais();
+    console.log('****', this.testId);
   }
 
   ngOnInit() {
     this.leagueForm = this.fb.group({
       answerList: this.fb.array([this.answerList])
     });
-  }
-
-  getQuestionDetais() {
-    if (this.getQuestionId != '') {
-      this.isEditQuestion=false;
-      let params = {
-        'question_id': this.getQuestionId
-      }
-      this.isLoadingBool = true;
-      this.service.post('questions-listing', params, 1).subscribe(result => {
-        this.isLoadingBool = false;
-        console.log('result', result);
-        var data = result.question_data[0]
-        this.fillData = {
-          question: data.paper_summary,
-          attachment: data.paper_attachemet_data,
-          points: data.points,
-          partial_points: data.partial_points
-        }
-        console.log('result', this.fillData);       
-       })
-    }
-
-    else {
-
-      this.isEditQuestion=true;
-      return
-    }
   }
 
   get answerList(): FormGroup {

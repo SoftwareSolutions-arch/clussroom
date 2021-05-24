@@ -1,0 +1,483 @@
+<div class="dashboard">
+  <app-sidebar-assignment></app-sidebar-assignment>
+  <div class="control-panel">
+    <app-assignment-dashboard-header></app-assignment-dashboard-header>
+		<app-assignment-header></app-assignment-header>
+
+<div class="right">
+                    <div class="width">
+                    <a href="index.html">Mid-term Test</a>
+                    </div>
+                    <div class="width">
+                <select name="course" id="course-name">          
+                    <option value="Course 1">Final Exam</option>
+                    <option value="Course 1" selected>Mid-Term Test</option>
+                    <option value="Course 2">Test1</option>
+                    <option value="Course 3">Test2</option>
+                </select>
+                    </div>
+        </div>
+		<div class="prospectus-section sequence-list">
+			<div class="prospectus-tabs">
+				<ul class="nav nav-tabs">
+				    <li><a data-toggle="tab" href="#test" class="active">Test</a></li>
+				    <li><a data-toggle="tab" href="#settings">Settings</a></li>
+				    <li><a data-toggle="tab" href="#assignment-grading">Result/Assessment</a></li>
+<!--				    <li><a data-toggle="tab" href="#overall-grading">Overall Grading Status</a></li>-->
+				</ul>
+			</div>
+		  <div class="tab-content">
+		  	<!-- Schedule start -->
+			    <div id="test" class="tab-pane active">
+			    	<div class="table=-responsive">
+						<table class="table dashboard-table">
+							<thead class="thead-course">
+						    <tr>
+						      <th scope="col"></th>
+
+						      <th scope="col" style="width: 10% !important;padding: 0 0 0 5.5em;text-align: center;">Test commencement</th>
+						      <th scope="col"></th>
+						      <th scope="col" style="text-align: right; padding: 0 0;">Test completion</th>                               
+						    </tr>
+						  </thead>
+						  <thead>
+						    <tr>
+						      <th scope="col">No.</th>    
+						      <th scope="col" class="text-left table-filter" style="width: 20%;">First name</th>
+						      <th scope="col" class=" text-left table-filter">Last name</th>
+						      <th scope="col" class="text-left table-filter">Date</th>
+						      <th scope="col" class="table-filter">Time</th>
+						      <th scope="col" class="table-filter">Final score</th>                                
+						      <th scope="col">&nbsp;</th>                                
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <tr>
+
+						      <td>1</td>
+						      <td class="text-left">Darren</td>
+						      <td class="text-left">10 May 20</td>
+						      <td class="text-left">15/11/2020</td>
+						      <td>10:01 hrs</td>
+						      <td>80/120</td>
+
+						      <td>
+                                <div class="result-blue">
+                                    <button type="submit" routerLink="/assignment/assignment-review">Review</button>  
+                                </div>
+                              </td>
+
+						    </tr>
+				            
+                            <tr>
+
+						      <td>2</td>
+						      <td class="text-left">Jake</td>
+						      <td class="text-left">10 May 20</td>
+						      <td class="text-left">03/11/2020</td>
+						      <td>12:13 hrs</td>
+						      <td>67/120</td>
+						      <td>
+                                <div class="result-blue">
+                                    <button type="submit">Review</button>  
+                                </div>
+                              </td>                                
+
+						    </tr>	
+                              
+                            <tr>
+
+						      <td>3</td>
+						      <td class="text-left">Maybell</td>
+						      <td class="text-left">15 April 20</td>
+						      <td class="text-left">02/11/2020</td>
+						      <td>20:01 hrs</td>
+						      <td>-</td>
+						      <td>
+                                <div class="result-blue">
+                                    <button type="submit">Review</button>  
+                                </div>
+                              </td>                                
+
+						    </tr> 
+                              
+                            <tr>
+
+						      <td>4</td>
+						      <td class="text-left">Hazel</td>
+						      <td class="text-left">29 March 20</td>
+						      <td class="text-left">01/10/2020</td>
+						      <td>12:01 hrs</td>
+						      <td style="color: #FF82AC;">Pendin<br>review</td>
+						      <td>
+                                <div class="result-blue">
+                                    <button type="submit">Review</button>  
+                                </div>
+                              </td>                                
+
+						    </tr>
+                              
+                            <tr>
+
+						      <td>5</td>
+						      <td class="text-left">Mitt</td>
+						      <td class="text-left">3 March 20</td>
+						      <td class="text-left">-</td>
+						      <td>-</td>
+						      <td>-</td>
+						      <td>
+                                <div class="light-pink">
+                                    <button type="submit">-</button>  
+                                </div>
+                              </td>                                
+
+						    </tr>                              
+                              
+						  </tbody>
+						</table>
+					</div>
+<div class="table-result-wrapper bottom-select">
+                  <select name="course" id="course-name">
+                     <option selected>10</option>
+                     <option value="Course 1">1</option>
+                     <option value="Course 2">2</option>
+                     <option value="Course 3">3</option>
+                  </select>
+                  <p style="width: 15%;">Results : 1-15 of 324</p>
+                  <div class="selector">
+                     <ul>
+                        <li><a href="#"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li class="active"><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">...</a></li>
+                        <li><a href="#" class="right-arrow"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+                     </ul>
+                  </div>
+               </div>
+			    </div>
+			    <!-- Schedule start -->
+
+			    <!-- Submisssion Log start -->
+<!--
+			    <div id="settings" class="tab-pane active">
+			    	<div class="table=-responsive">
+						<table class="table dashboard-table">
+							<thead class="thead-course">
+						    <tr>
+						      <th scope="col"></th>
+						      <th scope="col"></th>
+						      <th scope="col"></th>
+						      <th scope="col" style="width: 10% !important;padding: 0 0 0 5.5em;text-align: center;">From</th>
+						      <th scope="col"></th>
+						      <th scope="col" style="text-align: right; padding: 0 0;">To</th>
+						      <th scope="col"></th>
+						      <th scope="col"></th>
+						      <th scope="col"></th>
+						    </tr>
+						  </thead>
+						  <thead>
+						    <tr>
+                              <th scope="col"></th>
+						      <th scope="col">No.</th>
+						      <th scope="col" class="text-left table-filter" style="width: 20%;">Test name</th>
+						      <th scope="col" class=" text-left table-filter">Date</th>
+						      <th scope="col" class="text-left table-filter">To</th>
+						      <th scope="col" class="table-filter">Date</th>
+						      <th scope="col" class="table-filter">To</th>                                
+						      <th scope="col" class="table-filter">Timer (Min)</th>
+						      <th scope="col" class="table-filter">Attempt</th>
+						      <th scope="col" class="table-filter">Marking Status</th>
+						      <th scope="col" class="table-filter">Total Score</th>
+                                <th scope="col"><a href="#"><i class="fa fa-ellipsis-v" aria-hidden="true" style="color: #7990B4"></i></a></th>
+                                
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <tr>
+                            <th>
+                           <div class="radio-table"><input type="checkbox"></div>
+                            </th>
+						      <td>1</td>
+						      <td class="text-left">Mid-Term Test</td>
+						      <td class="text-left">10 May 20</td>
+						      <td class="text-left">09:00</td>
+						      <td>10 May 20</td>
+						      <td>09:00</td>
+						      <td>120</td>
+						      <td>1</td>
+						      <td>1/12</td>
+                                <td><div class="purple"><button type="button">150</button></div></td>
+						    </tr>
+				            
+                            <tr>
+                            <th>
+                           <div class="radio-table"><input type="checkbox"></div>
+                            </th>
+						      <td>2</td>
+						      <td class="text-left">Mid-Term Test</td>
+						      <td class="text-left">10 May 20</td>
+						      <td class="text-left">09:00</td>
+						      <td>10 May 20</td>
+						      <td>09:00</td>
+						      <td>180</td>
+						      <td>1</td>
+						      <td>0/12</td>
+                              <td><div class="purple"><button type="button">150</button></div></td>
+						    </tr>	
+                              
+                            <tr>
+                            <th>
+                           <div class="radio-table"><input type="checkbox"></div>
+                            </th>
+						      <td>3</td>
+						      <td class="text-left">Test1</td>
+						      <td class="text-left">15 April 20</td>
+						      <td class="text-left">10:00</td>
+						      <td>15 April 20</td>
+						      <td>10:00</td>
+						      <td>-</td>
+						      <td>1</td>
+						      <td>10/12</td>
+                              <td><div class="purple"><button type="button">150</button></div></td>
+						    </tr>
+                              
+                            <tr>
+                            <th>
+                           <div class="radio-table"><input type="checkbox"></div>
+                            </th>
+						      <td>4</td>
+						      <td class="text-left">Test2</td>
+						      <td class="text-left">29 March 20</td>
+						      <td class="text-left">12:00</td>
+						      <td>29 March 20</td>
+						      <td>12:00</td>
+						      <td>30</td>
+						      <td>2</td>
+                                <td><div class="light-pink"><button type="button">-</button></div></td>
+                              <td><div class="purple"><button type="button">150</button></div></td>
+						    </tr>
+                              
+                            <tr>
+                            <th>
+                           <div class="radio-table"><input type="checkbox"></div>
+                            </th>
+						      <td>5</td>
+						      <td class="text-left">Periodic Test</td>
+						      <td class="text-left">3 March 20</td>
+						      <td class="text-left">14:00</td>
+						      <td>3 March 20</td>
+						      <td>14:00</td>
+						      <td>120</td>
+						      <td>1</td>
+						      <td>12/12</td>
+                              <td><div class="light-pink"><button type="button">-</button></div></td>
+						    </tr>
+                              
+                              
+						  </tbody>
+						</table>
+					</div>
+<div class="table-result-wrapper bottom-select">
+                  <select name="course" id="course-name">
+                     <option selected>10</option>
+                     <option value="Course 1">1</option>
+                     <option value="Course 2">2</option>
+                     <option value="Course 3">3</option>
+                  </select>
+                  <p style="width: 10%;">Results: 1-15 of 324</p>
+                  <div class="selector">
+                     <ul>
+                        <li><a href="#"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li class="active"><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">...</a></li>
+                        <li><a href="#" class="right-arrow"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+                     </ul>
+                  </div>
+               </div>
+			    </div>
+-->
+			    <!-- Submisssion Log end -->
+
+			    <!-- Test/Assignment Grading Status start -->
+<!--
+			    <div id="assignment-grading" class="tab-pane">
+			      	<div class="table=-responsive">
+						<table class="table dashboard-table">
+							<thead class="thead-course">
+						    <tr>
+						      <th scope="col"></th>
+						      <th scope="col"></th>
+						      <th scope="col"></th>
+						      <th scope="col" colspan="2">Due</th>
+						      <th scope="col"></th>
+						      <th scope="col"></th>
+						    </tr>
+						  </thead>
+						  <thead>
+						    <tr>
+						      <th scope="col">No.</th>
+						      <th scope="col" class="text-left table-filter">Type</th>
+						      <th scope="col" class="text-left table-filter">Name</th>
+						      <th scope="col">Date</th>
+						      <th scope="col">Time</th>
+						      <th scope="col">Graded?</th>
+						      <th scope="col">Final Grading contribution</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <tr>
+						      <td>1</td>
+						      <td class="text-left">Test</td>
+						      <td class="text-left">First Term Test - Preliminary</td>
+						      <td>07/08/2020</td>
+						      <td>18:30 hrs</td>
+						      <td><i class="fa fa-check" aria-hidden="true"></i></td>
+						      <td>-</td>
+						    </tr>
+						    <tr>
+						      <td>2</td>
+						      <td class="text-left">Discussion</td>
+						      <td class="text-left">Bull in share market</td>
+						      <td>01/07/2020</td>
+						      <td>17:00 hrs</td>
+						      <td>-</td>
+						      <td><i class="fa fa-check" aria-hidden="true"></i></td>
+						    </tr>
+						    <tr>
+						      
+						      <td>3</td>
+						      <td class="text-left">Assignment</td>
+						      <td class="text-left">Balance Sheet making</td>
+						      <td>02/05/2020</td>
+						      <td>15:00 hrs</td>
+						      <td>-</td>
+						      <td>-</td>
+						    </tr>
+						    <tr>
+						      
+						      <td>4</td>
+						      <td class="text-left">Assignment</td>
+						      <td class="text-left">Cash flow</td>
+						      <td>24/06/2020</td>
+						      <td>14:00 hrs</td>
+						      <td><i class="fa fa-check" aria-hidden="true"></i></td>
+						      <td><i class="fa fa-check" aria-hidden="true"></i></td>
+						    </tr>
+						    <tr>
+						      
+						      <td>5</td>
+						      <td class="text-left">Test</td>
+						      <td class="text-left">How to handle special entries</td>
+						      <td>24/05/2020</td>
+						      <td>02:00 hrs</td>
+						      <td><i class="fa fa-check" aria-hidden="true"></i></td>
+						      <td><i class="fa fa-check" aria-hidden="true"></i></td>
+						    </tr>
+						  </tbody>
+						</table>
+					</div>
+					<div class="table-result-wrapper">
+						<p>Results: 1-15 of 324</p>
+					</div>
+			    </div>
+-->
+			    <!-- Test/Assignment Grading Status end -->
+
+			    <!-- Overall Grading Status start -->
+<!--
+			    <div id="overall-grading" class="tab-pane">
+			      	<div class="table=-responsive">
+						<table class="table dashboard-table">
+							<thead class="thead-course">
+						    <tr>
+						      <th scope="col"></th>
+						      <th scope="col"></th>
+						      <th scope="col"></th>
+						      <th scope="col" colspan="2">Due</th>
+						      <th scope="col"></th>
+						      <th scope="col"></th>
+						    </tr>
+						  </thead>
+						  <thead>
+						    <tr>
+						      <th scope="col">No.</th>
+						      <th scope="col" class="text-left table-filter">Type</th>
+						      <th scope="col" class="text-left table-filter">Name</th>
+						      <th scope="col">Date</th>
+						      <th scope="col">Time</th>
+						      <th scope="col">Graded?</th>
+						      <th scope="col">Final Grading contribution</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <tr>
+						      <td>1</td>
+						      <td class="text-left">Test</td>
+						      <td class="text-left">First Term Test - Preliminary</td>
+						      <td>07/08/2020</td>
+						      <td>18:30 hrs</td>
+						      <td><i class="fa fa-check" aria-hidden="true"></i></td>
+						      <td>-</td>
+						    </tr>
+						    <tr>
+						      <td>2</td>
+						      <td class="text-left">Discussion</td>
+						      <td class="text-left">Bull in share market</td>
+						      <td>01/07/2020</td>
+						      <td>17:00 hrs</td>
+						      <td>-</td>
+						      <td><i class="fa fa-check" aria-hidden="true"></i></td>
+						    </tr>
+						    <tr>
+						      
+						      <td>3</td>
+						      <td class="text-left">Assignment</td>
+						      <td class="text-left">Balance Sheet making</td>
+						      <td>02/05/2020</td>
+						      <td>15:00 hrs</td>
+						      <td>-</td>
+						      <td>-</td>
+						    </tr>
+						    <tr>
+						      
+						      <td>4</td>
+						      <td class="text-left">Assignment</td>
+						      <td class="text-left">Cash flow</td>
+						      <td>24/06/2020</td>
+						      <td>14:00 hrs</td>
+						      <td><i class="fa fa-check" aria-hidden="true"></i></td>
+						      <td><i class="fa fa-check" aria-hidden="true"></i></td>
+						    </tr>
+						    <tr>
+						      
+						      <td>5</td>
+						      <td class="text-left">Test</td>
+						      <td class="text-left">How to handle special entries</td>
+						      <td>24/05/2020</td>
+						      <td>02:00 hrs</td>
+						      <td><i class="fa fa-check" aria-hidden="true"></i></td>
+						      <td><i class="fa fa-check" aria-hidden="true"></i></td>
+						    </tr>
+						  </tbody>
+						</table>
+					</div>
+					<div class="table-result-wrapper">
+						<p>Results: 1-15 of 324</p>
+					</div>
+			    </div>
+-->
+
+			    <!-- Overall Grading Status end -->
+
+
+	  		</div>
+	  	</div>
+	</div>
+</div>  

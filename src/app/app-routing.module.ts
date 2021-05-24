@@ -129,6 +129,10 @@ const routes: Routes = [
     path: 'testing-mode', component: TestCompomentComponent
   },
   { path: 'test', loadChildren: './test-module/test-module#TestModule' },
+  {
+    path: 'assignment',
+    loadChildren: () => import('../app/test-assessment/test-assesment.module').then(m => m.AssessmentModule)
+  }
 ];
 
 @NgModule({

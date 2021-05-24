@@ -232,29 +232,27 @@ export class QuestionScreenComponent implements OnInit {
     })
   }
 
-  editQuestion(type,data) {
-    console.log('data',type,data.question_id);
-    let dataType = type;
+  editQuestion(data) {
+    let dataType = data;
     console.log('dataType', dataType);
-
     switch (dataType) {
       case 'multiple_choice_type_paper':
-        this.router.navigate(['/test/multiple-choice',{ id: data.question_id }]);
+        this.router.navigate(['/test/multiple-choice']);
         break;
       case 'ordering_type_paper':
-        this.router.navigate(['/test/ordering',{ id: data.question_id }]);
+        this.router.navigate(['/test/ordering']);
         break;
       case 'matching_type_paper':
-        this.router.navigate(['/test/matching',{ id: data.question_id }]);
+        this.router.navigate(['/test/matching']);
         break;
       case 'true_false_type_paper':
-        this.router.navigate(['/test/true-false',{ id: data.question_id }]);
+        this.router.navigate(['/test/true-false']);
         break;
       case 'short_ques_ans_type_paper':
-        this.router.navigate(['/test/short-answer',{ id: data.question_id }]);
+        this.router.navigate(['/test/short-answer']);
         break;
       case 'fill_in_the_blanks_type_paper':
-        this.router.navigate(['/test/fill-blanks',{ id: data.question_id }]);
+        this.router.navigate(['/test/fill-blanks']);
         break;
       default:
         console.log("No such day exists!");
