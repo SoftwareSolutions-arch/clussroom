@@ -41,6 +41,8 @@ export class TestListingHomeComponent implements OnInit {
 
   testId: any = '';
   isEditClicked: boolean = false;
+  liabraryData=[];
+  classData:any='';
   constructor(public service: SharedServiceService, private toastr: ToastrService, public util: UtilService, private router: Router) {
     this.classId = localStorage.getItem('classListId');
     this.getTestListing();
@@ -149,7 +151,7 @@ export class TestListingHomeComponent implements OnInit {
       "step": 2,
       "test_id": [this.testId]
     }
-    console.log('params',params);
+    console.log('params', params);
     this.isLoadingBool = true;
     this.service.post('delete-test-api', params, 1).subscribe(result => {
       this.isLoadingBool = false;
@@ -157,4 +159,54 @@ export class TestListingHomeComponent implements OnInit {
       this.getTestListing();
     })
   }
+
+  //step 1
+  addTestFromLiabrary(data) {
+    let params = {
+      "step": "1",
+      "library": data
+    }
+    this.isLoadingBool = true;
+    this.service.post('add-test-from-libarary-api', params, 1).subscribe(result => {
+      this.isLoadingBool = false;
+      console.log('result', result);
+      this.liabraryData=result.coursesdata
+      // this.deleteclosebutton.nativeElement.click();
+    })
+  }
+
+  //step 2
+  addTestFromLiabrary2(data) {
+    console.log('data',data);
+    let params = {
+      "step": "2",
+      "course_id": data.course_id
+    }
+    this.isLoadingBool = true;
+    this.service.post('add-test-from-libarary-api', params, 1).subscribe(result => {
+      this.isLoadingBool = false;
+      console.log('result', result);
+      this.classData=result.classdata
+      // this.deleteclosebutton.nativeElement.click();
+    })
+  }
+
+  getTest(item){
+    console.log('itemm',item)
+
+  }
+  addTestFromLiabrary3(data){
+    let params = {
+      "step": "1",
+      "library": data
+    }
+    this.isLoadingBool = true;
+    this.service.post('add-test-from-libarary-api', params, 1).subscribe(result => {
+      this.isLoadingBool = false;
+      console.log('result', result);
+      this.liabraryData=result.coursesdata
+      // this.deleteclosebutton.nativeElement.click();
+    })
+  }
+
 }

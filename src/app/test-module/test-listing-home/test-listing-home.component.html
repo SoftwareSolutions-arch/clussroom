@@ -9,7 +9,7 @@
     <div class="row test-button" *ngIf="!isLoadingBool && !isTestSelected">
       <button (click)="myFunction()" class="tstbtn">Add Test</button>
       <div id="mytstdown" class="tstdown-content"> <a (click)="addNew()">Add new</a>
-        <a class="custom-button" data-toggle="modal" data-target="#library">Add from library</a>
+        <a class="custom-button" data-toggle="modal" data-target="#library-1">Add from library</a>
       </div>
     </div>
     <div class="right" *ngIf="!isLoadingBool && isTestSelected">
@@ -75,8 +75,9 @@
                     <button *ngIf="isEditClicked" data-toggle="modal" data-target="#iconsEdit"
                       style="background: transparent; border: none;"><i class="fa fa-ellipsis-v"></i>
                     </button>
-                    <button (click)="showErrorMessage()"  *ngIf="!isEditClicked"style="background: transparent; border: none;"><i class="fa fa-ellipsis-v"></i>
-                  </button>
+                    <button (click)="showErrorMessage()" *ngIf="!isEditClicked"
+                      style="background: transparent; border: none;"><i class="fa fa-ellipsis-v"></i>
+                    </button>
                   </th>
                 </tr>
               </thead>
@@ -85,8 +86,8 @@
                   *ngFor="let testListing of this.testAllData| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;"
                   [class.active]="i == currentIndex">
                   <th>
-                    <div class="radio-table-latest"><input name="radio"
-                        (click)="isCheckBoxClicked(testListing,i)" type="radio"></div>
+                    <div class="radio-table-latest"><input name="radio" (click)="isCheckBoxClicked(testListing,i)"
+                        type="radio"></div>
                   </th>
                   <td>{{testListing.s_no}}</td>
                   <td class="text-left">{{testListing.test_name}}</td>
@@ -126,8 +127,51 @@
     </div>
   </div>
 </div>
-<!-- Add From Library popup start -->
-<!-- Add From Library popup start -->
+
+
+
+<!-- Add From 1 Library popup start -->
+<div id="library-1" class="modal addlibrary-modal" role="dialog">
+  <div class="modal-dialog" style="max-width: 718px;">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 style="padding: 0 15em;">Add from Library</h4>
+        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"
+            style="color: #396aff;"></i>
+        </button>
+      </div>
+      <div class="modal-body" style="padding: 56px 56px;">
+        <div class="addlibraryportion container col-lg-12 mt-4" style="border: none;">
+          <div data-toggle="modal" data-target="#library" class="col-md-4 text-center add-field"
+            (click)="addTestFromLiabrary('main')">
+            <button type="button">
+              <img src="assets/images/test/folder.png">
+            </button>
+            <p>Main<br>library</p>
+          </div>
+          <div data-toggle="modal" data-target="#library" class="col-md-4 text-center add-field"
+            (click)="addTestFromLiabrary('course')">
+            <button type="button">
+              <img src="assets/images/test/folder.png">
+            </button>
+            <p>Course<br>library</p>
+          </div>
+          <div data-toggle="modal" data-target="#library" class="col-md-4 text-center add-field"
+            (click)="addTestFromLiabrary('personal')">
+            <button type="button">
+              <img src="assets/images/test/folder.png">
+            </button>
+            <p>Personal<br>library</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Add From 1 Library popup end -->
+
+<!-- Add From 2 Library popup start -->
 <div id="library" class="modal addlibrary-modal" role="dialog">
   <div class="modal-dialog" style="max-width: 869px;">
     <!-- Modal content-->
@@ -145,92 +189,37 @@
           </div>
         </div>
         <div class="addlibraryportion container col-lg-10 mt-4" style="border: none; margin: 0 12px;">
-          <div class="col-sm-3 add-field">
+          <div (click)="addTestFromLiabrary2(item)" *ngFor="let item of this.liabraryData|slice:0:5;let i =index" class="col-sm-3 add-field">
             <button>
               <img src="assets/images/test/folder.png">
             </button>
-            <p>Mathematics</p>
-          </div>
-          <div class="col-sm-3 add-field">
-            <button>
-              <img src="assets/images/test/folder.png">
-            </button>
-            <p>Engineering & Science</p>
-          </div>
-          <div class="col-sm-3 add-field">
-            <button>
-              <img src="assets/images/test/folder.png">
-            </button>
-            <p>Engineering & Science</p>
-          </div>
-          <div class="col-sm-3 add-field">
-            <button>
-              <img src="assets/images/test/folder.png">
-            </button>
-            <p>Engineering & Science</p>
-          </div>
-          <div class="col-sm-3 add-field">
-            <button>
-              <img src="assets/images/test/folder.png">
-            </button>
-            <p>Engineering & Science</p>
+            <p>{{item.course_name}}</p>
           </div>
         </div>
+     
         <div class="addlibraryportion container col-lg-10 mt-4" style="border: none; margin: 0 12px;">
-          <div class="col-sm-3 add-field">
+          <div *ngFor="let item of this.liabraryData| slice:55:60" class="col-sm-3 add-field">
             <button>
               <img src="assets/images/test/folder.png">
             </button>
-            <p>Mathematics</p>
-          </div>
-          <div class="col-sm-3 add-field">
-            <button>
-              <img src="assets/images/test/folder.png">
-            </button>
-            <p>Engineering & Science</p>
-          </div>
-          <div class="col-sm-3 add-field">
-            <button>
-              <img src="assets/images/test/folder.png">
-            </button>
-            <p>Engineering & Science</p>
-          </div>
-          <div class="col-sm-3 add-field">
-            <button>
-              <img src="assets/images/test/folder.png">
-            </button>
-            <p>Engineering & Science</p>
-          </div>
-          <div class="col-sm-3 add-field mb-3">
-            <button>
-              <img src="assets/images/test/folder.png">
-            </button>
-            <p>Engineering & Science</p>
+            <p>{{item.course_name}}</p>
           </div>
         </div>
         <div class="col-lg-12 container modal-para mb-3" style="padding: 0 2em;">
           <!-- <p>Mathematics.tst</p>-->
           <ul>
-            <li><a>Mathematics.tst</a>
-            </li>
-            <li><a>Ready-made test.tst</a>
-            </li>
-            <li><a>Ready-made test.tst</a>
-            </li>
-            <li><a>Ready-made test.tst</a>
+            <li (click)="getTest(item)" *ngFor="let item of this.classData"><a>{{item.title}}</a>
             </li>
           </ul>
         </div>
-        <div class="class-remove-btn" style="padding: 21px 39px 0 39px;">
+        <div  class="class-remove-btn" style="padding: 21px 39px 0 39px;">
           <button type="button" class="modal-para-btn" style="margin: 8px auto;">Yes</button>
         </div>
       </div>
     </div>
   </div>
 </div>
-<i class="fa fa-file-text" aria-hidden="true"></i>
-<!-- Add From Library popup end -->
-<i class="fa fa-file-text" aria-hidden="true"></i>
+
 <!-- Icons popup start -->
 <div id="iconsEdit" class="modal addlibrary-modal" role="dialog" #deleteclosebutton>
   <div class="modal-dialog" style="max-width: 122px; position: relative; top: 38em; left: 67em;">
@@ -254,23 +243,24 @@
   </div>
 </div>
 <!-- Icons popup end -->
+
 <!-- Remove Question modal popup start -->
 <div id="remove" class="modal removetest-modal" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" ><i class="fa fa-times" aria-hidden="true"></i>
+        <button type="button" class="close"><i class="fa fa-times" aria-hidden="true"></i>
         </button>
       </div>
-      <div  class="modal-body">
-        <div class="class-delete-list" >
+      <div class="modal-body">
+        <div class="class-delete-list">
           <div class="remove-field">
             <img src="assets/images/test/allert-1.png" style="padding: 0 25em !important;">
             <h1>Remove Questions?</h1>
           </div>
         </div>
         <div (click)="deleteTest()" class="class-remove-btn">
-          <button data-dismiss="modal" type="button" class="remove-test" >Yes</button>
+          <button data-dismiss="modal" type="button" class="remove-test">Yes</button>
         </div>
       </div>
     </div>
