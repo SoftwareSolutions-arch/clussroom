@@ -23,12 +23,12 @@ export class QuestionScreenComponent implements OnInit {
   deleteTestData: any = '';
   questionId: any = '';
   questionSequence: any = '';
-  boxLength:any='';
-  public totalCount : string='0' ;
+  boxLength: any = '';
+  public totalCount: string = '0';
   loginForm: FormGroup;
 
 
-  constructor(public service: SharedServiceService,public formBuilder: FormBuilder, private toastr: ToastrService, public util: UtilService, private router: Router) {
+  constructor(public service: SharedServiceService, public formBuilder: FormBuilder, private toastr: ToastrService, public util: UtilService, private router: Router) {
     this.testId = localStorage.getItem('test_id');
     this.classId = localStorage.getItem('classListId');
     this.getDashboardHeaderData();
@@ -49,11 +49,11 @@ export class QuestionScreenComponent implements OnInit {
     );
 
   }
-  onkeyup(){
+  onkeyup() {
     this.loginForm.value.description.length;
     this.totalCount = this.loginForm.value.description.length;
-    console.log('this.totalCount',this.totalCount)
-    }
+    console.log('this.totalCount', this.totalCount)
+  }
 
   ngOnInit() {
   }
@@ -111,7 +111,7 @@ export class QuestionScreenComponent implements OnInit {
     this.router.navigate(['/test/midterm-preview-1']);
   }
 
-  goToBackPage(){
+  goToBackPage() {
     this.router.navigate(['/test/test-listing-home']);
   }
 
@@ -232,27 +232,29 @@ export class QuestionScreenComponent implements OnInit {
     })
   }
 
-  editQuestion(data) {
-    let dataType = data;
+  editQuestion(type, data) {
+    console.log('data', type, data.question_id);
+    let dataType = type;
     console.log('dataType', dataType);
+
     switch (dataType) {
       case 'multiple_choice_type_paper':
-        this.router.navigate(['/test/multiple-choice']);
+        this.router.navigate(['/test/multiple-choice', { id: data.question_id }]);
         break;
       case 'ordering_type_paper':
-        this.router.navigate(['/test/ordering']);
+        this.router.navigate(['/test/ordering', { id: data.question_id }]);
         break;
       case 'matching_type_paper':
-        this.router.navigate(['/test/matching']);
+        this.router.navigate(['/test/matching', { id: data.question_id }]);
         break;
       case 'true_false_type_paper':
-        this.router.navigate(['/test/true-false']);
+        this.router.navigate(['/test/true-false', { id: data.question_id }]);
         break;
       case 'short_ques_ans_type_paper':
-        this.router.navigate(['/test/short-answer']);
+        this.router.navigate(['/test/short-answer', { id: data.question_id }]);
         break;
       case 'fill_in_the_blanks_type_paper':
-        this.router.navigate(['/test/fill-blanks']);
+        this.router.navigate(['/test/fill-blanks', { id: data.question_id }]);
         break;
       default:
         console.log("No such day exists!");

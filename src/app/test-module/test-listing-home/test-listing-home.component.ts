@@ -12,7 +12,9 @@ import { ToastrService } from 'ngx-toastr';
 export class TestListingHomeComponent implements OnInit {
   @ViewChild('deleteclosebutton') deleteclosebutton;
   @ViewChild('deleteTestModal') private deleteTestModal: ElementRef;
-
+  @ViewChild('steponelibrary') steponelibrary;
+  @ViewChild('steptwolibrary') steptwolibrary;
+  @ViewChild('stepthreelibrary') stepthreelibrary;
   isTestSelected: boolean = false
   classId: any = '';
   testAllData: any = '';
@@ -41,8 +43,11 @@ export class TestListingHomeComponent implements OnInit {
 
   testId: any = '';
   isEditClicked: boolean = false;
-  liabraryData=[];
-  classData:any='';
+  liabraryData = [];
+  classData: any = '';
+  testData: any = '';
+  classesId: any = '';
+  step4TestId: any = '';
   constructor(public service: SharedServiceService, private toastr: ToastrService, public util: UtilService, private router: Router) {
     this.classId = localStorage.getItem('classListId');
     this.getTestListing();
@@ -170,14 +175,14 @@ export class TestListingHomeComponent implements OnInit {
     this.service.post('add-test-from-libarary-api', params, 1).subscribe(result => {
       this.isLoadingBool = false;
       console.log('result', result);
-      this.liabraryData=result.coursesdata
+      this.liabraryData = result.coursesdata
       // this.deleteclosebutton.nativeElement.click();
     })
   }
 
   //step 2
   addTestFromLiabrary2(data) {
-    console.log('data',data);
+    console.log('data', data);
     let params = {
       "step": "2",
       "course_id": data.course_id
@@ -186,26 +191,46 @@ export class TestListingHomeComponent implements OnInit {
     this.service.post('add-test-from-libarary-api', params, 1).subscribe(result => {
       this.isLoadingBool = false;
       console.log('result', result);
-      this.classData=result.classdata
+      this.classData = result.classdata
       // this.deleteclosebutton.nativeElement.click();
     })
   }
 
-  getTest(item){
-    console.log('itemm',item)
-
-  }
-  addTestFromLiabrary3(data){
-    let params = {
-      "step": "1",
-      "library": data
-    }
+  addTestFromLiabrary3(item) {
     this.isLoadingBool = true;
+    this.classesId = item.nid
+    let params = {
+      "step": "3",
+      "class_id": item.nid
+    }
     this.service.post('add-test-from-libarary-api', params, 1).subscribe(result => {
       this.isLoadingBool = false;
       console.log('result', result);
-      this.liabraryData=result.coursesdata
+      this.testData = result.testdata
       // this.deleteclosebutton.nativeElement.click();
+    })
+  }
+
+  saveTestData(item) {
+    this.step4TestId = item.nid
+  }
+
+  addTestFromLiabrary4() {
+    this.isLoadingBool = true;
+    let params = {
+      "step": "4",
+      "test_id": this.step4TestId,
+      "class_id_for_add_test": this.classesId
+    }
+
+    console.log('params', params);
+    this.service.post('add-test-from-libarary-api', params, 1).subscribe(result => {
+      this.isLoadingBool = false;
+      console.log('result', result);
+      this.util.showSuccessAlert(result.message);
+      this.steponelibrary.nativeElement.click();
+      this.steptwolibrary.nativeElement.click();
+      this.stepthreelibrary.nativeElement.click();
     })
   }
 
