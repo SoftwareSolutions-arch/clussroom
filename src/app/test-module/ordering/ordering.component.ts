@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { SharedServiceService } from '../../shared-service.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-ordering',
@@ -42,8 +42,15 @@ export class OrderingComponent implements OnInit {
     minimum_sequence: ''
   }
   testId: any = '';
-  constructor(public util: UtilService, private router: Router, private fb: FormBuilder, public service: SharedServiceService) {
+  getQuestionId: any;
+  isEditQuestion: boolean;
+  isImageShow: boolean = true;
+  classId: any = '';
+  constructor(public util: UtilService, private router: Router, private route: ActivatedRoute, private fb: FormBuilder, public service: SharedServiceService) {
     this.testId = localStorage.getItem('test_id');
+    this.getQuestionId = this.route.snapshot.paramMap.get('id');
+    this.getQuestionDetais();
+    this.classId = localStorage.getItem('classListId');
   }
 
 
@@ -114,6 +121,64 @@ export class OrderingComponent implements OnInit {
   }
 
   saveQuestion() {
+    var userA = [];
+    this.myForm.value.arr.forEach(element => {
+      userA.push(element.question);
+    });
+
+    let params = {
+      test_assignment_nid: this.testId,
+      test_assignment_question_type: "ordering",
+      question: this.fillData.question,
+      attachment: this.ExteriorPicString,
+      jumble_questions_placement: (this.fillData.jumble_questions_placement == true) ? "1" : "0",
+      points: this.fillData.points,
+      partial_points: (this.fillData.partial_points == true) ? "1" : "0",
+      checkstatus: 1,
+      drag_drop_sequenece_answers: userA,
+      minimum_sequence: "1"
+    }
+
+    this.isLoadingBool = true;
+    this.service.post('add-question-api', params, 1).subscribe(result => {
+
+      this.util.showSuccessAlert(result.message);
+      this.isLoadingBool = false;
+      this.router.navigate(['/test/question-screen']);
+    })
+  }
+
+  getQuestionDetais() {
+    console.log('this.getQuestionId', this.getQuestionId);
+    if (this.getQuestionId == null) {
+      this.isEditQuestion = true;
+      return
+    }
+
+    else {
+      this.isEditQuestion = false;
+      let params = {
+        'question_id': this.getQuestionId
+      }
+      this.isLoadingBool = true;
+      this.service.post('questions-listing', params, 1).subscribe(result => {
+        this.isLoadingBool = false;
+        console.log('result', result);
+        var data = result.question_data[0]
+        this.fillData = {
+          question: data.paper_summary,
+          points: data.points,
+          attachment: data.attachment,
+          correct_answer: data.correct_answer,
+          minimum_sequence: data.minimum_sequence,
+          partial_points: data.partial_points,
+          jumble_questions_placement: data.jumble
+        }
+      })
+    }
+  }
+
+  editQuestion() {
     var userA = [];
     this.myForm.value.arr.forEach(element => {
       userA.push(element.question);

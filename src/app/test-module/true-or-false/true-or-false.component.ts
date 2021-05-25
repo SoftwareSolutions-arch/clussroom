@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UtilService } from '../../../providers/util.service';
 import { SharedServiceService } from '../../shared-service.service';
 
@@ -11,15 +11,11 @@ import { SharedServiceService } from '../../shared-service.service';
 export class TrueOrFalseComponent implements OnInit {
   isLoadingBool: boolean = false;
   imageSrc;
-
   ExteriorPicFile: any = [];
-
   ExteriorPicString: any = [];
   baseString: string = 'data:image/png;base64,';
   fileLists: any = [];
-
   @ViewChild('attachments') attachment: any;
-
   fileList: File[] = [];
   listOfFiles: any[] = [];
   fillData: any = {
@@ -33,9 +29,15 @@ export class TrueOrFalseComponent implements OnInit {
     correct_answer: ""
   }
   testId: any = '';
-
-  constructor(public util: UtilService, public service: SharedServiceService, private router: Router) {
+  getQuestionId: any;
+  isEditQuestion: boolean;
+  isImageShow: boolean = true;
+  classId: any = '';
+  constructor(public util: UtilService, private route: ActivatedRoute, public service: SharedServiceService, private router: Router) {
     this.testId = localStorage.getItem('test_id');
+    this.getQuestionId = this.route.snapshot.paramMap.get('id');
+    this.getQuestionDetais();
+    this.classId = localStorage.getItem('classListId');
 
   }
 
@@ -111,5 +113,55 @@ export class TrueOrFalseComponent implements OnInit {
     })
   }
 
+  getQuestionDetais() {
+    console.log('this.getQuestionId', this.getQuestionId);
+    if (this.getQuestionId == null) {
+      this.isEditQuestion = true;
+      return
+    }
 
+    else {
+      this.isEditQuestion = false;
+      let params = {
+        'question_id': this.getQuestionId
+      }
+      this.isLoadingBool = true;
+      this.service.post('questions-listing', params, 1).subscribe(result => {
+        this.isLoadingBool = false;
+        console.log('result', result);
+        var data = result.question_data[0]
+        this.fillData = {
+          question: data.paper_summary,
+          points: data.points,
+          attachment: data.attachment,
+          correct_answer: data.correct_answer
+        }
+      })
+    }
+  }
+
+
+  // save question
+  editQuestion() {
+    this.fillData.attachment = this.ExteriorPicString
+    let params = {
+      'question_pragraph_id': this.getQuestionId,
+      "class_id": this.classId,
+      "test_assignment_question_type": "true_false",
+      "question": this.fillData.question,
+      "attachment": this.fillData.attachment,
+      "points": this.fillData.points,
+      "checkstatus": "1",
+      "true_false_answers": ["1", "2", "4", "8"],
+      "correct_answer": this.fillData.correct_answer
+    }
+
+    this.isLoadingBool = true;
+    this.service.post('edit-question-api', params, 1).subscribe(result => {
+      console.log('result', result);
+      this.isLoadingBool = false;
+      this.util.showSuccessAlert('Answer Updated Successfully');
+      this.router.navigate(['/test/question-screen']);
+    })
+  }
 }

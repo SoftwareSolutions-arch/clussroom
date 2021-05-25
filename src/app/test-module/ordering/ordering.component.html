@@ -109,10 +109,10 @@
                 style="border-radius: 50% !important; height: 20px; width:20px;"></span>
             </label>
             <select name="course" id="course-name" class="col-sm-2" [(ngModel)]="fillData.minimum_sequence">
-              <option value="Course 1" selected>Sequence</option>
-              <option value="Course 1">1</option>
-              <option value="Course 2">2</option>
-              <option value="Course 3">3</option>
+              <option disabled>Sequence</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
             </select>
             <p class="col-md-6 mb-3 mt-3 ml-5"><span style="color: #81c8c1;">Note:</span>Learners are able to get a
               fraction of the points by getting any of part of a sequence right. A continual sequence is made up of 2
@@ -120,7 +120,7 @@
               <br>total number of sequences is 4.</p>
           </div>
           <div class="char-box border-bottom box-shadow question-label">
-            <label class="col-md-3 mb-3 mt-3">Partial Points</label>
+            <label class="col-md-3 mb-3 mt-3">Points</label>
 
             <div class="col-md-4 mb-3 mt-3">
               <input [(ngModel)]="fillData.points" type="text">
@@ -134,7 +134,11 @@
                <button type="button" class="blue-border">Cancel</button>
                <button type="button" class="lime"><a>Edit</a></button>
                <button type="button" class="Org"><a>Confirm Edit</a></button>
-               --> <a (click)="saveQuestion()" class="addbutton custom-button">Save Question</a>
+               -->
+          <a (click)="saveQuestion()" class="addbutton custom-button">Save Question</a> <a *ngIf="isEditQuestion"
+            class="addbutton custom-button" (click)="saveQuestion()">Save Question</a>
+          <a *ngIf="!isEditQuestion" class="addbutton custom-button" (click)="editQuestion()">Edit Question</a>
+
           <a class="edit-points-btn custom-button">Cancel</a>
         </div>
         <!--

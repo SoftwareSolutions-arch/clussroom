@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UtilService } from '../../../providers/util.service';
 import { SharedServiceService } from '../../shared-service.service';
 
@@ -14,7 +14,6 @@ export class ShortAnswerComponent implements OnInit {
     question: '',
     rich_text_responses_for_learner: '',
     character_limit: '',
-    // characterInput: '',
     partial_point: '',
     points: '',
     attachment: '',
@@ -22,22 +21,22 @@ export class ShortAnswerComponent implements OnInit {
     insert_limit: "1000",
     test_assignment_nid: "",
   }
-
   imageSrc;
-
   ExteriorPicFile: any = [];
-
   ExteriorPicString: any = [];
   baseString: string = 'data:image/png;base64,';
   fileLists: any = [];
-
   @ViewChild('attachments') attachment: any;
-
   fileList: File[] = [];
   listOfFiles: any[] = [];
-  testId:any='';
-  constructor(public util: UtilService, public service: SharedServiceService, private router: Router) { 
+  testId: any = '';
+  getQuestionId: any;
+  isEditQuestion: boolean;
+  isImageShow: boolean = true;
+  constructor(public util: UtilService, private route: ActivatedRoute, public service: SharedServiceService, private router: Router) {
     this.testId = localStorage.getItem('test_id');
+    this.getQuestionId = this.route.snapshot.paramMap.get('id');
+    this.getQuestionDetais();
   }
 
   ngOnInit(): void {
@@ -58,12 +57,12 @@ export class ShortAnswerComponent implements OnInit {
   }
 
   removeImage(index) {
-    
+
     // Delete the item from fileNames list
     this.listOfFiles.splice(index, 1);
     // delete file from FileList
     this.fileList.splice(index, 1);
-    
+
     this.ExteriorPicString.splice(index, 1);
 
   }
@@ -84,7 +83,7 @@ export class ShortAnswerComponent implements OnInit {
     let reader = e.target;
     var base64result = reader.result.substr(reader.result.indexOf(',') + 1);
     this.ExteriorPicString.push(base64result);
-    
+
   }
 
   // save question
@@ -103,10 +102,74 @@ export class ShortAnswerComponent implements OnInit {
       "partial_point": (this.fillData.partial_point == true) ? "1" : "0",
 
     }
-    
+
     this.isLoadingBool = true;
     this.service.post('add-question-api', params, 1).subscribe(result => {
-      
+
+      this.isLoadingBool = false;
+      this.util.showSuccessAlert('Answer Saved Successfully');
+      this.router.navigate(['/test/question-screen']);
+    })
+  }
+
+  getQuestionDetais() {
+    console.log('this.getQuestionId', this.getQuestionId);
+    if (this.getQuestionId == null) {
+      this.isEditQuestion = true;
+      return
+    }
+
+    else {
+      this.isEditQuestion = false;
+      let params = {
+        'question_id': this.getQuestionId
+      }
+      this.isLoadingBool = true;
+      this.service.post('questions-listing', params, 1).subscribe(result => {
+        this.isLoadingBool = false;
+        console.log('result', result);
+        var data = result.question_data[0]
+        this.fillData = {
+          question: data.paper_summary,
+          rich_text_responses_for_learner: data.rich_text_responses,
+          character_limit: data.character_limit,
+          characterInput: data.character_limit,
+          partial_point: data.partial_points,
+          points: data.points,
+          attachment: data.attachment,
+          test_assignment_question_type: "short_answer",
+          insert_limit: data.insert_limit,
+          test_assignment_nid: data.id,
+        }
+      })
+    }
+  }
+
+  hideImage() {
+    this.isImageShow = false
+  }
+
+  // save question
+  EditQuestion() {
+    this.fillData.attachment = this.ExteriorPicString
+
+    let params = {
+      "test_assignment_nid": this.testId,
+      "question_pragraph_id": this.getQuestionId,
+      "test_assignment_question_type": "edit_short_answer",
+      "question": this.fillData.question,
+      "attachment": this.fillData.attachment,
+      "previous_attachment_f_ids": "",
+      "rich_text_responses_for_learner": (this.fillData.rich_text_responses_for_learner == true) ? "1" : "0",
+      "points": this.fillData.points,
+      "character_limit": (this.fillData.character_limit == true) ? "1" : "0",
+      "insert_limit": "1000",
+      "partial_point": (this.fillData.partial_point == true) ? "1" : "0",
+    }
+
+    this.isLoadingBool = true;
+    this.service.post('edit-question-api', params, 1).subscribe(result => {
+
       this.isLoadingBool = false;
       this.util.showSuccessAlert('Answer Saved Successfully');
       this.router.navigate(['/test/question-screen']);
