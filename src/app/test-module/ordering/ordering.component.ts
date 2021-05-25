@@ -185,8 +185,9 @@ export class OrderingComponent implements OnInit {
     });
 
     let params = {
-      test_assignment_nid: this.testId,
-      test_assignment_question_type: "ordering",
+      question_pragraph_id: this.getQuestionId,
+      class_id: this.classId,
+      test_assignment_question_type: "edit_ordering",
       question: this.fillData.question,
       attachment: this.ExteriorPicString,
       jumble_questions_placement: (this.fillData.jumble_questions_placement == true) ? "1" : "0",
@@ -194,7 +195,7 @@ export class OrderingComponent implements OnInit {
       partial_points: (this.fillData.partial_points == true) ? "1" : "0",
       checkstatus: 1,
       drag_drop_sequenece_answers: userA,
-      minimum_sequence: "1"
+      minimum_sequence: this.fillData.minimum_sequence
     }
 
     this.isLoadingBool = true;
