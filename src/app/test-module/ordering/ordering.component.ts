@@ -12,23 +12,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class OrderingComponent implements OnInit {
   isLoadingBool: boolean = false;
-
   imageSrc;
-
   ExteriorPicFile: any = [];
-
   ExteriorPicString: any = [];
   baseString: string = 'data:image/png;base64,';
   fileLists: any = [];
-
   @ViewChild('attachments') attachment: any;
-
   fileList: File[] = [];
   listOfFiles: any[] = [];
-
   myForm: FormGroup;
   arr: FormArray;
-
   fillData: any = {
     test_assignment_nid: '184',
     test_assignment_question_type: "ordering",
@@ -199,7 +192,7 @@ export class OrderingComponent implements OnInit {
     }
 
     this.isLoadingBool = true;
-    this.service.post('add-question-api', params, 1).subscribe(result => {
+    this.service.post('edit-question-api', params, 1).subscribe(result => {
 
       this.util.showSuccessAlert(result.message);
       this.isLoadingBool = false;

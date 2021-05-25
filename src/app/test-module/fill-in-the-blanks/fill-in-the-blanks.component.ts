@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, Validators, FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { UtilService } from '../../../providers/util.service';
 import { SharedServiceService } from '../../shared-service.service';
@@ -23,7 +23,8 @@ export class FillInTheBlanksComponent implements OnInit {
   fileList: File[] = [];
   listOfFiles: any[] = [];
   baseString: string = 'data:image/png;base64,';
-  registerForm: FormGroup
+  registerForm: FormGroup;
+  words_hint_text: any = []
   fillData: any = {
     test_assignment_nid: "",
     test_assignment_question_type: "fill_in_the_blanks",
@@ -31,14 +32,20 @@ export class FillInTheBlanksComponent implements OnInit {
     question: "",
     words_hint: "",
     points: "",
-    words_hint_text: [],
+    words_hint_tex: [],
     partial_points: "",
     fill_inthe_blanks_options: "",
   }
   testId: any = '';
-  constructor(private router: Router, private fb: FormBuilder, public service: SharedServiceService, public util: UtilService) {
+  getQuestionId: any;
+  isEditQuestion: boolean;
+  isImageShow: boolean = true;
+  classId: any = '';
+  constructor(private router: Router, private fb: FormBuilder, private route: ActivatedRoute, public service: SharedServiceService, public util: UtilService) {
     this.testId = localStorage.getItem('test_id');
-    console.log('****', this.testId);
+    this.getQuestionId = this.route.snapshot.paramMap.get('id');
+    this.getQuestionDetais();
+    this.classId = localStorage.getItem('classListId');
   }
 
   ngOnInit() {
@@ -164,6 +171,8 @@ export class FillInTheBlanksComponent implements OnInit {
   }
 
   saveQuestion() {
+    console.log('words_hint_text', this.words_hint_text)
+
     this.fillData.attachment = this.ExteriorPicString;
     this.fillData.fill_inthe_blanks_options = this.leagueForm.value.answerList;
     var data = [];
@@ -173,13 +182,67 @@ export class FillInTheBlanksComponent implements OnInit {
     });
 
 
-    this.fillData.fill_inthe_blanks_options = data
-    this.fillData.partial_points= (this.fillData.partial_points == true) ? "1" : "0";
-    this.fillData.words_hint= (this.fillData.words_hint == true) ? "1" : "0"
+    this.fillData.fill_inthe_blanks_options = data;
+    this.fillData.partial_points = (this.fillData.partial_points == true) ? "1" : "0";
+    this.fillData.words_hint = (this.fillData.words_hint == true) ? "1" : "0"
     this.fillData.test_assignment_nid = this.testId
     this.isLoadingBool = true;
     console.log('this.fillData', JSON.stringify(this.fillData));
     this.service.post('add-question-api', this.fillData, 1).subscribe(result => {
+      console.log('result from fill blanks', result);
+      this.util.showSuccessAlert('Answer saved successfully');
+      this.isLoadingBool = false;
+      this.router.navigate(['/test/question-screen']);
+    })
+  }
+
+  getQuestionDetais() {
+    console.log('this.getQuestionId', this.getQuestionId);
+    if (this.getQuestionId == null) {
+      this.isEditQuestion = true;
+      return
+    }
+
+    else {
+      this.isEditQuestion = false;
+      let params = {
+        'question_id': this.getQuestionId
+      }
+      this.isLoadingBool = true;
+      this.service.post('questions-listing', params, 1).subscribe(result => {
+        this.isLoadingBool = false;
+        console.log('result', result);
+        var data = result.question_data[0]
+        this.fillData = {
+          question: data.paper_summary,
+          points: data.points,
+          attachment: data.attachment,
+          correct_answer: data.correct_answer,
+          partial_points: data.partial_points,
+          word_hints: data.word_hints,
+        }
+      })
+    }
+  }
+
+  editQuestion() {
+    console.log('words_hint_text', this.words_hint_text)
+    this.fillData.attachment = this.ExteriorPicString;
+    this.fillData.fill_inthe_blanks_options = this.leagueForm.value.answerList;
+    var data = [];
+
+    this.fillData.fill_inthe_blanks_options.forEach(element => {
+      data.push(element.question);
+    });
+
+
+    this.fillData.fill_inthe_blanks_options = data;
+    this.fillData.partial_points = (this.fillData.partial_points == true) ? "1" : "0";
+    this.fillData.words_hint = (this.fillData.words_hint == true) ? "1" : "0"
+    this.fillData.test_assignment_nid = this.testId
+    this.isLoadingBool = true;
+    console.log('this.fillData', JSON.stringify(this.fillData));
+    this.service.post('edit-question-api', this.fillData, 1).subscribe(result => {
       console.log('result from fill blanks', result);
       this.util.showSuccessAlert('Answer saved successfully');
       this.isLoadingBool = false;

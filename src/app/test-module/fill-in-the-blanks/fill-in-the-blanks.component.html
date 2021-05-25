@@ -27,7 +27,7 @@
         <div class="heading" style="padding: 0 10px;">
           <h2>Multiple Choice Question</h2>
         </div>
-        <form class="form" #registerForm="ngForm" (ngSubmit)="registerForm.form.valid && saveQuestion()">
+        <form class="form" #registerForm="ngForm">
           <div class="multiple-text">
             <angular-editor (focusout)="countTotalWords()" [(ngModel)]="fillData.question"
               [ngModelOptions]="{standalone: true}" name="shortanswer" cols="80" label="notes" rows="4" wrap="virtual"
@@ -110,7 +110,7 @@
                   <ul>
                     <li style="border: 1px solid red;" *ngFor="let team of leagueForm.get('answerList')?.controls;let i = index"
                       class="custom-answer mb-4" style="display: block;">{{i+1}}.&nbsp;&nbsp;
-                      <input [(ngModel)]="fillData.words_hint_text[i]" [ngModelOptions]="{standalone: true}"
+                      <input [(ngModel)]="words_hint_text[i]" [ngModelOptions]="{standalone: true}"
                         [disabled]="fillData.words_hint!=true" type="text" placeholder="Enter answer" name="hint"
                         #hint="ngModel" required>
                       <p style="padding: 2px 26px !important;" class="text-danger"
@@ -148,8 +148,11 @@
                    <button type="button" class="lime"><a>Edit</a></button>
                    <button type="button" class="Org"><a>Confirm Edit</a></button>
                    -->
-            <button [disabled]="!registerForm.valid" class="button a" style="font-size: 10px;" type="submit">Save
+            <button *ngIf="isEditQuestion" [disabled]="!registerForm.valid" class="button a" style="font-size: 10px;" (click)="saveQuestion()">Save
               Question</button>
+              <button *ngIf="!isEditQuestion" [disabled]="!registerForm.valid" class="button a" style="font-size: 10px;" (click)="editQuestion()">Edit
+                Question</button>
+              
             <a (click)="cancel()" class="edit-points-btn custom-button">Cancel</a>
           </div>
         </form>

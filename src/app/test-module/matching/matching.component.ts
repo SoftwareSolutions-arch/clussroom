@@ -2,7 +2,7 @@ import { UtilService } from '../../../providers/util.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { SharedServiceService } from '../../shared-service.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-matching',
@@ -23,28 +23,28 @@ export class MatchingComponent implements OnInit {
     match_question_text: [],
     jumble_points: '',
     partial_points: '',
-
   }
 
   imageSrc;
-
   ExteriorPicFile: any = [];
-
   ExteriorPicString: any = [];
   baseString: string = 'data:image/png;base64,';
   fileLists: any = [];
-
   @ViewChild('attachments') attachment: any;
-
   fileList: File[] = [];
   listOfFiles: any[] = [];
-
   myForm: FormGroup;
   arr: FormArray;
   testId: any = '';
-  constructor(public util: UtilService, private router: Router, private fb: FormBuilder, public service: SharedServiceService) {
+  getQuestionId: any;
+  isEditQuestion: boolean;
+  isImageShow: boolean = true;
+  classId: any = '';
+  constructor(public util: UtilService, private route: ActivatedRoute, private router: Router, private fb: FormBuilder, public service: SharedServiceService) {
     this.testId = localStorage.getItem('test_id');
-    console.log('thisID', this.testId)
+    this.getQuestionId = this.route.snapshot.paramMap.get('id');
+    this.getQuestionDetais();
+    this.classId = localStorage.getItem('classListId');
   }
 
   ngOnInit() {
@@ -111,7 +111,7 @@ export class MatchingComponent implements OnInit {
 
   saveQuestion() {
     this.isLoadingBool = true;
-   
+
     var userA = [];
     var userB = [];
     this.myForm.value.arr.forEach(element => {
@@ -132,9 +132,39 @@ export class MatchingComponent implements OnInit {
   }
 
   deleteUser(skillIndex) {
-
     if (skillIndex > 0) {
       this.arr.removeAt(skillIndex);
+    }
+  }
+
+  getQuestionDetais() {
+    console.log('this.getQuestionId', this.getQuestionId);
+    if (this.getQuestionId == null) {
+      this.isEditQuestion = true;
+      return
+    }
+
+    else {
+      this.isEditQuestion = false;
+      let params = {
+        'question_id': this.getQuestionId
+      }
+      this.isLoadingBool = true;
+      this.service.post('questions-listing', params, 1).subscribe(result => {
+        this.isLoadingBool = false;
+        console.log('result', result);
+        var data = result.question_data[0]
+        this.fillData = {
+          question: data.paper_summary,
+          points: data.points,
+          attachment: data.attachment,
+          correct_answer: data.correct_answer,
+          minimum_sequence: data.minimum_sequence,
+          partial_points: data.partial_points,
+          jumble_questions_placement: data.jumble,
+          jumble_points: data.jumble_points
+        }
+      })
     }
   }
 }
