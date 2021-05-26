@@ -100,7 +100,6 @@ export class TrueOrFalseComponent implements OnInit {
       "attachment": this.fillData.attachment,
       "points": this.fillData.points,
       "checkstatus": "1",
-      "true_false_answers": ["1", "2", "4", "8"],
       "correct_answer": this.fillData.correct_answer
     }
 
@@ -140,7 +139,6 @@ export class TrueOrFalseComponent implements OnInit {
     }
   }
 
-
   // save question
   editQuestion() {
     this.fillData.attachment = this.ExteriorPicString
@@ -152,7 +150,6 @@ export class TrueOrFalseComponent implements OnInit {
       "attachment": this.fillData.attachment,
       "points": this.fillData.points,
       "checkstatus": "1",
-      "true_false_answers": ["1", "2", "4", "8"],
       "correct_answer": this.fillData.correct_answer
     }
 
@@ -160,7 +157,7 @@ export class TrueOrFalseComponent implements OnInit {
     this.service.post('edit-question-api', params, 1).subscribe(result => {
       console.log('result', result);
       this.isLoadingBool = false;
-      this.util.showSuccessAlert('Answer Updated Successfully');
+      this.util.showSuccessAlert('Updated Successfully');
       this.router.navigate(['/test/question-screen']);
     })
   }

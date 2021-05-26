@@ -32,7 +32,7 @@ export class FillInTheBlanksComponent implements OnInit {
     question: "",
     words_hint: "",
     points: "",
-    words_hint_tex: [],
+    words_hint_text: [],
     partial_points: "",
     fill_inthe_blanks_options: "",
   }
@@ -54,6 +54,8 @@ export class FillInTheBlanksComponent implements OnInit {
     });
   }
 
+  
+
   get answerList(): FormGroup {
     return this.fb.group({
       question: this.fb.array([this.question])
@@ -72,6 +74,11 @@ export class FillInTheBlanksComponent implements OnInit {
     }
   }
 
+  setValue(){
+   
+
+  }
+
   deleteTeam(index) {
     (this.leagueForm.get("answerList") as FormArray).removeAt(index);
   }
@@ -82,6 +89,7 @@ export class FillInTheBlanksComponent implements OnInit {
       team.get("question").push(this.question);
     }
 
+    
     else {
       this.util.errorAlertPopup("can't add more than three items");
     }
@@ -210,6 +218,12 @@ export class FillInTheBlanksComponent implements OnInit {
       }
       this.isLoadingBool = true;
       this.service.post('questions-listing', params, 1).subscribe(result => {
+        let users:any = this.leagueForm.get("answerList").value[0].question[0].answer as FormArray;
+        var datas =[]
+        datas.push(users)
+        users.patchValue('1232')
+        
+
         this.isLoadingBool = false;
         console.log('result', result);
         var data = result.question_data[0]
@@ -221,12 +235,13 @@ export class FillInTheBlanksComponent implements OnInit {
           partial_points: data.partial_points,
           word_hints: data.word_hints,
         }
+
+        
       })
     }
   }
 
   editQuestion() {
-    console.log('words_hint_text', this.words_hint_text)
     this.fillData.attachment = this.ExteriorPicString;
     this.fillData.fill_inthe_blanks_options = this.leagueForm.value.answerList;
     var data = [];
@@ -239,14 +254,32 @@ export class FillInTheBlanksComponent implements OnInit {
     this.fillData.fill_inthe_blanks_options = data;
     this.fillData.partial_points = (this.fillData.partial_points == true) ? "1" : "0";
     this.fillData.words_hint = (this.fillData.words_hint == true) ? "1" : "0"
-    this.fillData.test_assignment_nid = this.testId
+    this.fillData.test_assignment_nid = this.testId;
+
+    let params = {
+      question_pragraph_id: this.getQuestionId,
+      class_id: this.classId,
+      test_assignment_question_type: "edit_fill_in_the_blanks",
+      question: this.fillData.question,
+      previous_attachment_f_ids: "",
+      all_previous_pids: "",
+      fill_inthe_blanks_options: this.fillData.fill_inthe_blanks_options,
+      words_hint: this.fillData.words_hint,
+      words_hint_text: this.words_hint_text,
+      partial_points: this.fillData.partial_points,
+      points: this.fillData.points
+
+    }
+
+    console.log('parmas', params);
+
     this.isLoadingBool = true;
-    console.log('this.fillData', JSON.stringify(this.fillData));
-    this.service.post('edit-question-api', this.fillData, 1).subscribe(result => {
+    this.service.post('edit-question-api', params, 1).subscribe(result => {
       console.log('result from fill blanks', result);
-      this.util.showSuccessAlert('Answer saved successfully');
+      this.util.showSuccessAlert('Answer Updated successfully');
       this.isLoadingBool = false;
       this.router.navigate(['/test/question-screen']);
+      
     })
   }
 }

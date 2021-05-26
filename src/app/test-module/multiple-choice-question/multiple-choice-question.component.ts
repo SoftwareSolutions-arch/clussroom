@@ -35,34 +35,54 @@ export class MultipleChoiceQuestionComponent implements OnInit {
     partial_points: ""
   }
   myForm: FormGroup;
-  arr =  new FormArray([])
+  arr = new FormArray([])
   testId: any = '';
   getQuestionId: any = '';
-  isEditQuestion:boolean;
+  isEditQuestion: boolean;
   constructor(public util: UtilService, private route: ActivatedRoute, private router: Router, private fb: FormBuilder, public service: SharedServiceService) {
     this.testId = localStorage.getItem('test_id');
     this.getQuestionId = this.route.snapshot.paramMap.get('id');
     this.getQuestionDetais();
   }
 
-  
+
   ngOnInit() {
-    this.myForm = this.fb.group({
-      arr: this.fb.array([this.createItem()])
-    })
+    if (this.getQuestionId != null) {
+      this.myForm = this.fb.group({
+        arr: this.fb.array([])
+      })
+    }
+
+    else {
+      this.myForm = this.fb.group({
+        arr: this.fb.array([this.createItem()])
+      })
+    }
   }
 
   getQuestionDetais() {
-    if (this.getQuestionId != '') {
-      this.isEditQuestion=false;
+
+    if (this.getQuestionId != null) {
+      this.isEditQuestion = false;
       let params = {
         'question_id': this.getQuestionId
       }
       this.isLoadingBool = true;
       this.service.post('questions-listing', params, 1).subscribe(result => {
         this.isLoadingBool = false;
-        console.log('result', result);
-        var data = result.question_data[0]
+        console.log('result', result.question_data[0].multiple_choices);
+
+        result.question_data[0].multiple_choices;
+        result.question_data[0].multiple_choices.forEach((element, index) => {
+          this.arr = this.myForm.get('arr') as FormArray;
+          this.arr.push(this.createItem());
+          console.log('data', this.myForm.controls.arr.controls)
+          this.myForm.controls.arr.controls[index].controls.question.patchValue(element.option_text)
+          this.myForm.controls.arr.controls[index].controls.question_checkbox.patchValue(element.anser_check)
+        });
+
+
+        var data = result.question_data[0];
         this.fillData = {
           test_assignment_nid: data.id,
           test_assignment_question_type: "mcq",
@@ -72,25 +92,11 @@ export class MultipleChoiceQuestionComponent implements OnInit {
           points: data.points,
           partial_points: data.partial_points
         }
-
-        console.log('result.question_data[0].multiple_choices',result.question_data[0].multiple_choices);       
-
-
-        for (let i = 0; i < result.question_data[0].multiple_choices.length; i++) {
-          const course = result.question_data[0].multiple_choices;
-
-          this.arr.at(i).patchValue({
-    
-            question: course.question
-            })
-        }
-
       })
     }
 
     else {
-
-      this.isEditQuestion=true;
+      this.isEditQuestion = true;
       return
     }
   }
@@ -105,7 +111,7 @@ export class MultipleChoiceQuestionComponent implements OnInit {
 
   addItem() {
     this.arr = this.myForm.get('arr') as FormArray;
-      this.arr.push(this.createItem());    
+    this.arr.push(this.createItem());
   }
 
   deleteUser(skillIndex) {
@@ -157,11 +163,7 @@ export class MultipleChoiceQuestionComponent implements OnInit {
     this.ExteriorPicString.push(base64result);
   }
 
-
- 
-
   saveQuestion() {
-
     this.fillData.mcq_option_text = [];
     this.fillData.mcq_option_check = [];
 
@@ -184,7 +186,7 @@ export class MultipleChoiceQuestionComponent implements OnInit {
   }
 
 
-  saveEditQuestion(){
+  saveEditQuestion() {
     this.fillData.mcq_option_text = [];
     this.fillData.mcq_option_check = [];
 
@@ -197,18 +199,18 @@ export class MultipleChoiceQuestionComponent implements OnInit {
     this.fillData.jumble_questions_placement = ((this.fillData.jumble_questions_placement == true) ? "1" : "0")
     this.fillData.test_assignment_nid = this.testId
 
-   let params={
-    'question_pragraph_id':this.getQuestionId,
-    'test_assignment_question_type':'mcq',
-    'question':this.fillData.question,
-    'edit_match_question_text':this.fillData.mcq_option_text,
-    'edit_match_answer_text':this.fillData.mcq_option_check,
-    'jumble_questions_placement':this.fillData.jumble_questions_placement,
-    'partial_points':this.fillData.partial_points,
-    'points':this.fillData.points,
-    'attachment':this.fillData.attachment
-   }
-   console.log('params',params);
+    let params = {
+      'question_pragraph_id': this.getQuestionId,
+      'test_assignment_question_type': 'mcq',
+      'question': this.fillData.question,
+      'edit_match_question_text': this.fillData.mcq_option_text,
+      'edit_match_answer_text': this.fillData.mcq_option_check,
+      'jumble_questions_placement': this.fillData.jumble_questions_placement,
+      'partial_points': this.fillData.partial_points,
+      'points': this.fillData.points,
+      'attachment': this.fillData.attachment
+    }
+    console.log('params', params);
 
     this.isLoadingBool = true;
     this.service.post('edit-question-api', params, 1).subscribe(result => {
@@ -217,5 +219,4 @@ export class MultipleChoiceQuestionComponent implements OnInit {
       this.router.navigate(['/test/question-screen']);
     })
   }
-
 }

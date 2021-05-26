@@ -33,10 +33,12 @@ export class ShortAnswerComponent implements OnInit {
   getQuestionId: any;
   isEditQuestion: boolean;
   isImageShow: boolean = true;
+
   constructor(public util: UtilService, private route: ActivatedRoute, public service: SharedServiceService, private router: Router) {
     this.testId = localStorage.getItem('test_id');
     this.getQuestionId = this.route.snapshot.paramMap.get('id');
     this.getQuestionDetais();
+
   }
 
   ngOnInit(): void {
@@ -57,13 +59,24 @@ export class ShortAnswerComponent implements OnInit {
   }
 
   removeImage(index) {
-
+    console.log('index', index);
     // Delete the item from fileNames list
     this.listOfFiles.splice(index, 1);
     // delete file from FileList
     this.fileList.splice(index, 1);
 
     this.ExteriorPicString.splice(index, 1);
+
+  }
+
+  removeImages(index) {
+    console.log('index', index);
+    // Delete the item from fileNames list
+    this.fillData.attachment.splice(index, 1);
+    // delete file from FileList
+    // this.fileList.splice(index, 1);
+
+    // this.ExteriorPicString.splice(index, 1);
 
   }
 
@@ -151,28 +164,37 @@ export class ShortAnswerComponent implements OnInit {
 
   // save question
   EditQuestion() {
-    this.fillData.attachment = this.ExteriorPicString
-
-    let params = {
-      "test_assignment_nid": this.testId,
-      "question_pragraph_id": this.getQuestionId,
-      "test_assignment_question_type": "edit_short_answer",
-      "question": this.fillData.question,
-      "attachment": this.fillData.attachment,
-      "previous_attachment_f_ids": "",
-      "rich_text_responses_for_learner": (this.fillData.rich_text_responses_for_learner == true) ? "1" : "0",
-      "points": this.fillData.points,
-      "character_limit": (this.fillData.character_limit == true) ? "1" : "0",
-      "insert_limit": "1000",
-      "partial_point": (this.fillData.partial_point == true) ? "1" : "0",
+    if (this.ExteriorPicString.length + this.fillData.attachment.length > 4) {
+      this.util.errorAlertPopup('can not exceed more than four items')
     }
 
-    this.isLoadingBool = true;
-    this.service.post('edit-question-api', params, 1).subscribe(result => {
+    else {
+      var data = [];
+      this.fillData.attachment.forEach(element => {
+        data.push(element.id)
+      });
 
-      this.isLoadingBool = false;
-      this.util.showSuccessAlert('Answer Saved Successfully');
-      this.router.navigate(['/test/question-screen']);
-    })
+      this.fillData.attachment = this.ExteriorPicString
+      let params = {
+        "question_pragraph_id": this.getQuestionId,
+        "test_assignment_question_type": "edit_short_answer",
+        "question": this.fillData.question,
+        "attachment": this.fillData.attachment,
+        "previous_attachment_f_ids": data,
+        "rich_text_responses_for_learner": (this.fillData.rich_text_responses_for_learner == true) ? "1" : "0",
+        "points": this.fillData.points,
+        "character_limit": (this.fillData.character_limit == true) ? "1" : "0",
+        "insert_limit": "1000",
+        "partial_point": (this.fillData.partial_point == true) ? "1" : "0"
+      }
+      console.log('params', params);
+      this.isLoadingBool = true;
+      this.service.post('edit-question-api', params, 1).subscribe(result => {
+        console.log('result', result);
+        this.isLoadingBool = false;
+        this.util.showSuccessAlert('Updated Successfully');
+        this.router.navigate(['/test/question-screen']);
+      })
+    }
   }
 }
