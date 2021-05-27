@@ -48,9 +48,17 @@ export class MatchingComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.myForm = this.fb.group({
-      arr: this.fb.array([this.createItem()])
-    })
+    if (this.getQuestionId != null) {
+      this.myForm = this.fb.group({
+        arr: this.fb.array([])
+      })
+    }
+
+    else {
+      this.myForm = this.fb.group({
+        arr: this.fb.array([this.createItem()])
+      })
+    }
   }
 
   createItem() {
@@ -137,6 +145,9 @@ export class MatchingComponent implements OnInit {
     }
   }
 
+  removeImages(index) {
+    this.fillData.attachment.splice(index, 1);
+  }
   getQuestionDetais() {
     console.log('this.getQuestionId', this.getQuestionId);
     if (this.getQuestionId == null) {
@@ -152,6 +163,15 @@ export class MatchingComponent implements OnInit {
       this.isLoadingBool = true;
       this.service.post('questions-listing', params, 1).subscribe(result => {
         this.isLoadingBool = false;
+
+        console.log('result',result);
+        result.question_data[0].matching_question_answers.forEach((element, index) => {
+          this.arr = this.myForm.get('arr') as FormArray;
+          this.arr.push(this.createItem());
+          this.myForm.get('arr')['controls'][index].controls.question.patchValue(element.question)
+          this.myForm.get('arr')['controls'][index].controls.answer.patchValue(element.answer)
+        });
+        
         console.log('result', result);
         var data = result.question_data[0]
         this.fillData = {

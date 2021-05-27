@@ -58,6 +58,9 @@ export class TrueOrFalseComponent implements OnInit {
 
     this.attachment.nativeElement.value = '';
   }
+  removeImages(index) {
+    this.fillData.attachment.splice(index, 1);
+  }
 
   removeImage(index) {
 

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { FormControl, FormBuilder, FormGroup, FormArray,AbstractControl } from '@angular/forms';
 import { SharedServiceService } from '../../shared-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UtilService } from '../../../providers/util.service';
@@ -69,16 +69,13 @@ export class MultipleChoiceQuestionComponent implements OnInit {
       }
       this.isLoadingBool = true;
       this.service.post('questions-listing', params, 1).subscribe(result => {
+        console.log('resuult',result);
         this.isLoadingBool = false;
-        console.log('result', result.question_data[0].multiple_choices);
-
-        result.question_data[0].multiple_choices;
         result.question_data[0].multiple_choices.forEach((element, index) => {
           this.arr = this.myForm.get('arr') as FormArray;
           this.arr.push(this.createItem());
-          console.log('data', this.myForm.controls.arr.controls)
-          this.myForm.controls.arr.controls[index].controls.question.patchValue(element.option_text)
-          this.myForm.controls.arr.controls[index].controls.question_checkbox.patchValue(element.anser_check)
+          this.myForm.get('arr')['controls'][index].controls.question.patchValue(element.option_text)
+          this.myForm.get('arr')['controls'][index].controls.question_checkbox.patchValue(element.anser_check)
         });
 
 
@@ -87,7 +84,7 @@ export class MultipleChoiceQuestionComponent implements OnInit {
           test_assignment_nid: data.id,
           test_assignment_question_type: "mcq",
           question: data.paper_summary,
-          attachment: data.paper_attachemet_data,
+          attachment: data.attachment,
           jumble_questions_placement: data.jumble,
           points: data.points,
           partial_points: data.partial_points
@@ -99,6 +96,10 @@ export class MultipleChoiceQuestionComponent implements OnInit {
       this.isEditQuestion = true;
       return
     }
+  }
+
+  removeImages(index) {
+    this.fillData.attachment.splice(index, 1);
   }
 
 

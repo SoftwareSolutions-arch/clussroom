@@ -43,7 +43,6 @@ export class OrderingComponent implements OnInit {
     this.testId = localStorage.getItem('test_id');
     this.getQuestionId = this.route.snapshot.paramMap.get('id');
     this.getQuestionDetais();
-    this.classId = localStorage.getItem('classListId');
   }
 
 
@@ -91,9 +90,17 @@ export class OrderingComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.myForm = this.fb.group({
-      arr: this.fb.array([this.createItem()])
-    })
+    if (this.getQuestionId != null) {
+      this.myForm = this.fb.group({
+        arr: this.fb.array([])
+      })
+    }
+
+    else {
+      this.myForm = this.fb.group({
+        arr: this.fb.array([this.createItem()])
+      })
+    }
   }
 
   createItem() {
@@ -141,36 +148,6 @@ export class OrderingComponent implements OnInit {
     })
   }
 
-  getQuestionDetais() {
-    console.log('this.getQuestionId', this.getQuestionId);
-    if (this.getQuestionId == null) {
-      this.isEditQuestion = true;
-      return
-    }
-
-    else {
-      this.isEditQuestion = false;
-      let params = {
-        'question_id': this.getQuestionId
-      }
-      this.isLoadingBool = true;
-      this.service.post('questions-listing', params, 1).subscribe(result => {
-        this.isLoadingBool = false;
-        console.log('result', result);
-        var data = result.question_data[0]
-        this.fillData = {
-          question: data.paper_summary,
-          points: data.points,
-          attachment: data.attachment,
-          correct_answer: data.correct_answer,
-          minimum_sequence: data.minimum_sequence,
-          partial_points: data.partial_points,
-          jumble_questions_placement: data.jumble
-        }
-      })
-    }
-  }
-
   editQuestion() {
     var userA = [];
     this.myForm.value.arr.forEach(element => {
@@ -193,10 +170,49 @@ export class OrderingComponent implements OnInit {
 
     this.isLoadingBool = true;
     this.service.post('edit-question-api', params, 1).subscribe(result => {
-
+      console.log('result', result);
       this.util.showSuccessAlert(result.message);
       this.isLoadingBool = false;
       this.router.navigate(['/test/question-screen']);
     })
+  }
+
+  getQuestionDetais() {
+    console.log('this.getQuestionId', this.getQuestionId);
+    if (this.getQuestionId == null) {
+      this.isEditQuestion = true;
+      return
+    }
+
+    else {
+      this.isEditQuestion = false;
+      let params = {
+        'question_id': this.getQuestionId
+      }
+      this.isLoadingBool = true;
+      this.service.post('questions-listing', params, 1).subscribe(result => {
+        this.isLoadingBool = false;
+        console.log('result', result);
+        result.question_data[0].ordering_sequence.forEach((element, index) => {
+          this.arr = this.myForm.get('arr') as FormArray;
+          this.arr.push(this.createItem());
+          this.myForm.get('arr')['controls'][index].controls.question.patchValue(element.odering_option_text)
+        });
+        var data = result.question_data[0]
+        this.fillData = {
+          question: data.paper_summary,
+          points: data.points,
+          attachment: data.attachment,
+          correct_answer: data.correct_answer,
+          minimum_sequence: data.minimum_sequence,
+          partial_points: data.partial_points,
+          jumble_questions_placement: data.jumble
+        }
+      })
+    }
+  }
+
+  removeImages(index) {
+    this.fillData.attachment.splice(index, 1);
   }
 }

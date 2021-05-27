@@ -70,14 +70,7 @@ export class ShortAnswerComponent implements OnInit {
   }
 
   removeImages(index) {
-    console.log('index', index);
-    // Delete the item from fileNames list
     this.fillData.attachment.splice(index, 1);
-    // delete file from FileList
-    // this.fileList.splice(index, 1);
-
-    // this.ExteriorPicString.splice(index, 1);
-
   }
 
   handleInputChange(files) {
