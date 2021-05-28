@@ -25,7 +25,7 @@
       <div class="tab-content">
         <!-- Schedule start -->
         <div class="heading" style="padding: 0 10px;">
-          <h2>Multiple Choice Question</h2>
+          <h2>Fill in the blanks Question</h2>
         </div>
         <form class="form" #registerForm="ngForm">
           <div class="multiple-text">
@@ -61,11 +61,11 @@
             <a>
               <img src="assets/images/test/Mask.png">
             </a>
-            <h2>Attachments ({{ExteriorPicString.length}}/4)</h2>
+            <h2>Attachments ({{this.ExteriorPicString.length + this.fillData.attachment.length}}/4)</h2>
             <label style="margin-left:1em !important;margin: 0px;" for="imageUpload" class="btn-add-1"><i
                 class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add</label>
             <input id="imageUpload" #attachments style="display: none" multiple type="file"
-              accept="image/png, image/jpeg" class="upload custom-input-file" (change)="picked($event)"/>
+              accept="image/png, image/jpeg" class="upload custom-input-file" (change)="picked($event)" />
           </div>
           <form [formGroup]="leagueForm">
             <div class="col-lg-12 box-shadow final-order border-bottom" style="padding-bottom: 1em;">
@@ -87,7 +87,8 @@
                           <button *ngIf="playerIndex>0" style="margin: 0 7px" (click)="deletePlayer(team,playerIndex)"
                             type="button" class="orange-cross"><i class="fa fa-times" aria-hidden="true"></i>
                           </button>
-                          <span *ngIf="player.get('answer').touched || player.get('answer').dirty" class="text-danger">* Required!</span>
+                          <span *ngIf="player.get('answer').touched || player.get('answer').dirty" class="text-danger">*
+                            Required!</span>
                           <p style="padding: .5em 1em;">Answer {{playerIndex+1}}</p>
                         </div>
                       </div>
@@ -114,7 +115,8 @@
               <div class="container col-lg-12">
                 <div class="col-md-6 fillups">
                   <ul>
-                    <li style="border: 1px solid red;" *ngFor="let team of leagueForm.get('answerList')?.controls;let i = index"
+                    <li style="border: 1px solid red;"
+                      *ngFor="let team of leagueForm.get('answerList')?.controls;let i = index"
                       class="custom-answer mb-4" style="display: block;">{{i+1}}.&nbsp;&nbsp;
                       <input [(ngModel)]="words_hint_text[i]" [ngModelOptions]="{standalone: true}"
                         [disabled]="fillData.words_hint!=true" type="text" placeholder="Enter answer" name="hint"
@@ -154,11 +156,13 @@
                    <button type="button" class="lime"><a>Edit</a></button>
                    <button type="button" class="Org"><a>Confirm Edit</a></button>
                    -->
-            <button *ngIf="isEditQuestion" [disabled]="!registerForm.valid" class="button a" style="font-size: 10px;" (click)="saveQuestion()">Save
+            <button *ngIf="isEditQuestion" [disabled]="!registerForm.valid" class="button a" style="font-size: 10px;"
+              (click)="saveQuestion()">Save
               Question</button>
-              <button *ngIf="!isEditQuestion" [disabled]="!registerForm.valid" class="button a" style="font-size: 10px;" (click)="editQuestion()">Edit
-                Question</button>
-              
+            <button *ngIf="!isEditQuestion" [disabled]="!registerForm.valid" class="button a" style="font-size: 10px;"
+              (click)="editQuestion()">Edit
+              Question</button>
+
             <a (click)="cancel()" class="edit-points-btn custom-button">Cancel</a>
           </div>
         </form>

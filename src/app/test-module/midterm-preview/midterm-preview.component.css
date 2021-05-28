@@ -256,6 +256,16 @@ textarea:focus,
 	margin-bottom: 10px;
 }
 
+.sample button img {
+	width: 183.62px;
+	height: 115px;
+	border: 1px dashed #DCE2EC;
+	box-sizing: border-box;
+	background: #fff;
+	cursor: default !important;
+  }
+  
+
 input[type="date"] {
 	background-image: url(/assets/images/input-date.png);
 	background-repeat: no-repeat;

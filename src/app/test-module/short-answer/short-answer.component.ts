@@ -62,15 +62,16 @@ export class ShortAnswerComponent implements OnInit {
     console.log('index', index);
     // Delete the item from fileNames list
     this.listOfFiles.splice(index, 1);
-    // delete file from FileList
     this.fileList.splice(index, 1);
-
     this.ExteriorPicString.splice(index, 1);
-
   }
 
   removeImages(index) {
     this.fillData.attachment.splice(index, 1);
+  }
+
+  hideImage() {
+    this.isImageShow = false
   }
 
   handleInputChange(files) {
@@ -149,10 +150,6 @@ export class ShortAnswerComponent implements OnInit {
         }
       })
     }
-  }
-
-  hideImage() {
-    this.isImageShow = false
   }
 
   // save question

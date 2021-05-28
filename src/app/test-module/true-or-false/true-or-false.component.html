@@ -52,7 +52,7 @@
           <a>
             <img src="assets/images/test/Mask.png">
           </a>
-          <h2>Attachments ({{ExteriorPicString.length}}/4)</h2>
+          <h2>Attachments ({{this.ExteriorPicString.length + this.fillData.attachment.length}}/4)</h2>
           <label style="margin-left:1em !important;margin: 0px;" for="imageUpload" class="btn-add-1"><i
               class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add</label>
           <input id="imageUpload" #attachments style="display: none" multiple type="file" accept="image/png, image/jpeg"

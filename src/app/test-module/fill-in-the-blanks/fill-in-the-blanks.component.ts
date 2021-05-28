@@ -176,10 +176,10 @@ export class FillInTheBlanksComponent implements OnInit {
     var data = "";
 
     this.fillData.fill_inthe_blanks_options.forEach(element => {
-      data=element;
+      data = element;
     });
 
-    console.log('daa',data);
+    console.log('daa', data);
 
     let params = {
       test_assignment_nid: this.testId,
@@ -194,13 +194,13 @@ export class FillInTheBlanksComponent implements OnInit {
     }
 
     console.log('params', params);
-    this.isLoadingBool = true;
-    this.service.post('add-question-api', params, 1).subscribe(result => {
-      console.log('result', result);
-      this.util.showSuccessAlert('Answer saved successfully');
-      this.isLoadingBool = false;
-      this.router.navigate(['/test/question-screen']);
-    })
+    // this.isLoadingBool = true;
+    // this.service.post('add-question-api', params, 1).subscribe(result => {
+    //   console.log('result', result);
+    //   this.util.showSuccessAlert('Answer saved successfully');
+    //   this.isLoadingBool = false;
+    //   this.router.navigate(['/test/question-screen']);
+    // })
   }
 
   getQuestionDetais() {
@@ -229,7 +229,7 @@ export class FillInTheBlanksComponent implements OnInit {
           //   this.addPlayer(this.leagueForm.get('answerList')['controls'][index]);
           //   this.leagueForm.get('answerList')['controls'][index].controls.question.controls[index].controls.answer.patchValue(element)
           // })
-        }); 
+        });
 
         var data = result.question_data[0]
         this.fillData = {
