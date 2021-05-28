@@ -40,6 +40,9 @@ export class MatchingComponent implements OnInit {
   isEditQuestion: boolean;
   isImageShow: boolean = true;
   classId: any = '';
+  old_image_Description = [];
+  new_image_Description = [];
+
   constructor(public util: UtilService, private route: ActivatedRoute, private router: Router, private fb: FormBuilder, public service: SharedServiceService) {
     this.testId = localStorage.getItem('test_id');
     this.getQuestionId = this.route.snapshot.paramMap.get('id');
@@ -64,7 +67,8 @@ export class MatchingComponent implements OnInit {
   createItem() {
     return this.fb.group({
       question: [''],
-      answer: ['']
+      answer: [''],
+      id: ['']
     })
   }
 
@@ -149,7 +153,6 @@ export class MatchingComponent implements OnInit {
     this.fillData.attachment.splice(index, 1);
   }
   getQuestionDetais() {
-    console.log('this.getQuestionId', this.getQuestionId);
     if (this.getQuestionId == null) {
       this.isEditQuestion = true;
       return
@@ -163,15 +166,15 @@ export class MatchingComponent implements OnInit {
       this.isLoadingBool = true;
       this.service.post('questions-listing', params, 1).subscribe(result => {
         this.isLoadingBool = false;
-
-        console.log('result',result);
         result.question_data[0].matching_question_answers.forEach((element, index) => {
           this.arr = this.myForm.get('arr') as FormArray;
           this.arr.push(this.createItem());
           this.myForm.get('arr')['controls'][index].controls.question.patchValue(element.question)
           this.myForm.get('arr')['controls'][index].controls.answer.patchValue(element.answer)
+          this.myForm.get('arr')['controls'][index].controls.id.patchValue(element.id)
+
         });
-        
+
         console.log('result', result);
         var data = result.question_data[0]
         this.fillData = {
@@ -186,5 +189,51 @@ export class MatchingComponent implements OnInit {
         }
       })
     }
+  }
+
+  saveEditQuestion() {
+    this.fillData.match_question_text = [];
+    this.myForm.value.arr.forEach(element => {
+      if (element.id != '') {
+        this.fillData.match_question_text.push({
+          id: element.id,
+          question: element.question,
+          answer: element.answer,
+        });
+      }
+      if (element.id == '') {
+        this.fillData.match_question_text.push({
+          question: element.question,
+          answer: element.answer,
+        });
+      }
+    });
+    this.fillData.test_assignment_nid = this.testId
+    var data = [];
+    this.fillData.attachment.forEach(element => {
+      data.push(element.id)
+    });
+    this.fillData.attachment = this.ExteriorPicString;
+    let params = {
+      question_pragraph_id: this.getQuestionId,
+      test_assignment_question_type: 'edit_matching',
+      question: this.fillData.question,
+      previous_attachment_f_ids: data,
+      edit_match_question_text: this.fillData.match_question_text,
+      jumble_questions_placement: this.fillData.jumble_questions_placement,
+      partial_points: this.fillData.partial_points,
+      attachment: this.fillData.attachment,
+      image_description:this.new_image_Description,
+      previous_image_description: this.old_image_Description,
+      points: this.fillData.points,
+    }
+    console.log('params', params);
+    this.isLoadingBool = true;
+    this.service.post('edit-question-api', params, 1).subscribe(result => {
+      console.log('result', result);
+      this.isLoadingBool = false;
+      this.util.showSuccessAlert('Updated Successfully');
+      this.router.navigate(['/test/question-screen']);
+    })
   }
 }

@@ -61,7 +61,10 @@
           <a>
             <img src="assets/images/test/Mask.png">
           </a>
-          <h2>Attachments ({{this.ExteriorPicString.length + this.fillData.attachment.length}}/4)</h2>
+          <h2 *ngIf="this.fillData.attachment!=''">Attachments
+            ({{this.ExteriorPicString.length + this.fillData.attachment.length}}/4)</h2>
+          <h2 *ngIf="this.fillData.attachment==''">Attachments
+            ({{this.ExteriorPicString.length + this.fillData.attachment.length}}/4)</h2>
           <label style="margin-left:1em !important;margin: 0px;" for="imageUpload" class="btn-add-1"><i
               class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add</label>
           <input id="imageUpload" #attachments style="display: none" multiple type="file" accept="image/png, image/jpeg"
@@ -69,8 +72,10 @@
         </div>
         <div class="col-lg-12 box-shadow border-bottom final-order">
           <h6 class="mb-4" style="padding: 0 4.5em">Correct order</h6>
-          <ng-container [formGroup]="myForm">
-            <ng-container formArrayName="arr" *ngFor="let a of myForm.get('arr')?.controls; let i = index">
+
+          <div col-lg-12 [formGroup]="myForm" cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+            <div formArrayName="arr" class="example-box" *ngFor="let a of myForm.get('arr')?.controls; let i = index"
+              cdkDrag>
               <ng-container [formGroupName]="i">
                 <div class="col-lg-8 mb-3" style="display: flex; align-items: center;">
                   <label class="col-sm-2 text-center" style="margin: 0; padding:0;"> <i class="fa fa-random"
@@ -83,12 +88,8 @@
                   </div>
                 </div>
               </ng-container>
-            </ng-container>
-          </ng-container>
-          <!-- 
-          <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-            <div class="example-box" *ngFor="let movie of movies" cdkDrag>{{movie.name}}</div>
-          </div> -->
+            </div>
+          </div>
           <div class="col-lg-12" style="display: flex;">
             <div class="attach col-sm-2 text-right mb-3"
               style="display: block; padding: 0 !important; padding-right: 10px !important;">
@@ -151,8 +152,7 @@
                <button type="button" class="lime"><a>Edit</a></button>
                <button type="button" class="Org"><a>Confirm Edit</a></button>
                -->
-          <a *ngIf="isEditQuestion"
-            class="addbutton custom-button" (click)="saveQuestion()">Save Question</a>
+          <a *ngIf="isEditQuestion" class="addbutton custom-button" (click)="saveQuestion()">Save Question</a>
           <a *ngIf="!isEditQuestion" class="addbutton custom-button" (click)="editQuestion()">Edit Question</a>
 
           <a class="edit-points-btn custom-button">Cancel</a>

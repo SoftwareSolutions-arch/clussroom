@@ -172,14 +172,16 @@ export class FillInTheBlanksComponent implements OnInit {
 
   saveQuestion() {
 
+
+    this.fillData.attachment = this.ExteriorPicString;
     this.fillData.fill_inthe_blanks_options = this.leagueForm.value.answerList;
-    var data = "";
+    var data = [];
 
     this.fillData.fill_inthe_blanks_options.forEach(element => {
-      data = element;
+      data.push(element.question);
     });
 
-    console.log('daa', data);
+    console.log('data', data);
 
     let params = {
       test_assignment_nid: this.testId,
@@ -194,13 +196,13 @@ export class FillInTheBlanksComponent implements OnInit {
     }
 
     console.log('params', params);
-    // this.isLoadingBool = true;
-    // this.service.post('add-question-api', params, 1).subscribe(result => {
-    //   console.log('result', result);
-    //   this.util.showSuccessAlert('Answer saved successfully');
-    //   this.isLoadingBool = false;
-    //   this.router.navigate(['/test/question-screen']);
-    // })
+    this.isLoadingBool = true;
+    this.service.post('add-question-api', params, 1).subscribe(result => {
+      console.log('result', result);
+      this.util.showSuccessAlert('Answer saved successfully');
+      this.isLoadingBool = false;
+      this.router.navigate(['/test/question-screen']);
+    })
   }
 
   getQuestionDetais() {

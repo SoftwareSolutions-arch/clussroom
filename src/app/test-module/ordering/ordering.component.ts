@@ -22,6 +22,7 @@ export class OrderingComponent implements OnInit {
   listOfFiles: any[] = [];
   myForm: FormGroup;
   arr: FormArray;
+  itemListArray=[]
   fillData: any = {
     test_assignment_nid: '184',
     test_assignment_question_type: "ordering",
@@ -39,10 +40,22 @@ export class OrderingComponent implements OnInit {
   isEditQuestion: boolean;
   isImageShow: boolean = true;
   classId: any = '';
+ 
   constructor(public util: UtilService, private router: Router, private route: ActivatedRoute, private fb: FormBuilder, public service: SharedServiceService) {
     this.testId = localStorage.getItem('test_id');
     this.getQuestionId = this.route.snapshot.paramMap.get('id');
     this.getQuestionDetais();
+  }
+
+
+  drop(event: CdkDragDrop<string[]>) {
+    this.itemListArray=[]
+    moveItemInArray(this.myForm.get('arr')['controls'], event.previousIndex, event.currentIndex);
+    this.myForm.get('arr')['controls'].forEach(element => {
+      this.itemListArray.push(element.value.question)      
+    });
+
+    console.log(this.itemListArray);
   }
 
 
@@ -121,11 +134,7 @@ export class OrderingComponent implements OnInit {
   }
 
   saveQuestion() {
-    var userA = [];
-    this.myForm.value.arr.forEach(element => {
-      userA.push(element.question);
-    });
-
+    
     let params = {
       test_assignment_nid: this.testId,
       test_assignment_question_type: "ordering",
@@ -135,8 +144,9 @@ export class OrderingComponent implements OnInit {
       points: this.fillData.points,
       partial_points: (this.fillData.partial_points == true) ? "1" : "0",
       checkstatus: 1,
-      drag_drop_sequenece_answers: userA,
-      minimum_sequence: "1"
+      drag_drop_sequenece_answers: this.itemListArray,
+      minimum_sequence: "1",
+      
     }
 
     this.isLoadingBool = true;
@@ -149,10 +159,7 @@ export class OrderingComponent implements OnInit {
   }
 
   editQuestion() {
-    var userA = [];
-    this.myForm.value.arr.forEach(element => {
-      userA.push(element.question);
-    });
+  
 
     let params = {
       question_pragraph_id: this.getQuestionId,
@@ -164,7 +171,7 @@ export class OrderingComponent implements OnInit {
       points: this.fillData.points,
       partial_points: (this.fillData.partial_points == true) ? "1" : "0",
       checkstatus: 1,
-      drag_drop_sequenece_answers: userA,
+      drag_drop_sequenece_answers: this.itemListArray,
       minimum_sequence: this.fillData.minimum_sequence
     }
 
@@ -198,7 +205,7 @@ export class OrderingComponent implements OnInit {
           this.arr.push(this.createItem());
           this.myForm.get('arr')['controls'][index].controls.question.patchValue(element.odering_option_text)
         });
-        var data = result.question_data[0]
+        var data = result.question_data[0];
         this.fillData = {
           question: data.paper_summary,
           points: data.points,
@@ -206,7 +213,8 @@ export class OrderingComponent implements OnInit {
           correct_answer: data.correct_answer,
           minimum_sequence: data.minimum_sequence,
           partial_points: data.partial_points,
-          jumble_questions_placement: data.jumble
+          jumble_questions_placement: data.jumble,
+          
         }
       })
     }

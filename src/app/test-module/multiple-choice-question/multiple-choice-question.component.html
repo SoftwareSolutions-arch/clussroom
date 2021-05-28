@@ -16,7 +16,6 @@
           </li>
           <li><a data-toggle="tab" href="#assignment-grading">Result/Assessment</a>
           </li>
-          <!--				    <li><a data-toggle="tab" href="#overall-grading">Overall Grading Status</a></li>-->
         </ul>
       </div>
       <div class="tab-content">
@@ -35,14 +34,14 @@
                       aria-hidden="true"></i></a></span>
                 <img style="height: 100%;width: 100%;" src={{baseString+item}}>
               </button>
-              <input type="text" placeholder="Description" class="mt-3">
+              <input [(ngModel)]="old_image_Description[i]" type="text" placeholder="Description" class="mt-3">
             </div>
             <div class="col-sm-3 text-center" *ngFor="let item of fillData.attachment;let i = index;">
               <button type="button"> <span (click)="removeImages(i)"><a><i class="fa fa-times-circle"
                       aria-hidden="true"></i></a></span>
                 <img style="height: 100%;width: 100%;" src={{item.image}}>
               </button>
-              <input type="text" placeholder="Description" class="mt-3">
+              <input [(ngModel)]="new_image_Description[i]" type="text" placeholder="Description" class="mt-3">
             </div>
           </div>  
         <div class="attach mt-3 mb-5">
@@ -77,8 +76,8 @@
                         <button type="button"><i class="fa fa-times" aria-hidden="true"></i>
                         </button>
                       </td>
-                      <td scope="col" class="custom-checkbox">
-                        <input formControlName="question_checkbox" type="checkbox"><span class="mark"></span>
+                      <td  scope="col" class="custom-checkbox">
+                        <input (click)="isClicked($event,i)" formControlName="question_checkbox" type="checkbox"><span class="mark"></span>
                       </td>
                     </tr>
                   </ng-container>

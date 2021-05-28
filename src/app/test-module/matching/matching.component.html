@@ -40,14 +40,14 @@
                     aria-hidden="true"></i></a></span>
               <img style="height: 100%;width: 100%;" src={{baseString+item}}>
             </button>
-            <input type="text" placeholder="Description" class="mt-3">
+            <input type="text" [(ngModel)]="new_image_Description[i]" placeholder="Description" class="mt-3">
           </div>
           <div class="col-sm-3 text-center" *ngFor="let item of fillData.attachment;let i = index;">
             <button type="button"> <span (click)="removeImages(i)"><a><i class="fa fa-times-circle"
                     aria-hidden="true"></i></a></span>
               <img style="height: 100%;width: 100%;" src={{item.image}}>
             </button>
-            <input type="text" placeholder="Description" class="mt-3">
+            <input type="text" [(ngModel)]="old_image_Description[i]" placeholder="Description" class="mt-3">
           </div>
         </div>
         <div class="attach mt-3 mb-5">
@@ -123,7 +123,9 @@
                <button type="button" class="blue-border">Cancel</button>
                <button type="button" class="lime"><a>Edit</a></button>
                <button type="button" class="Org"><a>Confirm Edit</a></button>
-               --> <a (click)="saveQuestion()" class="addbutton custom-button mr-2">Save Question</a>
+               -->
+               <a *ngIf="isEditQuestion" (click)="saveQuestion()" class="addbutton custom-button">Save Question</a>
+               <a *ngIf="!isEditQuestion" (click)="saveEditQuestion()" class="addbutton custom-button">Edit Question</a>
           <a class="edit-points-btn custom-button">Cancel</a>
         </div>
         <!-- <div class="container multi-choice-orange" style="padding: 6px 0 0 0;">

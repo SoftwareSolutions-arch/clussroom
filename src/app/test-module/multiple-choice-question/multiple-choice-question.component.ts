@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormBuilder, FormGroup, FormArray,AbstractControl } from '@angular/forms';
+import { FormControl, FormBuilder, FormGroup, FormArray, AbstractControl } from '@angular/forms';
 import { SharedServiceService } from '../../shared-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UtilService } from '../../../providers/util.service';
@@ -39,6 +39,9 @@ export class MultipleChoiceQuestionComponent implements OnInit {
   testId: any = '';
   getQuestionId: any = '';
   isEditQuestion: boolean;
+  index = [];
+  old_image_Description = []
+  new_image_Description = []
   constructor(public util: UtilService, private route: ActivatedRoute, private router: Router, private fb: FormBuilder, public service: SharedServiceService) {
     this.testId = localStorage.getItem('test_id');
     this.getQuestionId = this.route.snapshot.paramMap.get('id');
@@ -69,15 +72,15 @@ export class MultipleChoiceQuestionComponent implements OnInit {
       }
       this.isLoadingBool = true;
       this.service.post('questions-listing', params, 1).subscribe(result => {
-        console.log('resuult',result);
+        console.log('resuult', result);
         this.isLoadingBool = false;
         result.question_data[0].multiple_choices.forEach((element, index) => {
           this.arr = this.myForm.get('arr') as FormArray;
           this.arr.push(this.createItem());
           this.myForm.get('arr')['controls'][index].controls.question.patchValue(element.option_text)
-          this.myForm.get('arr')['controls'][index].controls.question_checkbox.patchValue(element.anser_check)
+          this.myForm.get('arr')['controls'][index].controls.question_checkbox.patchValue((element.anser_check == 1) ? true : false)
+          this.myForm.get('arr')['controls'][index].controls.id.patchValue(element.id)
         });
-
 
         var data = result.question_data[0];
         this.fillData = {
@@ -106,7 +109,8 @@ export class MultipleChoiceQuestionComponent implements OnInit {
   createItem() {
     return this.fb.group({
       question: '',
-      question_checkbox: ['']
+      question_checkbox: [{ value: false, disabled: true }, ''],
+      id: ''
     })
   }
 
@@ -165,51 +169,95 @@ export class MultipleChoiceQuestionComponent implements OnInit {
   }
 
   saveQuestion() {
+
     this.fillData.mcq_option_text = [];
-    this.fillData.mcq_option_check = [];
 
     this.myForm.value.arr.forEach(element => {
       this.fillData.mcq_option_text.push(element.question);
-      this.fillData.mcq_option_check.push((element.question_checkbox == true) ? "1" : "0");
     });
+    this.fillData.mcq_option_check = this.index
     this.fillData.attachment = this.ExteriorPicString;
     this.fillData.partial_points = ((this.fillData.partial_points == true) ? "1" : "0")
     this.fillData.jumble_questions_placement = ((this.fillData.jumble_questions_placement == true) ? "1" : "0")
-    this.fillData.test_assignment_nid = this.testId
+    this.fillData.test_assignment_nid = this.testId;
+
+    let params = {
+      "test_assignment_nid": this.testId,
+      "test_assignment_question_type": "mcq",
+      "question": this.fillData.question,
+      "attachment": this.ExteriorPicString,
+      "mcq_option_text": this.fillData.mcq_option_text,
+      "jumble_questions_placement": this.fillData.jumble_questions_placement,
+      "points": this.fillData.points,
+      "mcq_option_check": this.index,
+      "partial_points": this.fillData.partial_points,
+      "image_description": this.new_image_Description
+    }
+
+    console.log('parmas', params);
 
     this.isLoadingBool = true;
     this.service.post('add-question-api', this.fillData, 1).subscribe(result => {
-
+      console.log('result', result);
       this.util.showSuccessAlert(result.message);
       this.isLoadingBool = false;
       this.router.navigate(['/test/question-screen']);
     })
   }
 
+  isClicked(event, i) {
+    if (event.target.checked) {
+      this.index.push(i);
+    }
+    else {
+      this.index = this.index.filter(
+        index => index != i);
+    }
+  }
 
   saveEditQuestion() {
+    console.log('new_image_Description', this.new_image_Description);
+    console.log('old_image_Description', this.old_image_Description);
+    var image_description = this.old_image_Description.concat(this.new_image_Description)
     this.fillData.mcq_option_text = [];
     this.fillData.mcq_option_check = [];
 
     this.myForm.value.arr.forEach(element => {
-      this.fillData.mcq_option_text.push(element.question);
-      this.fillData.mcq_option_check.push((element.question_checkbox == true) ? "1" : "0");
+      if (element.id != '') {
+        this.fillData.mcq_option_text.push({
+          pid: element.id,
+          option: element.question,
+        });
+      }
+      if (element.id == '') {
+        this.fillData.mcq_option_text.push({
+          option: element.question,
+        });
+      }
     });
+
+    var data = [];
+    this.fillData.attachment.forEach(element => {
+      data.push(element.id)
+    });
+
     this.fillData.attachment = this.ExteriorPicString;
     this.fillData.partial_points = ((this.fillData.partial_points == true) ? "1" : "0")
     this.fillData.jumble_questions_placement = ((this.fillData.jumble_questions_placement == true) ? "1" : "0")
-    this.fillData.test_assignment_nid = this.testId
+    this.fillData.test_assignment_nid = this.testId;
 
     let params = {
       'question_pragraph_id': this.getQuestionId,
       'test_assignment_question_type': 'mcq',
       'question': this.fillData.question,
-      'edit_match_question_text': this.fillData.mcq_option_text,
-      'edit_match_answer_text': this.fillData.mcq_option_check,
+      'previous_attachment_f_ids': data,
+      "mcq_option_array": this.fillData.mcq_option_text,
+      "mcq_option_check": this.index,
       'jumble_questions_placement': this.fillData.jumble_questions_placement,
       'partial_points': this.fillData.partial_points,
       'points': this.fillData.points,
-      'attachment': this.fillData.attachment
+      'attachment': this.fillData.attachment,
+      "image_description": image_description
     }
     console.log('params', params);
 
