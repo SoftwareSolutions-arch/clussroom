@@ -22,7 +22,7 @@ export class OrderingComponent implements OnInit {
   listOfFiles: any[] = [];
   myForm: FormGroup;
   arr: FormArray;
-  itemListArray=[]
+  itemListArray = []
   fillData: any = {
     test_assignment_nid: '184',
     test_assignment_question_type: "ordering",
@@ -40,7 +40,7 @@ export class OrderingComponent implements OnInit {
   isEditQuestion: boolean;
   isImageShow: boolean = true;
   classId: any = '';
- 
+
   constructor(public util: UtilService, private router: Router, private route: ActivatedRoute, private fb: FormBuilder, public service: SharedServiceService) {
     this.testId = localStorage.getItem('test_id');
     this.getQuestionId = this.route.snapshot.paramMap.get('id');
@@ -49,10 +49,10 @@ export class OrderingComponent implements OnInit {
 
 
   drop(event: CdkDragDrop<string[]>) {
-    this.itemListArray=[]
+    this.itemListArray = []
     moveItemInArray(this.myForm.get('arr')['controls'], event.previousIndex, event.currentIndex);
     this.myForm.get('arr')['controls'].forEach(element => {
-      this.itemListArray.push(element.value.question)      
+      this.itemListArray.push(element.value.question)
     });
 
     console.log(this.itemListArray);
@@ -134,7 +134,11 @@ export class OrderingComponent implements OnInit {
   }
 
   saveQuestion() {
-    
+    var userA = [];
+    this.myForm.value.arr.forEach(element => {
+      userA.push(element.question);
+    });
+    console.log('getting array vaues', this.itemListArray.length);
     let params = {
       test_assignment_nid: this.testId,
       test_assignment_question_type: "ordering",
@@ -144,14 +148,13 @@ export class OrderingComponent implements OnInit {
       points: this.fillData.points,
       partial_points: (this.fillData.partial_points == true) ? "1" : "0",
       checkstatus: 1,
-      drag_drop_sequenece_answers: this.itemListArray,
+      drag_drop_sequenece_answers: (this.itemListArray.length > 0) ? this.itemListArray : userA,
       minimum_sequence: "1",
-      
     }
-
+    console.log('params', params);
     this.isLoadingBool = true;
     this.service.post('add-question-api', params, 1).subscribe(result => {
-
+      console.log('result', result);
       this.util.showSuccessAlert(result.message);
       this.isLoadingBool = false;
       this.router.navigate(['/test/question-screen']);
@@ -159,7 +162,10 @@ export class OrderingComponent implements OnInit {
   }
 
   editQuestion() {
-  
+    var userA = [];
+    this.myForm.value.arr.forEach(element => {
+      userA.push(element.question);
+    });
 
     let params = {
       question_pragraph_id: this.getQuestionId,
@@ -171,7 +177,7 @@ export class OrderingComponent implements OnInit {
       points: this.fillData.points,
       partial_points: (this.fillData.partial_points == true) ? "1" : "0",
       checkstatus: 1,
-      drag_drop_sequenece_answers: this.itemListArray,
+      drag_drop_sequenece_answers: (this.itemListArray.length > 0) ? this.itemListArray : userA,
       minimum_sequence: this.fillData.minimum_sequence
     }
 
@@ -214,7 +220,7 @@ export class OrderingComponent implements OnInit {
           minimum_sequence: data.minimum_sequence,
           partial_points: data.partial_points,
           jumble_questions_placement: data.jumble,
-          
+
         }
       })
     }

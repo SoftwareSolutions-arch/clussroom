@@ -67,7 +67,7 @@
                       </button>
                       <div class="dropdown-content-1" id="myDropdown">
                         <a (click)="editQuestion('multiple_choice_type_paper',data)">Edit</a>
-                        <a (click)="deleteQuestion(data)">Remove</a>
+                        <a data-toggle="modal" data-target="#deletetest2" (click)="deleteQuestion(data)">Remove</a>
                       </div>
                     </div>
                   </div>
@@ -102,7 +102,7 @@
                       </button>
                       <div class="dropdown-content-1" id="myDropdown">
                         <a (click)="editQuestion('multiple_choice_type_paper',data)">Edit</a>
-                        <a (click)="deleteQuestion(data)">Remove</a>
+                        <a data-toggle="modal" data-target="#deletetest2" (click)="deleteQuestion(data)">Remove</a>
                       </div>
                     </div>
                   </div>
@@ -139,7 +139,7 @@
                     </button>
                     <div class="dropdown-content-1" id="myDropdown">
                       <a (click)="editQuestion('true_false_type_paper',data)">Edit</a>
-                      <a (click)="deleteQuestion(data)">Remove</a>
+                      <a data-toggle="modal" data-target="#deletetest2" (click)="deleteQuestion(data)">Remove</a>
                     </div>
                   </div>
                 </div>
@@ -186,7 +186,7 @@
                     </button>
                     <div class="dropdown-content-1" id="myDropdown">
                       <a (click)="editQuestion('fill_in_the_blanks_type_paper',data)">Edit</a>
-                      <a (click)="deleteQuestion(data)">Remove</a>
+                      <a data-toggle="modal" data-target="#deletetest2" (click)="deleteQuestion(data)">Remove</a>
                     </div>
                   </div>
 
@@ -229,7 +229,7 @@
                     </button>
                     <div class="dropdown-content-1" id="myDropdown">
                       <a (click)="editQuestion('short_ques_ans_type_paper',data)">Edit</a>
-                      <a (click)="deleteQuestion(data)">Remove</a>
+                      <a data-toggle="modal" data-target="#deletetest2" (click)="deleteQuestion(data)">Remove</a>
                     </div>
                   </div>
                 </div>
@@ -243,7 +243,7 @@
 
                   <div class="col-sm-3 text-center"></div>
                 </div>
-                <div [formGroup]="loginForm"  class="question-text col-lg-12">
+                <div [formGroup]="loginForm" class="question-text col-lg-12">
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <angular-editor name="shortanswer" cols="80" label="notes" rows="4" wrap="virtual" style="margin: 0;"
                     name="question" required (keyup)="onkeyup()" formControlName="description" maxlength="5">
@@ -275,7 +275,7 @@
                     </button>
                     <div class="dropdown-content-1" id="myDropdown">
                       <a (click)="editQuestion('ordering_type_paper',data)">Edit</a>
-                      <a (click)="deleteQuestion(data)">Remove</a>
+                      <a data-toggle="modal" data-target="#deletetest2" (click)="deleteQuestion(data)">Remove</a>
                     </div>
                   </div>
                 </div>
@@ -335,7 +335,7 @@
                     </button>
                     <div class="dropdown-content-1" id="myDropdown">
                       <a (click)="editQuestion('matching_type_paper',data)">Edit</a>
-                      <a (click)="deleteQuestion(data)">Remove</a>
+                      <a data-toggle="modal" data-target="#deletetest2" (click)="deleteQuestion(data)">Remove</a>
                     </div>
                   </div>
                 </div>
@@ -448,3 +448,28 @@
     </div>
   </div>
 </div>
+
+<!-- Remove Question modal popup start -->
+
+<div id="deletetest2" class="modal removetest-modal" role="dialog" #deletealertModal>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="class-delete-list">
+          <div class="remove-field">
+            <img style="margin: 0 auto !important;" src="assets/images/test/allert-1.png">
+            <h1>Remove Questions?</h1>
+          </div>
+        </div>
+        <div class="class-remove-btn">
+          <button (click)="deleteQuestionStep2()" type="button" class="remove-test">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Remove Question modal popup end -->

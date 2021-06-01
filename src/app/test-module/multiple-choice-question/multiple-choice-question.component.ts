@@ -261,11 +261,11 @@ export class MultipleChoiceQuestionComponent implements OnInit {
     }
     console.log('params', params);
 
-    this.isLoadingBool = true;
-    this.service.post('edit-question-api', params, 1).subscribe(result => {
-      this.util.showSuccessAlert(result.message);
-      this.isLoadingBool = false;
-      this.router.navigate(['/test/question-screen']);
-    })
+    // this.isLoadingBool = true;
+    // this.service.post('edit-question-api', params, 1).subscribe(result => {
+    //   this.util.showSuccessAlert(result.message);
+    //   this.isLoadingBool = false;
+    //   this.router.navigate(['/test/question-screen']);
+    // })
   }
 }

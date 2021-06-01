@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'clussroom';
+  myThumbnail="https://wittlock.github.io/ngx-image-zoom/assets/thumb.jpg";
 
   constructor(public router: Router) {
     var data = localStorage.getItem('isLogin');

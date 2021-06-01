@@ -25,14 +25,15 @@
       <div class="tab-content">
         <!-- Schedule start -->
         <div class="heading" style="padding: 0 10px;">
-          <h2>Fill in the blanks Question</h2>
+          <h2>Multiple Choice Question</h2>
         </div>
         <form class="form" #registerForm="ngForm">
           <div class="multiple-text">
-            <angular-editor (focusout)="countTotalWords()" [(ngModel)]="fillData.question"
-              [ngModelOptions]="{standalone: true}" name="shortanswer" cols="80" label="notes" rows="4" wrap="virtual"
-              style="margin: 0;" name="question" #question="ngModel" required>
+            <angular-editor [(ngModel)]="fillData.question" [ngModelOptions]="{standalone: true}" name="shortanswer"
+              cols="80" label="notes" rows="4" wrap="virtual" style="margin: 0;" name="question" #question="ngModel"
+              required>
             </angular-editor>
+            <button (click)="countTotalWords()">submit</button>
             <p class="text-danger" *ngIf="(question.touched || registerForm.submitted) && question.errors?.required">*
               Question is required</p>
 
@@ -47,21 +48,26 @@
                       aria-hidden="true"></i></a></span>
                 <img style="height: 100%;width: 100%;" src={{baseString+item}}>
               </button>
-              <input type="text" placeholder="Description" class="mt-3">
+              <input [(ngModel)]="old_image_Description[i]" [ngModelOptions]="{standalone: true}" type="text"
+                placeholder="Description" class="mt-3">
             </div>
             <div class="col-sm-3 text-center" *ngFor="let item of fillData.attachment;let i = index;">
               <button type="button"> <span (click)="removeImages(i)"><a><i class="fa fa-times-circle"
                       aria-hidden="true"></i></a></span>
                 <img style="height: 100%;width: 100%;" src={{item.image}}>
               </button>
-              <input type="text" placeholder="Description" class="mt-3">
+              <input [(ngModel)]="new_image_Description[i]" [ngModelOptions]="{standalone: true}" type="text"
+                placeholder="Description" class="mt-3">
             </div>
           </div>
           <div class="attach mt-3 mb-5">
             <a>
               <img src="assets/images/test/Mask.png">
             </a>
-            <h2>Attachments ({{this.ExteriorPicString.length + this.fillData.attachment.length}}/4)</h2>
+            <h2 *ngIf="this.fillData.attachment!=null">Attachments
+              ({{this.ExteriorPicString.length + this.fillData.attachment.length}}/4)</h2>
+            <h2 *ngIf="this.fillData.attachment==null">Attachments
+              (0/4)</h2>
             <label style="margin-left:1em !important;margin: 0px;" for="imageUpload" class="btn-add-1"><i
                 class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add</label>
             <input id="imageUpload" #attachments style="display: none" multiple type="file"
@@ -121,6 +127,7 @@
                       <input [(ngModel)]="words_hint_text[i]" [ngModelOptions]="{standalone: true}"
                         [disabled]="fillData.words_hint!=true" type="text" placeholder="Enter answer" name="hint"
                         #hint="ngModel" required>
+                      <!-- <input type="hidden" formControlName="question_id"> -->
                       <p style="padding: 2px 26px !important;" class="text-danger"
                         *ngIf="(hint.touched || registerForm.submitted) && hint.errors?.required">* Hint is required</p>
                       <p style="padding: 2px 26px !important;">Hint for Blank {{i+1}}</p>

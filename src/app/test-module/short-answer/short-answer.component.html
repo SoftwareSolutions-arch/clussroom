@@ -52,7 +52,10 @@
           <a>
             <img src="assets/images/test/Mask.png">
           </a>
-          <h2>Attachments ({{this.ExteriorPicString.length + this.fillData.attachment.length}}/4)</h2>
+          <h2 *ngIf="this.fillData.attachment!=null">Attachments
+            ({{this.ExteriorPicString.length + this.fillData.attachment.length}}/4)</h2>
+          <h2 *ngIf="this.fillData.attachment==null">Attachments
+            (0/4)</h2>
           <label (click)="hideImage()" style="margin-left:1em !important;margin: 0px;" for="imageUpload"
             class="btn-add-1"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add</label>
           <input id="imageUpload" #attachments style="display: none" multiple type="file" accept="image/png, image/jpeg"
@@ -92,9 +95,9 @@
                   <button type="button" class="blue-border">Cancel</button>
                   <button type="button" class="lime"><a>Edit</a></button>
                   <button type="button" class="Org"><a>Confirm Edit</a></button>
-                  --> 
-				  <a *ngIf="isEditQuestion" class="addbutton custom-button" (click)="saveQuestion()">Save Question</a>
-				  <a *ngIf="!isEditQuestion" class="addbutton custom-button" (click)="EditQuestion()">Edit Question</a>
+                  -->
+          <a *ngIf="isEditQuestion" class="addbutton custom-button" (click)="saveQuestion()">Save Question</a>
+          <a *ngIf="!isEditQuestion" class="addbutton custom-button" (click)="EditQuestion()">Edit Question</a>
           <a class="edit-points-btn custom-button">Cancel</a>
         </div>
         <!--

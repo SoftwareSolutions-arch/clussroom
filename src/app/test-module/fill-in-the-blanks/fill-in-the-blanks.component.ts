@@ -25,6 +25,7 @@ export class FillInTheBlanksComponent implements OnInit {
   baseString: string = 'data:image/png;base64,';
   registerForm: FormGroup;
   words_hint_text: any = []
+  question_id: any
   fillData: any = {
     test_assignment_nid: "",
     test_assignment_question_type: "fill_in_the_blanks",
@@ -35,12 +36,16 @@ export class FillInTheBlanksComponent implements OnInit {
     words_hint_text: [],
     partial_points: "",
     fill_inthe_blanks_options: "",
+    question_id: ""
   }
   testId: any = '';
   getQuestionId: any;
   isEditQuestion: boolean;
   isImageShow: boolean = true;
   classId: any = '';
+  arrayList = [];
+  old_image_Description = []
+  new_image_Description = []
   constructor(private router: Router, private fb: FormBuilder, private route: ActivatedRoute, public service: SharedServiceService, public util: UtilService) {
     this.testId = localStorage.getItem('test_id');
     this.getQuestionId = this.route.snapshot.paramMap.get('id');
@@ -49,7 +54,7 @@ export class FillInTheBlanksComponent implements OnInit {
 
   ngOnInit() {
     this.leagueForm = this.fb.group({
-      answerList: this.fb.array([this.answerList])
+      answerList: this.fb.array([])
     });
   }
 
@@ -62,6 +67,7 @@ export class FillInTheBlanksComponent implements OnInit {
   get question(): FormGroup {
     return this.fb.group({
       answer: "",
+      id: ''
     });
   }
 
@@ -172,7 +178,6 @@ export class FillInTheBlanksComponent implements OnInit {
 
   saveQuestion() {
 
-
     this.fillData.attachment = this.ExteriorPicString;
     this.fillData.fill_inthe_blanks_options = this.leagueForm.value.answerList;
     var data = [];
@@ -181,7 +186,7 @@ export class FillInTheBlanksComponent implements OnInit {
       data.push(element.question);
     });
 
-    console.log('data', data);
+    console.log('daa', data);
 
     let params = {
       test_assignment_nid: this.testId,
@@ -221,18 +226,8 @@ export class FillInTheBlanksComponent implements OnInit {
       }
       this.isLoadingBool = true;
       this.service.post('questions-listing', params, 1).subscribe(result => {
-        this.isLoadingBool = false;
         console.log('result', result);
-
-        result.question_data[0].blanks_options.forEach((element, index) => {
-          (this.leagueForm.get("answerList") as FormArray).push(this.answerList)
-          this.leagueForm.get('answerList')['controls'][index].controls.question.controls[0].controls.answer.patchValue(element.field_answers[0])
-          // element.field_answers.forEach((element) => {
-          //   this.addPlayer(this.leagueForm.get('answerList')['controls'][index]);
-          //   this.leagueForm.get('answerList')['controls'][index].controls.question.controls[index].controls.answer.patchValue(element)
-          // })
-        });
-
+        this.isLoadingBool = false;
         var data = result.question_data[0]
         this.fillData = {
           question: data.paper_summary,
@@ -240,22 +235,55 @@ export class FillInTheBlanksComponent implements OnInit {
           attachment: data.attachment,
           correct_answer: data.correct_answer,
           partial_points: data.partial_points,
-          word_hints: data.word_hints,
+          old_image_Description: data.old_image_Description
         }
+        result.question_data[0].blanks_options.forEach((element, index) => {
+          (this.leagueForm.get("answerList") as FormArray).push(this.answerList)
+          // this.leagueForm.get('answerList')['controls'][index].controls.question.controls[0].controls.id.patchValue(element.id)
+          // this.leagueForm.get('answerList')['controls'][index].controls.question.controls[0].controls.answer.patchValue(element.field_answers[0])
+          element.field_answers.forEach((elements, j) => {
+            this.addPlayer(this.leagueForm.get('answerList')['controls'][index]);
+            this.leagueForm.get('answerList')['controls'][index].controls.question.controls[j].controls.id.patchValue(element.id)
+            this.leagueForm.get('answerList')['controls'][index].controls.question.controls[j].controls.answer.patchValue(elements)
+          })
+        });
+        result.question_data[0].word_hint_text.forEach((element, i) => {
+          this.words_hint_text[i] = element
+        });
+        // result.question_data[0].blanks_options.forEach((element, i) => {
+        //   this.question_id[i] = element.id
+        // });
+
       })
     }
   }
 
   editQuestion() {
+    var image_description = this.old_image_Description.concat(this.new_image_Description)
+    var datas = [];
+
+    if (this.fillData.attachment != null) {
+      this.fillData.attachment.forEach(element => {
+        datas.push(element.id)
+      });
+    }
+
     this.fillData.attachment = this.ExteriorPicString;
     this.fillData.fill_inthe_blanks_options = this.leagueForm.value.answerList;
-    var data = [];
 
     this.fillData.fill_inthe_blanks_options.forEach(element => {
-      data.push(element.question);
-    });
+      let arrayList = [];
+      element.question.forEach(element => {
+        if (element.answer != '') {
+          arrayList.push(element.answer)
+        }
+      });
 
-    this.fillData.fill_inthe_blanks_options = data;
+      this.arrayList.push({
+        id: element.question[0].id,
+        answer: arrayList
+      })
+    });
     this.fillData.partial_points = (this.fillData.partial_points == true) ? "1" : "0";
     this.fillData.words_hint = (this.fillData.words_hint == true) ? "1" : "0"
     this.fillData.test_assignment_nid = this.testId;
@@ -264,22 +292,27 @@ export class FillInTheBlanksComponent implements OnInit {
       question_pragraph_id: this.getQuestionId,
       test_assignment_question_type: "edit_fill_in_the_blanks",
       question: this.fillData.question,
-      previous_attachment_f_ids: "",
-      all_previous_pids: "",
-      fill_inthe_blanks_options: this.fillData.fill_inthe_blanks_options,
-      words_hint: this.fillData.words_hint,
+      previous_attachment_f_ids: datas,
+      attachment: this.ExteriorPicString,
+      fill_inthe_blanks_options: this.arrayList,
+      words_hint: (this.fillData.words_hint == true) ? "1" : "0",
       words_hint_text: this.words_hint_text,
-      partial_points: this.fillData.partial_points,
-      points: this.fillData.points
+      partial_points: (this.fillData.partial_points == true) ? "1" : "0",
+      points: this.fillData.points,
+      image_description: image_description
     }
 
-    console.log('parmas', params);
+    console.log('params', params)
     // this.isLoadingBool = true;
     // this.service.post('edit-question-api', params, 1).subscribe(result => {
-    //   console.log('result from fill blanks', result);
-    //   this.util.showSuccessAlert('Answer Updated successfully');
+    //   console.log('result',result)
+    //   this.util.showSuccessAlert('Updated successfully');
     //   this.isLoadingBool = false;
     //   this.router.navigate(['/test/question-screen']);
     // })
+  }
+
+  removeImages(index) {
+    this.fillData.attachment.splice(index, 1);
   }
 }

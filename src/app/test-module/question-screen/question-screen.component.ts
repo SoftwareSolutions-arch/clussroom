@@ -4,6 +4,7 @@ import { SharedServiceService } from 'src/app/shared-service.service';
 import { UtilService } from 'src/providers/util.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-question-screen',
@@ -13,6 +14,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms"
 export class QuestionScreenComponent implements OnInit {
   @ViewChild('cancelClassModal') private cancelClassModal: ElementRef;
   @ViewChild('deleteclassModal') private deleteclassModal: ElementRef;
+  @ViewChild('deletealertModal') private deletealertModal: ElementRef;
   isLoadingBool: boolean = true;
   allData: any = [];
   testAllData: any = '';
@@ -26,6 +28,7 @@ export class QuestionScreenComponent implements OnInit {
   boxLength: any = '';
   public totalCount: string = '0';
   loginForm: FormGroup;
+  questionIdData: any='';
 
 
   constructor(public service: SharedServiceService, public formBuilder: FormBuilder, private toastr: ToastrService, public util: UtilService, private router: Router) {
@@ -219,16 +222,25 @@ export class QuestionScreenComponent implements OnInit {
 
   // Delete question
   deleteQuestion(data) {
+    this.questionIdData=data.question_id
+  }
+
+  deleteQuestionStep2(){
+    this.deletealertModal.nativeElement.click();
     let params = {
       "test_id": this.testId,
-      "questions_ids_for_delete": data.question_id
+      "questions_ids_for_delete": this.questionIdData
     }
-    console.log('parmas', params)
     this.isLoadingBool = true;
     this.service.post('delete-question-api', params, 1).subscribe(result => {
+      console.log('result',result);
       this.isLoadingBool = false;
-      this
       this.getAllQuestion();
+      Swal.fire(
+        'Deleted!',
+        'Your file has been deleted.',
+        'success'
+      )
     })
   }
 

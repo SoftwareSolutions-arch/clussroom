@@ -37,6 +37,7 @@ export class InvoiceComponent implements OnInit {
     this.paymentForm.disable();
     this.title = localStorage.getItem('title');
     this.getNewToken();
+    this.util.errorAlertPopup('ENail already exits');
   }
 
   ngOnInit(): void {

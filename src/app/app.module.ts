@@ -71,15 +71,7 @@ import { TestCompomentComponent } from './test-compoment/test-compoment.componen
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { FullCalendarModule } from '@fullcalendar/angular';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGrigPlugin from '@fullcalendar/timegrid';
-import interactionPlugin from '@fullcalendar/interaction';
-FullCalendarModule.registerPlugins([ // register FullCalendar plugins
-  dayGridPlugin,
-  interactionPlugin,
-  timeGrigPlugin
-]);
+import { NgxImageZoomModule } from 'ngx-image-zoom';
 import {AppDashboardHeaderComponent} from './test-module/app-dashboard-header/app-dashboard-header.component'
 
 @NgModule({
@@ -136,8 +128,11 @@ import {AppDashboardHeaderComponent} from './test-module/app-dashboard-header/ap
     TestCompomentComponent,
     AppDashboardHeaderComponent
   ],
-  imports: [CommonModule,
-    BrowserModule, ToastrModule.forRoot({
+  imports: [
+    NgxImageZoomModule,
+    CommonModule,
+    BrowserModule, 
+    ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-top-center',
       preventDuplicates: true,
@@ -157,7 +152,7 @@ import {AppDashboardHeaderComponent} from './test-module/app-dashboard-header/ap
     MatButtonModule,
     MatCheckboxModule,
     MatProgressSpinnerModule,
-    SlickCarouselModule, MatTabsModule, NgxPaginationModule, AngularEditorModule, FullCalendarModule
+    SlickCarouselModule, MatTabsModule, NgxPaginationModule, AngularEditorModule, 
   ],
   providers: [Sample04Component, ClassesComponent, LoaderComponent],
   bootstrap: [AppComponent]

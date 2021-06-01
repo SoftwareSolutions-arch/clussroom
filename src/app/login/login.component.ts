@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   error_messages: any = '';
   userDetails: any = '';
-  constructor(public router: Router, private spinner: NgxSpinnerService, public loader: LoaderComponent, 
+  constructor(public router: Router, private spinner: NgxSpinnerService, public loader: LoaderComponent,
     private toastr: ToastrService, public util: UtilService, public service: SharedServiceService,
     public formBuilder: FormBuilder) {
     this.setupLoginFormData();
@@ -133,6 +133,4 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('instructionName', result.instruction_name);
     })
   }
-
-   
 }

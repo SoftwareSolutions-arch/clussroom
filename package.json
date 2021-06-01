@@ -38,6 +38,7 @@
     "mydatepicker": "^2.6.11",
     "ng-fullcalendar": "^1.7.1",
     "ng2-smart-table": "^1.6.0",
+    "ngx-image-zoom": "^0.6.0",
     "ngx-pagination": "^5.0.0",
     "ngx-slick-carousel": "^0.5.1",
     "ngx-spinner": "^8.0.3",
