@@ -30,10 +30,8 @@ import { LoaderComponent } from './loader/loader.component';
 import { AdminComponent } from './admin/admin.component';
 import { LiveSessionsComponent } from './live-sessions/live-sessions.component';
 import { ProgressComponent } from './progress/progress.component';
-import { TestCompomentComponent } from './test-compoment/test-compoment.component';
 import { TestListingComponent } from './test-listing/test-listing.component';
 import { TestModule } from './test-module/test-module';
-
 const routes: Routes = [
   {
     path: '', redirectTo: '/home', pathMatch: 'full'
@@ -125,13 +123,14 @@ const routes: Routes = [
   {
     path: 'progress-bar', component: ProgressComponent
   },
-  {
-    path: 'testing-mode', component: TestCompomentComponent
-  },
   { path: 'test', loadChildren: './test-module/test-module#TestModule' },
   {
     path: 'assignment',
     loadChildren: () => import('../app/test-assessment/test-assesment.module').then(m => m.AssessmentModule)
+  },
+  {
+    path: 'student',
+    loadChildren: () => import('./student-managment/student-managment.module').then(m => m.StudentModule)
   }
 ];
 

@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html>
+<title>Personal library</title>
+<head>
+	<meta charset="UTF-8">
+	<meta name="description" content="Clussroom">
+	<meta name="keywords" content="HTML, CSS, JavaScript">
+	<meta name="author" content="Clussroom">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="icon" href="assets/images/clusroom-fav.png" type="image/png">
+  	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+<div class="dashboard">
+	<div class="sidebar-dashboard">
+		<div class="sidebar-blue"><!-- toogleopen -->
+			<div class="sidebar-menu">
+				<div class="sidebar-bar">
+					<div class="sidebar-bar-nav">
+						<img src="assets/images/dashboard/thunder.png">
+					</div>
+					<div class="user-details-dash">
+						<figure>
+							<img src="assets/images/dashboard/user.png">
+						</figure>
+						<a href="#">Upgrade</a>
+						<div class="user-details-name">
+							<h4>Hey Derran Leow</h4>
+							<p>Course admin</p>
+						</div>
+					</div>
+				</div>
+				<div class="sidebar-menus-nav">
+					 <nav>
+						<div class="primary-sidebar">
+							<li class="submenu-order">
+								<a class="primary-item active" href="#nav-dashboard">
+									<img src="assets/images/dashboard/dashboard.png" class="hover-out">
+									<img src="assets/images/dashboard/dashboard-blue.png" class="hover-in">
+									<span>Dashboard</span>
+								</a>
+							</li>
+
+							<li class="submenu-order">
+								<a class="primary-item" href="#nav-library" >
+									<img src="assets/images/dashboard/library.png" class="hover-out">
+									<img src="assets/images/dashboard/library-blue.png" class="hover-in"><span>Library</span></a>
+							</li>
+
+							<li class="submenu-order">
+								<a class="primary-item" href="#nav-message">
+									<img src="assets/images/dashboard/email.png" class="hover-out">
+									<img src="assets/images/dashboard/email-blue.png" class="hover-in"><span>All Messages</span></a>
+							</li>
+
+							<li class="submenu-order">
+								<a class="primary-item" href="#nav-calender">
+									<img src="assets/images/dashboard/calender.png" class="hover-out">
+									<img src="assets/images/dashboard/calender-blue.png" class="hover-in"><span>Calendar</span></a>
+							</li>
+
+							<li class="submenu-order">
+		                        <a class="primary-item accordion-toggle toggle-switch collapsed" data-toggle="collapse" href="#submenu-course">
+		                            <img src="assets/images/dashboard/course.png" class="hover-out">
+		                            <img src="assets/images/dashboard/course-blue.png" class="hover-in"><span>Courses <i class="fa fa-angle-down" aria-hidden="true"></i></span>
+		                        </a>
+		                        <div class="courses-menu-list">
+			                        <ul id="submenu-course" class="panel-collapse collapse panel-switch" role="menu">
+			                        	<div class="panel-collapse-content">
+				                            <li><a>Geography Sec1</a></li>
+				                            <li><a>Geography Sec2</a></li>
+				                            <li><a>History</a></li>
+				                            <li><a>Civics</a></li>
+				                            <li><a>Diaster Mgmt</a></li>
+				                            <li><a>Diaster Mgmt2</a></li>
+				                            <li><a>History</a></li>
+				                            <li><a>Civics</a></li>
+				                            <li><a>Diaster Mgmt</a></li>
+				                            <li><a>Diaster Mgmt2</a></li>
+				                        </div>
+			                        </ul>
+		                    	</div>
+	                    	</li>
+
+							<li class="submenu-order">
+								<a class="primary-item" href="#nav-archive">
+									<img src="assets/images/dashboard/archive.png" class="hover-out">
+									<img src="assets/images/dashboard/archive-blue.png" class="hover-in"><span>Archive</span></a>
+							</li>
+						</div>
+					</nav> 
+				</div>
+				<div class="user-menu-nav">
+					<nav>
+						<div class="primary-sidebar">
+							<li class="submenu-order">
+								<a class="primary-item active" href="#nav-login-detail">
+									<img src="assets/images/dashboard/login-detail.png" class="hover-out">
+									<img src="assets/images/dashboard/login-detail-blue.png" class="hover-in"><span>Login details</span></a>
+							</li>
+
+							<li class="submenu-order">
+								<a class="primary-item" href="#nav-profile">
+									<img src="assets/images/dashboard/profile.png" class="hover-out">
+									<img src="assets/images/dashboard/profile-blue.png" class="hover-in"><span>Profile</span></a>
+							</li>
+
+							<li class="submenu-order">
+							<a class="primary-item" href="#nav-edit-profile">
+								<img src="assets/images/dashboard/edit-profile.png" class="hover-out">
+								<img src="assets/images/dashboard/edit-profile-blue.png" class="hover-in"><span>Edit profile</span></a>
+							</li>
+
+							<li class="submenu-order">
+							<a class="primary-item" href="#">
+								<img src="assets/images/dashboard/logout.png" class="hover-out">
+								<img src="assets/images/dashboard/logout-blue.png" class="hover-in"><span>Logout</span></a>
+							</li>
+						</div>
+					</nav>
+				</div>
+			</div>
+		</div>
+
+		<div class="dashboard-user-sidebar">
+			<div class="user-dash-wrapper">
+				<div class="user-details-dash">
+					<div class="dashboard-user-dash">
+						<figure>
+							<img src="assets/images/dashboard/user.png">
+						</figure>
+						<a href="#">Upgrade</a>
+					</div>
+					<div class="dashboard-user-collapse">
+						<img src="assets/images/dashboard/right-arrow.png" class="course-sidebar">
+					</div>
+					<div class="user-details-name">
+						<h4>Hey Derran Leow</h4>
+						<p>Course admin</p>
+					</div>
+				</div>
+			</div>
+			<div class="acknowledgment-user">
+				<p>Math for Secondary 4 & Secondary 3 students</p>
+				<label>Course Name</label>
+				<p>Poppins - E </p>
+				<label>Class Name - Banding</label>
+				<p>Senior Secondary</p>
+				<label>Level</label>
+			</div>
+			<div class="user-navbar-content">
+				<div class="second-sidebar">
+					<a class="second-item" id="nav-Calendar" href="#">
+						<img src="assets/images/dashboard/second/calendar-grey.png" class="hover-out">
+						<img src="assets/images/dashboard/second/calendar-blue.png" class="hover-in">Calendar</a>
+
+					<a class="second-item active" id="nav-Materials" href="#">
+						<img src="assets/images/dashboard/second/material-grey.png" class="hover-out">
+						<img src="assets/images/dashboard/second/material-blue.png" class="hover-in">Class Materials</a>
+
+					<a class="second-item" id="nav-Sessions" href="#">
+						<img src="assets/images/dashboard/second/session-grey.png" class="hover-out">
+						<img src="assets/images/dashboard/second/session-blue.png" class="hover-in">Live Sessions</a>
+
+					<a class="second-item" id="nav-Announcements" href="#">
+						<img src="assets/images/dashboard/second/announcements-grey.png" class="hover-out">
+						<img src="assets/images/dashboard/second/announcements-blue.png" class="hover-in">Announcements</a>
+					<a class="second-item" id="nav-Messages" href="#">
+						<img src="assets/images/dashboard/second/message-grey.png" class="hover-out">
+						<img src="assets/images/dashboard/second/message-blue.png" class="hover-in">Messages</a>
+
+					<a class="second-item" id="nav-Discussion" href="#">
+						<img src="assets/images/dashboard/second/chat-grey.png" class="hover-out">
+						<img src="assets/images/dashboard/second/chat-blue.png" class="hover-in">Discussion Board</a>
+
+					<a class="second-item" id="nav-Class" href="#">
+						<img src="assets/images/dashboard/second/list-grey.png" class="hover-out">
+						<img src="assets/images/dashboard/second/list-blue.png" class="hover-in">Class List</a>
+
+					<a class="second-item" id="nav-Grades" href="#">
+						<img src="assets/images/dashboard/second/grade-grey.png" class="hover-out">
+						<img src="assets/images/dashboard/second/grade-blue.png" class="hover-in">Grades</a> 
+
+					<a class="second-item" id="nav-Setup" href="#">
+						<img src="assets/images/dashboard/second/setup-grey.png" class="hover-out">
+						<img src="assets/images/dashboard/second/setup-blue.png" class="hover-in">Grade Setup</a> 	
+				</div>
+			</div>
+			<div class="user-personal-library">
+				<div class="second-sidebar">
+					<a class="second-item" id="nav-Personal" href="#">
+						<img src="assets/images/dashboard/second/library-grey.png" class="hover-out">
+						<img src="assets/images/dashboard/second/library-blue.png" class="hover-in">Personal Library</a>
+
+					<a class="second-item" id="nav-Materials" href="#">
+						<img src="assets/images/dashboard/second/course-grey.png" class="hover-out">
+						<img src="assets/images/dashboard/second/course-blue.png" class="hover-in">Course Library</a>
+
+					<a class="second-item" id="nav-Sessions" href="#">
+						<img src="assets/images/dashboard/second/main-grey.png" class="hover-out">
+						<img src="assets/images/dashboard/second/main-blue.png" class="hover-in">Main Library</a>
+
+					<a class="second-item" id="nav-Announcements" href="#">
+						<img src="assets/images/dashboard/second/file-grey.png" class="hover-out">
+						<img src="assets/images/dashboard/second/file-blue.png" class="hover-in">File Transfer</a>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+	<div class="control-panel">
+
+		<!-- dashboard header start -->
+		<div class="dashboard-header mb-2" style="border-bottom: 1px dashed #E7EDFF;">
+			<div class="user-search-setting">
+				<form>
+					<input type="search" placeholder="Search now ...">
+					<button class="search-btn"><img src="assets/images/dashboard/search.png"></button>
+				</form>
+				<div class="user-notification">
+				    <img src="assets/images/dashboard/notification.png" class="dropdown-toggle" data-toggle="dropdown">
+				    <div class="dropdown-menu">
+				      <a class="dropdown-item" href="#">Notification 1</a>
+				      <a class="dropdown-item" href="#">Notification 2</a>
+				      <a class="dropdown-item" href="#">Notification 3</a>
+				    </div>
+				</div>
+				<div class="user-setting">
+					<img src="assets/images/dashboard/setting.png" class="dropdown-toggle" data-toggle="dropdown">
+				    <div class="dropdown-menu">
+				      <a class="dropdown-item" href="#">Logout</a>
+				    </div>
+				</div>
+			</div>
+			<div class="site-logo">
+				<img src="assets/images/logo.png">
+			</div>
+		</div>
+		<!-- dashboard header end -->
+
+        <div class="col-lg-12 mb-5 mt-4 learner-left" style="padding: 0 11px;">
+            <div class="tab-content">
+            <div class="col-lg-12 display-center">
+                <div class="col-md-6">
+                    <label>Course name:</label>
+                    <select>
+                        <option>Additional Math for Secondary 1</option>
+                        <option>Additional Math for Secondary 2</option>
+                        <option>Additional Math for Secondary 3</option>
+                        <option selected>Additional Math for Secondary 4</option>
+                    </select>
+                </div>
+                <div class="col-md-3 common-p display-center">
+                    <label>Level:</label>
+                    <p>Professional Medical</p>
+                </div>
+                <div class="col-md-3 common-p display-center">
+                    <label>Start date:</label>
+                    <p>14/04/2020</p>
+                </div>
+            </div>
+            <div class="col-lg-12 display-center mt-3">
+                <div class="col-md-6 display-center" style="padding: 0 25px; padding-right: 0;">
+                    <label>Class name:</label>
+                    <select style="width: 140px;">
+                        <option>Poppins 1</option>
+                        <option>Poppins 2</option>
+                        <option>Poppins 3</option>
+                        <option selected>Poppins</option>
+                    </select>
+                    
+                    <label style="padding-left: 38px;">Class code:</label>
+                    <p class="learner-orange">#56782</p>
+                </div>
+                <div class="col-md-3 common-p display-center" style="padding-left: 0;">
+                    <label>Banding:</label>
+                    <p>1</p>
+                </div>
+                <div class="col-md-3 common-p display-center" style="padding: 0 21px;">
+                    <label>End date:</label>
+                    <p>14/04/2020</p>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="sequence-element-wrapper">
+            <a href="#" class="sequence-class-curve yellow-wrapper">
+                <div class="sequence-class-caption">
+                    <h6>11</h6>
+                    <span>Class Material</span>
+                </div>
+                <figure>
+                    <img src="assets/images/dashboard/briefcase.png">
+                </figure>
+            </a>
+            <a href="#" class="sequence-assignments-curve blue-wrapper">
+                <div class="sequence-assignments-caption">
+                    <h6>15</h6>
+                    <span>Assignments</span>
+                </div>
+                <figure>
+                    <img src="assets/images/dashboard/assignment.png">
+                </figure>
+            </a>
+            <a href="#" class="sequence-tests-curve green-wrapper">
+                <div class="sequence-tests-caption">
+                    <h6>5</h6>
+                    <span>Tests</span>
+                </div>
+                <figure>
+                    <img src="assets/images/dashboard/test.png">
+                </figure>
+            </a>
+        </div>
+
+        <div class="col-lg-12 mt-4" style="border-bottom:1px dashed #E7EDFF;"></div>
+
+        <div class="prospectus-section sequence-list" style="padding: 20px 11px;">
+			<div class="prospectus-tabs">
+				<ul class="nav nav-tabs">
+				    <li><a data-toggle="tab" href="#test" class="active">Schedule</a></li>
+				    <li><a data-toggle="tab" href="#submissions">Submission/Results</a></li>
+				</ul>
+			</div>
+
+		<div class="tab-content" style="padding-top: 0;">
+                        <div id="personal" class="tab-pane active">
+					    	<div class="table-responsive">
+								<table class="table dashboard-table">
+                                    <thead class="thead-course" style="border-bottom: none;">
+                                        <tr>
+                                          <th scope="col"></th>
+                                          <th scope="col"></th>
+                                          <th scope="col"></th>
+                                          <th scope="col" style="text-align: right; padding: 0 0;">From</th>
+                                          <th scope="col"></th>
+                                          <th scope="col"></th>
+                                          <th scope="col"></th>
+                                          
+                                        </tr>
+                                      </thead>
+								  <thead>
+								    <tr>
+                                        <th scope="col">No.</th>
+                                        <th scope="col" class="text-left table-filter">Type</th>
+                                        <th scope="col" class="table-filter text-left">Name</th>
+                                        <th scope="col" class="table-filter">Date</th>
+                                        <th scope="col" class="table-filter">To</th>
+                                        <th scope="col" class="table-filter">Grade</th>
+                                        <th scope="col" class="table-filter">Final grading</th>
+								    </tr>
+								  </thead>
+								  <tbody>
+								    <tr>
+								      <td>1</td>
+                                      <td class="text-left">Test</td>
+								      <td class="text-left">First term test - preliminary</td>
+								      <td>10 May 20</td>
+								      <td>09:00</td>
+								      <td class="learner-">
+                                          <button type="button">-</button>
+                                      </td>
+                                      <td class="learner-">
+                                        <button type="button">-</button>
+                                      </td>
+                                      
+								    </tr>
+								    <tr>
+								      <td>2</td>
+                                      <td class="text-left">Assignment</td>
+								      <td class="text-left">Practical situations which you encounter</td>
+								      <td>10 May 20</td>
+								      <td>09:00</td>
+								      <td class="learner-path">
+                                          <button type="button"><img src="assets/images/learner/Path.png"></button>
+                                      </td>
+								      <td class="learner-path">
+                                        <button type="button"><img src="assets/images/learner/Path.png"></button>
+                                    </td>    
+								    </tr>
+								    <tr>
+								      <td>3</td>
+                                      <td class="text-left">Discussion</td>
+								      <td class="text-left">Suggestions for improvement to the industry</td>
+								      <td>15 April 20</td>
+								      <td>09:00</td>
+                                      <td class="learner-path">
+                                        <button type="button"><img src="assets/images/learner/Path.png"></button>
+                                    </td> 
+                                    <td class="learner-path">
+                                        <button type="button"><img src="assets/images/learner/Path.png"></button>
+                                    </td> 
+								    </tr>
+								    <tr>
+								      <td>4</td>
+                                      <td class="text-left">Test</td>
+								      <td class="text-left">First term test</td>
+								      <td>29 March 20</td>
+								      <td>11:00</td>
+                                      <td class="learner-path">
+                                        <button type="button"><img src="assets/images/learner/Path.png"></button>
+                                    </td> 
+                                    <td class="learner-path">
+                                        <button type="button"><img src="assets/images/learner/Path.png"></button>
+                                    </td> 
+								    </tr>
+								    <tr>
+								      <td>5</td>
+                                      <td class="text-left">Discussion</td>
+								      <td class="text-left">Share your experiences</td>
+								      <td>3 March 20</td>
+								      <td>12:00</td>
+                                      <td class="learner-path">
+                                        <button type="button"><img src="assets/images/learner/Path.png"></button>
+                                    </td> 
+                                    <td class="learner-path">
+                                        <button type="button"><img src="assets/images/learner/Path.png"></button>
+                                    </td> 
+								    </tr>
+								    <tr>
+                                        <td>6</td>
+                                        <td class="text-left">Assignment</td>
+                                        <td class="text-left">Write-up on what to expect</td>
+                                        <td>10 May 20</td>
+                                        <td>09:00</td>
+                                        <td class="learner-path">
+                                            <button type="button"><img src="assets/images/learner/Path.png"></button>
+                                        </td> 
+                                        <td class="learner-path">
+                                            <button type="button"><img src="assets/images/learner/Path.png"></button>
+                                        </td> 
+                                      </tr>
+                                      <tr>
+                                        <td>7</td>
+                                        <td class="text-left">Discussion</td>
+                                        <td class="text-left">What your thoughts are</td>
+                                        <td>10 May 20</td>
+                                        <td>09:00</td>
+                                        <td class="learner-path">
+                                            <button type="button"><img src="assets/images/learner/Path.png"></button>
+                                        </td> 
+                                        <td class="learner-">
+                                            <button type="button">-</button>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td>8</td>
+                                        <td class="text-left">Test</td>
+                                        <td class="text-left">Live test</td>
+                                        <td>15 April 20</td>
+                                        <td>09:00</td>
+                                        <td class="learner-path">
+                                            <button type="button"><img src="assets/images/learner/Path.png"></button>
+                                        </td> 
+                                        <td class="learner-path">
+                                            <button type="button"><img src="assets/images/learner/Path.png"></button>
+                                        </td> 
+                                      </tr>
+                                      <tr>
+                                        <td>9</td>
+                                        <td class="text-left">Assignment</td>
+                                        <td class="text-left">Share your experiences</td>
+                                        <td>29 March 20</td>
+                                        <td>11:00</td>
+                                        <td class="learner-path">
+                                            <button type="button"><img src="assets/images/learner/Path.png"></button>
+                                        </td> 
+                                        <td class="learner-">
+                                            <button type="button">-</button>
+                                        </td>   
+                                      </tr>                                                                                                                                                                                           
+								  </tbody>
+								</table>
+							</div>
+                            <div class="table-result-wrapper bottom-select col-lg-12">
+                                <div class="col-md-4 display-center">
+                                <select name="course" id="course-name">
+                                   <option selected>10</option>
+                                   <option value="Course 1">1</option>
+                                   <option value="Course 2">2</option>
+                                   <option value="Course 3">3</option>
+                                </select>
+                                <p>Results: 1-15 of 324</p>
+                                </div>
+                                <div class="selector col-lg-8">
+                                   <ul>
+                                      <li><a href="#"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+                                      <li><a href="#">1</a></li>
+                                      <li><a href="#">2</a></li>
+                                      <li class="active"><a href="#">3</a></li>
+                                      <li><a href="#">4</a></li>
+                                      <li><a href="#">5</a></li>
+                                      <li><a href="#">...</a></li>
+                                      <li><a href="#" class="right-arrow"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+                                   </ul>
+                                </div>
+                             </div>
+					    </div>
+			  		</div>
+			  	</div>		
+		    </div>
+  		</div>		
+	</div>
+</div>
+
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/popper.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="js/slick.min.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+
+</body>
+</html>

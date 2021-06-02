@@ -13,15 +13,17 @@
            </ul>
         </div>
         <div class="tab-content">
+         <form [formGroup]="questionForm">
+
            <!-- Schedule start -->
            <div class="heading" style="padding: 0 10px;">
               <h2 style="color: #343C6A; font-size: 17px;">Assignment question</h2>
            </div>
            <div class="multiple-text">
-              <form [formGroup]="questionForm">
-              <textarea name="shortanswer" formControlName="question"></textarea>
+							<angular-editor formControlName="question"   wrap="virtual" ></angular-editor>
+
+              <!-- <textarea name="shortanswer" formControlName="question"></textarea> -->
               <div class="col-md-4"></div>
-            </form>
            </div>
             
            <div class="attach mt-3">
@@ -65,7 +67,7 @@
                  <button type="button" class="lime"><a href="#">Edit</a></button>
                  <button type="button" class="Org"><a href="#">Confirm Edit</a></button>
                  -->
-              <a href="#" class="addbutton custom-button mr-2">Save Question</a>                        
+              <a  class="addbutton custom-button mr-2" (click)="saveQuestion()">Save Question</a>                        
               <a href="#" class="edit-points-btn custom-button">Cancel</a>   
            </div>
 <!--
@@ -73,6 +75,8 @@
               <button type="button">Confirm Edit</button>
            </div>
 -->
+</form>
+
         </div>
      </div>
   </div>

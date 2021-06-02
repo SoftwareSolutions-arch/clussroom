@@ -67,12 +67,11 @@ import { ReorderScreenComponent } from './test-module/reorder-screen/reorder-scr
 import { MidtermPreviewComponent } from './test-module/midterm-preview/midterm-preview.component';
 import { MidtermPreviewSecondComponent } from './test-module/midterm-preview-second/midterm-preview-second.component';
 import { EditPointsScreenComponent } from './test-module/edit-points-screen/edit-points-screen.component';
-import { TestCompomentComponent } from './test-compoment/test-compoment.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { NgxImageZoomModule } from 'ngx-image-zoom';
-import {AppDashboardHeaderComponent} from './test-module/app-dashboard-header/app-dashboard-header.component'
+import { AppDashboardHeaderComponent } from './test-module/app-dashboard-header/app-dashboard-header.component';
 
 @NgModule({
   declarations: [
@@ -125,13 +124,12 @@ import {AppDashboardHeaderComponent} from './test-module/app-dashboard-header/ap
     MidtermPreviewComponent,
     MidtermPreviewSecondComponent,
     EditPointsScreenComponent,
-    TestCompomentComponent,
-    AppDashboardHeaderComponent
+    AppDashboardHeaderComponent,
   ],
   imports: [
     NgxImageZoomModule,
     CommonModule,
-    BrowserModule, 
+    BrowserModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-top-center',
@@ -152,7 +150,7 @@ import {AppDashboardHeaderComponent} from './test-module/app-dashboard-header/ap
     MatButtonModule,
     MatCheckboxModule,
     MatProgressSpinnerModule,
-    SlickCarouselModule, MatTabsModule, NgxPaginationModule, AngularEditorModule, 
+    SlickCarouselModule, MatTabsModule, NgxPaginationModule, AngularEditorModule,
   ],
   providers: [Sample04Component, ClassesComponent, LoaderComponent],
   bootstrap: [AppComponent]

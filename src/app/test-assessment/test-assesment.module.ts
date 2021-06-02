@@ -16,6 +16,8 @@ import {AssignmentReviewComponent} from './assignment-review/assignment-review.c
 import {AssignmentReviewRubricComponent} from './assignment-review-rubric/assignment-review-rubric.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import {Edit_assignmentComponent} from './edit_assignment/edit_assignment.component'
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 
 @NgModule({
@@ -25,7 +27,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
         AssessmentRoutes,
         ReactiveFormsModule,
         FormsModule,
-        NgxPaginationModule
+        NgxPaginationModule,
+        AngularEditorModule
     ],
     declarations: [
         TestAssessmentHomeComponent,
@@ -40,7 +43,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
         SidebarAssignmentComponent,
         AssignmentReviewComponent,
         AssignmentReviewRubricComponent,
-
+        Edit_assignmentComponent
     ],
 })
 export class AssessmentModule{

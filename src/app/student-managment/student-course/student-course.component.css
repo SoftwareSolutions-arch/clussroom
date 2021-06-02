@@ -257,7 +257,7 @@ textarea:focus,
 }
 
 input[type="date"] {
-	background-image: url(/assets/images/input-date.png);
+	background-image: url(../../../assets/images/input-date.png);
 	background-repeat: no-repeat;
 	background-position: right 15px bottom 9px;
 }
@@ -1579,7 +1579,7 @@ section.home-section-banner {
 section.tasks-robust-section {
 	padding: 50px 0px;
 	margin: 90px 0px 0px;
-	background-image: url(/assets/images/tasks-robust.png);
+	background-image: url(../../../assets/images/tasks-robust.png);
 	background-repeat: no-repeat;
 	background-size: 100% 92%;
 }
@@ -1590,7 +1590,7 @@ section.tasks-robust-section .container {
 
 section.tasks-robust-section .container:before {
 	content: "";
-	background-image: url(/assets/images/tasks-dot.png);
+	background-image: url(../../../assets/images/tasks-dot.png);
 	position: absolute;
 	width: 214px;
 	height: 371px;
@@ -1599,7 +1599,7 @@ section.tasks-robust-section .container:before {
 
 section.tasks-robust-section .container:after {
 	content: "";
-	background-image: url(/assets/images/robust-dot.png);
+	background-image: url(../../../assets/images/robust-dot.png);
 	position: absolute;
 	width: 473px;
 	height: 170px;
@@ -1620,7 +1620,7 @@ section.tasks-robust-section .container:after {
 .tasks-wrapper:before {
 	content: "\f1ce";
 	font-display: FontAwesome;
-	/*    background-image: url(/assets/images/small-circle-yew.png);*/
+	/*    background-image: url(../../../assets/images/small-circle-yew.png);*/
 	position: absolute;
 	width: 65px;
 	height: 65px;
@@ -1662,7 +1662,7 @@ section.tasks-robust-section .container:after {
 
 .tasks-wrapper:after {
 	content: "";
-	background-image: url(/assets/images/large-circle-yew.png);
+	background-image: url(../../../assets/images/large-circle-yew.png);
 	position: absolute;
 	width: 401px;
 	height: 401px;
@@ -1750,7 +1750,7 @@ section.tasks-robust-section .container:after {
 
 .robust-wrapper:before {
 	content: "";
-	background-image: url(/assets/images/small-circle-yew-1.png);
+	background-image: url(../../../assets/images/small-circle-yew-1.png);
 	position: absolute;
 	width: 65px;
 	height: 65px;
@@ -1761,7 +1761,7 @@ section.tasks-robust-section .container:after {
 
 .robust-wrapper:after {
 	content: "";
-	background-image: url(/assets/images/medium-circle-yew.png);
+	background-image: url(../../../assets/images/medium-circle-yew.png);
 	position: absolute;
 	width: 262px;
 	height: 262px;
@@ -1898,7 +1898,7 @@ section.home-testimonial-section {
 
 section.home-testimonial-section:before {
 	content: "";
-	background-image: url(/assets/images/testimonial-dot.png);
+	background-image: url(../../../assets/images/testimonial-dot.png);
 	position: absolute;
 	background-size: contain;
 	height: 137px;
@@ -3485,7 +3485,7 @@ table.dashboard-table thead th {
 
 .table-filter:after {
 	content: "";
-	background-image: url(/assets/images/dashboard/up-down-filter.png);
+	background-image: url(../../../assets/images/dashboard/up-down-filter.png);
 	width: 11px;
 	height: 11px;
 	background-size: contain;
@@ -5937,7 +5937,7 @@ table.dashboard-table td i.fa-check {
 
 .table-filter:after {
 	content: "";
-	background-image: url(/assets/images/dashboard/up-down-filter.png);
+	background-image: url(../../../assets/images/dashboard/up-down-filter.png);
 	width: 11px;
 	height: 11px;
 	background-size: contain;
@@ -6222,7 +6222,7 @@ table.dashboard-table td input {
     margin: 0 10px;
 */
 	padding: 35px 0 0 26px;
-	background-image: url(/assets/images/test/word-tool.png);
+	background-image: url(../../../assets/images/test/word-tool.png);
 	background-repeat: no-repeat;
 	white-space: normal;
 	overflow-wrap: normal;
@@ -6254,7 +6254,7 @@ table.dashboard-table td input {
 }
 
 .setting-date-section input[type="date"] {
-	background-image: url(/assets/images/input-date.png);
+	background-image: url(../../../assets/images/input-date.png);
 	background-repeat: no-repeat;
 	background-position: right 15px bottom 9px;
 }
@@ -7076,7 +7076,7 @@ left: 8px;
     margin: 0 10px;
 */
 	padding: 35px 0 0 26px;
-	background-image: url(/assets/images/test/word-tool.png);
+	background-image: url(../../../assets/images/test/word-tool.png);
 	background-repeat: no-repeat;
 	white-space: normal;
 	overflow-wrap: normal;
@@ -8855,7 +8855,7 @@ font-size: 15px;
 
 .table-filter-adjust::after {
     content: "";
-    background-image: url(/assets/images/dashboard/up-down-filter.png);
+    background-image: url(../../../assets/images/dashboard/up-down-filter.png);
     width: 11px;
     height: 11px;
     background-size: contain;
@@ -11780,11 +11780,21 @@ table.dash-table td input {
     margin-top: 1em;
 }
 
-
+.new-discuss ul li input[type="date"] {
+	width: 194px;
+    height: 35px;
+    border-radius: 6px;
+    padding-left: 14px;
+	font-size: 15px;
+	font-weight: 400;
+	font-family: 'Barlow';
+	color: #AFBCD2;
+	margin-top: .7em;
+}
 
 
 .new-discuss ul li input[type="time"] {
-    background-image: url(/assets/images/discuss/clock.png);
+    background-image: url(../../../assets/images/discuss/clock.png);
     background-repeat: no-repeat;
     background-position: right 10px bottom 8px;
     width: 148px;
@@ -14786,120 +14796,4 @@ i .grade-tip .grade-text {
 .confirm-submit-red:hover {
 	background-color: transparent;
 	color: #FF5A64;
-}
-
-/* Main Dropdown CSS Start */
-.dropbtn-1 {
-	width: 148px;
-	height: 35px;
-	border-radius: 6px 6px 0 0;
-	background-color: transparent;
-	border: 1px solid #E7EDFF;
-	font-size: 15px;
-	font-weight: 500;
-	font-family: 'Barlow';
-	color: #AFBCD2;
-  }
-  
-  .dropdown-1 {
-	position: relative;
-	display: inline-block;
-  }
-  
-  .dropdown-content-1 {
-	display: none;
-	position: absolute;
-	background-color: #f9f9f9;
-	min-width: 160px;
-	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-	z-index: 1;
-  }
-  
-  .dropdown-content-1 a {
-	color: black;
-	padding: 12px 16px;
-	text-decoration: none;
-	display: block;
-	font-size: 15px;
-	font-weight: 500;
-	font-family: 'Barlow';
-	color: #AFBCD2;
-  }
-  
-  .dropdown-content-1 a:hover {background-color: #f1f1f1}
-  
-  .dropdown-1:hover .dropdown-content-1 {
-	display: block;
-  }
-
-  .input-fonts input {
-	  font-size: 15px;
-	  font-weight: 500;
-	  font-family: 'Barlow';
-	  color: #AFBCD2;
-  }
-
-  .input-fonts input::placeholder {
-	font-size: 15px;
-	font-weight: 500;
-	font-family: 'Barlow';
-	color: #AFBCD2;
-}
-
-/* Main Dropdown CSS End */
-.i-position button {
-	background-color: transparent;
-	border: none;
-}
-
-.i-position i{
-	position: relative;
-    top: 10.4em;
-    z-index: 999;
-    right: 1.5em;
-	color: #FF82AC;
-	font-size: 15px;
-}
-.area-delete {
-	position: relative; 
-	bottom: .6em; 
-	right: 4.5em; 
-	font-size: 15px; 
-	border: none; 
-	background-color: transparent; 
-	color: #FF82AC;
-}
-.setting-edit-1 {
-	width: 119px;
-	height: 35px;
-	border-radius: 6px;
-	background-color: #396aff;
-	border: 2px solid #396aff;
-	font-size: 15px;
-	font-weight: 600;
-	font-family: 'Barlow';
-	color: #fff;
-	transition: .5s ease-in-out;
-}
-
-.setting-edit-1:hover {
-	background-color: transparent;
-	color: #396aff;
-}
-.setting-edit {
-	width: 77px;
-	height: 35px;
-	border-radius: 6px;
-	background-color: #396AFF;
-	border: 2px solid #396aff;
-	font-size: 15px;
-	font-weight: 600;
-	font-family: 'Barlow';
-	color: #FFFFFF;
-	transition: .5s ease-in-out;
-}
-
-.setting-edit:hover {
-	background-color: transparent;
-	color: #396aff;
 }

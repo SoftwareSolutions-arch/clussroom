@@ -8,7 +8,9 @@ import {AssignmentDetailComponent} from './assignment-detail/assignment-detail.c
 import {AssignmentDetailNewComponent} from './assignment-detail-new/assignment-detail-new.component'
 import {AssignmentHeaderComponent} from './assignment-header/assignment-header.component';
 import {AssignmentReviewComponent} from './assignment-review/assignment-review.component'
-import {AssignmentReviewRubricComponent} from './assignment-review-rubric/assignment-review-rubric.component'
+import {AssignmentReviewRubricComponent} from './assignment-review-rubric/assignment-review-rubric.component';
+import {Edit_assignmentComponent} from './edit_assignment/edit_assignment.component'
+
 
 const routes: Routes = [
   {
@@ -40,6 +42,9 @@ const routes: Routes = [
   },
   {
     path: 'assignment-review-rubric', component: AssignmentReviewRubricComponent
+  },
+  {
+    path: 'edit_assignment', component: Edit_assignmentComponent
   },
 ];
 

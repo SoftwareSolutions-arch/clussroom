@@ -16,10 +16,20 @@ export class AddTestAssestmentComponent implements OnInit {
   rubricChecked: boolean
   id: string;
   updateNewData: any;
+  assignment_id: void;
+  questionButton: boolean = true;
+  sumData: any;
+  public controls = {};
+  ages = [];
+  pointsData = [];
+  finalData: any = '';
+  data: any[];
+  newData: number;
+  listingData = [];
   constructor(private service: SharedServiceService, private router: Router, private route: ActivatedRoute, private util: UtilService, private toster: ToastrService, private fb: FormBuilder) {
     this.empForm = this.fb.group({
       employees: this.fb.array([]),
-      rubricTitle: new FormControl('',),
+      rubric_title: new FormControl('',)
     });
 
     this.route.queryParamMap.subscribe(queryParams => {
@@ -28,8 +38,8 @@ export class AddTestAssestmentComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.imageInitialForms();
     this.editData();
+    this.addInitialForm();
   }
 
   addData() {
@@ -54,23 +64,7 @@ export class AddTestAssestmentComponent implements OnInit {
     attachment_limit_checked: new FormControl('',)
 
   })
-  employees(): FormArray {
-    return this.empForm.get('employees') as FormArray;
-  }
-  addEmployee() {
-    this.employees().push(this.newEmployee());
-  }
-  newEmployee(): FormGroup {
-    return this.fb.group({
-      delivery: '',
-      // lastName: '',
-      // skills: this.fb.array([])
-    });
-  }
-  imageInitialForms() {
-    this.addEmployee()
-    //  this.addNewSkills(empIndex).controls.length - 1;
-  }
+
   addAssignment() {
     var x = new Date(this.addAssignmentForm.value.available_date);
     var y = new Date(this.addAssignmentForm.value.available_dateTo);
@@ -95,9 +89,11 @@ export class AddTestAssestmentComponent implements OnInit {
         "class_nid": localStorage.getItem('classListId')
       }
       this.service.post('add-assignment-api', data, 1).subscribe(res => {
-        if (res.status =='1') {
+        if (res.status == '1') {
           this.util.showSuccessAlert('Assignment added successfully');
-          this.router.navigate(['/assignment/test-assignment-home']);
+          this.assignment_id = sessionStorage.setItem('assignment_id', res.assignment_id)
+          this.questionButton = false;
+          // this.router.navigate(['/assignment/test-assignment-home']);
         }
       })
     }
@@ -109,20 +105,18 @@ export class AddTestAssestmentComponent implements OnInit {
       "assignment_id": this.id
     }
     this.service.post('listing-assignment', data, 1).subscribe(res => {
-      // console.log(res);
       this.updateNewData = res.assignment_data;
-      // console.log(this.updateNewData)
       this.addAssignmentForm.patchValue({
         // "level": this.updateNewData.level_id,
         "assignment_name": this.updateNewData.assignment_name,
         "instruction": this.updateNewData.assignment_instruction,
         "available_date": this.updateNewData.start_date,
         "available_time": this.updateNewData.start_time,
-        available_dateTo: this.updateNewData.end_date,
-        available_timeTo: this.updateNewData.end_time,
+        "available_dateTo": this.updateNewData.end_date,
+        "available_timeTo": this.updateNewData.end_time,
         "attachment_limit_checked": this.updateNewData.allow_attachments,
         "character_limit_checked": this.updateNewData.character_limit,
-        "character_limit": this.updateNewData.insert_limit,
+        "character_limit": this.updateNewData.character_insert_limit,
         "attachment": this.updateNewData.allow_limit_attachments,
         "rubric": this.updateNewData.insert_rubric,
         // rubric: this.updateNewData.rubric,
@@ -160,15 +154,92 @@ export class AddTestAssestmentComponent implements OnInit {
         "class_nid": localStorage.getItem('classListId')
       }
       this.service.post('update-assignment-api', data, 1).subscribe(res => {
-        console.log(res);
-        if (res.status =='1') {
-          this.util.showSuccessAlert('Assignment updated successfully');
-          this.router.navigate(['/assignment/test-assignment-home']);
+        if (res.status == '1') {
+          this.util.showSuccessAlert('Assignment update successfully');
+          this.goToQuestion();
+          this.questionButton = false;
+          // this.router.navigate(['/assignment/test-assignment-home']);
         }
       })
     }
   }
-  goToQuestion(){
-    this.router.navigate(['"/assignment/assignment-question"'], { queryParams: { id: this.id} });
+  goToQuestion() {
+    this.router.navigate(['/assignment/assignment-question'], { queryParams: { id: this.assignment_id } });
   }
+
+  // add rubric form
+  employees(): FormArray {
+    return this.empForm.get('employees') as FormArray;
+  }
+  newEmployee(): FormGroup {
+    return this.fb.group({
+      critterion: '',
+      scale: this.fb.array([])
+    });
+  }
+
+  addInitialForm() {
+    this.addEmployee();
+    this.addEmployeeSkill(this.employees().controls.length - 1);
+  }
+
+  addEmployee() {
+    this.employees().push(this.newEmployee());
+  }
+  removeEmployee(empIndex: number) {
+    this.employees().removeAt(empIndex);
+  }
+  addEmployeeSkill(empIndex: number) {
+    this.employeeSkills(empIndex).push(this.newSkill());
+  }
+  employeeSkills(empIndex: number): FormArray {
+    return this.employees()
+      .at(empIndex)
+      .get('scale') as FormArray;
+  }
+  newSkill(): FormGroup {
+    return this.fb.group({
+      text: '',
+      value: ''
+    });
+  }
+  removeEmployeeSkill(empIndex: number, skillIndex: number) {
+    this.employeeSkills(empIndex).removeAt(skillIndex);
+  }
+
+  addRubric() {
+    const titleForm = this.employees().getRawValue();
+    console.log(titleForm);
+    console.log(this.sumData);
+    const data = {
+      "type": "add",
+      "critterion_input": titleForm,
+      "number": this.listingData,
+      "rubric_title": this.empForm.value.rubric_title,
+      // "scale_text": {"1":["1"],"2":["3"]},
+      // "scale_value":{"1":["2"],"2":["4"]}
+    }
+    // this.service.post('rubric-api',data,1).subscribe(res => {
+
+    // })
+  }
+  sum(i) {
+    this.pointsData = [];
+    console.log(this.empForm.value)
+    this.empForm.value.employees.forEach(element => {
+      this.pointsData = [];
+      this.finalData='';
+      this.listingData=[]
+      element.scale.forEach(element1 => {
+        this.pointsData.push(element1.value)
+        this.finalData = Math.max(...this.pointsData);
+      });
+      this.listingData.push(this.finalData)
+
+      console.log('data', this.pointsData);
+      console.log('finalData', this.finalData);
+      console.log('listingData', this.listingData);
+    });
+  }
+
 }

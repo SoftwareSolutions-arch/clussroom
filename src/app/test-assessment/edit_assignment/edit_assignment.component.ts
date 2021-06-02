@@ -4,12 +4,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SharedServiceService } from 'src/app/shared-service.service';
 import { UtilService } from 'src/providers/util.service';
 
+
 @Component({
-  selector: 'app-assignment-setting',
-  templateUrl: './assignment-setting.component.html',
-  styleUrls: ['./assignment-setting.component.scss']
+  selector: 'app-edit_assignment',
+  templateUrl: './edit_assignment.component.html',
+  styleUrls: ['./edit_assignment.component.css']
 })
-export class AssignmentSettingComponent implements OnInit {
+export class Edit_assignmentComponent implements OnInit {
   
   disbled: boolean = true;
   id: string;
@@ -119,4 +120,5 @@ edit(){
     this.assignment_id = sessionStorage.getItem('assignment_id')
     this.router.navigate(['/assignment/assignment-question'], { queryParams: { id: this.id} });
   }
+
 }

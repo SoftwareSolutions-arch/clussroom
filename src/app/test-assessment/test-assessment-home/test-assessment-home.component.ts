@@ -15,21 +15,27 @@ export class TestAssessmentHomeComponent implements OnInit {
   testId: any;
   isEditClicked: boolean = false;
   page = 1;
+  tutorials: any;
+  count = 0;
+  pageSize = 10;
   constructor( private router: Router, private service: SharedServiceService, private util: UtilService, private toster: ToastrService) { }
 
   ngOnInit() {
     this.getAssignmentData();
   }
-    // handling page events
-    handlePageChange(event): void {
-      this.page = event;
-    }
+  // handling page events
+  handlePageChange(event): void {
+    this.page = event;
+  }
    getAssignmentData(){
      const data = {
       "class_id":localStorage.getItem('classListId') 
      }
      this.service.post('listing-assignment',data,1).subscribe(res => {
        this.assignmentData = res.assignment_data
+       const { tutorials, totalItems } = res.assignment_data
+       this.tutorials = tutorials;
+       this.count = totalItems;
      })
    }
      // get events of check box for edit or add button show and hide 
@@ -38,7 +44,7 @@ export class TestAssessmentHomeComponent implements OnInit {
     this.testId = testListing.assignment_id;
   }
   goToTest() {
-    this.router.navigate(['/assignment/add-assignment'], { queryParams: { id: this.testId} });
+    this.router.navigate(['/assignment/edit_assignment'], { queryParams: { id: this.testId} });
   }
 
   deleteAssignment(){
