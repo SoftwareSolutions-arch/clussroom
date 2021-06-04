@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class TestAssessmentHomeComponent implements OnInit {
   @ViewChild('deleteclosebutton') deleteclosebutton;
+  isLoadingBool: boolean = true;
   assignmentData: any;
   testId: any;
   isEditClicked: boolean = false;

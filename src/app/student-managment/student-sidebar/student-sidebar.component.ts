@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { ClassesComponent } from '../classes/classes.component';
-import { SharedServiceService } from '../shared-service.service';
-import { UtilService } from '../../providers/util.service'
 import { Router } from '@angular/router';
+import { ClassesComponent } from 'src/app/classes/classes.component';
+import { SharedServiceService } from 'src/app/shared-service.service';
+import { UtilService } from 'src/providers/util.service';
 
 @Component({
-  selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
+  selector: 'app-student-sidebar',
+  templateUrl: './student-sidebar.component.html',
+  styleUrls: ['./student-sidebar.component.css']
 })
-export class SidebarComponent implements OnInit {
+export class StudentSidebarComponent implements OnInit {
+
   constructor(public classes: ClassesComponent, public util: UtilService, public service: SharedServiceService, public router: Router) {
-    // this.ngOnInit();
     jQuery(".sidebar-blue").toggleClass("toogleopen");
     jQuery(".control-panel").toggleClass("toogleopen").removeClass("dashboardtoogleopen").removeClass("dashboardtoogleclose");
     jQuery(".sidebar-dashboard .dashboard-user-sidebar").removeClass("dashboardtoogleopen").removeClass("dashboardtoogleclose");
@@ -52,11 +52,6 @@ export class SidebarComponent implements OnInit {
     });
   }
 
-  getCourses() {
-    // this.classes.getAllCoursesList();
-  }
-
-  // do logout setup
   logOut() {
     this.service.post('user-logout-api', '', 0).subscribe(result => {
 
@@ -72,9 +67,5 @@ export class SidebarComponent implements OnInit {
         this.util.errorAlertPopup(result['status_message']);
       }
     })
-  }
-
-  goToTestListing() {
-    this.router.navigate(['/test-listing'])
   }
 }

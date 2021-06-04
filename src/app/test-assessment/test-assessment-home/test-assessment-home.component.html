@@ -1,87 +1,89 @@
 <div class="dashboard">
-	<app-sidebar-assignment></app-sidebar-assignment>
-	<div class="control-panel">
-		<app-assignment-dashboard-header></app-assignment-dashboard-header>
-		<app-assignment-header></app-assignment-header>
+  <app-sidebar-assignment></app-sidebar-assignment>
+  <div class="control-panel">
+    <app-assignment-dashboard-header></app-assignment-dashboard-header>
+    <app-assignment-header></app-assignment-header>
 
-		<div class="row test-button">
-			<button routerLink="/assignment/add-assignment" class="tstbtn" style="width: 145px;">Add assignment</button>
-			<div id="mytstdown" class="tstdown-content">
-				<a href="#home">Add new</a>
-				<a href="#about" class="custom-button" data-toggle="modal" data-target="#library">Add from library</a>
-			</div>
-		</div>
-		<div class="prospectus-section sequence-list">
-			<div class="prospectus-tabs">
-				<ul class="nav nav-tabs">
-					<li><a data-toggle="tab" href="#test" class="active">Assignment</a></li>
-					<li><a data-toggle="tab" href="#settings">Settings</a></li>
-					<li><a data-toggle="tab" routerLink="/assignment/assignment-result">Result/Assessment</a></li>
-					<!--				    <li><a data-toggle="tab" href="#overall-grading">Overall Grading Status</a></li>-->
-				</ul>
-			</div>
-			<div class="tab-content">
-				<!-- Schedule start -->
-				<div id="test" class="tab-pane active">
-					<div class="table=-responsive custom-checkbox question-label">
-						<table class="table dashboard-table">
-							<thead class="thead-course">
-								<tr>
-									<th scope="col"></th>
-									<th scope="col"></th>
-									<th scope="col"></th>
-									<th scope="col"
-										style="width: 10% !important;padding: 0 0 0 5.5em;text-align: center;">From</th>
-									<th scope="col"></th>
-									<th scope="col" style="text-align: right; padding: 0 0;">To</th>
-									<th scope="col"></th>
-									<th scope="col"></th>
-									<th scope="col"></th>
-								</tr>
-							</thead>
-							<thead>
-								<tr>
-									<th scope="col"></th>
-									<th scope="col">No.</th>
-									<th scope="col" class="text-left">Assignment name</th>
-									<th scope="col" class=" text-left table-filter-adjust">Date</th>
-									<th scope="col" class="text-left table-filter-adjust">To</th>
-									<th scope="col" class="table-filter-adjust">Date</th>
-									<th scope="col" class="table-filter-adjust">To</th>
-									<th scope="col" class="table-filter-adjust">Marking score</th>
-									<th scope="col" class="table-filter-adjust">Total size</th>
-									<th scope="col" class="dropdown-1">
-										<button class="dropbtn-1" 
-										style="background-color: transparent; border: none; width: 22px; height: 22px;">
-										<i class="fa fa-ellipsis-v"></i>
-									  </button>
-									  <div class="dropdown-content-1" id="myDropdown"*ngIf="isEditClicked">
-										<a (click)="goToTest()">Edit</a>
-										<a data-toggle="modal" data-target="#remove">Remove</a>
-									  </div>
-									</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr *ngFor = "let data of assignmentData; index as i">
-									<th>
-										<div class="radio-table-latest"><input name="radio"
-											(click)="isCheckBoxClicked(data,i)" type="radio"></div>
-									  </th>
-									<td>{{i + 1}}</td>
-									<td class="text-left">{{data.assignment_name}}</td>
-									<td class="text-left">{{data.start_date}}</td>
-									<td class="text-left">{{data.start_time}}</td>
-									<td>{{data.end_date}}</td>
-									<td>{{data.end_date}}</td>
-									<td>{{data.assignment_marking_score}}
-										<div class="light-pink"><button type="button">-</button></div>
-									</td>
-									<td>{{data.assignment_total_size}}</td>
-									<td>&nbsp;</td>
-								</tr>
-							
-								<!-- <tr>
+    <div *ngIf="isLoadingBool" class="loading-indicator">
+      <mat-spinner></mat-spinner>
+    </div>
+    <div class="row test-button">
+      <button routerLink="/assignment/add-assignment" class="tstbtn" style="width: 145px;">Add assignment</button>
+      <div id="mytstdown" class="tstdown-content">
+        <a href="#home">Add new</a>
+        <a href="#about" class="custom-button" data-toggle="modal" data-target="#library">Add from library</a>
+      </div>
+    </div>
+    <div class="prospectus-section sequence-list">
+      <div class="prospectus-tabs">
+        <ul class="nav nav-tabs">
+          <li><a data-toggle="tab" href="#test" class="active">Assignment</a></li>
+          <li><a data-toggle="tab" href="#settings">Settings</a></li>
+          <li><a data-toggle="tab" routerLink="/assignment/assignment-result">Result/Assessment</a></li>
+          <!--				    <li><a data-toggle="tab" href="#overall-grading">Overall Grading Status</a></li>-->
+        </ul>
+      </div>
+      <div class="tab-content">
+        <!-- Schedule start -->
+        <div id="test" class="tab-pane active">
+          <div class="table=-responsive custom-checkbox question-label">
+            <table class="table dashboard-table">
+              <thead class="thead-course">
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col" style="width: 10% !important;padding: 0 0 0 5.5em;text-align: center;">From</th>
+                  <th scope="col"></th>
+                  <th scope="col" style="text-align: right; padding: 0 0;">To</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">No.</th>
+                  <th scope="col" class="text-left">Assignment name</th>
+                  <th scope="col" class=" text-left table-filter-adjust">Date</th>
+                  <th scope="col" class="text-left table-filter-adjust">To</th>
+                  <th scope="col" class="table-filter-adjust">Date</th>
+                  <th scope="col" class="table-filter-adjust">To</th>
+                  <th scope="col" class="table-filter-adjust">Marking score</th>
+                  <th scope="col" class="table-filter-adjust">Total size</th>
+                  <th scope="col" class="dropdown-1">
+                    <button class="dropbtn-1"
+                      style="background-color: transparent; border: none; width: 22px; height: 22px;">
+                      <i class="fa fa-ellipsis-v"></i>
+                    </button>
+                    <div class="dropdown-content-1" id="myDropdown" *ngIf="isEditClicked">
+                      <a (click)="goToTest()">Edit</a>
+                      <a data-toggle="modal" data-target="#remove">Remove</a>
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of assignmentData; index as i">
+                  <th>
+                    <div class="radio-table-latest"><input name="radio" (click)="isCheckBoxClicked(data,i)"
+                        type="radio"></div>
+                  </th>
+                  <td>{{i + 1}}</td>
+                  <td class="text-left">{{data.assignment_name}}</td>
+                  <td class="text-left">{{data.start_date}}</td>
+                  <td class="text-left">{{data.start_time}}</td>
+                  <td>{{data.end_date}}</td>
+                  <td>{{data.end_date}}</td>
+                  <td>{{data.assignment_marking_score}}
+                    <div class="light-pink"><button type="button">-</button></div>
+                  </td>
+                  <td>{{data.assignment_total_size}}</td>
+                  <td>&nbsp;</td>
+                </tr>
+
+                <!-- <tr>
 									<th>
 										<label class="question-checkbox col-md-8" style="padding:0;">
 											<input type="checkbox">
@@ -99,7 +101,7 @@
 									<td>&nbsp;</td>
 								</tr> -->
 
-								<!-- <tr>
+                <!-- <tr>
 									<th>
 										<label class="question-checkbox col-md-8" style="padding:0;">
 											<input type="checkbox">
@@ -116,7 +118,7 @@
 									<td>879 mb</td>
 									<td>&nbsp;</td>
 								</tr> -->
-<!-- 
+                <!-- 
 								<tr>
 									<th>
 										<label class="question-checkbox col-md-8" style="padding:0;">
@@ -156,13 +158,13 @@
 								</tr> -->
 
 
-							</tbody>
-						</table>
-					</div>
-					<div class="table-result-wrapper bottom-select">
-						<!-- <pagination-controls previousLabel="Prev" nextLabel="Next" responsive="true"
+              </tbody>
+            </table>
+          </div>
+          <div class="table-result-wrapper bottom-select">
+            <!-- <pagination-controls previousLabel="Prev" nextLabel="Next" responsive="true"
 						(pageChange)="handlePageChange($event)"></pagination-controls> -->
-						<!-- <select name="course" id="course-name">
+            <!-- <select name="course" id="course-name">
 							<option selected>10</option>
 							<option value="Course 1">1</option>
 							<option value="Course 2">2</option>
@@ -182,36 +184,36 @@
 											aria-hidden="true"></i></a></li>
 							</ul>
 						</div> -->
-						<!-- <div class="selector">
+            <!-- <div class="selector">
 							<pagination-controls previousLabel="Prev" nextLabel="Next" responsive="true"
 							  (pageChange)="handlePageChange($event)"></pagination-controls>
 						  </div> -->
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <!-- Remove Question modal popup start -->
 <div id="remove" class="modal removetest-modal" role="dialog" #deleteclosebutton>
-	<div class="modal-dialog">
-	  <div class="modal-content">
-		<div class="modal-header">
-		  <button type="button" class="close" ><i class="fa fa-times" aria-hidden="true"></i>
-		  </button>
-		</div>
-		<div  class="modal-body">
-		  <div class="class-delete-list" >
-			<div class="remove-field">
-			  <img src="assets/images/test/allert-1.png" style="padding: 0 25em !important;">
-			  <h1>Remove Questions?</h1>
-			</div>
-		  </div>
-		  <div (click)="deleteAssignment()" class="class-remove-btn">
-			<button data-dismiss="modal" type="button" class="remove-test" >Yes</button>
-		  </div>
-		</div>
-	  </div>
-	</div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close"><i class="fa fa-times" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="class-delete-list">
+          <div class="remove-field">
+            <img src="assets/images/test/allert-1.png" style="padding: 0 25em !important;">
+            <h1>Remove Questions?</h1>
+          </div>
+        </div>
+        <div (click)="deleteAssignment()" class="class-remove-btn">
+          <button data-dismiss="modal" type="button" class="remove-test">Yes</button>
+        </div>
+      </div>
+    </div>
   </div>
-  <!-- Remove Question modal popup end -->
+</div>
+<!-- Remove Question modal popup end -->

@@ -1,0 +1,179 @@
+<div class="dashboard">
+  <app-student-sidebar></app-student-sidebar>
+  <div class="control-panel">
+    <div *ngIf="isLoadingBool" class="loading-indicator">
+      <mat-spinner></mat-spinner>
+    </div>
+    <!-- dashboard header start -->
+    <div class="dashboard-header mb-2" style="border-bottom: 1px dashed #E7EDFF;">
+      <div class="user-search-setting">
+        <form>
+          <input type="search" placeholder="Search now ...">
+          <button class="search-btn"><img src="assets/images/dashboard/search.png"></button>
+        </form>
+        <div class="user-notification">
+          <img src="assets/images/dashboard/notification.png" class="dropdown-toggle" data-toggle="dropdown">
+          <div class="dropdown-menu">
+            <a class="dropdown-item">Notification 1</a>
+            <a class="dropdown-item">Notification 2</a>
+            <a class="dropdown-item">Notification 3</a>
+          </div>
+        </div>
+        <div class="user-setting">
+          <img src="assets/images/dashboard/setting.png" class="dropdown-toggle" data-toggle="dropdown">
+          <div class="dropdown-menu">
+            <a class="dropdown-item">Logout</a>
+          </div>
+        </div>
+      </div>
+      <div class="site-logo">
+        <img src="../../../assets/images/LOGO.png">
+      </div>
+    </div>
+    <!-- dashboard header end -->
+    <div class="col-lg-12 mb-5 mt-4 learner-left" style="padding: 0 11px;">
+      <div class="tab-content" style="height: 106px;">
+        <div class="col-lg-12 display-center">
+          <div class="col-md-6">
+            <label>Course name:</label>
+            <select (change)="getHeaderData()" [(ngModel)]="selectCourse" name="course" id="course-name">
+              <option value="" disabled selected="selected">Please select course</option>
+              <option *ngFor="let courseList of this.allCourseList" [ngValue]="courseList">{{courseList.course_name}}
+              </option>
+            </select>
+          </div>
+          <div class="col-md-3 common-p display-center">
+            <label>Level:</label>
+            <p>{{this.selectCourse.level}}</p>
+          </div>
+          <div class="col-md-3 common-p display-center">
+            <label>Start date:</label>
+            <p>{{this.selectCourse.start_date}}</p>
+          </div>
+        </div>
+        <div class="col-lg-12 display-center mt-3">
+          <div class="col-md-6 display-center" style="padding: 0 8px; padding-right: 0;">
+            <label>Class name:</label>
+            <select style="width: 140px;">
+              <option value="" disabled selected="selected">Please select class</option>
+              <option>{{this.selectCourse.classes_name}}</option>
+            </select>
+
+            <label style="padding-left: 38px;">Class code:</label>
+            <p class="learner-orange">#{{this.selectCourse.class_code}}</p>
+          </div>
+          <div class="col-md-3 common-p display-center" style="padding-left: 0;">
+            <label>Banding:</label>
+            <p>{{this.selectCourse.start_date}}</p>
+          </div>
+          <div class="col-md-3 common-p display-center" style="padding: 0 7px;">
+            <label>End date:</label>
+            <p>{{this.selectCourse.end_date}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sequence-element-wrapper">
+      <a class="sequence-class-curve yellow-wrapper">
+        <div class="sequence-class-caption">
+          <h6>{{this.headerData.class_material}}</h6>
+          <span>Class Material</span>
+        </div>
+        <figure>
+          <img src="assets/images/dashboard/briefcase.png">
+        </figure>
+      </a>
+      <a class="sequence-assignments-curve blue-wrapper">
+        <div class="sequence-assignments-caption">
+          <h6>{{this.headerData.assignments}}</h6>
+          <span>Assignments</span>
+        </div>
+        <figure>
+          <img src="assets/images/dashboard/assignment.png">
+        </figure>
+      </a>
+      <a class="sequence-tests-curve green-wrapper">
+        <div class="sequence-tests-caption">
+          <h6>{{this.headerData.tests}}</h6>
+          <span>Tests</span>
+        </div>
+        <figure>
+          <img src="assets/images/dashboard/test.png">
+        </figure>
+      </a>
+    </div>
+    <div class="col-lg-12 mt-4" style="border-bottom:1px dashed #E7EDFF;"></div>
+
+    <div class="prospectus-section sequence-list" style="padding: 20px 11px;">
+      <div class="prospectus-tabs">
+        <ul class="nav nav-tabs">
+          <li><a data-toggle="tab" href="#test" class="active">Schedule</a></li>
+          <li><a data-toggle="tab" href="#submissions">Submission/Results</a></li>
+        </ul>
+      </div>
+
+      <div class="tab-content" style="padding-top: 0;">
+        <div id="personal" class="tab-pane active">
+          <div class="table-responsive">
+            <table class="table dashboard-table">
+              <thead class="thead-course" style="border-bottom: none;">
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col" style="text-align: right; padding: 0 0;">From</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <thead>
+                <tr>
+                  <th scope="col">No.</th>
+                  <th scope="col" class="text-left table-filter">Type</th>
+                  <th scope="col" class="table-filter text-left">Name</th>
+                  <th scope="col" class="table-filter">Date</th>
+                  <th scope="col" class="table-filter">To</th>
+                  <th scope="col" class="table-filter">Grade</th>
+                  <th scope="col" class="table-filter">Final grading</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="let data of this.dashBoardData| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;"
+                  [class.active]="i == currentIndex">
+                  <td>{{data.s_no}}</td>
+                  <td class="text-left">{{data.type}}</td>
+                  <td class="text-left">{{data.name}}</td>
+                  <td>{{data.start_date}}</td>
+                  <td>{{data.start_time}}</td>
+                  <td class="learner-path">
+                    <button type="button"><img src="assets/images/learner/Path.png"></button>
+                  </td>
+                  <td class="learner-">
+                    <button type="button">-</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-result-wrapper bottom-select col-lg-12" style="height:100px">
+            <div class="col-md-4 display-center">
+              <select name="course" id="course-name">
+                <option selected>10</option>
+                <option value="Course 1">1</option>
+                <option value="Course 2">2</option>
+                <option value="Course 3">3</option>
+              </select>
+              <p>Results: 1-15 of 324</p>
+            </div>
+            <div class="selector col-lg-8">
+              <pagination-controls previousLabel="Prev" nextLabel="Next" responsive="true"
+                (pageChange)="handlePageChange($event)"></pagination-controls>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -257,7 +257,7 @@ textarea:focus,
 }
 
 input[type="date"] {
-	background-image: url(/assets/images/input-date.png);
+	background-image: url(../../../assets/images/input-date.png);
 	background-repeat: no-repeat;
 	background-position: right 15px bottom 9px;
 }
@@ -385,6 +385,701 @@ a.cancel-btn {
 	height: 35px;
 	color: #FFA26B !important;
 }
+
+
+/*header css start*/
+
+header {
+	padding: 10px 0px;
+	border-bottom: 1px solid #f1f6fb;
+}
+
+header .navbar-toggle {
+	display: none;
+}
+
+header .navbar-header-flex {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+header #main-menu ul.navbar-nav {
+	display: flex;
+	flex-direction: row;
+	align-items: baseline;
+}
+
+header #main-menu ul.navbar-nav li {
+	display: inline-block;
+	padding: 0px 20px;
+	font-family: Rubik;
+	list-style: none;
+	font-size: 17px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 28px;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+header #main-menu ul.navbar-nav li:hover a {
+	background-color: #396AFF;
+	padding: 12px 22px;
+	border-radius: 10px;
+	color: #fff !important;
+}
+
+header #main-menu ul.navbar-nav li a {
+	color: #343C6A;
+}
+
+header #main-menu ul.navbar-nav li.last {
+	background-color: #396AFF;
+	padding: 10px 20px;
+	border-radius: 10px;
+	margin: 0 0 0 5em;
+}
+
+header #main-menu ul.navbar-nav li.last a {
+	color: #fff;
+}
+
+
+/*header css end*/
+
+
+/*footer css start*/
+
+footer {
+	background-color: #396AFF;
+	padding: 20px 0px;
+	border-top: 1px solid #E7EDFF;
+}
+
+footer .footer-flex {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+footer .footer-caption ul {
+	display: flex;
+	padding-bottom: 10px;
+}
+
+footer .footer-caption ul li {
+	font-family: Barlow;
+	font-size: 15px;
+	font-weight: 500;
+	line-height: 20px;
+	letter-spacing: 0px;
+	padding: 0px 15px;
+}
+
+footer .footer-caption ul li:first-child {
+	padding-left: 0px;
+}
+
+footer .footer-caption ul li a {
+	color: #fff;
+}
+
+footer .footer-caption ul li a:hover {
+	color: #343c6a;
+}
+
+footer .footer-caption p {
+	margin-bottom: 0px;
+	font-family: Barlow;
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 16px;
+	letter-spacing: 0px;
+	color: #fff;
+}
+
+footer .footer-social {
+	display: flex;
+	align-items: center;
+}
+
+footer .footer-social a {
+	margin: 0px 11px;
+	color: #fff;
+	font-size: 28px;
+}
+
+footer .footer-social a:hover {
+	color: #343c6a;
+}
+
+
+/*
+footer .footer-social a:first-child{
+    background: #fff;
+    padding: 7px 7px;
+    border-radius: 50%;
+}
+footer .footer-social a:last-child{
+    margin-left: 0px;
+    background: #fff;
+    border-radius: 50%;
+    padding: 7px 5px;
+}
+*/
+
+
+/*footer css end*/
+
+
+/*Pricing page css start*/
+
+section.pricing-section {
+	padding: 50px 0px;
+	background-color: #fbfcfe;
+}
+
+section .pricing-content-box {
+	background-color: #fff;
+	padding: 25px 15px;
+	border-radius: 15px;
+	border: 1px solid #DCE2EC;
+	width: 336px;
+}
+
+section .pricing-header h2 {
+	font-size: 60px;
+	font-weight: 500;
+	line-height: 60px;
+	letter-spacing: 0px;
+	text-align: center;
+	color: #343C6A;
+	margin-bottom: 20px;
+}
+
+section .pricing-header span {
+	font-family: Barlow;
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 25px;
+	letter-spacing: 0px;
+	margin-bottom: 20px;
+	text-align: center;
+	color: #5B73A0;
+	width: 100%;
+	display: block;
+}
+
+section .pricing-content {
+	display: flex;
+	padding: 30px 50px 0px;
+}
+
+section .pricing-content .slick-track {
+	display: flex;
+}
+
+section .pricing-content-box .pricing-header-caption {
+	border-bottom: 4px solid #EEF5FF;
+	padding: 0px 20px 30px;
+}
+
+section .pricing-content-box .pricing-header-caption h5 {
+	font-family: Rubik;
+	font-size: 32px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 39px;
+	letter-spacing: 0px;
+	text-align: left;
+	text-transform: capitalize;
+	color: #343C6A;
+}
+
+section .pricing-content-box .pricing-header-caption .pricing-showing {
+	display: flex;
+	align-items: center;
+	padding: 15px 0px;
+}
+
+section .pricing-content-box .pricing-header-caption .pricing-showing h4 {
+	font-family: Rubik;
+	font-size: 60px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 41px;
+	letter-spacing: 0px;
+	text-align: left;
+	margin-right: 10px;
+	color: #343C6A;
+}
+
+section .pricing-content-box .pricing-header-caption .pricing-showing span {
+	font-family: Rubik;
+	font-size: 24px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 30px;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+section .pricing-content-box .pricing-header-caption .pricing-showing p {
+	margin-bottom: 0px;
+	font-family: Rubik;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 17px;
+	line-height: 28px;
+	color: #343C6A;
+	text-transform: capitalize;
+}
+
+section .pricing-content-box .pricing-header-caption em {
+	font-style: normal;
+	font-weight: 500;
+	font-size: 17px;
+	line-height: 28px;
+	color: #5B73A0;
+}
+
+section .pricing-content-box .pricing-content-showing ul {
+	padding: 20px 0px;
+}
+
+section .pricing-content-box .pricing-content-showing ul li {
+	display: flex;
+	font-weight: normal;
+	font-size: 18px;
+	line-height: 25px;
+	font-family: Barlow;
+	color: #5B73A0;
+	border-bottom: 1px solid #EEF5FF;
+	padding: 12px 20px;
+}
+
+section .pricing-content-box .pricing-content-showing ul li img {
+	margin-right: 10px;
+	width: 23px;
+	height: 23px;
+}
+
+section .pricing-content-box .pricing-content-showing ul li.un-active {
+	color: #AFBCD2;
+}
+
+section .pricing-content-box .pricing-content-showing .btn {
+	width: 100%;
+	display: flex;
+	border-radius: 15px;
+	font-family: Barlow;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 18px;
+	line-height: 28px;
+	height: 46px;
+	align-items: center;
+	justify-content: center;
+	text-transform: capitalize;
+	margin-top: 10px;
+}
+
+section .pricing-content-box:hover .pricing-content-showing .btn {
+	background-color: #FFA26B;
+	border-color: #ffa26b;
+}
+
+section .pricing-content-box:hover .pricing-content-showing .btn:hover {
+	color: #fff;
+}
+
+section.pricing-section .slick-arrow {
+	font-size: 0px;
+	position: absolute;
+	background-color: transparent;
+	border: 0px;
+	z-index: 1;
+}
+
+section.pricing-section .slick-arrow:before {
+	font-family: "Font Awesome 5 Pro";
+	font-weight: 400;
+	font-size: 50px;
+	color: #dce2ec;
+}
+
+section.pricing-section .slick-prev {
+	left: 0px;
+	top: 50%;
+	transform: translate(10px, 10px);
+}
+
+section.pricing-section .slick-next {
+	right: 0px;
+	top: 50%;
+	transform: translate(10px, 10px);
+}
+
+section.pricing-section .slick-prev:before {
+	content: "\f053";
+	margin-right: 20px;
+}
+
+section.pricing-section .slick-next:before {
+	content: "\f054";
+	margin-left: 20px;
+}
+
+section.pricing-section .slick-arrow:hover:before {
+	color: #7990b4;
+}
+
+
+/*Pricing page css end*/
+
+
+/*payment-confirmation css start*/
+
+section.payment-confirmation-section {
+	background-color: #fbfcfe;
+	padding: 150px 0px;
+}
+
+section.payment-confirmation-section .confirmation-box {
+	background-color: #ffff;
+	border: 1px solid #EEF5FF;
+	box-sizing: border-box;
+	box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.1);
+	border-radius: 15px;
+	padding: 70px 80px;
+	width: 60%;
+	margin: 0 auto;
+}
+
+section.payment-confirmation-section .confirmation-box .confirmation-header {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
+
+section.payment-confirmation-section .confirmation-box .confirmation-header h3 {
+	font-family: Rubik;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 36px;
+	line-height: 41px;
+	color: #343C6A;
+	margin-bottom: 0px;
+}
+
+section.payment-confirmation-section .confirmation-box .confirmation-header span {
+	font-family: Rubik;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 36px;
+	line-height: 41px;
+	color: #ffa26b;
+}
+
+section.payment-confirmation-section .confirmation-box h4 {
+	font-family: Rubik;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 36px;
+	line-height: 41px;
+	color: #343C6A;
+	text-align: center;
+	margin-bottom: 0px;
+}
+
+section.payment-confirmation-section .confirmation-box p {
+	font-family: Barlow;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 15px;
+	line-height: 20px;
+	text-align: center;
+	color: #343C6A;
+	margin: 20px 0px 30px;
+}
+
+section.payment-confirmation-section .confirmation-box p a {
+	color: #ffa283;
+}
+
+section.payment-confirmation-section .confirmation-box .btn {
+	margin: 0 auto;
+	font-family: Barlow;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 28px;
+	border-radius: 15px;
+	text-transform: capitalize;
+	height: 46px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+
+/*payment-confirmation css end*/
+
+
+/*Subscription Summary css start*/
+
+section.subscription-summary-section {
+	background-color: #fbfcfe;
+	padding: 50px 0px;
+}
+
+.subscription-content-flex {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.subscription-content-flex .subscription-content-left {
+	width: 60%;
+}
+
+.subscription-content-flex .subscription-content-right {
+	width: 36%;
+}
+
+.subscription-content-flex .subscription-content-left h2 {
+	font-size: 32px;
+	font-weight: 500;
+	line-height: 39px;
+	letter-spacing: 0px;
+}
+
+.subscription-content-flex .subscription-content-left ul li {
+	background: #FFFFFF;
+	border: 1px solid #EEF5FF;
+	border-radius: 15px;
+	margin-bottom: 20px;
+	padding: 15px 25px;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+.subscription-content-flex .subscription-content-left ul li .label-subscription {
+	width: 36%;
+	font-family: Rubik;
+	font-size: 17px;
+	font-weight: 500;
+	line-height: 28px;
+	letter-spacing: 0px;
+	color: #5B73A0;
+}
+
+.subscription-content-flex .subscription-content-left ul li .estimate-subscription {
+	width: 32%;
+	font-family: Rubik;
+	font-weight: 500;
+	font-size: 17px;
+	line-height: 28px;
+	color: #5B73A0;
+}
+
+.subscription-content-flex .subscription-content-left ul li .estimate-subscription span {
+	font-family: Barlow;
+	font-weight: normal;
+	font-size: 18px;
+	line-height: 25px;
+	color: #7990B4;
+	width: 100%;
+	display: block;
+}
+
+.subscription-content-flex .subscription-content-left ul li .combine-subscription {
+	width: 17%;
+	display: flex;
+	font-family: Barlow;
+	font-weight: normal;
+	font-size: 18px;
+	line-height: 25px;
+	color: #7990B4;
+}
+
+.subscription-content-flex .subscription-content-left ul li .combine-subscription img {
+	margin-right: 10px;
+}
+
+.subscription-content-flex .subscription-content-left ul li .price-subscription {
+	width: 15%;
+	text-align: center;
+	font-weight: 500;
+	font-size: 22px;
+	line-height: 28px;
+	color: #5B73A0;
+}
+
+.subscription-content-flex .subscription-content-left ul {
+	margin-top: 45px;
+}
+
+.subscription-content-flex .subscription-content-left ul .subscription-total {
+	padding: 20px 40px;
+	text-align: right;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.subscription-content-flex .subscription-content-left ul .subscription-total h6 {
+	font-size: 17px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 28px;
+	letter-spacing: 0px;
+	color: #5B73A0;
+	margin-right: 20px;
+}
+
+.subscription-content-flex .subscription-content-left ul .subscription-total span {
+	font-family: Rubik;
+	font-size: 22px;
+	font-weight: 500;
+	line-height: 28px;
+	letter-spacing: 0px;
+}
+
+.subscription-content-flex .subscription-content-right .about-subscription-caption {
+	background-color: #ffff;
+	border: 1px solid #EEF5FF;
+	box-sizing: border-box;
+	box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.1);
+	border-radius: 15px;
+	padding: 50px 30px;
+	margin-top: 83px;
+}
+
+.about-subscription-caption h5 {
+	font-size: 22px;
+	font-weight: 500;
+	line-height: 28px;
+	letter-spacing: 0px;
+	text-align: left;
+	color: #396AFF;
+}
+
+.about-subscription-caption .about-subscription-flex {
+	background-color: #EEF5FF;
+	display: flex;
+	justify-content: space-between;
+	padding: 15px 20px;
+	border-radius: 10px;
+	margin: 20px 0px;
+}
+
+.about-subscription-caption .about-subscription-flex h6 {
+	font-size: 17px;
+	font-weight: 500;
+	line-height: 28px;
+	letter-spacing: 0px;
+	text-align: left;
+	color: #7990B4;
+	margin-bottom: 0px;
+}
+
+.about-subscription-caption .about-subscription-flex span {
+	font-size: 22px;
+	font-weight: 500;
+	line-height: 28px;
+	letter-spacing: 0px;
+	text-align: left;
+	color: #396AFF;
+}
+
+.subscription-content-flex .subscription-content-right .about-subscription-caption p {
+	font-family: Barlow;
+	font-size: 15px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 20px;
+	letter-spacing: 0px;
+	text-align: left;
+	color: #7990B4;
+	margin-bottom: 0px;
+}
+
+.subscription-content-flex .subscription-content-left .terms-of-use {
+	border-top: 1px solid #E7EDFF;
+	padding: 10px 0px;
+	display: flex;
+	align-items: center;
+}
+
+.subscription-content-flex .subscription-content-left .terms-of-use p {
+	margin-bottom: 0px;
+	font-family: Barlow;
+	font-size: 15px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 20px;
+	letter-spacing: 0px;
+	color: #343C6A;
+	text-align: left;
+}
+
+.subscription-content-flex .subscription-content-left .terms-of-use input[type="checkbox"] {
+	margin-right: 7px;
+	width: 15px;
+	height: 15px;
+}
+
+.subscription-content-flex .subscription-content-left .terms-of-use p a {
+	color: #396aff;
+}
+
+.subscription-content-flex .subscription-content-left .subscription-buttons {
+	display: flex;
+	margin-top: 15px;
+}
+
+.subscription-content-flex .subscription-content-left .subscription-buttons .btn {
+	border-radius: 8px;
+	height: 46px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: Barlow;
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 28px;
+	letter-spacing: 0px;
+	width: 150px;
+	padding: 0px;
+	margin-right: 10px;
+}
+
+.subscription-content-flex .subscription-content-left .subscription-buttons .back-btn {
+	height: 46px;
+	border-radius: 8px;
+	outline: none;
+	border: 2px solid #DCFAF8;
+	background-color: #DCFAF8;
+	transition: all 0.3s ease;
+	font-family: Barlow;
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 28px;
+	letter-spacing: 0px;
+	color: #16DBCC;
+	justify-content: center;
+	display: flex;
+	align-items: center;
+	width: 150px;
+}
+
+
+/*Subscription Summary css end*/
+
 
 /*Invoice css start*/
 
@@ -884,7 +1579,7 @@ section.home-section-banner {
 section.tasks-robust-section {
 	padding: 50px 0px;
 	margin: 90px 0px 0px;
-	background-image: url(/assets/images/tasks-robust.png);
+	background-image: url(../../../assets/images/tasks-robust.png);
 	background-repeat: no-repeat;
 	background-size: 100% 92%;
 }
@@ -895,7 +1590,7 @@ section.tasks-robust-section .container {
 
 section.tasks-robust-section .container:before {
 	content: "";
-	background-image: url(/assets/images/tasks-dot.png);
+	background-image: url(../../../assets/images/tasks-dot.png);
 	position: absolute;
 	width: 214px;
 	height: 371px;
@@ -904,7 +1599,7 @@ section.tasks-robust-section .container:before {
 
 section.tasks-robust-section .container:after {
 	content: "";
-	background-image: url(/assets/images/robust-dot.png);
+	background-image: url(../../../assets/images/robust-dot.png);
 	position: absolute;
 	width: 473px;
 	height: 170px;
@@ -925,7 +1620,7 @@ section.tasks-robust-section .container:after {
 .tasks-wrapper:before {
 	content: "\f1ce";
 	font-display: FontAwesome;
-	/*    background-image: url(/assets/images/small-circle-yew.png);*/
+	/*    background-image: url(../../../assets/images/small-circle-yew.png);*/
 	position: absolute;
 	width: 65px;
 	height: 65px;
@@ -967,7 +1662,7 @@ section.tasks-robust-section .container:after {
 
 .tasks-wrapper:after {
 	content: "";
-	background-image: url(/assets/images/large-circle-yew.png);
+	background-image: url(../../../assets/images/large-circle-yew.png);
 	position: absolute;
 	width: 401px;
 	height: 401px;
@@ -1055,7 +1750,7 @@ section.tasks-robust-section .container:after {
 
 .robust-wrapper:before {
 	content: "";
-	background-image: url(/assets/images/small-circle-yew-1.png);
+	background-image: url(../../../assets/images/small-circle-yew-1.png);
 	position: absolute;
 	width: 65px;
 	height: 65px;
@@ -1066,7 +1761,7 @@ section.tasks-robust-section .container:after {
 
 .robust-wrapper:after {
 	content: "";
-	background-image: url(/assets/images/medium-circle-yew.png);
+	background-image: url(../../../assets/images/medium-circle-yew.png);
 	position: absolute;
 	width: 262px;
 	height: 262px;
@@ -1203,7 +1898,7 @@ section.home-testimonial-section {
 
 section.home-testimonial-section:before {
 	content: "";
-	background-image: url(/assets/images/testimonial-dot.png);
+	background-image: url(../../../assets/images/testimonial-dot.png);
 	position: absolute;
 	background-size: contain;
 	height: 137px;
@@ -2790,7 +3485,7 @@ table.dashboard-table thead th {
 
 .table-filter:after {
 	content: "";
-	background-image: url(/assets/images/dashboard/up-down-filter.png);
+	background-image: url(../../../assets/images/dashboard/up-down-filter.png);
 	width: 11px;
 	height: 11px;
 	background-size: contain;
@@ -5242,7 +5937,7 @@ table.dashboard-table td i.fa-check {
 
 .table-filter:after {
 	content: "";
-	background-image: url(/assets/images/dashboard/up-down-filter.png);
+	background-image: url(../../../assets/images/dashboard/up-down-filter.png);
 	width: 11px;
 	height: 11px;
 	background-size: contain;
@@ -5527,7 +6222,7 @@ table.dashboard-table td input {
     margin: 0 10px;
 */
 	padding: 35px 0 0 26px;
-	/* background-image: url(/assets/images/test/word-tool.png); */
+	background-image: url(../../../assets/images/test/word-tool.png);
 	background-repeat: no-repeat;
 	white-space: normal;
 	overflow-wrap: normal;
@@ -5559,7 +6254,7 @@ table.dashboard-table td input {
 }
 
 .setting-date-section input[type="date"] {
-	background-image: url(/assets/images/input-date.png);
+	background-image: url(../../../assets/images/input-date.png);
 	background-repeat: no-repeat;
 	background-position: right 15px bottom 9px;
 }
@@ -5642,7 +6337,6 @@ table.dashboard-table td input {
 	font-size: 15px;
 	font-weight: 600;
 	transition: .5s ease-in-out;
-	margin-left: 16px;
 }
 
 .blue-border:hover {
@@ -6382,7 +7076,7 @@ left: 8px;
     margin: 0 10px;
 */
 	padding: 35px 0 0 26px;
-	background-image: url(/assets/images/test/word-tool.png);
+	background-image: url(../../../assets/images/test/word-tool.png);
 	background-repeat: no-repeat;
 	white-space: normal;
 	overflow-wrap: normal;
@@ -8161,7 +8855,7 @@ font-size: 15px;
 
 .table-filter-adjust::after {
     content: "";
-    background-image: url(/assets/images/dashboard/up-down-filter.png);
+    background-image: url(../../../assets/images/dashboard/up-down-filter.png);
     width: 11px;
     height: 11px;
     background-size: contain;
@@ -11100,7 +11794,7 @@ table.dash-table td input {
 
 
 .new-discuss ul li input[type="time"] {
-    background-image: url(/assets/images/discuss/clock.png);
+    background-image: url(../../../assets/images/discuss/clock.png);
     background-repeat: no-repeat;
     background-position: right 10px bottom 8px;
     width: 148px;
@@ -14102,31 +14796,4 @@ i .grade-tip .grade-text {
 .confirm-submit-red:hover {
 	background-color: transparent;
 	color: #FF5A64;
-}
-.mat-spinner {
-  stroke: grey;
-}
-
-.loading-indicator {
-  position: fixed;
-  z-index: 999;
-  height: 3em;
-  width: 3em;
-  overflow: show;
-  margin: auto;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-}
-
-.loading-indicator::before {
-  content: '';
-  display: block;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgb(0 0 0 / 7%);
 }
