@@ -10,8 +10,8 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./test-assessment-home.component.css']
 })
 export class TestAssessmentHomeComponent implements OnInit {
-  @ViewChild('deleteclosebutton') deleteclosebutton;
   isLoadingBool: boolean = true;
+  @ViewChild('deleteclosebutton') deleteclosebutton;
   assignmentData: any;
   testId: any;
   isEditClicked: boolean = false;
@@ -19,6 +19,7 @@ export class TestAssessmentHomeComponent implements OnInit {
   tutorials: any;
   count = 0;
   pageSize = 10;
+  p: number = 1;
   constructor( private router: Router, private service: SharedServiceService, private util: UtilService, private toster: ToastrService) { }
 
   ngOnInit() {
@@ -34,6 +35,7 @@ export class TestAssessmentHomeComponent implements OnInit {
      }
      this.service.post('listing-assignment',data,1).subscribe(res => {
        this.assignmentData = res.assignment_data
+       this.isLoadingBool = false;
        const { tutorials, totalItems } = res.assignment_data
        this.tutorials = tutorials;
        this.count = totalItems;

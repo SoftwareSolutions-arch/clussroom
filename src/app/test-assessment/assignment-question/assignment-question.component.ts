@@ -21,17 +21,30 @@ export class AssignmentQuestionComponent implements OnInit {
   assignmentData: any;
   filesName: any[];
   audioSrc: any;
+  allImages = [];
+  assignmentId: string;
+  imagedata: any;
+  isLoadingBool: boolean = false;
+
   constructor(private route: ActivatedRoute, private service: SharedServiceService, private util: UtilService, private router: Router) {
     this.route.queryParamMap.subscribe(queryParams => {
       this.id = queryParams.get("id");
+    })
+    this.route.queryParamMap.subscribe(queryParams => {
+      this.assignmentId = queryParams.get("assignment_id");
     })
   }
 
   ngOnInit() {
     this.editData();
   }
+  removeImages(index) {
+    this.imagedata.attachment.splice(index, 1);
+  }
   picked(event: any) {
+
     this.fileLists = FileList = event.target.files;
+    // this.allImages.push(this.fileLists);
     for (var i = 0; i <= event.target.files.length - 1; i++) {
       const file: File = this.fileLists[i];
       this.ExteriorPicFile = file;
@@ -41,12 +54,12 @@ export class AssignmentQuestionComponent implements OnInit {
       this.listOfFiles.push(selectedFile.name)
       this.filesName = this.listOfFiles
     }
-
     this.attachment.nativeElement.value = '';
   }
   handleInputChange(files) {
     var file = files;
     this.filename = file.name;
+    this.allImages.push(this.filename);
     var pattern = /image-*/;
     var reader = new FileReader();
     if (!file.type.match(pattern)) {
@@ -64,28 +77,36 @@ export class AssignmentQuestionComponent implements OnInit {
     this.ExteriorPicString.push(base64result);
   }
   removeImage(index) {
-    // Delete the item from fileNames list
     this.listOfFiles.splice(index, 1);
-    // delete file from FileList
     this.fileList.splice(index, 1);
-    this.ExteriorPicString.splice(index, 1);
+    this.allImages.splice(index, 1);
   }
   questionForm = new FormGroup({
-    question: new FormControl('',)
+    question: new FormControl('',),
   })
+
+  // add update function
+  addUpdateData() {
+    if (this.assignmentId) {
+      this.updateQuestion()
+    } else {
+      this.saveQuestion();
+    }
+  }
   // save questions api
   saveQuestion() {
+    this.isLoadingBool = false;
     const data = {
       assignment_question: this.questionForm.value.question,
       assignment_id: sessionStorage.getItem('assignment_id'),
-      assignment_attachments: this.ExteriorPicString
+      assignment_attachments: this.allImages
     }
     this.service.post('add-assignment-question-api', data, 1).subscribe(res => {
       if (res.status == '1') {
+        this.isLoadingBool = false
         this.util.showSuccessAlert('Question added successfully');
         this.router.navigate(['/assignment/test-assignment-home']);
         this.questionForm.reset();
-        this.ExteriorPicString = '';
       }
     })
   }
@@ -93,21 +114,34 @@ export class AssignmentQuestionComponent implements OnInit {
   editData() {
     var file = this.filesName
     const data = {
-      assignment_id: this.id,
+      assignment_question_id: this.assignmentId,
     }
     this.service.post('assignment-questions-listing', data, 1).subscribe(res => {
-      this.assignmentData = res.result[0]
-      // for(let i =0; i<this.assignmentData.attachments.length; i++){
-      //       const data = this.assignmentData.attachments
-      //       this.questionForm.patchValue({
-      //       audio : data.image
-      //       })     
-      // }
-      var data = res.attachments[0]
+      this.assignmentData = res.result.questions
+      this.imagedata = res.result.attachments
       this.questionForm.patchValue({
-        question: this.assignmentData.questions,
-        attachment: data.attachment,
+        question: this.assignmentData,
+        // attachment: data.image,
       })
+    })
+  }
+  // update question
+  updateQuestion() {
+    this.isLoadingBool = true;
+    const data = {
+      questions: this.questionForm.value.question,
+      id: this.assignmentId,
+      assignment_id: sessionStorage.getItem('assignment_id'),
+      previous_fid: [],
+      assignment_attachments: this.allImages
+    }
+    this.service.post('update-assignment-question-api', data, 1).subscribe(res => {
+      if (res.status == '1') {
+        this.isLoadingBool = false;
+        this.util.showSuccessAlert('Question added successfully');
+        this.router.navigate(['/assignment/test-assignment-home']);
+        this.questionForm.reset();
+      }
     })
   }
 }

@@ -14847,3 +14847,23 @@ i .grade-tip .grade-text {
 }
 
 /* Main Dropdown CSS End */
+.btn-add-1 {
+	width: 69px !important;
+    height: 35px !important;
+    background-color: #eef5ff !important;
+    border-radius: 6px !important;
+    border: none !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    color: #396aff !important;
+    margin: 0 1em !important;
+    transition: .5s ease-in-out !important;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.btn-add-1:hover {
+	color: #eef5ff !important;
+    background-color: #396aff !important;
+}

@@ -3,13 +3,16 @@
   <div class="control-panel">
      <app-assignment-dashboard-header></app-assignment-dashboard-header>
      <app-assignment-header></app-assignment-header>
-     <div class="row test-button">
+     <!-- <div class="row test-button">
       <button type="button"><a href="#">Add Test</a></button>
-   </div>
+   </div> -->
+   <div *ngIf="isLoadingBool" class="loading-indicator">
+      <mat-spinner></mat-spinner>
+    </div>
    <div class="prospectus-section sequence-list">
       <div class="prospectus-tabs">
          <ul class="nav nav-tabs">
-            <li><a data-toggle="tab" href="#test" class="active">Test</a></li>
+            <li><a data-toggle="tab" href="#test" class="active">Assignment</a></li>
             <li><a data-toggle="tab" href="#settings">Settings</a></li>
             <li><a data-toggle="tab" href="#assignment-grading">Result/Assessment</a></li>
             <!--				    <li><a data-toggle="tab" href="#overall-grading">Overall Grading Status</a></li>-->
@@ -24,7 +27,12 @@
                   <label>Name of assignment</label>
                </div>
                <div class="col-lg-10 setting-padding input-fonts">
-                  <input type="text"  formControlName="assignment_name">
+                  <input type="text"  formControlName="assignment_name" [ngClass]="{ 'is-invalid': addAssignmentForm.get('assignment_name').hasError('required') && submitted}">
+                  <div class="fieldRequired" 
+                  *ngIf="addAssignmentForm.get('assignment_name').hasError('required') && submitted" style="font-size: 10px;
+                 color: #ec3232; font-size: 13px; ">
+               Assignment name is required.
+              </div>
                </div>
             </div>
             <div class="text-area setting-input bottom-border">
@@ -32,9 +40,17 @@
                   <label>Instruction</label>
                </div>
                <div class="col-lg-10" style="padding-left: 23px;">
-                  <textarea  formControlName="instruction" cols="80"label="notes"rows="4"wrap="virtual" style="margin: 0;" placeholder="Please read the questions carefully. This test will form part of your final grading this year."> 
-                  </textarea>
-               </div>
+                  <angular-editor formControlName="instruction"  cols="80" label="notes" rows="4" wrap="virtual" style="margin: 0;" [placeholder]="'Please read the questions carefully. This test will form part of your final grading this year.'" [ngClass]="{ 'is-invalid': addAssignmentForm.get('instruction').hasError('required') && submitted}"></angular-editor>
+                  <div class="fieldRequired" 
+                  *ngIf="addAssignmentForm.get('instruction').hasError('required') && submitted" style="font-size: 10px;
+                 color: #ec3232; font-size: 13px; ">
+                 Instruction is required.
+              </div>
+                     <!-- <textarea formControlName="instruction" cols="80" label="notes" rows="4" wrap="virtual"
+                        style="margin: 0;"
+                        placeholder="Please read the questions carefully. This test will form part of your final grading this year.">
+                 </textarea> -->
+                  </div>
             </div>
             <div class="setting-date-section setting-input bottom-border">
                <div class="col-md-2 text-left">
@@ -51,12 +67,23 @@
                <div class="col-md-2 text-left">
                   <label>Available to:</label>
                </div>
-               <div class="col-md-2 input-fonts" style="padding-left: 21px; margin-right: 2em"> 
-                  <input type="date"  formControlName="available_dateTo">
+               <div class="col-md-2 input-fonts" style="padding-left: 21px; margin-right: 2em">
+                  <input type="date" formControlName="available_dateTo" [ngClass]="{ 'is-invalid': addAssignmentForm.get('available_dateTo').hasError('required') && submitted}">
+                  <div class="fieldRequired" 
+                  *ngIf="addAssignmentForm.get('available_dateTo').hasError('required') && submitted" style="font-size: 10px;
+                 color: #ec3232; font-size: 13px; ">
+                  Available to is required.
+              </div> 
                </div>
-               <div class="col-md-2 input-fonts"> 
-                  <input type="time" style="width: 148px !important;" formControlName="available_timeTo" value="12:00" class="text-center" >
-               </div>
+               <div class="col-md-2 input-fonts">
+                  <input type="time" formControlName="available_timeTo" style="width: 148px !important;"
+                     value="12:00" class="text-center" [ngClass]="{ 'is-invalid': addAssignmentForm.get('available_timeTo').hasError('required') && submitted}">
+                     <div class="fieldRequired" 
+                     *ngIf="addAssignmentForm.get('available_timeTo').hasError('required') && submitted" style="font-size: 10px;
+                    color: #ec3232; font-size: 13px; ">
+                     Time is required.
+                 </div> 
+                  </div>
             </div>
             <div class="custom-checkbox-assign setting-input bottom-border">
                <div class="col-md-2 text-left">
@@ -94,27 +121,34 @@
                </div>
                <div class="col-md-4 custom" *ngIf="rubricChecked">
                   <div class="dropdown-1 " style="margin: 0 26px;">
-                  <button class="dropbtn-1">Dropdown &nbsp;<i class="fa fa-caret-down" aria-hidden="true" style="margin-left: 1em;"></i></button>
-                  <div class="dropdown-content-1">
-                  <a href="#">Rubric 1</a>
-                  <a href="#">Rubric 2</a>
-                  <a href="#" data-toggle="modal" data-target="#createRubric">Create New</a>
+                     <button class="dropbtn-1">Dropdown &nbsp;<i class="fa fa-caret-down" aria-hidden="true"
+                           style="margin-left: 1em;"></i></button>
+                     <div class="dropdown-content-1 drop-height-fix">
+                        <a *ngFor = "let data of rubricList" (click)="getRubricId(data.nid)">{{data.title}}</a>
+                        <!-- <a href="#">Rubric 2</a> -->
+                        <a href="#" data-toggle="modal" data-target="#createRubric">Create New</a>
+                     </div>
                   </div>
-                  </div>
-                </div>                           
+                  <button type="button" data-toggle="modal" [disabled]="subCatSelected" (click)="viewRubric()" data-target="#view-rubric" class="btn-view-rubric">View rubric</button>
+               </div>                          
             </div>                      
 
             <div class="setting-select setting-input border-bottom">
                <div class="col-md-2 text-left">
                   <label>Points</label>
                </div>
-               <div class="custom">
-                 <input type="text" style="margin: 0; width: 94px !important;"  formControlName="points">
+               <div class="custom" style="padding: 0 6px !important;">
+                  <input type="text" formControlName="points" style="margin: 0; width: 94px !important;" [ngClass]="{ 'is-invalid': addAssignmentForm.get('points').hasError('required') && submitted}">
+                  <div class="fieldRequired" 
+                  *ngIf="addAssignmentForm.get('points').hasError('required') && submitted" style="font-size: 10px;
+                 color: #ec3232; font-size: 13px; ">
+                  Points is required.
+              </div> 
                </div>
             </div>
-            <div class="container" style="padding: 18px 0 0 14px; margin: 0;">
-               <button type="button" class="setting-edit-1" *ngIf="!disbled"(click)="updateAssignment()">Confirm Edit</button>  
-               <button type="button" class="setting-edit-1" *ngIf="disbled" (click)="edit()"> Edit</button>                         
+            <div class="container" style="padding: 18px 0 0 0px; margin: 0;">
+               <button type="button" class="setting-edit-1 mr-3" *ngIf="!disbled"(click)="updateAssignment()">Confirm Edit</button>  
+               <button type="button" class="setting-edit-1 mr-3" *ngIf="disbled" (click)="edit()"> Edit</button>                         
 
                <!-- <button type="button" class="blue">Save</button> -->
                <button type="button" class="blue-border">Cancel</button>
@@ -126,3 +160,134 @@
    </div>
   </div>
 </div>
+<div id="view-rubric" class="modal deletetest-modal" role="dialog">
+   <div class="modal-dialog" style="max-width: 1300px;">
+  
+     <div class="modal-content">
+        <div class="rubric-header col-lg-12 display-center">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 text-center">
+            <h3>{{rubricTitle}}</h3>
+            </div>
+            <div class="col-md-4 text-right">
+                <i class="fa fa-times" aria-hidden="true" style="color: #396aff;" data-dismiss="modal"></i>
+            </div>
+        </div>
+      <div class="modal-body mt-5 col-lg-12 rubric-back mb-5" style="padding: 20px 30px 30px 30px; margin: 0 auto; width: 1200px;">            
+         <div class="col-lg-12 display-center" style="justify-content: center;">
+                <h3 style="font-size: 24px; font-weight: 300; color:#333B6A;">{{rubricTitle}}</h3>
+            </div>
+            <div class="col-lg-12 rubric-heading display-center" style="border-top-left-radius: 6px; border-top-right-radius: 6px; padding: 0;">
+
+                <div class="col-md-2 display-center custom-add" style="padding: 14px 0;; justify-content: center;border-right: 1px solid #DCE2EC; padding-left: 29px;">
+                    <div class="col-lg-8" style="padding: 0; text-align: right;">
+                    <p>Criterion</p></div>
+                    <div class="col-md-4" style="padding: 0 50px;"></div>
+                </div>
+
+                <div class="col-md-9 text-center" style="padding: 14px 0;border-right: 1px solid #DCE2EC;">
+                    <p>Scale</p>
+                </div>
+                
+                <div class="col-sm-1 text-center" style="padding: 14px 0;;">
+                    <p>Total points</p>
+                </div>
+
+            </div>
+
+            <div class="col-lg-12 rubric-heading display-center" style="padding: 0;" *ngFor = "let data of viewRubricData">
+                <!-- <ng-container > -->
+                <div class="col-md-2 custom-add rubric-1-section display-center" style="padding: 4px 0;border-right: 1px solid #DCE2EC;padding-left: 4px;">
+                    <p>{{data.criterions}}</p>
+                </div>
+
+                <div class="col-md-9 display-center" style="padding: 0;" >
+                    <div *ngFor = "let data1 of data.rubric_scale" class="first-mid-section display-center col-md-4"style="justify-content:center; border-right: 1px solid #DCE2EC;">
+                        <p style="margin-right: 12em;">{{data1.scale_text}}</p>
+                        <p>{{data1.scale_number}}</p>                      
+                    </div>
+
+                    <!-- <div class="first-mid-section display-center col-md-4"style="justify-content:center; border-right: 1px solid #DCE2EC;">
+                        <p style="margin-right: 7em;">Can be improved</p>
+                        <p>3</p>                        
+                    </div>
+
+                    <div class="first-mid-section display-center col-md-4"style="justify-content:center; border-right: 1px solid #DCE2EC;">
+                        <p style="margin-left: 1em;">Excellent & exceeded comprehension ability</p>
+                        <p style="margin-right: 1em;">5</p>                       
+                    </div> -->
+                </div>
+
+                <div class="col-sm-1 total-pointsp">
+                    <p>{{data.point}}</p>
+                </div>
+               <!-- </ng-container> -->
+            </div>
+            <!-- <div class="col-lg-12 rubric-heading display-center" style="padding: 0;">
+                
+                <div class="col-md-2 custom-add rubric-1-section display-center" style="padding: 4px 0;border-right: 1px solid #DCE2EC; padding-left: 4px;">
+                    <p style="padding: 9px 4px;">Delivery</p>
+                </div>
+
+                <div class="col-md-9 display-center" style="padding: 0;">
+                    <div class="second-mid-section display-center col-md-3"style="justify-content:center; border-right: 1px solid #DCE2EC; padding-left:12px;">
+                        <p style="margin-right: 8em;">Poor</p>
+                        <p>2</p>                       
+                    </div>
+
+                    <div class="second-mid-section display-center col-md-3"style="justify-content:center; border-right: 1px solid #DCE2EC;">
+                        <p style="margin-right: 5em;">Satisfactory</p>
+                        <p>4</p>                       
+                    </div>
+
+                    <div class="second-mid-section display-center col-md-3"style="justify-content:center; border-right: 1px solid #DCE2EC;">
+                        <p style="margin-right: 8em;">Good</p>
+                        <p>6</p>                      
+                    </div>
+
+                    <div class="second-mid-section display-center col-md-3"style="justify-content:center; border-right: 1px solid #DCE2EC;">
+                        <p style="margin-right: 4em;">Well & effective<br>delivery</p>
+                        <p>8</p>                     
+                    </div>
+                </div>
+
+                <div class="col-sm-1 total-pointsp">
+                    <p>7</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-12 rubric-heading display-center" style="border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; padding: 0;">
+                
+                <div class="col-md-2 custom-add rubric-1-section display-center" style="padding: 4px 0;border-right: 1px solid #DCE2EC; padding-left: 4px;">
+                    <p style="padding: 9px 4px;">Grammar</p>
+                </div>
+
+                <div class="col-md-9 display-center" style="padding: 0;">
+                    <div class="first-mid-section display-center col-md-4"style="justify-content:center; border-right: 1px solid #DCE2EC;">
+                     <p style="margin-right: 12em;">Poor</p>
+                     <p>1</p>
+                    </div>
+
+                    <div class="first-mid-section display-center col-md-4"style="justify-content:center; border-right: 1px solid #DCE2EC;">
+                     <p style="margin-right: 7em;">Need brushing up</p>
+                     <p>3</p>
+                    </div>
+
+                    <div class="first-mid-section display-center col-md-4"style="justify-content:center; border-right: 1px solid #DCE2EC;">
+                        <p style="margin-right: 7em;">Strong gammatical<br>skillsets</p>
+                        <p>5</p>
+                    </div>
+                </div>
+
+                <div class="col-sm-1 total-pointsp">
+                    <p>3</p>
+                </div>
+            </div> -->
+
+        </div>
+
+      </div>
+        
+        </div>
+  
+     </div>

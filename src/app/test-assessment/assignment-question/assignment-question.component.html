@@ -3,6 +3,9 @@
   <div class="control-panel">
     <app-assignment-dashboard-header></app-assignment-dashboard-header>
 		<app-assignment-header></app-assignment-header>
+      <div *ngIf="isLoadingBool" class="loading-indicator">
+         <mat-spinner></mat-spinner>
+       </div>
      <div class="prospectus-section sequence-list">
         <div class="prospectus-tabs">
            <ul class="nav nav-tabs">
@@ -36,12 +39,18 @@
            </div>
            <div class="col-lg-12 box-shadow border-bottom mt-3" style="padding-bottom: 6em;">
               
-               <div class="col-lg-8" style="display: flex; align-items: center;"*ngFor="let item of ExteriorPicString;let i = index;">
+               <div class="col-lg-8" style="display: flex; align-items: center;"*ngFor="let item of allImages;let i = index;">
                    <div class="col-md-8 custom-order-assign" style="padding:0;">
-                         <p>{{filename}}</p>
+                         <p>{{item}}</p>
                        <button type="button"(click)="removeImage(i)" class="orange-cross" style="width: 30px; height: 30px; margin: 0 7px;"><i class="fa fa-times" aria-hidden="true"></i></button>
                    </div>
                </div>
+               <div class="col-lg-8" style="display: flex; align-items: center;"*ngFor="let item of imagedata;let i = index;">
+                  <div class="col-md-8 custom-order-assign" style="padding:0;">
+                     <img [src] = "item.image">
+                      <button type="button"(click)="removeImage(i)" class="orange-cross" style="width: 30px; height: 30px; margin: 0 7px;"><i class="fa fa-times" aria-hidden="true"></i></button>
+                  </div>
+              </div>
                
                <!-- <div class="col-lg-8" style="display: flex; align-items: center;">
                    <div class="col-md-8 custom-order-assign" style="padding:0;">
@@ -60,14 +69,14 @@
 
            </div>
            
-           <div class="container" style="padding: 18px 0 0 30px; display: flex; margin: 0;">
+           <div class="container" style="padding: 18px 0 0 0px; display: flex; margin: 0;">
               <!--
                  <button type="button" class="blue">Confirm</button>
                  <button type="button" class="blue-border">Cancel</button>
                  <button type="button" class="lime"><a href="#">Edit</a></button>
                  <button type="button" class="Org"><a href="#">Confirm Edit</a></button>
                  -->
-              <a  class="addbutton custom-button mr-2" (click)="saveQuestion()">Save Question</a>                        
+              <a  class="addbutton custom-button mr-2" (click)="addUpdateData()">Save Question</a>                        
               <a href="#" class="edit-points-btn custom-button">Cancel</a>   
            </div>
 <!--

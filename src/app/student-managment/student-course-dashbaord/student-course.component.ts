@@ -46,7 +46,7 @@ export class StudentCourseComponent implements OnInit {
     }
     this.isLoadingBool = true;
     this.service.post('student-dashboard', params, 1).subscribe(result => {
-      
+
       this.isLoadingBool = false;
       this.dashBoardData = result.result
     })
@@ -63,8 +63,21 @@ export class StudentCourseComponent implements OnInit {
     }
     this.isLoadingBool = true;
     this.service.post('class-material-dashboard-api', params, 1).subscribe(result => {
-      
       this.headerData = result;
+      this.getTestList();
+    })
+  }
+
+  // get test list by class id 
+  getTestList() {
+    this.dashBoardData=[]
+    let params = {
+      "class_id": this.selectCourse.classes_id
+    }
+    this.isLoadingBool = true;
+    this.service.post('test-listing-by-classid', params, 1).subscribe(result => {
+      console.log('result', result);
+      this.dashBoardData = result.test_data;
       this.isLoadingBool = false;
     })
   }

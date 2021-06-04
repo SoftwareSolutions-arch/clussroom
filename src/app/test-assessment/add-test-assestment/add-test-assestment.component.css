@@ -14869,3 +14869,28 @@ i .grade-tip .grade-text {
 	background-color: transparent; 
 	color: #FF82AC;
 }
+
+.btn-view-rubric {
+	border: none;
+    background-color: transparent;
+    font-size: 13px;
+    font-weight: 400;
+    color: #81c8c1;
+    text-decoration: underline;
+}
+
+.drop-height-fix{
+	height: 169px;
+	overflow: auto;
+}
+
+.drop-height-fix::-webkit-scrollbar {
+	width: 4px;
+	height: 100px;
+}
+
+.drop-height-fix::-webkit-scrollbar-thumb {
+	background: #1243d8;
+	border: 0px none #ffffff;
+	border-radius: 5px;
+}

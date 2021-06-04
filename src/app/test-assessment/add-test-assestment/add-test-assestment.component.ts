@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SharedServiceService } from '../../shared-service.service';
 import { UtilService } from '../../../providers/util.service';
@@ -22,10 +22,17 @@ export class AddTestAssestmentComponent implements OnInit {
   public controls = {};
   ages = [];
   pointsData = [];
-  finalData: any = '';
+  finalData:any =  '';
   data: any[];
   newData: number;
   listingData = [];
+  rubricList: any;
+  subCatSelected: boolean = true;
+  submitted: boolean = false;
+  rubricId: any;
+  viewRubricData: any;
+  rubricTitle: any;
+  isLoadingBool: boolean = false;
   constructor(private service: SharedServiceService, private router: Router, private route: ActivatedRoute, private util: UtilService, private toster: ToastrService, private fb: FormBuilder) {
     this.empForm = this.fb.group({
       employees: this.fb.array([]),
@@ -40,6 +47,7 @@ export class AddTestAssestmentComponent implements OnInit {
   ngOnInit() {
     this.editData();
     this.addInitialForm();
+    this.listRubric();
   }
 
   addData() {
@@ -50,22 +58,27 @@ export class AddTestAssestmentComponent implements OnInit {
     }
   }
   addAssignmentForm = new FormGroup({
-    assignment_name: new FormControl('',),
-    instruction: new FormControl('',),
-    available_date: new FormControl('',),
-    available_time: new FormControl('',),
-    available_dateTo: new FormControl('',),
-    available_timeTo: new FormControl('',),
+    assignment_name: new FormControl('',Validators.required),
+    instruction: new FormControl('',Validators.required),
+    available_date: new FormControl('',Validators.required),
+    available_time: new FormControl('',Validators.required),
+    available_dateTo: new FormControl('',Validators.required),
+    available_timeTo: new FormControl('',Validators.required),
     attachment: new FormControl('',),
     character_limit: new FormControl('',),
     character_limit_checked: new FormControl('',),
     rubric: new FormControl('',),
-    points: new FormControl('',),
+    points: new FormControl('',Validators.required),
     attachment_limit_checked: new FormControl('',)
 
   })
 
   addAssignment() {
+    this.isLoadingBool = true;
+    this.submitted = true;
+    if (this.addAssignmentForm.invalid) {
+      return;
+    }
     var x = new Date(this.addAssignmentForm.value.available_date);
     var y = new Date(this.addAssignmentForm.value.available_dateTo);
     if (x > y) {
@@ -85,11 +98,12 @@ export class AddTestAssestmentComponent implements OnInit {
         "insert_rubric": this.addAssignmentForm.value.rubric,
         "rubric": "",
         "points": this.addAssignmentForm.value.points,
-        "rubric_select": 299,
+        "rubric_select": this.rubricId,
         "class_nid": localStorage.getItem('classListId')
       }
       this.service.post('add-assignment-api', data, 1).subscribe(res => {
         if (res.status == '1') {
+          this.isLoadingBool = false;
           this.util.showSuccessAlert('Assignment added successfully');
           this.assignment_id = sessionStorage.setItem('assignment_id', res.assignment_id)
           this.questionButton = false;
@@ -130,6 +144,10 @@ export class AddTestAssestmentComponent implements OnInit {
 
   // update data 
   updateAssignment() {
+    this.submitted = true;
+    if (this.addAssignmentForm.invalid) {
+      return;
+    }
     var x = new Date(this.addAssignmentForm.value.available_date);
     var y = new Date(this.addAssignmentForm.value.available_dateTo);
     if (x > y) {
@@ -164,13 +182,15 @@ export class AddTestAssestmentComponent implements OnInit {
     }
   }
   goToQuestion() {
-    this.router.navigate(['/assignment/assignment-question'], { queryParams: { id: this.assignment_id } });
+    var ids = sessionStorage.getItem('assignment_id')
+    this.router.navigate(['/assignment/assignment-question'], { queryParams: { id: ids } }); 
   }
 
   // add rubric form
   employees(): FormArray {
     return this.empForm.get('employees') as FormArray;
   }
+
   newEmployee(): FormGroup {
     return this.fb.group({
       critterion: '',
@@ -209,37 +229,53 @@ export class AddTestAssestmentComponent implements OnInit {
 
   addRubric() {
     const titleForm = this.employees().getRawValue();
-    
-    
     const data = {
       "type": "add",
       "critterion_input": titleForm,
       "number": this.listingData,
       "rubric_title": this.empForm.value.rubric_title,
-      // "scale_text": {"1":["1"],"2":["3"]},
-      // "scale_value":{"1":["2"],"2":["4"]}
     }
-    // this.service.post('rubric-api',data,1).subscribe(res => {
-
-    // })
+    this.service.post('rubric-api',data,1).subscribe(res => {
+    })
   }
   sum(i) {
     this.pointsData = [];
-    
+    this.finalData = [];
     this.empForm.value.employees.forEach(element => {
-      this.pointsData = [];
-      this.finalData='';
-      this.listingData=[]
-      element.scale.forEach(element1 => {
-        this.pointsData.push(element1.value)
-        this.finalData = Math.max(...this.pointsData);
+    this.pointsData = [];
+      element.scale.forEach(element1 => {  
+      this.pointsData.push(element1.value)
+      this.finalData = Math.max(...this.pointsData);
       });
       this.listingData.push(this.finalData)
-
-      
-      
-      
     });
   }
+// rubric list api
+listRubric() {
+  const data = {
+    "type": "list",
+  }
+  this.service.post('rubric-api',data,1).subscribe(res => {
+   this.rubricList = res.rubric_title
+  })
+}
+// get rubric id
+getRubricId(id){
+  this.rubricId = id
+  if(id){
+    this.subCatSelected = false;
+  }
+}
+// view rubric api
+viewRubric(){
+ const data = {
+  "type":"singlelist",
+  "rubric_id": this.rubricId
+ }
+ this.service.post('rubric-api',data,1).subscribe( res=> {
+   this.viewRubricData  = res.rubric;
+   this.rubricTitle = res.rubric_title;
+ })
+}
 
 }
