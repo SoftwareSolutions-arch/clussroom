@@ -39,7 +39,7 @@ export class MidtermPreviewComponent implements OnInit {
     }
 
     this.service.post('test-list-api', params, 1).subscribe(result => {
-      console.log('test-list-api', result);
+      
       this.testAllData = result.test_data
       this.isLoadingBool = false;
     })
@@ -52,7 +52,7 @@ export class MidtermPreviewComponent implements OnInit {
       "test_id": this.testId
     }
     this.service.post('questions-list-api', params, 1).subscribe(result => {
-      console.log('questions-list-api', result);
+      
       this.isLoadingBool = false;
       if (result.question_data.length > 0) {
         this.allData = result.question_data;

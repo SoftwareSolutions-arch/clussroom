@@ -134,9 +134,9 @@ export class MatchingComponent implements OnInit {
     this.fillData.match_question_text = userA
     this.fillData.match_answer_text = userB
     this.fillData.test_assignment_nid = this.testId
-    console.log('this.fillData', this.fillData);
+    
     this.service.post('add-question-api', this.fillData, 1).subscribe(result => {
-      console.log('result', result)
+      
       this.util.showSuccessAlert('Answer Saved Successfully');
       this.isLoadingBool = false;
       this.router.navigate(['/test/question-screen']);
@@ -175,7 +175,7 @@ export class MatchingComponent implements OnInit {
 
         });
 
-        console.log('result', result);
+        
         var data = result.question_data[0]
         this.fillData = {
           question: data.paper_summary,
@@ -227,10 +227,10 @@ export class MatchingComponent implements OnInit {
       previous_image_description: this.old_image_Description,
       points: this.fillData.points,
     }
-    console.log('params', params);
+    
     this.isLoadingBool = true;
     this.service.post('edit-question-api', params, 1).subscribe(result => {
-      console.log('result', result);
+      
       this.isLoadingBool = false;
       this.util.showSuccessAlert('Updated Successfully');
       this.router.navigate(['/test/question-screen']);

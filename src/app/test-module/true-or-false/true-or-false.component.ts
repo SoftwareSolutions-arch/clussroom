@@ -116,7 +116,7 @@ export class TrueOrFalseComponent implements OnInit {
   }
 
   getQuestionDetais() {
-    console.log('this.getQuestionId', this.getQuestionId);
+    
     if (this.getQuestionId == null) {
       this.isEditQuestion = true;
       return
@@ -130,7 +130,7 @@ export class TrueOrFalseComponent implements OnInit {
       this.isLoadingBool = true;
       this.service.post('questions-listing', params, 1).subscribe(result => {
         this.isLoadingBool = false;
-        console.log('result', result);
+        
         var data = result.question_data[0]
         this.fillData = {
           question: data.paper_summary,
@@ -158,7 +158,7 @@ export class TrueOrFalseComponent implements OnInit {
 
     this.isLoadingBool = true;
     this.service.post('edit-question-api', params, 1).subscribe(result => {
-      console.log('result', result);
+      
       this.isLoadingBool = false;
       this.util.showSuccessAlert('Updated Successfully');
       this.router.navigate(['/test/question-screen']);

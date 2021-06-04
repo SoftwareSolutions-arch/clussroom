@@ -35,7 +35,7 @@ export class ReorderScreenComponent implements OnInit {
       "test_id": this.testId
     }
     this.service.post('questions-list-api', params, 1).subscribe(result => {
-      console.log('result', result);
+      
       this.isLoadingBool = false;
       if (result.question_data.length > 0) {
         this.allData = result.question_data;
@@ -66,7 +66,7 @@ export class ReorderScreenComponent implements OnInit {
       "test_id": this.selectedTestDetails.test_id
     }
     this.service.post('questions-list-api', params, 1).subscribe(result => {
-      console.log('resut', result);
+      
       this.isLoadingBool = false;
       if (result.question_data.length > 0) {
         this.allData = result.question_data;
@@ -90,10 +90,10 @@ export class ReorderScreenComponent implements OnInit {
       'test_id': this.testId,
       'question_sequence': this.question_sequence
     }
-    console.log('params', params);
+    
     this.service.post('reorder-all-questions-api', params, 1).subscribe(result => {
       this.isLoadingBool = false;
-      console.log('result', result);
+      
       this.toastr.success(result.message);
       this.router.navigate(['/test/question-screen']);
     })

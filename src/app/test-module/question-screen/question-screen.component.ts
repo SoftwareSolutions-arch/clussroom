@@ -55,7 +55,7 @@ export class QuestionScreenComponent implements OnInit {
   onkeyup() {
     this.loginForm.value.description.length;
     this.totalCount = this.loginForm.value.description.length;
-    console.log('this.totalCount', this.totalCount)
+    
   }
 
   ngOnInit() {
@@ -125,7 +125,7 @@ export class QuestionScreenComponent implements OnInit {
       "test_id": this.testId
     }
     this.service.post('questions-list-api', params, 1).subscribe(result => {
-      console.log('result.question_data', result);
+      
       this.isLoadingBool = false;
       if (result.question_data.length > 0) {
         this.allData = result.question_data;
@@ -162,7 +162,7 @@ export class QuestionScreenComponent implements OnInit {
   }
 
   selectNewCourse() {
-    console.log('this.selectedTestDetails', this.selectedTestDetails);
+    
   }
 
   onChange() {
@@ -193,14 +193,14 @@ export class QuestionScreenComponent implements OnInit {
     }
     this.service.post('delete-test-api', params, 1).subscribe(result => {
       // this.isLoadingBool = false;
-      console.log('result', result);
+      
       this.deleteTestData = result.test_data[0].test_name
     })
   }
 
   // Delete test step 2
   deleteStep2Test() {
-    console.log('hello')
+    
     let params = {
       "step": 2,
       "test_id": [this.testId]
@@ -209,14 +209,14 @@ export class QuestionScreenComponent implements OnInit {
     this.service.post('delete-test-api', params, 1).subscribe(result => {
       this.deleteclassModal.nativeElement.click();
       this.isLoadingBool = false;
-      console.log('result', result);
+      
       this.router.navigate(['/test/test-listing-home'])
     })
   }
 
   // get events of check box for edit or add button show and hide 
   isCheckClicked(data) {
-    console.log('data', data, data.question_id);
+    
     this.questionId = data.question_id
   }
 
@@ -233,7 +233,7 @@ export class QuestionScreenComponent implements OnInit {
     }
     this.isLoadingBool = true;
     this.service.post('delete-question-api', params, 1).subscribe(result => {
-      console.log('result',result);
+      
       this.isLoadingBool = false;
       this.getAllQuestion();
       Swal.fire(
@@ -245,9 +245,9 @@ export class QuestionScreenComponent implements OnInit {
   }
 
   editQuestion(type, data) {
-    console.log('data', type, data.question_id);
+    
     let dataType = type;
-    console.log('dataType', dataType);
+    
 
     switch (dataType) {
       case 'multiple_choice_type_paper':
@@ -269,7 +269,7 @@ export class QuestionScreenComponent implements OnInit {
         this.router.navigate(['/test/fill-blanks', { id: data.question_id }]);
         break;
       default:
-        console.log("No such day exists!");
+        
         break;
     }
   }

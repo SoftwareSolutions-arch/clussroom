@@ -59,7 +59,7 @@ export class ShortAnswerComponent implements OnInit {
   }
 
   removeImage(index) {
-    console.log('index', index);
+    
     // Delete the item from fileNames list
     this.listOfFiles.splice(index, 1);
     this.fileList.splice(index, 1);
@@ -120,7 +120,7 @@ export class ShortAnswerComponent implements OnInit {
   }
 
   getQuestionDetais() {
-    console.log('this.getQuestionId', this.getQuestionId);
+    
     if (this.getQuestionId == null) {
       this.isEditQuestion = true;
       return
@@ -134,7 +134,7 @@ export class ShortAnswerComponent implements OnInit {
       this.isLoadingBool = true;
       this.service.post('questions-listing', params, 1).subscribe(result => {
         this.isLoadingBool = false;
-        console.log('result', result);
+        
         var data = result.question_data[0]
         this.fillData = {
           question: data.paper_summary,
@@ -177,10 +177,10 @@ export class ShortAnswerComponent implements OnInit {
         "insert_limit": "1000",
         "partial_point": (this.fillData.partial_point == true) ? "1" : "0"
       }
-      console.log('params', params);
+      
       this.isLoadingBool = true;
       this.service.post('edit-question-api', params, 1).subscribe(result => {
-        console.log('result', result);
+        
         this.isLoadingBool = false;
         this.util.showSuccessAlert('Updated Successfully');
         this.router.navigate(['/test/question-screen']);

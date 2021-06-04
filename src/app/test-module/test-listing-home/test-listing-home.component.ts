@@ -139,12 +139,12 @@ export class TestListingHomeComponent implements OnInit {
   // get events of check box for edit or add button show and hide 
   isCheckBoxClicked(testListing, i) {
     this.isEditClicked = true;
-    console.log(testListing);
+    
     this.testId = testListing.test_id;
   }
 
   goToTest() {
-    console.log('this.testId', this.testId);
+    
     this.deleteclosebutton.nativeElement.click();
     localStorage.setItem('test_id', this.testId);
     this.router.navigate(['/test/question-screen'])
@@ -156,7 +156,7 @@ export class TestListingHomeComponent implements OnInit {
       "step": 2,
       "test_id": [this.testId]
     }
-    console.log('params', params);
+    
     this.isLoadingBool = true;
     this.service.post('delete-test-api', params, 1).subscribe(result => {
       this.isLoadingBool = false;
@@ -174,7 +174,7 @@ export class TestListingHomeComponent implements OnInit {
     this.isLoadingBool = true;
     this.service.post('add-test-from-libarary-api', params, 1).subscribe(result => {
       this.isLoadingBool = false;
-      console.log('result', result);
+      
       this.liabraryData = result.coursesdata
       // this.deleteclosebutton.nativeElement.click();
     })
@@ -182,7 +182,7 @@ export class TestListingHomeComponent implements OnInit {
 
   //step 2
   addTestFromLiabrary2(data) {
-    console.log('data', data);
+    
     let params = {
       "step": "2",
       "course_id": data.course_id
@@ -190,7 +190,7 @@ export class TestListingHomeComponent implements OnInit {
     this.isLoadingBool = true;
     this.service.post('add-test-from-libarary-api', params, 1).subscribe(result => {
       this.isLoadingBool = false;
-      console.log('result', result);
+      
       this.classData = result.classdata
       // this.deleteclosebutton.nativeElement.click();
     })
@@ -205,7 +205,7 @@ export class TestListingHomeComponent implements OnInit {
     }
     this.service.post('add-test-from-libarary-api', params, 1).subscribe(result => {
       this.isLoadingBool = false;
-      console.log('result', result);
+      
       this.testData = result.testdata
       // this.deleteclosebutton.nativeElement.click();
     })
@@ -223,10 +223,10 @@ export class TestListingHomeComponent implements OnInit {
       "class_id_for_add_test": this.classesId
     }
 
-    console.log('params', params);
+    
     this.service.post('add-test-from-libarary-api', params, 1).subscribe(result => {
       this.isLoadingBool = false;
-      console.log('result', result);
+      
       this.util.showSuccessAlert(result.message);
       this.steponelibrary.nativeElement.click();
       this.steptwolibrary.nativeElement.click();

@@ -209,8 +209,8 @@ export class AddTestAssestmentComponent implements OnInit {
 
   addRubric() {
     const titleForm = this.employees().getRawValue();
-    console.log(titleForm);
-    console.log(this.sumData);
+    
+    
     const data = {
       "type": "add",
       "critterion_input": titleForm,
@@ -225,7 +225,7 @@ export class AddTestAssestmentComponent implements OnInit {
   }
   sum(i) {
     this.pointsData = [];
-    console.log(this.empForm.value)
+    
     this.empForm.value.employees.forEach(element => {
       this.pointsData = [];
       this.finalData='';
@@ -236,9 +236,9 @@ export class AddTestAssestmentComponent implements OnInit {
       });
       this.listingData.push(this.finalData)
 
-      console.log('data', this.pointsData);
-      console.log('finalData', this.finalData);
-      console.log('listingData', this.listingData);
+      
+      
+      
     });
   }
 

@@ -55,7 +55,7 @@ export class OrderingComponent implements OnInit {
       this.itemListArray.push(element.value.question)
     });
 
-    console.log(this.itemListArray);
+    
   }
 
 
@@ -138,7 +138,7 @@ export class OrderingComponent implements OnInit {
     this.myForm.value.arr.forEach(element => {
       userA.push(element.question);
     });
-    console.log('getting array vaues', this.itemListArray.length);
+    
     let params = {
       test_assignment_nid: this.testId,
       test_assignment_question_type: "ordering",
@@ -151,10 +151,10 @@ export class OrderingComponent implements OnInit {
       drag_drop_sequenece_answers: (this.itemListArray.length > 0) ? this.itemListArray : userA,
       minimum_sequence: "1",
     }
-    console.log('params', params);
+    
     this.isLoadingBool = true;
     this.service.post('add-question-api', params, 1).subscribe(result => {
-      console.log('result', result);
+      
       this.util.showSuccessAlert(result.message);
       this.isLoadingBool = false;
       this.router.navigate(['/test/question-screen']);
@@ -183,7 +183,7 @@ export class OrderingComponent implements OnInit {
 
     this.isLoadingBool = true;
     this.service.post('edit-question-api', params, 1).subscribe(result => {
-      console.log('result', result);
+      
       this.util.showSuccessAlert(result.message);
       this.isLoadingBool = false;
       this.router.navigate(['/test/question-screen']);
@@ -191,7 +191,7 @@ export class OrderingComponent implements OnInit {
   }
 
   getQuestionDetais() {
-    console.log('this.getQuestionId', this.getQuestionId);
+    
     if (this.getQuestionId == null) {
       this.isEditQuestion = true;
       return
@@ -205,7 +205,7 @@ export class OrderingComponent implements OnInit {
       this.isLoadingBool = true;
       this.service.post('questions-listing', params, 1).subscribe(result => {
         this.isLoadingBool = false;
-        console.log('result', result);
+        
         result.question_data[0].ordering_sequence.forEach((element, index) => {
           this.arr = this.myForm.get('arr') as FormArray;
           this.arr.push(this.createItem());

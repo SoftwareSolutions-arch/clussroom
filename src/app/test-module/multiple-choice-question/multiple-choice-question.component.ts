@@ -72,7 +72,7 @@ export class MultipleChoiceQuestionComponent implements OnInit {
       }
       this.isLoadingBool = true;
       this.service.post('questions-listing', params, 1).subscribe(result => {
-        console.log('resuult', result);
+        
         this.isLoadingBool = false;
         result.question_data[0].multiple_choices.forEach((element, index) => {
           this.arr = this.myForm.get('arr') as FormArray;
@@ -194,11 +194,11 @@ export class MultipleChoiceQuestionComponent implements OnInit {
       "image_description": this.new_image_Description
     }
 
-    console.log('parmas', params);
+    
 
     this.isLoadingBool = true;
     this.service.post('add-question-api', this.fillData, 1).subscribe(result => {
-      console.log('result', result);
+      
       this.util.showSuccessAlert(result.message);
       this.isLoadingBool = false;
       this.router.navigate(['/test/question-screen']);
@@ -216,8 +216,8 @@ export class MultipleChoiceQuestionComponent implements OnInit {
   }
 
   saveEditQuestion() {
-    console.log('new_image_Description', this.new_image_Description);
-    console.log('old_image_Description', this.old_image_Description);
+    
+    
     var image_description = this.old_image_Description.concat(this.new_image_Description)
     this.fillData.mcq_option_text = [];
     this.fillData.mcq_option_check = [];
@@ -259,7 +259,7 @@ export class MultipleChoiceQuestionComponent implements OnInit {
       'attachment': this.fillData.attachment,
       "image_description": image_description
     }
-    console.log('params', params);
+    
 
     // this.isLoadingBool = true;
     // this.service.post('edit-question-api', params, 1).subscribe(result => {

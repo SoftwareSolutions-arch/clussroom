@@ -29,7 +29,7 @@ export class EditPointsScreenComponent implements OnInit {
   }
 
   submit() {
-    console.log('allData', this.allData);
+    
   }
 
   // get all courses list
@@ -38,7 +38,7 @@ export class EditPointsScreenComponent implements OnInit {
       "test_id": this.testId
     }
     this.service.post('questions-list-api', params, 1).subscribe(result => {
-      console.log('result', result);
+      
       this.isLoadingBool = false;
       if (result.question_data.length > 0) {
         this.allData = result.question_data;
@@ -69,7 +69,7 @@ export class EditPointsScreenComponent implements OnInit {
       "test_id": this.selectedTestDetails.test_id
     }
     this.service.post('questions-list-api', params, 1).subscribe(result => {
-      console.log('resut', result);
+      
       this.isLoadingBool = false;
       if (result.question_data.length > 0) {
         this.allData = result.question_data;
@@ -92,7 +92,7 @@ export class EditPointsScreenComponent implements OnInit {
     let params={
     'id_and_points':this.arrayList
     }
-    console.log('this.allData',params);
+    
     this.service.post('edit-all-questions-points-api', params, 1).subscribe(result => {
       this.isLoadingBool = false;
       this.toastr.success(result.message);

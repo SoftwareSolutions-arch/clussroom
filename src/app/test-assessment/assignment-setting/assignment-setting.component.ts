@@ -54,9 +54,9 @@ edit(){
       "assignment_id": this.id
     }
     this.service.post('listing-assignment', data, 1).subscribe(res => {
-      // console.log(res);
+      // 
       this.updateNewData = res.assignment_data;
-      // console.log(this.updateNewData)
+      // 
       this.addAssignmentForm.patchValue({
         // "level": this.updateNewData.level_id,
         "assignment_name": this.updateNewData.assignment_name,
@@ -105,7 +105,7 @@ edit(){
         "class_nid": localStorage.getItem('classListId')
       }
       this.service.post('update-assignment-api', data, 1).subscribe(res => {
-        console.log(res);
+        
         if (res.status =='1') {
           this.util.showSuccessAlert('Assignment update successfully');
          this.goToQuestion();
