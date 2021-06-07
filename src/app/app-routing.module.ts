@@ -31,6 +31,7 @@ import { AdminComponent } from './admin/admin.component';
 import { LiveSessionsComponent } from './live-sessions/live-sessions.component';
 import { ProgressComponent } from './progress/progress.component';
 import { TestModule } from './test-module/test-module';
+import { DummyTestingComponent } from './dummy-testing/dummy-testing.component';
 const routes: Routes = [
   {
     path: '', redirectTo: '/home', pathMatch: 'full'
@@ -121,6 +122,9 @@ const routes: Routes = [
   },
   {
     path: 'progress-bar', component: ProgressComponent
+  },
+  {
+    path: 'dummy-test', component: DummyTestingComponent
   },
   { path: 'test', loadChildren: './test-module/test-module#TestModule' },
   {

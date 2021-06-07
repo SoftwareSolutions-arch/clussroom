@@ -12,6 +12,8 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxImageZoomModule } from 'ngx-image-zoom';
+import { ImageCropperModule } from 'ngx-image-cropper';
+
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ToastrModule } from 'ngx-toastr';
 
@@ -127,6 +129,7 @@ import { MatInputModule } from '@angular/material/input';
   ],
   imports: [
     NgxImageZoomModule,
+    ImageCropperModule,
     CommonModule,
     BrowserModule,
     ToastrModule.forRoot({
