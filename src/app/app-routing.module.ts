@@ -24,14 +24,12 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
 import { TermsOfUseComponent } from './terms-of-use/terms-of-use.component';
 import { ClassListComponent } from './class-list/class-list.component';
 import { LearnersComponent } from './learners/learners.component';
-import { CalendarComponent } from './calendar/calendar.component';
 import { StorageComponent } from './storage/storage.component';
 import { LoaderComponent } from './loader/loader.component';
 import { AdminComponent } from './admin/admin.component';
 import { LiveSessionsComponent } from './live-sessions/live-sessions.component';
 import { ProgressComponent } from './progress/progress.component';
 import { TestModule } from './test-module/test-module';
-import { DummyTestingComponent } from './dummy-testing/dummy-testing.component';
 const routes: Routes = [
   {
     path: '', redirectTo: '/home', pathMatch: 'full'
@@ -106,9 +104,6 @@ const routes: Routes = [
     path: 'terms-of-use', component: TermsOfUseComponent
   },
   {
-    path: 'calendar', component: CalendarComponent
-  },
-  {
     path: 'storage', component: StorageComponent
   },
   {
@@ -122,9 +117,6 @@ const routes: Routes = [
   },
   {
     path: 'progress-bar', component: ProgressComponent
-  },
-  {
-    path: 'dummy-test', component: DummyTestingComponent
   },
   { path: 'test', loadChildren: './test-module/test-module#TestModule' },
   {

@@ -14,6 +14,7 @@ import { ReorderScreenComponent } from './reorder-screen/reorder-screen.componen
 import { MidtermPreviewComponent } from './midterm-preview/midterm-preview.component';
 import { MidtermPreviewSecondComponent } from './midterm-preview-second/midterm-preview-second.component';
 import { EditPointsScreenComponent } from './edit-points-screen/edit-points-screen.component';
+import { CalendarComponent } from './calendar/calendar.component';
 
 const routes: Routes = [
   {
@@ -60,6 +61,9 @@ const routes: Routes = [
   },
   {
     path: 'edit-points', component: EditPointsScreenComponent
+  },
+  {
+    path: 'calendar', component: CalendarComponent
   },
 ];
 

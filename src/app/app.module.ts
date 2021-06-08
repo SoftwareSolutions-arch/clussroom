@@ -47,7 +47,6 @@ import { AdminComponent } from './admin/admin.component';
 import { LiveSessionsComponent } from './live-sessions/live-sessions.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { TermsOfUseComponent } from './terms-of-use/terms-of-use.component';
-import { CalendarComponent } from './calendar/calendar.component';
 import { ProgressComponent } from './progress/progress.component';
 import { LoaderComponent } from './loader/loader.component';
 import { TestListingHomeComponent } from './test-module/test-listing-home/test-listing-home.component';
@@ -66,7 +65,6 @@ import { MidtermPreviewComponent } from './test-module/midterm-preview/midterm-p
 import { MidtermPreviewSecondComponent } from './test-module/midterm-preview-second/midterm-preview-second.component';
 import { EditPointsScreenComponent } from './test-module/edit-points-screen/edit-points-screen.component';
 import { AppDashboardHeaderComponent } from './test-module/app-dashboard-header/app-dashboard-header.component';
-
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -74,7 +72,19 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import listPlugin from '@fullcalendar/list';
+import interactionPlugin from '@fullcalendar/interaction';
+import { CalendarComponent } from './test-module/calendar/calendar.component';
 
+FullCalendarModule.registerPlugins([
+  dayGridPlugin,
+  timeGridPlugin,
+  listPlugin,
+  interactionPlugin
+])
 @NgModule({
   declarations: [
     AppComponent,
@@ -108,7 +118,6 @@ import { MatInputModule } from '@angular/material/input';
     LiveSessionsComponent,
     PrivacyPolicyComponent,
     TermsOfUseComponent,
-    CalendarComponent,
     ProgressComponent,
     TestListingHomeComponent,
     SettingsComponent,
@@ -126,8 +135,10 @@ import { MatInputModule } from '@angular/material/input';
     MidtermPreviewSecondComponent,
     EditPointsScreenComponent,
     AppDashboardHeaderComponent,
+    CalendarComponent,
   ],
   imports: [
+    FullCalendarModule,
     NgxImageZoomModule,
     ImageCropperModule,
     CommonModule,
