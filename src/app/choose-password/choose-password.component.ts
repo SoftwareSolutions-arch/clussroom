@@ -136,9 +136,7 @@ export class ChoosePasswordComponent implements OnInit {
       "uid": this.userId
     }
     this.service.post('create-password-api', data, 0).subscribe(result => {
-
       if (result['status'] == 1 || '1') {
-
       }
       else {
         this.util.errorAlertPopup(result['message']);

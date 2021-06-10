@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SharedServiceService } from 'src/app/shared-service.service';
 import { UtilService } from 'src/providers/util.service';
+
 @Component({
-  selector: 'app-app-dashboard-header',
-  templateUrl: './app-dashboard-header.component.html',
-  styleUrls: ['./app-dashboard-header.component.css']
+  selector: 'app-class-dashboard-header',
+  templateUrl: './class-dashboard-header.component.html',
+  styleUrls: ['./class-dashboard-header.component.css']
 })
-export class AppDashboardHeaderComponent implements OnInit {
+export class ClassDashboardHeaderComponent implements OnInit {
   headerData: any = '';
   isLoadingBool: boolean = true;
   classId: any = '';

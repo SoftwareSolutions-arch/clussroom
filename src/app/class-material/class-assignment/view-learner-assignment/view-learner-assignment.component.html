@@ -1,0 +1,189 @@
+<div class="dashboard">
+  <app-class-sidebar></app-class-sidebar>
+	<div class="control-panel" style="overflow: hidden;">
+<app-class-header></app-class-header>
+<app-class-dashboard-header></app-class-dashboard-header>
+     <div class="col-lg-12 display-center mt-4">
+         <div class="col-md-6 text-left">
+             <h3 style="font-size: 22px; font-weight: 500;">Pre-Assignment reading - geography</h3>
+         </div>
+         <div class="col-md-6 text-right display-center learner-select" style="justify-content: flex-end;">
+                 <button type="button">Back</button>
+         </div>
+     </div>
+     <div class="prospectus-section sequence-list">
+        <div class="prospectus-tabs">
+           <ul class="nav nav-tabs">
+              <li><a data-toggle="tab" href="#test">Assignment</a></li>
+              <li><a data-toggle="tab" href="#assignment-grading" class="active">Submission</a></li>
+              <!--				    <li><a data-toggle="tab" href="#overall-grading">Overall Grading Status</a></li>-->
+           </ul>
+        </div>
+        <div class="tab-content">
+           <!-- Schedule start -->
+           <div class="heading" style="padding: 0 10px;">
+              <h2 style="color: #343C6A; font-size: 17px;">Assignment question</h2>
+           </div>
+           <form [formGroup]="assignmentForm">
+           <div class="multiple-text">
+              <textarea name="shortanswer" formControlName="description" style="background-image: none; padding: 4px 6px; color: #fff; background-color: #AFBCD2;" placeholder="Please answer in a few words, what does nuclear fission mean."></textarea>
+              <div class="col-md-4"></div>
+           </div>
+         </form>
+           <div class="col-lg-12 box-shadow mt-3" >
+              
+               <div class="col-lg-8" style="display: flex; align-items: center;" *ngFor="let data of attachmentDataNames">
+                   <div class="col-md-8 custom-order-assign" style="padding:0;">
+                         <p>{{data.value}}</p>
+
+                   </div>
+               </div>
+               
+               <!-- <div class="col-lg-8" style="display: flex; align-items: center;">
+                   <div class="col-md-8 custom-order-assign" style="padding:0;">
+                         <p>Hanson Deck.png</p>
+
+                   </div>
+               </div>                      
+               
+               <div class="col-lg-8 mb-3" style="display: flex; align-items: center;">
+                   <div class="col-md-8 custom-order-assign" style="padding:0;">
+                         <p>Hanson Deck.png</p>
+
+                   </div>
+               </div> -->
+               
+               <div class="col-lg-12 mb-3">
+                   <button type="button" class="view-submission">Submission</button>
+               </div>
+
+           </div>
+            
+            <div class="lower-mid-section mt-4">
+             <div class="multiple-text">
+                <form [formGroup]="answerForm">
+              <textarea name="shortanswer" formControlName="answer" style="background-image: none; padding: 4px 6px; background-color: #EEF5FF;" placeholder="Please answer in a few words, what does nuclear fission mean."></textarea>
+            </form>
+              <div class="col-md-4"></div>
+           </div>
+                
+          <div class="col-lg-12 box-shadow mt-3" >
+              
+             <div class="col-lg-8" style="display: flex; align-items: center;" *ngFor = "let data of attachmentDataName">
+                 <div class="col-md-8 custom-order-assign" style="padding:0;" >
+                       <p style="margin-right:.8em;">{{data.value}}</p>
+                       <!-- <button type="submit" class="learner-attach-cancel"><i class="fa fa-times" aria-hidden="true"></i></button> -->
+                 </div>
+             </div>
+             
+             <!-- <div class="col-lg-8" style="display: flex; align-items: center;">
+                 <div class="col-md-8 custom-order-assign" style="padding:0;">
+                       <p style="margin-right:.8em;">Hanson Deck.png</p>
+                       <button type="submit" class="learner-attach-cancel"><i class="fa fa-times" aria-hidden="true"></i></button>
+                 </div>
+             </div>                      
+             
+             <div class="col-lg-8 mb-3" style="display: flex; align-items: center;">
+                 <div class="col-md-8 custom-order-assign" style="padding:0;">
+                       <p style="margin-right:.8em;">Hanson Deck.png</p>
+                       <button type="submit" class="learner-attach-cancel"><i class="fa fa-times" aria-hidden="true"></i></button>
+                 </div>
+                 
+             </div> -->
+         </div>
+                
+            </div>
+           
+           <div class="container" style="padding: 18px 0 0 0px; display: flex; margin: 0;">
+              <!--
+                 <button type="button" class="blue">Confirm</button>
+                 <button type="button" class="blue-border">Cancel</button>
+                 <button type="button" class="lime"><a href="#">Edit</a></button>
+                 <button type="button" class="Org"><a href="#">Confirm Edit</a></button>
+                 -->
+              <a href="#" class="addbutton custom-button" style="width: 83px; margin-right: 1em;" routerLink="/class-material/learner-assignment-listing">Ok</a>                        
+              <!-- <button type="button" class="done-blue">Save</button>    -->
+           </div>
+<!--
+           <div class="container multi-choice-orange" style="padding: 6px 0 0 0;">
+              <button type="button">Confirm Edit</button>
+           </div>
+-->
+        </div>
+     </div>
+  </div>
+</div>
+
+<!-- Submit modal popup start -->
+
+
+<div id="confirm" class="modal deletetest-modal" role="dialog">
+<div class="modal-dialog" style="max-width: 600px;">
+
+<!--     Modal content-->
+<div class="modal-content">
+
+   <div class="modal-header">
+       <h4>Delete class</h4>
+       <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+     </div>
+   <div class="modal-body">
+       <div class="class-delete-list">
+           <div class="delete-field display-center" style="justify-content: center;">
+               <img src="assets/images/learner/submit-folder.png">
+           </div>
+
+               <div class="col-lg-12 display-center mt-3" style="justify-content: center;">
+          <h3 style="font-size: 24px; font-weight: 400;">Submit Assignment?</h3></div>
+          <div class="col-lg-12 display-center" style="justify-content: center; text-align: center;">
+          <p style="font-size:15px; color: #5B73A0;">Once submission is made, no further ammendments can be <br>done. Continue.</p>
+          </div>
+
+       </div>
+       </div>
+
+       <div class="class-deltest-btn display-center mt-4 mb-3" style="justify-content: center;">
+           <button type="button" class="confirm-submit" data-toggle="modal" data-target="#submitted" data-dismiss="modal" style="width: 155px;">Submit</button>
+       </div>
+   </div>
+
+</div>
+
+</div>
+
+
+<!-- Submit modal popup end -->    
+
+<!-- confirm Submit modal popup start -->
+
+
+<div id="submitted" class="modal deletetest-modal" role="dialog">
+<div class="modal-dialog">
+
+<!--     Modal content-->
+<div class="modal-content">
+
+   <div class="modal-header">
+       <h4>Delete class</h4>
+       <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+     </div>
+  <div class="modal-body">
+     <div class="class-delete-list">
+        <div class="delete-field display-center" style="justify-content: center;">
+                <img src="assets/images/learner/submit-folder.png">
+        </div>
+        <div class="col-lg-12 display-center mt-3" style="justify-content: center;">
+           <h3 style="font-size: 24px; font-weight: 400;">Leave without saving?</h3>
+        </div>
+     </div>
+     </div>
+
+     <div class="class-deltest-btn display-center mt-4 mb-3" style="justify-content: center;">
+         <button type="button" class="submit-cancel" style="margin-right: .8em;" data-dismiss="modal" data-toggle="modal" data-target="#confirm">Cancel</button>
+            <button type="button" class="confirm-submit" style="width: 75.16px; height: 35.56px;" data-dismiss="modal">Save</button>
+     </div>
+  </div>
+
+</div>
+
+</div>

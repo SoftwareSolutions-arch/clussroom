@@ -1,0 +1,286 @@
+<div class="dashboard">
+  <app-class-sidebar></app-class-sidebar>
+  <div class="control-panel" style="overflow: hidden;">
+    <app-class-header></app-class-header>
+    <app-class-dashboard-header></app-class-dashboard-header>
+    <div *ngIf="isLoadingBool" class="loading-indicator">
+      <mat-spinner></mat-spinner>
+    </div>
+    <!-- <div class="row test-button">
+                           <button onclick="myFunction()" class="tstbtn">Add Test</button>
+                           <div id="mytstdown" class="tstdown-content">
+                              <a href="#home">Add new</a>
+                              <a href="#about" class="custom-button" data-toggle="modal" data-target="#library">Add from library</a>
+                           </div>
+        </div> -->
+    <div class="prospectus-section sequence-list">
+      <div class="prospectus-tabs">
+        <ul class="nav nav-tabs">
+          <li><a data-toggle="tab" href="#test" class="active">Assignment</a></li>
+          <li><a data-toggle="tab" href="#submissions">Submissions</a></li>
+        </ul>
+      </div>
+      <div class="tab-content">
+        <!-- Schedule start -->
+        <div id="test" class="tab-pane active">
+          <div class="table=-responsive">
+            <table class="table dashboard-table">
+              <thead class="thead-course">
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col" style="width: 10% !important;padding: 0 0 0 5em;text-align: center;">From</th>
+                  <th scope="col"></th>
+                  <th scope="col" style="text-align: right; padding: 0 0;">To</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col" style="width: 10% !important;padding: 0 0 0 0em;text-align:left;">Points</th>
+                  <th scope="col"></th>
+
+                </tr>
+              </thead>
+              <thead>
+                <tr>
+                  <th scope="col" class="text-left">
+                    <div class="radio-table-check"><input type="checkbox"></div>
+                  </th>
+                  <th scope="col" style="padding: 18px 12px;">No.</th>
+                  <th scope="col" class="text-left table-filter" style="width: 18%; padding: 18px 12px;">Assignment name
+                  </th>
+                  <th scope="col" class=" text-left table-filter" style="padding: 18px 12px;">Date</th>
+                  <th scope="col" class="text-left table-filter" style="padding: 18px 12px;">To</th>
+                  <th scope="col" class="table-filter" style="padding: 18px 12px;">Date</th>
+                  <th scope="col" class="table-filter" style="padding: 18px 12px;">To</th>
+                  <th scope="col" class="table-filter" style="padding: 18px 12px;">Total</th>
+                  <th scope="col" class="table-filter" style="padding: 18px 12px;">Achieved</th>
+                </tr>
+              </thead>
+              <tbody style="border-bottom: none;  border-bottom: 3px solid #F1F6FB; padding-bottom: 3em;">
+                <tr *ngFor = "let data of listData | paginate: { itemsPerPage: 10, currentPage: p }; index as i"> 
+                  <th class="text-left">
+                    <div class="radio-table-check"><input type="checkbox" (click)="assignmentId(data.assignment_id,i)"></div>
+                  </th>
+                  <td>{{i+1}}</td>
+                  <td class="text-left" *ngIf="data.value === 'Start'"><a  
+                      style="padding: 0 !important; text-decoration: underline; color: #396aff;" [disabled]="!data.isActive" (click)="startPages(data.assignment_id)">{{data.assignment_name}}</a></td>
+                      <td class="text-left" *ngIf="data.value === 'Continue'"><a 
+                        style="padding: 0 !important; text-decoration: underline;color: #396aff;"[disabled]="!data.isActive" (click)="continuePages(data.assignment_id)">{{data.assignment_name}}</a></td>
+                        <td class="text-left" *ngIf="data.value === 'View'"><a 
+                          style="padding: 0 !important; text-decoration: underline;color: #396aff;" [disabled]="!data.isActive" (click)="viewPages(data.assignment_id)">{{data.assignment_name}}</a></td>
+                  <td class="text-left">{{data.start_date}}</td>
+                  <td class="text-left">{{data.start_time}}</td>
+                  <td>{{data.end_date}}</td>
+                  <td>{{data.end_time}}</td>
+                  <td class="text-center">{{data.total_point}}</td>
+                  <td style="color: #396aff; font-weight: 500;">{{data.achieved_point}}</td>
+                  <td ><button *ngIf="data.value === 'Start'" type="button" class="learner-take-test" [disabled]="!data.isActive"
+                      style="font-size: 13px; width: 59px;"(click)="startPage()">Start</button>
+                      <button *ngIf="data.value === 'Continue'"  type="button" class="confirm-submit"
+                      style="width: 82px; font-size: 13px; font-weight: 500; height: 32px;" (click)="continuePage()">Continue</button>
+                      <button *ngIf="data.value === 'View'" type="button" class="done-blue"  (click)="viewPage()"
+                          style="width: 59px; height: 30px; font-size: 13px; font-weight: 500;">View</button>
+                    </td>
+                </tr>
+                <!-- <tr>
+                  <th>
+                    <div class="radio-table-check"><input type="checkbox"></div>
+                  </th>
+                  <td>2</td>
+                  <td class="text-left"><a href="#" style="padding: 0 !important; text-decoration: underline;">Mid-Term
+                      Test</a></td>
+                  <td class="text-left">10 May 20</td>
+                  <td class="text-left">09:00</td>
+                  <td>10 May 20</td>
+                  <td>09:00</td>
+                  <td>80</td>
+                  <td style="color: #16DBCC; font-weight: 500;">Saved</td>
+                  <td><button type="button" class="confirm-submit"
+                      style="width: 82px; font-size: 13px; font-weight: 500; height: 32px;">Continue</button></td>
+                </tr>
+
+                <tr>
+                  <th>
+                    <div class="radio-table-check"><input type="checkbox"></div>
+                  </th>
+                  <td>3</td>
+                  <td class="text-left"><a href="#" style="padding: 0 !important; text-decoration: underline;">Test1</a>
+                  </td>
+                  <td class="text-left">15 April 20</td>
+                  <td class="text-left">10:00</td>
+                  <td>15 April 20</td>
+                  <td>10:00</td>
+                  <td>60</td>
+                  <td style="color: #FF82AC; font-weight: 500;">Pending <br>review</td>
+                  <td><button type="button" class="done-blue"
+                      style="width: 59px; height: 30px; font-size: 13px; font-weight: 500;">View</button></td>
+                </tr>
+                <tr>
+                  <th>
+                    <div class="radio-table-check"><input type="checkbox"></div>
+                  </th>
+                  <td>4</td>
+                  <td class="text-left"><a href="#" style="padding: 0 !important; text-decoration: underline;">Test2</a>
+                  </td>
+                  <td class="text-left">29 March 20</td>
+                  <td class="text-left">12:00</td>
+                  <td>29 March 20</td>
+                  <td>12:00</td>
+                  <td>60</td>
+                  <td style="color: #396aff; font-weight: 500;">45</td>
+                  <td><button type="button" class="done-blue"
+                      style="width: 59px; height: 30px; font-size: 13px; font-weight: 500;">View</button></td>
+                </tr>
+
+                <tr style="border-bottom: none;">
+                  <th>
+                    <div class="radio-table-check"><input type="checkbox"></div>
+                  </th>
+                  <td>5</td>
+                  <td class="text-left"><a href="#" style="padding: 0 !important; text-decoration: underline;">Periodic
+                      Test</a></td>
+                  <td class="text-left">3 March 20</td>
+                  <td class="text-left">14:00</td>
+                  <td>3 March 20</td>
+                  <td>14:00</td>
+                  <td>60</td>
+                  <td style="color: #396aff; font-weight: 500;">45</td>
+                  <td><button type="button" class="done-blue"
+                      style="width: 59px; height: 30px; font-size: 13px; font-weight: 500;">View</button></td>
+                </tr> -->
+
+
+              </tbody>
+            </table>
+          </div>
+          <div class="table-result-wrapper bottom-select">
+            <select name="course" id="course-name">
+              <option selected>10</option>
+              <option value="Course 1">1</option>
+              <option value="Course 2">2</option>
+              <option value="Course 3">3</option>
+            </select>
+            <p style="width: 10%;">Results: 1-15 of 324</p>
+            <div class="selector">
+              <!-- <ul>
+                <li><a href="#"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li class="active"><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">...</a></li>
+                <li><a href="#" class="right-arrow"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+              </ul> -->
+							<pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </div>
+          </div>
+        </div>
+        <!-- Schedule start -->
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Add From Library popup start -->
+
+
+<div id="library" class="modal addlibrary-modal" role="dialog">
+  <div class="modal-dialog" style="max-width: 869px;">
+
+    <!--     Modal content-->
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4>Add from Library</h4>
+        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"
+            style="color: #396aff;"></i></button>
+      </div>
+      <div class="modal-body">
+
+
+        <div class="addlibraryportion container">
+          <div class="col-lg-10 displayflex-items">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            <p>Course library > Scienctific computation</p>
+          </div>
+        </div>
+
+        <div class="addlibraryportion container col-lg-10 mt-4" style="border: none; margin: 0 12px;">
+          <div class="col-sm-3 add-field">
+            <button><img src="assets/images/test/folder.png"></button>
+            <p>Mathematics</p>
+          </div>
+
+          <div class="col-sm-3 add-field">
+            <button><img src="assets/images/test/folder.png"></button>
+            <p>Engineering & Science</p>
+          </div>
+
+          <div class="col-sm-3 add-field">
+            <button><img src="assets/images/test/folder.png"></button>
+            <p>Engineering & Science</p>
+          </div>
+
+          <div class="col-sm-3 add-field">
+            <button><img src="assets/images/test/folder.png"></button>
+            <p>Engineering & Science</p>
+          </div>
+
+          <div class="col-sm-3 add-field">
+            <button><img src="assets/images/test/folder.png"></button>
+            <p>Engineering & Science</p>
+          </div>
+
+
+        </div>
+        <div class="addlibraryportion container col-lg-10 mt-4" style="border: none; margin: 0 12px;">
+          <div class="col-sm-3 add-field">
+            <button><img src="assets/images/test/folder.png"></button>
+            <p>Mathematics</p>
+          </div>
+
+          <div class="col-sm-3 add-field">
+            <button><img src="assets/images/test/folder.png"></button>
+            <p>Engineering & Science</p>
+          </div>
+
+          <div class="col-sm-3 add-field">
+            <button><img src="assets/images/test/folder.png"></button>
+            <p>Engineering & Science</p>
+          </div>
+
+          <div class="col-sm-3 add-field">
+            <button><img src="assets/images/test/folder.png"></button>
+            <p>Engineering & Science</p>
+          </div>
+
+          <div class="col-sm-3 add-field mb-3">
+            <button><img src="assets/images/test/folder.png"></button>
+            <p>Engineering & Science</p>
+          </div>
+
+
+        </div>
+
+        <div class="col-lg-12 container modal-para" style="padding: 0 2em;">
+          <!--                <p>Mathematics.tst</p>-->
+          <ul>
+            <li><a href="#">Mathematics.tst</a></li>
+            <li><a href="#">Ready-made test.tst</a></li>
+            <li><a href="#">Ready-made test.tst</a></li>
+            <li><a href="#">Ready-made test.tst</a></li>
+          </ul>
+        </div>
+
+        <div class="class-remove-btn" style="padding: 21px 39px;">
+          <button type="button" class="modal-para-btn">Yes</button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

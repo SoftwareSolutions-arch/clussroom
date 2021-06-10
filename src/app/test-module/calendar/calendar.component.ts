@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CalendarOptions, DateSelectArg, EventClickArg, EventApi } from '@fullcalendar/angular';
 import { INITIAL_EVENTS, createEventId } from './event-utils';
+import Swal from 'sweetalert2'
+
 
 @Component({
   selector: 'app-calendar',
@@ -8,12 +10,15 @@ import { INITIAL_EVENTS, createEventId } from './event-utils';
   styleUrls: ['./calendar.component.css']
 })
 export class CalendarComponent implements OnInit {
+  @ViewChild('newModel') private newModel: ElementRef;
+
+  display1 = 'none'
   calendarVisible = true;
   calendarOptions: CalendarOptions = {
     headerToolbar: {
-      left: 'prev,next today',
-      center: 'title',
-      right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+      right: 'prev,next today',
+      // center: 'title',
+      left: 'dayGridMonth,timeGridWeek,timeGridDay'
     },
     initialView: 'dayGridMonth',
     initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
@@ -24,14 +29,23 @@ export class CalendarComponent implements OnInit {
     dayMaxEvents: true,
     select: this.handleDateSelect.bind(this),
     eventClick: this.handleEventClick.bind(this),
-    eventsSet: this.handleEvents.bind(this)
+    eventsSet: this.handleEvents.bind(this),
     /* you can update a remote database when these fire:
     eventAdd:
     eventChange:
     eventRemove:
     */
   };
+  display = 'none'; //default Variable
   currentEvents: EventApi[] = [];
+
+  fillData: any = {
+    date: '',
+    time: '',
+    title: ''
+  }
+  selectDateTime: any = '';
+  clickInfo: EventClickArg;
   constructor() { }
 
   ngOnInit(): void {
@@ -46,32 +60,52 @@ export class CalendarComponent implements OnInit {
     calendarOptions.weekends = !calendarOptions.weekends;
   }
 
-  handleDateSelect(selectInfo: DateSelectArg) {
-    const title = prompt('Please enter a new title for your event');
-    const calendarApi = selectInfo.view.calendar;
-
-    calendarApi.unselect(); // clear date selection
-
-    if (title) {
-      calendarApi.addEvent({
-        id: createEventId(),
-        title,
-        start: selectInfo.startStr,
-        end: selectInfo.endStr,
-        allDay: selectInfo.allDay
-      });
-    }
+   handleDateSelect(selectInfo: DateSelectArg) {
+    this.display = 'block'; //Set block css
+    this.selectDateTime = selectInfo
   }
 
-  handleEventClick(clickInfo: EventClickArg) {
-    if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
-      clickInfo.event.remove();
+  confirmModel() {
+    console.log(this.fillData)
+    console.log(this.selectDateTime)
+    const calendarApi = this.selectDateTime.view.calendar;
+    calendarApi.unselect(); // clear date selection
+    if (this.fillData.title) {
+      calendarApi.addEvent({
+        id: createEventId(),
+        title: this.fillData.title,
+        start: this.selectDateTime.startStr,
+        end: this.selectDateTime.endStr,
+        allDay: this.selectDateTime.allDay
+      });
     }
+
+  }
+
+
+  handleEventClick(clickInfo: EventClickArg) {
+    this.clickInfo=clickInfo
+    this.display1 = 'block'
+    // if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
+    //   clickInfo.event.remove();
+    // }
+  }
+
+  deleteModelData(){
+    this.clickInfo.event.remove();
+  }
+
+  closeModalDialogs() {
+    this.display1 = 'none';
   }
 
   handleEvents(events: EventApi[]) {
+    console.log('handleEvents', events);
     this.currentEvents = events;
   }
 
-
+  closeModalDialog() {
+    // this.newModel.nativeElement.click();
+    this.display = 'none';
+  }
 }

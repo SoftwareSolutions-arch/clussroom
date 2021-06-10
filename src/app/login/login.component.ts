@@ -97,34 +97,67 @@ export class LoginComponent implements OnInit {
       return
     }
 
-    const data = {
-      name: this.loginForm.value.email,
-      pass: this.loginForm.value.password,
-      user_type: this.userDetails
+    else if (this.userDetails == 'teacher') {
+      const data = {
+        name: this.loginForm.value.email,
+        pass: this.loginForm.value.password,
+        user_type: this.userDetails
 
-    }
-    this.service.post('user/login', data, 0).subscribe(result => {
-      try {
-        if (result['status'] == 200) {
-          this.getInstructionName();
-          this.util.showSuccessToast(result['message']);;
-          localStorage.setItem("csrftoken", result['current_user']['csrf_token']);
-          localStorage.setItem("uid", result['current_user']['uid']);
-          localStorage.setItem('userMail', result['current_user']['name']);
-          localStorage.setItem('isLogin', '1');
-          localStorage.setItem('Authorization', result['current_user']['basic_auth_token'])
-          // this.util.showSuccessAlert(result['message']);
-          this.router.navigate(['/sample04']);
+      }
+      this.service.post('user/login', data, 0).subscribe(result => {
+        try {
+          if (result['status'] == 200) {
+            this.getInstructionName();
+            this.util.showSuccessToast(result['message']);;
+            localStorage.setItem("csrftoken", result['current_user']['csrf_token']);
+            localStorage.setItem("uid", result['current_user']['uid']);
+            localStorage.setItem('userMail', result['current_user']['name']);
+            localStorage.setItem('isLogin', '1');
+            localStorage.setItem('Authorization', result['current_user']['basic_auth_token'])
+            // this.util.showSuccessAlert(result['message']);
+            this.router.navigate(['/sample04']);
+          }
+          else {
+            this.toastr.error(result.error_message);
+            this.util.errorAlertPopup(result.error_message);
+          }
         }
-        else {
-          this.toastr.error(result.error_message);
+        catch (error) {
           this.util.errorAlertPopup(result.error_message);
         }
+      })
+    }
+
+    else if (this.userDetails == 'learner') {
+      const data = {
+        name: this.loginForm.value.email,
+        pass: this.loginForm.value.password,
+        user_type: this.userDetails
+
       }
-      catch (error) {
-        this.util.errorAlertPopup(result.error_message);
-      }
-    })
+      this.service.post('user/login', data, 0).subscribe(result => {
+        try {
+          if (result['status'] == 200) {
+            this.getInstructionName();
+            this.util.showSuccessToast(result['message']);;
+            localStorage.setItem("csrftoken", result['current_user']['csrf_token']);
+            localStorage.setItem("uid", result['current_user']['uid']);
+            localStorage.setItem('userMail', result['current_user']['name']);
+            localStorage.setItem('isLogin', '1');
+            localStorage.setItem('Authorization', result['current_user']['basic_auth_token'])
+            // this.util.showSuccessAlert(result['message']);
+            this.router.navigate(['/sample04']);
+          }
+          else {
+            this.toastr.error(result.error_message);
+            this.util.errorAlertPopup(result.error_message);
+          }
+        }
+        catch (error) {
+          this.util.errorAlertPopup(result.error_message);
+        }
+      })
+    }
   }
 
   // get instruction name

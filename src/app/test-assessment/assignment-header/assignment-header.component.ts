@@ -37,4 +37,11 @@ export class AssignmentHeaderComponent implements OnInit {
     this.router.navigate(['/test/test-listing-home']);
   }
 
+  goToAssignment(){
+    this.router.navigate(['/assignment/test-assignment-home']);
+  }
+
+  goToClassMaterial(){
+    this.router.navigate(['/class-material/assignment-detail']);
+  }
 }
