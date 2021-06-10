@@ -135,7 +135,7 @@ FullCalendarModule.registerPlugins([
     MidtermPreviewSecondComponent,
     EditPointsScreenComponent,
     AppDashboardHeaderComponent,
-    CalendarComponent,
+    CalendarComponent
   ],
   imports: [
     FullCalendarModule,

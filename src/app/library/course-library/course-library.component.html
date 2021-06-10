@@ -1,0 +1,248 @@
+<div class="dashboard">
+  <app-library-sidebar></app-library-sidebar>
+  <div class="control-panel">
+    <!-- dashboard header start -->
+    <div class="dashboard-header mb-2" style="border-bottom: 1px dashed #E7EDFF;">
+      <div class="user-search-setting">
+        <form>
+          <input type="search" placeholder="Search now ...">
+          <button class="search-btn"><img src="assets/images/dashboard/search.png"></button>
+        </form>
+        <div class="user-notification">
+          <img src="assets/images/dashboard/notification.png" class="dropdown-toggle" data-toggle="dropdown">
+          <div class="dropdown-menu">
+            <a class="dropdown-item">Notification 1</a>
+            <a class="dropdown-item">Notification 2</a>
+            <a class="dropdown-item">Notification 3</a>
+          </div>
+        </div>
+        <div class="user-setting">
+          <img src="assets/images/dashboard/setting.png" class="dropdown-toggle" data-toggle="dropdown">
+          <div class="dropdown-menu">
+            <a class="dropdown-item">Logout</a>
+          </div>
+        </div>
+      </div>
+      <div class="site-logo">
+        <img src="assets/images/LOGO.png">
+      </div>
+    </div>
+    <!-- dashboard header end -->
+
+    <div class="tab-content">
+      <div id="course-content" class="tab-pane active">
+        <div class="prospectus-section">
+          <div class="prospectus-tabs">
+            <h3>Course library</h3>
+            <div class="prospectus-action">
+              <a class="add-btn custom-a-btn" data-toggle="modal" data-target="#addCourse"
+                style="width: 115px; height: 36px;">Add materials</a>
+            </div>
+          </div>
+
+          <div class="tab-content">
+            <div id="personal" class="tab-pane active">
+              <div class="table-responsive">
+                <table class="table dashboard-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">No.</th>
+                      <th scope="col" class="text-left table-filter">Name</th>
+                      <th scope="col" class="table-filter text-left">File type</th>
+                      <th scope="col" class="table-filter">Uploaded by</th>
+                      <th scope="col" class="table-filter">Size</th>
+                      <th scope="col"><a data-toggle="modal" data-target="#cancel"><i class="fa fa-ellipsis-v"
+                            aria-hidden="true" style="color: #7990B4"></i></a></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td class="text-left">For Elementary Biology administrators</td>
+                      <td class="display-center">
+                        <img src="assets/images/Personal Library/Vector-2.png">
+                        <p style="margin: 0; padding-left: 6px;">Folder</p>
+                      </td>
+                      <td>Marina Brandy</td>
+                      <td>33 Mb</td>
+                      <th>
+                        <div class="radio-table"><input type="checkbox"></div>
+                      </th>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td class="text-left">Pre-assignment reading - geography</td>
+                      <td class="display-center">
+                        <img src="assets/images/Personal Library/file.png">
+                        <p style="margin: 0; padding-left: 6px;">File</p>
+                      </td>
+                      <td>Darren Leow</td>
+                      <td>103 Mb</td>
+                      <th>
+                        <div class="radio-table"><input type="checkbox"></div>
+                      </th>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td class="text-left">Formula generation - Engineering gears</td>
+                      <td class="display-center">
+                        <img src="assets/images/Personal Library/blackboard.png">
+                        <p style="margin: 0; padding-left: 6px;">Whiteboard</p>
+                      </td>
+                      <td>Darren Leow</td>
+                      <td>1 Mb</td>
+                      <th>
+                        <div class="radio-table"><input type="checkbox"></div>
+                      </th>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td class="text-left">Pure Physics - Term 2</td>
+                      <td class="display-center">
+                        <img src="assets/images/Personal Library/Vector.png">
+                        <p style="margin: 0; padding-left: 6px;">Test</p>
+                      </td>
+                      <td>Kennedy Johnson</td>
+                      <td>1 Mb</td>
+                      <th>
+                        <div class="radio-table"><input type="checkbox"></div>
+                      </th>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td class="text-left">Instructions on baking strawberry cake</td>
+                      <td class="display-center">
+                        <img src="assets/images/Personal Library/write.png">
+                        <p style="margin: 0; padding-left: 6px;">Assignment</p>
+                      </td>
+                      <td>Assignment</td>
+                      <td>0.5 Mb</td>
+                      <th>
+                        <div class="radio-table"><input type="checkbox"></div>
+                      </th>
+                    </tr>
+                    <tr>
+                      <td>6</td>
+                      <td class="text-left">For Elementary Biology administrators</td>
+                      <td class="display-center">
+                        <img src="assets/images/Personal Library/Vector-3.png">
+                        <p style="margin: 0; padding-left: 6px;">Folder</p>
+                      </td>
+                      <td>Marina Brandy</td>
+                      <td>3.2 Mb</td>
+                      <th>
+                        <div class="radio-table"><input type="checkbox"></div>
+                      </th>
+                    </tr>
+                    <tr>
+                      <td>7</td>
+                      <td class="text-left">Pre-assignment reading - geography</td>
+                      <td class="display-center">
+                        <img src="assets/images/Personal Library/file-1.png">
+                        <p style="margin: 0; padding-left: 6px;">File</p>
+                      </td>
+                      <td>Darren Leow</td>
+                      <td>0.5 Mb</td>
+                      <th>
+                        <div class="radio-table"><input type="checkbox"></div>
+                      </th>
+                    </tr>
+                    <tr>
+                      <td>8</td>
+                      <td class="text-left">Formula generation - Engineering gears</td>
+                      <td class="display-center">
+                        <img src="assets/images/Personal Library/blackboard-1.png">
+                        <p style="margin: 0; padding-left: 6px;">Whiteboard</p>
+                      </td>
+                      <td>Darren Leow</td>
+                      <td>0.5 Mb</td>
+                      <th>
+                        <div class="radio-table"><input type="checkbox"></div>
+                      </th>
+                    </tr>
+                    <tr>
+                      <td>9</td>
+                      <td class="text-left">Pure Physics - Term 2</td>
+                      <td class="display-center">
+                        <img src="assets/images/Personal Library/Vector-1.png">
+                        <p style="margin: 0; padding-left: 6px;">Test</p>
+                      </td>
+                      <td>Kennedy Johnson</td>
+                      <td>0.5 Mb</td>
+                      <th>
+                        <div class="radio-table"><input type="checkbox"></div>
+                      </th>
+                    </tr>
+                    <tr>
+                      <td>10</td>
+                      <td class="text-left">Instructions on baking strawberry cake</td>
+                      <td class="display-center">
+                        <img src="assets/images/Personal Library/write-1.png">
+                        <p style="margin: 0; padding-left: 6px;">Assignment</p>
+                      </td>
+                      <td>Assignment</td>
+                      <td>0.5 Mb</td>
+                      <th>
+                        <div class="radio-table"><input type="checkbox"></div>
+                      </th>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td class="text-left">&nbsp;</td>
+                      <td class="display-center">&nbsp;</td>
+                      <td>&nbsp;</td>
+                      <td style="padding-bottom: 5em;">12.25 Gb</td>
+                      <th>&nbsp;</th>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="table-result-wrapper bottom-select col-lg-12">
+                <div class="col-md-4 display-center">
+                  <select name="course" id="course-name">
+                    <option selected>10</option>
+                    <option value="Course 1">1</option>
+                    <option value="Course 2">2</option>
+                    <option value="Course 3">3</option>
+                  </select>
+                  <p>Results: 1-15 of 324</p>
+                </div>
+                <div class="selector col-lg-8">
+                  <ul>
+                    <li><a><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+                    <li><a>1</a></li>
+                    <li><a>2</a></li>
+                    <li class="active"><a>3</a></li>
+                    <li><a>4</a></li>
+                    <li><a>5</a></li>
+                    <li><a>...</a></li>
+                    <li><a class="right-arrow"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit icon modal popup start -->
+<div id="cancel" class="modal deletecourse-modal" role="dialog">
+  <div class="modal-dialog" style="position: relative; left: 39em; top: 11em; max-width: 124px;">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body" style="padding:6px 6px;">
+        <ul>
+          <li><a><i class="fa fa-pencil" aria-hidden="true"></i>Edit</a></li>
+          <li><a><i class="fa fa-arrow-down" aria-hidden="true"></i>Download</a></li>
+          <li><a><i class="fa fa-arrows-alt" aria-hidden="true"></i>Move</a></li>
+          <li><a><i class="fa fa-trash" aria-hidden="true"></i>Delete</a></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
