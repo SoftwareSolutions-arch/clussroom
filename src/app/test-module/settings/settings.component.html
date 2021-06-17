@@ -81,17 +81,17 @@
 						</div>
 						<div class="col-sm-2" style="padding: 0 20px;">
 							<select [(ngModel)]="SettingsData.attempts" name="course" id="course-name">
-								<option selected>1</option>
-								<option value="Course 1">2</option>
-								<option value="Course 2">3</option>
-								<option value="Course 3">4</option>
+								<option value="1" selected>1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
 							</select>
 						</div>
 						<div class="attempt">
 							<select [(ngModel)]="SettingsData.attempts_score" name="course" id="course-name" style="width: 148px;">
-								<option value="Course 1" selected>Last attempt</option>
-								<option value="Course 2">Best score</option>
-								<option value="Course 3">Average score</option>
+								<option value="Last attempt" selected>Last attempt</option>
+								<option value="Best score">Best score</option>
+								<option value="Average score">Average score</option>
 							</select>
 						</div>
 					</div>
@@ -101,10 +101,10 @@
 						</div>
 						<div class="custom">
 							<select [(ngModel)]="SettingsData.pagination" name="course" id="course-name">
-								<option selected>1</option>
-								<option value="Course 1">2</option>
-								<option value="Course 2">3</option>
-								<option value="Course 3">4</option>
+								<option value="1" selected>1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
 							</select>
 							<label>Questions per page</label>
 						</div>
@@ -115,8 +115,8 @@
 						</div>
 						<div class="custom">
 							<select [(ngModel)]="SettingsData.view_ans_after_compliation" name="course" id="course-name">
-								<option selected>No</option>
-								<option value="Course 1">Yes</option>
+								<option value="No" selected>No</option>
+								<option value="Yes">Yes</option>
 							</select>
 							<label>After completion</label>
 						</div>

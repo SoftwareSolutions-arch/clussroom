@@ -30,6 +30,8 @@ import { AdminComponent } from './admin/admin.component';
 import { LiveSessionsComponent } from './live-sessions/live-sessions.component';
 import { ProgressComponent } from './progress/progress.component';
 import { TestModule } from './test-module/test-module';
+import { ImageCroppingComponent } from './image-cropping/image-cropping.component';
+
 const routes: Routes = [
   {
     path: '', redirectTo: '/home', pathMatch: 'full'
@@ -48,6 +50,9 @@ const routes: Routes = [
   },
   {
     path: 'school-name', component: SchoolNameComponent
+  },
+  {
+    path: 'image', component: ImageCroppingComponent
   },
   {
     path: 'instruction-name', component: InstructionNameComponent
@@ -134,6 +139,10 @@ const routes: Routes = [
   {
     path: 'library',
     loadChildren: () => import('./library/library.module').then(m => m.LibraryModule)
+  },
+  {
+    path: 'image',
+    loadChildren: () => import('./image-cropper/image-cropper.module').then(m => m.ImageCropperModule)
   }
 ];
 

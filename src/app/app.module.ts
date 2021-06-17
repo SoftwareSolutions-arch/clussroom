@@ -78,6 +78,7 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
 import { CalendarComponent } from './test-module/calendar/calendar.component';
+import { ImageCroppingComponent } from './image-cropping/image-cropping.component';
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -135,7 +136,8 @@ FullCalendarModule.registerPlugins([
     MidtermPreviewSecondComponent,
     EditPointsScreenComponent,
     AppDashboardHeaderComponent,
-    CalendarComponent
+    CalendarComponent,
+    ImageCroppingComponent,
   ],
   imports: [
     FullCalendarModule,

@@ -45,7 +45,9 @@ export class SettingsComponent implements OnInit {
 
   // confirm add test
   confirm() {
-    this.isLoadingBool = true;
+    this.SettingsData.timer=(this.SettingsData.timer == true) ? "Yes" : "No"
+    
+    console.log('this.SettingsData', this.SettingsData);
 
     this.SettingsData.class_nid = this.classId;
     var x = new Date(this.SettingsData.test_available_from);
@@ -57,7 +59,7 @@ export class SettingsComponent implements OnInit {
     else {
       this.isLoadingBool = true;
       this.service.post('add-test-api', this.SettingsData, 1).subscribe(result => {
-        
+        console.log('result',result)
         if(result.status=='1'){
           this.isLoadingBool = false;
           this.util.showSuccessAlert('Test added successfully');
