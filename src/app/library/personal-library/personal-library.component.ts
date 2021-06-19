@@ -12,19 +12,28 @@ export class PersonalLibraryComponent implements OnInit {
   @ViewChild('addmaterial') private addmaterial: ElementRef;
 
   isLoadingBool: boolean = true;
-  selectedDataType:any=''
+  selectedDataType: any = ''
   constructor(public service: SharedServiceService) {
     this.getPersonalListing();
   }
 
 
-  ngOnInit(): void {
-
+  ngOnInit(): void {  
   }
 
-  typeData(data){
-    this.selectedDataType=data;
-    console.log('data',data);
+  typeData(data) {
+    this.selectedDataType = data;
+    console.log('data', data);
+    $(document).ready(function () {
+      $('.slectOne').on('change', function () {
+        $('.slectOne').not(this).prop('checked', false);
+        $('#result').html($(this).data("id"));
+        if ($(this).is(":checked"))
+          $('#result').html($(this).data("id"));
+        else
+          $('#result').html('Empty...!');
+      });
+    });
   }
 
   createTest() {

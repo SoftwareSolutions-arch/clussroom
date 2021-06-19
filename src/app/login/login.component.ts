@@ -136,6 +136,7 @@ export class LoginComponent implements OnInit {
 
       }
       this.service.post('user/login', data, 0).subscribe(result => {
+        console.log('result',result)
         try {
           if (result['status'] == 200) {
             this.getInstructionName();
@@ -145,8 +146,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('userMail', result['current_user']['name']);
             localStorage.setItem('isLogin', '1');
             localStorage.setItem('Authorization', result['current_user']['basic_auth_token'])
-            // this.util.showSuccessAlert(result['message']);
-            this.router.navigate(['/sample04']);
+            // this.router.navigate(['/library/main-library']);
           }
           else {
             this.toastr.error(result.error_message);

@@ -1,6 +1,9 @@
 <div class="dashboard">
   <app-library-sidebar></app-library-sidebar>
   <div class="control-panel">
+    <div *ngIf="isLoadingBool" class="loading-indicator">
+      <mat-spinner></mat-spinner>
+    </div>
     <!-- dashboard header start -->
     <div class="dashboard-header mb-2" style="border-bottom: 1px dashed #E7EDFF;">
       <div class="user-search-setting">
@@ -28,7 +31,7 @@
       </div>
     </div>
     <!-- dashboard header end -->
-    <div class="tab-content col-lg-12">
+    <div class="col-lg-12">
       <div id="course-content" class="tab-pane active">
         <div class="prospectus-section">
           <div class="prospectus-tabs">
@@ -61,13 +64,19 @@
                       <td>1</td>
                       <td class="text-left">{{mainData.name}}</td>
                       <td class="display-center">
-                        <img src="assets/images/Personal Library/Vector-2.png">
+                        <img *ngIf="mainData.file_type=='Test'" src="assets/images/Personal Library/Vector.png">
+                        <img *ngIf="mainData.file_type=='folder'" src="assets/images/Personal Library/Vector-3.png">
+                        <img *ngIf="mainData.file_type=='video/mp4'" src="assets/images/Personal Library/file.png">
+                        <img *ngIf="mainData.file_type=='image/png'" src="assets/images/Personal Library/file.png">
                         <p style="margin: 0; padding-left: 6px;">{{mainData.file_type}}</p>
                       </td>
                       <td>{{mainData.uploaded_by}}</td>
                       <td>{{mainData.size}} Mb</td>
                       <th>
-                        <div class="radio-table"><input type="checkbox"></div>
+                        <div class="radio-table">
+                          <input style="height: 22px !important;" name="checkbox"
+                            (click)="isCheckboxClicked($event,mainData)" type="radio">
+                        </div>
                       </th>
                     </tr>
                     <!-- <tr>
@@ -209,17 +218,8 @@
                   <p>Results: 1-15 of 324</p>
                 </div>
                 <div class="selector col-lg-8">
-                  <ul>
-                    <li><a><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
-                    <li><a>1</a></li>
-                    <li><a>2</a></li>
-                    <li class="active"><a>3</a></li>
-                    <li><a>4</a></li>
-                    <li><a>5</a></li>
-                    <li><a>...</a></li>
-                    <li><a class="right-arrow"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-                    </li>
-                  </ul>
+                  <pagination-controls previousLabel="Prev" nextLabel="Next" responsive="true"
+                  (pageChange)="handlePageChange($event)"></pagination-controls>
                 </div>
               </div>
             </div>
@@ -231,17 +231,18 @@
 </div>
 
 <!-- Edit icon modal popup start -->
-<div id="cancel" class="modal deletecourse-modal" role="dialog">
+<div id="cancel" class="modal deletecourse-modal" role="dialog" #editmodelbutton>
   <div class="modal-dialog" style="position: relative; left: 39em; top: 11em; max-width: 124px;">
-
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-body" style="padding:6px 6px;">
         <ul>
-          <li><a><i class="fa fa-pencil" aria-hidden="true"></i>Edit</a></li>
-          <li><a><i class="fa fa-arrow-down" aria-hidden="true"></i>Download</a></li>
-          <li><a><i class="fa fa-arrows-alt" aria-hidden="true"></i>Move</a></li>
-          <li><a><i class="fa fa-trash" aria-hidden="true"></i>Delete</a></li>
+          <li data-toggle="modal" data-target="#editdrag"><a><i class="fa fa-pencil" aria-hidden="true"></i>Edit</a>
+          </li>
+          <li (click)="downloadLibrary()"><a><i class="fa fa-arrow-down" aria-hidden="true"></i>Download</a></li>
+          <li (click)="moveToPage()"><a><i class="fa fa-arrows-alt" aria-hidden="true"></i>Move</a></li>
+          <li><a><i class="fa fa-trash" aria-hidden="true" data-toggle="modal" data-target="#deletemat"></i>Delete</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -264,12 +265,12 @@
       </div>
       <div class="modal-body" style="padding:26px 26px 0px 26px !important">
         <label class="mat-container border-bottom">
-          <input  (input)="typeData('folder')" type="checkbox" id="chkBoxHelp" name="HelpCheckbox" value="Help" />Folder
+          <input (input)="typeData('folder')" type="checkbox" id="chkBoxHelp" name="HelpCheckbox" value="Help" />Folder
           <span class="mat-checkmark"></span>
         </label>
 
         <label class="mat-container border-bottom">
-          <input  (input)="typeData('file')" name="1" type="checkbox">File (Pdf, Excel, Audio, Video, Word)
+          <input (input)="typeData('file')" name="1" type="checkbox">File (Pdf, Excel, Audio, Video, Word)
           <span class="mat-checkmark"></span>
         </label>
 
@@ -284,7 +285,7 @@
         </label>
       </div>
       <div class="mat-modal-footer col-lg-12" style="padding-top: 4px;" *ngIf="this.selectedDataType==''">
-        <button type="button" class="mat-blue" >Create</button>
+        <button type="button" class="mat-blue">Create</button>
         <button type="button" class="mat-gr" data-dismiss="modal">Cancel</button>
       </div>
       <div class="mat-modal-footer col-lg-12" style="padding-top: 4px;" *ngIf="this.selectedDataType=='folder'">
@@ -292,11 +293,13 @@
         <button type="button" class="mat-gr" data-dismiss="modal">Cancel</button>
       </div>
       <div class="mat-modal-footer col-lg-12" style="padding-top: 4px;" *ngIf="this.selectedDataType=='file'">
-        <button type="button" class="mat-blue">Create</button>
+        <input id="imageUpload" #attachments style="display: none" type="file" class="upload custom-input-file"
+          (change)="picked($event)" />
+        <label style="text-align: center;padding: inherit;" for="imageUpload" class="mat-blue">Create</label>
         <button type="button" class="mat-gr" data-dismiss="modal">Cancel</button>
       </div>
       <div class="mat-modal-footer col-lg-12" style="padding-top: 4px;" *ngIf="this.selectedDataType=='white board'">
-        <button type="button" class="mat-blue" >Create</button>
+        <button type="button" class="mat-blue">Create</button>
         <button type="button" class="mat-gr" data-dismiss="modal">Cancel</button>
       </div>
       <div class="mat-modal-footer col-lg-12" style="padding-top: 4px;" *ngIf="this.selectedDataType=='test'">
@@ -361,53 +364,46 @@
       <div class="modal-body folder-input box-shadow"
         style="padding:26px 26px 0px 26px !important; justify-content: center;">
         <label>Course Name: </label>
-        <input type="text" placeholder="Geography for Secondary 4">
+        <select (change)="viewAllCoursesList()" [(ngModel)]="selectedCategory" name="course" id="course-name">
+          <option *ngFor="let item of this.allCourseList" [ngValue]="item">{{item.title}}</option>
+        </select>
       </div>
 
       <div class="col-lg-12 footer-input box-shadow mt-3">
         <label>Level: </label>
         <select style="margin-right: 2.6em;">
-          <option>Secondary 1</option>
-          <option>Secondary 2</option>
-          <option>Secondary 3</option>
-          <option selected>Secondary 4</option>
+          <option>{{selectedCategory.field_level}}</option>
         </select>
 
         <label>Banding: </label>
         <select>
-          <option>Band 1</option>
-          <option>Band 2</option>
-          <option selected>Band 3</option>
-          <option>Band 4</option>
+          <option>{{selectedCategory.field_banding}}</option>
         </select>
       </div>
 
       <div class="col-lg-12 footer-input box-shadow mt-3" style="padding: 0 26px 0 92px;">
         <label>Class: </label>
-        <select style="margin-right: 2.6em;">
-          <option>Poppins 1</option>
-          <option>Poppins 2</option>
-          <option>Poppins 3</option>
-          <option selected>Poppins</option>
+        <select (change)="getTestListing()" [(ngModel)]="selectedClass" style="margin-right: 2.6em;" name="level"
+          id="levelcourse">
+          <option *ngFor="let classesData of this.allClassesData" [ngValue]="classesData">
+            {{classesData.title}}
+          </option>
         </select>
 
         <label>Class code: </label>
-        <p>#56782</p>
+        <p>#{{selectedClass.field_class_code}}</p>
       </div>
 
       <div class="modal-body folder-input box-shadow mt-3"
         style="justify-content: center; border: 1px solid #F1F6FB; padding-bottom: 3em;">
-        <label>Course Name: </label>
-        <select>
-          <option selected>Test name</option>
-          <option>Test name 1</option>
-          <option>Test name 2</option>
-          <option>Test name 3</option>
+        <label>Select Test: </label>
+        <select [(ngModel)]="selectedTest">
+          <option *ngFor="let testData of this.testAllData" [ngValue]="testData">{{testData.test_name}}</option>
         </select>
       </div>
 
       <div class="mat-modal-footer col-lg-12">
-        <button type="button" class="mat-blue">Create</button>
+        <button type="button" class="mat-blue" (click)="addTest()">Create</button>
         <button type="button" class="mat-gr" data-dismiss="modal">Cancel</button>
       </div>
     </div>
@@ -415,3 +411,68 @@
 </div>
 
 <!-- Add test form popup end -->
+
+<!-- Delete modal popup start -->
+<div id="deletemat" class="modal deletecourse-modal" role="dialog" #deleteclosebutton>
+  <div class="modal-dialog" style="max-width: 600px;">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body" style="padding-bottom: 2em;">
+        <button type="button" class="close" data-dismiss="modal"><img
+            src="assets/images/dashboard/close-modal.png"></button>
+        <figure>
+          <img src="assets/images/dashboard/delete-course.png">
+        </figure>
+        <div class="col-lg-12" style="border-bottom: 1px solid #F1F6FB; padding-bottom: 3em;">
+          <h4 class="modal-title">Delete material?</h4>
+        </div>
+
+        <div class="col-lg-12 delete-mat">
+          <ul>
+            <li>
+              <div class="col-lg-10">
+                <p class="text-left">{{this.selectedLibraryData.name}}</p>
+              </div>
+              <div class="col-sm-2 text-right">
+                <button type="button"><i class="fa fa-times" aria-hidden="true"></i></button>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <a (click)="deleteCourse()" class="del-btn-course">Delete Course</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Delete modal popup start -->
+
+
+<div id="editdrag" class="modal add-mat-modal" role="dialog" #editlibrary>
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header" style="padding: 6px 0;">
+        <h4>Edit name</h4>
+        <button type="button" class="mat-close" data-dismiss="modal" style="padding: 6px 0;"><i class="fa fa-times"
+            aria-hidden="true"></i></button>
+      </div>
+      <div class="modal-body" style="padding:26px 26px 0px 26px !important">
+        <div class="col-lg-12 display-center">
+          <div class="col-sm-1">
+            <img src="assets/images/Personal Library/Vector-3.png">
+          </div>
+          <div class="col-lg-11 drag-input display-center">
+            <label class="mr-4" style="margin-bottom: 0 !important;">Folder</label>
+            <input [(ngModel)]="editFoldername" type="text" placeholder="For Elementary Biology administrators">
+          </div>
+        </div>
+        <div class="col-lg-12 text-center">
+          <button type="submit" class="drag-save mt-5 mb-5" (click)="saveEditRecord()">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

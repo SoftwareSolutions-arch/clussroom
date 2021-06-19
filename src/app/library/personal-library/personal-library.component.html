@@ -42,7 +42,7 @@
                 materials</a>
             </div>
           </div>
-          <div class="tab-content col-lg-121">
+          <div class="tab-content col-lg-12">
             <div id="main" class="tab-pane">
               <div class="table=-responsive">
                 <table class="table dashboard-table">
@@ -447,22 +447,22 @@
       </div>
       <div class="modal-body" style="padding:26px 26px 0px 26px !important">
         <label class="mat-container border-bottom" >
-          <input (input)="typeData('folder')" type="checkbox" id="chkBoxHelp" name="Helpcheckbox" value="Help" />Folder
+          <input (input)="typeData('folder')" type="checkbox" class="slectOne" data-id="1 selected" />Folder
           <span class="mat-checkmark" ></span>
         </label>
 
         <label class="mat-container border-bottom">
-          <input (input)="typeData('file')" type="checkbox">File (Pdf, Excel, Audio, Video, Word)
+          <input (input)="typeData('file')" type="checkbox" class="slectOne" data-id="2 selected">File (Pdf, Excel, Audio, Video, Word)
           <span class="mat-checkmark"></span>
         </label>
 
         <label class="mat-container border-bottom">
-          <input (input)="typeData('white board')" type="checkbox">White Board
+          <input (input)="typeData('white board')" type="checkbox" class="slectOne" data-id="3 selected">White Board
           <span class="mat-checkmark"></span>
         </label>
 
         <label class="mat-container border-bottom">
-          <input (input)="typeData('test')" type="checkbox">Test
+          <input (input)="typeData('test')" type="checkbox" class="slectOne" data-id="4 selected">Test
           <span class="mat-checkmark"></span>
         </label>
       </div>
@@ -495,12 +495,12 @@
 
       <div class="folder-input border-bottom" style="padding:26px 26px 26px 26px !important">
         <label>Color: </label>
-        <a href="#"><img src="assets/images/Personal Library/folder.png"></a>
-        <a href="#"><img src="assets/images/Personal Library/folder-1.png"></a>
-        <a href="#"><img src="assets/images/Personal Library/folder-2.png"></a>
-        <a href="#"><img src="assets/images/Personal Library/folder-3.png"></a>
-        <a href="#"><img src="assets/images/Personal Library/folder-4.png"></a>
-        <a href="#"><img src="assets/images/Personal Library/folder-5.png"></a>
+        <a><img src="assets/images/Personal Library/folder.png"></a>
+        <a><img src="assets/images/Personal Library/folder-1.png"></a>
+        <a><img src="assets/images/Personal Library/folder-2.png"></a>
+        <a><img src="assets/images/Personal Library/folder-3.png"></a>
+        <a><img src="assets/images/Personal Library/folder-4.png"></a>
+        <a><img src="assets/images/Personal Library/folder-5.png"></a>
       </div>
 
       <div class="mat-modal-footer col-lg-12">

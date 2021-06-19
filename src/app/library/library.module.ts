@@ -11,6 +11,7 @@ import { FileTransferComponent } from './file-transfer/file-transfer.component';
 import { CourseLibraryComponent } from './course-library/course-library.component';
 import { MainLibraryComponent } from './main-library/main-library.component';
 import { PersonalLibraryComponent } from './personal-library/personal-library.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 @NgModule({
     imports: [
@@ -21,7 +22,7 @@ import { PersonalLibraryComponent } from './personal-library/personal-library.co
         FormsModule,
         NgxPaginationModule,
         AngularEditorModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,DragDropModule
     ],
     declarations: [
         FileTransferComponent,
