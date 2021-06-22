@@ -30,8 +30,8 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/slick-carousel/slick/slick.scss",
               "node_modules/slick-carousel/slick/slick-theme.scss",
-              "node_modules/angular-calendar/css/angular-calendar.css"
-
+              "node_modules/angular-calendar/css/angular-calendar.css",
+              "node_modules/angular2-draggable/css/resizable.min.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",

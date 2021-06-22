@@ -312,6 +312,17 @@ td.fc-daygrid-day.fc-day {
   text-decoration: none !important;
 }
 
+
+.hiddenEvent{display: none;}
+.fc-other-month .fc-day-number { display:none;}
+
+td.fc-other-month .fc-day-number {
+    visibility: hidden;
+}
 .fc .fc-toolbar.fc-header-toolbar {
   margin: 14px 0 !important;
+}
+
+td.fc-other-month {
+  visibility: hidden;
 }

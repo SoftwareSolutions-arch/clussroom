@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SharedServiceService } from '../../shared-service.service';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { UtilService } from '../../../providers/util.service';
+import { da } from 'date-fns/locale';
 
 @Component({
   selector: 'app-file-transfer',
@@ -13,27 +14,97 @@ export class FileTransferComponent implements OnInit {
   isLoadingBool: boolean = true;
   libraryTypeFirst: any = 'main';
   libraryTypeSecond: any = 'personal';
-  libraryData: any = '';
-  libraryDataSecond: any = '';
-
+  libraryData=[];
+  libraryDataSecond=[];
+  mainLibrary: any = []
+  array = []
   constructor(public service: SharedServiceService, public util: UtilService) {
     this.userId = localStorage.getItem('uid');
     this.getMainListing('first');
     this.getMainListing('second');
   }
-  drop(event: CdkDragDrop<string[]>) {
-    console.log(event)
+
+  ngOnInit(): void {
+  }
+
+  drop(event: CdkDragDrop<string[]>, data) {
+    console.log('event', event);
+    this.array = [];
+    this.isLoadingBool = true;
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
+      this.mainLibrary = event.container.data;
+      this.mainLibrary.forEach(element => {
+        this.array.push(
+          {
+            'id': element['id'],
+            'transfer_library_type': element['library_type'],
+            'materials_type': element['file_type']
+          }
+        )
+      });
+      let params = {
+        'library_data': this.array
+      }
+      this.service.post('transfer-library-api', params, 1).subscribe(result => {
+        console.log('result', result);
+        this.isLoadingBool = false;
+        this.getMainListing('first');
+        this.getMainListing('second');
+      })
+    }
+    else {
       transferArrayItem(event.previousContainer.data,
         event.container.data,
         event.previousIndex,
         event.currentIndex);
-    }
-  }
+      console.log('event.container.data', event.container.data);
+      this.mainLibrary = event.container.data;
 
-  ngOnInit(): void {
+      if (data == 1) {
+        this.mainLibrary.forEach(element => {
+          console.log(element.file_type)
+          this.array.push(
+            {
+              'id': element['id'],
+              'transfer_library_type': this.libraryTypeFirst,
+              'materials_type': element['file_type']
+            }
+          )
+        });
+        let params = {
+          'library_data': this.array
+        }
+        this.service.post('transfer-library-api', params, 1).subscribe(result => {
+          console.log('result', result);
+          this.isLoadingBool = false;
+          this.getMainListing('first');
+          this.getMainListing('second');
+        })
+      }
+
+      if (data == 2) {
+        this.mainLibrary.forEach(element => {
+          this.array.push(
+            {
+              'id': element['id'],
+              'transfer_library_type': this.libraryTypeSecond,
+              'materials_type': element['file_type']
+            }
+          )
+        });
+        let params = {
+          'library_data': this.array
+        }
+        this.service.post('transfer-library-api', params, 1).subscribe(result => {
+          console.log('result', result);
+          this.isLoadingBool = false;
+          this.getMainListing('first');
+          this.getMainListing('second');
+        })
+      }
+
+    }
   }
 
   getMainListing(data) {
@@ -47,8 +118,15 @@ export class FileTransferComponent implements OnInit {
         this.isLoadingBool = true;
         this.service.post('vendor_library_listing', params, 1).subscribe(result => {
           this.isLoadingBool = false;
-          this.libraryData = result.result;
-          console.log('result', result);
+          if (result.result.message == "No Data Found") {
+            this.util.showSuccessToast(result.result.message);
+            this.libraryData =[];
+          }
+
+          else {
+            this.libraryData = result.result;
+            console.log('result', result);
+          }
         })
       }
       else {
@@ -61,12 +139,23 @@ export class FileTransferComponent implements OnInit {
         this.service.post('vendor_library_listing', params, 1).subscribe(result => {
           console.log('result', result);
           this.isLoadingBool = false;
-          this.libraryDataSecond = result.result;
+          if (result.result.message == "No Data Found") {
+            this.util.showSuccessToast(result.result.message);
+            this.libraryDataSecond =[];
+          }
+
+          else {
+            this.libraryDataSecond = result.result;
+          }
         })
       }
     }
     else {
       this.util.showSuccessToast('please select different library')
     }
+  }
+
+  itemsMovedIn() {
+
   }
 }

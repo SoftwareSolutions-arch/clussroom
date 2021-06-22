@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { SharedServiceService } from '../../shared-service.service';
 import { UtilService } from '../../../providers/util.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-library',
@@ -15,7 +15,6 @@ export class MainLibraryComponent implements OnInit {
   @ViewChild('deleteclosebutton') private deleteclosebutton: ElementRef;
   @ViewChild('editmodelbutton') private editmodelbutton: ElementRef;
   @ViewChild('editlibrary') private editlibrary: ElementRef;
-
   @ViewChild('attachments') attachment: any;
 
   isLoadingBool: boolean = true;
@@ -194,23 +193,21 @@ export class MainLibraryComponent implements OnInit {
 
     // Delete the item from fileNames list
     this.listOfFiles.splice(index, 1);
-    // delete file from FileList
     this.fileList.splice(index, 1);
-
     this.ExteriorPicString.splice(index, 1);
-
   }
 
   handleInputChange(files) {
-    console.log('files', files.type);
+    console.log('fies', files.type)
     this.fileType = files.type
+
     var file = files;
     var pattern = /image-*/;
     var reader = new FileReader();
-    // if (!file.type.match(pattern)) {
-    //   alert('invalid format');
-    //   return;
-    // }
+    var totalWords = files.type;
+    // var afterSlashChars = totalWords.match(/\/([^\/]+)\/?$/)[1];
+    this.fileType = totalWords.match('^[^/]+')[0];
+    console.log('firstWord', this.fileType)
     reader.onloadend = this._handleReaderLoaded.bind(this);
     reader.readAsDataURL(file);
   }
@@ -286,6 +283,7 @@ export class MainLibraryComponent implements OnInit {
 
   // download library
   downloadLibrary() {
+    console.log(' this.selectedLibraryData', this.selectedLibraryData)
     this.editlibrary.nativeElement.click();
     let params = {
       "materials_type": this.selectedLibraryData.file_type,
@@ -296,6 +294,7 @@ export class MainLibraryComponent implements OnInit {
     this.service.post('download-libarary-data', params, 1).subscribe(result => {
       console.log('result', result);
       this.isLoadingBool = false;
+      window.open(result.pdf);
     })
   }
 }

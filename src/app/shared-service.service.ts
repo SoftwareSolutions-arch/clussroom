@@ -91,4 +91,5 @@ export class SharedServiceService {
   public get YourComponentNameLoadedAlready(): boolean {
     return this._yourComponentNameLoadedAlready;
   }
+  
 }

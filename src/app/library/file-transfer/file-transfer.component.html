@@ -65,7 +65,7 @@
                       </tr>
                     </thead>
                     <tbody cdkDropList [cdkDropListData]="libraryData" class="example-list"
-                      (cdkDropListDropped)="drop($event)">
+                      (cdkDropListDropped)="drop($event,1)">
                       <tr class="example-box" *ngFor="let item of this.libraryData" cdkDrag>
                         <td>2</td>
                         <td class="text-left">{{item.name}}</td>
@@ -125,7 +125,7 @@
                       </tr>
                     </thead>
                     <tbody cdkDropList [cdkDropListData]="libraryDataSecond" class="example-list"
-                      (cdkDropListDropped)="drop($event)">
+                      (cdkDropListDropped)="drop($event,2)">
                       <tr *ngFor="let item of this.libraryDataSecond" class="example-box" cdkDrag>
                         <td>1</td>
                         <td class="text-left">{{item.name}}</td>
@@ -181,26 +181,6 @@
     </div>
   </div>
 </div>
-
-<!-- Edit icon modal popup start -->
-<div id="cancel" class="modal deletecourse-modal" role="dialog">
-  <div class="modal-dialog" style="position: relative; left: 39em; top: 11em; max-width: 124px;">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-body" style="padding:6px 6px;">
-        <ul>
-          <li><a><i class="fa fa-pencil" aria-hidden="true"></i>Edit</a></li>
-          <li><a><i class="fa fa-arrow-down" aria-hidden="true"></i>Download</a></li>
-          <li><a><i class="fa fa-arrows-alt" aria-hidden="true"></i>Move</a></li>
-          <li><a><i class="fa fa-trash" aria-hidden="true"></i>Delete</a></li>
-        </ul>
-      </div>
-    </div>
-
-  </div>
-</div>
-<!-- Edit icon modal popup end -->
 
 <script>
   $(document).ready(function () {

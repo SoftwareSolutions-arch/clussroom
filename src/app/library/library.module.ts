@@ -11,7 +11,8 @@ import { FileTransferComponent } from './file-transfer/file-transfer.component';
 import { CourseLibraryComponent } from './course-library/course-library.component';
 import { MainLibraryComponent } from './main-library/main-library.component';
 import { PersonalLibraryComponent } from './personal-library/personal-library.component';
-import {DragDropModule} from '@angular/cdk/drag-drop';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { AngularDraggableModule } from 'angular2-draggable';
 
 @NgModule({
     imports: [
@@ -22,7 +23,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
         FormsModule,
         NgxPaginationModule,
         AngularEditorModule,
-        MatProgressSpinnerModule,DragDropModule
+        MatProgressSpinnerModule, DragDropModule, AngularDraggableModule
     ],
     declarations: [
         FileTransferComponent,

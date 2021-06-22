@@ -64,10 +64,10 @@
                       <td>1</td>
                       <td class="text-left">{{mainData.name}}</td>
                       <td class="display-center">
-                        <img *ngIf="mainData.file_type=='Test'" src="assets/images/Personal Library/Vector.png">
+                        <img *ngIf="mainData.file_type=='test'" src="assets/images/Personal Library/Vector.png">
                         <img *ngIf="mainData.file_type=='folder'" src="assets/images/Personal Library/Vector-3.png">
-                        <img *ngIf="mainData.file_type=='video/mp4'" src="assets/images/Personal Library/file.png">
-                        <img *ngIf="mainData.file_type=='image/png'" src="assets/images/Personal Library/file.png">
+                        <img *ngIf="mainData.file_type=='video'" src="assets/images/Personal Library/file.png">
+                        <img *ngIf="mainData.file_type=='image'" src="assets/images/Personal Library/file.png">
                         <p style="margin: 0; padding-left: 6px;">{{mainData.file_type}}</p>
                       </td>
                       <td>{{mainData.uploaded_by}}</td>
@@ -219,7 +219,7 @@
                 </div>
                 <div class="selector col-lg-8">
                   <pagination-controls previousLabel="Prev" nextLabel="Next" responsive="true"
-                  (pageChange)="handlePageChange($event)"></pagination-controls>
+                    (pageChange)="handlePageChange($event)"></pagination-controls>
                 </div>
               </div>
             </div>
@@ -444,13 +444,12 @@
         <a (click)="deleteCourse()" class="del-btn-course">Delete Course</a>
       </div>
     </div>
-
   </div>
 </div>
 <!-- Delete modal popup start -->
 
 
-<div id="editdrag" class="modal add-mat-modal" role="dialog" #editlibrary>
+<div id="editdrag" class="modal add-mat-modal" role="dialog" #editlibrary ngDraggable>
   <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content">

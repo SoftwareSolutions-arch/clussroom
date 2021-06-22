@@ -80,6 +80,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 import { CalendarComponent } from './test-module/calendar/calendar.component';
 import { ImageCroppingComponent } from './image-cropping/image-cropping.component';
 
+
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
   timeGridPlugin,

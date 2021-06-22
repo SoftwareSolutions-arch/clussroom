@@ -29,9 +29,10 @@
         </div>
         <div class="col-lg-12 container border-bottom remind-radio mt-3" style="padding-bottom: .8em;">
           <ul>
-            <li style="margin-right: 4em;"><input type="radio" id="male" name="gender" value="male">
+            <li style="margin-right: 4em;">
+              <input [(ngModel)]="fillData.remainderType" type="radio" id="male" name="gender" value="personal">
               <label for="male">Personal reminder</label></li>
-            <li><input type="radio" id="female" name="gender" value="female">
+            <li><input [(ngModel)]="fillData.remainderType" type="radio" id="female" name="gender" value="class">
               <label for="female">Class reminder</label></li>
           </ul>
         </div>
@@ -40,7 +41,7 @@
           <ul>
             <li style="margin-right: 5em; align-items: center;">
               <label style="padding-right: 12px;">Date:</label>
-              <input type="date" disabled [(ngModel)]="this.selectDateTime.startStr">
+              <input type="date" [(ngModel)]="fillData.date">
             </li>
             <li style="align-items: center;">
               <label style="padding-right: 12px;">Time:</label>
@@ -49,10 +50,8 @@
           </ul>
           <div class="col-lg-12 mt-5" style="display: flex; align-items: center;">
             <label class="label-font" style="padding: 0 14px 0 30px;">Course name:</label>
-            <select style="width: 425px;">
-              <option selected>Geography for Secondary 4 - Level 3</option>
-              <option>Geography for Secondary 3 - Level 2</option>
-              <option>Geography for Secondary 2 - Level 1</option>
+            <select style="width: 425px;" (change)="viewAllCoursesList()" [(ngModel)]="selectedCategory">
+              <option *ngFor="let item of this.allCourseList" [ngValue]="item">{{item.title}}</option>
             </select>
           </div>
 
@@ -60,17 +59,12 @@
             <ul class="display-center">
               <li style="margin-right: 5.2em;"><label style="padding-right: 14px;">Level:</label>
                 <select style="width: 140px;">
-                  <option>Secondary 1</option>
-                  <option>Secondary 2</option>
-                  <option>Secondary 3</option>
-                  <option selected>Secondary 4</option>
+                  <option>{{selectedCategory.field_level}}</option>
                 </select>
               </li>
               <li><label style="padding-right: 13px;">Banding:</label>
                 <select style="width: 140px;">
-                  <option>Band 1</option>
-                  <option>Band 2</option>
-                  <option selected>Band 3</option>
+                  <option>{{selectedCategory.field_banding}}</option>
                 </select>
               </li>
             </ul>
@@ -78,15 +72,14 @@
           <div class="col-lg-12 mt-2 remind-input">
             <ul class="display-center">
               <li style="margin-right: 4.4em;"><label style="padding-right: 14px;">Class:</label>
-                <select style="width: 140px;">
-                  <option>Secondary 1</option>
-                  <option>Secondary 2</option>
-                  <option>Secondary 3</option>
-                  <option selected>Secondary 4</option>
-                </select>
+                <select [(ngModel)]="selectedClass" style="width: 140px;">
+                <option *ngFor="let classesData of this.allClassesData" [ngValue]="classesData">
+                  {{classesData.title}}
+                </option>
+              </select>
               </li>
               <li><label style="padding-right: 13px;">Class code:</label>
-                <p>#56782</p>
+                <p>#{{selectedClass.field_class_code}}</p>
               </li>
             </ul>
           </div>
