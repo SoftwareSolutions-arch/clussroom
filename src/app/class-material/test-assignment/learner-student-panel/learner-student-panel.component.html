@@ -1,0 +1,417 @@
+<div class="dashboard">
+	<app-class-sidebar></app-class-sidebar>
+	<div class="control-panel">
+<app-class-header></app-class-header>
+<app-class-dashboard-header></app-class-dashboard-header>
+<div *ngIf="isLoadingBool" class="loading-indicator">
+	<mat-spinner></mat-spinner>
+</div>
+	   <div class="prospectus-section sequence-list">
+		  <div class="tab-content mb-3 col-lg-12">
+				<div class="question-action-list col-lg-12" style="padding: 0;">
+				   <div class="col-lg-8">
+					  <ul>
+						 <li class="common-p-light">Test name:</li>
+						 <li><h3 style="font-size: 22px; font-weight: 500; margin: 0;">Name of the test</h3></li>
+					  </ul>
+				   </div>
+				   <div class="col-md-4">
+					  <ul class="display-center" style="justify-content: flex-end;">
+						 <li class="common-p" style="padding-right: 1em;"><p>Time left:</p></li>
+						 <li><h3 style="font-size: 22px; font-weight: 500; color: #FF5A64; margin: 0;">  00:{{timeLeft}}:00</h3></li>
+						<!-- <li> <countdown style="font-size: 22px; font-weight: 500; color: #FF5A64; margin: 0;" [config]="{leftTime: 30}"></countdown></li> -->
+					  </ul>
+				   </div>
+
+				</div>
+		  </div>
+		  <div class="tab-content col-lg-12">
+			 <div class="col-lg-12 common-p mb-4" style="border-bottom: 1px solid #F1F6FB; padding-bottom: 1em;">
+				<p>Page {{counts}}</p>
+			 </div>
+			 <!-- Submisssion Log start -->
+			 <div id="settings" class="tab-pane active box-shadow">
+				<ng-container *ngFor="let data of questionData;let i = index">
+					<div [ngSwitch]="data.type">
+						<div *ngSwitchCase="'Multiple Choice Answer'">
+				<div class="custom-control mb-3 question-label col-lg-12" style="padding: 0;">
+				   <div class="question-checkbox col-md-8 common-p"><p>Q {{i+1}}.&nbsp;&nbsp;The Statement of Profit and Loss is also called the<span>(Multiple  Choice)</span></p>
+				   </div>
+				   <div class="col-md-4 text-right common-p">
+					  <p>5 Points</p>
+				   </div>
+				</div>
+				<div class="test-option border-bottom col-lg-12">
+				   <ul class="col-md-5">
+					  <li><input type="radio" id="option1" name="option" value="option1"
+						 checked>
+						 <label for="option1">Option 1</label>
+					  </li>
+					  <li>
+						 <input type="radio" id="option2" name="option" value="option2">
+						 <label for="option2">Option 2</label>
+					  </li>
+				   </ul>
+				   <ul class="col-md-5">
+					  <li><input type="radio" id="option3" name="option" value="option3">
+						 <label for="option3">Option 3</label>
+					  </li>
+					  <li>
+						 <input type="radio" id="option4" name="option" value="option4">
+						 <label for="option4">Option 4</label>
+					  </li>
+				   </ul>
+				</div>
+			</div>
+			<div *ngSwitchCase="'Multiple Choice Answer'">
+				<div class="custom-control mb-3 question-label col-lg-12" style="padding-top: 2em; padding: 0;">
+				   <div class="question-checkbox col-md-8 common-p"><p>Q {{i+1}}.&nbsp;&nbsp;Choose the correct image for preposition near. <span>(Multiple  Choice)</span></p>
+				   </div>
+				   <div class="col-md-4 text-right common-p">
+					  <p>{{data.points}} Points</p>
+				   </div>
+				</div>
+				<div class="test-option border-bottom sample custom-control custom-checkbox col-lg-12">
+				   <div class="col-sm-3 text-center" >
+					   <ng-container *ngFor="let data1 of data.attachment;index as i">
+					  <button type="button">
+						 <!-- <h2>Sample image</h2> -->
+						 <img [src]="data1.image">
+					  </button>
+					  <p>Description {{i+1}}</p>
+					</ng-container>
+					  <label class="choice-checkbox" style="padding-left: 37px;" *ngFor="let data2 of data.multiple_choices">
+						 <input type="checkbox"  value="{{data2.option_text}}" [checked]= "(data.user_answer != undefined && data.user_answer.length > 0) ? (data.user_answer[0].value == data2.option_text ? true : false)  : false " (change)=multiChoice($event.target.value,data.id)>
+						 <span class="mark2"></span>
+						 <h6>{{data2.option_text}}</h6>
+					  </label>
+				   </div>
+				   <!-- <div class="col-sm-3 text-center">
+					  <button type="button">
+						 <h2>Sample image</h2>
+					  </button>
+					  <p>Description 2</p>
+					  <label class="choice-checkbox" style="padding-left: 37px;">
+						 <input type="checkbox">
+						 <span class="mark2"></span>
+						 <h6>Choice 2</h6>
+					  </label>
+				   </div>
+				   <div class="col-sm-3 text-center">
+					  <button type="button">
+						 <h2>Sample image</h2>
+					  </button>
+					  <p>Description 3</p>
+					  <label class="choice-checkbox" style="padding-left: 37px;">
+						 <input type="checkbox">
+						 <span class="mark2"></span>
+						 <h6>Choice 3</h6>
+					  </label>
+				   </div>
+				   <div class="col-sm-3 text-center">
+					  <button type="button">
+						 <h2>Sample image</h2>
+					  </button>
+					  <p>Description 4</p>
+					  <label class="choice-checkbox" style="padding-left: 37px;">
+						 <input type="checkbox">
+						 <span class="mark2"></span>
+						 <h6>Choice 4</h6>
+					  </label>
+				   </div> -->
+				</div>
+			</div>
+				<div *ngSwitchCase="'True False'">
+				<div class="custom-control mb-3 question-label col-lg-12" style="padding-top: 1em; padding: 0;">
+				   <div class="question-checkbox col-md-8 common-p" ><p [innerHtml]="data.paper_summary">Q {{i+1}}.&nbsp;&nbsp; <span>(True &amp; False)</span></p>
+				   </div>
+				   <div class="col-md-4 text-right common-p">
+					  <p>{{data.points}} Points</p>
+				   </div>
+				</div>
+				<div class="test-option col-lg-12" style="border-bottom: 1px dashed #C3D2FF;">
+				
+				   <ul class="col-md-5" style="display: flex;">
+					  <li><input type="radio" id="true1" [checked]= "(data.user_answer != undefined && data.user_answer.length > 0) ? (data.user_answer[0].value == true ? true : false)  : false " (change)="trueFalseData($event.target.value,data.id)" value="true">
+						 <label for="true1">True</label>
+					  </li>
+					  <li>
+						 <input type="radio" id="false1" [checked]= "(data.user_answer != undefined && data.user_answer.length > 0) ? (data.user_answer[0].value == false ? true : false)  : false "  (change)="trueFalseData($event.target.value,data.id)"  value="false">
+						 <label for="false1">False</label>
+					  </li>
+				   </ul>
+				
+				</div>
+			</div>
+				<div *ngSwitchCase="'Fill in the blanks'">
+					<div class="custom-control custom-checkbox mb-3 question-label col-lg-12" style="padding-top: 1em; padding-bottom: 1em;">
+					   <label class="question-checkbox col-md-8">Q {{i+1}}.&nbsp;&nbsp;Fill in the blanks with the most appropriate words.<span>(Fill in the blanks) </span>
+					   <input type="checkbox">
+					   <span class="mark"></span>
+					   </label>
+					   <div class="ellipdown col-md-4">
+						  <label style="padding: 0;">{{data.points}} Points</label>
+					   </div>
+					</div>
+					<div class="fill">
+					   <h6 style="font-size: 15px; font-weight: 400;" [innerHtml]="data.paper_summary"></h6>
+					</div>
+					 <div class="col-lg-8 container" style="display: flex; position: relative; left: 14.5em; bottom: 6px; margin: 0;">
+						 <div class="col-sm-1 small-button" *ngFor = "let data2 of data.word_hint_text;index as i">
+							 <ul>
+								 <li>
+						   <button type="button">{{i+1}}</button>
+									 </li>
+								 <!-- <li>
+						   <button type="button">2</button>
+									 </li>                                   -->
+							 </ul>
+						 </div>
+					 </div>
+					<ng-container >
+					 
+					 <div class="blank-section box-shadow mt-3 text-center border-bottom col-lg-12" style="padding-bottom: 2em;">
+					   <ul class="hint-section mb-3"*ngFor ="let data2 of data.word_hint_text;index as j" >
+						   <li><label>Blank {{j+1}}.</label><input value="{{(data.user_answer != undefined && data.user_answer.length > 0)? data.user_answer[j].value : ''}}" (input)="onSearchChange($event.target.value,data.id,j)" type="text" ></li>
+						 </ul>
+					 <!-- <ul class="hint-section">
+						   <li><label>Blank 2.</label><input type="text"></li>
+					   </ul> -->
+					   <div class="col-lg-12 common-p text-left mt-2 mb-2">
+						   <p style="font-size: 13px; padding-left: 12em; font-weight: 600; color: #81C8C1;">Word hint</p>
+					   </div>
+					   <ul class="hint-section" style="padding-left: 10.3em;">
+					   <li class="mb-2"  *ngFor = "let data2 of data.word_hint_text"><button>{{data2}}</button></li>
+						   <!-- <li class="mb-2"><button>On</button></li>
+						   <li class="mb-2"><button>In</button></li> -->
+					   </ul>
+					 </div>
+					</ng-container>
+
+				  </div>
+					 <!--  -->
+					 <div *ngSwitchCase="'short_ques_ans_type_paper'">
+					<div class="custom-control custom-checkbox mb-3 question-label col-lg-12" style="padding-top: 1em;">
+					   <label class="question-checkbox col-md-8">Q {{i+1}}.&nbsp;&nbsp;{{data.paper_summary}}.<span>(Short Answer)</span>
+					   <input type="checkbox">
+					   <span class="mark"></span>
+					   </label>
+					   <div class="ellipdown col-md-4">
+						  <label style="padding: 0;">5 Points</label>
+					   </div>
+					</div>
+					<!-- <form [formGroup]="shortForm"> -->
+					<div class="question-text text-area container" style="padding-left: 5.5em; margin: 0 !important;">
+					   <textarea value="{{data.user_answer != undefined ? data.user_answer[0].value : ''}}" (input)="shortAnswerData($event.target.value,data.id)"></textarea>
+					   <div class="col-md-4"></div>
+					</div>
+				<!-- </form> -->
+				  </div>
+				  <div *ngSwitchCase="'Ordering Type'">
+					<div class="word-tag container mt-2">
+						  <p style="margin-left: 29em;">0/500</p>
+					</div>
+					<div class="custom-control custom-checkbox mb-3 question-label" style="padding-top: 2em;">
+					   <label class="question-checkbox col-md-8">Q {{i+1}}.&nbsp;&nbsp;Please re-order the sequence of events of a nuclear fussion.<span>(Ordering)</span>
+					   <input type="checkbox">
+					   <span class="mark"></span>
+					   </label>
+					   <div class="ellipdown col-md-4">
+						  <label style="padding: 0;">{{data.points}} Points</label>
+					   </div>
+					</div>
+					<div class="test-option sample custom-control custom-checkbox" >
+					   <div class="col-sm-3 text-center" *ngFor = "let data1 of data.attachment">
+						  <button type="button">
+							 <!-- <h2>Sample image</h2> -->
+							 <img [src]="data1.image">
+						  </button>
+						  <p>Title for image</p>
+					   </div>
+					   <div class="col-sm-3 text-center">                             
+					   </div>
+					</div>
+					 <div class="mid-section">
+						<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event,i)">
+						<div class="col-lg-12 hint-section mb-3 example-box" *ngFor="let data1 of data.ordering_sequence;index as i"cdkDrag >
+							<div class="col-sm-1 text-right" *ngIf="!data.user_answer">
+								{{i+1}}.  
+							</div>
+							  
+							<div class="col-lg-10" *ngIf="!data.user_answer">
+								<button class="blue-blank"><span><i class="fa fa-random" aria-hidden="true"></i></span>{{data1}}</button>  
+							</div>
+						  </div>
+						  <div class="col-lg-12 hint-section mb-3 example-box" *ngFor="let data1 of data.user_answer;index as i"cdkDrag >
+							<div class="col-sm-1 text-right">
+								{{i+1}}.  
+							</div>
+							  
+							<div class="col-lg-10">
+								<button class="blue-blank"><span><i class="fa fa-random" aria-hidden="true"></i></span>{{data1.value}}</button>  
+							</div>
+						  </div>
+						  </div>
+				  </div>
+			   </div>
+					 <div *ngSwitchCase="'Matching '">
+					<div class="custom-control custom-checkbox mb-3 question-label col-lg-12" style="padding-top: 2em;">
+					   <label class="question-checkbox col-md-8">Q {{i+1}}.&nbsp;&nbsp;Please match the following items.<span>(Matching)</span>
+					   <input type="checkbox">
+					   <span class="mark"></span>
+					   </label>
+					   <div class="ellipdown col-md-4">
+						  <label style="padding: 0;">{{data.points}} Points</label>
+					   </div>
+					</div>
+					<div class="test-option sample custom-control custom-checkbox col-lg-12">
+					   <div class="col-sm-3 text-center" *ngFor="let data2 of data.attachment">
+						  <button type="button">
+							  <img [src]="data2.image">
+							 <!-- <h2>Sample image</h2> -->
+						  </button>
+						  <p>Title for image</p>
+					   </div>
+					
+					   <div class="col-sm-3 text-center">                             
+					   </div>
+					</div>
+					<div class="border-bottom col-lg-12" style="padding-bottom: 1em; font-size: 15px; font-weight: 400;">
+					   <div class="col-lg-12" style="display: flex; margin-bottom:1em;" *ngFor="let data1 of data.matching_question_answers;index as k">
+						  <div class="col-sm-6 hint-section">
+							  <div class="col-sm-2 text-right"><input type="text" value="{{((data.user_answer != undefined && data.user_answer.length > 0) && data.user_answer.length > 0) ? data.user_answer[k].value : ''}}" (input)="onSearchMatchingChange($event.target.value,data.id,k)"></div>
+							  <div class="col-md-5">
+								  <button class="lft-btn text-left">{{k+1}}.&nbsp;&nbsp;&nbsp;{{data1.question}}</button></div>
+						  </div>
+	  
+						  <div class="col-sm-6">
+							  <button class="rit-btn text-left">1.{{k+1}}.&nbsp;&nbsp;&nbsp;{{data1.answer}}</button>
+						  </div>
+					   </div>
+					   <!-- <div class="col-lg-12" style="display: flex; margin-bottom:1em;">
+						  <div class="col-sm-6 hint-section">
+							  <div class="col-sm-2 text-right"><input type="text"></div>
+							  <div class="col-md-5">
+								  <button class="lft-btn text-left">2.&nbsp;&nbsp;&nbsp;Fusion</button></div>
+						  </div>
+	  
+						  <div class="col-sm-6">
+							  <button class="rit-btn text-left">A.&nbsp;&nbsp;&nbsp;Rejoining</button>
+						  </div>
+					   </div>
+					   <div class="col-lg-12" style="display: flex; margin-bottom:1em;">
+						  <div class="col-sm-6 hint-section">
+							  <div class="col-sm-2 text-right"><input type="text"></div>
+							  <div class="col-md-5">
+								  <button class="lft-btn text-left">3.&nbsp;&nbsp;&nbsp;Fission</button></div>
+						  </div>
+	  
+						  <div class="col-sm-6">
+							  <button class="rit-btn text-left">A.&nbsp;&nbsp;&nbsp;Rejoining</button>
+						  </div>
+					   </div>
+						
+					   <div class="col-lg-12" style="display: flex; margin-bottom:1em;">
+						  <div class="col-sm-6 hint-section">
+							  <div class="col-sm-2 text-right"><input type="text"></div>
+							  <div class="col-md-5">
+								  <button class="lft-btn text-left">4.&nbsp;&nbsp;&nbsp;Reaction</button></div>
+						  </div>
+	  
+						  <div class="col-sm-6">
+							  <button class="rit-btn text-left">A.&nbsp;&nbsp;&nbsp;Rejoining</button>
+						  </div>
+					   </div>                          -->
+						
+					</div>
+				  </div>
+				</div>
+				</ng-container>
+		
+				<div class="col-lg-12" style="padding-top: 1em; display: flex;">
+					<div class="col-md-6">
+					<button type="button" class="blue" style="width: 83px;"   data-target="#confirm" data-toggle="modal">Submit</button></div>
+					<div class="col-md-6 display-center" style="justify-content: flex-end;">
+						<button type="button" class="done-blue" style="margin-right: 1em;" *ngIf="backButtons" (click)="goToBackPage()" >Back</button>
+					<button type="button" class="left-green" style="float: right;" *ngIf="!submitted"  (click)="nextPage()">Next page</button>
+					<button type="button" class="left-green" style="float: right;" *ngIf="submitted"  (click)="updateData()">Next page</button>
+
+					</div>
+					
+					
+				 </div>
+			 </div>
+			 <!-- Submisssion Log end -->
+		  </div>
+	   </div>
+	</div>
+ </div>
+ <!-- Submit modal popup start -->
+
+
+<div id="confirm" class="modal deletetest-modal" role="dialog">
+	<div class="modal-dialog">
+  
+  <!--     Modal content-->
+	  <div class="modal-content">
+  
+		  <div class="modal-header">
+			  <!-- <h4>Delete class</h4> -->
+			  <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+			</div>
+		  <div class="modal-body">
+			  <div class="class-delete-list">
+				  <div class="delete-field display-center" style="justify-content: center;">
+					  <img src="assets/images/learner/confirm-submit.png">
+				  </div>
+				  <div class="col-lg-12 display-center mt-3" style="justify-content: center;">
+				 <h3 style="font-size: 24px; font-weight: 400;">Confirm test submission?</h3>
+			  </div>
+			  </div>
+			  </div>
+  
+			  <div class="class-deltest-btn display-center mt-4 mb-3" style="justify-content: center;">
+				  <button type="button" class="confirm-submit" data-toggle="modal" data-target="#submitted" data-dismiss="modal" (click)="submit()">Confirm submission</button>
+			  </div>
+		  </div>
+  
+	  </div>
+  
+	</div>
+  
+  <!-- Submit modal popup end -->    
+  
+  <!-- confirm Submit modal popup start -->
+  
+  
+  <div id="submitted" class="modal deletetest-modal" role="dialog">
+	 <div class="modal-dialog">
+   
+   <!--     Modal content-->
+	   <div class="modal-content">
+   
+		  <div class="modal-header">
+			  <h4>Delete class</h4>
+			  <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+			</div>
+		 <div class="modal-body">
+			<div class="class-delete-list">
+			   <div class="delete-field display-center" style="justify-content: center;">
+					   <img src="assets/images/learner/confirm-submit.png">
+			   </div>
+			   <div class="col-lg-12 display-center mt-3" style="justify-content: center;">
+				  <h3 style="font-size: 24px; font-weight: 400;">Test submitted</h3>
+			   </div>
+			</div>
+			</div>
+   
+			<div class="class-deltest-btn display-center mt-4 mb-3" style="justify-content: center;">
+				   <button type="button" class="confirm-submit" style="width:79px;" data-dismiss="modal" (click)="gotoView()">Ok</button>
+			</div>
+		 </div>
+   
+	   </div>
+   
+	 </div>
+   
+   <!-- confirm Submit modal popup end -->

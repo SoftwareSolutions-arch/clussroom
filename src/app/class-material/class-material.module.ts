@@ -18,7 +18,19 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { ClassMaterialRoutes } from './class-material.routing.module';
-
+import {LearnerTestComponent} from './test-assignment/learner-test/learner-test.component';
+import {LearnerSubmissionComponent} from './test-assignment/learner-submission/learner-submission.component';
+import {LearnerCompletionComponent} from './test-assignment/learner-completion/learner-completion.component';
+import {LearnerWithoutCompletionComponent} from './test-assignment/learner-without-completion/learner-without-completion.component';
+import {LearnerStudentPanelComponent} from './test-assignment/learner-student-panel/learner-student-panel.component';
+import {LearnerStudentPanel2Component} from './test-assignment/learner-student-panel2/learner-student-panel2.component'
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import {TestViewComponent} from './test-assignment/test-view/test-view.component'
+import {CourseLibraryComponent} from './class-library/course-library/course-library.component'
+import {EditMainLibraryComponent} from './class-library/edit-main-library/edit-main-library.component'
+import {FileTransferComponent} from './class-library/file-transfer/file-transfer.component'
+import {MainLibraryComponent} from './class-library/main-library/main-library.component'
+import {PersonalLibraryComponent} from './class-library/personal-library/personal-library.component'
 @NgModule({
     imports : [
         CommonModule,
@@ -28,11 +40,18 @@ import { ClassMaterialRoutes } from './class-material.routing.module';
         FormsModule,
         NgxPaginationModule,
         AngularEditorModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        DragDropModule
     ],
     declarations: [
         AssignmentDetailComponent,
+        LearnerStudentPanelComponent,
+        LearnerStudentPanel2Component,
         LearnerContinueReviewComponent,
+        LearnerTestComponent,
+        LearnerCompletionComponent,
+        LearnerWithoutCompletionComponent,
+        LearnerSubmissionComponent,
         LearnerStartReviewComponent,
         AssignmentDetailNewComponent,
         LearnerViewReviewComponent,
@@ -42,7 +61,13 @@ import { ClassMaterialRoutes } from './class-material.routing.module';
         ViewLearnerAssignmentComponent,
         ClassDashboardHeaderComponent,
         ClassHeaderComponent,
-        ClassSidebarComponent
+        ClassSidebarComponent,
+        TestViewComponent,
+        CourseLibraryComponent,
+        EditMainLibraryComponent,
+        FileTransferComponent,
+        MainLibraryComponent,
+        PersonalLibraryComponent
     ],
 })
 export class ClassMaterialModule{

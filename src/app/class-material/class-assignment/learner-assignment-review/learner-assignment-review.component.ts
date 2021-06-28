@@ -1,11 +1,11 @@
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { SharedServiceService } from 'src/app/shared-service.service';
 import { UtilService } from 'src/providers/util.service';
 import * as JSZip from 'jszip';  
 import * as FileSaver from 'file-saver'; 
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 @Component({
   selector: 'app-learner-assignment-review',
   templateUrl: './learner-assignment-review.component.html',
@@ -222,7 +222,7 @@ saveFiles(files: FileList) {
     this.listOfFiles.push(selectedFile.name)
     this.filesName = this.listOfFiles
     this.handleInputChange(selectedFile);
-    
+    console.log(files[0].size,files[0].name,files[0].type);
   }
 }
 

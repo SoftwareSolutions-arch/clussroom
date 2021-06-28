@@ -58,7 +58,8 @@
 
           <div class="col-lg-12 mt-2 remind-input">
             <ul class="display-center">
-              <li style="margin-right: 5.2em;"><label style="padding-right: 14px;">Level:</label>
+              <li style="margin-right: 5.2em;">
+                <label style="padding-right: 14px;">Level:</label>
                 <select style="width: 140px;">
                   <option>{{selectedCategory.field_level}}</option>
                 </select>
@@ -214,7 +215,7 @@
           </ul>
           <div class="col-lg-12 mt-5" style="display: flex; align-items: center;">
             <label class="label-font" style="padding: 0 14px 0 21px;">Course name:</label>
-            <select style="width: 425px;" (change)="viewAllCoursesList()" [(ngModel)]="selectedEditCourse">
+            <select style="width: 425px;" (change)="viewAllEditCourses()" [(ngModel)]="selectedEditCourse">
               <option *ngFor="let item of this.allCourseList" [ngValue]="item">{{item.title}}</option>
             </select>
           </div>
@@ -255,7 +256,8 @@
 
         </div>
         <div class="col-lg-12 container display-center mt-3 mb-3" style="justify-content: center;">
-          <button type="button" class="remind-blue" style="margin-right: 1em;">Confirm</button>
+          <button type="button" class="remind-blue" style="margin-right: 1em;"
+            (click)="confirmRemainder()">Confirm</button>
           <button type="button" class="remind-green" data-dismiss="modal">Cancel</button>
         </div>
       </div>

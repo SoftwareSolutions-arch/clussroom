@@ -143,6 +143,10 @@ const routes: Routes = [
   {
     path: 'image',
     loadChildren: () => import('./image-cropper/image-cropper.module').then(m => m.ImageCropperModule)
+  },
+  {
+    path: 'class-material',
+    loadChildren: () => import('./class-material/class-material.module').then(m => m.ClassMaterialModule)
   }
 ];
 

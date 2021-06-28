@@ -1,0 +1,183 @@
+<div class="dashboard">
+	<app-class-sidebar></app-class-sidebar>
+	<div class="control-panel">
+		<app-class-header></app-class-header>
+		<app-class-dashboard-header></app-class-dashboard-header>
+		<div *ngIf="isLoadingBool" class="loading-indicator">
+			<mat-spinner></mat-spinner>
+		</div>
+		<!-- <div class="row test-button">
+                           <button onclick="myFunction()" class="tstbtn">Add Test</button>
+                           <div id="mytstdown" class="tstdown-content">
+                              <a href="#home">Add new</a>
+                              <a href="#about" class="custom-button" data-toggle="modal" data-target="#library">Add from library</a>
+                           </div>
+        </div> -->
+		<div class="prospectus-section sequence-list">
+			<div class="prospectus-tabs">
+				<ul class="nav nav-tabs">
+					<li><a data-toggle="tab" href="#test" class="active">Test</a></li>
+					<li><a data-toggle="tab" href="#submissions">Submissions</a></li>
+				</ul>
+			</div>
+			<div class="tab-content">
+				<!-- Schedule start -->
+				<div id="test" class="tab-pane active">
+					<div class="table=-responsive">
+						<table class="table dashboard-table">
+							<thead class="thead-course">
+								<tr>
+									<th scope="col"></th>
+									<th scope="col"></th>
+									<th scope="col"></th>
+									<th scope="col"
+										style="width: 10% !important;padding: 0 0 0 5em;text-align: center;">Submitted
+									</th>
+									<th scope="col"></th>
+									<th scope="col" style="text-align: center; padding: 0 0;">Timer</th>
+									<th scope="col" style="padding:0">Time taken</th>
+									<th scope="col" style="padding:0">Total</th>
+									<th scope="col" style="padding:0">Attempt</th>
+									<th scope="col"></th>
+									<th scope="col" class="text-left" style="padding:0">Points</th>
+									<th scope="col"></th>
+
+								</tr>
+							</thead>
+							<thead>
+								<tr>
+									<th scope="col" class="text-left">
+										<div class="radio-table-check"><input type="checkbox"></div>
+									</th>
+									<th scope="col" style="padding: 18px 12px;">No.</th>
+									<th scope="col" class="text-left table-filter"
+										style="width: 18%; padding: 18px 12px;">Test name</th>
+									<th scope="col" class=" text-left table-filter" style="padding: 18px 12px;">Date
+									</th>
+									<th scope="col" class="text-left table-filter" style="padding: 18px 12px;">To</th>
+									<th scope="col" class="table-filter" style="padding: 18px 12px;">(Min)</th>
+									<th scope="col" class="table-filter" style="padding: 18px 12px;">(Min)</th>
+									<th scope="col" class="table-filter" style="padding: 18px 12px;">attempt</th>
+									<th scope="col" class="table-filter" style="padding: 18px 12px;">number</th>
+									<th scope="col" class="table-filter" style="padding: 18px 12px;">Total</th>
+									<th scope="col" class="table-filter" style="padding: 18px 12px;">Achieved</th>
+
+									<!--
+                                    <div id="myellip" class="ellip-content">
+                              <a href="#home"><i class="fa fa-pencil"></i>Edit</a>
+                              <a href="#home"><i class="fa fa-clipboard" aria-hidden="true"></i>Copy to</a>
+                              <a href="#about" class="custom-button" data-toggle="modal" data-target="#remove"><i class="fa fa-trash" aria-hidden="true"></i>Remove</a>
+                           </div>
+-->
+								
+
+								</tr>
+							</thead>
+							<tbody>
+								<tr *ngFor = "let data of listData">
+									<th class="text-left">
+										<div class="radio-table-check"><input type="checkbox"></div>
+									</th>
+									<td>1</td>
+									<td class="text-left"><a href="#"
+											style="padding: 0 !important; text-decoration: underline;">{{data.test_name}}</a>
+									</td>
+									<td class="text-left">{{data.date}}</td>
+									<td class="text-left">{{data.time}}</td>
+									<td>{{data.test_timer}}</td>
+									<td>{{data.time_taken}}</td>
+									<td>{{data.test_attempts}}</td>
+									<td>{{data.user_attempt}}</td>
+									<td>{{data.total_score}}</td>
+									<td>{{data.achived_point}}</td>
+									<td><button type="button" class="learner-sub-view" (click)="viewPage(data.test_nid)">View</button></td>
+
+								</tr>
+
+								<!-- <tr>
+									<th>
+										<div class="radio-table-check"><input type="checkbox"></div>
+									</th>
+									<td>2</td>
+									<td class="text-left"><a href="#"
+											style="padding: 0 !important; text-decoration: underline;">Mid-Term Test</a>
+									</td>
+									<td class="text-left">10 May 20</td>
+									<td class="text-left">09:00</td>
+									<td>120</td>
+									<td>167</td>
+									<td>2</td>
+									<td>2</td>
+									<td>80</td>
+									<td>180</td>
+									<td><button type="button" class="learner-sub-view">View</button></td>
+								</tr> -->
+
+								<!-- <tr>
+									<th>
+										<div class="radio-table-check"><input type="checkbox"></div>
+									</th>
+									<td>3</td>
+									<td class="text-left"><a href="#"
+											style="padding: 0 !important; text-decoration: underline;">Test1</a></td>
+									<td class="text-left">15 April 20</td>
+									<td class="text-left">10:00</td>
+									<td>30</td>
+									<td>-</td>
+									<td>1</td>
+									<td>1</td>
+									<td>120</td>
+									<td>Pending</td>
+									<td><button type="button" class="learner-sub-view">View</button></td>
+								</tr>
+
+								<tr>
+									<th>
+										<div class="radio-table-check"><input type="checkbox"></div>
+									</th>
+									<td>4</td>
+									<td class="text-left"><a href="#"
+											style="padding: 0 !important; text-decoration: underline;">Test2</a></td>
+									<td class="text-left">29 March 20</td>
+									<td class="text-left">12:00</td>
+									<td>30</td>
+									<td>27</td>
+									<td>1</td>
+									<td>1</td>
+									<td>50</td>
+									<td>30</td>
+									<td><button type="button" class="learner-sub-view-off">View</button></td>
+								</tr> -->
+							</tbody>
+						</table>
+					</div>
+					<div class="table-result-wrapper bottom-select">
+						<select name="course" id="course-name">
+							<option selected>10</option>
+							<option value="Course 1">1</option>
+							<option value="Course 2">2</option>
+							<option value="Course 3">3</option>
+						</select>
+						<p style="width: 10%;">Results: 1-15 of 324</p>
+						<div class="selector">
+							<ul>
+								<li><a href="#"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+								<li><a href="#">1</a></li>
+								<li><a href="#">2</a></li>
+								<li class="active"><a href="#">3</a></li>
+								<li><a href="#">4</a></li>
+								<li><a href="#">5</a></li>
+								<li><a href="#">...</a></li>
+								<li><a href="#" class="right-arrow"><i class="fa fa-chevron-right"
+											aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- Schedule start -->
+
+			</div>
+
+		</div>
+	</div>
+</div>

@@ -14,7 +14,7 @@ export class ClassDashboardHeaderComponent implements OnInit {
   classId: any = '';
   constructor(public service: SharedServiceService, public util: UtilService, private router: Router) {
     this.classId = localStorage.getItem('classListId');
-
+    
     this.getDashboardHeaderData();
 
   }
@@ -27,22 +27,14 @@ export class ClassDashboardHeaderComponent implements OnInit {
       "class_id": this.classId
     }
     this.service.post('class-material-dashboard-api', params, 1).subscribe(result => {
-
+      
       this.headerData = result
       this.isLoadingBool = false;
     })
   }
 
-  goTotest() {
+  goTotest(){
     this.router.navigate(['/test/test-listing-home']);
-  }
-
-  goToAssignment() {
-    this.router.navigate(['/assignment/test-assignment-home']);
-  }
-
-  goToClassMaterial() {
-    this.router.navigate(['/class-material/assignment-detail']);
   }
 
 }
