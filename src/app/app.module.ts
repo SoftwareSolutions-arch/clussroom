@@ -80,6 +80,21 @@ import interactionPlugin from '@fullcalendar/interaction';
 import { CalendarComponent } from './test-module/calendar/calendar.component';
 import { ImageCroppingComponent } from './image-cropping/image-cropping.component';
 
+import { DynaformModule } from 'dynaform';
+import { ColorPickerModule } from 'ngx-color-picker';
+
+import { LineComponent } from './components/line/line.component';
+import { CircleComponent } from './components/circle/circle.component';
+import { RectangleComponent } from './components/rectangle/rectangle.component';
+import { DynamicSvgDirective } from './directives/dynamic-svg.directive';
+import { ShapeComponent } from './components/shape/shape.component';
+import { SquareComponent } from './components/square/square.component';
+import { EllipseComponent } from './components/ellipse/ellipse.component';
+import { TextComponent } from './components/text/text.component';
+import { GroupComponent } from './components/group/group.component';
+import { ImageComponent } from './components/image/image.component';
+import { PolyLineComponent } from './components/polyline/polyline.component';
+import { PathComponent } from './components/path/path.component';
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -139,6 +154,18 @@ FullCalendarModule.registerPlugins([
     AppDashboardHeaderComponent,
     CalendarComponent,
     ImageCroppingComponent,
+    LineComponent,
+    CircleComponent,
+    RectangleComponent,
+    DynamicSvgDirective,
+    ShapeComponent,
+    SquareComponent,
+    EllipseComponent,
+    TextComponent,
+    GroupComponent,
+    ImageComponent,
+    PolyLineComponent,
+    PathComponent
   ],
   imports: [
     FullCalendarModule,
@@ -169,8 +196,23 @@ FullCalendarModule.registerPlugins([
     SlickCarouselModule,
     MatTabsModule,
     NgxPaginationModule,
-    AngularEditorModule
+    AngularEditorModule,
+    DynaformModule,
+    ColorPickerModule,
   ],
+  entryComponents: [
+    ShapeComponent,
+    LineComponent,
+    CircleComponent,
+    RectangleComponent,
+    SquareComponent,
+    EllipseComponent,
+    TextComponent,
+    GroupComponent,
+    ImageComponent,
+    PolyLineComponent,
+    PathComponent,
+], 
   providers: [Sample04Component, ClassesComponent, LoaderComponent],
   bootstrap: [AppComponent]
 })

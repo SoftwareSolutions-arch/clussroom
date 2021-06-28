@@ -21,7 +21,7 @@ export class ImageCroppingComponent implements OnInit {
   }
 
   cropperReady(sourceImageDimensions: Dimensions) {
-    console.log('Cropper ready', sourceImageDimensions);
+    
   }
 
   fileChangeEvent(event: any): void {
@@ -30,12 +30,12 @@ export class ImageCroppingComponent implements OnInit {
 
   imageCropped(event: ImageCroppedEvent) {
     this.croppedImage = event.base64;
-    // console.log(event, base64ToFile(event.base64));
+    // 
   }
 
   imageLoaded() {
     this.showCropper = true;
-    console.log('Image loaded');
+    
   }
 
   zoomOut() {
@@ -66,7 +66,7 @@ export class ImageCroppingComponent implements OnInit {
   }
 
   loadImageFailed() {
-    console.log('Load failed');
+    
 }
 
 }

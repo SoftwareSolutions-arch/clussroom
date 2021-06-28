@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { ShapeComponent } from './components/shape/shape.component';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,11 @@ export class SharedServiceService {
   // tempUrl = "https://api.countrystatecity.in/v1/"
   tempUrl = "https://www.universal-tutorial.com/api/"
   private _yourComponentNameLoadedAlready: boolean;
+
+  public shapesComponents: ShapeComponent[] = [];
+
+  public selectedComponent: ShapeComponent;
+
 
   constructor(public http: HttpClient) { }
 
@@ -61,11 +67,11 @@ export class SharedServiceService {
     }
   }
 
-  getData(endPoint,token): Observable<any> {
+  getData(endPoint, token): Observable<any> {
     let httpOptions;
     httpOptions = {
       headers: new HttpHeaders({
-        'Authorization': 'Bearer '+token
+        'Authorization': 'Bearer ' + token
       }),
     };
     return this.http.get(this.tempUrl + endPoint, httpOptions);
@@ -91,5 +97,33 @@ export class SharedServiceService {
   public get YourComponentNameLoadedAlready(): boolean {
     return this._yourComponentNameLoadedAlready;
   }
-  
+
+  getShapeComponents(): ShapeComponent[] {
+    return this.shapesComponents;
+  }
+
+  removeAllShapeComponents(): void {
+    this.shapesComponents = [];
+  }
+
+  setShapeComponent(component: ShapeComponent): void {
+    this.selectedComponent = component;
+    this.shapesComponents.push(component);
+    console.log('ShapeService component : ', component);
+    console.log('ShapeService shapes : ', this.shapesComponents);
+  }
+
+  getShapeComponent(): ShapeComponent {
+    return this.selectedComponent;
+  }
+
+  findShapeComponent(name: string): ShapeComponent {
+    console.log('find name : ', name);
+    // for (var i = 0; i < this.shapesComponents.length; i++) {
+    //     console.log('FIND JSON : ', JSON.stringify(this.shapesComponents[i].shape));
+    // }
+
+    return this.shapesComponents.find(x => x.shape.shapeProperties.name == name);
+  }
+
 }

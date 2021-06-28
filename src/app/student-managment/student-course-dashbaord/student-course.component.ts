@@ -76,7 +76,7 @@ export class StudentCourseComponent implements OnInit {
     }
     this.isLoadingBool = true;
     this.service.post('test-listing-by-classid', params, 1).subscribe(result => {
-      console.log('result', result);
+      
       this.dashBoardData = result.test_data;
       this.isLoadingBool = false;
     })

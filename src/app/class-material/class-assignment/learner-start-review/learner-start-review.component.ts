@@ -88,7 +88,7 @@ export class LearnerStartReviewComponent implements OnInit {
       this.listOfFiles.push(selectedFile.name)
       this.filesName = this.listOfFiles
       this.handleInputChange(selectedFile);
-      console.log(files[0].size,files[0].name,files[0].type);
+      
     }
   }
 
@@ -135,7 +135,7 @@ async getFile(url: string) {
       this.assignmentData = res.result[0].questions
       this.assignmentQuestionId = res.result[0].id
       this.imagedata =res.result[0].attachments
-      console.log(this.imagedata)
+      
       this.attachmentDataNames = res.result[0].image_name
        this.assignmentForm.patchValue({
          description: this.assignmentData
