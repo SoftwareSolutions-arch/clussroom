@@ -49,13 +49,20 @@ export class MainLibraryComponent implements OnInit {
   checkbox: any
   selectedLibraryData: any = '';
   editFoldername: any = '';
+  main_library_upload_edit_permission: any = '';
   constructor(public service: SharedServiceService, private router: Router, public util: UtilService) {
     this.userId = localStorage.getItem('uid');
     this.getMainListing();
     this.getAllCoursesList();
+    this.main_library_upload_edit_permission = localStorage.getItem('main_library_upload_edit_permission');
+
   }
 
   ngOnInit(): void {
+  }
+
+  isCourseCreated() {
+    this.util.showSuccessToast("You don't have permission");
   }
 
   getMainListing() {
@@ -67,7 +74,7 @@ export class MainLibraryComponent implements OnInit {
     this.service.post('vendor_library_listing', params, 1).subscribe(result => {
       this.isLoadingBool = false;
       this.mainLibraryData = result.result;
-      
+
     })
   }
 
@@ -88,7 +95,7 @@ export class MainLibraryComponent implements OnInit {
       library_type: 'main'
     }
     this.service.post('add-folder-to-libarary', params, 1).subscribe(result => {
-      
+
       this.getMainListing();
       this.isLoadingBool = false;
     })
@@ -96,7 +103,7 @@ export class MainLibraryComponent implements OnInit {
 
   setColour(data) {
     this.libraryData.folder_colore = data;
-    
+
   }
 
   createMaterial() {
@@ -111,7 +118,7 @@ export class MainLibraryComponent implements OnInit {
   getAllCoursesList() {
     this.isLoadingBool = true;
     this.service.post('view-all-courses-api', '', 1).subscribe(result => {
-      
+
       this.isLoadingBool = false;
       this.allCourseList = result['coursesdata'];
       if (result['status'] == 1) {
@@ -125,13 +132,13 @@ export class MainLibraryComponent implements OnInit {
 
   // view classes
   viewAllCoursesList() {
-    
+
     let params = {
       "course_id": this.selectedCategory.nid
     }
     this.isLoadingBool = true;
     this.service.post('view-all-classes-api', params, 1).subscribe(result => {
-      
+
       this.isLoadingBool = false;
       if (result['status'] == 1) {
         this.allClassesData = result['classesdata'];
@@ -144,13 +151,13 @@ export class MainLibraryComponent implements OnInit {
 
   // get test listing data
   getTestListing() {
-    
+
     this.isLoadingBool = true;
     let params = {
       "class_id": this.selectedClass.nid
     }
     this.service.post('test-list-api', params, 1).subscribe(result => {
-      
+
       this.isLoadingBool = false;
       this.testAllData = result.test_data;
     })
@@ -168,14 +175,14 @@ export class MainLibraryComponent implements OnInit {
 
     this.isLoadingBool = true;
     this.service.post('add-folder-to-libarary', params, 1).subscribe(result => {
-      
+
       this.getMainListing();
       this.isLoadingBool = false;
     })
   }
 
   picked(event: any) {
-    
+
     this.fileLists = FileList = event.target.files;
     for (var i = 0; i <= event.target.files.length - 1; i++) {
       const file: File = this.fileLists[i];
@@ -198,7 +205,7 @@ export class MainLibraryComponent implements OnInit {
   }
 
   handleInputChange(files) {
-    
+
     this.fileType = files.type
 
     var file = files;
@@ -207,7 +214,7 @@ export class MainLibraryComponent implements OnInit {
     var totalWords = files.type;
     // var afterSlashChars = totalWords.match(/\/([^\/]+)\/?$/)[1];
     this.fileType = totalWords.match('^[^/]+')[0];
-    
+
     reader.onloadend = this._handleReaderLoaded.bind(this);
     reader.readAsDataURL(file);
   }
@@ -216,7 +223,7 @@ export class MainLibraryComponent implements OnInit {
     let reader = e.target;
     var base64result = reader.result.substr(reader.result.indexOf(',') + 1);
     this.ExteriorPicString.push(base64result);
-    
+
     this.addFile();
   }
 
@@ -232,7 +239,7 @@ export class MainLibraryComponent implements OnInit {
 
     this.isLoadingBool = true;
     this.service.post('add-folder-to-libarary', params, 1).subscribe(result => {
-      
+
       this.getMainListing();
       this.isLoadingBool = false;
     })
@@ -244,7 +251,7 @@ export class MainLibraryComponent implements OnInit {
   }
 
   isCheckboxClicked(event, data) {
-    
+
     this.selectedLibraryData = data;
     this.editFoldername = this.selectedLibraryData.name
   }
@@ -256,10 +263,10 @@ export class MainLibraryComponent implements OnInit {
       "type": this.selectedLibraryData.file_type,
       "id": this.selectedLibraryData.id
     }
-    
+
     this.isLoadingBool = true;
     this.service.post('delete-library-data', params, 1).subscribe(result => {
-      
+
       this.getMainListing();
       this.isLoadingBool = false;
     })
@@ -275,7 +282,7 @@ export class MainLibraryComponent implements OnInit {
     }
     this.isLoadingBool = true;
     this.service.post('edit-libarary-api', params, 1).subscribe(result => {
-      
+
       this.getMainListing();
       this.isLoadingBool = false;
     })
@@ -283,16 +290,16 @@ export class MainLibraryComponent implements OnInit {
 
   // download library
   downloadLibrary() {
-    
+
     this.editlibrary.nativeElement.click();
     let params = {
       "materials_type": this.selectedLibraryData.file_type,
       "id": this.selectedLibraryData.id
     }
-    
+
     this.isLoadingBool = true;
     this.service.post('download-libarary-data', params, 1).subscribe(result => {
-      
+
       this.isLoadingBool = false;
       window.open(result.pdf);
     })

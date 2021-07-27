@@ -13,7 +13,7 @@ export class GroupComponent extends ShapeComponent implements OnInit {
 
     constructor() {
         super();
-        console.log('GroupComponent constructor');
+        
     }
 
     ngOnInit() {

@@ -30,12 +30,12 @@ export class PolyLineComponent extends ShapeComponent implements OnInit {
         super();
         this.shape = new PolyLine();
         this.shapeType = ShapeType.PolyLine;
-        console.log('PolyLineComponent constructor:', this);
+        
 
     }
 
     ngOnInit() {
-        console.log('PolyLineComponent ngOnInit');
+        
     }
 
     setStyles() {
@@ -51,9 +51,9 @@ export class PolyLineComponent extends ShapeComponent implements OnInit {
         if (this.shape instanceof PolyLine) {
             this.lastPoint = Object.assign({}, point);
             this.shape.points.push(this.lastPoint);
-            console.log('points = ', this.shape.points);
+            
             this.value += point.x + "," + point.y + " ";
-            console.log('PolyLineComponent value ', this.value);
+            
         }
     }
 
@@ -61,7 +61,7 @@ export class PolyLineComponent extends ShapeComponent implements OnInit {
         if (this.shape instanceof PolyLine) {
             this.currentPoint = Object.assign({}, currentPosition);
             this.hasPoints = true;
-            console.log('PolyLineComponent : draw() last= ', this.lastPoint, ', current=', this.currentPoint, ', points=', this.shape.points);
+            
         }
     }
 

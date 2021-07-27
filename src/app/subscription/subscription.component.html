@@ -85,7 +85,8 @@
             <div class="price-subscription">-</div>
           </li>
           <div class="subscription-total">
-            <h6>Total Amount</h6><span>$ {{this.subscriptionDetails.amount}}</span>
+            <h6>Total Amount</h6>
+            <span>$ {{this.subscriptionDetails.amount}}</span>
           </div>
         </ul>
         <div class="terms-of-use">
@@ -101,6 +102,16 @@
         <div class="subscription-buttons">
           <button [disabled]="this.termsCondition!=true" class="btn" (click)="next()">Next</button>
           <button class="back-btn" (click)="back()">Back</button>
+        </div>
+      </div>
+      <div class="subscription-content-right">
+        <div class="about-subscription-caption">
+          <h5>About Subscription </h5>
+          <div class="about-subscription-flex">
+            <h6>{{this.title}} subscription</h6>
+            <span>$ {{this.subscriptionDetails.amount}}</span>
+          </div>
+          <p>{{this.subscriptionDetails.field_package_description}}</p>
         </div>
       </div>
     </div>

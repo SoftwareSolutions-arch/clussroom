@@ -31,13 +31,13 @@ export class RectangleComponent extends ShapeComponent implements OnInit {
 
     constructor() {
         super();
-        console.log('RectangleComponent constructor');
+        
         this.shape = new Rectangle();
         this.shapeType = ShapeType.Rectangle;
     }
 
     ngOnInit() {
-        console.log('RectangleComponent ngOnInit');
+        
     }
 
     setStyles() {
@@ -50,7 +50,7 @@ export class RectangleComponent extends ShapeComponent implements OnInit {
     }
 
     startDrawing(beginPosition: MousePosition): void {
-        console.log('RectanleComponent startDrawing at ', beginPosition);
+        
         if (this.shape instanceof Rectangle) {
             this.shape.originX = beginPosition.x;
             this.shape.originY = beginPosition.y;
@@ -58,7 +58,7 @@ export class RectangleComponent extends ShapeComponent implements OnInit {
     }
 
     draw(currentPosition: MousePosition): void {
-        console.log('RectangleComponent draw');
+        
         if (this.shape instanceof Rectangle) {
             this.shape.width = Math.abs(currentPosition.x - this.shape.originX);
             this.shape.height = Math.abs(currentPosition.y - this.shape.originY);

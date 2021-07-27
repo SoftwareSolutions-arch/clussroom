@@ -15,11 +15,12 @@ import { LearnerWithoutCompletionComponent } from './test-assignment/learner-wit
 import { LearnerStudentPanelComponent } from './test-assignment/learner-student-panel/learner-student-panel.component';
 import { LearnerStudentPanel2Component } from './test-assignment/learner-student-panel2/learner-student-panel2.component'
 import { TestViewComponent } from './test-assignment/test-view/test-view.component'
-import {CourseLibraryComponent} from './class-library/course-library/course-library.component'
-import {EditMainLibraryComponent} from './class-library/edit-main-library/edit-main-library.component'
-import {FileTransferComponent} from './class-library/file-transfer/file-transfer.component'
-import {MainLibraryComponent} from './class-library/main-library/main-library.component'
-import {PersonalLibraryComponent} from './class-library/personal-library/personal-library.component'
+import { CourseLibraryComponent } from './class-library/course-library/course-library.component'
+import { EditMainLibraryComponent } from './class-library/edit-main-library/edit-main-library.component'
+import { FileTransferComponent } from './class-library/file-transfer/file-transfer.component'
+import { MainLibraryComponent } from './class-library/main-library/main-library.component'
+import { PersonalLibraryComponent } from './class-library/personal-library/personal-library.component'
+import { StudentCourseMaterialComponent } from './student-course-material/student-course-material.component'
 
 const routes: Routes = [
 
@@ -86,6 +87,9 @@ const routes: Routes = [
   {
     path: 'personal-library', component: PersonalLibraryComponent
   },
+  {
+    path: 'student-course-material', component: StudentCourseMaterialComponent
+  }
 ];
 
 export const ClassMaterialRoutes = RouterModule.forChild(routes);

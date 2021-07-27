@@ -13,9 +13,7 @@ export class AppDashboardHeaderComponent implements OnInit {
   classId: any = '';
   constructor(public service: SharedServiceService, public util: UtilService, private router: Router) {
     this.classId = localStorage.getItem('classListId');
-
     this.getDashboardHeaderData();
-
   }
 
   ngOnInit(): void {

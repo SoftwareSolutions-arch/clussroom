@@ -61,12 +61,12 @@
             Level:&nbsp;&nbsp;&nbsp;{{selectedCategory.field_level}}
           </div>
           <div class="col-sm-3 text-right" style="padding: 0; padding-right: 86px;">
-            Start Date:&nbsp;&nbsp;&nbsp;{{selectedClass.field_start_date}}
+            Start date:&nbsp;&nbsp;&nbsp;{{selectedClass.field_start_date}}
           </div>
         </form>
         <form class="mb-5" style="display: flex;">
           <div class="fieldset course-name mt-5">
-            <label>Class Name : </label>
+            <label>Class name : </label>
             <select [(ngModel)]="selectedClass" name="class" id="class-name"
               style="width: 140px !important; margin-left: 24px;">
               <option *ngFor="let classesData of this.allClassesData" [ngValue]="classesData">{{classesData.title}}
@@ -84,7 +84,7 @@
             Banding:&nbsp;&nbsp;&nbsp;{{selectedCategory.field_banding}}
           </div>
           <div class="col-sm-2 mt-5 text-right" style="padding: 0 50px;">
-            End Date:&nbsp;&nbsp;&nbsp;{{selectedClass.field_end_date}}
+            End date:&nbsp;&nbsp;&nbsp;{{selectedClass.field_end_date}}
           </div>
         </form>
         <button class="center-btn" [disabled]="selectedClass=='' " (click)="getClassesListData()">Go</button>
@@ -115,8 +115,8 @@
                   <tr>
                     <th scope="col"></th>
                     <th scope="col">No.</th>
-                    <th scope="col" class="text-left table-filter">First Name</th>
-                    <th scope="col" class="text-left table-filter">Last Name</th>
+                    <th scope="col" class="text-left table-filter">First name</th>
+                    <th scope="col" class="text-left table-filter">Last name</th>
                     <th scope="col" class="table-filter">Email</th>
                     <th scope="col" class="table-filter">Grades</th>
                     <th scope="col" class="table-filter">Status</th>
@@ -168,7 +168,7 @@
                   <tr>
                     <th scope="col"></th>
                     <th scope="col">No.</th>
-                    <th scope="col" class="text-left">Course Name</th>
+                    <th scope="col" class="text-left">Course name</th>
                     <th scope="col">Code</th>
                     <th scope="col" class="table-filter">Cateory/Dept</th>
                     <th scope="col" class="table-filter">Level</th>

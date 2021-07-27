@@ -10,15 +10,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
+  allCourseList: any = '';
   constructor(public classes: ClassesComponent, public util: UtilService, public service: SharedServiceService, public router: Router) {
     // this.ngOnInit();
+  }
+
+  ngOnDestroy() {
     jQuery(".sidebar-blue").toggleClass("toogleopen");
     jQuery(".control-panel").toggleClass("toogleopen").removeClass("dashboardtoogleopen").removeClass("dashboardtoogleclose");
     jQuery(".sidebar-dashboard .dashboard-user-sidebar").removeClass("dashboardtoogleopen").removeClass("dashboardtoogleclose");
-
   }
 
   ngOnInit(): void {
+    this.getAllCoursesList();
     jQuery(document).ready(function () {
       jQuery(document).on("click", ".sidebar-blue .sidebar-menu .sidebar-bar .sidebar-bar-nav", function () {
         // jQuery(".sidebar-blue .sidebar-menu .sidebar-bar .sidebar-bar-nav").click(function(){
@@ -52,10 +56,6 @@ export class SidebarComponent implements OnInit {
     });
   }
 
-  getCourses() {
-    // this.classes.getAllCoursesList();
-  }
-
   // do logout setup
   logOut() {
     this.service.post('user-logout-api', '', 0).subscribe(result => {
@@ -77,4 +77,56 @@ export class SidebarComponent implements OnInit {
   goToTestListing() {
     this.router.navigate(['/test-listing'])
   }
+
+  goToLibrary() {
+    this.router.navigate(['/library/main-library']);
+  }
+
+  gotoCalendar() {
+    this.router.navigate(['/test/calendar']);
+  }
+
+  // get all courses list
+  getAllCoursesList() {
+    this.service.post('view-all-courses-api', '', 1).subscribe(result => {
+      this.allCourseList = result.coursesdata;
+    })
+  }
+
+  goTocourses(courseLists) {
+
+  }
+
+  goToClassMaterial() {
+    this.router.navigate(['/class-material-vendor/main-library']);
+  }
+
+  goToClassList() {
+    this.router.navigate(['/classes-list']);
+  }
+
+  goToPersonalLibrary() {
+    this.router.navigate(['/library/personal-library']);
+  }
+
+  goToCourseLibrary() {
+    this.router.navigate(['/library/course-library']);
+  }
+
+  goToMainLibrary() {
+    this.router.navigate(['/library/main-library']);
+  }
+
+  goToFileTransfer() {
+    this.router.navigate(['/library/file-transfer']);
+  }
+
+  goToSubAdminList() {
+    this.router.navigate(['/admin-sub/admin-home']);
+  }
+
+  goToPermissionRight() {
+    this.router.navigate(['/admin-sub/admin-home']);
+  }
+
 }

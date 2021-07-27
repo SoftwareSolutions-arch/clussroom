@@ -62,6 +62,7 @@ export class SubscriptionComponent implements OnInit {
       
       this.isImageShow = false;
       this.subscriptionDetails = result['nids']['0'];
+      
     })
   }
 

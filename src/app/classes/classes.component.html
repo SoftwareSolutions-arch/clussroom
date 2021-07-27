@@ -60,7 +60,9 @@
               <option *ngFor="let courseList of this.allCourseList" value="{{courseList.nid}}">{{this.courseList.title}}
               </option>
             </select>
-            <button (click)="viewClassesList()" class="green-go-button">Go</button>
+            <button (click)="viewClassesList()" class="green-go-button" *ngIf="selectedCategory">Go</button>
+            <button (click)="viewClassesList()" class="green-go-button" style="background: #DCE2EC;
+            border: #DCE2EC;" *ngIf="!selectedCategory" disabled>Go</button>
           </form>
           <div class="col-sm-1"></div>
         </div>
@@ -68,20 +70,43 @@
           <div class="prospectus-section">
             <div class="prospectus-tabs col-lg-12" style="justify-content: flex-end;">
               <div class="prospectus-action display-center" style="justify-content: flex-end;">
-                <a *ngIf="!editForm && !isSaveCourses" class="add-btn custom-a-btn mt-3" data-toggle="modal"
-                  data-target="#addClass" style="position: relative; right: 7.8em; bottom: 1em;"> <i class="fa fa-plus"
-                    aria-hidden="true"></i> New Class</a>
-                <a *ngIf="editForm" (click)="editCourses()"
-                  style="margin-left: 15px;background: #4CAF50 !important; width: 60px; height: 35px;"
-                  class="add-btn custom-a-btn" data-toggle="modal"> <i class="fa fa-edit" aria-hidden="true"
-                    style="font-size: 13px; margin-right: 5px;"></i> Edit</a>
-                <a *ngIf="!isSaveCourses && editForm" class="delete-btn custom-a-btn" data-toggle="modal"
-                  data-target="#deleteClass" (click)="popDeleteClass()"> <i class="fa fa-trash-o"
-                    aria-hidden="true"></i>
+
+                <ng-container *ngIf="this.class_creation_permission==1">
+                  <a *ngIf="!editForm && !isSaveCourses" class="add-btn custom-a-btn mt-3" data-toggle="modal"
+                  data-target="#addClass" style="position: relative; right: 7.8em; bottom: 1em;"> 
+                  <i class="fa fa-plus" aria-hidden="true"></i> New class</a>
+                </ng-container>
+
+                <ng-container (click)="isCourseCreated()" *ngIf="this.class_creation_permission==0">
+                  <a (click)="isCourseCreated()" *ngIf="!editForm && !isSaveCourses" class="add-btn custom-a-btn mt-3"  style="position: relative; right: 7.8em; bottom: 1em;">
+                   <i (click)="isCourseCreated()" class="fa fa-plus" aria-hidden="true"></i> New class</a>
+                </ng-container>
+
+                <ng-container *ngIf="this.class_creation_permission==1">
+                  <a *ngIf="editForm" (click)="editCourses()" style="margin-left: 15px;background: #FFBB38 !important; width: 60px; height: 35px;" class="add-btn custom-a-btn" data-toggle="modal"> <i class="fa fa-edit" aria-hidden="true" style="font-size: 13px; margin-right: 5px;"></i> Edit</a>
+                </ng-container>
+
+                <ng-container (click)="isCourseCreated()" *ngIf="this.class_creation_permission==0">
+                  <a (click)="isCourseCreated()" *ngIf="editForm" style="margin-left: 15px;background: #FFBB38 !important; width: 60px; height: 35px;" class="add-btn custom-a-btn" >
+                  <i class="fa fa-edit" aria-hidden="true" style="font-size: 13px; margin-right: 5px;"></i> Edit</a>
+                </ng-container>
+
+                <ng-container *ngIf="this.class_creation_permission==1">
+                  <a *ngIf="!isSaveCourses && editForm" class="delete-btn custom-a-btn" data-toggle="modal"
+                  data-target="#deleteClass" (click)="popDeleteClass()"> <i class="fa fa-trash-o" aria-hidden="true"></i>
                 </a>
-                <a *ngIf="isSaveCourses" (click)="cancelCourses()"
-                  style="margin-left: 15px;background: #db2929 !important;" class="add-btn custom-a-btn"
+                </ng-container>
+
+                <ng-container  (click)="isCourseCreated()" *ngIf="this.class_creation_permission==0">
+                  <a  (click)="isCourseCreated()" *ngIf="!isSaveCourses && editForm" class="delete-btn custom-a-btn"> 
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                </a>
+                </ng-container>
+
+                <ng-container (click)="isCourseCreated()" *ngIf="this.class_creation_permission==0">
+                  <a (click)="isCourseCreated()" *ngIf="isSaveCourses" (click)="cancelCourses()" style="margin-left: 15px;background: #db2929 !important;" class="add-btn custom-a-btn"
                   data-toggle="modal"> <i class="fa fa-times" aria-hidden="true"></i> Cancel</a>
+                </ng-container>
               </div>
             </div>
             <div class="table-responsive tab-content">
@@ -91,8 +116,8 @@
                     <tr>
                       <th scope="col"></th>
                       <th scope="col">No.</th>
-                      <th scope="col" class="text-left table-filter">Class Name</th>
-                      <th scope="col" class="table-filter text-center">Class Code</th>
+                      <th scope="col" class="text-left table-filter">Class name</th>
+                      <th scope="col" class="table-filter text-center">Class code</th>
                       <th scope="col" class="text-center table-filter">Start date</th>
                       <th scope="col" class="text-center table-filter">End date</th>
                       <th scope="col" class="text-center table-filter">Learners</th>
@@ -143,7 +168,7 @@
                           {{this.classList.field_status}}</div>
                       </td>
                       <td (click)="goToClasses(classList)">
-                        <button><a>Go to Class</a>
+                        <button><a>Go to class</a>
                         </button>
                       </td>
                       <td>
@@ -220,7 +245,7 @@
                 </div>
                 <div class="modal-body">
                   <div class="class-delete-list">
-                    <div class="delete-field"> <span>Course Name :</span>
+                    <div class="delete-field"> <span>Course name :</span>
                       <p>{{this.classesData.title}}</p>
                     </div>
                     <div class="class-delete-curve">
@@ -265,7 +290,7 @@
         <app-storage></app-storage>
       </div>
       <div id="admin-content" class="tab-pane">
-        <app-admin></app-admin>
+        <!--  -->
       </div>
       <div id="live-sessions-content" class="tab-pane">
         <app-live-sessions></app-live-sessions>

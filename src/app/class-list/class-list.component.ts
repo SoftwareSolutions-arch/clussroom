@@ -115,7 +115,6 @@ export class ClassListComponent implements OnInit {
   getAllCoursesList() {
     this.isLoadingBool = true;
     this.service.post('view-all-courses-api', '', 1).subscribe(result => {
-
       this.isLoadingBool = false;
       this.allCourseList = result['coursesdata'];
       if (result['status'] == 1) {

@@ -133,8 +133,8 @@ p {
 .btn {
   outline: none;
   font-size: 17px;
-  border: 2px solid #396AFF;
-  background-color: #396AFF;
+  border: 2px solid #FFA26B;
+  background-color: #FFA26B;
   font-weight: 500;
   padding: 10px 30px;
   display: inline-flex;
@@ -4692,3 +4692,4 @@ a.done-btn:hover {
 .text-danger {
   color: red;
 }
+

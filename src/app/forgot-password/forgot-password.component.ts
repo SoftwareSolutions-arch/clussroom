@@ -24,7 +24,7 @@ export class ForgotPasswordComponent implements OnInit {
     this.error_messages = {
       email: [
         { type: "required", message: '*Email is Required' },
-        { type: "pattern", message: '*Please Enter valid Email' }
+        { type: "pattern", message: '*Please enter valid email' }
       ],
     };
     this.forgotForm = this.formBuilder.group(
@@ -42,7 +42,7 @@ export class ForgotPasswordComponent implements OnInit {
     }
 
     this.service.post('forget-password-api', data, 0).subscribe(result => {
-      
+
       if (result['message'] == "Otp Send") {
         localStorage.setItem('otpId', result['id'])
         this.util.showSuccessAlert(result['message'])

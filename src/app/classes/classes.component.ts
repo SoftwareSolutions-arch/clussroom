@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } fro
 import { UtilService } from '../../providers/util.service';
 import { SharedServiceService } from '../shared-service.service';
 import * as $ from "jquery";
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -37,44 +37,21 @@ export class ClassesComponent implements OnInit {
   isClassEdited: boolean = true;
   selectedNewItems: any = '';
   instructionName: any = '';
-
-  constructor(public util: UtilService, public router: Router, public service: SharedServiceService) {
+  courseId: any = '';
+  class_creation_permission: any = '';
+  constructor(public util: UtilService, private activatedRoute: ActivatedRoute, public router: Router, public service: SharedServiceService) {
+    this.courseId = localStorage.getItem('courseId');
+    this.getClassesList();
     this.getAllCoursesList();
     this.instructionName = localStorage.getItem('instructionName')
+    this.class_creation_permission = localStorage.getItem('class_creation_permission')
   }
 
   ngOnInit(): void {
-    // jQuery(document).ready(function () {
-    //   jQuery(document).on("click", ".sidebar-blue .sidebar-menu .sidebar-bar .sidebar-bar-nav", function () {
-    //     // jQuery(".sidebar-blue .sidebar-menu .sidebar-bar .sidebar-bar-nav").click(function(){
-    //     jQuery(".sidebar-blue").toggleClass("toogleopen");
-    //     jQuery(".control-panel").toggleClass("toogleopen").removeClass("dashboardtoogleopen").removeClass("dashboardtoogleclose");
-    //     jQuery(".sidebar-dashboard .dashboard-user-sidebar").removeClass("dashboardtoogleopen").removeClass("dashboardtoogleclose");
-    //   });
-
-    //   jQuery(document).on("click", ".sidebar-blue .panel-collapse li a", function () {
-    //     // jQuery(".sidebar-blue .panel-collapse li a").click(function(){
-    //     jQuery(".sidebar-blue").removeClass("toogleopen");
-    //     jQuery(".control-panel").removeClass("toogleopen").addClass("dashboardtoogleopen");
-    //     jQuery(".sidebar-dashboard .dashboard-user-sidebar").removeClass("dashboardtoogleclose");
-    //     jQuery(".sidebar-dashboard .dashboard-user-sidebar").addClass("dashboardtoogleopen");
-    //   });
-
-    //   jQuery(document).on("click", ".dashboard-user-sidebar.dashboardtoogleopen .user-details-dash .course-sidebar", function () {
-    //     // jQuery(".dashboard-user-sidebar.dashboardtoogleopen .user-details-dash .course-sidebar").click(function(){
-    //     jQuery(".sidebar-dashboard .dashboard-user-sidebar").removeClass("dashboardtoogleopen").addClass("dashboardtoogleclose");
-    //     jQuery(".control-panel").removeClass("dashboardtoogleopen").addClass("dashboardtoogleclose").addClass("toogleopen");
-    //     jQuery(".sidebar-blue").toggleClass("toogleopen");
-    //   });
-
-    //   jQuery(document).on("click", ".dashboard-user-sidebar.dashboardtoogleclose .user-details-dash .course-sidebar", function () {
-
-    //     // jQuery(".dashboard-user-sidebar.dashboardtoogleclose .user-details-dash .course-sidebar").click(function(){
-    //     jQuery(".sidebar-dashboard .dashboard-user-sidebar").removeClass("dashboardtoogleclose").addClass("dashboardtoogleopen");
-    //     jQuery(".control-panel").removeClass("toogleopen");
-    //     jQuery(".sidebar-blue").removeClass("toogleopen");
-    //   });
-    // });
+  }
+  
+  isCourseCreated(){
+    this.util.showSuccessToast("You don't have permission");
   }
 
   ngAfterViewInit() { }
@@ -85,17 +62,32 @@ export class ClassesComponent implements OnInit {
     this.service.post('view-all-courses-api', '', 1).subscribe(result => {
       this.isLoadingBool = false;
       this.allCourseList = result['coursesdata'];
-      // if (result['status'] == 1) {
-      //   this.allCourseList = result['coursesdata'];
-      // }
-      // else {
-      //   this.util.errorAlertPopup(result['mesaage']);
-      // }
     })
   }
 
   selectCategory() {
     this.viewClassesList();
+  }
+
+  getClassesList() {
+    if (this.courseId != '') {
+      let params = {
+        "course_id": this.courseId
+      }
+      this.isLoadingBool = true;
+      this.service.post('view-all-classes-api', params, 1).subscribe(result => {
+        
+        this.isLoadingBool = false;
+        if (result['status'] == 1) {
+          this.allClassesData = result['classesdata'];
+          this.isTableShow = true;
+        }
+        else {
+          this.util.errorAlertPopup(result['mesaage']);
+        }
+      })
+    }
+
   }
 
   // view classes
@@ -105,7 +97,6 @@ export class ClassesComponent implements OnInit {
     }
     this.isLoadingBool = true;
     this.service.post('view-all-classes-api', params, 1).subscribe(result => {
-
       this.isLoadingBool = false;
       if (result['status'] == 1) {
         this.allClassesData = result['classesdata'];
@@ -151,8 +142,6 @@ export class ClassesComponent implements OnInit {
 
   // create new classes
   createNewClasses() {
-
-
     var x = new Date(this.courseList.class_start);
     var y = new Date(this.courseList.class_end);
 
@@ -174,7 +163,6 @@ export class ClassesComponent implements OnInit {
         "class_name": this.courseList.class_name,
         "course_id": this.selectedCategory
       }
-
 
       this.isLoadingBool = true;
       this.service.post('create-class-api', params, 1).subscribe(result => {
@@ -339,8 +327,7 @@ export class ClassesComponent implements OnInit {
 
   goToClasses(classList) {
     // this.router.navigate(['/test-listing'],{state:{data:classList.nid}})
-    localStorage.setItem('classListId',classList.nid)
-    this.router.navigate(['/test/test-listing-home'])
-
+    localStorage.setItem('classListId', classList.nid);
+    this.router.navigate(['/test/test-listing-home']);
   }
 }

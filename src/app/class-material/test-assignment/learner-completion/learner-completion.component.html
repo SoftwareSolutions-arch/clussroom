@@ -1,108 +1,109 @@
 <div class="dashboard">
-    <app-class-sidebar></app-class-sidebar>
-    <div class="control-panel">
-        <app-class-header></app-class-header>
-        <app-class-dashboard-header></app-class-dashboard-header>
-        <div class="col-lg-12 display-center mt-4">
-            <div class="col-md-6 text-left">
-                <h3 style="font-size: 22px; font-weight: 500;">Test 1</h3>
-            </div>
-            <div class="col-md-6 text-right display-center learner-select" style="justify-content: flex-end;">
-                <div class="col-lg-8">
-                    <select>
-                        <option selected>Test1</option>
-                        <option>Test2</option>
-                        <option>Test3</option>
-                        <option>Test4</option>
-                    </select>
-                </div>
-                <div class="col-sm-2">
-                    <button type="button">Back</button>
-                </div>
-            </div>
+  <app-class-sidebar></app-class-sidebar>
+  <div class="control-panel">
+    <app-class-header></app-class-header>
+    <app-class-dashboard-header></app-class-dashboard-header>
+    <div class="col-lg-12 display-center mt-4">
+      <div class="col-md-6 text-left">
+        <h3 style="font-size: 22px; font-weight: 500;">Test 1</h3>
+      </div>
+      <div class="col-md-6 text-right display-center learner-select" style="justify-content: flex-end;">
+        <div class="col-lg-8">
+          <select>
+            <option selected>Test1</option>
+            <option>Test2</option>
+            <option>Test3</option>
+            <option>Test4</option>
+          </select>
         </div>
-        <div class="prospectus-section sequence-list">
-            <div class="prospectus-tabs">
-                <ul class="nav nav-tabs">
-                    <li><a data-toggle="tab" href="#test" class="active">Test</a></li>
-                    <li><a data-toggle="tab" href="#submissions">Submissions</a></li>
-                </ul>
-            </div>
-            <div class="tab-content">
+        <div class="col-sm-2">
+          <button type="button">Back</button>
+        </div>
+      </div>
+    </div>
+    <div class="prospectus-section sequence-list">
+      <div class="prospectus-tabs">
+        <ul class="nav nav-tabs">
+          <li><a data-toggle="tab" href="#test" class="active">Test</a></li>
+          <li><a data-toggle="tab" href="#submissions">Submissions</a></li>
+        </ul>
+      </div>
+      <div class="tab-content">
 
-                <div class="col-lg-12 test-header">
-                    <div class="col-sm-2 text-right mb-4">
-                        <p>Instructions:</p>
-                    </div>
+        <div class="col-lg-12 test-header">
+          <div class="col-sm-2 text-right mb-4">
+            <p>Instructions:</p>
+          </div>
 
-                    <div class="col-lg-10">
-                        <h3>Please read the questions carefully and the marks shown. You will not be able to stop and
-                            save the test, and <br>you have to complete the test by filling out the answers to all the
-                            questions. Good luck!</h3>
-                    </div>
+          <div class="col-lg-10">
+            <h3>Please read the questions carefully and the marks shown. You will not be able to stop and
+              save the test, and <br>you have to complete the test by filling out the answers to all the
+              questions. Good luck!</h3>
+          </div>
 
-                </div>
+        </div>
 
-                <div class="col-lg-12 test-click-mid mt-4 test-name-click" style="display: flex;">
-                    <div class="col-sm-2 text-right">
-                        <p>Test commencement:</p>
-                    </div>
-                    <div class="col-lg-12 text-left">
-                        <p style="font-weight:400; color: #7990B4;">{{learnerData?.test_commencement}}
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;14:00 hrs</p>
-                    </div>
-                </div>
+        <div class="col-lg-12 test-click-mid mt-4 test-name-click" style="display: flex;">
+          <div class="col-sm-2 text-right">
+            <p>Test commencement:</p>
+          </div>
+          <div class="col-lg-12 text-left">
+            <p style="font-weight:400; color: #7990B4;">{{learnerData?.test_commencement}}
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;14:00 hrs</p>
+          </div>
+        </div>
 
-                <div class="col-lg-12 test-click-mid mt-4 test-name-click"
-                    style="display: flex; border-bottom: 1px solid #F1F6FB; padding-bottom: 1em;">
-                    <div class="col-sm-2 text-right">
-                        <p>Due date/time:</p>
-                    </div>
-                    <div class="col-lg-12 text-left">
-                        <p style="font-weight:400; color: #7990B4;">{{learnerData?.due_date}}
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;14:00 hrs</p>
-                    </div>
-                </div>
+        <div class="col-lg-12 test-click-mid mt-4 test-name-click"
+          style="display: flex; border-bottom: 1px solid #F1F6FB; padding-bottom: 1em;">
+          <div class="col-sm-2 text-right">
+            <p>Due date/time:</p>
+          </div>
+          <div class="col-lg-12 text-left">
+            <p style="font-weight:400; color: #7990B4;">{{learnerData?.due_date}}
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;14:00 hrs</p>
+          </div>
+        </div>
 
-                <div class="col-lg-12 test-click-mid mt-4 test-name-click" style="display: flex;">
-                    <div class="col-sm-2 text-right">
-                        <p>Timer:</p>
-                    </div>
-                    <div class="col-lg-12 text-left">
-                        <p style="font-weight:400; color: #7990B4;">{{learnerData?.test_timer}}</p>
-                    </div>
-                </div>
+        <div class="col-lg-12 test-click-mid mt-4 test-name-click" style="display: flex;">
+          <div class="col-sm-2 text-right">
+            <p>Timer:</p>
+          </div>
+          <div class="col-lg-12 text-left">
+            <p style="font-weight:400; color: #7990B4;">{{learnerData?.test_timer}}</p>
+          </div>
+        </div>
 
-                <div class="col-lg-12 test-click-mid mt-4 test-name-click" style="display: flex;">
-                    <div class="col-sm-2 text-right">
-                        <p style="color: #396aff !important; font-weight: 700;">Total points:</p>
-                    </div>
-                    <div class="col-lg-12 text-left">
-                        <p style="font-weight:700; color: #396aff !important;">{{learnerData?.total_score}}</p>
-                    </div>
-                </div>
+        <div class="col-lg-12 test-click-mid mt-4 test-name-click" style="display: flex;">
+          <div class="col-sm-2 text-right">
+            <p style="color: #396aff !important; font-weight: 700;">Total points:</p>
+          </div>
+          <div class="col-lg-12 text-left">
+            <p style="font-weight:700; color: #396aff !important;">{{learnerData?.total_score}}</p>
+          </div>
+        </div>
 
-                <div class="col-lg-12 test-click-mid mt-4 test-name-click"
-                    style="display: flex; border-bottom: 1px solid #F1F6FB; padding-bottom: 1em;">
-                    <div class="col-sm-2 text-right">
-                        <p>Attempts completed:</p>
-                    </div>
-                    <div class="col-lg-12 text-left">
-                        <p style="font-weight:400; color: #7990B4;">{{learnerData?.user_attempt}} of {{learnerData?.test_attempts}}</p>
-                    </div>
-                </div>
+        <div class="col-lg-12 test-click-mid mt-4 test-name-click"
+          style="display: flex; border-bottom: 1px solid #F1F6FB; padding-bottom: 1em;">
+          <div class="col-sm-2 text-right">
+            <p>Attempts completed:</p>
+          </div>
+          <div class="col-lg-12 text-left">
+            <p style="font-weight:400; color: #7990B4;">{{learnerData?.user_attempt}} of {{learnerData?.test_attempts}}
+            </p>
+          </div>
+        </div>
 
 
-                <!-- <div class="col-lg-12 display-center" style="padding-top: 3em; padding-bottom: 1.5em ;">
+        <!-- <div class="col-lg-12 display-center" style="padding-top: 3em; padding-bottom: 1.5em ;">
                     <div class="col-sm-2 text-center">
                         <button type="submit" class="learner-take-test">Take test</button>
                     </div>
                 </div> -->
 
-                <div class="col-lg-12 display-center" style="justify-content: center; padding: 3em 0 1.5em 0">
-                <button type="submit" class="learner-test-purple">You have completed all attempts</button>
-            </div>
-            </div>
+        <div class="col-lg-12 display-center" style="justify-content: center; padding: 3em 0 1.5em 0">
+          <button type="submit" class="learner-test-purple">You have completed all attempts</button>
         </div>
+      </div>
     </div>
+  </div>
 </div>

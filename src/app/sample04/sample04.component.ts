@@ -14,6 +14,9 @@ import { DatePipe } from '@angular/common'
 })
 
 export class Sample04Component implements OnInit {
+  instructionName: any = '';
+  course_creation_permission: any = '';
+
   @ViewChild('deleteclosebutton') deleteclosebutton;
   @ViewChild('addclosebutton') addclosebutton;
   @ViewChild('editclosebutton') editclosebutton;
@@ -78,14 +81,10 @@ export class Sample04Component implements OnInit {
   selectedNewItems: any = '';
   edit_allow_msg_learner: any = '';
   edit_allow_msg_coach: any = '';
-  instructionName: any = '';
   constructor(public router: Router, public util: UtilService, public service: SharedServiceService,
     public formBuilder: FormBuilder, public classes: ClassesComponent) {
     this.instructionName = localStorage.getItem('instructionName');
-    this.getAllCoursesList();
-    this.getallListingDropdown();
-    this.setupLoginFormData();
-
+    this.course_creation_permission = localStorage.getItem('course_creation_permission');
   }
 
   parseDate(dateString: string): Date {
@@ -96,8 +95,46 @@ export class Sample04Component implements OnInit {
     return null;
   }
 
-  ngOnInit(): void {
+  isCourseCreated(){
+    this.util.showSuccessToast("You don't have permission");
+  }
 
+  ngOnInit(): void {
+    jQuery(document).ready(function () {
+      jQuery(document).on("click", ".sidebar-blue .sidebar-menu .sidebar-bar .sidebar-bar-nav", function () {
+        // jQuery(".sidebar-blue .sidebar-menu .sidebar-bar .sidebar-bar-nav").click(function(){
+        jQuery(".sidebar-blue").toggleClass("toogleopen");
+        jQuery(".control-panel").toggleClass("toogleopen").removeClass("dashboardtoogleopen").removeClass("dashboardtoogleclose");
+        jQuery(".sidebar-dashboard .dashboard-user-sidebar").removeClass("dashboardtoogleopen").removeClass("dashboardtoogleclose");
+      });
+
+      jQuery(document).on("click", ".sidebar-blue .panel-collapse li a", function () {
+        // jQuery(".sidebar-blue .panel-collapse li a").click(function(){
+        jQuery(".sidebar-blue").removeClass("toogleopen");
+        jQuery(".control-panel").removeClass("toogleopen").addClass("dashboardtoogleopen");
+        jQuery(".sidebar-dashboard .dashboard-user-sidebar").removeClass("dashboardtoogleclose");
+        jQuery(".sidebar-dashboard .dashboard-user-sidebar").addClass("dashboardtoogleopen");
+      });
+
+      jQuery(document).on("click", ".dashboard-user-sidebar.dashboardtoogleopen .user-details-dash .course-sidebar", function () {
+        // jQuery(".dashboard-user-sidebar.dashboardtoogleopen .user-details-dash .course-sidebar").click(function(){
+        jQuery(".sidebar-dashboard .dashboard-user-sidebar").removeClass("dashboardtoogleopen").addClass("dashboardtoogleclose");
+        jQuery(".control-panel").removeClass("dashboardtoogleopen").addClass("dashboardtoogleclose").addClass("toogleopen");
+        jQuery(".sidebar-blue").toggleClass("toogleopen");
+      });
+
+      jQuery(document).on("click", ".dashboard-user-sidebar.dashboardtoogleclose .user-details-dash .course-sidebar", function () {
+
+        // jQuery(".dashboard-user-sidebar.dashboardtoogleclose .user-details-dash .course-sidebar").click(function(){
+        jQuery(".sidebar-dashboard .dashboard-user-sidebar").removeClass("dashboardtoogleclose").addClass("dashboardtoogleopen");
+        jQuery(".control-panel").removeClass("toogleopen");
+        jQuery(".sidebar-blue").removeClass("toogleopen");
+      });
+    });
+    this.instructionName = localStorage.getItem('instructionName');
+    this.getAllCoursesList();
+    this.getallListingDropdown();
+    this.setupLoginFormData();
   }
 
   setupLoginFormData() {
@@ -325,7 +362,6 @@ export class Sample04Component implements OnInit {
       this.deleteclosebutton.nativeElement.click();
       this.util.showSuccessAlert('Course Deleted Successfully');
       this.isLoadingBool = false;
-
     })
   }
 
@@ -537,4 +573,8 @@ export class Sample04Component implements OnInit {
     this.router.navigate(['/live-session']);
   }
 
+  goToclassesPage(courseList) {
+    localStorage.setItem('courseId', courseList.nid);
+    this.router.navigate(['/classes']);
+  }
 }

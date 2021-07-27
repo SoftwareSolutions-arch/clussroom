@@ -34,11 +34,11 @@ export class LineComponent extends ShapeComponent implements OnInit {
         super();
         this.shape = new Line();
         this.shapeType = ShapeType.Line;
-        console.log('LineComponent constructor:', this);
+        
     }
 
     ngOnInit() {
-        console.log('LineComponent ngOnInit');
+        
     }
 
     setStyles() {
@@ -56,12 +56,12 @@ export class LineComponent extends ShapeComponent implements OnInit {
             this.shape.x2 = beginPosition.x;
             this.shape.y2 = beginPosition.y;
         }
-        console.log('LineComponent startDrawing at ', beginPosition, ', ', this.shape);
+        
 
     }
 
     draw(currentPosition: MousePosition): void {
-        console.log('LineComponent draw');
+        
         if (this.shape instanceof Line) {
             this.shape.x2 = currentPosition.x;
             this.shape.y2 = currentPosition.y;
@@ -69,7 +69,7 @@ export class LineComponent extends ShapeComponent implements OnInit {
     }
 
     drag(draqPosition: MousePosition): void {
-        console.log('line dragging');
+        
     }
 
 }

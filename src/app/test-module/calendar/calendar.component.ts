@@ -96,10 +96,10 @@ export class CalendarComponent implements OnInit {
       "banding": this.selectedEditCourse.field_banding_id,
       "reminder_id": this.clickInfoDetails.publicId
     }
-    console.log('params', params);
+    
     this.isLoadingBool = true;
     this.service.post('edit-calendar-remindar', params, 1).subscribe(result => {
-      console.log('result', result);
+      
       this.getAllRemainder();
       this.isLoadingBool = false;
     })
@@ -122,14 +122,14 @@ export class CalendarComponent implements OnInit {
 
     this.isLoadingBool = true;
     this.service.post('add-calendar-remindar-api', params, 1).subscribe(result => {
-      console.log('result', result);
+      
       this.getAllRemainder();
       this.isLoadingBool = false;
     })
   }
 
   handleEventClick(clickInfo: EventClickArg) {
-    console.log('clickInfo', clickInfo.event._def);
+    
     this.clickInfoDetails = clickInfo.event._def;
     this.getCalendarListing()
     this.display1 = 'block';
@@ -138,9 +138,9 @@ export class CalendarComponent implements OnInit {
   deleteModelData() {
     // this.clickInfo.event.remove();
     let params = {
-      "reminder_id": this.clickInfoDetails.publicId
+      "reminder_id": ''
     }
-    console.log('params', params);
+    
     this.isLoadingBool = true;
     this.service.post('delete-calendar-remindar', params, 1).subscribe(result => {
       this.getAllRemainder();
@@ -166,7 +166,7 @@ export class CalendarComponent implements OnInit {
     }
     this.isLoadingBool = true;
     this.service.post('user-calendar-remindar-listing', params, 1).subscribe(result => {
-      console.log('result', result.result);
+      
       this.isLoadingBool = false;
       this.allRemainderData = result.result;
       let data: any = []
@@ -218,10 +218,10 @@ export class CalendarComponent implements OnInit {
     let params = {
       "course_id": this.selectedEditCourse.nid
     }
-    console.log('params', params);
+    
     this.isLoadingBool = true;
     this.service.post('view-all-classes-api', params, 1).subscribe(result => {
-      console.log('result', result);
+      
       this.isLoadingBool = false;
       if (result['status'] == 1) {
         this.allClassesData = result['classesdata'];
@@ -233,14 +233,14 @@ export class CalendarComponent implements OnInit {
   }
 
   getCalendarListing() {
-    console.log('this.clickInfoDetails.publicId', this.clickInfoDetails)
+    
     let params = {
       "reminder_id": this.clickInfoDetails.publicId
     }
-    console.log('params', params);
+    
     this.isLoadingBool = true;
     this.service.post('calendar-remindar-listing', params, 1).subscribe(result => {
-      console.log('result', result);
+      
       this.editCalendarData = result.result;
       this.isLoadingBool = false;
     })

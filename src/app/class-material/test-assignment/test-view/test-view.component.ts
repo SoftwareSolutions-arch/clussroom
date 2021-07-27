@@ -135,7 +135,7 @@ export class TestViewComponent implements OnInit {
     const regexp = /\_(.*?)\ /g;
     const array = [...word1.matchAll(regexp)];
     this.arrayLength = array.length
-    console.log(this.arrayLength)
+    
     for (let i = 0; i < array.length; i++) {
       var tag = '---------------' + ''
       this.replaceData = word1.replace(/\_(.*?)\ /, tag)

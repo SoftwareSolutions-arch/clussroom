@@ -163,22 +163,20 @@
                    <button type="button" class="lime"><a>Edit</a></button>
                    <button type="button" class="Org"><a>Confirm Edit</a></button>
                    -->
-            <button *ngIf="isEditQuestion" [disabled]="!registerForm.valid" class="button a" style="font-size: 10px;"
-              (click)="saveQuestion()">Save
+            <button *ngIf="isEditQuestion && fillData.question!='' " [disabled]="!registerForm.valid" class="button a"
+              style="font-size: 10px;">Save
               Question</button>
-            <button *ngIf="!isEditQuestion" [disabled]="!registerForm.valid" class="button a" style="font-size: 10px;"
-              (click)="editQuestion()">Edit
+
+            <button *ngIf="isEditQuestion && fillData.question=='' " [disabled]="!registerForm.valid" class="button a"
+              style="font-size: 10px;background-color: gray;" (click)="saveQuestion()">Save
               Question</button>
+
+            <button *ngIf="!isEditQuestion" [disabled]="!registerForm.valid" class="button a"
+              style="font-size: 10px;text-transform: none !important;" (click)="editQuestion()">Confirm edit</button>
 
             <a (click)="cancel()" class="edit-points-btn custom-button">Cancel</a>
           </div>
         </form>
-
-        <!--
-           <div class="container multi-choice-orange" style="padding: 6px 0 0 0;">
-              <button type="button">Confirm Edit</button>
-           </div>
--->
       </div>
     </div>
   </div>

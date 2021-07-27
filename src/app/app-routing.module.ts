@@ -26,9 +26,9 @@ import { ClassListComponent } from './class-list/class-list.component';
 import { LearnersComponent } from './learners/learners.component';
 import { StorageComponent } from './storage/storage.component';
 import { LoaderComponent } from './loader/loader.component';
-import { AdminComponent } from './admin/admin.component';
 import { LiveSessionsComponent } from './live-sessions/live-sessions.component';
 import { ProgressComponent } from './progress/progress.component';
+import { AdminVendorComponent } from './admin-vendor/admin-vendor.component';
 import { TestModule } from './test-module/test-module';
 import { ImageCroppingComponent } from './image-cropping/image-cropping.component';
 
@@ -115,13 +115,13 @@ const routes: Routes = [
     path: 'loader', component: LoaderComponent
   },
   {
-    path: 'admin', component: AdminComponent
-  },
-  {
     path: 'live-session', component: LiveSessionsComponent
   },
   {
     path: 'progress-bar', component: ProgressComponent
+  },
+  {
+    path: 'admin', component: AdminVendorComponent
   },
   { path: 'test', loadChildren: './test-module/test-module#TestModule' },
   {
@@ -131,10 +131,6 @@ const routes: Routes = [
   {
     path: 'student',
     loadChildren: () => import('./student-managment/student-managment.module').then(m => m.StudentModule)
-  },
-  {
-    path: 'class-material',
-    loadChildren: () => import('./class-material/class-material.module').then(m => m.ClassMaterialModule)
   },
   {
     path: 'library',
@@ -147,6 +143,18 @@ const routes: Routes = [
   {
     path: 'class-material',
     loadChildren: () => import('./class-material/class-material.module').then(m => m.ClassMaterialModule)
+  },
+  {
+    path: 'calendar',
+    loadChildren: () => import('./calendar/calendar-module.routing').then(m => m.CalendarModule)
+  },
+  {
+    path: 'class-material-vendor',
+    loadChildren: () => import('./class-material-vendor/class-material-vendor.module').then(m => m.ClassMaterialVendorModule)
+  },
+  {
+    path: 'admin-sub',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
   }
 ];
 

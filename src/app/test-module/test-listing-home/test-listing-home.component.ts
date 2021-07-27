@@ -73,7 +73,7 @@ export class TestListingHomeComponent implements OnInit {
   }
 
   showErrorMessage() {
-    this.toastr.error('please select row');
+    this.toastr.error('Please select row');
   }
 
   // get test listing data

@@ -33,11 +33,11 @@ export class PathComponent extends ShapeComponent implements OnInit {
         super();
         this.shape = new Path();
         this.shapeType = ShapeType.Path;
-        console.log('PathComponent constructor');
+        
     }
 
     ngOnInit() {
-        console.log('PathComponent ngOnInit');
+        
     }
 
     setStyles() {
@@ -58,7 +58,7 @@ export class PathComponent extends ShapeComponent implements OnInit {
             } else {
                 this.lastPoint = Object.assign({}, point);
                 this.shape.points.push(this.lastPoint);
-                console.log('points = ', this.shape.points, ', size = ', this.shape.points.length, ', %2 = ', this.shape.points.length % 2);
+                
                 if (this.shape.points.length % 2 == 0) {
                     this.calculateControlPoint(this.shape.points[0], this.shape.points[1]);
                     this.value = "M" + this.shape.points[0].x + " " + this.shape.points[0].y + " Q " + this.controlPoint.x + " " + this.controlPoint.y + " " + this.shape.points[1].x + " " + this.shape.points[1].y;

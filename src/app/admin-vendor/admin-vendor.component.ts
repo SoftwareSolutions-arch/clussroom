@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
 import { UtilService } from '../../providers/util.service';
 import { SharedServiceService } from '../shared-service.service';
 
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+  selector: 'app-admin-vendor',
+  templateUrl: './admin-vendor.component.html',
+  styleUrls: ['./admin-vendor.component.css']
 })
-export class AdminComponent implements OnInit {
+export class AdminVendorComponent implements OnInit {
   isLoadingBool: boolean = false;
   instructionName: any = '';
 
@@ -27,13 +27,22 @@ export class AdminComponent implements OnInit {
 
   classFieldData: any = '';
   allCourseList: any = '';
-  selectedCategory: any = '';
+  selectedCategory: any = "MCA";
 
   email: any = '';
   levelName: any = '';
   bandingId: any = '';
+  userId: any = '';
+  editData: any = '';
+
+  edit_permission:any = {
+  }
+
+  @ViewChild('editAdminPopup') private editAdminPopup: ElementRef;
+
   constructor(public router: Router, public service: SharedServiceService, public util: UtilService,) {
     this.instructionName = localStorage.getItem('instructionName');
+    this.userId = localStorage.getItem("uid");
     this.getallListingDropdown();
     this.viewAllAdminSection();
     this.getAllCoursesList();
@@ -84,15 +93,19 @@ export class AdminComponent implements OnInit {
 
   viewAllAdminSection() {
     this.isLoadingBool = true;
-    this.service.post('view-all-admins-api', '', 1).subscribe(result => {
-      this.adminData = result.coursesdata;
+    let params = {
+      "vendor_id": this.userId
+    }
+    this.service.post('vendor-admin-listing-api', params, 1).subscribe(result => {
+      console.log('res', result);
+      this.adminData = result;
       this.isLoadingBool = false;
     })
   }
 
   isClicked(adminList) {
-    this.adminDataList = adminList;
-    this.viewAllCoursesList();
+    console.log('adminList', adminList);
+    this.editData = adminList;
   }
 
   viewAllCoursesList() {
@@ -102,7 +115,6 @@ export class AdminComponent implements OnInit {
 
     this.isLoadingBool = true;
     this.service.post('view-all-classes-api', params, 1).subscribe(result => {
-
       this.isLoadingBool = false;
       if (result['status'] == 1) {
         this.allClassesData = result['classesdata'];
@@ -136,7 +148,6 @@ export class AdminComponent implements OnInit {
     }
     this.isLoadingBool = true;
     this.service.post('view-all-classes-api', params, 1).subscribe(result => {
-
       this.isLoadingBool = false;
       if (result['status'] == 1) {
         this.allClassesData = result['classesdata'];
@@ -147,16 +158,61 @@ export class AdminComponent implements OnInit {
     })
   }
 
-  getCHeckBOxData(event) {
-    
+  classCreation(event) {
+    console.log(event.target.checked);
+    this.edit_permission.class_creation = event.target.checked;
+  }
+
+  addLearner(event) {
+    console.log(event.target.checked);
+    this.edit_permission.add_learner = event.target.checked
+  }
+
+  mainLibrary(event) {
+    console.log(event.target.checked);
+    this.edit_permission.main_library = event.target.checked
+  }
+
+  fileUpload(event) {
+    this.edit_permission.file_upload = event.target.checked
+  }
+
+  classDeletion(event) {
+    this.edit_permission.class_deletion = event.target.checked
+  }
+
+  liveSession(event) {
+    this.edit_permission.live_session = event.target.checked
+  }
+
+  courseCreation(event) {
+    this.edit_permission.course_creation = event.target.checked
   }
 
   // save details for edit admins 
   editAdmin() {
-    
-    
-    
-    
-    
+    console.log('params', this.edit_permission);
+    let params = {
+      'id': this.userId,
+      "email": this.editData.email,
+      "course_id": this.editData.course_name[0].course_id,
+      "p_id": this.editData.permissions_data[0].p_id,
+      "add_learner": (this.edit_permission.add_learner == true) ? "1" : "0",
+      "main_library": (this.edit_permission.main_library == true) ? "1" : "0",
+      "course_library": (this.edit_permission.file_upload == true) ? "1" : "0",
+      "live_session":(this.edit_permission.live_session == true) ? "1" : "0",
+      "course_creation":(this.edit_permission.course_creation == true) ? "1" : "0",
+      "class_creation": (this.edit_permission.class_creation == true) ? "1" : "0",
+      "class_delation": (this.edit_permission.class_deletion == true) ? "1" : "0",
+    }
+    console.log('params', params);
+    this.isLoadingBool = true;
+    this.service.post('edit-vendor-admin-api', params, 1).subscribe(result => {
+      this.isLoadingBool = false;
+      this.util.showSuccessToast('Update successfully');
+      this.editAdminPopup.nativeElement.click();
+      this.viewAllAdminSection();      
+    })
+
   }
 }

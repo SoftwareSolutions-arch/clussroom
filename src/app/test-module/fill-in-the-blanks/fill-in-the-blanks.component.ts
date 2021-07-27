@@ -125,7 +125,9 @@ export class FillInTheBlanksComponent implements OnInit {
   }
 
 
-  cancel() { }
+  cancel() {
+    this.router.navigate(['/test/question-screen']);
+  }
 
   picked(event: any) {
     this.fileLists = FileList = event.target.files;
@@ -186,7 +188,7 @@ export class FillInTheBlanksComponent implements OnInit {
       data.push(element.question);
     });
 
-    
+
 
     let params = {
       test_assignment_nid: this.testId,
@@ -200,10 +202,10 @@ export class FillInTheBlanksComponent implements OnInit {
       points: this.fillData.points
     }
 
-    
+
     this.isLoadingBool = true;
     this.service.post('add-question-api', params, 1).subscribe(result => {
-      
+
       this.util.showSuccessAlert('Answer saved successfully');
       this.isLoadingBool = false;
       this.router.navigate(['/test/question-screen']);
@@ -226,7 +228,7 @@ export class FillInTheBlanksComponent implements OnInit {
       }
       this.isLoadingBool = true;
       this.service.post('questions-listing', params, 1).subscribe(result => {
-        
+
         this.isLoadingBool = false;
         var data = result.question_data[0]
         this.fillData = {
@@ -302,7 +304,7 @@ export class FillInTheBlanksComponent implements OnInit {
       image_description: image_description
     }
 
-    
+
     // this.isLoadingBool = true;
     // this.service.post('edit-question-api', params, 1).subscribe(result => {
     //   

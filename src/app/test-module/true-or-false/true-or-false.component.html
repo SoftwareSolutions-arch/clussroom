@@ -90,7 +90,7 @@
                  -->
           <a *ngIf="isEditQuestion" class="addbutton custom-button" (click)="saveQuestion()">Save Question</a>
           <a *ngIf="!isEditQuestion" class="addbutton custom-button" (click)="editQuestion()">Edit Question</a>
-          <a class="edit-points-btn custom-button">Cancel</a>
+          <a class="edit-points-btn custom-button" (click)="cancel()">Cancel</a>
         </div>
         <!--
            <div class="container multi-choice-orange" style="padding: 6px 0 0 0;">

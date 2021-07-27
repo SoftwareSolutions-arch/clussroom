@@ -55,7 +55,7 @@ export class Shape implements BaseShape {
         this.shapeProperties = new ShapeProperties();
         this.originX = this.originY = 0;
         this.shapeProperties.name = name;
-        console.log('Shape constructor name : ', this.shapeProperties);
+        
     }
 }
 
@@ -72,7 +72,7 @@ export class Line extends Shape {
     constructor() {
         super('line-' + Line.id++);
         this.x2 = this.y2 = 0;
-        console.log('Line constructor ', this);
+        
     }
 }
 
@@ -87,7 +87,7 @@ export class Circle extends Shape {
     constructor() {
         super('circle-' + Circle.id++);
         this.r = 0;
-        console.log('Circle constructor ', this);
+        
     }
 }
 
@@ -103,7 +103,7 @@ export class Rectangle extends Shape {
     constructor() {
         super('rectangle-' + Rectangle.id++);
         this.width = this.height = 0;
-        console.log('Rectangle constructor ', this);
+        
     }
 }
 
@@ -118,7 +118,7 @@ export class Square extends Shape {
     constructor() {
         super('square-' + Square.id++);
         this.width = 0;
-        console.log('Rectangle constructor ', this);
+        
     }
 }
 
@@ -134,7 +134,7 @@ export class Ellipse extends Shape {
     constructor() {
         super('ellipse-' + Ellipse.id++);
         this.rx = this.ry = 0;
-        console.log('Ellipse constructor ', this);
+        
     }
 }
 
@@ -149,7 +149,7 @@ export class TextBox extends Shape {
     constructor() {
         super('text-' + TextBox.id++);
         this.value = 'Some text';
-        console.log('Text constructor ', this);
+        
     }
 }
 
@@ -167,7 +167,7 @@ export class ImageBox extends Shape {
         super('image-' + ImageBox.id++);
         this.width = this.height = 0;
         this.url = 'assets/pictures/tiger.png';
-        console.log('Image constructor ', this);
+        
     }
 }
 
@@ -182,7 +182,7 @@ export class PolyLine extends Shape {
     constructor() {
         super('polyline-' + PolyLine.id++);
         this.points = [];
-        console.log('PolyLine constructor ', this);
+        
     }
 }
 
@@ -199,6 +199,6 @@ export class Path extends Shape {
         super('path-' + Path.id++);
         this.points = [];
         this.state = State.None;
-        console.log('Path constructor ', this);
+        
     }
 }

@@ -13,14 +13,14 @@ export class DynamicSvgDirective {
     }
 
     ngOnInit() {
-        console.log('DynamicSvgDirective ngOnInit() - component : ', this.component);
+        
 
         let shapeComponent: ShapeComponent = this.shapeService.getShapeComponent();
         this.viewContainerRef.createEmbeddedView(shapeComponent.shapeTemplate);
     }
 
     ngOnDestroy() {
-        console.log('DynamicSvgDirective ngOnDestroy()');
+        
         this.viewContainerRef.clear();
     }
 }

@@ -23,6 +23,7 @@ export class LearnerContinueReviewComponent implements OnInit {
   ngOnInit() {
     this.assignmentDetail();
   }
+  
   //get detail api
   assignmentDetail(){
     const data = {

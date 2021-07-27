@@ -41,17 +41,17 @@ export class TextComponent extends ShapeComponent implements OnInit {
 
     constructor() {
         super();
-        console.log('TextComponent constructor');
+        
         this.shape = new TextBox();
         this.shapeType = ShapeType.TextBox;
     }
 
     ngOnInit() {
-        console.log('TextComponent ngOnInit');
+        
     }
 
     updateShapeProperties(value: any) {
-        console.log('TextComponent : updateShapeProperties');
+        
         if (this.shape instanceof TextBox) {
             this.shape.shapeProperties.name = value.name;
             this.shape.value = value.value;
@@ -72,7 +72,7 @@ export class TextComponent extends ShapeComponent implements OnInit {
             this.shape.originX = beginPosition.x;
             this.shape.originY = beginPosition.y;
         }
-        console.log('TextComponent startDrawing at ', beginPosition, ', ', this.shape);
+        
 
     }
 

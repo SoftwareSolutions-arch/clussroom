@@ -156,9 +156,9 @@
                 <div *ngSwitchCase="'true_false_type_paper'">
                   <div class="custom-control custom-checkbox mb-3 question-label col-lg-12" style="padding-top: 1em;">
                     <i class="fa fa-random" aria-hidden="true"></i>
-                    <label class="question-checkbox col-md-8">Q 3.&nbsp;&nbsp;The Statement of Profit and Loss is also
-                      called
-                      the P/L Statement. <span>(True &amp; False)</span>
+                    <label class="question-checkbox col-md-8">Q {{i+1}}.&nbsp;&nbsp;
+                      <span style="color: black;" [innerHtml]="data.question"></span>
+                      <span>({{data.questiontypename}})</span>
                     </label>
                     <div class="ellipdown col-md-4">
                       <label style="padding: 0;">5 Points</label>

@@ -109,8 +109,8 @@ export class SharedServiceService {
   setShapeComponent(component: ShapeComponent): void {
     this.selectedComponent = component;
     this.shapesComponents.push(component);
-    console.log('ShapeService component : ', component);
-    console.log('ShapeService shapes : ', this.shapesComponents);
+    
+    
   }
 
   getShapeComponent(): ShapeComponent {
@@ -118,9 +118,9 @@ export class SharedServiceService {
   }
 
   findShapeComponent(name: string): ShapeComponent {
-    console.log('find name : ', name);
+    
     // for (var i = 0; i < this.shapesComponents.length; i++) {
-    //     console.log('FIND JSON : ', JSON.stringify(this.shapesComponents[i].shape));
+    //     
     // }
 
     return this.shapesComponents.find(x => x.shape.shapeProperties.name == name);

@@ -112,14 +112,14 @@ export class InvoiceComponent implements OnInit {
           "",
           Validators.compose([
             Validators.required,
-            Validators.pattern('^[a-zA-Z, ]*$')
+            Validators.pattern('[a-zA-Z]{2,}\\s?([a-zA-Z]{1,})?')
           ])
         ),
         lastName: new FormControl(
           "",
           Validators.compose([
             Validators.required,
-            Validators.pattern('^[a-zA-Z, ]*$')
+            Validators.pattern('[a-zA-Z]{2,}\\s?([a-zA-Z]{1,})?')
           ])
         ),
         address: new FormControl(
@@ -149,7 +149,7 @@ export class InvoiceComponent implements OnInit {
             // Validators.pattern('^[a-zA-Z, ]*$')
           ])
         ),
-        email: new FormControl("", Validators.compose([Validators.required, Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'),])),
+        email: new FormControl("", Validators.compose([Validators.required, this.equalto('cmail'), Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'),])),
         cmail: new FormControl("", Validators.compose([Validators.required, this.equalto('email'), Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'),])),
       }
     );
@@ -216,6 +216,8 @@ export class InvoiceComponent implements OnInit {
 
   // enable or disable form
   add() {
+    var str = JSON.stringify(this.invoiceForm.value.firstName)
+    
     this.myValue = false;
     this.paymentForm.enable();
     this.invoiceForm.disable();
@@ -244,6 +246,7 @@ export class InvoiceComponent implements OnInit {
 
   // submit all invoice details
   submit() {
+    
     if (this.invoiceForm.value.firstName == '' && this.paymentForm.value.cardNumber == '') {
       this.util.errorAlertPopup('Please insert all required values before proceed');
       return;

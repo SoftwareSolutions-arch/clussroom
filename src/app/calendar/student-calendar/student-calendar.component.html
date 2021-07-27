@@ -1,0 +1,16 @@
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+    integrity="undefined" crossorigin="anonymous">
+</head>
+<div class="dashboard">
+  <app-sidebar></app-sidebar>
+  <div class="control-panel">
+    <app-dashboardheader></app-dashboardheader>
+    <div class='demo-app tab-content' (click)="closeModalDialog()" style="padding-top: 0;">
+      <div class='demo-app-main'>
+        <full-calendar [(eventsModel)]="events" *ngIf='calendarVisible' [options]='calendarOptions' #calendar>
+        </full-calendar>
+      </div>
+    </div>
+  </div>
+</div>

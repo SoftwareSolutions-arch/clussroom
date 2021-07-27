@@ -1,102 +1,89 @@
-:host ::ng-deep.text-center{
-    text-align: center !important;
-}
-
-:host ::ng-deep .error-message{
-    color: red !important;
-    font-size: 1.3rem !important;
-}
-
-:host ::ng-deep input{
-    font-size: 1.4rem;
-}
-
 svg {
     background: whitesmoke;
     width: 100%;
     height: 900px;
     border: 1px solid black;
-}
-
-.header {
+  }
+  
+  .header {
     background-color: #f0f5e1;
     margin-bottom: 5px;
     margin-top: 5px;
-}
-
-.draggable {
+  }
+  
+  .draggable {
     cursor: move;
-}
-
-.nopadding {
+  }
+  
+  .nopadding {
     padding: 0 !important;
     margin: 0 !important;
-}
-
-h1 {
+  }
+  
+  h1 {
     color: #80b944;
     padding-top: 20px;
-}
-
-.shape {
+  }
+  
+  .shape {
     margin: 5px 1px 5px 10px;
-}
-
-.tools {
+  }
+  
+  .tools {
     background-color: whitesmoke;
-}
-
-.toolbar {
+  }
+  
+  .toolbar {
     background-color: whitesmoke;
     margin: 0;
-}
-
-.color-text {
+  }
+  
+  .color-text {
     font-weight: bolder;
     color: white;
-}
-
-.panel-body:target {
+  }
+  
+  .panel-body:target {
     height: auto;
-}
-
-
-/* .panel-body ul {
-    list-style: none;
-    padding-left: 0;
-    padding: 0;
-    margin: 0;
-}    
-
-.panel-body ul li {
-    background-color: #eee;
-    margin-bottom: 1px;
-    padding-left: 5px;
-    cursor: pointer;
-}   */
-
-.panel-body select {
+  }
+  
+  
+  /* .panel-body ul {
+      list-style: none;
+      padding-left: 0;
+      padding: 0;
+      margin: 0;
+  }    
+  
+  .panel-body ul li {
+      background-color: #eee;
+      margin-bottom: 1px;
+      padding-left: 5px;
+      cursor: pointer;
+  }   */
+  
+  .panel-body select {
     width: 100%;
     padding: 0;
     margin: 0;
     border: 0;
     outline: 0;
     background-color: #eee;
-}
-
-.panel-heading .accordion-toggle:after {
+  }
+  
+  .panel-heading .accordion-toggle:after {
     font-family: FontAwesome;
     content: "\f068";
     float: right;
     margin: 0;
-}
-
-.panel-heading .accordion-toggle.collapsed:after {
+  }
+  
+  .panel-heading .accordion-toggle.collapsed:after {
     float: right !important;
     content: "\f067";
-}
-
-.panel-title {
+  }
+  
+  .panel-title {
     width: 100%;
     border: none;
     outline: none;
@@ -108,19 +95,19 @@ h1 {
     font-size: 18px;
     margin-bottom: 1px;
     padding: 10px 10px;
-}
-
-.panel-title:hover {
+  }
+  
+  .panel-title:hover {
     background-color: #609944;
-}
-
-.panel-title a {
+  }
+  
+  .panel-title a {
     text-decoration: none;
     color: white;
-}
-
-.panel-title>a:hover,
-.panel-title>a:active,
-.panel-title>a:focus {
+  }
+  
+  .panel-title>a:hover,
+  .panel-title>a:active,
+  .panel-title>a:focus {
     text-decoration: none;
-}
+  }

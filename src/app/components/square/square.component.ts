@@ -24,13 +24,13 @@ export class SquareComponent extends ShapeComponent implements OnInit {
 
     constructor() {
         super();
-        console.log('SquareComponent constructor');
+        
         this.shape = new Square();
         this.shapeType = ShapeType.Square;
     }
 
     ngOnInit() {
-        console.log('SquareComponent ngOnInit');
+        
     }
 
     setStyles() {
@@ -43,7 +43,7 @@ export class SquareComponent extends ShapeComponent implements OnInit {
     }
 
     startDrawing(beginPosition: MousePosition): void {
-        console.log('SquareComponent startDrawing at ', beginPosition);
+        
         if (this.shape instanceof Square) {
             this.shape.originX = beginPosition.x;
             this.shape.originY = beginPosition.y;
@@ -51,7 +51,7 @@ export class SquareComponent extends ShapeComponent implements OnInit {
     }
 
     draw(currentPosition: MousePosition): void {
-        console.log('SquareComponent draw');
+        
         if (this.shape instanceof Square) {
             this.shape.width = Math.abs(currentPosition.x - this.shape.originX);
         }

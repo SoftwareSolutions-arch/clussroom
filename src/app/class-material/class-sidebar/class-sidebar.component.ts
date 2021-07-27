@@ -77,6 +77,4 @@ export class ClassSidebarComponent implements OnInit {
   goToTestListing(){
     this.router.navigate(['/test-listing'])
   }
-
-
 }

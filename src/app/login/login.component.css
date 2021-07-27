@@ -406,3 +406,9 @@ section.login-section {
 .login-form .radio-curve label {
   margin-left: 5px;
 }
+
+
+.error-message {
+  color: red !important;
+  font-size: 1.4rem !important;
+}

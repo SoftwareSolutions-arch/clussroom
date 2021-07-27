@@ -49,13 +49,21 @@ export class CourseLibraryComponent implements OnInit {
   checkbox: any
   selectedLibraryData: any = '';
   editFoldername: any = '';
+  course_library_upload_edit_permission: any = '';
+  
   constructor(public service: SharedServiceService, private router: Router, public util: UtilService) {
     this.userId = localStorage.getItem('uid');
     this.getMainListing();
     this.getAllCoursesList();
+    this.course_library_upload_edit_permission = localStorage.getItem('course_library_upload_edit_permission');
+
   }
 
   ngOnInit(): void {
+  }
+  
+  isCourseCreated(){
+    this.util.showSuccessToast("You don't have permission");
   }
 
   getMainListing() {
@@ -88,7 +96,6 @@ export class CourseLibraryComponent implements OnInit {
       library_type: 'course'
     }
     this.service.post('add-folder-to-libarary', params, 1).subscribe(result => {
-      
       this.getMainListing();
       this.isLoadingBool = false;
     })

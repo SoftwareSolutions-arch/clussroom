@@ -25,7 +25,7 @@
       <div class="tab-content">
         <!-- Schedule start -->
         <div class="heading" style="padding: 0 10px;">
-          <h2>Short Answer</h2>
+          <h2>Short answer</h2>
         </div>
         <div class="multiple-text">
           <angular-editor [(ngModel)]="fillData.question" name="shortanswer" cols="80" label="notes" rows="4"
@@ -70,14 +70,14 @@
           </div>
           <div class="custom-control custom-checkbox question-label"
             style="padding: 1.5em 26px; border-bottom:1px solid #F1F6FB;">
-            <label class="question-checkbox col-sm-2">Character Limit
+            <label class="question-checkbox col-sm-2">Character limit
               <input [(ngModel)]="fillData.character_limit" type="checkbox"> <span class="mark"></span>
             </label>
             <input [(ngModel)]="fillData.characterInput" type="text" class="ml-3">
           </div>
           <div class="custom-control custom-checkbox question-label"
             style="padding: 1.5em 26px; border-bottom:1px solid #F1F6FB;">
-            <label class="question-checkbox col-sm-2">Partial Points
+            <label class="question-checkbox col-sm-2">Partial points
               <input [(ngModel)]="fillData.partial_point" type="checkbox"> <span class="mark"></span>
             </label>
             <p class="col-md-6"><span style="color: #81c8c1;">Note:</span> Points are rounded to the nearest 1 decimal
@@ -96,8 +96,8 @@
                   <button type="button" class="lime"><a>Edit</a></button>
                   <button type="button" class="Org"><a>Confirm Edit</a></button>
                   -->
-          <a *ngIf="isEditQuestion" class="addbutton custom-button" (click)="saveQuestion()">Save Question</a>
-          <a *ngIf="!isEditQuestion" class="addbutton custom-button" (click)="EditQuestion()">Edit Question</a>
+          <a *ngIf="isEditQuestion" class="addbutton custom-button" (click)="saveQuestion()">Save question</a>
+          <a *ngIf="!isEditQuestion" class="addbutton custom-button" (click)="EditQuestion()">Edit question</a>
           <a class="edit-points-btn custom-button">Cancel</a>
         </div>
         <!--

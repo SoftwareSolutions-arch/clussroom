@@ -22,11 +22,11 @@ export class ShapeComponent implements OnInit {
     selectionPoints: MousePosition[] = [];
 
     constructor() {
-        console.log('ShapeComponent constructor');
+        
     }
 
     ngOnInit() {
-        console.log('ShapeComponent ngOnInit');
+        
     }
 
     getFormFields(): Field[] {
@@ -34,27 +34,27 @@ export class ShapeComponent implements OnInit {
     }
 
     updateShapeProperties(value: any) {
-        console.log('ShapeComponent : updateShapeProperties');
+        
     }
 
     startDrawing(beginPosition: MousePosition): void {
-        console.log('ShapeComponent: startDrawing at ', beginPosition);
+        
     }
 
     endDrawing(): void {
-        console.log('ShapeComponent: endDrawing()');
+        
     }
 
     draw(currentPosition: MousePosition): void {
-        console.log('ShapeComponent: draw at ', currentPosition);
+        
     }
 
     setPoint(point: MousePosition): void {
-        console.log('ShapeComponent: setPoint at ', point);
+        
     }
 
     drag(draqPosition: MousePosition): void {
-        console.log(this.shape.shapeProperties.name + ' drag at ', draqPosition, ', offset : ', this.offset);
+        
         if (this.offset == undefined) {
             this.offset = Object.assign({}, draqPosition);
             this.offset.x -= this.shape.originX;
@@ -65,7 +65,7 @@ export class ShapeComponent implements OnInit {
     }
 
     resizeShape(resizePosition: MousePosition) {
-        console.log('ShapeComponent: resizeShape ', resizePosition);
+        
     }
 
 }

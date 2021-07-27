@@ -38,14 +38,15 @@ export class LoginComponent implements OnInit {
     this.hideImage = !this.hideImage
   }
 
+
   setupLoginFormData() {
     this.error_messages = {
       email: [
-        { type: "required", message: '*Email is Required' },
-        { type: "pattern", message: '*Please Enter valid Email' }
+        { type: "required", message: '*Required' },
+        { type: "pattern", message: '*Please enter valid email' }
       ],
       password: [
-        { type: "required", message: '*Password is Required' }
+        { type: "required", message: '*Required' }
       ],
     };
     this.loginForm = this.formBuilder.group(
@@ -105,6 +106,7 @@ export class LoginComponent implements OnInit {
 
       }
       this.service.post('user/login', data, 0).subscribe(result => {
+        console.log('result',result.permission.add_learner);
         try {
           if (result['status'] == 200) {
             this.getInstructionName();
@@ -114,8 +116,14 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('userMail', result['current_user']['name']);
             localStorage.setItem('isLogin', '1');
             localStorage.setItem('Authorization', result['current_user']['basic_auth_token'])
+            localStorage.setItem('add_learner_permission',result.permission.add_learner);
+            localStorage.setItem('class_creation_permission',result.permission.class_creation);
+            localStorage.setItem('class_deletion_permission',result.permission.class_delation);
+            localStorage.setItem('course_creation_permission',result.permission.course_creation);
+            localStorage.setItem('course_library_upload_edit_permission',result.permission.course_library_upload_edit);
+            localStorage.setItem('live_session_permission',result.permission.live_session);
+            localStorage.setItem('main_library_upload_edit_permission',result.permission.main_library_upload_edit);
             // this.util.showSuccessAlert(result['message']);
-            this.router.navigate(['/sample04']);
           }
           else {
             this.toastr.error(result.error_message);
@@ -136,17 +144,17 @@ export class LoginComponent implements OnInit {
 
       }
       this.service.post('user/login', data, 0).subscribe(result => {
-        
+        console.log('result',result);
         try {
           if (result['status'] == 200) {
-            this.getInstructionName();
+            this.getInstructionName2();
             this.util.showSuccessToast(result['message']);;
             localStorage.setItem("csrftoken", result['current_user']['csrf_token']);
             localStorage.setItem("uid", result['current_user']['uid']);
             localStorage.setItem('userMail', result['current_user']['name']);
             localStorage.setItem('isLogin', '1');
             localStorage.setItem('Authorization', result['current_user']['basic_auth_token'])
-            // this.router.navigate(['/library/main-library']);
+            this.router.navigate(['/student/student-course']);
           }
           else {
             this.toastr.error(result.error_message);
@@ -164,6 +172,14 @@ export class LoginComponent implements OnInit {
   getInstructionName() {
     this.service.post('instruction-name-api', '', 0).subscribe(result => {
       localStorage.setItem('instructionName', result.instruction_name);
+      this.router.navigate(['/sample04']);
+    })
+  }
+
+  getInstructionName2() {
+    this.service.post('instruction-name-api', '', 0).subscribe(result => {
+      localStorage.setItem('instructionName', result.instruction_name);
+      this.router.navigate(['/student/student-course']);
     })
   }
 }

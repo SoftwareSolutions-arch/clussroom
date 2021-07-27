@@ -43,7 +43,6 @@ import { PasswordStrengthComponent } from './password-strength/password-strength
 import { ClassListComponent } from './class-list/class-list.component';
 import { LearnersComponent } from './learners/learners.component';
 import { StorageComponent } from './storage/storage.component';
-import { AdminComponent } from './admin/admin.component';
 import { LiveSessionsComponent } from './live-sessions/live-sessions.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { TermsOfUseComponent } from './terms-of-use/terms-of-use.component';
@@ -95,6 +94,8 @@ import { GroupComponent } from './components/group/group.component';
 import { ImageComponent } from './components/image/image.component';
 import { PolyLineComponent } from './components/polyline/polyline.component';
 import { PathComponent } from './components/path/path.component';
+import { StudentCalendarComponent } from './calendar/student-calendar/student-calendar.component';
+import { AdminVendorComponent } from './admin-vendor/admin-vendor.component';
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -131,7 +132,6 @@ FullCalendarModule.registerPlugins([
     ClassListComponent,
     LearnersComponent,
     StorageComponent,
-    AdminComponent,
     LiveSessionsComponent,
     PrivacyPolicyComponent,
     TermsOfUseComponent,
@@ -165,8 +165,10 @@ FullCalendarModule.registerPlugins([
     GroupComponent,
     ImageComponent,
     PolyLineComponent,
-    PathComponent
-  ],
+    PathComponent,
+    StudentCalendarComponent,
+    AdminVendorComponent
+      ],
   imports: [
     FullCalendarModule,
     NgxImageZoomModule,
@@ -212,7 +214,7 @@ FullCalendarModule.registerPlugins([
     ImageComponent,
     PolyLineComponent,
     PathComponent,
-], 
+  ],
   providers: [Sample04Component, ClassesComponent, LoaderComponent],
   bootstrap: [AppComponent]
 })

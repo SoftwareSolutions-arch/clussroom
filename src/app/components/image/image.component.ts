@@ -24,13 +24,13 @@ export class ImageComponent extends ShapeComponent implements OnInit {
 
     constructor() {
         super();
-        console.log('ImgeComponent constructor');
+        
         this.shape = new ImageBox();
         this.shapeType = ShapeType.Image;
     }
 
     ngOnInit() {
-        console.log('ImageComponent ngOnInit');
+        
     }
 
     startDrawing(beginPosition: MousePosition): void {
@@ -38,11 +38,11 @@ export class ImageComponent extends ShapeComponent implements OnInit {
             this.shape.originX = beginPosition.x;
             this.shape.originY = beginPosition.y;
         }
-        console.log('ImageComponent startDrawing at ', beginPosition, ', ', this.shape);
+        
     }
 
     draw(currentPosition: MousePosition): void {
-        console.log('ImageComponent draw');
+        
         if (this.shape instanceof ImageBox) {
             this.shape.width = Math.abs(currentPosition.x - this.shape.originX);
             this.shape.height = Math.abs(currentPosition.y - this.shape.originY);

@@ -222,7 +222,7 @@ saveFiles(files: FileList) {
     this.listOfFiles.push(selectedFile.name)
     this.filesName = this.listOfFiles
     this.handleInputChange(selectedFile);
-    console.log(files[0].size,files[0].name,files[0].type);
+    
   }
 }
 

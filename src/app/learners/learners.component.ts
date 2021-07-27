@@ -12,6 +12,7 @@ import { NgForm, FormBuilder, FormArray } from '@angular/forms';
 })
 export class LearnersComponent implements OnInit {
   instructionName: any = '';
+  add_learner_permission: any = '';
   isLoadingBool: boolean = true;
   allClassesList: any = [];
   currentIndex = -1;
@@ -41,8 +42,12 @@ export class LearnersComponent implements OnInit {
       employees: this.fb.array([]),
     })
     this.addInitialForms();
+    this.add_learner_permission = localStorage.getItem('add_learner_permission');
   }
 
+  isCourseCreated(){
+    this.util.showSuccessToast("You don't have permission");
+  }
 
   employees(): FormArray {
     return this.addCourseForm.get("employees") as FormArray
@@ -115,13 +120,19 @@ export class LearnersComponent implements OnInit {
     this.router.navigate(['/live-session']);
   }
 
-  // get all courses list
+  // get all learner list
   getAllClassesList() {
     this.isLoadingBool = true;
     this.service.post('view-all-learners-api', '', 1).subscribe(result => {
+      if(result.message=="No Learner Found"){
+        this.isLoadingBool = false;
+        this.util.errorAlertPopup(result.message);
+      }
 
-      this.isLoadingBool = false;
-      this.allClassesList = result;
+      else{
+        this.isLoadingBool = false;
+        this.allClassesList = result;
+      }
     })
   }
 
@@ -129,7 +140,6 @@ export class LearnersComponent implements OnInit {
   getAllCoursesList() {
     this.isLoadingBool = true;
     this.service.post('view-all-courses-api', '', 1).subscribe(result => {
-
       this.isLoadingBool = false;
       this.allCourseList = result['coursesdata'];
       if (result['status'] == 1) {
@@ -186,7 +196,7 @@ export class LearnersComponent implements OnInit {
       this.service.post('add-learner-api', params, 1).subscribe(result => {
         if (result['status'] == 1) {
           this.util.showSuccessAlert(result['error_message']);
-          this.viewAllCoursesList();
+          this.getAllClassesList();
         }
         else {
           this.util.showSuccessAlert(result['error_message']);
@@ -202,7 +212,7 @@ export class LearnersComponent implements OnInit {
         this.closeModal.nativeElement.click();
         if (result['status'] == 1) {
           this.util.showSuccessAlert(result['error_message']);
-          this.viewAllCoursesList();
+          this.getAllClassesList();
         }
         else {
           this.util.showSuccessAlert(result['error_message']);

@@ -164,4 +164,8 @@ export class TrueOrFalseComponent implements OnInit {
       this.router.navigate(['/test/question-screen']);
     })
   }
+
+  cancel(){
+    this.router.navigate(['/test/question-screen']);
+  }
 }

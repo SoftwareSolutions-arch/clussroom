@@ -139,7 +139,7 @@ export class LearnerStudentPanelComponent implements OnInit {
     const regexp = /\_(.*?)\ /g;
     const array = [...word1.matchAll(regexp)];
     this.arrayLength = array.length
-    console.log(this.arrayLength)
+    
     for (let i = 0; i < array.length; i++) {
       var tag = '---------------' + ''
       this.replaceData = word1.replace(/\_(.*?)\ /, tag)
@@ -341,7 +341,7 @@ export class LearnerStudentPanelComponent implements OnInit {
             this.shortAnswer.forEach(element1 => {
               if (element1.id == element.id) {
                 answer = element1.value
-                console.log('short', answer);
+                
 
                 // this.answer.push(element1.value)
               }
@@ -456,7 +456,7 @@ export class LearnerStudentPanelComponent implements OnInit {
             this.shortAnswer.forEach(element1 => {
               if (element1.id == element.id) {
                 answer = element1.value
-                console.log('short', answer);
+                
 
                 // this.answer.push(element1.value)
               }

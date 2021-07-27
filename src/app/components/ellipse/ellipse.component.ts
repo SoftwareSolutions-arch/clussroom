@@ -41,13 +41,13 @@ export class EllipseComponent extends ShapeComponent implements OnInit {
 
     constructor() {
         super();
-        console.log('EllipseComponent constructor');
+        
         this.shape = new Ellipse();
         this.shapeType = ShapeType.Ellipse;
     }
 
     ngOnInit() {
-        console.log('EllipseComponent ngOnInit');
+        
     }
 
     setStyles() {
@@ -60,7 +60,7 @@ export class EllipseComponent extends ShapeComponent implements OnInit {
     }
 
     startDrawing(beginPosition: MousePosition): void {
-        console.log('EllipseComponent startDrawing at ', beginPosition);
+        
         if (this.shape instanceof Ellipse) {
             this.shape.originX = beginPosition.x;
             this.shape.originY = beginPosition.y;
@@ -68,11 +68,11 @@ export class EllipseComponent extends ShapeComponent implements OnInit {
     }
 
     draw(currentPosition: MousePosition): void {
-        console.log('EllipseComponent draw');
+        
         if (this.shape instanceof Ellipse) {
             this.shape.rx = Math.abs(currentPosition.x - this.shape.originX);
             this.shape.ry = Math.abs(currentPosition.y - this.shape.originY);
-            //console.log('eliipse properties : ', this.shape);
+            //
         }
     }
 

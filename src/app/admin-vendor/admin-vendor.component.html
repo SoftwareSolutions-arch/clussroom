@@ -1,0 +1,409 @@
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <div class="dashboard">
+    <app-sidebar></app-sidebar>
+    <div class="control-panel">
+      <!-- <app-header></app-header> -->
+      <app-dashboardheader></app-dashboardheader>
+      <div class="nav-clip">
+        <ul class="nav nav-tabs">
+          <li (click)="goToCourses()">
+            <a data-toggle="tab" href="#course-content" class="clip-item">
+              <img src="assets/images/dashboard/second/course-grey.png" class="hover-out">
+              <img src="assets/images/dashboard/second/course-blue.png" class="hover-in">{{this.instructionName}}</a>
+          </li>
+          <li (click)="goToclasses()">
+            <a data-toggle="tab" href="#classes-content" class="clip-item">
+              <img src="assets/images/dashboard/second/clip-classes-grey.png" class="hover-out">
+              <img src="assets/images/dashboard/second/clip-classes-blue.png" class="hover-in">Classes</a>
+          </li>
+          <li (click)="goToClassList()">
+            <a data-toggle="tab" href="#class-list-content" class="clip-item">
+              <img src="assets/images/dashboard/second/list-grey.png" class="hover-out">
+              <img src="assets/images/dashboard/second/list-blue.png" class="hover-in">Class List</a>
+          </li>
+          <li (click)="goToLearner()">
+            <a data-toggle="tab" href="#learners-content" class="clip-item">
+              <img src="assets/images/dashboard/second/clip-learner-grey.png" class="hover-out">
+              <img src="assets/images/dashboard/second/clip-learner-blue.png" class="hover-in">Learners</a>
+          </li>
+          <li (click)="goToStroage()">
+            <a data-toggle="tab" href="#storage-content" class="clip-item">
+              <img src="assets/images/dashboard/second/clip-storage-grey.png" class="hover-out">
+              <img src="assets/images/dashboard/second/clip-storage-blue.png" class="hover-in">Storage</a>
+          </li>
+          <li>
+            <a data-toggle="tab" href="#admin-content" class="active clip-item">
+              <img src="assets/imaxges/dashboard/second/clip-user-grey.png" class="hover-out">
+              <img src="assets/images/dashboard/second/clip-user-blue.png" class="hover-in">Admin</a>
+          </li>
+          <li (click)="goToLiveSession()">
+            <a data-toggle="tab" href="#live-sessions-content" class="clip-item">
+              <img src="assets/images/dashboard/second/session-grey.png" class="hover-out">
+              <img src="assets/images/dashboard/second/session-blue.png" class="hover-in">Live Sessions</a>
+          </li>
+        </ul>
+      </div>
+      <div *ngIf="isLoadingBool" class="loading-indicator">
+        <mat-spinner></mat-spinner>
+      </div>
+      <div class="prospectus-section" *ngIf="!isLoadingBool">
+        <div class="tab-content class-table-user">
+          <div class="table-path">
+            <!-- <p>&lt;Course&gt;/&lt;Activity&gt;/&lt;Subject&gt;/&lt;Topic&gt; Administrator</p> -->
+            <p>{{this.instructionName}} Administrator</p>
+          </div>
+          <div class="table-responsive admin-button">
+            <table class="table dashboard-table">
+              <thead>
+                <tr>
+                  <th scope="col">No.</th>
+                  <th scope="col" class="text-left">{{this.instructionName}}</th>
+                  <th scope="col">Level</th>
+                  <th scope="col">Banding</th>
+                  <th scope="col" class="table-filter">Course admin</th>
+                  <th scope="col" class="table-filter">Email</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="let adminList of this.adminData| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;"
+                  [class.active]="i == currentIndex">
+                  <td>{{adminList.s_no}}</td>
+                  <td class="text-left">
+                    <li *ngFor="let item of adminList.course_name">
+                      {{item.course_name}}
+                    </li>
+                  </td>
+                  <td>
+                    <li *ngFor="let item of adminList.course_name">
+                      {{item.level}}
+                    </li>
+                  </td>
+                  <td>
+                    <li *ngFor="let item of adminList.course_name">
+                      {{item.banding}}
+                    </li>
+                  </td>
+                  <td>{{adminList.course_admin}}</td>
+                  <td>{{adminList.email}}</td>
+                  <td (click)="isClicked(adminList)">
+                    <button>
+                      <a data-toggle="modal" data-target="#edit-admin">Edit</a>
+                    </button>
+                  </td>
+                  <!-- <td (click)="isClicked(adminList)">
+                    <button class="admin-button-green" style="padding: 0 !important;">
+                      <a class="custom-a-btn" data-toggle="modal" data-target="#learners">Assign</a>
+                    </button>
+                  </td> -->
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-result-wrapper bottom-select row">
+            <pagination-controls previousLabel="Prev" nextLabel="Next" responsive="true"
+              (pageChange)="handlePageChange($event)"></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Add admin PopUp Start-->
+  <div id="learners" class="modal addcourse-modal" role="dialog">
+    <div class="modal-dialog" style="max-width: 829px !important;">
+      <div class="modal-content">
+        <div class="green-modal-header">
+          <h4 style="padding-left: 21em;">Add Admin</h4>
+          <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"
+              style="color: #fff;"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="name-of-course fieldset admin-popup-button col-lg-12" style="border-bottom: 1px solid #F1F6FB;">
+              <div class="col-md-6" style="padding: 0 0 0 95px; display: flex; align-items: center;">
+                <label style="width:85px;">Email:</label>
+                <input type="email" name="email" ngModel placeholder="Enter email" #emailWithPatterns="ngModel"
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                <br />
+                <div *ngIf="emailWithPatterns.touched">
+                  <p class="error-message" *ngIf="emailWithPatterns.errors?.required">Email is a required field</p>
+                  <p class="error-message" *ngIf="emailWithPatterns.errors?.pattern">This is not a valid Email</p>
+                </div>
+                <br />
+                <br />
+              </div>
+              <div class="col-md-6 text-center" style="padding-right:46px;">
+                <label style="text-align: center; margin: 0 -1em;">Admin type:</label>
+                <button type="button">{{this.instructionName}} admin</button>
+              </div>
+            </div>
+            <div class="addCourse-form row mt-3" class="align-items:center;">
+              <div class="name-of-course fieldset" style="padding: 0 16px;">
+                <label style="text-align: center;color: #5B73A0 !important;">Course Name:</label>
+                <p class="label-p">{{this.adminDataList.title}}</p>
+              </div>
+              <div class="name-of-course fieldset mt-3" style="padding: 0 17px;">
+                <label style="text-align: right; padding-right: 2em;color: #5B73A0 !important;">Level:</label>
+                <select name="level" id="levelcourse" style="width: 140px !important;">
+                  <option *ngFor="let level of this.allLevel" value="{{level.tid}}">{{level.name}}</option>
+                </select>
+                <label class="banding-adjust">Banding:</label>
+                <select name="level" id="levelcourse" style="width: 140px !important;">
+                  <option *ngFor="let banding of this.allBanding" value="{{banding.tid}}">{{banding.name}}</option>
+                </select>
+              </div>
+              <div class="name-of-course fieldset" style="border-bottom: 1px solid #F1F6FB; padding: 0 12px;">
+                <label class="adjust" style="color: #5B73A0 !important;">Class:</label>
+                <select [(ngModel)]="classFieldData" name="level" id="levelcourse" style="width: 140px !important;">
+                  <option [ngValue]="classesList" *ngFor="let classesList of this.allClassesData"
+                    value="{{classesList.tid}}">{{classesList.title}}</option>
+                </select>
+                <p class="para"><span class="orange">{{classFieldData.field_class_code}}</span>
+                </p>
+              </div>
+            </div>
+            <div class="name-of-course fieldset admin-table">
+              <div class="table-responsive">
+                <table class="table dashboard-table">
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td class="text-left admin-table-width">{{this.instructionName}} creation</td>
+                      <td>Poppins</td>
+                      <th>
+                        <div class="radio-table">
+                          <input type="checkbox">
+                        </div>
+                      </th>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td class="text-left admin-table-width">Class creation</td>
+                      <td></td>
+                      <th>
+                        <div class="radio-table">
+                          <input type="checkbox">
+                        </div>
+                      </th>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td class="text-left admin-table-width">Add learners</td>
+                      <td></td>
+                      <th>
+                        <div class="radio-table">
+                          <input type="checkbox">
+                        </div>
+                      </th>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td class="text-left admin-table-width">Main library file upload/edit</td>
+                      <td></td>
+                      <th>
+                        <div class="radio-table">
+                          <input type="checkbox">
+                        </div>
+                      </th>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td class="text-left admin-table-width">{{this.instructionName}} library file upload/edit</td>
+                      <td></td>
+                      <th>
+                        <div class="radio-table">
+                          <input type="checkbox">
+                        </div>
+                      </th>
+                    </tr>
+                    <tr>
+                      <td>6</td>
+                      <td class="text-left admin-table-width">Class deletion</td>
+                      <td></td>
+                      <th>
+                        <div class="radio-table">
+                          <input type="checkbox">
+                        </div>
+                      </th>
+                    </tr>
+                    <tr>
+                      <td>7</td>
+                      <td class="text-left admin-table-width">Class deletion</td>
+                      <td></td>
+                      <th>
+                        <div class="radio-table">
+                          <input type="checkbox">
+                        </div>
+                      </th>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!--modal footer start-->
+            <div class="admin-modal-footer" style="box-shadow: none;">
+              <button class="back-btn-course-blue"><a>Confirm</a>
+              </button>
+              <button class="next-btn-course" data-dismiss="modal">Cancel</button>
+            </div>
+            <!--modal footer end-->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Add admin PopUp End    -->
+  <!--Edit admin PopUp Start-->
+  <div id="edit-admin" class="modal addcourse-modal" role="dialog" #editAdminPopup>
+    <div class="modal-dialog" style="max-width: 829px !important;">
+      <div class="modal-content">
+        <div class="green-modal-header">
+          <h4 style="padding-left: 21em;">Edit admin</h4>
+          <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"
+              style="color: #fff;"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="name-of-course fieldset admin-popup-button col-lg-12" style="border-bottom: 1px solid #F1F6FB;">
+              <div class="col-md-6" style="padding: 0 0 0 95px; display: flex; align-items: center;">
+                <label style="width:85px;">Email:</label>
+                <input [(ngModel)]="this.editData.email" type="email" name="email" ngModel placeholder="Enter email"
+                  #emailWithPattern="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                <br />
+                <div *ngIf="emailWithPattern.touched">
+                  <p class="error-message" *ngIf="emailWithPattern.errors?.required">Email is a required field</p>
+                  <p class="error-message" *ngIf="emailWithPattern.errors?.pattern">This is not a valid Email</p>
+                </div>
+                <br />
+                <br />
+              </div>
+              <div class="col-md-6 text-center" style="padding-right:46px;">
+                <label style="text-align: center; margin: 0 -1em;">Admin type:</label>
+                <button type="button">{{this.editData.type}}</button>
+              </div>
+            </div>
+            <div class="addCourse-form row mt-3" class="align-items:center;">
+              <div class="name-of-course fieldset" style="padding: 0 16px;">
+                <label style="text-align: center;color: #5B73A0 !important;">Course Name:</label>
+                <select (change)="viewAllCoursesLists()" [(ngModel)]="selectedCategory" style="width: 565px;"
+                  name="course" id="course-name">
+                  <option *ngFor="let courseList of this.allCourseList" [ngValue]="courseList">{{this.courseList.title}}
+                  </option>
+                </select>
+              </div>
+              <div class="name-of-course fieldset mt-3" style="padding: 0 17px;">
+                <label style="text-align: right; padding-right: 2em;color: #5B73A0 !important;">Level:</label>
+                <select [(ngModel)]="levelName" name="level" id="levelcourse" style="width: 140px !important;">
+                  <option *ngFor="let level of this.allLevel" value="{{level.tid}}">{{level.name}}</option>
+                </select>
+                <label class="banding-adjust">Banding:</label>
+                <select [(ngModel)]="bandingId" name="level" id="levelcourse" style="width: 140px !important;">
+                  <option *ngFor="let banding of this.allBanding" value="{{banding.tid}}">{{banding.name}}</option>
+                </select>
+              </div>
+              <div class="name-of-course fieldset">
+                <label class="adjust" style="color: #5B73A0 !important;">Class:</label>
+                <select [(ngModel)]="classFieldData" name="level" id="levelcourse" style="width: 140px !important;">
+                  <option [ngValue]="classesList" *ngFor="let classesList of this.allClassesData">{{classesList.title}}
+                  </option>
+                </select>
+                <p class="para"><span class="orange">{{classFieldData.field_class_code}}</span>
+                </p>
+                <br>
+              </div>
+              <div class="col-lg-12 text-center"
+                style="font-size: 15px; font-weight: 400; color: #7990B4; font-family: 'Barlow'; font-style: normal;">
+                <p>Secondary 4</p>
+              </div>
+            </div>
+            <div class="name-of-course fieldset admin-table" style="display: contents !important;" *ngIf="this.editData!=''">
+              <div class="table-responsive">
+                <table class="table dashboard-table">
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td class="text-left admin-table-width">Class creation</td>
+                      <td></td>
+                      <th>
+                        <div class="radio-table" >
+                          <!-- <input [checked]="this.editData.permissions_data[0].class_creation==1" (click)="classCreation($event)" type="checkbox"> -->
+                          <input (click)="classCreation($event)" type="checkbox">
+                        </div>
+                      </th>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td class="text-left admin-table-width">Add learners</td>
+                      <td></td>
+                      <th>
+                        <div class="radio-table">
+                          <input  (click)="addLearner($event)" type="checkbox">
+                        </div>
+                      </th>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td class="text-left admin-table-width">Main library file upload/edit</td>
+                      <td></td>
+                      <th>
+                        <div class="radio-table">
+                          <input (click)="mainLibrary($event)" type="checkbox">
+                        </div>
+                      </th>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td class="text-left admin-table-width">{{this.instructionName}} library file upload/edit</td>
+                      <td></td>
+                      <th>
+                        <div class="radio-table">
+                          <input (click)="fileUpload($event)" type="checkbox">
+                        </div>
+                      </th>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td class="text-left admin-table-width">Class deletion</td>
+                      <td></td>
+                      <th>
+                        <div class="radio-table">
+                          <input (click)="classDeletion($event)" type="checkbox">
+                        </div>
+                      </th>
+                    </tr>
+                    <tr>
+                      <td>6</td>
+                      <td class="text-left admin-table-width">Live session</td>
+                      <td></td>
+                      <th>
+                        <div class="radio-table">
+                          <input (click)="liveSession($event)" type="checkbox">
+                        </div>
+                      </th>
+                    </tr>
+                    <tr>
+                      <td>7</td>
+                      <td class="text-left admin-table-width">Course creation</td>
+                      <td></td>
+                      <th>
+                        <div class="radio-table">
+                          <input (click)="courseCreation($event)" type="checkbox">
+                        </div>
+                      </th>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="admin-modal-footer" style="box-shadow: none;">
+              <button class="edit-admin mr-3" (click)="editAdmin()">Edit</button>
+              <button class="next-btn-course" data-dismiss="modal">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--edit admin PopUp End-->
