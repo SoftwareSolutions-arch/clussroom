@@ -94,7 +94,7 @@ export class LoginComponent implements OnInit {
   // do login
   login() {
     if (this.userDetails == '') {
-      this.util.errorAlertPopup('please select user type');
+      this.util.errorAlertPopup('Please select user type');
       return
     }
 
@@ -106,7 +106,7 @@ export class LoginComponent implements OnInit {
 
       }
       this.service.post('user/login', data, 0).subscribe(result => {
-        console.log('result',result.permission.add_learner);
+        console.log('result',result);
         try {
           if (result['status'] == 200) {
             this.getInstructionName();

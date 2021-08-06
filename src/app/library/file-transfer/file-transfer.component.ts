@@ -14,8 +14,8 @@ export class FileTransferComponent implements OnInit {
   isLoadingBool: boolean = true;
   libraryTypeFirst: any = 'main';
   libraryTypeSecond: any = 'personal';
-  libraryData=[];
-  libraryDataSecond=[];
+  libraryData: any = [];
+  libraryDataSecond: any = [];
   mainLibrary: any = []
   array = []
   constructor(public service: SharedServiceService, public util: UtilService) {
@@ -28,10 +28,11 @@ export class FileTransferComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<string[]>, data) {
-    
+
     this.array = [];
     this.isLoadingBool = true;
     if (event.previousContainer === event.container) {
+      console.log('evetn', event.container.data, event.previousIndex, event.currentIndex)
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
       this.mainLibrary = event.container.data;
       this.mainLibrary.forEach(element => {
@@ -47,23 +48,24 @@ export class FileTransferComponent implements OnInit {
         'library_data': this.array
       }
       this.service.post('transfer-library-api', params, 1).subscribe(result => {
-        
+
         this.isLoadingBool = false;
         this.getMainListing('first');
         this.getMainListing('second');
       })
     }
     else {
+      console.log('evetn2++', event)
       transferArrayItem(event.previousContainer.data,
         event.container.data,
         event.previousIndex,
         event.currentIndex);
-      
+
       this.mainLibrary = event.container.data;
 
       if (data == 1) {
         this.mainLibrary.forEach(element => {
-          
+
           this.array.push(
             {
               'id': element['id'],
@@ -76,7 +78,7 @@ export class FileTransferComponent implements OnInit {
           'library_data': this.array
         }
         this.service.post('transfer-library-api', params, 1).subscribe(result => {
-          
+
           this.isLoadingBool = false;
           this.getMainListing('first');
           this.getMainListing('second');
@@ -97,7 +99,7 @@ export class FileTransferComponent implements OnInit {
           'library_data': this.array
         }
         this.service.post('transfer-library-api', params, 1).subscribe(result => {
-          
+
           this.isLoadingBool = false;
           this.getMainListing('first');
           this.getMainListing('second');
@@ -114,18 +116,17 @@ export class FileTransferComponent implements OnInit {
           "user_id": this.userId,
           "type": this.libraryTypeFirst
         }
-        
+
         this.isLoadingBool = true;
         this.service.post('vendor_library_listing', params, 1).subscribe(result => {
           this.isLoadingBool = false;
           if (result.result.message == "No Data Found") {
             this.util.showSuccessToast(result.result.message);
-            this.libraryData =[];
+            this.libraryData = [{}];
           }
 
           else {
             this.libraryData = result.result;
-            
           }
         })
       }
@@ -134,14 +135,14 @@ export class FileTransferComponent implements OnInit {
           "user_id": this.userId,
           "type": this.libraryTypeSecond
         }
-        
+
         this.isLoadingBool = true;
         this.service.post('vendor_library_listing', params, 1).subscribe(result => {
-          
+
           this.isLoadingBool = false;
           if (result.result.message == "No Data Found") {
             this.util.showSuccessToast(result.result.message);
-            this.libraryDataSecond =[];
+            this.libraryDataSecond = [{}];
           }
 
           else {

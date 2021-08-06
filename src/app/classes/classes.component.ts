@@ -27,7 +27,7 @@ export class ClassesComponent implements OnInit {
   editForm: boolean = false;
   isSaveCourses: boolean = false;
 
-  selectedCategory: any;
+  selectedCategory: any = '';
   selectedItems = [];
 
   courseList = { class_start: '', class_end: '', class_name: '' };
@@ -39,18 +39,22 @@ export class ClassesComponent implements OnInit {
   instructionName: any = '';
   courseId: any = '';
   class_creation_permission: any = '';
-  constructor(public util: UtilService, private activatedRoute: ActivatedRoute, public router: Router, public service: SharedServiceService) {
+  learnerId:any='';
+  constructor(public util: UtilService,private route: ActivatedRoute, private activatedRoute: ActivatedRoute, public router: Router, public service: SharedServiceService) {
     this.courseId = localStorage.getItem('courseId');
     this.getClassesList();
     this.getAllCoursesList();
     this.instructionName = localStorage.getItem('instructionName')
-    this.class_creation_permission = localStorage.getItem('class_creation_permission')
+    this.class_creation_permission = localStorage.getItem('class_creation_permission');
+    this.learnerId = this.route.snapshot.paramMap.get('id');
+    console.log('this.learnerId',this.learnerId);
+    this.getLearner();
   }
 
   ngOnInit(): void {
   }
-  
-  isCourseCreated(){
+
+  isCourseCreated() {
     this.util.showSuccessToast("You don't have permission");
   }
 
@@ -76,7 +80,7 @@ export class ClassesComponent implements OnInit {
       }
       this.isLoadingBool = true;
       this.service.post('view-all-classes-api', params, 1).subscribe(result => {
-        
+
         this.isLoadingBool = false;
         if (result['status'] == 1) {
           this.allClassesData = result['classesdata'];
@@ -119,7 +123,7 @@ export class ClassesComponent implements OnInit {
     this.page = event;
   }
 
-  // get events of check box for edit or add button show and hide 
+  // get events of check box for edit or add button show and hide
   isCheckClicked(event, courseList, i) {
     if (event.target.checked == true) {
       this.editForm = true;
@@ -128,7 +132,7 @@ export class ClassesComponent implements OnInit {
       this.selectedNewItems = courseList.nid
 
     }
-    // 
+    //
     if (event.target.checked == false) {
       // this.indexesValue=[];
       this.selectedItems = this.selectedItems.filter(
@@ -211,7 +215,22 @@ export class ClassesComponent implements OnInit {
     })
   }
 
-  // edit course details 
+  // final delete for classes
+  getLearner() {
+    console.log('this.learnerId',this.learnerId)
+    if(this.learnerId!=''){
+      let params = {
+        "user_id": this.learnerId
+      }
+      console.log('params',params);
+      this.service.post('student-classes-listing', params, 1).subscribe(result => {
+        console.log('result learner +++', result);
+        this.allClassesData=result.result
+      })
+    }  
+  }
+
+  // edit course details
   editCourses() {
     this.selectedItems.forEach(element => {
       this.userIdDetails = element
@@ -222,7 +241,7 @@ export class ClassesComponent implements OnInit {
     this.showInputCategory = true;
   }
 
-  // cancel course details 
+  // cancel course details
   cancelCourses() {
     this.viewClassesList();
     this.isSaveCourses = false;
@@ -265,7 +284,7 @@ export class ClassesComponent implements OnInit {
             element.nativeElement.checked = false;
           });
           // this.deleteclosebutton.nativeElement.click();
-          this.util.showSuccessAlert('Classes Updated Successfully');
+          this.util.showSuccessAlert('Classes updated successfully');
           this.viewClassesList();
         }
       })
@@ -274,7 +293,7 @@ export class ClassesComponent implements OnInit {
 
   }
 
-  // clear all form values 
+  // clear all form values
   clearAddClassValues() {
     this.courseList.class_start = '';
     this.courseList.class_end = '';

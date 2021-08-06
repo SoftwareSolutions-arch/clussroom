@@ -25,7 +25,7 @@
               <label>Name of test</label>
             </div>
             <div class="col-lg-10 setting-padding">
-              <input [(ngModel)]="SettingsData.test_name" type="text">
+              <input required [(ngModel)]="SettingsData.test_name" type="text">
             </div>
           </div>
           <div class="text-area setting-input bottom-border">
@@ -67,10 +67,10 @@
             <div class="col-md-2 text-left">
               <label>Timer</label>
             </div>
-            <div class="col-md-2">
-              <input [(ngModel)]="SettingsData.timer" type="checkbox" id="checkbox1" />
+            <div class="col-md-2" style="padding-left: 1.4em;">
+              <input (click)="setTimer($event)" [(ngModel)]="SettingsData.timer" type="checkbox" id="checkbox1" />
             </div>
-            <div class="col-md-4 custom">
+            <div *ngIf="isShow" class="col-md-4 custom" style="padding-left: 0;">
               <input [(ngModel)]="SettingsData.timer_time" type="text">
               <label>Minutes</label>
             </div>
@@ -87,7 +87,7 @@
                 <option value="4">4</option>
               </select>
             </div>
-            <div class="attempt">
+            <div class="attempt" *ngIf="SettingsData.attempts>1">
               <select [(ngModel)]="SettingsData.attempts_score" name="course" id="course-name" style="width: 148px;">
                 <option value="Last attempt" selected>Last attempt</option>
                 <option value="Best score">Best score</option>
@@ -121,9 +121,9 @@
               <label>After completion</label>
             </div>
           </div>
-          <div class="container" style="padding: 18px 0 0 0;">
+          <div style="padding: 18px 0 0 0;">
             <button (click)="confirm()" type="button" class="blue">Confirm</button>
-            <button type="button" class="blue-border">Cancel</button>
+            <button (click)="cancel()" type="button" class="blue-border">Cancel</button>
           </div>
         </div>
         <!-- Submisssion Log end -->

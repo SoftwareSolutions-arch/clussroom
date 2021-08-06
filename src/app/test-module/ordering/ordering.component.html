@@ -7,10 +7,6 @@
     <div *ngIf="isLoadingBool" class="loading-indicator">
       <mat-spinner></mat-spinner>
     </div>
-    <div class="row test-button">
-      <button type="button"><a>Add Test</a>
-      </button>
-    </div>
     <div class="prospectus-section sequence-list">
       <div class="prospectus-tabs">
         <ul class="nav nav-tabs">
@@ -25,7 +21,7 @@
       <div class="tab-content">
         <!-- Schedule start -->
         <div class="heading" style="padding: 0 10px;">
-          <h2>Multiple Choice Question</h2>
+          <h2>Ordering</h2>
         </div>
         <div class="multiple-text">
           <angular-editor [(ngModel)]="fillData.question" name="shortanswer" cols="80" label="notes" rows="4"
@@ -97,9 +93,9 @@
                   aria-hidden="true"></i>&nbsp;Add</button>
             </div>
             <div class="col-md-6 question-label mb-3">
-              <p style="padding: 0 19px;"><span style="color: #81c8c1;">Note:</span>&nbsp;&nbsp;Numbers indicate the
-                correct sequence. Jumble the sequence by dragging the arrow, or select to randomise the order in the
-                checkbox below.</p>
+              <span style="color: #81c8c1; font-size: 13px; margin-bottom: 19px; padding-right: 0;">Note:</span> <p style="padding: 0 12px;">Numbers indicate the
+              correct sequence. Jumble the sequence by dragging the arrow, or select to randomise the order in the
+              checkbox below.</p>
             </div>
           </div>
         </div>
@@ -131,10 +127,10 @@
               <option value="2">2</option>
               <option value="3">3</option>
             </select>
-            <p class="col-md-6 mb-3 mt-3 ml-5"><span style="color: #81c8c1;">Note:</span>Learners are able to get a
-              fraction of the points by getting any of part of a sequence right. A continual sequence is made up of 2
-              items. If there are a total of 5 items,
-              <br>total number of sequences is 4.</p>
+            <span style="color: #81c8c1; font-size: 13px; margin-bottom: 19px; padding-right: 0;">Note:</span> <p class="col-md-6 mb-3 mt-3 ml-3">Learners are able to get a
+            fraction of the points by getting any of part of a sequence right. A continual sequence is made up of 2
+            items. If there are a total of 5 items,
+            <br>total number of sequences is 4.</p>
           </div>
           <div class="char-box border-bottom box-shadow question-label">
             <label class="col-md-3 mb-3 mt-3">Points</label>
@@ -155,7 +151,7 @@
           <a *ngIf="isEditQuestion" class="addbutton custom-button" (click)="saveQuestion()">Save question</a>
           <a *ngIf="!isEditQuestion" class="addbutton custom-button" (click)="editQuestion()">Edit question</a>
 
-          <a class="edit-points-btn custom-button">Cancel</a>
+          <a (click)="cancel()" class="edit-points-btn custom-button">Cancel</a>
         </div>
         <!--
          <div class="container multi-choice-orange" style="padding: 6px 0 0 0;">

@@ -75,12 +75,11 @@
                       <td class="display-center">
                         <img *ngIf="mainData.file_type=='test'" src="assets/images/Personal Library/Vector.png">
                         <img *ngIf="mainData.file_type=='folder'" src="assets/images/Personal Library/Vector-3.png">
-                        <img *ngIf="mainData.file_type=='video'" src="assets/images/Personal Library/file.png">
-                        <img *ngIf="mainData.file_type=='image'" src="assets/images/Personal Library/file.png">
+                        <img *ngIf="mainData.file_type!='test' && mainData.file_type!='folder'" src="assets/images/Personal Library/file.png">
                         <p style="margin: 0; padding-left: 6px;">{{mainData.file_type}}</p>
                       </td>
                       <td>{{mainData.uploaded_by}}</td>
-                      <td>{{mainData.size}} Mb</td>
+                      <td>{{mainData.size}}</td>
                       <th>
                         <div class="radio-table">
                           <input style="height: 22px !important;" name="checkbox"
@@ -94,6 +93,7 @@
                       <td class="display-center">&nbsp;</td>
                       <td>&nbsp;</td>
                       <td style="padding-bottom: 5em;">12.25 Gb</td>
+                      <!-- <td style="padding-bottom: 5em;">{{mainData.total_storage}}</td> -->
                       <th>&nbsp;</th>
                     </tr>
                   </tbody>

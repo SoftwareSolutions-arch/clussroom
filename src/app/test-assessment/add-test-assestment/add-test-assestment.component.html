@@ -20,11 +20,11 @@
                <!--				    <li><a data-toggle="tab" href="#overall-grading">Overall Grading Status</a></li>-->
             </ul>
          </div>
-         <div class="tab-content">
+         <div class="tab-content col-lg-12">
             <!-- Submisssion Log start -->
             <div id="settings" class="tab-pane active box-shadow">
                <form [formGroup]="addAssignmentForm">
-                  <div class="setting-input bottom-border">
+                  <div class="setting-input bottom-border col-lg-12">
                      <div class="text-left col-md-2">
                         <label>Name of assignment</label>
                      </div>
@@ -33,20 +33,22 @@
                         <div class="fieldRequired" 
                         *ngIf="addAssignmentForm.get('assignment_name').hasError('required') && submitted" style="font-size: 10px;
                        color: #ec3232; font-size: 13px; ">
-                     Assignment name is required.
+                     * Required
                     </div>
                      </div>
                   </div>
-                  <div class="text-area setting-input bottom-border">
+                  <div class="text-area setting-input bottom-border col-lg-12">
                      <div class="text-left col-md-2">
                         <label>Instruction</label>
                      </div>
                      <div class="col-lg-10" style="padding-left: 23px;">
-							<angular-editor formControlName="instruction"  cols="80" label="notes" rows="4" wrap="virtual" style="margin: 0;" [placeholder]="'Please read the questions carefully. This test will form part of your final grading this year.'" [ngClass]="{ 'is-invalid': addAssignmentForm.get('instruction').hasError('required') && submitted}"></angular-editor>
+                        <angular-editor formControlName="instruction" name="shortanswer" cols="80" label="notes" rows="4"
+                        wrap="virtual" style="margin: 0;"></angular-editor>
+							<!-- <angular-editor formControlName="instruction"  cols="80" label="notes" rows="4" wrap="virtual" style="margin: 0;" [placeholder]="'Please read the questions carefully. This test will form part of your final grading this year.'" [ngClass]="{ 'is-invalid': addAssignmentForm.get('instruction').hasError('required') && submitted}"></angular-editor> -->
                      <div class="fieldRequired" 
                      *ngIf="addAssignmentForm.get('instruction').hasError('required') && submitted" style="font-size: 10px;
                     color: #ec3232; font-size: 13px; ">
-                    Instruction is required.
+                   * Required
                  </div>
                         <!-- <textarea formControlName="instruction" cols="80" label="notes" rows="4" wrap="virtual"
                            style="margin: 0;"
@@ -54,7 +56,7 @@
                     </textarea> -->
                      </div>
                   </div>
-                  <div class="setting-date-section setting-input bottom-border">
+                  <div class="setting-date-section setting-input bottom-border col-lg-12">
                      <div class="col-md-2 text-left">
                         <label>Available from :</label>
                      </div>
@@ -64,7 +66,7 @@
                         <div class="fieldRequired" 
                         *ngIf="addAssignmentForm.get('available_date').hasError('required') && submitted" style="font-size: 10px;
                        color: #ec3232; font-size: 13px; ">
-                       Available From is required.
+                     * Required
                     </div> 
                   </div>
                      <div class="col-md-2 input-fonts">
@@ -73,11 +75,11 @@
                            <div class="fieldRequired" 
                            *ngIf="addAssignmentForm.get('available_time').hasError('required') && submitted" style="font-size: 10px;
                           color: #ec3232; font-size: 13px; ">
-                           Time is required.
+                        * Required
                        </div> 
                         </div>
                   </div>
-                  <div class="setting-date-section setting-input bottom-border">
+                  <div class="setting-date-section setting-input bottom-border col-lg-12">
                      <div class="col-md-2 text-left">
                         <label>Available to:</label>
                      </div>
@@ -86,7 +88,7 @@
                         <div class="fieldRequired" 
                         *ngIf="addAssignmentForm.get('available_dateTo').hasError('required') && submitted" style="font-size: 10px;
                        color: #ec3232; font-size: 13px; ">
-                        Available to is required.
+                        * Required
                     </div> 
                      </div>
                      <div class="col-md-2 input-fonts">
@@ -95,11 +97,11 @@
                            <div class="fieldRequired" 
                            *ngIf="addAssignmentForm.get('available_timeTo').hasError('required') && submitted" style="font-size: 10px;
                           color: #ec3232; font-size: 13px; ">
-                           Time is required.
+                           * Required
                        </div> 
                         </div>
                   </div>
-                  <div class="custom-checkbox-assign setting-input bottom-border">
+                  <div class="custom-checkbox-assign setting-input bottom-border col-lg-12">
                      <div class="col-md-2 text-left">
                         <label>Allow attachments</label>
                      </div>
@@ -113,7 +115,7 @@
                      </div>
                   </div>
 
-                  <div class="custom-checkbox-assign setting-input bottom-border">
+                  <div class="custom-checkbox-assign setting-input bottom-border col-lg-12">
                      <div class="col-md-2 text-left">
                         <label>Character limit</label>
                      </div>
@@ -126,7 +128,7 @@
                      </div>
                   </div>
 
-                  <div class="custom-checkbox-assign setting-input bottom-border">
+                  <div class="custom-checkbox-assign setting-input bottom-border col-lg-12">
                      <div class="col-md-2 text-left">
                         <label>Insert rubric?</label>
                      </div>
@@ -138,7 +140,7 @@
                            <button class="dropbtn-1">Dropdown &nbsp;<i class="fa fa-caret-down" aria-hidden="true"
                                  style="margin-left: 1em;"></i></button>
                            <div class="dropdown-content-1 drop-height-fix">
-                              <a *ngFor = "let data of rubricList" (click)="getRubricId(data.nid)">{{data.title}}</a>
+                              <a *ngFor = "let data of rubricList" (click)="getRubricId(data.nid)">{{data.title}}</a> 
                               <!-- <a href="#">Rubric 2</a> -->
                               <a href="#" data-toggle="modal" data-target="#createRubric">Create New</a>
                            </div>
@@ -147,7 +149,7 @@
                      </div>
                   </div>
 
-                  <div class="setting-select setting-input border-bottom">
+                  <div class="setting-select setting-input border-bottom col-lg-12">
                      <div class="col-md-2 text-left">
                         <label>Points</label>
                      </div>
@@ -156,15 +158,15 @@
                         <div class="fieldRequired" 
                         *ngIf="addAssignmentForm.get('points').hasError('required') && submitted" style="font-size: 10px;
                        color: #ec3232; font-size: 13px; ">
-                        Points is required.
+                        * Required
                     </div> 
                      </div>
                   </div>
-                  <div class="container" style="padding: 18px 0 0 0px; margin: 0;">
-                     <button type="button" class="light-green mr-3" (click)="goToQuestion()" [disabled]="questionButton">Go
+                  <div class="col-lg-12" style="padding: 18px 0 0 0px; margin: 0;">
+                     <button type="button" class="light-green mr-3" [class.gray]="questionButton" (click)="goToQuestion()" [disabled]="questionButton">Go
                         to
                         question</button>
-                     <button type="button" class="blue mr-3" (click)="addData()">Save</button>
+                     <button type="button" class="blue mr-3" [class.grey]="saveButton" [disabled]="saveButton" (click)="addData()">Save</button>
                      <button type="button" class="blue-border"
                         routerLink="/assignment/test-assignment-home">Cancel</button>
                   </div>
@@ -316,7 +318,7 @@
 <!--View rubric modal popup start -->
 
 
-<div id="createRubric" class="modal deletetest-modal" role="dialog">
+<div id="createRubric" class="modal deletetest-modal" role="dialog" #closeRubric> 
    <div class="modal-dialog" style="max-width: 1300px;">
 
       <div class="modal-content">
@@ -337,6 +339,7 @@
                <!--             <p class="i-position"><button type="button"><i class="fa fa-minus-circle" aria-hidden="true" style="top:18em; right: 2.3em;"></i></button></p> -->
                <!--             <p class="i-position"><button type="button"><i class="fa fa-minus-circle" aria-hidden="true" style="top:14em; right:3.2em"></i></button></p> -->
             </div>
+            
             <form [formGroup]="empForm">
 
                <div class="col-lg-12 display-center" style="justify-content: center;">
@@ -388,8 +391,8 @@
                                     <ng-container >
                                  <div class="first-mid-section display-center col-md-4"  *ngFor="let skill of employeeSkills(empIndex).controls; let skillIndex=index"
                                     style="justify-content:center; border-right: 1px solid #DCE2EC;" [formGroupName]="skillIndex">
-                                    <textarea style="padding: 10px 4px;" formControlName="text">Poor</textarea>
-                                    <input type="text"  (keyup.enter)="sum(skillIndex)"  class="form-control" formControlName="value">
+                                    <textarea style="padding: 10px 4px;" formControlName="text"></textarea>
+                                    <input type="text"  (input)=sumMethod(empIndex) (keypress)="numberOnly($event)" class="form-control" formControlName="value">
                                    
                                     <button type="button" (click)="removeEmployeeSkill(empIndex,skillIndex)"
                                        style="position: relative; bottom: .6em; right: 4.1em; border: none; background-color: transparent; color: #FF82AC;">
@@ -407,8 +410,14 @@
                               </ng-container>
                               </div>
                            </ng-container>
-                        <div class="col-sm-1 total-pointsp">
-                           <p>{{xMax}}</p>
+                        <div class="col-sm-1 total-pointsp" *ngIf="listingData.length > 0">
+                          <ng-container *ngFor=" let data of listingData">
+                             <ng-container *ngIf="data.id === empIndex">
+                                <p>{{data.value}}</p>
+                             </ng-container>
+                           <!-- listingData[empIndex].id == empIndex -->
+                           <!-- <p> {{listingData.find(x => x.id === empIndex).value}}</p> -->
+                        </ng-container>
                         </div>
                      </div>
                   </ng-container>

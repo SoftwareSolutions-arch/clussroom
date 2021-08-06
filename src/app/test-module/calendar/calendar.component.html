@@ -219,6 +219,8 @@
             </select>
           </div>
 
+      
+
           <div class="col-lg-12 mt-2 remind-input">
             <ul class="display-center">
               <li style="margin-right: 5.2em;"><label style="padding-right: 14px;">Level:</label>
@@ -236,14 +238,14 @@
           <div class="col-lg-12 mt-2 remind-input">
             <ul class="display-center">
               <li style="margin-right: 4.4em;"><label style="padding-right: 14px;">Class:</label>
-                <select [(ngModel)]="selectedClass" style="width: 140px;">
+                <select [(ngModel)]="selectedClass" style="width: 140px;" (change)="selectedClassList()" >
                   <option *ngFor="let classesData of this.allClassesData" [ngValue]="classesData">
                     {{classesData.title}}
                   </option>
                 </select>
               </li>
               <li><label style="padding-right: 13px;">Class code:</label>
-                <p>#{{editCalendarData.class_code}}</p>
+                <p>#{{selectedClass.field_class_code}}</p>
               </li>
             </ul>
           </div>

@@ -30,7 +30,7 @@ export class StudentCourseComponent implements OnInit {
   // get student class listing
   getClassesListing() {
     let params = {
-      "user_id": "122"
+      "user_id": localStorage.getItem('uid')
     }
     this.isLoadingBool = true;
     this.service.post('student-classes-listing', params, 1).subscribe(result => {
@@ -42,7 +42,7 @@ export class StudentCourseComponent implements OnInit {
   // get student class listing
   getDashBoardData() {
     let params = {
-      "user_id": "122"
+      "user_id": localStorage.getItem('uid')
     }
     this.isLoadingBool = true;
     this.service.post('student-dashboard', params, 1).subscribe(result => {
@@ -68,7 +68,7 @@ export class StudentCourseComponent implements OnInit {
     })
   }
 
-  // get test list by class id 
+  // get test list by class id
   getTestList() {
     this.dashBoardData=[]
     let params = {
@@ -76,7 +76,7 @@ export class StudentCourseComponent implements OnInit {
     }
     this.isLoadingBool = true;
     this.service.post('test-listing-by-classid', params, 1).subscribe(result => {
-      
+
       this.dashBoardData = result.test_data;
       this.isLoadingBool = false;
     })

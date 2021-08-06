@@ -2276,11 +2276,11 @@ select {
 }
 
 .Org {
-  width: 110px;
+  width: 145px;
   height: 35px;
   border-radius: 6px;
-  border: 2px solid #ffBB38;
-  background-color: #FFBB38;
+  border: 2px solid #FFA26B;
+  background-color: #FFA26B;
   margin-right: 1em;
   transition: .5s ease-in-out;
 }

@@ -84,48 +84,60 @@ export class CalendarComponent implements OnInit {
   }
 
   confirmRemainder() {
-    let params = {
-      "reminder_type": this.editCalendarData.reminder_type,
-      "reminder_note": this.editCalendarData.reminder_note,
-      "reminder_time": this.editCalendarData.reminder_time,
-      "reminder_date": this.editCalendarData.reminder_date,
-      "level": this.selectedEditCourse.field_level_id,
-      "course_id": this.selectedEditCourse.nid,
-      "class_id": this.selectedClass.nid,
-      "class_code": this.selectedEditCourse.field_course_code,
-      "banding": this.selectedEditCourse.field_banding_id,
-      "reminder_id": this.clickInfoDetails.publicId
+    if(this.editCalendarData.remainderType =='' ||  this.editCalendarData.title  =='' ||  this.editCalendarData.time  =='' ||  this.editCalendarData.date  =='' ||  this.selectedClass.nid==''){
+      this.util.errorAlertPopup('Please enter all the details');
     }
-    
-    this.isLoadingBool = true;
-    this.service.post('edit-calendar-remindar', params, 1).subscribe(result => {
+
+    else {
+      let params = {
+        "reminder_type": this.editCalendarData.reminder_type,
+        "reminder_note": this.editCalendarData.reminder_note,
+        "reminder_time": this.editCalendarData.reminder_time,
+        "reminder_date": this.editCalendarData.reminder_date,
+        "level": this.selectedEditCourse.field_level_id,
+        "course_id": this.selectedEditCourse.nid,
+        "class_id": this.selectedClass.nid,
+        "class_code": this.selectedEditCourse.field_course_code,
+        "banding": this.selectedEditCourse.field_banding_id,
+        "reminder_id": this.clickInfoDetails.publicId
+      }
       
-      this.getAllRemainder();
-      this.isLoadingBool = false;
-    })
+      this.isLoadingBool = true;
+      this.service.post('edit-calendar-remindar', params, 1).subscribe(result => {
+        
+        this.getAllRemainder();
+        this.isLoadingBool = false;
+      })
+    }   
   }
 
 
   // add calendar model
   confirmModel() {
-    let params = {
-      "reminder_type": this.fillData.remainderType,
-      "reminder_note": this.fillData.title,
-      "reminder_time": this.fillData.time,
-      "reminder_date": this.fillData.date,
-      "level": this.selectedCategory.field_level_id,
-      "course_id": this.selectedCategory.nid,
-      "class_id": this.selectedClass.nid,
-      "class_code": this.selectedCategory.field_course_code,
-      "banding": this.selectedCategory.field_banding_id
+    if(this.editCalendarData.remainderType =='' ||  this.editCalendarData.title  =='' ||  this.editCalendarData.time  =='' ||  this.editCalendarData.date  =='' ||  this.selectedClass.nid==''){
+      this.util.errorAlertPopup('Please enter all the details');
     }
 
-    this.isLoadingBool = true;
-    this.service.post('add-calendar-remindar-api', params, 1).subscribe(result => {
-      
-      this.getAllRemainder();
-      this.isLoadingBool = false;
-    })
+    else {
+      let params = {
+        "reminder_type": this.fillData.remainderType,
+        "reminder_note": this.fillData.title,
+        "reminder_time": this.fillData.time,
+        "reminder_date": this.fillData.date,
+        "level": this.selectedCategory.field_level_id,
+        "course_id": this.selectedCategory.nid,
+        "class_id": this.selectedClass.nid,
+        "class_code": this.selectedCategory.field_course_code,
+        "banding": this.selectedCategory.field_banding_id
+      }
+      console.log('parmas',params);  
+      this.isLoadingBool = true;
+      this.service.post('add-calendar-remindar-api', params, 1).subscribe(result => {
+        console.log('resullt',result);
+        this.getAllRemainder();
+        this.isLoadingBool = false;
+      })
+    }
   }
 
   handleEventClick(clickInfo: EventClickArg) {
@@ -164,9 +176,10 @@ export class CalendarComponent implements OnInit {
     let params = {
       "user_id": this.userId
     }
+    console.log('params',params)
     this.isLoadingBool = true;
     this.service.post('user-calendar-remindar-listing', params, 1).subscribe(result => {
-      
+      console.log('result',result);
       this.isLoadingBool = false;
       this.allRemainderData = result.result;
       let data: any = []
@@ -186,7 +199,7 @@ export class CalendarComponent implements OnInit {
     this.isLoadingBool = true;
     this.service.post('view-all-courses-api', '', 1).subscribe(result => {
       this.isLoadingBool = false;
-      this.allCourseList = result['coursesdata'];
+      // this.allCourseList = result['coursesdata'];
       if (result['status'] == 1) {
         this.allCourseList = result['coursesdata'];
       }
@@ -212,6 +225,10 @@ export class CalendarComponent implements OnInit {
         this.util.errorAlertPopup(result['message']);
       }
     })
+  }
+
+  selectedClassList(){
+    console.log('selectedClass',this.selectedClass);
   }
 
   viewAllEditCourses() {

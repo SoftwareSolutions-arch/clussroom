@@ -31,6 +31,19 @@ import { ProgressComponent } from './progress/progress.component';
 import { AdminVendorComponent } from './admin-vendor/admin-vendor.component';
 import { TestModule } from './test-module/test-module';
 import { ImageCroppingComponent } from './image-cropping/image-cropping.component';
+import { ZoomHomeComponent } from './zoom/zoom-home/zoom-home.component';
+import { ZoomUserComponent } from './zoom/zoom-user/zoom-user.component';
+import { ZoomSidebarComponent } from './zoom/zoom-sidebar/zoom-sidebar.component';
+import { ZoomDashboardHeaderComponent } from './zoom/zoom-dashboard-header/zoom-dashboard-header.component';
+import { LiveSessionComponent } from './zoom/live-session/live-session.component';
+import { ZoomSettingComponent } from './zoom/zoom-setting/zoom-setting.component';
+import { LiveSessionMessageComponent } from './zoom/live-session-message/live-session-message.component';
+import {ProfileUserDetailComponent} from './student-profiles/profile-user-detail/profile-user-detail.component'
+import {EditProfileUserDetailComponent} from './student-profiles/edit-profile-user-detail/edit-profile-user-detail.component'
+import {StudentChangePasswordComponent} from './student-profiles/student-change-password/student-change-password.component'
+import {TeacherProfilesComponent} from './teacher-profile/teacher-profiles/teacher-profiles.component'
+import {EditTeacherProfileComponent} from './teacher-profile/edit-teacher-profile/edit-teacher-profile.component'
+import {TeacherChangePasswordComponent} from './teacher-profile/teacher-change-password/teacher-change-password.component'
 
 const routes: Routes = [
   {
@@ -123,6 +136,24 @@ const routes: Routes = [
   {
     path: 'admin', component: AdminVendorComponent
   },
+  {
+    path: 'student_profile', component: ProfileUserDetailComponent
+  },
+  {
+    path: 'profile-change-password', component: StudentChangePasswordComponent
+  },
+  {
+    path: 'edit_student_profile', component: EditProfileUserDetailComponent
+  },
+  {
+    path: 'teacher-profile', component: TeacherProfilesComponent
+  },
+  {
+    path: 'edit_teacher_profile', component: EditTeacherProfileComponent
+  },
+  {
+    path: 'password-change', component: TeacherChangePasswordComponent
+  },
   { path: 'test', loadChildren: './test-module/test-module#TestModule' },
   {
     path: 'assignment',
@@ -155,11 +186,26 @@ const routes: Routes = [
   {
     path: 'admin-sub',
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
-  }
+  },
+  {
+    path: 'zoom-home', component: ZoomHomeComponent
+  },
+  {
+    path: 'zoom-user', component: ZoomUserComponent
+  },
+  {
+    path: 'zoom-live-session', component: LiveSessionComponent
+  },
+  {
+    path: 'zoom-setting', component: ZoomSettingComponent
+  },
+  {
+    path: 'zoom-live-message', component: LiveSessionMessageComponent
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true, onSameUrlNavigation: 'reload' })],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

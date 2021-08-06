@@ -19,9 +19,11 @@ export class ReorderScreenComponent implements OnInit {
   testAllData: any = '';
   selectedTestDetails: any = "";
   question_sequence: any = [];
+  test_name:any='';
   constructor(public service: SharedServiceService, private toastr: ToastrService, public util: UtilService, private router: Router) {
     this.testId = localStorage.getItem('test_id');
     this.classId = localStorage.getItem('classListId');
+    this.test_name = localStorage.getItem('test_name');
     this.getTestListing();
     this.getAllQuestion();
   }
@@ -46,7 +48,7 @@ export class ReorderScreenComponent implements OnInit {
     })
   }
   // get test listing data
-  getTestListing() {
+  getTestListing() {  
     this.isLoadingBool = true;
     let params = {
       "class_id": this.classId
@@ -60,13 +62,14 @@ export class ReorderScreenComponent implements OnInit {
 
   onChange() {
     this.allData = [];
+    localStorage.setItem('test_name',this.selectedTestDetails.test_name)
     localStorage.setItem('test_id', this.selectedTestDetails.test_id);
     this.isLoadingBool = true;
     let params = {
       "test_id": this.selectedTestDetails.test_id
     }
     this.service.post('questions-list-api', params, 1).subscribe(result => {
-      
+      this.test_name=localStorage.getItem('test_name');
       this.isLoadingBool = false;
       if (result.question_data.length > 0) {
         this.allData = result.question_data;
@@ -75,6 +78,14 @@ export class ReorderScreenComponent implements OnInit {
         this.toastr.error(result.question_data);
       }
     })
+  }
+
+  settingsClicked() {
+    this.router.navigate(["/test/settings-tabs"]);
+  }
+
+  goToTestAssessment() {
+    this.router.navigate(['/test/test-assessment']);
   }
 
   drop(event: CdkDragDrop<string[]>) {

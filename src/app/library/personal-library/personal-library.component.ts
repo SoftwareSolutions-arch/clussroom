@@ -49,14 +49,20 @@ export class PersonalLibraryComponent implements OnInit {
   checkbox: any
   selectedLibraryData: any = '';
   editFoldername: any = '';
-
+  main_library_upload_edit_permission:any='';
   constructor(public service: SharedServiceService, private router: Router, public util: UtilService) {
     this.userId = localStorage.getItem('uid');
     this.getMainListing();
     this.getAllCoursesList();
+    this.main_library_upload_edit_permission = localStorage.getItem('main_library_upload_edit_permission');
+
   }
 
   ngOnInit(): void {
+  }
+
+  gotoMainLibrary(){
+    this.router.navigate(['/library/library-home']);
   }
 
   getMainListing() {
@@ -228,7 +234,7 @@ export class PersonalLibraryComponent implements OnInit {
     let params = {
       "materials_type": 'file',
       "library_type": 'personal',
-      "file_type": this.fileType,
+      "file_type": 'file',
       "attachments_file": this.ExteriorPicString
     }
 

@@ -8,7 +8,7 @@
         <li (click)="goToCourses()">
           <a data-toggle="tab" href="#course-content" class="clip-item">
             <img src="assets/images/dashboard/second/course-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/course-blue.png" class="hover-in">{{this.instructionName}}</a>
+            <img src="assets/images/dashboard/second/course-blue.png" class="hover-in">{{this.instructionName | lowercase}}</a>
         </li>
         <li (click)="goToclasses()">
           <a data-toggle="tab" href="#classes-content" class="clip-item">
@@ -48,66 +48,68 @@
   </div>
   <div class="prospectus-section" style="padding-left: 79px;padding-right: 20px;" *ngIf="!isLoadingBool">
     <div class="prospectus-tabs">
-    
+
       <ng-container *ngIf="this.add_learner_permission==1">
         <div class="col-lg-12" style="padding: 0 52px;"> <a class="add-btn custom-a-btn" data-toggle="modal"
-          data-target="#addLearner" style="float: right;"><i class="fa fa-plus" aria-hidden="true"></i> Learners</a>
-      </div>
+                                                            data-target="#addLearner" style="float: right;"><i class="fa fa-plus" aria-hidden="true"></i> Learners</a>
+        </div>
       </ng-container>
 
       <ng-container (click)="isCourseCreated()" *ngIf="this.add_learner_permission==0">
         <div (click)="isCourseCreated()" class="col-lg-12" style="padding: 0 52px;"> <a class="add-btn custom-a-btn" style="float: right;">
           <i class="fa fa-plus" aria-hidden="true"></i> Learners</a>
-      </div>
+        </div>
       </ng-container>
     </div>
     <div class="tab-content">
       <div class="table-responsive">
         <table class="table dashboard-table">
           <thead class="learner-text-left text-left">
-            <tr>
-              <th scope="col">No.</th>
-              <th scope="col">First name</th>
-              <th scope="col">Last name</th>
-              <th scope="col">Email</th>
-              <th scope="col" class="table-filter">Start date</th>
-              <th scope="col" class="table-filter">End date</th>
-              <th scope="col" class="table-filter">Course</th>
-              <th scope="col">Class name</th>
-              <th scope="col">Class code</th>
-              <th scope="col" class="table-filter">Grade</th>
-              <th scope="col" class="table-filter">Status</th>
-              <th scope="col"></th>
-            </tr>
+          <tr>
+            <th scope="col">No.</th>
+            <th scope="col">First name</th>
+            <th scope="col">Last name</th>
+            <th scope="col">Email</th>
+            <th scope="col" class="table-filter">Start date</th>
+            <th scope="col" class="table-filter">End date</th>
+            <th scope="col" class="table-filter">Course</th>
+            <th scope="col">Class name</th>
+            <th scope="col">Class code</th>
+            <th scope="col" class="table-filter">Grade</th>
+            <th scope="col" class="table-filter">Status</th>
+            <th scope="col"></th>
+          </tr>
           </thead>
           <tbody class="learner-text-left">
-            <tr
-              *ngFor="let classList of this.allClassesList| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;"
-              [class.active]="i == currentIndex">
-              <!-- <td>{{this.classList.sno}}</td> -->
-              <td style="text-align: center !important;">{{classList.s_no}}</td>
-              <td class="text-left">{{this.classList.first_name}}</td>
-              <td class="text-left">{{this.classList.last_name}}</td>
-              <td class="text-left">{{this.classList.email}}</td>
-              <td class="text-left">{{this.classList.class_start_date}}</td>
-              <td class="text-left">{{this.classList.class_end_date}}</td>
-              <td class="text-left">{{this.classList.coursename}}</td>
-              <td class="text-left">{{this.classList.classname}}</td>
-              <td>{{this.classList.class_class_code}}</td>
-              <td>{{this.classList.learner_status}}</td>
-              <td>
-                <div class="danger-text">Suspended</div>
-              </td>
-              <button (click)="goToClasses(classList)"><a>Go to Class</a>
-              </button>
-            </tr>
+          <tr
+            *ngFor="let classList of this.allClassesList| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;"
+            [class.active]="i == currentIndex">
+            <!-- <td>{{this.classList.sno}}</td> -->
+            <td style="text-align: center !important;">{{classList.s_no}}</td>
+            <td class="text-left">{{this.classList.first_name}}</td>
+            <td class="text-left">{{this.classList.last_name}}</td>
+            <td class="text-left">{{this.classList.email}}</td>
+            <td class="text-left">{{this.classList.class_start_date}}</td>
+            <td class="text-left">{{this.classList.class_end_date}}</td>
+            <td class="text-left">{{this.classList.coursename}}</td>
+            <td class="text-left">{{this.classList.classname}}</td>
+            <td>{{this.classList.class_class_code}}</td>
+            <td>{{this.classList.grades}}</td>
+            <td>
+              <div style="color: #81C8C1;font-weight: 500;" *ngIf="this.classList.learner_status=='Active' ">{{this.classList.learner_status}}</div>
+              <div style="color: #FF5A64;font-weight: 500;" *ngIf="this.classList.learner_status=='Cancelled' ">{{this.classList.learner_status}}</div>
+              <div style="color: #FFBB38;font-weight: 500;" *ngIf="this.classList.learner_status=='Pending' ">{{this.classList.learner_status}}</div>
+            </td>
+            <button (click)="goToClasses(classList)"><a>Go to Class</a>
+            </button>
+          </tr>
           </tbody>
         </table>
       </div>
       <div class="table-result-wrapper bottom-select row">
         <div class="table-result-wrapper">
           <pagination-controls previousLabel="Prev" nextLabel="Next" responsive="true"
-            (pageChange)="handlePageChange($event)"></pagination-controls>
+                               (pageChange)="handlePageChange($event)"></pagination-controls>
         </div>
       </div>
     </div>
@@ -119,8 +121,7 @@
     <div class="modal-content">
       <div class="green-modal-header">
         <h4 style="position: relative; left: 16em;">Invite learner</h4>
-        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"
-            style="color: #fff;"></i>
+        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true" style="color: #fff;"></i>
         </button>
       </div>
       <div class="modal-body">
@@ -129,7 +130,7 @@
             <div class="name-of-course fieldset" style="padding: 0 16px;">
               <label style="text-align: center;">Course name:</label>
               <select [(ngModel)]="selectedCategory" [ngModelOptions]="{standalone: true}" name="level" id="levelcourse"
-                style="width: 390px !important;" (change)="viewAllCoursesList()">
+                      style="width: 390px !important;" (change)="viewAllCoursesList()">
                 <option *ngFor="let allCourses of this.allCourseList" [ngValue]="allCourses">{{this.allCourses.title}}
                 </option>
               </select>
@@ -137,21 +138,19 @@
           </div>
           <div class="name-of-course fieldset mt-3" style="padding: 0 16px;">
             <label style="text-align: right; padding-right: 27px;">Level:</label>
-            <select name="level" id="levelcourse" style="width: 140px !important; -webkit-appearance: none;"
-              disabled="disabled" id="sel_test">
-              <option *ngFor="let level of this.allLevel" value="{{level.tid}}">{{level.name}}</option>
+            <select name="level" id="levelcourse" style="width: 140px !important; -webkit-appearance: none;" id="sel_test">
+              <option>{{selectedCategory.field_level}}</option>
             </select>
             <label style="text-align: right; width: 113px; padding-right: 1.5em; margin-right: 4px;">Banding:</label>
-            <select name="level" id="bandingcourse" style="width: 140px !important; -webkit-appearance: none;"
-              disabled="disabled" id="sel_test">
-              <option *ngFor="let banding of this.allBanding" value="{{banding.tid}}">{{banding.name}}</option>
+            <select name="level" id="bandingcourse" style="width: 140px !important; -webkit-appearance: none;" id="sel_test">
+              <option >{{selectedCategory.field_banding}}</option>
             </select>
           </div>
           <div class="name-of-course fieldset mt-4"
-            style="border-bottom: 1px solid #F1F6FB; margin: 0; padding-bottom: 1.5em;">
+               style="border-bottom: 1px solid #F1F6FB; margin: 0; padding-bottom: 1.5em;">
             <label style="text-align: right; padding-right: 12px; margin: 0 16px 0 0;">Class:</label>
             <select [(ngModel)]="selectedClass" [ngModelOptions]="{standalone: true}" name="level" id="levelcourse"
-              style="width: 140px !important;">
+                    style="width: 140px !important;">
               <option *ngFor="let classesData of this.allClassesData" [ngValue]="classesData">{{classesData.title}}
               </option>
             </select>
@@ -163,11 +162,11 @@
             <div class="radio-check" style="width: 100%;">
               <label class="radio-check" style="padding: 0 37px; justify-content: center;">By email
                 <input [(ngModel)]="radioMail" [ngModelOptions]="{standalone: true}" type="radio" name="radio"
-                  value="byEmail"> <span class="checkmark"></span>
+                       value="byEmail"> <span class="checkmark"></span>
               </label>
               <label class="radio-check">Bulk upload
                 <input [(ngModel)]="radioMail" [ngModelOptions]="{standalone: true}" type="radio" name="radio"
-                  value="byBulkUpload"> <span class="checkmark"></span>
+                       value="byBulkUpload"> <span class="checkmark"></span>
               </label>
             </div>
           </div>
@@ -176,23 +175,23 @@
               <div class="course-title" [formGroupName]="empIndex">
                 <div formArrayName="sub_title">
                   <div class="name-of-course fieldset mt-3" style="display: block;"
-                    *ngFor="let skill of employeeSkills(empIndex).controls; let skillIndex=index"
-                    [formGroupName]="skillIndex">
+                       *ngFor="let skill of employeeSkills(empIndex).controls; let skillIndex=index"
+                       [formGroupName]="skillIndex">
                     <label class="modal-input" style="display: flex"><a>{{skillIndex+1}} <i class="fa fa-envelope"
-                          aria-hidden="true"></i></a>
+                                                                                            aria-hidden="true"></i></a>
                       <input type="sub-menu" class="form-control" formControlName="sub_title"
-                        placeholder="Kellyamine@gmail.com">
+                             placeholder="Kellyamine@gmail.com">
                       <button (click)="deleteUser(empIndex,skillIndex)" type="button" data-dismiss="#"
-                        style="margin: 0 5px;"><i class="fa fa-times" aria-hidden="true"></i>
+                              style="margin: 0 5px;"><i class="fa fa-times" aria-hidden="true"></i>
                       </button>
                     </label>
                     <div class="fieldRequired"
-                      *ngIf="skill.get('sub_title').hasError('required') && skill.get('sub_title').touched || skill.get('sub_title').submitted"
-                      style="font-size: 10px;
+                         *ngIf="skill.get('sub_title').hasError('required') && skill.get('sub_title').touched || skill.get('sub_title').submitted"
+                         style="font-size: 10px;
                          color: #ec3232; font-size: 13px;margin-left: 9em;">*Email is required.</div>
                     <div class="fieldRequired"
-                      *ngIf="skill.get('sub_title').hasError('pattern') && skill.get('sub_title').touched || skill.get('sub_title').submitted"
-                      style="font-size: 10px;
+                         *ngIf="skill.get('sub_title').hasError('pattern') && skill.get('sub_title').touched || skill.get('sub_title').submitted"
+                         style="font-size: 10px;
                          color: #ec3232; font-size: 13px;margin-left: 9em;">*Please insert a valid mail</div>
                   </div>
                 </div>
@@ -214,23 +213,23 @@
             </div>
             <!-- <input type="file" accept=".csv" class="upload custom-input-file" name="&nbsp;" (change)="changeListeners($event.target.files)" /> -->
             <input type="file" accept=".csv" class="upload custom-input-file" #fileDropRef id="fileDropRef"
-              (change)="fileBrowseHandler($event.target.files)" />
+                   (change)="fileBrowseHandler($event.target.files)" />
             <div class="files-list">
               <div class="single-file" *ngFor="let file of files; let i = index"
-                style="padding-top: 8px; padding-bottom: 0; padding-right: 0;">
+                   style="padding-top: 8px; padding-bottom: 0; padding-right: 0;">
                 <img src="../../assets/img/images/ic-file.png" alt="file"
-                  style="height:48px; margin-right:10px; margin-bottom: 5px;">
+                     style="height:48px; margin-right:10px; margin-bottom: 5px;">
                 <div class="info">
                   <h4 class="name">
                     {{ file?.name }}
                   </h4>
                   <p class="size">{{ formatBytes(file?.size) }}</p>
                   <app-progress [progress]="file?.progress"></app-progress> <span *ngIf="file.progress==100"
-                    class="after-progress"><i class="fa fa-check" aria-hidden="true"></i>
+                                                                                  class="after-progress"><i class="fa fa-check" aria-hidden="true"></i>
                   </span>
                 </div>
                 <div class="delete" alt="file" (click)="deleteFile(i)"> <i class="fa fa-times-circle"
-                    aria-hidden="true"></i>
+                                                                           aria-hidden="true"></i>
                 </div>
               </div>
             </div>

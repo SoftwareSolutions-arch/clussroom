@@ -1,0 +1,1183 @@
+<div class="dashboard">
+  <app-zoom-sidebar></app-zoom-sidebar>
+
+  <div class="control-panel">
+    <app-zoom-dashboard-header></app-zoom-dashboard-header>
+    <div *ngIf="isLoadingBool" class="loading-indicator">
+      <mat-spinner></mat-spinner>
+    </div>
+    <div class="prospectus-section sequence-list display-center" style="padding-bottom: 0;">
+      <div class="prospectus-tabs">
+        <ul class="nav nav-tabs">
+          <li><a data-toggle="tab" routerLink="/zoom-live-session" class="active">Live sessions</a></li>
+          <li><a data-toggle="tab" routerLink="/zoom-setting">Settings</a></li>
+        </ul>
+      </div>
+      <div class="zoom-logo">
+        <img src="assets/imgpsh_fullsize_anim.png" style="margin-left: 69.8em;">
+      </div>
+    </div>
+    <div class="class-table-user" style="height: 60vh; margin-top: 0;">
+      <div class="col-lg-12 display-center" style="padding:11px 0;" *ngIf="permissionButton" >
+        <div class="col-md-6 padding_0">
+          <button type="button" data-target="#newschedule" data-toggle="modal" class="new-meeting-btn">New
+            meeting</button>
+          <button type="button"  class="copy-meeting-btn" data-target="#copyMetting" data-toggle="modal" (click)="copyMettingData()">Copy meeting details</button>
+
+        </div>
+        <div class="col-md-6 text-right padding_0">
+          <button type="button" class="schedule-btn" data-toggle="modal" data-target="#schedule">Schedule</button>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table dashboard-table">
+          <thead style="border:none !important;">
+          <tr style="border:none !important; background-color: #396AFF;">
+            <th scope="col" class="text-center" style="color:#fff;"></th>
+            <th scope="col" class="text-left"
+                style="color:#fff; border-top-left-radius:4px; border-bottom-left-radius: 4px;">Topic</th>
+            <th scope="col" class="text-center" style="color:#fff;">Learners</th>
+            <th scope="col" class="text-center" style="color:#fff;">Joined</th>
+            <th scope="col" class="text-center table-filter-1" style="color:#fff;">Date/Start time</th>
+            <th scope="col" class="text-center" style="color:#fff;">Duration(min)</th>
+            <th scope="col" class="text-center" style="color:#fff;">Start</th>
+            <th scope="col" class="text-center"
+                style="border-top-right-radius: 4px; border-bottom-right-radius: 4px;">&nbsp;</th>
+          </tr>
+          </thead>
+          <tbody style="border:none !important;">
+          <tr style="border:none !important;" *ngFor="let data of liveData">
+            <td><div class="radio-table-latest"><input name="radio"
+                                                       (click)="isCheckBoxClicked(data,i)" type="radio"></div></td>
+            <td class="text-left" style="color: #396aff;">{{data.topic}}</td>
+            <td class="text-center" style="color: #396aff;">{{data.learners}}</td>
+            <td style="color: #396aff;">{{data.joined}}</td>
+            <td style="color: #396aff;">{{data.start_time | date}}<br />{{data.start_time | date:'h:mm a z'}}
+            </td>
+            <td style="color: #396aff;">{{data.duration}}</td>
+            <td *ngIf="start"><i class="fa fa-youtube-play" aria-hidden="true"
+                                 style="color:#6FCF97; font-size: 22px;" (click)="startVedio(data.join_url)"></i>
+
+            </td>
+            <td *ngIf="end">
+              <i class="fa fa-youtube-play" aria-hidden="true" style="color:#6FCF97; font-size: 22px;"
+                 (click)="endMetting(data.metting_id)">End</i>
+            </td>
+            <td *ngIf="permissionButton">
+              <!-- <div class="zoom-dropdown">
+                  <button type="button" class="zoom-ellip" (click)="myFunction()"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
+                  <div id="myDropdown" class="zoom-dropdown-content">
+                     <a data-target="#editSchedule" data-toggle="modal" (click)="editScheludleData(data.meeting_id)">Edit</a>
+                     <a (click)="mettingDelete(data.meeting_id)">Delete</a>
+                  </div>
+               </div> -->
+              <div class="ellipdown col-sm-1 dropdown-1 text-right"
+                   style="display: flex !important; align-items: center !important;">
+                <button class="dropbtn-1" onclick="myFunction()"
+                        style="width: 32px; height: 14px; border-radius: 8px; border: 1px solid #DCE2EC; padding: 0 7px; display: flex;">
+                  <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                </button>
+                <div class="dropdown-content-1" id="myDropdown"
+                     style="top: 1.1em !important; left: 0em !important;">
+                  <a (click)="editScheludleData(data.meeting_id)" data-target="#editSchedule"
+                     data-toggle="modal">Edit</a>
+                  <a data-toggle="modal" data-target="#deletetest2"
+                     (click)="mettingDelete(data.meeting_id)">Remove</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <!-- <tr style="border:none !important;">
+              <td class="text-left" style="color: #FAA559;">Session 3</td>
+              <td class="text-center" style="color: #FAA559;">13</td>
+              <td style="color: #FAA559;">11</td>
+              <td style="color: #FAA559;">25 Aug 2021<br/>14:00 hrs</td>
+              <td style="color: #FAA559;">60</td>
+              <td><i class="fa fa-youtube-play" aria-hidden="true" style="color:#6FCF97; font-size: 22px;"></i></td>
+              <td>
+                 <div class="zoom-dropdown">
+                    <button type="button" class="zoom-ellip" (click)="myFunction()"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
+                    <div id="myDropdown" class="zoom-dropdown-content">
+                       <a href="#">Edit</a>
+                       <a href="#">Delete</a>
+                    </div>
+                 </div>
+              </td>
+           </tr> -->
+          <!-- <tr style="border:none !important;">
+              <td class="text-left">Session 2</td>
+              <td class="text-center">13</td>
+              <td>11</td>
+              <td>25 Aug 2021<br/>14:00 hrs</td>
+              <td>57</td>
+              <td>&nbsp;</td>
+              <td><button type="button" class="zoom-ellip"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button></td>
+           </tr>
+           <tr style="border:none !important;">
+              <td class="text-left">Session 1</td>
+              <td class="text-center">13</td>
+              <td>11</td>
+              <td>25 Aug 2021<br/>14:00 hrs</td>
+              <td>34</td>
+              <td>&nbsp;</td>
+              <td>
+                 <div class="zoom-dropdown">
+                    <button type="button" class="zoom-ellip" (click)="myFunction()"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
+                    <div id="myDropdown" class="zoom-dropdown-content">
+                       <a href="#">Edit</a>
+                       <a href="#">Delete</a>
+                    </div>
+                 </div>
+              </td>
+           </tr> -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Add Admin modal popup start -->
+<div id="schedule" class="modal" role="dialog" #closeSchedule>
+  <div class="modal-dialog" style="max-width: 600px;">
+    <div class="modal-content">
+      <div class="modal-body mt-5 admin-inputs">
+        <div class="col-lg-12">
+          <h5>Schedule live session</h5>
+        </div>
+        <form [formGroup]="scheduledForm">
+          <div class="col-lg-12 zoom-label mt-4">
+            <label>Topic</label>
+            <input type="text" formControlName="topic">
+          </div>
+          <div class="col-lg-12 mt-4 display-center">
+            <div class="col-lg-8 padding_0 display-center zoom-select">
+              <label>Start:</label>
+              <!--                         <select>
+                  <option>Thurs &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10 June 2021</option>
+                  <option>Thurs &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10 June 2021</option>
+                  <option>Thurs &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10 June 2021</option>
+                  <option>Thurs &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10 June 2021</option>
+               </select> -->
+              <input type="date" formControlName="date">
+            </div>
+            <div class="col-md-4 padding_0 zoom-clock text-right">
+              <input type="time" formControlName="time">
+            </div>
+          </div>
+          <div class="col-lg-12 padding_0 mt-4 display-center"
+               style="border-bottom: 1px solid #E0E0E0; padding-bottom:1.5em !important;">
+            <div class="col-lg-8 padding_0 zoom-duration display-center">
+              <div class="col-lg-7 padding_0 display-center" style="padding:0 13px !important;">
+                <label style="margin-right: 10px;">Duration:</label>
+                <select formControlName="hour" (change)="hourData($event.target.value)">
+                  <option value="0">0 hours</option>
+                  <option value="1">1 hours</option>
+                  <option value="2">2 hours</option>
+                  <option value="3">3 hours</option>
+                  <option value="4">4 hours</option>
+                  <option value="5">5 hours</option>
+                  <option value="6">6 hours</option>
+                  <option value="7">7 hours</option>
+                  <option value="8">8 hours</option>
+                  <option value="9">9 hours</option>
+                  <option value="10">10 hours</option>
+                  <option value="11">11 hours</option>
+                  <option value="12">12 hours</option>
+                </select>
+              </div>
+              <div class="col-md-5 padding_0">
+                <select formControlName="minute">
+                  <option value="1">1 minutes</option>
+                  <option value="2">2 minutes</option>
+                  <option value="3">3 minutes</option>
+                  <option value="4">4 minutes</option>
+                  <option value="5">5 minutes</option>
+                  <option value="6">6 minutes</option>
+                  <option value="7">7 minutes</option>
+                  <option value="8">8 minutes</option>
+                  <option value="9">9 minutes</option>
+                  <option value="10">10 minutes</option>
+                  <option value="11">11 minutes</option>
+                  <option value="12">12 minutes</option>
+                  <option value="13">13 minutes</option>
+                  <option value="14">14 minutes</option>
+                  <option value="15">15 minutes</option>
+                  <option value="16">16 minutes</option>
+                  <option value="17">17 minutes</option>
+                  <option value="18">18 minutes</option>
+                  <option value="19">19 minutes</option>
+                  <option value="20">20 minutes</option>
+                  <option value="21">21 minutes</option>
+                  <option value="22">22 minutes</option>
+                  <option value="23">23 minutes</option>
+                  <option value="24">24 minutes</option>
+                  <option value="25">25 minutes</option>
+                  <option value="26">26 minutes</option>
+                  <option value="27">27 minutes</option>
+                  <option value="28">28 minutes</option>
+                  <option value="29">29 minutes</option>
+                  <option value="30">30 minutes</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-4 padding_0 time-select display-center">
+              <label style="margin-bottom: 0 !important; margin-right: 24px;">Timezone: </label>
+              <select formControlName="timezone"
+                      style="border:none !important; background-color: transparent !important; font-size: 12px !important; font-weight: 400 !important; color: #000 !important;">
+                <option *ngFor="let data of timezoneData" value="{{data}}">{{data}}</option>
+              </select>
+            </div>
+          </div>
+          <div style="border-bottom: 1px solid #E0E0E0; padding-bottom:1.5em !important;">
+            <div class="col-lg-12 zoom-text mt-3">
+              <p>Meeting ID</p>
+            </div>
+            <div class="col-lg-12 display-center">
+              <div class="col-md-5 zoom-radio display-center padding_0">
+                <input type="radio" id="radio-metting" value="0" formControlName="eneratedId">
+                <label for="radio-metting">Generate automatically</label>
+              </div>
+              <div class="col-md-7 zoom-radio display-center padding_0">
+                <input type="radio" id="radio-metting-2" value="{{this.pid}}" formControlName="eneratedId">
+                <label for="radio-metting-2">Personal Meeting ID {{this.pid}}</label>
+              </div>
+            </div>
+          </div>
+          <div style="border-bottom: 1px solid #E0E0E0; padding-bottom:1.5em !important;">
+            <div class="col-lg-12 zoom-text mt-3">
+              <p style="font-size: 14px;">Security</p>
+            </div>
+            <div class="col-lg-12">
+              <div class="zoom-passcode display-center">
+                <input type="checkbox" formControlName="passcode">
+                <label>Passcode</label>
+              </div>
+              <div class="zoom-text">
+                <p style="color:#828282; font-size: 14px; font-weight: 400; padding:0 26px;">Only users who have
+                  the invite link or passcode can join the meeting</p>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="zoom-passcode display-center">
+                <input type="checkbox" formControlName="waiting">
+                <label>Waiting room</label>
+              </div>
+              <div class="zoom-text">
+                <p style="color:#828282; font-size: 14px; font-weight: 400; padding:0 26px;">Only users admitted
+                  by the host can join the meeting</p>
+              </div>
+            </div>
+          </div>
+          <div style="border-bottom: 1px solid #E0E0E0; padding-bottom:1.5em !important;">
+            <div class="col-lg-12 zoom-text mt-3">
+              <p style="font-size: 14px;">Video</p>
+            </div>
+            <div class="col-lg-12 display-center">
+              <div class="col-md-6 padding_0 display-center zoom-text">
+                <p style="margin-right: 2em;">Host: </p>
+                <ul class="display-center">
+                  <li>
+                    <input type="radio" id="on" value="true" formControlName="host">
+                    <label for="on">On</label>
+                  </li>
+                  <li>
+                    <input type="radio" id="off" value="false" formControlName="host">
+                    <label for="off">Off</label>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-md-6 padding_0 display-center zoom-text">
+                <p style="margin-right: 2em;">Participants: </p>
+                <ul class="display-center">
+                  <li>
+                    <input type="radio" id="radio-1" [value]="true" formControlName="participants">
+                    <label for="radio-1">On</label>
+                  </li>
+                  <li>
+                    <input type="radio" id="radio-2" [value]="false" formControlName="participants">
+                    <label for="radio-2">Off</label>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-12 mt-4">
+            <button type="button" class="zoom-options mb-3">Advanced options</button>
+            <div class="zoom-checkbox-label display-center mb-2">
+              <input type="checkbox" value="allow_participants_anytime"
+                     formControlName="allow_participants_anytime">
+              <label>Allow participants to join anytime</label>
+            </div>
+            <div class="zoom-checkbox-label display-center mb-2">
+              <input type="checkbox" value="mute_upon_entry" formControlName="mute_upon_entry">
+              <label>Mute participants upon entry</label>
+            </div>
+            <div class="zoom-checkbox-label display-center mb-2">
+              <input type="checkbox" value="auto_recording" formControlName="auto_recording">
+              <label>Automatically record meeting on the local computer</label>
+            </div>
+          </div>
+
+          <div class="col-lg-12 display-center mt-4" style="justify-content: flex-end;">
+            <button type="button" class="zoom-next mr-3" data-target="#zoomnext" (click)="metting()"
+                    data-toggle="modal">Next</button>
+            <button type="button" class="zoom-cancel" data-dismiss="modal">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Select participants popup start -->
+<div id="zoomnext" class="modal" role="dialog" #closeZom>
+  <div class="modal-dialog" style="max-width: 600px;">
+    <div class="modal-content">
+      <div class="modal-body mt-5 admin-inputs">
+        <div class="col-lg-12">
+          <h5>Schedule live session</h5>
+        </div>
+        <div class="col-lg-12 zoom-label-read mt-4">
+          <label>Topic</label>
+          <input type="text" readonly>
+        </div>
+        <div class="col-lg-12 mt-4 display-center">
+          <div class="col-lg-8 padding_0 display-center zoom-select-read">
+            <label>Start:</label>
+            <input type="date" readonly>
+          </div>
+          <div class="col-md-4 padding_0 zoom-clock-read text-right">
+            <input type="time" readonly>
+          </div>
+        </div>
+        <div class="col-lg-12 padding_0 mt-4 display-center"
+             style="border-bottom: 1px solid #E0E0E0; padding-bottom:1.5em !important;">
+          <div class="col-lg-8 padding_0 zoom-duration-read display-center">
+            <div class="col-lg-7 padding_0 display-center" style="padding:0 13px !important;">
+              <label style="margin-right: 10px;">Duration:</label>
+              <select readonly>
+                <option>0 hours</option>
+                <option>1 hours</option>
+                <option>2 hours</option>
+                <option>3 hours</option>
+                <option>4 hours</option>
+              </select>
+            </div>
+            <div class="col-md-5 padding_0">
+              <select>
+                <option value="1">1 minutes</option>
+                <option value="2">2 minutes</option>
+                <option value="3">3 minutes</option>
+                <option value="4">4 minutes</option>
+                <option value="5">5 minutes</option>
+                <option value="6">6 minutes</option>
+                <option value="7">7 minutes</option>
+                <option value="8">8 minutes</option>
+                <option value="9">9 minutes</option>
+                <option value="10">10 minutes</option>
+                <option value="11">11 minutes</option>
+                <option value="12">12 minutes</option>
+                <option value="13">13 minutes</option>
+                <option value="14">14 minutes</option>
+                <option value="15">15 minutes</option>
+                <option value="16">16 minutes</option>
+                <option value="17">17 minutes</option>
+                <option value="18">18 minutes</option>
+                <option value="19">19 minutes</option>
+                <option value="20">20 minutes</option>
+                <option value="21">21 minutes</option>
+                <option value="22">22 minutes</option>
+                <option value="23">23 minutes</option>
+                <option value="24">24 minutes</option>
+                <option value="25">25 minutes</option>
+                <option value="26">26 minutes</option>
+                <option value="27">27 minutes</option>
+                <option value="28">28 minutes</option>
+                <option value="29">29 minutes</option>
+                <option value="30">30 minutes</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-4 padding_0 time-select display-center">
+            <label style="margin-bottom: 0 !important; margin-right: 24px;">Timezone: </label>
+            <select formControlName="timezone"
+                    style="border:none !important; background-color: transparent !important; font-size: 12px !important; font-weight: 400 !important; color: #000 !important;">
+              <option *ngFor="let data of timezoneData" value="{{data}}">{{data}}</option>
+            </select>
+          </div>
+        </div>
+        <div style="border-bottom: 1px solid #E0E0E0; padding-bottom:1.5em !important;">
+          <div class="col-lg-12 zoom-text mt-3">
+            <p>Meeting ID</p>
+          </div>
+          <div class="col-lg-12 display-center" style="justify-content:center;">
+            <div class="col-lg-10 display-center padding_0">
+              <div class="col-md-5 zoom-radio display-center padding_0">
+                <input type="radio" id="alllearners" formControlName="meeting_participants" value="All learners"
+                       (change)="getLearnerValue($event.target.value)">
+                <label for="alllearners">All learners</label>
+              </div>
+              <div class="col-md-7 zoom-radio display-center padding_0">
+                <input type="radio" id="learner2" value="Select learners" formControlName="selected_meeting_participants"
+                       (change)="getLearnerValue($event.target.value)">
+                <label for="learner2">Select learners</label>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-12 display-center mt-4" style="justify-content:center;" *ngIf="learnerList">
+            <div class="col-lg-10 table-responsive padding_0" style="height: 344px;">
+              <table class="table table-striped zoom-table">
+                <thead>
+                <tr>
+                  <th>&lt;Course name&gt;</th>
+                  <th class="text-right">&lt;Level&gt;</th>
+                </tr>
+                <tr>
+                  <th>&lt;Class name&gt;</th>
+                  <th class="text-right">&lt;Banding&gt;</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let data of learnerData" (click)=leardersId(data.learner_id)>
+                  <!-- <input type="radio"> -->
+                  <td><img src="assets/images/discuss/person-6.png"></td>
+                  <td>{{data.first_name}} {{data.last_name}}</td>
+                </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="col-lg-12 display-center padding_0 mt-4">
+            <div class="col-md-3 padding_0 display-center">
+              <button *ngIf="scheduleMetting" type="button" class="zoom-cancel" data-dismiss="modal" data-toggle="modal" data-target="#schedule">Back</button>
+              <button *ngIf="newMetting" type="button" class="zoom-cancel" data-dismiss="modal" data-toggle="modal" data-target="#newschedule">Back</button>
+
+            </div>
+            <div class="col-lg-9 display-center" style="justify-content: flex-end;">
+              <button *ngIf="scheduleMetting" type="button" class="zoom-next mr-3"
+                      (click)="scheduleSubmit()">Submit</button>
+              <button *ngIf="newMetting" type="button" class="zoom-next mr-3"
+                      (click)="newMettingSubmit()">Submit</button>
+              <button type="button" class="zoom-cancel" data-dismiss="modal">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- scheduled for new metting -->
+
+<div id="newschedule" class="modal" role="dialog" #closeMetting>
+  <div class="modal-dialog" style="max-width: 600px;">
+    <div class="modal-content">
+      <div class="modal-body mt-5 admin-inputs">
+        <div class="col-lg-12">
+          <h5>Schedule live session</h5>
+        </div>
+        <form [formGroup]="scheduledForm">
+          <div class="col-lg-12 zoom-label mt-4">
+            <label>Topic</label>
+            <input type="text" formControlName="topic">
+          </div>
+          <div class="col-lg-12 mt-4 display-center">
+            <div class="col-lg-8 padding_0 display-center zoom-select">
+              <label>Start:</label>
+              <!--                         <select>
+              <option>Thurs &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10 June 2021</option>
+              <option>Thurs &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10 June 2021</option>
+              <option>Thurs &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10 June 2021</option>
+              <option>Thurs &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10 June 2021</option>
+           </select> -->
+              <input type="date" formControlName="date" disabled>
+            </div>
+            <div class="col-md-4 padding_0 zoom-clock text-right">
+              <input type="time" formControlName="time" disabled>
+            </div>
+          </div>
+          <div class="col-lg-12 padding_0 mt-4 display-center"
+               style="border-bottom: 1px solid #E0E0E0; padding-bottom:1.5em !important;">
+            <div class="col-lg-8 padding_0 zoom-duration display-center">
+              <div class="col-lg-7 padding_0 display-center" style="padding:0 13px !important;">
+                <label style="margin-right: 10px;">Duration:</label>
+                <select formControlName="hour">
+                  <option value="0">0 hours</option>
+                  <option value="1">1 hours</option>
+                  <option value="2">2 hours</option>
+                  <option value="3">3 hours</option>
+                  <option value="4">4 hours</option>
+                  <option value="5">5 hours</option>
+                  <option value="6">6 hours</option>
+                  <option value="7">7 hours</option>
+                  <option value="8">8 hours</option>
+                  <option value="9">9 hours</option>
+                  <option value="10">10 hours</option>
+                  <option value="11">11 hours</option>
+                  <option value="12">12 hours</option>
+                </select>
+              </div>
+              <div class="col-md-5 padding_0">
+                <select formControlName="minute">
+                  <option value="1">1 minutes</option>
+                  <option value="2">2 minutes</option>
+                  <option value="3">3 minutes</option>
+                  <option value="4">4 minutes</option>
+                  <option value="5">5 minutes</option>
+                  <option value="6">6 minutes</option>
+                  <option value="7">7 minutes</option>
+                  <option value="8">8 minutes</option>
+                  <option value="9">9 minutes</option>
+                  <option value="10">10 minutes</option>
+                  <option value="11">11 minutes</option>
+                  <option value="12">12 minutes</option>
+                  <option value="13">13 minutes</option>
+                  <option value="14">14 minutes</option>
+                  <option value="15">15 minutes</option>
+                  <option value="16">16 minutes</option>
+                  <option value="17">17 minutes</option>
+                  <option value="18">18 minutes</option>
+                  <option value="19">19 minutes</option>
+                  <option value="20">20 minutes</option>
+                  <option value="21">21 minutes</option>
+                  <option value="22">22 minutes</option>
+                  <option value="23">23 minutes</option>
+                  <option value="24">24 minutes</option>
+                  <option value="25">25 minutes</option>
+                  <option value="26">26 minutes</option>
+                  <option value="27">27 minutes</option>
+                  <option value="28">28 minutes</option>
+                  <option value="29">29 minutes</option>
+                  <option value="30">30 minutes</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-4 padding_0 time-select display-center">
+              <label style="margin-bottom: 0 !important; margin-right: 24px;">Timezone: </label>
+              <select formControlName="timezone"
+                      style="border:none !important; background-color: transparent !important; font-size: 12px !important; font-weight: 400 !important; color: #000 !important;">
+                <option *ngFor="let data of timezoneData" value="{{data}}">{{data}}</option>
+              </select>
+            </div>
+          </div>
+          <div style="border-bottom: 1px solid #E0E0E0; padding-bottom:1.5em !important;">
+            <div class="col-lg-12 zoom-text mt-3">
+              <p>Meeting ID</p>
+            </div>
+            <div class="col-lg-12 display-center">
+              <div class="col-md-5 zoom-radio display-center padding_0">
+                <input type="radio" id="radio-metting" value="0" formControlName="eneratedId">
+                <label for="radio-metting">Generate automatically</label>
+              </div>
+              <div class="col-md-7 zoom-radio display-center padding_0">
+                <input type="radio" id="radio-metting-2" value="{{this.pid}}" formControlName="eneratedId"
+                       disabled>
+                <label for="radio-metting-2">Personal Meeting ID {{this.pid}}</label>
+              </div>
+            </div>
+          </div>
+          <div style="border-bottom: 1px solid #E0E0E0; padding-bottom:1.5em !important;">
+            <div class="col-lg-12 zoom-text mt-3">
+              <p style="font-size: 14px;">Security</p>
+            </div>
+            <div class="col-lg-12">
+              <div class="zoom-passcode display-center">
+                <input type="checkbox" formControlName="passcode">
+                <label>Passcode</label>
+              </div>
+              <div class="zoom-text">
+                <p style="color:#828282; font-size: 14px; font-weight: 400; padding:0 26px;">Only users who have
+                  the invite link or passcode can join the meeting</p>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="zoom-passcode display-center">
+                <input type="checkbox" formControlName="waiting">
+                <label>Waiting room</label>
+              </div>
+              <div class="zoom-text">
+                <p style="color:#828282; font-size: 14px; font-weight: 400; padding:0 26px;">Only users admitted
+                  by the host can join the meeting</p>
+              </div>
+            </div>
+          </div>
+          <div style="border-bottom: 1px solid #E0E0E0; padding-bottom:1.5em !important;">
+            <div class="col-lg-12 zoom-text mt-3">
+              <p style="font-size: 14px;">Video</p>
+            </div>
+            <div class="col-lg-12 display-center">
+              <div class="col-md-6 padding_0 display-center zoom-text">
+                <p style="margin-right: 2em;">Host: </p>
+                <ul class="display-center">
+                  <li>
+                    <input type="radio" id="on" value="true" formControlName="host">
+                    <label for="on">On</label>
+                  </li>
+                  <li>
+                    <input type="radio" id="off" value="false" formControlName="host">
+                    <label for="off">Off</label>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-md-6 padding_0 display-center zoom-text">
+                <p style="margin-right: 2em;">Participants: </p>
+                <ul class="display-center">
+                  <li>
+                    <input type="radio" id="radio-1" value="true" formControlName="participants">
+                    <label for="radio-1">On</label>
+                  </li>
+                  <li>
+                    <input type="radio" id="radio-2" value="false" formControlName="participants">
+                    <label for="radio-2">Off</label>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-12 mt-4">
+            <button type="button" class="zoom-options mb-3">Advanced options</button>
+            <div class="zoom-checkbox-label display-center mb-2">
+              <input type="checkbox" value="allow_participants_anytime"
+                     formControlName="allow_participants_anytime">
+              <label>Allow participants to join anytime</label>
+            </div>
+            <div class="zoom-checkbox-label display-center mb-2">
+              <input type="checkbox" value="mute_upon_entry" formControlName="mute_upon_entry">
+              <label>Mute participants upon entry</label>
+            </div>
+            <div class="zoom-checkbox-label display-center mb-2">
+              <input type="checkbox" value="auto_recording" formControlName="auto_recording">
+              <label>Automatically record meeting on the local computer</label>
+            </div>
+          </div>
+
+          <div class="col-lg-12 display-center mt-4" style="justify-content: flex-end;">
+            <button type="button" class="zoom-next mr-3" data-target="#zoomnext"
+                    data-toggle="modal" (click)="newMettings()">Next</button>
+            <button type="button" class="zoom-cancel" data-dismiss="modal">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="copyMetting" class="modal" role="dialog" #closeEditSchedule>
+  <div class="modal-dialog" style="max-width: 600px;">
+    <div class="modal-content">
+      <div class="modal-body mt-5 admin-inputs">
+        <div class="col-lg-12">
+          <h5>Schedule live session</h5>
+        </div>
+        <form [formGroup]="scheduledForm">
+          <div class="col-lg-12 zoom-label mt-4">
+            <label>Topic</label>
+            <input type="text" formControlName="topic">
+          </div>
+          <div class="col-lg-12 mt-4 display-center">
+            <div class="col-lg-8 padding_0 display-center zoom-select">
+              <label>Start:</label>
+              <!--                         <select>
+              <option>Thurs &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10 June 2021</option>
+              <option>Thurs &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10 June 2021</option>
+              <option>Thurs &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10 June 2021</option>
+              <option>Thurs &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10 June 2021</option>
+           </select> -->
+              <input type="date" formControlName="date">
+            </div>
+            <div class="col-md-4 padding_0 zoom-clock text-right">
+              <input type="time" formControlName="time">
+            </div>
+          </div>
+          <div class="col-lg-12 padding_0 mt-4 display-center"
+               style="border-bottom: 1px solid #E0E0E0; padding-bottom:1.5em !important;">
+            <div class="col-lg-8 padding_0 zoom-duration display-center">
+              <div class="col-lg-7 padding_0 display-center" style="padding:0 13px !important;">
+                <label style="margin-right: 10px;">Duration:</label>
+                <select formControlName="hour">
+                  <option value="0">0 hours</option>
+                  <option value="1">1 hours</option>
+                  <option value="2">2 hours</option>
+                  <option value="3">3 hours</option>
+                  <option value="4">4 hours</option>
+                  <option value="5">5 hours</option>
+                  <option value="6">6 hours</option>
+                  <option value="7">7 hours</option>
+                  <option value="8">8 hours</option>
+                  <option value="9">9 hours</option>
+                  <option value="10">10 hours</option>
+                  <option value="11">11 hours</option>
+                  <option value="12">12 hours</option>
+                </select>
+              </div>
+              <div class="col-md-5 padding_0">
+                <select formControlName="minute">
+                  <option value="1">1 minutes</option>
+                  <option value="2">2 minutes</option>
+                  <option value="3">3 minutes</option>
+                  <option value="4">4 minutes</option>
+                  <option value="5">5 minutes</option>
+                  <option value="6">6 minutes</option>
+                  <option value="7">7 minutes</option>
+                  <option value="8">8 minutes</option>
+                  <option value="9">9 minutes</option>
+                  <option value="10">10 minutes</option>
+                  <option value="11">11 minutes</option>
+                  <option value="12">12 minutes</option>
+                  <option value="13">13 minutes</option>
+                  <option value="14">14 minutes</option>
+                  <option value="15">15 minutes</option>
+                  <option value="16">16 minutes</option>
+                  <option value="17">17 minutes</option>
+                  <option value="18">18 minutes</option>
+                  <option value="19">19 minutes</option>
+                  <option value="20">20 minutes</option>
+                  <option value="21">21 minutes</option>
+                  <option value="22">22 minutes</option>
+                  <option value="23">23 minutes</option>
+                  <option value="24">24 minutes</option>
+                  <option value="25">25 minutes</option>
+                  <option value="26">26 minutes</option>
+                  <option value="27">27 minutes</option>
+                  <option value="28">28 minutes</option>
+                  <option value="29">29 minutes</option>
+                  <option value="30">30 minutes</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-4 padding_0 time-select display-center">
+              <label style="margin-bottom: 0 !important; margin-right: 24px;">Timezone: </label>
+              <select formControlName="timezone"
+                      style="border:none !important; background-color: transparent !important; font-size: 12px !important; font-weight: 400 !important; color: #000 !important;">
+                <option *ngFor="let data of timezoneData" value="{{data}}">{{data}}</option>
+              </select>
+            </div>
+          </div>
+          <div style="border-bottom: 1px solid #E0E0E0; padding-bottom:1.5em !important;">
+            <div class="col-lg-12 zoom-text mt-3">
+              <p>Meeting ID</p>
+            </div>
+            <div class="col-lg-12 display-center">
+              <div class="col-md-5 zoom-radio display-center padding_0">
+                <input type="radio" id="radio-metting" value="Generate automatically"
+                       formControlName="eneratedId">
+                <label for="radio-metting">Generate automatically</label>
+              </div>
+              <div class="col-md-7 zoom-radio display-center padding_0">
+                <input type="radio" id="radio-metting-2" value="{{this.pid}}" formControlName="eneratedId">
+                <label for="radio-metting-2">Personal Meeting ID {{this.pid}}</label>
+              </div>
+            </div>
+          </div>
+          <div style="border-bottom: 1px solid #E0E0E0; padding-bottom:1.5em !important;">
+            <div class="col-lg-12 zoom-text mt-3">
+              <p style="font-size: 14px;">Security</p>
+            </div>
+            <div class="col-lg-12">
+              <div class="zoom-passcode display-center">
+                <input type="checkbox" formControlName="passcode">
+                <label>Passcode</label>
+              </div>
+              <div class="zoom-text">
+                <p style="color:#828282; font-size: 14px; font-weight: 400; padding:0 26px;">Only users who have
+                  the invite link or passcode can join the meeting</p>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="zoom-passcode display-center">
+                <input type="checkbox" formControlName="waiting">
+                <label>Waiting room</label>
+              </div>
+              <div class="zoom-text">
+                <p style="color:#828282; font-size: 14px; font-weight: 400; padding:0 26px;">Only users admitted
+                  by the host can join the meeting</p>
+              </div>
+            </div>
+          </div>
+          <div style="border-bottom: 1px solid #E0E0E0; padding-bottom:1.5em !important;">
+            <div class="col-lg-12 zoom-text mt-3">
+              <p style="font-size: 14px;">Video</p>
+            </div>
+            <div class="col-lg-12 display-center">
+              <div class="col-md-6 padding_0 display-center zoom-text">
+                <p style="margin-right: 2em;">Host: </p>
+                <ul class="display-center">
+                  <li>
+                    <input type="radio" id="on" value="true" formControlName="host">
+                    <label for="on">On</label>
+                  </li>
+                  <li>
+                    <input type="radio" id="off" value="false" formControlName="host">
+                    <label for="off">Off</label>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-md-6 padding_0 display-center zoom-text">
+                <p style="margin-right: 2em;">Participants: </p>
+                <ul class="display-center">
+                  <li>
+                    <input type="radio" id="radio-1" value="true" formControlName="participants">
+                    <label for="radio-1">On</label>
+                  </li>
+                  <li>
+                    <input type="radio" id="radio-2" value="false" formControlName="participants">
+                    <label for="radio-2">Off</label>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-12 mt-4">
+            <button type="button" class="zoom-options mb-3">Advanced options</button>
+            <div class="zoom-checkbox-label display-center mb-2">
+              <input type="checkbox" value="allow_participants_anytime"
+                     formControlName="allow_participants_anytime">
+              <label>Allow participants to join anytime</label>
+            </div>
+            <div class="zoom-checkbox-label display-center mb-2">
+              <input type="checkbox" value="mute_upon_entry" formControlName="mute_upon_entry">
+              <label>Mute participants upon entry</label>
+            </div>
+            <div class="zoom-checkbox-label display-center mb-2">
+              <input type="checkbox" value="auto_recording" formControlName="auto_recording">
+              <label>Automatically record meeting on the local computer</label>
+            </div>
+          </div>
+
+          <div class="col-lg-12 display-center mt-4" style="justify-content: flex-end;">
+            <button type="button" class="zoom-next mr-3" data-target="#zoomnextedit" (click)="metting()"
+                    data-toggle="modal">Next</button>
+            <button type="button" class="zoom-cancel" data-dismiss="modal">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="editSchedule" class="modal" role="dialog" #closeEditSchedule>
+  <div class="modal-dialog" style="max-width: 600px;">
+    <div class="modal-content">
+      <div class="modal-body mt-5 admin-inputs">
+        <div class="col-lg-12">
+          <h5>Schedule live session</h5>
+        </div>
+        <form [formGroup]="scheduledForm">
+          <div class="col-lg-12 zoom-label mt-4">
+            <label>Topic</label>
+            <input type="text" formControlName="topic">
+          </div>
+          <div class="col-lg-12 mt-4 display-center">
+            <div class="col-lg-8 padding_0 display-center zoom-select">
+              <label>Start:</label>
+              <!--                         <select>
+              <option>Thurs &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10 June 2021</option>
+              <option>Thurs &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10 June 2021</option>
+              <option>Thurs &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10 June 2021</option>
+              <option>Thurs &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10 June 2021</option>
+           </select> -->
+              <input type="date" formControlName="date">
+            </div>
+            <div class="col-md-4 padding_0 zoom-clock text-right">
+              <input type="time" formControlName="time">
+            </div>
+          </div>
+          <div class="col-lg-12 padding_0 mt-4 display-center"
+               style="border-bottom: 1px solid #E0E0E0; padding-bottom:1.5em !important;">
+            <div class="col-lg-8 padding_0 zoom-duration display-center">
+              <div class="col-lg-7 padding_0 display-center" style="padding:0 13px !important;">
+                <label style="margin-right: 10px;">Duration:</label>
+                <select formControlName="hour">
+                  <option value="0">0 hours</option>
+                  <option value="1">1 hours</option>
+                  <option value="2">2 hours</option>
+                  <option value="3">3 hours</option>
+                  <option value="4">4 hours</option>
+                  <option value="5">5 hours</option>
+                  <option value="6">6 hours</option>
+                  <option value="7">7 hours</option>
+                  <option value="8">8 hours</option>
+                  <option value="9">9 hours</option>
+                  <option value="10">10 hours</option>
+                  <option value="11">11 hours</option>
+                  <option value="12">12 hours</option>
+                </select>
+              </div>
+              <div class="col-md-5 padding_0">
+                <select formControlName="minute">
+                  <option value="1">1 minutes</option>
+                  <option value="2">2 minutes</option>
+                  <option value="3">3 minutes</option>
+                  <option value="4">4 minutes</option>
+                  <option value="5">5 minutes</option>
+                  <option value="6">6 minutes</option>
+                  <option value="7">7 minutes</option>
+                  <option value="8">8 minutes</option>
+                  <option value="9">9 minutes</option>
+                  <option value="10">10 minutes</option>
+                  <option value="11">11 minutes</option>
+                  <option value="12">12 minutes</option>
+                  <option value="13">13 minutes</option>
+                  <option value="14">14 minutes</option>
+                  <option value="15">15 minutes</option>
+                  <option value="16">16 minutes</option>
+                  <option value="17">17 minutes</option>
+                  <option value="18">18 minutes</option>
+                  <option value="19">19 minutes</option>
+                  <option value="20">20 minutes</option>
+                  <option value="21">21 minutes</option>
+                  <option value="22">22 minutes</option>
+                  <option value="23">23 minutes</option>
+                  <option value="24">24 minutes</option>
+                  <option value="25">25 minutes</option>
+                  <option value="26">26 minutes</option>
+                  <option value="27">27 minutes</option>
+                  <option value="28">28 minutes</option>
+                  <option value="29">29 minutes</option>
+                  <option value="30">30 minutes</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-4 padding_0 time-select display-center">
+              <label style="margin-bottom: 0 !important; margin-right: 24px;">Timezone: </label>
+              <select formControlName="timezone"
+                      style="border:none !important; background-color: transparent !important; font-size: 12px !important; font-weight: 400 !important; color: #000 !important;">
+                <option *ngFor="let data of timezoneData" value="{{data}}">{{data}}</option>
+              </select>
+            </div>
+          </div>
+          <div style="border-bottom: 1px solid #E0E0E0; padding-bottom:1.5em !important;">
+            <div class="col-lg-12 zoom-text mt-3">
+              <p>Meeting ID</p>
+            </div>
+            <div class="col-lg-12 display-center">
+              <div class="col-md-5 zoom-radio display-center padding_0">
+                <input type="radio" id="radio-metting" value="Generate automatically"
+                       formControlName="eneratedId">
+                <label for="radio-metting">Generate automatically</label>
+              </div>
+              <div class="col-md-7 zoom-radio display-center padding_0">
+                <input type="radio" id="radio-metting-2" value="{{this.pid}}" formControlName="eneratedId">
+                <label for="radio-metting-2">Personal Meeting ID {{this.pid}}</label>
+              </div>
+            </div>
+          </div>
+          <div style="border-bottom: 1px solid #E0E0E0; padding-bottom:1.5em !important;">
+            <div class="col-lg-12 zoom-text mt-3">
+              <p style="font-size: 14px;">Security</p>
+            </div>
+            <div class="col-lg-12">
+              <div class="zoom-passcode display-center">
+                <input type="checkbox" formControlName="passcode">
+                <label>Passcode</label>
+              </div>
+              <div class="zoom-text">
+                <p style="color:#828282; font-size: 14px; font-weight: 400; padding:0 26px;">Only users who have
+                  the invite link or passcode can join the meeting</p>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="zoom-passcode display-center">
+                <input type="checkbox" formControlName="waiting">
+                <label>Waiting room</label>
+              </div>
+              <div class="zoom-text">
+                <p style="color:#828282; font-size: 14px; font-weight: 400; padding:0 26px;">Only users admitted
+                  by the host can join the meeting</p>
+              </div>
+            </div>
+          </div>
+          <div style="border-bottom: 1px solid #E0E0E0; padding-bottom:1.5em !important;">
+            <div class="col-lg-12 zoom-text mt-3">
+              <p style="font-size: 14px;">Video</p>
+            </div>
+            <div class="col-lg-12 display-center">
+              <div class="col-md-6 padding_0 display-center zoom-text">
+                <p style="margin-right: 2em;">Host: </p>
+                <ul class="display-center">
+                  <li>
+                    <input type="radio" id="on" value="true" formControlName="host">
+                    <label for="on">On</label>
+                  </li>
+                  <li>
+                    <input type="radio" id="off" value="false" formControlName="host">
+                    <label for="off">Off</label>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-md-6 padding_0 display-center zoom-text">
+                <p style="margin-right: 2em;">Participants: </p>
+                <ul class="display-center">
+                  <li>
+                    <input type="radio" id="radio-1" value="true" formControlName="participants">
+                    <label for="radio-1">On</label>
+                  </li>
+                  <li>
+                    <input type="radio" id="radio-2" value="false" formControlName="participants">
+                    <label for="radio-2">Off</label>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-12 mt-4">
+            <button type="button" class="zoom-options mb-3">Advanced options</button>
+            <div class="zoom-checkbox-label display-center mb-2">
+              <input type="checkbox" value="allow_participants_anytime"
+                     formControlName="allow_participants_anytime">
+              <label>Allow participants to join anytime</label>
+            </div>
+            <div class="zoom-checkbox-label display-center mb-2">
+              <input type="checkbox" value="mute_upon_entry" formControlName="mute_upon_entry">
+              <label>Mute participants upon entry</label>
+            </div>
+            <div class="zoom-checkbox-label display-center mb-2">
+              <input type="checkbox" value="auto_recording" formControlName="auto_recording">
+              <label>Automatically record meeting on the local computer</label>
+            </div>
+          </div>
+
+          <div class="col-lg-12 display-center mt-4" style="justify-content: flex-end;">
+            <button type="button" class="zoom-next mr-3" data-target="#zoomnextedit" (click)="metting()"
+                    data-toggle="modal">Next</button>
+            <button type="button" class="zoom-cancel" data-dismiss="modal">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="zoomnextedit" class="modal" role="dialog" #closeUpdateSchedule>
+  <div class="modal-dialog" style="max-width: 600px;">
+    <div class="modal-content">
+      <div class="modal-body mt-5 admin-inputs">
+        <div class="col-lg-12">
+          <h5>Schedule live session</h5>
+        </div>
+        <div class="col-lg-12 zoom-label-read mt-4">
+          <label>Topic</label>
+          <input type="text" readonly>
+        </div>
+        <div class="col-lg-12 mt-4 display-center">
+          <div class="col-lg-8 padding_0 display-center zoom-select-read">
+            <label>Start:</label>
+            <input type="date" readonly>
+          </div>
+          <div class="col-md-4 padding_0 zoom-clock-read text-right">
+            <input type="time" readonly>
+          </div>
+        </div>
+        <div class="col-lg-12 padding_0 mt-4 display-center"
+             style="border-bottom: 1px solid #E0E0E0; padding-bottom:1.5em !important;">
+          <div class="col-lg-8 padding_0 zoom-duration-read display-center">
+            <div class="col-lg-7 padding_0 display-center" style="padding:0 13px !important;">
+              <label style="margin-right: 10px;">Duration:</label>
+              <select readonly>
+                <option>0 hours</option>
+                <option>1 hours</option>
+                <option>2 hours</option>
+                <option>3 hours</option>
+                <option>4 hours</option>
+              </select>
+            </div>
+            <div class="col-md-5 padding_0">
+              <select>
+                <option value="1">1 minutes</option>
+                <option value="2">2 minutes</option>
+                <option value="3">3 minutes</option>
+                <option value="4">4 minutes</option>
+                <option value="5">5 minutes</option>
+                <option value="6">6 minutes</option>
+                <option value="7">7 minutes</option>
+                <option value="8">8 minutes</option>
+                <option value="9">9 minutes</option>
+                <option value="10">10 minutes</option>
+                <option value="11">11 minutes</option>
+                <option value="12">12 minutes</option>
+                <option value="13">13 minutes</option>
+                <option value="14">14 minutes</option>
+                <option value="15">15 minutes</option>
+                <option value="16">16 minutes</option>
+                <option value="17">17 minutes</option>
+                <option value="18">18 minutes</option>
+                <option value="19">19 minutes</option>
+                <option value="20">20 minutes</option>
+                <option value="21">21 minutes</option>
+                <option value="22">22 minutes</option>
+                <option value="23">23 minutes</option>
+                <option value="24">24 minutes</option>
+                <option value="25">25 minutes</option>
+                <option value="26">26 minutes</option>
+                <option value="27">27 minutes</option>
+                <option value="28">28 minutes</option>
+                <option value="29">29 minutes</option>
+                <option value="30">30 minutes</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-4 padding_0 time-select display-center">
+            <label style="margin-bottom: 0 !important; margin-right: 24px;">Timezone: </label>
+            <select formControlName="timezone"
+                    style="border:none !important; background-color: transparent !important; font-size: 12px !important; font-weight: 400 !important; color: #000 !important;">
+              <option *ngFor="let data of timezoneData" value="{{data}}">{{data}}</option>
+            </select>
+          </div>
+        </div>
+        <div style="border-bottom: 1px solid #E0E0E0; padding-bottom:1.5em !important;">
+          <div class="col-lg-12 zoom-text mt-3">
+            <p>Meeting ID</p>
+          </div>
+          <div class="col-lg-12 display-center" style="justify-content:center;">
+            <div class="col-lg-10 display-center padding_0">
+              <div class="col-md-5 zoom-radio display-center padding_0">
+                <input type="radio" id="alllearners" value="All learners"
+                       (change)="getLearnerValue($event.target.value)">
+                <label for="alllearners">All learners</label>
+              </div>
+              <div class="col-md-7 zoom-radio display-center padding_0">
+                <input type="radio" id="learner2" value="Select learners"
+                       (change)="getLearnerValue($event.target.value)">
+                <label for="learner2">Select learners</label>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-12 display-center mt-4" style="justify-content:center;" *ngIf="learnerList">
+            <div class="col-lg-10 table-responsive padding_0" style="height: 344px;">
+              <table class="table table-striped zoom-table">
+                <thead>
+                <tr>
+                  <th>&lt;Course name&gt;</th>
+                  <th class="text-right">&lt;Level&gt;</th>
+                </tr>
+                <tr>
+                  <th>&lt;Class name&gt;</th>
+                  <th class="text-right">&lt;Banding&gt;</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let data of learnerData" (click)=leardersId(data.learner_id)>
+                  <!-- <input type="radio"> -->
+                  <td><img src="assets/images/discuss/person-6.png"></td>
+                  <td>{{data.first_name}} {{data.last_name}}</td>
+                </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="col-lg-12 display-center padding_0 mt-4">
+            <div class="col-md-3 padding_0 display-center">
+              <button type="button" class="zoom-cancel" data-dismiss="modal">Back</button>
+            </div>
+            <div class="col-lg-9 display-center" style="justify-content: flex-end;">
+              <button  type="button" class="zoom-next mr-3"
+                       (click)="updateSchedule()">Submit</button>
+              <button type="button" class="zoom-cancel" data-dismiss="modal">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

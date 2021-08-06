@@ -268,7 +268,7 @@ export class ClassListComponent implements OnInit {
   }
 
   isCheckClicked(event, courseList, i) {
-
+    console.log('lear',courseList)
     this.selectedCourseList = courseList;
     this.isGoToShow = true;
   }
@@ -282,8 +282,13 @@ export class ClassListComponent implements OnInit {
 
   isModelOpen() {
     if (this.isGoToShow == false) {
-      this.util.showSuccessToast('please select row');
+      this.util.showSuccessToast('Please select row');
     }
+  }
+
+  goToClass(){
+    console.log('this.selectedCourseList.learner_id',this.selectedCourseList.learner_id)
+    this.router.navigate(['/classes', { id: this.selectedCourseList.learner_id}]);
   }
 
   /**

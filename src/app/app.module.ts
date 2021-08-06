@@ -79,23 +79,39 @@ import interactionPlugin from '@fullcalendar/interaction';
 import { CalendarComponent } from './test-module/calendar/calendar.component';
 import { ImageCroppingComponent } from './image-cropping/image-cropping.component';
 
-import { DynaformModule } from 'dynaform';
-import { ColorPickerModule } from 'ngx-color-picker';
+// import { DynaformModule } from 'dynaform';
+// import { ColorPickerModule } from 'ngx-color-picker';
+// import { LineComponent } from './components/line/line.component';
+// import { CircleComponent } from './components/circle/circle.component';
+// import { RectangleComponent } from './components/rectangle/rectangle.component';
+// import { DynamicSvgDirective } from './directives/dynamic-svg.directive';
+// import { ShapeComponent } from './components/shape/shape.component';
+// import { SquareComponent } from './components/square/square.component';
+// import { EllipseComponent } from './components/ellipse/ellipse.component';
+// import { TextComponent } from './components/text/text.component';
+// import { GroupComponent } from './components/group/group.component';
+// import { ImageComponent } from './components/image/image.component';
+// import { PolyLineComponent } from './components/polyline/polyline.component';
+// import { PathComponent } from './components/path/path.component';
 
-import { LineComponent } from './components/line/line.component';
-import { CircleComponent } from './components/circle/circle.component';
-import { RectangleComponent } from './components/rectangle/rectangle.component';
-import { DynamicSvgDirective } from './directives/dynamic-svg.directive';
-import { ShapeComponent } from './components/shape/shape.component';
-import { SquareComponent } from './components/square/square.component';
-import { EllipseComponent } from './components/ellipse/ellipse.component';
-import { TextComponent } from './components/text/text.component';
-import { GroupComponent } from './components/group/group.component';
-import { ImageComponent } from './components/image/image.component';
-import { PolyLineComponent } from './components/polyline/polyline.component';
-import { PathComponent } from './components/path/path.component';
 import { StudentCalendarComponent } from './calendar/student-calendar/student-calendar.component';
 import { AdminVendorComponent } from './admin-vendor/admin-vendor.component';
+import { ZoomHomeComponent } from './zoom/zoom-home/zoom-home.component';
+import { ZoomUserComponent } from './zoom/zoom-user/zoom-user.component';
+import { ZoomSidebarComponent } from './zoom/zoom-sidebar/zoom-sidebar.component';
+import { ZoomDashboardHeaderComponent } from './zoom/zoom-dashboard-header/zoom-dashboard-header.component';
+import { LiveSessionComponent } from './zoom/live-session/live-session.component';
+import { ZoomSettingComponent } from './zoom/zoom-setting/zoom-setting.component';
+import { LiveSessionMessageComponent } from './zoom/live-session-message/live-session-message.component';
+import { ProfileUserDetailComponent } from './student-profiles/profile-user-detail/profile-user-detail.component'
+import { EditProfileUserDetailComponent } from './student-profiles/edit-profile-user-detail/edit-profile-user-detail.component'
+import { StudentChangePasswordComponent } from './student-profiles/student-change-password/student-change-password.component'
+import { TeacherProfilesComponent } from './teacher-profile/teacher-profiles/teacher-profiles.component'
+import { EditTeacherProfileComponent } from './teacher-profile/edit-teacher-profile/edit-teacher-profile.component'
+import { TeacherChangePasswordComponent } from './teacher-profile/teacher-change-password/teacher-change-password.component'
+import { TimeZoneService } from './teacher-profile/time-zone.service';
+import { TeacherProfileSidebarComponent } from './teacher-profile/teacher-profile-sidebar/teacher-profile-sidebar.component';
+import { SidebarStudentComponent } from './student-profiles/sidebar-student/sidebar-student.component';
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -154,21 +170,35 @@ FullCalendarModule.registerPlugins([
     AppDashboardHeaderComponent,
     CalendarComponent,
     ImageCroppingComponent,
-    LineComponent,
-    CircleComponent,
-    RectangleComponent,
-    DynamicSvgDirective,
-    ShapeComponent,
-    SquareComponent,
-    EllipseComponent,
-    TextComponent,
-    GroupComponent,
-    ImageComponent,
-    PolyLineComponent,
-    PathComponent,
+    //  LineComponent,
+    //   CircleComponent,
+    //   RectangleComponent,
+    //   DynamicSvgDirective,
+    //   ShapeComponent,
+    //   SquareComponent,
+    //   EllipseComponent,
+    //   TextComponent,
+    //   GroupComponent,
+    //   ImageComponent, 
+    //   PolyLineComponent,
+    //   PathComponent,
     StudentCalendarComponent,
-    AdminVendorComponent
-      ],
+    AdminVendorComponent,
+    ZoomHomeComponent, ZoomUserComponent,
+    LiveSessionMessageComponent,
+    ZoomSettingComponent,
+    LiveSessionComponent,
+    ZoomDashboardHeaderComponent,
+    ZoomSidebarComponent,
+    ProfileUserDetailComponent,
+    EditProfileUserDetailComponent,
+    StudentChangePasswordComponent,
+    TeacherProfilesComponent,
+    EditTeacherProfileComponent,
+    TeacherChangePasswordComponent,
+    TeacherProfileSidebarComponent,
+    SidebarStudentComponent
+  ],
   imports: [
     FullCalendarModule,
     NgxImageZoomModule,
@@ -199,23 +229,23 @@ FullCalendarModule.registerPlugins([
     MatTabsModule,
     NgxPaginationModule,
     AngularEditorModule,
-    DynaformModule,
-    ColorPickerModule,
+    // DynaformModule,
+    // ColorPickerModule,
   ],
   entryComponents: [
-    ShapeComponent,
-    LineComponent,
-    CircleComponent,
-    RectangleComponent,
-    SquareComponent,
-    EllipseComponent,
-    TextComponent,
-    GroupComponent,
-    ImageComponent,
-    PolyLineComponent,
-    PathComponent,
+    // ShapeComponent,
+    // LineComponent,
+    // CircleComponent,
+    // RectangleComponent,
+    // SquareComponent,
+    // EllipseComponent,
+    // TextComponent,
+    // GroupComponent,
+    // ImageComponent,
+    // PolyLineComponent,
+    // PathComponent,
   ],
-  providers: [Sample04Component, ClassesComponent, LoaderComponent],
+  providers: [Sample04Component, ClassesComponent, LoaderComponent, { provide: 'TimeZoneService', useClass: TimeZoneService }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

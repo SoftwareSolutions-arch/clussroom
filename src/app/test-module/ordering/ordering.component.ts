@@ -55,22 +55,32 @@ export class OrderingComponent implements OnInit {
       this.itemListArray.push(element.value.question)
     });
 
-    
+
   }
 
-
   picked(event: any) {
-    this.fileLists = FileList = event.target.files;
-    for (var i = 0; i <= event.target.files.length - 1; i++) {
-      const file: File = this.fileLists[i];
-      this.ExteriorPicFile = file;
-      this.handleInputChange(file); //turn into base64
-      var selectedFile = event.target.files[i];
-      this.fileList.push(selectedFile);
-      this.listOfFiles.push(selectedFile.name)
+    if (this.ExteriorPicString.length + this.fillData.attachment.length < 4) {
+      if (event.target.files.length > 4) {
+        this.util.errorAlertPopup('Can not select more than 4 images')
+      }
+
+      else {
+        this.fileLists = FileList = event.target.files;
+        for (var i = 0; i <= event.target.files.length - 1; i++) {
+          const file: File = this.fileLists[i];
+          this.ExteriorPicFile = file;
+          this.handleInputChange(file); //turn into base64
+          var selectedFile = event.target.files[i];
+          this.fileList.push(selectedFile);
+          this.listOfFiles.push(selectedFile.name)
+        }
+        this.attachment.nativeElement.value = '';
+      }
     }
 
-    this.attachment.nativeElement.value = '';
+    else {
+      this.util.errorAlertPopup('Can not select more than 4 images');
+    }
   }
 
   removeImage(index) {
@@ -138,7 +148,7 @@ export class OrderingComponent implements OnInit {
     this.myForm.value.arr.forEach(element => {
       userA.push(element.question);
     });
-    
+
     let params = {
       test_assignment_nid: this.testId,
       test_assignment_question_type: "ordering",
@@ -151,10 +161,10 @@ export class OrderingComponent implements OnInit {
       drag_drop_sequenece_answers: (this.itemListArray.length > 0) ? this.itemListArray : userA,
       minimum_sequence: "1",
     }
-    
+
     this.isLoadingBool = true;
     this.service.post('add-question-api', params, 1).subscribe(result => {
-      
+
       this.util.showSuccessAlert(result.message);
       this.isLoadingBool = false;
       this.router.navigate(['/test/question-screen']);
@@ -183,7 +193,7 @@ export class OrderingComponent implements OnInit {
 
     this.isLoadingBool = true;
     this.service.post('edit-question-api', params, 1).subscribe(result => {
-      
+
       this.util.showSuccessAlert(result.message);
       this.isLoadingBool = false;
       this.router.navigate(['/test/question-screen']);
@@ -191,7 +201,7 @@ export class OrderingComponent implements OnInit {
   }
 
   getQuestionDetais() {
-    
+
     if (this.getQuestionId == null) {
       this.isEditQuestion = true;
       return
@@ -205,7 +215,7 @@ export class OrderingComponent implements OnInit {
       this.isLoadingBool = true;
       this.service.post('questions-listing', params, 1).subscribe(result => {
         this.isLoadingBool = false;
-        
+
         result.question_data[0].ordering_sequence.forEach((element, index) => {
           this.arr = this.myForm.get('arr') as FormArray;
           this.arr.push(this.createItem());
@@ -228,5 +238,10 @@ export class OrderingComponent implements OnInit {
 
   removeImages(index) {
     this.fillData.attachment.splice(index, 1);
+  }
+
+
+  cancel() {
+    this.router.navigate(['/test/question-screen']);
   }
 }

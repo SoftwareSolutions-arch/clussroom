@@ -35,7 +35,7 @@
       <div id="course-content" class="tab-pane active">
         <div class="prospectus-section">
           <div class="prospectus-tabs">
-            <h3>Main library</h3>
+            <h3>Course library</h3>
             <ng-container *ngIf="this.course_library_upload_edit_permission==1">
               <div class="prospectus-action">
                 <a class="add-btn custom-a-btn" data-toggle="modal" data-target="#addmaterial"
@@ -76,8 +76,7 @@
                       <td class="display-center">
                         <img *ngIf="mainData.file_type=='test'" src="assets/images/Personal Library/Vector.png">
                         <img *ngIf="mainData.file_type=='folder'" src="assets/images/Personal Library/Vector-3.png">
-                        <img *ngIf="mainData.file_type=='video'" src="assets/images/Personal Library/file.png">
-                        <img *ngIf="mainData.file_type=='image'" src="assets/images/Personal Library/file.png">
+                        <img *ngIf="mainData.file_type!='test' && mainData.file_type!='folder' " src="assets/images/Personal Library/file.png">
                         <p style="margin: 0; padding-left: 6px;">{{mainData.file_type}}</p>
                       </td>
                       <td>{{mainData.uploaded_by}}</td>

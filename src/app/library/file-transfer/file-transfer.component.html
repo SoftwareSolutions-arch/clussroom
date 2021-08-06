@@ -32,7 +32,7 @@
       <div id="course-content" class="tab-pane active">
         <div class="prospectus-section">
           <div class="prospectus-tabs">
-            <h3>Personal library</h3>
+            <h3>File transfer</h3>
             <div class="prospectus-action">
               <a class="add-btn custom-a-btn" data-toggle="modal" data-target="#addCourse" style="width: 115px;">Add
                 course</a>
@@ -66,8 +66,8 @@
                     </thead>
                     <tbody cdkDropList [cdkDropListData]="libraryData" class="example-list"
                       (cdkDropListDropped)="drop($event,1)">
-                      <tr class="example-box" *ngFor="let item of this.libraryData" cdkDrag>
-                        <td>2</td>
+                      <tr class="example-box" *ngFor="let item of this.libraryData;let i = index" cdkDrag>
+                        <td>{{i+1}}</td>
                         <td class="text-left">{{item.name}}</td>
                         <td>&nbsp;</td>
                         <td class="display-center">
@@ -124,10 +124,9 @@
                               class="fa fa-ellipsis-v" aria-hidden="true" style="color: #7990B4"></i></a></th>
                       </tr>
                     </thead>
-                    <tbody cdkDropList [cdkDropListData]="libraryDataSecond" class="example-list"
-                      (cdkDropListDropped)="drop($event,2)">
-                      <tr *ngFor="let item of this.libraryDataSecond" class="example-box" cdkDrag>
-                        <td>1</td>
+                    <tbody  style="height: max-content;" cdkDropList [cdkDropListData]="libraryDataSecond" class="example-list" (cdkDropListDropped)="drop($event,2)">
+                      <tr *ngFor="let item of this.libraryDataSecond;let j = index" class="example-box" cdkDrag>
+                        <td>{{j+1}}</td>
                         <td class="text-left">{{item.name}}</td>
                         <td>
                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

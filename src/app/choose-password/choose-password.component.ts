@@ -115,14 +115,20 @@ export class ChoosePasswordComponent implements OnInit {
     }
 
     this.service.post('create-password-api', data, 0).subscribe(result => {
-
+      console.log('res',result);
       if (result['status'] == 1 || '1') {
         this.util.openSnackBarSuccess(result['message']);
         localStorage.setItem("isPasswordSet", '1');
         localStorage.setItem("uid", this.userId);
         localStorage.setItem("csrftoken", result['csrftoken']);
         localStorage.setItem('Authorization', result['basic_auth_token'])
-        this.router.navigate(['/school-name']);
+        if(result.role=='learner'){
+          this.router.navigate(['/student/student-course']);
+        }
+
+        else {
+          this.router.navigate(['/school-name']);
+        }
       }
       else {
         this.util.errorAlertPopup(result['message']);

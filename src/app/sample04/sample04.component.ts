@@ -31,8 +31,8 @@ export class Sample04Component implements OnInit {
   editForm: boolean = false;
   tutorials: any;
   currentTutorial = null;
-  currentIndex = -1;
   title = '';
+  currentIndex = -1;
 
   page = 1;
   count = 0;
@@ -82,7 +82,7 @@ export class Sample04Component implements OnInit {
   edit_allow_msg_learner: any = '';
   edit_allow_msg_coach: any = '';
   constructor(public router: Router, public util: UtilService, public service: SharedServiceService,
-    public formBuilder: FormBuilder, public classes: ClassesComponent) {
+              public formBuilder: FormBuilder, public classes: ClassesComponent) {
     this.instructionName = localStorage.getItem('instructionName');
     this.course_creation_permission = localStorage.getItem('course_creation_permission');
   }
@@ -245,7 +245,7 @@ export class Sample04Component implements OnInit {
     })
   }
 
-  // edit course details 
+  // edit course details
   editCourses() {
     if (this.selectedItems.length > 1) {
       this.util.errorAlertPopup("Please select only one row for edit")
@@ -360,7 +360,7 @@ export class Sample04Component implements OnInit {
       this.selectedItems = [];
       this.editForm = false;
       this.deleteclosebutton.nativeElement.click();
-      this.util.showSuccessAlert('Course Deleted Successfully');
+      this.util.showSuccessAlert('Course deleted successfully');
       this.isLoadingBool = false;
     })
   }
@@ -421,7 +421,7 @@ export class Sample04Component implements OnInit {
       this.closeModal2.nativeElement.click();
       this.closeModal3.nativeElement.click();
       this.clearAddFOrmValues();
-      this.util.showSuccessAlert('Course Created Successfully');
+      this.util.showSuccessAlert('Course created successfully');
       this.isLoadingBool = false;
       this.getAllCoursesList();
     })
@@ -441,7 +441,7 @@ export class Sample04Component implements OnInit {
     }
   }
 
-  // update Course api 
+  // update Course api
   updateCourses(courseList): any {
     var x = new Date(this.editSampleForm.value.datagram);
     var y = new Date(this.editSampleForm.value.datagram2);
@@ -484,7 +484,7 @@ export class Sample04Component implements OnInit {
             element.nativeElement.checked = false;
           });
           this.deleteclosebutton.nativeElement.click();
-          this.util.showSuccessAlert('Course Update Successfully');
+          this.util.showSuccessAlert('Course updated successfully');
           // this.clearAddFOrmValues();
           this.isCourseAdded = false;
           this.isLevelAdded = false;

@@ -1,1 +1,373 @@
-<p>library-home works!</p>
+<div class="dashboard">
+  <app-library-sidebar></app-library-sidebar>
+  <div class="control-panel">
+    <div *ngIf="isLoadingBool" class="loading-indicator">
+      <mat-spinner></mat-spinner>
+    </div>
+    <!-- dashboard header start -->
+    <div class="dashboard-header mb-2" style="border-bottom: 1px dashed #E7EDFF;">
+      <div class="user-search-setting">
+        <form>
+          <input type="search" placeholder="Search now ...">
+          <button class="search-btn"><img src="assets/images/dashboard/search.png"></button>
+        </form>
+        <div class="user-notification">
+          <img src="assets/images/dashboard/notification.png" class="dropdown-toggle" data-toggle="dropdown">
+          <div class="dropdown-menu">
+            <a class="dropdown-item">Notification 1</a>
+            <a class="dropdown-item">Notification 2</a>
+            <a class="dropdown-item">Notification 3</a>
+          </div>
+        </div>
+        <div class="user-setting">
+          <img src="assets/images/dashboard/setting.png" class="dropdown-toggle" data-toggle="dropdown">
+          <div class="dropdown-menu">
+            <a class="dropdown-item">Logout</a>
+          </div>
+        </div>
+      </div>
+      <div class="site-logo">
+        <img src="assets/images/LOGO.png">
+      </div>
+    </div>
+    <!-- dashboard header end -->
+    <div class="col-lg-12">
+      <div id="course-content" class="tab-pane active">
+        <div class="prospectus-section">
+          <div class="prospectus-tabs">
+            <ul class="nav nav-tabs">
+                <li><a data-toggle="tab" href="#main" class="active">Main library</a></li>
+                <li (click)="gotoPersonalLibrary()"><a data-toggle="tab">Personal library</a></li>
+            </ul>
+            <div class="prospectus-action">
+                <ng-container *ngIf="this.main_library_upload_edit_permission==1">
+                  <div class="prospectus-action">
+                    <a class="add-btn custom-a-btn" data-toggle="modal" data-target="#addmaterial" style="width: 115px;">Add materials</a>
+                  </div>
+                </ng-container>
+                <ng-container (click)="isCourseCreated()" *ngIf="this.main_library_upload_edit_permission==0">
+                  <div (click)="isCourseCreated()" class="prospectus-action">
+                    <a class="add-btn custom-a-btn" style="width: 115px;">Add materials</a>
+                  </div>
+                </ng-container>
+              </div>
+        </div>
+
+          <div class="tab-content col-lg-12">
+            <div id="personal" class="tab-pane active">
+              <div class="table-responsive">
+                <table class="table dashboard-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">No.</th>
+                      <th scope="col" class="text-left table-filter">Name</th>
+                      <th scope="col" class="table-filter text-left">File type</th>
+                      <th scope="col" class="table-filter">Uploaded by</th>
+                      <th scope="col" class="table-filter">Size</th>
+                      <th *ngIf="this.main_library_upload_edit_permission==1" scope="col"><a data-toggle="modal"
+                          data-target="#cancel"><i class="fa fa-ellipsis-v" aria-hidden="true"
+                            style="color: #7990B4"></i></a></th>
+                      <th (click)="isCourseCreated()" *ngIf="this.main_library_upload_edit_permission==0" scope="col">
+                        <a><i class="fa fa-ellipsis-v" aria-hidden="true" style="color: #7990B4"></i></a></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr
+                      *ngFor="let mainData of this.mainLibraryData| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;"
+                      [class.active]="i == currentIndex">
+                      <td>{{i+1}}</td>
+                      <td class="text-left">{{mainData.name}}</td>
+                      <td class="display-center">
+                        <img *ngIf="mainData.file_type=='test'" src="assets/images/Personal Library/Vector.png">
+                        <img *ngIf="mainData.file_type=='folder'" src="assets/images/Personal Library/Vector-3.png">
+                        <img *ngIf="mainData.file_type!='test' && mainData.file_type!='folder'" src="assets/images/Personal Library/file.png">
+                        <p style="margin: 0; padding-left: 6px;">{{mainData.file_type}}</p>
+                      </td>
+                      <td>{{mainData.uploaded_by}}</td>
+                      <td>{{mainData.size}}</td>
+                      <th>
+                        <div class="radio-table">
+                          <input style="height: 22px !important;" name="checkbox"
+                            (click)="isCheckboxClicked($event,mainData)" type="radio">
+                        </div>
+                      </th>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td class="text-left">&nbsp;</td>
+                      <td class="display-center">&nbsp;</td>
+                      <td>&nbsp;</td>
+                      <td style="padding-bottom: 5em;">12.25 Gb</td>
+                      <th>&nbsp;</th>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="table-result-wrapper bottom-select col-lg-12">
+                <div class="col-md-4 display-center">
+                  <select name="course" id="course-name">
+                    <option selected>10</option>
+                    <option value="Course 1">1</option>
+                    <option value="Course 2">2</option>
+                    <option value="Course 3">3</option>
+                  </select>
+                  <p>Results: 1-15 of 324</p>
+                </div>
+                <div class="selector col-lg-8">
+                  <pagination-controls previousLabel="Prev" nextLabel="Next" responsive="true"
+                    (pageChange)="handlePageChange($event)"></pagination-controls>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit icon modal popup start -->
+<div id="cancel" class="modal deletecourse-modal" role="dialog" #editmodelbutton>
+  <div class="modal-dialog" style="position: relative; left: 39em; top: 11em; max-width: 124px;">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body" style="padding:6px 6px;">
+        <ul>
+          <li data-toggle="modal" data-target="#editdrag"><a><i class="fa fa-pencil" aria-hidden="true"></i>Edit</a>
+          </li>
+          <li (click)="downloadLibrary()"><a><i class="fa fa-arrow-down" aria-hidden="true"></i>Download</a></li>
+          <li (click)="moveToPage()"><a><i class="fa fa-arrows-alt" aria-hidden="true"></i>Move</a></li>
+          <li><a><i class="fa fa-trash" aria-hidden="true" data-toggle="modal" data-target="#deletemat"></i>Delete</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Edit icon modal popup end -->
+
+<!-- Add material modal popup start -->
+
+<div id="addmaterial" class="modal add-mat-modal" role="dialog" #addmaterial>
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header" style="padding: 6px 0;">
+        <h4>Add materials</h4>
+        <button type="button" class="mat-close" data-dismiss="modal" style="padding: 6px 0;"><i class="fa fa-times"
+            aria-hidden="true"></i></button>
+      </div>
+      <div class="modal-body" style="padding:26px 26px 0px 26px !important">
+        <label class="mat-container border-bottom">
+          <input (input)="typeData('folder')" type="checkbox" id="chkBoxHelp" name="HelpCheckbox" value="Help" />Folder
+          <span class="mat-checkmark"></span>
+        </label>
+
+        <label class="mat-container border-bottom">
+          <input (input)="typeData('file')" name="1" type="checkbox">File (Pdf, Excel, Audio, Video, Word)
+          <span class="mat-checkmark"></span>
+        </label>
+
+        <label class="mat-container border-bottom">
+          <input (input)="typeData('white board')" name="2" type="checkbox">White Board
+          <span class="mat-checkmark"></span>
+        </label>
+
+        <label class="mat-container border-bottom">
+          <input (input)="typeData('test')" name="3" type="checkbox">Test
+          <span class="mat-checkmark"></span>
+        </label>
+      </div>
+      <div class="mat-modal-footer col-lg-12" style="padding-top: 4px;" *ngIf="this.selectedDataType==''">
+        <button type="button" class="mat-blue">Create</button>
+        <button type="button" class="mat-gr" data-dismiss="modal">Cancel</button>
+      </div>
+      <div class="mat-modal-footer col-lg-12" style="padding-top: 4px;" *ngIf="this.selectedDataType=='folder'">
+        <button type="button" class="mat-blue" data-toggle="modal" data-target="#addfolder">Create</button>
+        <button type="button" class="mat-gr" data-dismiss="modal">Cancel</button>
+      </div>
+      <div class="mat-modal-footer col-lg-12" style="padding-top: 4px;" *ngIf="this.selectedDataType=='file'">
+        <input id="imageUpload" #attachments style="display: none" type="file" class="upload custom-input-file"
+          (change)="picked($event)" />
+        <label style="text-align: center;padding: inherit;" for="imageUpload" class="mat-blue">Create</label>
+        <button type="button" class="mat-gr" data-dismiss="modal">Cancel</button>
+      </div>
+      <div class="mat-modal-footer col-lg-12" style="padding-top: 4px;" *ngIf="this.selectedDataType=='white board'">
+        <button type="button" class="mat-blue">Create</button>
+        <button type="button" class="mat-gr" data-dismiss="modal">Cancel</button>
+      </div>
+      <div class="mat-modal-footer col-lg-12" style="padding-top: 4px;" *ngIf="this.selectedDataType=='test'">
+        <button type="button" class="mat-blue" data-toggle="modal" data-target="#addtest">Create</button>
+        <button type="button" class="mat-gr" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add material modal popup end -->
+
+<!-- Add folder popup start -->
+
+<div id="addfolder" class="modal add-folder-modal" role="dialog" #addfolder>
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header" style="padding: 6px 0;">
+        <h4>Add folder</h4>
+        <button type="button" class="folder-close" data-dismiss="modal" style="padding: 6px 0;"><i class="fa fa-times"
+            aria-hidden="true"></i></button>
+      </div>
+      <div class="folder-input box-shadow" style="padding:26px 26px 0px 26px !important">
+        <label>Name: </label>
+        <input [(ngModel)]="libraryData.folder_name" type="text" placeholder="Geography for Secondary 4 - Level 3">
+      </div>
+
+      <div class="folder-input border-bottom" style="padding:26px 26px 26px 26px !important">
+        <label>Color: </label>
+        <a (click)="setColour('blue')"><img src="assets/images/Personal Library/folder.png"></a>
+        <a (click)="setColour('green')"><img src="assets/images/Personal Library/folder-1.png"></a>
+        <a (click)="setColour('red')"><img src="assets/images/Personal Library/folder-2.png"></a>
+        <a (click)="setColour('orange')"><img src="assets/images/Personal Library/folder-3.png"></a>
+        <a (click)="setColour('yellow')"><img src="assets/images/Personal Library/folder-4.png"></a>
+        <a (click)="setColour('purple')"><img src="assets/images/Personal Library/folder-5.png"></a>
+      </div>
+
+      <div class="mat-modal-footer col-lg-12">
+        <button type="button" class="mat-blue" (click)="createTest()">Create</button>
+        <button type="button" class="mat-gr" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add folder popup end -->
+
+<!-- Add test form popup start -->
+
+<div id="addtest" class="modal add-folder-modal" role="dialog" #addtest>
+  <div class="modal-dialog" style="max-width: 650px;">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header" style="padding: 6px 0;">
+        <h4>Add test form</h4>
+        <button type="button" class="folder-close" data-dismiss="modal" style="padding: 6px 0;"><i class="fa fa-times"
+            aria-hidden="true"></i></button>
+      </div>
+      <div class="modal-body folder-input box-shadow"
+        style="padding:26px 26px 0px 26px !important; justify-content: center;">
+        <label>Course Name: </label>
+        <select (change)="viewAllCoursesList()" [(ngModel)]="selectedCategory" name="course" id="course-name">
+          <option *ngFor="let item of this.allCourseList" [ngValue]="item">{{item.title}}</option>
+        </select>
+      </div>
+
+      <div class="col-lg-12 footer-input box-shadow mt-3">
+        <label>Level: </label>
+        <select style="margin-right: 2.6em;">
+          <option>{{selectedCategory.field_level}}</option>
+        </select>
+
+        <label>Banding: </label>
+        <select>
+          <option>{{selectedCategory.field_banding}}</option>
+        </select>
+      </div>
+
+      <div class="col-lg-12 footer-input box-shadow mt-3" style="padding: 0 26px 0 92px;">
+        <label>Class: </label>
+        <select (change)="getTestListing()" [(ngModel)]="selectedClass" style="margin-right: 2.6em;" name="level"
+          id="levelcourse">
+          <option *ngFor="let classesData of this.allClassesData" [ngValue]="classesData">
+            {{classesData.title}}
+          </option>
+        </select>
+
+        <label>Class code: </label>
+        <p>#{{selectedClass.field_class_code}}</p>
+      </div>
+
+      <div class="modal-body folder-input box-shadow mt-3"
+        style="justify-content: center; border: 1px solid #F1F6FB; padding-bottom: 3em;">
+        <label>Select Test: </label>
+        <select [(ngModel)]="selectedTest">
+          <option *ngFor="let testData of this.testAllData" [ngValue]="testData">{{testData.test_name}}</option>
+        </select>
+      </div>
+
+      <div class="mat-modal-footer col-lg-12">
+        <button type="button" class="mat-blue" (click)="addTest()">Create</button>
+        <button type="button" class="mat-gr" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add test form popup end -->
+
+<!-- Delete modal popup start -->
+<div id="deletemat" class="modal deletecourse-modal" role="dialog" #deleteclosebutton>
+  <div class="modal-dialog" style="max-width: 600px;">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body" style="padding-bottom: 2em;">
+        <button type="button" class="close" data-dismiss="modal"><img
+            src="assets/images/dashboard/close-modal.png"></button>
+        <figure>
+          <img src="assets/images/dashboard/delete-course.png">
+        </figure>
+        <div class="col-lg-12" style="border-bottom: 1px solid #F1F6FB; padding-bottom: 3em;">
+          <h4 class="modal-title">Delete material?</h4>
+        </div>
+
+        <div class="col-lg-12 delete-mat">
+          <ul>
+            <li>
+              <div class="col-lg-10">
+                <p class="text-left">{{this.selectedLibraryData.name}}</p>
+              </div>
+              <div class="col-sm-2 text-right">
+                <button type="button"><i class="fa fa-times" aria-hidden="true"></i></button>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <a (click)="deleteCourse()" class="del-btn-course">Delete Course</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Delete modal popup start -->
+
+
+<div id="editdrag" class="modal add-mat-modal" role="dialog" #editlibrary ngDraggable>
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header" style="padding: 6px 0;">
+        <h4>Edit name</h4>
+        <button type="button" class="mat-close" data-dismiss="modal" style="padding: 6px 0;"><i class="fa fa-times"
+            aria-hidden="true"></i></button>
+      </div>
+      <div class="modal-body" style="padding:26px 26px 0px 26px !important">
+        <div class="col-lg-12 display-center">
+          <div class="col-sm-1">
+            <img src="assets/images/Personal Library/Vector-3.png">
+          </div>
+          <div class="col-lg-11 drag-input display-center">
+            <label class="mr-4" style="margin-bottom: 0 !important;">Folder</label>
+            <input [(ngModel)]="editFoldername" type="text" placeholder="For Elementary Biology administrators">
+          </div>
+        </div>
+        <div class="col-lg-12 text-center">
+          <button type="submit" class="drag-save mt-5 mb-5" (click)="saveEditRecord()">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

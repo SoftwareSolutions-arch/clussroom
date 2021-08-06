@@ -26,8 +26,10 @@ export class Edit_assignmentComponent implements OnInit {
   rubricId: any;
   viewRubricData: any;
   rubricTitle: any;
-  subCatSelected: boolean = true;
+  subCatSelected: boolean = false;
   submitted: boolean = false;
+  selectedTestDetails: any = "";
+  formDisabled = true;
   constructor(private route: ActivatedRoute, private service: SharedServiceService, private util: UtilService, private router: Router) {
     this.route.queryParamMap.subscribe(queryParams => {
       this.id = queryParams.get("id");
@@ -39,6 +41,15 @@ export class Edit_assignmentComponent implements OnInit {
     this.editData();
     this.addAssignmentForm.disable();
     this.questionData();
+    this.getAssignmentData();
+  }
+  getAssignmentData(){
+    const data = {
+     "class_id":localStorage.getItem('classListId') 
+    }
+    this.service.post('listing-assignment',data,1).subscribe(res => { 
+      this.assignmentData = res.assignment_data
+    })
   }
   addAssignmentForm = new FormGroup({
     assignment_name: new FormControl('', Validators.required),
@@ -58,7 +69,37 @@ export class Edit_assignmentComponent implements OnInit {
   })
   edit() {
     this.disbled = false
+    this.formDisabled = false
     this.addAssignmentForm.enable();
+  }
+  oncahnge(){
+    this.isLoadingBool = true;
+
+    let params = {
+    //  "class_id":localStorage.getItem('classListId') ,
+      "assignment_id": this.selectedTestDetails.assignment_id
+    }
+    this.service.post('listing-assignment', params, 1).subscribe(res => {
+      this.isLoadingBool = false;
+      this.updateNewData = res.assignment_data
+      this.addAssignmentForm.patchValue({
+        "assignment_name": this.updateNewData.assignment_name,
+        "instruction": this.updateNewData.assignment_instruction,
+        "available_date": this.updateNewData.start_date,
+        "available_time": this.updateNewData.start_time,
+        "available_dateTo": this.updateNewData.end_date,
+        available_timeTo: this.updateNewData.end_time,
+        "attachment_limit_checked": this.updateNewData.allow_attachments,
+        "character_limit_checked": this.updateNewData.character_limit,
+        "character_limit": this.updateNewData.character_insert_limit,
+        "attachment": this.updateNewData.allow_limit_attachments,
+        "rubric": this.updateNewData.insert_rubric,
+        // rubric: this.updateNewData.rubric,
+        points: this.updateNewData.points,
+        rubric_select: this.updateNewData.rubric_nid,
+        "class_nid": localStorage.getItem('classListId')
+      })
+    })
   }
   // patch data in add form
   editData() {
@@ -90,11 +131,11 @@ export class Edit_assignmentComponent implements OnInit {
 
   // update data 
   updateAssignment() {
-    this.isLoadingBool = true;
     this.submitted = true;
     if (this.addAssignmentForm.invalid) {
       return;
     }
+    this.isLoadingBool = true;
     var x = new Date(this.addAssignmentForm.value.available_date);
     var y = new Date(this.addAssignmentForm.value.available_dateTo);
     if (x > y) {
@@ -121,7 +162,7 @@ export class Edit_assignmentComponent implements OnInit {
       this.service.post('update-assignment-api', data, 1).subscribe(res => {
         if (res.status == '1') {
           this.isLoadingBool = false;
-          this.util.showSuccessAlert('Assignment update successfully');
+          this.util.showSuccessAlert('Assignment updated successfully');
           this.goToQuestion();
           this.questionButton = false;
           // this.router.navigate(['/assignment/test-assignment-home']);
@@ -155,7 +196,7 @@ export class Edit_assignmentComponent implements OnInit {
   getRubricId(id) {
     this.rubricId = id
     if (id) {
-      this.subCatSelected = false;
+      this.subCatSelected = true;
     }
   }
   // view rubric api

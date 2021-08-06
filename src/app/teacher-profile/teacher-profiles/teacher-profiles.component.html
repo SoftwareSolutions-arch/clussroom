@@ -1,0 +1,92 @@
+<div class="dashboard">
+<app-teacher-profile-sidebar></app-teacher-profile-sidebar>
+	<div class="control-panel">
+
+		<!-- dashboard header start -->
+		<div class="dashboard-header mb-2">
+			<div class="user-search-setting">
+				<form>
+					<input type="search" placeholder="Search now ...">
+					<button class="search-btn"><img src="assets/images/dashboard/search.png"></button>
+				</form>
+				<div class="user-notification">
+				    <img src="assets/images/dashboard/notification.png" class="dropdown-toggle" data-toggle="dropdown">
+				    <div class="dropdown-menu">
+				      <a class="dropdown-item" href="#">Notification 1</a>
+				      <a class="dropdown-item" href="#">Notification 2</a>
+				      <a class="dropdown-item" href="#">Notification 3</a>
+				    </div>
+				</div>
+				<div class="user-setting">
+					<img src="assets/images/dashboard/setting.png" class="dropdown-toggle" data-toggle="dropdown">
+				    <div class="dropdown-menu">
+				      <a class="dropdown-item" href="#">Logout</a>
+				    </div>
+				</div>
+			</div>
+			<div class="site-logo">
+				<img src="assets/images/LOGO.png">
+			</div>
+		</div>
+		<!-- dashboard header end -->
+		<div *ngIf="isLoadingBool" class="loading-indicator">
+			<mat-spinner></mat-spinner>
+		  </div>
+        <div class="col-lg-12 mt-4" style="border-bottom:1px dashed #E7EDFF;">
+            <h3 style="font-size:22px; font-weight: 500; padding-bottom: .5em;">Profile</h3>
+        </div>
+
+        <div class="prospectus-section sequence-list" style="padding: 20px 43px;">
+			<div class="prospectus-tabs">
+				<ul class="nav nav-tabs">
+				    <li><a data-toggle="tab" href="#reportcard" class="active" style="border: 3px solid #F1F6FB; border-bottom: none;">Profile</a></li>
+                    <li><a data-toggle="tab" href="#grades" class="offline" style="border: 3px solid #F1F6FB; border-bottom: none;">Password settings</a></li>
+				</ul>
+			</div>
+            <div class="col-lg-12 display-center" style="padding: 0;">
+                <div class="col-md-6" style="padding: 0; border: 3px solid #F1F6FB; border-bottom-left-radius: 12px;">
+                    <div class="col-lg-12 display-center mt-2 mb-5" style="justify-content: flex-end;">
+                        <img src="assets/images/profile-edit.png" style="cursor: pointer;" routerLink="/edit_teacher_profile">
+                    </div>
+                    <div class="col-lg-12 display-center">
+                        <div class="col-md-6">
+                            <img [src]="profileData?.avatar" style="float: right;">
+                        </div>
+                        <div class="col-md-6" style="padding: 0 48px;">
+                            <h6>{{profileData?.firstname}} {{profileData?.lastname}}</h6>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 mt-5 mb-5 text-center">
+                        <p class="title">Email</p>
+                        <p class="title-text">{{profileData?.email}}</p>
+                    </div>
+                </div>
+                <div class="col-md-6" style="border: 3px solid #F1F6FB; padding: 0; border-top-right-radius: 12px; border-bottom-right-radius: 12px;">
+                        <div class="col-lg-12 mt-2 mb-5">
+                        <img src="assets/images/profile-edit.png" style="float: right; cursor: pointer;"  routerLink="/edit_teacher_profile">
+                        </div>
+                        <div class="upper-mid-section col-lg-12 mb-5 text-center">
+                            <h6>{{profileData?.school_name}}</h6>
+                            <p>Name of institution/school</p>
+                        </div>
+
+                        <div class="lower-section col-lg-12 mb-5 text-center">
+                            <h6>{{profileData?.instruction_name}}</h6>
+                            <p>Instructions</p>
+                        </div>
+                        <div class="other-section col-lg-12 display-center" style="border-top: 3px solid #F1F6FB; padding:0; padding-top: 11px;">
+                                <div class="col-md-6">
+                                    <p>Timezone</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <img src="assets/images/profile-edit.png" style="float: right; cursor: pointer;"  routerLink="/edit_teacher_profile">
+                                </div>
+                        </div>
+                        <div class="col-lg-12 text-center mt-3 mb-5">
+                            <h6 class="title-text">{{profileData?.timezone}}</h6>
+                        </div>
+                </div>
+            </div>
+			  	</div>		
+		    </div>
+  		</div>	

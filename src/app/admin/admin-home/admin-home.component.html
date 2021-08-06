@@ -52,13 +52,13 @@
                 sub-admin</button>
             </div>
             <div class="col-md-6 display-center" style="justify-content: flex-end; padding: 0;">
-              <button *ngIf="this.selectedItems=='' " type="button" class="sub-admin-remove mr-2"
-                (click)="noRowSelected()">Remove</button>
+              <!-- <button *ngIf="this.selectedItems=='' " type="button" class="sub-admin-remove mr-2"
+                (click)="noRowSelected()">Remove</button> -->
               <button *ngIf="this.selectedItems!='' " type="button" class="sub-admin-remove mr-2" data-toggle="modal"
                 data-target="#remove-admin">Remove</button>
 
-              <button *ngIf="this.selectedItems=='' " type="button" class="sub-admin-edit"
-                (click)="noRowSelected()">Edit</button>
+              <!-- <button *ngIf="this.selectedItems=='' " type="button" class="sub-admin-edit"
+                (click)="noRowSelected()">Edit</button> -->
               <button *ngIf="this.selectedItems!='' " type="button" class="sub-admin-edit" data-toggle="modal"
                 data-target="#edit-admin">Edit</button>
             </div>
@@ -79,7 +79,7 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let item of this.adminList">
-                    <td class="text-left">Darren Leow</td>
+                    <td class="text-left">{{item.course_admin}}</td>
                     <td class="text-center">{{item.type}}</td>
                     <td class="text-center details">
                       <div *ngFor="let course of item.course_name">
@@ -96,25 +96,10 @@
                               </tr>
                             </thead>
                             <tbody>
-                              <tr>
-                                <td class="text-left">Advanced geography</td>
-                                <td class="text-center">Secondary 2</td>
-                                <td class="text-center">I</td>
-                              </tr>
-                              <tr>
-                                <td class="text-left">Calculus for beginners</td>
-                                <td class="text-center">Primary 5</td>
-                                <td class="text-center">II</td>
-                              </tr>
-                              <tr>
-                                <td class="text-left">PSLE Science</td>
-                                <td class="text-center">Primary 6</td>
-                                <td class="text-center">IV</td>
-                              </tr>
-                              <tr>
-                                <td class="text-left">‘O’ Level Biology</td>
-                                <td class="text-center">Secondary 4</td>
-                                <td class="text-center">&nbsp;</td>
+                              <tr *ngFor="let course of item.course_name">
+                                <td class="text-left">{{course.course_name}}</td>
+                                <td class="text-center">{{course.level}}</td>
+                                <td class="text-center">{{course.banding}}</td>
                               </tr>
                             </tbody>
                           </table>
@@ -138,6 +123,7 @@
       </div>
     </div>
   </div>
+
   <!-- Add comment modal popup start -->
   <div id="Add-admin" class="modal deletetest-modal" role="dialog">
     <div class="modal-dialog">
@@ -149,8 +135,8 @@
         </div>
         <div class="modal-body mt-5 admin-inputs">
           <div class="col-lg-12 display-center">
-            <div class="col-lg-8">
-              <input [(ngModel)]="adminDetails.email" type="text" placeholder="Email">
+            <div class="col-lg-8" style="padding: 0 44px;">
+            <input [(ngModel)]="adminDetails.email" type="text" placeholder="Email">
             </div>
             <div class="col-md-3">
               <select [(ngModel)]="adminDetails.admintype">
@@ -162,13 +148,14 @@
           </div>
         </div>
         <div class="class-deltest-btn display-center mt-4 mb-3" style="justify-content: center;">
-          <button (click)="addAdminStep1()" type="button" class="confirm-submit" data-dismiss="modal"
-            style="width: 100px;" data-toggle="modal" data-target="#Editcomment">Next</button>
+          <button [disabled]="adminDetails.email== '' || adminDetails.admintype==='' " (click)="addAdminStep1()"
+            type="button" class="confirm-submit" style="width: 100px;" data-toggle="modal"
+            data-target="#Editcomment">Next</button>
         </div>
       </div>
     </div>
   </div>
-  <!-- Add comment modal popup end -->
+  <!-- Add comment modal pop up end -->
   <!-- Edit comment modal popup start -->
   <div id="Editcomment" class="modal deletetest-modal" role="dialog">
     <div class="modal-dialog" style="max-width:750px">
@@ -189,7 +176,9 @@
             <div class="col-md-6 text-center">
               <ul>
                 <li style="color: #AFBCD2;">Admin type</li>
-                <li class="mt-3">{{adminDetails.admintype}}</li>
+                <!-- <li class="mt-3">{{adminDetails.admintype}}</li> -->
+                <li class="mt-3" *ngIf="adminDetails.admintype=='sub_admin_' ">Sub admin</li>
+                <li class="mt-3" *ngIf="adminDetails.admintype=='course_administrators' ">Course administrators</li>
               </ul>
             </div>
           </div>
@@ -211,7 +200,7 @@
               <input type="checkbox" style="height: 18px; width: 18px;">
             </div>
           </div>
-          <div class="col-lg-12 common-p display-center" style="padding:0;" *ngFor="let item of this.allCourseList">
+          <div class="col-lg-12 common-p display-center" style="padding:0;" *ngFor="let item of this.allCourseList| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index">
             <div class="col-md-6" style="background-color: #F5F5F5; padding: 12px 15px;">
               <p>{{item.title}}</p>
             </div>
@@ -224,6 +213,11 @@
             <div class="col-sm-1 display-center" style="justify-content: center;">
               <input (click)="isCheckboxClicked($event,item)" type="checkbox" style="height: 18px; width: 18px;">
             </div>
+          </div>
+
+          <div class="table-result-wrapper">
+            <pagination-controls previousLabel="Prev" nextLabel="Next" autoHide="true" responsive="true"
+                                 (pageChange)="handlePageChange($event)"></pagination-controls>
           </div>
 
         </div>
@@ -250,13 +244,14 @@
             <div class="col-md-6 text-center">
               <ul>
                 <li style="padding-right: 62px; color: #AFBCD2;">Email</li>
-                <li class="mt-3">abc@mail.com</li>
+                <li class="mt-3">{{adminDetails.email}}</li>
               </ul>
             </div>
             <div class="col-md-6 text-center">
               <ul>
                 <li style="color: #AFBCD2;">Admin type</li>
-                <li class="mt-3">Sub-admin</li>
+                <li class="mt-3" *ngIf="adminDetails.admintype=='sub_admin_' ">Sub admin</li>
+                <li class="mt-3" *ngIf="adminDetails.admintype=='course_administrators' ">Course administrators</li>
               </ul>
             </div>
           </div>
@@ -373,7 +368,7 @@
         <div class="modal-body">
           <div class="modal-header display-center lower-section"
             style="justify-content: center; background-color: #EEF5FF;">
-            <h6 style="font-size: 17px !important; margin: 0;">Change Password</h6>
+            <h6 style="font-size: 17px !important; margin: 0;">Add Admin</h6>
           </div>
           <div class="col-lg-12 text-center user-email mt-5 mb-5">
             <h5 style="margin: 0;">Invite sent to</h5>

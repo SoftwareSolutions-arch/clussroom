@@ -9,7 +9,8 @@
         <li (click)="goToCourses()">
           <a data-toggle="tab" href="#course-content" class=" clip-item">
             <img src="assets/images/dashboard/second/course-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/course-blue.png" class="hover-in">{{this.instructionName}}</a>
+            <img src="assets/images/dashboard/second/course-blue.png"
+              class="hover-in">{{this.instructionName | lowercase}}</a>
         </li>
         <li>
           <a data-toggle="tab" href="#classes-content" class="active clip-item">
@@ -55,7 +56,7 @@
           style="display: flex; align-items: center; padding-left:0; padding-right:0;">
           <div class="col-sm-1" style="padding: 0;"></div>
           <form class="green-button fieldset course-name">
-            <label class="common-label">{{instructionName}} Name:</label>
+            <label class="common-label">{{instructionName | lowercase}} Name:</label>
             <select [(ngModel)]="selectedCategory" name="course" id="course-name">
               <option *ngFor="let courseList of this.allCourseList" value="{{courseList.nid}}">{{this.courseList.title}}
               </option>
@@ -70,42 +71,49 @@
           <div class="prospectus-section">
             <div class="prospectus-tabs col-lg-12" style="justify-content: flex-end;">
               <div class="prospectus-action display-center" style="justify-content: flex-end;">
-
-                <ng-container *ngIf="this.class_creation_permission==1">
+                <ng-container *ngIf="this.class_creation_permission==1 && selectedCategory!='' ">
                   <a *ngIf="!editForm && !isSaveCourses" class="add-btn custom-a-btn mt-3" data-toggle="modal"
-                  data-target="#addClass" style="position: relative; right: 7.8em; bottom: 1em;"> 
-                  <i class="fa fa-plus" aria-hidden="true"></i> New class</a>
+                    data-target="#addClass" style="position: relative; right: 7.8em; bottom: 1em;">
+                    <i class="fa fa-plus" aria-hidden="true"></i> New class</a>
                 </ng-container>
 
-                <ng-container (click)="isCourseCreated()" *ngIf="this.class_creation_permission==0">
-                  <a (click)="isCourseCreated()" *ngIf="!editForm && !isSaveCourses" class="add-btn custom-a-btn mt-3"  style="position: relative; right: 7.8em; bottom: 1em;">
-                   <i (click)="isCourseCreated()" class="fa fa-plus" aria-hidden="true"></i> New class</a>
+                <ng-container (click)="isCourseCreated()" *ngIf="this.class_creation_permission==0 && selectedCategory!='' ">
+                  <a (click)="isCourseCreated()" *ngIf="!editForm && !isSaveCourses" class="add-btn custom-a-btn mt-3"
+                    style="position: relative; right: 7.8em; bottom: 1em;">
+                    <i (click)="isCourseCreated()" class="fa fa-plus" aria-hidden="true"></i> New class</a>
                 </ng-container>
 
                 <ng-container *ngIf="this.class_creation_permission==1">
-                  <a *ngIf="editForm" (click)="editCourses()" style="margin-left: 15px;background: #FFBB38 !important; width: 60px; height: 35px;" class="add-btn custom-a-btn" data-toggle="modal"> <i class="fa fa-edit" aria-hidden="true" style="font-size: 13px; margin-right: 5px;"></i> Edit</a>
+                  <a *ngIf="editForm" (click)="editCourses()"
+                    style="margin-left: 15px;background: #FFBB38 !important; width: 60px; height: 35px;"
+                    class="add-btn custom-a-btn" data-toggle="modal"> <i class="fa fa-edit" aria-hidden="true"
+                      style="font-size: 13px; margin-right: 5px;"></i> Edit</a>
                 </ng-container>
 
                 <ng-container (click)="isCourseCreated()" *ngIf="this.class_creation_permission==0">
-                  <a (click)="isCourseCreated()" *ngIf="editForm" style="margin-left: 15px;background: #FFBB38 !important; width: 60px; height: 35px;" class="add-btn custom-a-btn" >
-                  <i class="fa fa-edit" aria-hidden="true" style="font-size: 13px; margin-right: 5px;"></i> Edit</a>
+                  <a (click)="isCourseCreated()" *ngIf="editForm"
+                    style="margin-left: 15px;background: #FFBB38 !important; width: 60px; height: 35px;"
+                    class="add-btn custom-a-btn">
+                    <i class="fa fa-edit" aria-hidden="true" style="font-size: 13px; margin-right: 5px;"></i> Edit</a>
                 </ng-container>
 
                 <ng-container *ngIf="this.class_creation_permission==1">
                   <a *ngIf="!isSaveCourses && editForm" class="delete-btn custom-a-btn" data-toggle="modal"
-                  data-target="#deleteClass" (click)="popDeleteClass()"> <i class="fa fa-trash-o" aria-hidden="true"></i>
-                </a>
-                </ng-container>
-
-                <ng-container  (click)="isCourseCreated()" *ngIf="this.class_creation_permission==0">
-                  <a  (click)="isCourseCreated()" *ngIf="!isSaveCourses && editForm" class="delete-btn custom-a-btn"> 
-                    <i class="fa fa-trash-o" aria-hidden="true"></i>
-                </a>
+                    data-target="#deleteClass" (click)="popDeleteClass()"> <i class="fa fa-trash-o"
+                      aria-hidden="true"></i>
+                  </a>
                 </ng-container>
 
                 <ng-container (click)="isCourseCreated()" *ngIf="this.class_creation_permission==0">
-                  <a (click)="isCourseCreated()" *ngIf="isSaveCourses" (click)="cancelCourses()" style="margin-left: 15px;background: #db2929 !important;" class="add-btn custom-a-btn"
-                  data-toggle="modal"> <i class="fa fa-times" aria-hidden="true"></i> Cancel</a>
+                  <a (click)="isCourseCreated()" *ngIf="!isSaveCourses && editForm" class="delete-btn custom-a-btn">
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                  </a>
+                </ng-container>
+
+                <ng-container (click)="isCourseCreated()" *ngIf="this.class_creation_permission==0">
+                  <a (click)="isCourseCreated()" *ngIf="isSaveCourses" (click)="cancelCourses()"
+                    style="margin-left: 15px;background: #db2929 !important;" class="add-btn custom-a-btn"
+                    data-toggle="modal"> <i class="fa fa-times" aria-hidden="true"></i> Cancel</a>
                 </ng-container>
               </div>
             </div>
@@ -125,7 +133,7 @@
                       <th scope="col">&nbsp;</th>
                     </tr>
                   </thead>
-                  <tbody class="learner-text-left">
+                  <tbody *ngIf="this.learnerId==null " class="learner-text-left">
                     <tr
                       *ngFor="let classList of this.allClassesData| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;"
                       [class.active]="i == currentIndex">
@@ -178,6 +186,64 @@
                       </td>
                     </tr>
                   </tbody>
+
+                  <tbody *ngIf="this.learnerId!=null " class="learner-text-left">
+                    <tr
+                      *ngFor="let classList of this.allClassesData| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;"
+                      [class.active]="i == currentIndex">
+                      <th>
+                        <div class="radio-table">
+                          <!-- <input type="checkbox" #checkboxes (click)="isCheckClicked($event,classList,i)"> -->
+                          <input name="checkbox" (click)="isCheckClicked($event,classList,i)" type="radio">
+                        </div>
+                      </th>
+                      <td style="padding: 15px 0;">
+                        <div>{{this.classList.sno}}</div>
+                      </td>
+
+                      <td *ngIf="this.classList.nid !== this.userIdDetails" class="text-left" style="padding: 15px 0;">
+                        {{this.classList.classes_name}}</td>
+                      <td *ngIf="this.classList.nid===this.userIdDetails">
+                        <input [(ngModel)]="this.classList.classes_name" class="text-left" />
+                      </td>
+
+                      <td class="text-center" style="padding: 15px 0;">
+                        <div>{{this.classList.class_code}}</div>
+                      </td>
+
+                      <td *ngIf="this.classList.nid !== this.userIdDetails" class="text-center"
+                        style="padding: 15px 0;">{{this.classList.start_date}}</td>
+                      <td *ngIf="this.classList.nid===this.userIdDetails">
+                        <input type="date" [(ngModel)]="this.classList.start_date" class="text-center" />
+                      </td>
+                      
+                      <td *ngIf="this.classList.nid !== this.userIdDetails" class="text-center"
+                        style="padding: 15px 0;">{{this.classList.end_date}}</td>
+                      <td *ngIf="this.classList.nid===this.userIdDetails">
+                        <input type="date" [(ngModel)]="this.classList.end_date" class="text-center" />
+                      </td>
+                      <td class="text-center" style="padding: 15px 0;">
+                        <div class="highlight">{{this.classList.learners}}</div>
+                      </td>
+                      <td style="padding: 15px 0;">
+                        <div class="effective" *ngIf="this.classList.status=='Completed'">
+                          {{this.classList.status}}</div>
+                        <div class="ongoing" *ngIf="this.classList.status=='Ongoing'">
+                          {{this.classList.status}}</div>
+                        <div class="schedule" *ngIf="this.classList.status=='Sheduled'">
+                          {{this.classList.status}}</div>
+                      </td>
+                      <td (click)="goToClasses(classList)">
+                        <button><a>Go to class</a>
+                        </button>
+                      </td>
+                      <td>
+                        <button style="color: #90a193 !important;" *ngIf="this.classList.nid===this.userIdDetails"
+                          (click)="updateClasses(this.classList)"> <a style="color: #90a193 !important;">Save class</a>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
                 </table>
                 <div class="table-result-wrapper">
                   <pagination-controls previousLabel="Prev" nextLabel="Next" responsive="true"
@@ -191,7 +257,7 @@
               <!-- Modal content-->
               <div class="modal-content">
                 <div class="modal-header" style="padding: 6px 0;">
-                  <h4>Add Class</h4>
+                  <h4>Add class</h4>
                   <button type="button" class="close" data-dismiss="modal" style="padding: 6px 0;">
                     <img src="assets/images/dashboard/close-course.png">
                   </button>
@@ -201,7 +267,7 @@
                     <div class="addCourse-form col-lg-12 display-center">
                       <div class="my-modal my-modal-classes col-md-6">
                         <div class="col-md-4 text-center" style="padding: 0;">
-                          <label style="font-weight: 500;">Class start:</label>
+                          <label style="font-weight: 500;">Class starts:</label>
                         </div>
                         <div class="col-lg-8" style="padding: 0;">
                           <input [(ngModel)]="courseList.class_start" [ngModelOptions]="{standalone: true}" type="date"
@@ -245,7 +311,7 @@
                 </div>
                 <div class="modal-body">
                   <div class="class-delete-list">
-                    <div class="delete-field"> <span>Course name :</span>
+                    <div class="delete-field"> <span style="text-transform: none;">Course name :</span>
                       <p>{{this.classesData.title}}</p>
                     </div>
                     <div class="class-delete-curve">

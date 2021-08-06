@@ -23,7 +23,7 @@
               <h2 style="color: #343C6A; font-size: 17px;">Assignment question</h2>
            </div>
            <div class="multiple-text">
-							<angular-editor formControlName="question"   wrap="virtual" ></angular-editor>
+							<angular-editor formControlName="question"   wrap="virtual" required></angular-editor>
 
               <!-- <textarea name="shortanswer" formControlName="question"></textarea> -->
               <div class="col-md-4"></div>
@@ -35,7 +35,7 @@
               <label style="margin-left:1em !important;margin: 0px;" for="imageUpload" class="btn-add-1"><i
                class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add</label>
            <input id="imageUpload" #attachments style="display: none" multiple type="file"
-             accept="image/png, image/jpeg" class="upload custom-input-file" (change)="picked($event)"/>
+             accept="image/png, image/jpeg" class="upload custom-input-file" (change)="picked($event)" required>
            </div>
            <div class="col-lg-12 box-shadow border-bottom mt-3" style="padding-bottom: 6em;">
               
@@ -47,7 +47,9 @@
                </div>
                <div class="col-lg-8" style="display: flex; align-items: center;"*ngFor="let item of imagedata;let i = index;">
                   <div class="col-md-8 custom-order-assign" style="padding:0;">
-                     <img [src] = "item.image">
+                     <!-- <img [src] = "item.image"> -->
+                     <p>{{item}}</p>
+
                       <button type="button"(click)="removeImage(i)" class="orange-cross" style="width: 30px; height: 30px; margin: 0 7px;"><i class="fa fa-times" aria-hidden="true"></i></button>
                   </div>
               </div>
@@ -76,8 +78,9 @@
                  <button type="button" class="lime"><a href="#">Edit</a></button>
                  <button type="button" class="Org"><a href="#">Confirm Edit</a></button>
                  -->
-              <a  class="addbutton custom-button mr-2" (click)="addUpdateData()">Save Question</a>                        
-              <a href="#" class="edit-points-btn custom-button">Cancel</a>   
+                 <button type="button" class="light-green mr-3" [class.gray]="questionForm.invalid" (click)="addUpdateData()" [disabled]="questionForm.invalid">Add question</button>
+              <!-- <a  class="addbutton custom-button mr-2" (click)="addUpdateData()" >Save question</a>                         -->
+              <a routerLink="/assignment/test-assignment-home" class="edit-points-btn custom-button">Cancel</a>   
            </div>
 <!--
            <div class="container multi-choice-orange" style="padding: 6px 0 0 0;">

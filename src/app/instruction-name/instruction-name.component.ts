@@ -23,7 +23,7 @@ export class InstructionNameComponent implements OnInit {
   }
 
   selectedItems(values) {
-    
+
     this.selectedItem = values;
   }
 
@@ -37,7 +37,7 @@ export class InstructionNameComponent implements OnInit {
 
   // Set password
   nextPage() {
-    
+
     var uid = localStorage.getItem('uid');
     let data = {
       "schoolname": this.SchoolName,
@@ -46,10 +46,17 @@ export class InstructionNameComponent implements OnInit {
     }
 
     this.service.post('vendor-first-login-api', data, 1).subscribe(result => {
-      
+      console.log('result', result);
       if (result.status == 1) {
         localStorage.setItem('instructionName', this.selectedItem.name);
         localStorage.setItem('isLogin', '1');
+        localStorage.setItem('add_learner_permission', result.permission.add_learner);
+        localStorage.setItem('class_creation_permission', result.permission.class_creation);
+        localStorage.setItem('class_deletion_permission', result.permission.class_delation);
+        localStorage.setItem('course_creation_permission', result.permission.course_creation);
+        localStorage.setItem('course_library_upload_edit_permission', result.permission.course_library_upload_edit);
+        localStorage.setItem('live_session_permission', result.permission.live_session);
+        localStorage.setItem('main_library_upload_edit_permission', result.permission.main_library_upload_edit);
         this.router.navigate(['/sample04']);
       }
     })
@@ -58,7 +65,7 @@ export class InstructionNameComponent implements OnInit {
   // get all instruction api
   getInstruction() {
     this.service.post('instruction-name-list-api', '', 0).subscribe(result => {
-      
+
       this.instructionList = result;
     })
   }

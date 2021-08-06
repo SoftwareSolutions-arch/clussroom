@@ -1,0 +1,92 @@
+<div class="dashboard">
+<app-zoom-sidebar></app-zoom-sidebar>
+
+	<div class="control-panel">
+		<app-zoom-dashboard-header></app-zoom-dashboard-header>
+		<div *ngIf="isLoadingBool" class="loading-indicator">
+			<mat-spinner></mat-spinner>
+		 </div>
+		  <div class="tab-content" style="height: 60vh;">
+
+		  	<div class="table-responsive">
+		  		<table class="table dashboard-table">
+		  			<thead style="border:none !important;">
+		  				<tr style="border:none !important;">
+                           <th scope="col" class="text-left">Conferencing platform</th>
+                           <th scope="col" class="text-left">Account</th>
+                           <th scope="col" class="text-left">&nbsp;</th>
+                           <th scope="col" class="text-left">&nbsp;</th>
+                           <th scope="col" class="text-left">&nbsp;</th>
+                           <th scope="col" class="text-left">&nbsp;</th>
+                           <th scope="col" class="text-left">&nbsp;</th>
+                           <th scope="col" class="text-left">&nbsp;</th>
+                        </tr>
+		  			</thead>
+		  			<tbody style="border:none !important;">
+		  				<!-- <tr style="border:none !important;">
+		  					<td class="text-left">Zoom.us</td>
+		  					<td class="text-left">abc@mail.com</td>
+		  					<td>&nbsp;</td>
+		  					<td>&nbsp;</td>
+		  					<td>&nbsp;</td>
+		  					<td>&nbsp;</td>
+		  					<td>&nbsp;</td>
+		  					<td><i class="fa fa-times-circle" aria-hidden="true" style="color: #E95555;"></i></td>
+		  				</tr>
+		  				<tr style="border:none !important;">
+		  					<td class="text-left">Zoom.us</td>
+		  					<td class="text-left">abc@mail.com</td>
+		  					<td>&nbsp;</td>
+		  					<td>&nbsp;</td>
+		  					<td>&nbsp;</td>
+		  					<td>&nbsp;</td>
+		  					<td>&nbsp;</td>
+		  					<td><i class="fa fa-times-circle" aria-hidden="true" style="color: #E95555;"></i></td>
+		  				</tr> -->
+		  				<tr style="border:none !important;" *ngFor="let data of connectZoomList">
+		  					<td class="text-left">{{data.type}}</td>
+		  					<td class="text-left">{{data.email}}</td>
+		  					<td>&nbsp;</td>
+		  					<td>&nbsp;</td>
+		  					<td>&nbsp;</td>
+		  					<td>&nbsp;</td>
+		  					<td>&nbsp;</td>
+		  					<td><i *ngIf="disconnectButton" class="fa fa-times-circle" aria-hidden="true" style="color: #E95555;cursor: pointer;" data-toggle="modal" data-target="#disconnect"></i>
+								<button *ngIf="connectButton" type="button" class="ml-2" (click)="connectZoom(data.id)">Log in</button>
+							</td>
+		  				</tr>
+		  			</tbody>
+		  		</table>
+		  	</div>
+
+		  </div>
+		</div> 
+        </div> 
+
+<!-- Add Admin modal popup start -->
+
+
+<div id="disconnect" class="modal deletetest-modal" role="dialog">
+	<div class="modal-dialog" style="max-width: 600px;">
+  
+	  <div class="modal-content">
+  
+		  <div class="modal-header add-admin-head col-lg-12 display-center"> 
+			<h4 style="margin-left: 13.5em;">Add admin</h4>
+			<button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true" style="color: #fff;"></i></button>
+			</div>
+		  <div class="modal-body mt-5 admin-inputs">
+
+		  		<img src="assets/images/test/allert-1.png" style="margin:0 auto;">
+  				<p class="text-center">Disconnect Zoom account?<br/>All classes with this account will be disconnected, and you<br/>are required to log in for each class.</p>
+			  <div class="class-deltest-btn display-center mt-4 mb-3" style="justify-content: center;">
+				  <button type="button" class="confirm-submit" data-dismiss="modal" style="width: 83px;" (click)="disconnectZoom()">Yes</button>
+			  </div>
+		  </div>
+  
+	  </div>
+  
+	</div>
+    </div>
+  
+  <!-- Add Admin modal popup end --> 	

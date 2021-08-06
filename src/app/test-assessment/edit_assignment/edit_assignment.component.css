@@ -14957,3 +14957,13 @@ i .grade-tip .grade-text {
 	border: 0px none #ffffff;
 	border-radius: 5px;
 }
+
+.grays {
+	color: gray;
+	border: gray;
+	background-color: #E7E7E7 !important;
+   }
+   .grays input[type='checkbox']:after {
+    background-color: #E7E7E7;
+	
+   }

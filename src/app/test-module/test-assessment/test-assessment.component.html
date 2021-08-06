@@ -8,14 +8,12 @@
       <mat-spinner></mat-spinner>
     </div> -->
     <div class="right">
-      <div class="width"> <a>Mid-term Test</a>
+      <div class="width"> <a>{{this.test_name}}</a>
       </div>
       <div class="width">
-        <select name="course" id="course-name">
-          <option value="Course 1">Final Exam</option>
-          <option value="Course 1" selected>Mid-Term Test</option>
-          <option value="Course 2">Test1</option>
-          <option value="Course 3">Test2</option>
+        <select class="form-control" (change)="onChange()" [(ngModel)]="selectedTestDetails">
+          <option value="" disabled selected="selected">Please select test</option>
+          <option *ngFor="let user of testAllData" [ngValue]="user">{{user.test_name}}</option>
         </select>
       </div>
     </div>
@@ -54,7 +52,7 @@
                   <th scope="col" class=" text-left table-filter" style="padding: 22px 0;">Last Name</th>
                   <th scope="col" class="text-left table-filter" style="padding: 22px 0;">Total</th>
                   <th scope="col" class="table-filter" style="padding: 22px 0;">Submitted</th>
-                  <th scope="col" class="table-filter">final
+                  <th scope="col" class="table-filter">Final
                     <br>score</th>
                   <th scope="col" style="width: 10%;"></th>
                 </tr>
@@ -69,7 +67,7 @@
                   <td>80/120</td>
                   <td>
                     <div class="mid-green">
-                      <button type="button">View Attempt</button>
+                      <button type="button">View attempt</button>
                     </div>
                   </td>
                 </tr>
@@ -82,7 +80,7 @@
                   <td style="padding-top: 19px;">67/120</td>
                   <td>
                     <div class="mid-green">
-                      <button type="button">View Attempt</button>
+                      <button type="button">View attempt</button>
                     </div>
                   </td>
                 </tr>
@@ -109,7 +107,7 @@
                     <br>review</td>
                   <td>
                     <div class="mid-green">
-                      <button type="button">View Attempt</button>
+                      <button type="button">View attempt</button>
                     </div>
                   </td>
                 </tr>

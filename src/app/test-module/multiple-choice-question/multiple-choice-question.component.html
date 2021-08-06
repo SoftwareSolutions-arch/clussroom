@@ -43,7 +43,7 @@
               </button>
               <input [(ngModel)]="new_image_Description[i]" type="text" placeholder="Description" class="mt-3">
             </div>
-          </div>  
+          </div>
         <div class="attach mt-3 mb-5">
           <a>
             <img src="assets/images/test/Mask.png">
@@ -80,7 +80,8 @@
                         </button>
                       </td>
                       <td  scope="col" class="custom-checkbox">
-                        <input (click)="isClicked($event,i)" formControlName="question_checkbox" type="checkbox"><span class="mark"></span>
+                        <input (click)="isClicked($event,i)" formControlName="question_checkbox" type="checkbox">
+                        <span class="mark"></span>
                       </td>
                     </tr>
                   </ng-container>
@@ -104,7 +105,7 @@
           </label>
         </div>
         <div class="custom-control custom-checkbox mb-3 question-label mt-5">
-          <label class="question-checkbox col-sm-2">Partial Points
+          <label class="question-checkbox col-sm-2">Partial points
             <input [(ngModel)]="fillData.partial_points" type="checkbox"> <span class="mark"></span>
           </label>
           <p class="col-md-6" style="padding: 0 10px;"><span style="color: #81c8c1;">Note:</span> Points are rounded to
@@ -121,8 +122,8 @@
                <button type="button" class="lime"><a>Edit</a></button>
                <button type="button" class="Org"><a>Confirm Edit</a></button>
                -->
-          <a *ngIf="isEditQuestion" (click)="saveQuestion()" class="addbutton custom-button">Save Question</a>
-          <a *ngIf="!isEditQuestion" (click)="saveEditQuestion()" class="addbutton custom-button">Edit Question</a>
+          <a *ngIf="isEditQuestion" (click)="saveQuestion()" class="addbutton custom-button">Save question</a>
+          <a *ngIf="!isEditQuestion" (click)="saveEditQuestion()" class="addbutton custom-button">Edit question</a>
           <a class="edit-points-btn custom-button">Cancel</a>
         </div>
         <!--

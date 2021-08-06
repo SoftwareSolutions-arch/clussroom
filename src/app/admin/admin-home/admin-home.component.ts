@@ -39,6 +39,12 @@ export class AdminHomeComponent implements OnInit {
   @ViewChildren("checkboxes") checkboxes: QueryList<ElementRef>;
   @ViewChild('closeEdit') private closeEdit: ElementRef;
 
+  currentIndex = -1;
+
+  page = 1;
+  count = 0;
+  pageSize = 10;
+  
   constructor(public service: SharedServiceService, public util: UtilService, private router: Router, private toastr: ToastrService) {
     this.userId = localStorage.getItem("uid");
     this.allAdminList();
@@ -54,7 +60,7 @@ export class AdminHomeComponent implements OnInit {
     let params = {
       "vendor_id": this.userId
     }
-    console.log('pareams',params)
+    console.log('pareams', params)
     this.service.post('vendor-admin-listing-api', params, 1).subscribe(result => {
       console.log('res', result);
       this.adminList = result;
@@ -120,7 +126,7 @@ export class AdminHomeComponent implements OnInit {
   confirm() {
     var data = [];
     this.arrayItem.forEach(element => {
-      console.log('res',element);
+      console.log('res', element);
       data.push(element.nid);
     });
     let params = {
@@ -146,6 +152,11 @@ export class AdminHomeComponent implements OnInit {
     })
   }
 
+    // handling page events
+    handlePageChange(event): void {
+      this.page = event;
+    }
+
   // checkbox value
   checkBox(event, item) {
     this.selectedItems = item;
@@ -159,7 +170,6 @@ export class AdminHomeComponent implements OnInit {
     //   }
     // }
     console.log('this.selectedItems', this.selectedItems);
-
   }
 
   editCheckBox(event, item) {
@@ -214,11 +224,10 @@ export class AdminHomeComponent implements OnInit {
     }
 
     console.log('params', params);
-
     this.isLoadingBool = true;
     this.service.post('edit-vendor-admin-api', params, 1).subscribe(result => {
       console.log('result', result);
-      this.util.showSuccessToast('Update successfully')
+      this.util.showSuccessToast('Updated successfully')
       this.closeEdit.nativeElement.click();
       this.allAdminList();
       this.isLoadingBool = false;

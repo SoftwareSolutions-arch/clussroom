@@ -79,7 +79,7 @@ export class SidebarComponent implements OnInit {
   }
 
   goToLibrary() {
-    this.router.navigate(['/library/main-library']);
+    this.router.navigate(['/library/library-home']);
   }
 
   gotoCalendar() {

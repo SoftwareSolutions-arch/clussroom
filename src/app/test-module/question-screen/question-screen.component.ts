@@ -15,6 +15,7 @@ export class QuestionScreenComponent implements OnInit {
   @ViewChild('cancelClassModal') private cancelClassModal: ElementRef;
   @ViewChild('deleteclassModal') private deleteclassModal: ElementRef;
   @ViewChild('deletealertModal') private deletealertModal: ElementRef;
+  character = 'a';
   isLoadingBool: boolean = true;
   allData: any = [];
   testAllData: any = '';
@@ -28,17 +29,16 @@ export class QuestionScreenComponent implements OnInit {
   boxLength: any = '';
   public totalCount: string = '0';
   loginForm: FormGroup;
-  questionIdData: any='';
-
+  questionIdData: any = '';
+  test_name: any = '';
 
   constructor(public service: SharedServiceService, public formBuilder: FormBuilder, private toastr: ToastrService, public util: UtilService, private router: Router) {
     this.testId = localStorage.getItem('test_id');
     this.classId = localStorage.getItem('classListId');
+    this.test_name = localStorage.getItem('test_name');
     this.getDashboardHeaderData();
     this.getTestListing();
     this.getAllQuestion();
-
-
     this.loginForm = this.formBuilder.group(
       {
         description: new FormControl(
@@ -55,7 +55,6 @@ export class QuestionScreenComponent implements OnInit {
   onkeyup() {
     this.loginForm.value.description.length;
     this.totalCount = this.loginForm.value.description.length;
-    
   }
 
   ngOnInit() {
@@ -125,7 +124,7 @@ export class QuestionScreenComponent implements OnInit {
       "test_id": this.testId
     }
     this.service.post('questions-list-api', params, 1).subscribe(result => {
-      
+      console.log('result', result);
       this.isLoadingBool = false;
       if (result.question_data.length > 0) {
         this.allData = result.question_data;
@@ -135,6 +134,10 @@ export class QuestionScreenComponent implements OnInit {
         this.toastr.error(result.question_data);
       }
     })
+  }
+
+  nextChar(character) {
+    this.character= String.fromCharCode(character.charCodeAt(0) + 1);
   }
 
   getDashboardHeaderData() {
@@ -162,18 +165,22 @@ export class QuestionScreenComponent implements OnInit {
   }
 
   selectNewCourse() {
-    
+
   }
 
   onChange() {
+    // this.isLoadingBool = true;
     this.allData = [];
     localStorage.setItem('test_id', this.selectedTestDetails.test_id);
-    this.isLoadingBool = true;
+    localStorage.setItem('test_name', this.selectedTestDetails.test_name)
+
     let params = {
       "test_id": this.selectedTestDetails.test_id
     }
     this.service.post('questions-list-api', params, 1).subscribe(result => {
+      console.log('result',result)
       this.isLoadingBool = false;
+      this.test_name = localStorage.getItem('test_name');
       if (result.question_data.length > 0) {
         this.allData = result.question_data;
         this.questionSequence = result.question_sequence
@@ -184,23 +191,27 @@ export class QuestionScreenComponent implements OnInit {
     })
   }
 
+  settingsClicked() {
+    this.router.navigate(["/test/settings-tabs"]);
+  }
+
+  goToTestAssessment() {
+    this.router.navigate(['/test/test-assessment']);
+  }
+
   // Delete test step 1
   deleteStep1Test() {
-    // this.isLoadingBool = true;
     let params = {
       "step": 1,
       "test_id": [this.testId]
     }
     this.service.post('delete-test-api', params, 1).subscribe(result => {
-      // this.isLoadingBool = false;
-      
       this.deleteTestData = result.test_data[0].test_name
     })
   }
 
   // Delete test step 2
   deleteStep2Test() {
-    
     let params = {
       "step": 2,
       "test_id": [this.testId]
@@ -209,23 +220,22 @@ export class QuestionScreenComponent implements OnInit {
     this.service.post('delete-test-api', params, 1).subscribe(result => {
       this.deleteclassModal.nativeElement.click();
       this.isLoadingBool = false;
-      
+
       this.router.navigate(['/test/test-listing-home'])
     })
   }
 
   // get events of check box for edit or add button show and hide 
   isCheckClicked(data) {
-    
     this.questionId = data.question_id
   }
 
   // Delete question
   deleteQuestion(data) {
-    this.questionIdData=data.question_id
+    this.questionIdData = data.question_id
   }
 
-  deleteQuestionStep2(){
+  deleteQuestionStep2() {
     this.deletealertModal.nativeElement.click();
     let params = {
       "test_id": this.testId,
@@ -233,7 +243,7 @@ export class QuestionScreenComponent implements OnInit {
     }
     this.isLoadingBool = true;
     this.service.post('delete-question-api', params, 1).subscribe(result => {
-      
+
       this.isLoadingBool = false;
       this.getAllQuestion();
       Swal.fire(
@@ -245,9 +255,9 @@ export class QuestionScreenComponent implements OnInit {
   }
 
   editQuestion(type, data) {
-    
+
     let dataType = type;
-    
+
 
     switch (dataType) {
       case 'multiple_choice_type_paper':
@@ -269,7 +279,7 @@ export class QuestionScreenComponent implements OnInit {
         this.router.navigate(['/test/fill-blanks', { id: data.question_id }]);
         break;
       default:
-        
+
         break;
     }
   }

@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { SharedServiceService } from 'src/app/shared-service.service';
 import { UtilService } from 'src/providers/util.service';
+import { AssignmentService } from '../assignment.service';
+import {TestAssessmentHomeComponent} from '../test-assessment-home/test-assessment-home.component'
 
 @Component({
   selector: 'app-assignment-header',
@@ -9,18 +11,27 @@ import { UtilService } from 'src/providers/util.service';
   styleUrls: ['./assignment-header.component.css']
 })
 export class AssignmentHeaderComponent implements OnInit {
+
   headerData: any = '';
   isLoadingBool: boolean = true;
   classId: any = '';
-  constructor(public service: SharedServiceService, public util: UtilService, private router: Router) {
+  constructor(public service: SharedServiceService, public util: UtilService, 
+    private router: Router,private assignService: AssignmentService) {
     this.classId = localStorage.getItem('classListId');
     
     this.getDashboardHeaderData();
+    this.updateCount();
 
   }
 
   ngOnInit(): void {
+
   }
+updateCount(){
+  this.assignService.componentMethodCalled$.subscribe((data) => {
+      this.getDashboardHeaderData();
+  });
+}
 
   getDashboardHeaderData() {
     let params = {
@@ -44,4 +55,6 @@ export class AssignmentHeaderComponent implements OnInit {
   goToClassMaterial(){
     this.router.navigate(['/class-material/assignment-detail']);
   }
+
+  
 }

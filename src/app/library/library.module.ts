@@ -10,6 +10,7 @@ import { LibrarySidebarComponent } from './library-sidebar/library-sidebar.compo
 import { FileTransferComponent } from './file-transfer/file-transfer.component';
 import { CourseLibraryComponent } from './course-library/course-library.component';
 import { MainLibraryComponent } from './main-library/main-library.component';
+import { LibraryHomeComponent } from './library-home/library-home.component';
 import { PersonalLibraryComponent } from './personal-library/personal-library.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { AngularDraggableModule } from 'angular2-draggable';
@@ -30,6 +31,7 @@ import { AngularDraggableModule } from 'angular2-draggable';
         LibrarySidebarComponent,
         CourseLibraryComponent,
         MainLibraryComponent,
+        LibraryHomeComponent,
         PersonalLibraryComponent
     ],
 })

@@ -8,7 +8,7 @@
     </div>
     <div class="right">
       <div class="question-width">
-        <h4>Mid Term Test</h4>
+        <h4>{{this.test_name}}</h4>
       </div>
       <div class="width">
         <select class="form-control" (change)="onChange()" [(ngModel)]="selectedTestDetails">
@@ -16,7 +16,7 @@
           <option *ngFor="let user of testAllData" [ngValue]="user">{{user.test_name}}</option>
         </select>
       </div>
-      <button type="button">Back</button>
+      <button *ngIf="selectedTestDetails=='' " type="button">Back</button>
     </div>
     <div class="prospectus-section sequence-list">
       <div class="prospectus-tabs">
@@ -27,28 +27,16 @@
           </li>
           <li><a data-toggle="tab" href="#assignment-grading">Result/Assessment</a>
           </li>
-          <!--				    <li><a data-toggle="tab" href="#overall-grading">Overall Grading Status</a></li>-->
         </ul>
       </div>
       <div class="tab-content" style="height: 268vh;">
         <div class="user-action-wrapper">
           <div class="question-action-list">
-            <!--
-                    <div class="delete-button">
-                       <a class="delete-btn custom-button" data-toggle="modal" data-target="#deleteClass">Delete Test</a>
-                    </div>
-                    -->
+            <h6>Edit Points</h6>
             <div class="button-wrapper">
-              <!-- <a class="done-btn custom-button" data-toggle="modal" data-target="#ReOrder">Done</a> -->
-              <button type="button" class="Org"><a>Confirm Edit</a>
+              <button type="button" class="Org" (click)="confirmButton()"><a>Confirm edit</a>
               </button>
-              <button type="button" class="pink">Cancel</button>
-              <!--
-                       <a class="edit-points-btn custom-button" data-toggle="modal" data-target="#ReOrder">Re-Order</a>    
-                       <a class="edit-points-btn custom-button" data-toggle="modal" data-target="#Editpoints">Edit points</a>    
-                       <a class="preview-btn custom-button" data-toggle="modal" data-target="#preview">Preview</a>    
-                       <a class="addbutton custom-button" data-toggle="modal" data-target="#addClass">Add Questions</a> 
-                       -->
+              <button type="button" class="pink" (click)="cancel()">Cancel</button>
             </div>
           </div>
         </div>
@@ -66,7 +54,7 @@
                     </label>
                     <div class="ellipdown col-md-4">
                       <input type="text" [(ngModel)]="data.points" value="{{data.points}}">
-                      <label readonly  style="padding: 0 0 0 20px;">{{data.points}} Points</label>
+                      <label readonly style="padding: 0 0 0 20px;">{{data.points}} Points</label>
                     </div>
                   </div>
                   <div class="test-option col-lg-12">
@@ -92,34 +80,26 @@
                     <div class="ellipdown col-md-4">
                       <input type="text" [(ngModel)]="data.points" value="{{data.points}}">
                       <label style="padding: 0 0 0 20px;">{{data.points}} Points</label>
-                    </div>  
+                    </div>
                   </div>
                   <div class="test-option border-bottom col-lg-12">
                     <ul class="col-md-5">
-                      <li>
-                        <input type="radio" id="choice1" name="choice" value="choice1" checked>
-                        <label for="choice1">Choice 1</label>
-                      </li>
-                      <li>
-                        <input type="radio" id="choice2" name="choice" value="choice2">
-                        <label for="choice2">Choice 2</label>
+                      <li *ngFor="let optionList of data.multiple_choices[0] | slice:0:2;"><input type="radio"
+                          id="option1" name="option" value="option1">
+                        <label for="option1">{{optionList.option_text}}</label>
                       </li>
                     </ul>
                     <ul class="col-md-5">
-                      <li>
-                        <input type="radio" id="choice3" name="choice" value="choice3">
-                        <label for="choice3">Choice 3</label>
-                      </li>
-                      <li>
-                        <input type="radio" id="choice4" name="choice" value="choice4">
-                        <label for="choice4">Choice 4</label>
+                      <li *ngFor="let optionList of data.multiple_choices[0] | slice:2:4;">
+                        <input type="radio" id="option3" name="option" value="option3">
+                        <label for="option3">{{optionList.option_text}}</label>
                       </li>
                     </ul>
                   </div>
                 </div>
                 <!-- multiple choice with images-->
                 <div *ngSwitchCase="'images'">
-                  <div class="custom-control custom-checkbox mb-3 question-label" style="padding-top: 2em;">
+                  <div class="custom-control custom-checkbox mb-3 question-label col-lg-12" style="padding-top: 2em;">
                     <label class="question-checkbox col-md-8">Q 2.&nbsp;&nbsp;Choose the correct image for preposition
                       near. <span>(Multiple Choice)</span>
                     </label>
@@ -174,25 +154,23 @@
 
                 <!-- Fill in the blanks-->
                 <div *ngSwitchCase="'fill_in_the_blanks_type_paper'">
-                  <div class="custom-control custom-checkbox mb-3 question-label"
+                  <div class="custom-control custom-checkbox mb-3 question-label col-lg-12"
                     style="padding-top: 1em; padding-bottom: 1em;">
                     <label class="question-checkbox col-md-8">Q {{i+1}}.&nbsp;&nbsp;
                       <span style="color: black;" [innerHtml]="data.question"></span>
                       <span>({{data.questiontypename}})</span>
-                      <input type="checkbox">
-                      <span class="mark"></span>
+                      <!-- <input type="checkbox">
+                      <span class="mark"></span> -->
                     </label>
                     <div class="ellipdown col-md-4">
-                      <input type="text" placeholder="10">
+                      <!-- <input type="text" placeholder="10"> -->
+                      <input type="text" [(ngModel)]="data.points" value="{{data.points}}">
                       <label style="padding: 0 0 0 20px;"> {{data.points}} Points</label>
                     </div>
                   </div>
-                  <div class="fill">
-                    <!-- <h6 style="font-size: 15px; font-weight: 400;">I don't want to argue&nbsp;<input
-						type="text">&nbsp;you&nbsp;<input type="text">&nbsp;that matter at this time.</h6> -->
+                  <!-- <div class="fill">
                     <h6 style="font-size: 15px; font-weight: 400;">{{data.questiontype}}<input type="text"></h6>
-
-                  </div>
+                  </div> -->
                   <div class="col-lg-8 container"
                     style="display: flex; position: relative; left: 14.5em; bottom: 6px; margin: 0;">
                     <div class="col-sm-1 small-button">
@@ -245,7 +223,7 @@
                     <label class="question-checkbox col-md-8">Q {{i+1}}.&nbsp;&nbsp;
                       <span style="color: black;" [innerHtml]="data.question"></span>
                       <span>(Short Answer)</span>
-                      <input type="checkbox"> <span class="mark"></span>
+                      <!-- <input type="checkbox"> <span class="mark"></span> -->
                     </label>
                     <div class="ellipdown col-md-4">
                       <input type="text" [(ngModel)]="data.points" value="{{data.points}}">
@@ -269,7 +247,7 @@
                       Q {{i+1}}.&nbsp;&nbsp;
                       <span style="color: black;" [innerHtml]="data.question"></span>
                       <span>(Ordering)</span>
-                      <input type="checkbox"> <span class="mark"></span>
+                      <!-- <input type="checkbox"> <span class="mark"></span> -->
                     </label>
                     <div class="ellipdown col-md-4">
                       <input type="text" [(ngModel)]="data.points" value="{{data.points}}">
@@ -313,7 +291,7 @@
                     <label class="question-checkbox col-md-8">Q {{i+1}}.&nbsp;&nbsp;
                       <span style="color: black;" [innerHtml]="data.question"></span>
                       <span>({{data.questiontypename}})</span>
-                      <input type="checkbox"> <span class="mark"></span>
+                      <!-- <input type="checkbox"> <span class="mark"></span> -->
                     </label>
                     <div class="ellipdown col-md-4">
                       <input type="text" [(ngModel)]="data.points" value="{{data.points}}">
@@ -354,20 +332,10 @@
 
             <div class="col-lg-12" style="padding: 18px 0 0 0; display: flex; margin: 0;">
               <div class="delete-button">
-                <button type="submit" (click)="confirmButton()" type="button" class="Org"><a>Confirm Edit</a>
+                <button type="submit" (click)="confirmButton()"  class="Org"><a>Confirm edit</a>
                 </button>
-                <button type="button" class="pink">Cancel</button>
+                <button type="button" class="pink" (click)="cancel()">Cancel</button>
               </div>
-              <!--
-					<button type="button" class="blue">Confirm</button>
-					<button type="button" class="blue-border">Cancel</button>
-					<button type="button" class="lime"><a>Edit</a></button>
-					 <div class="button-wrapper">
-				  <a class="done-blue custom-button" data-toggle="modal" data-target="#ReOrder">Done</a>
-				  </div> 
-				 <a class="addbutton custom-button" data-toggle="modal" data-target="#addClass">Add Question</a>                        
-				 <a class="edit-points-btn custom-button" data-toggle="midal" data-target="#ReOrder">Re-Order</a>
-					-->
             </div>
           </ng-container>
 

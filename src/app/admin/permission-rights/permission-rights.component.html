@@ -11,15 +11,15 @@
         <div class="user-notification">
           <img src="assets/images/dashboard/notification.png" class="dropdown-toggle" data-toggle="dropdown">
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Notification 1</a>
-            <a class="dropdown-item" href="#">Notification 2</a>
-            <a class="dropdown-item" href="#">Notification 3</a>
+            <a class="dropdown-item">Notification 1</a>
+            <a class="dropdown-item">Notification 2</a>
+            <a class="dropdown-item">Notification 3</a>
           </div>
         </div>
         <div class="user-setting">
           <img src="assets/images/dashboard/setting.png" class="dropdown-toggle" data-toggle="dropdown">
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Logout</a>
+            <a class="dropdown-item">Logout</a>
           </div>
         </div>
       </div>
@@ -54,13 +54,13 @@
               sub-admin</button>
           </div>
           <div class="col-md-6 display-center" style="justify-content: flex-end; padding: 0;">
-            <button *ngIf="this.selectedItems=='' " type="button" class="sub-admin-remove mr-2"
-              (click)="noRowSelected()">Remove</button>
+            <!-- <button *ngIf="this.selectedItems=='' " type="button" class="sub-admin-remove mr-2"
+              (click)="noRowSelected()">Remove</button> -->
             <button *ngIf="this.selectedItems!='' " type="button" class="sub-admin-remove mr-2" data-toggle="modal"
               data-target="#remove-admin">Remove</button>
 
-            <button *ngIf="this.selectedItems=='' " type="button" class="sub-admin-edit"
-              (click)="noRowSelected()">Edit</button>
+            <!-- <button *ngIf="this.selectedItems=='' " type="button" class="sub-admin-edit"
+              (click)="noRowSelected()">Edit</button> -->
             <button *ngIf="this.selectedItems!='' " type="button" class="sub-admin-edit" data-toggle="modal"
               data-target="#edit-admin">Edit</button>
           </div>
@@ -83,42 +83,42 @@
               </thead>
               <tbody>
                 <tr *ngFor="let item of this.adminList">
-                  <td class="text-left">Darren Leow</td>
+                  <td class="text-left">{{item.course_admin}}</td>
                   <td class="text-center">{{item.type}}</td>
 
-                  <td>
-                    <img *ngIf="item.permissions_data[0].course_creation==1" src="assets/images/ellip-right.png">
-                    <img style="width: 35px !important;" *ngIf="item.permissions_data[0].course_creation!=1"
-                      src="assets/radio.png">
+                  <td class="text-center">
+                    <img style="margin: 0 auto;" *ngIf="item.permissions_data[0].course_creation==1" src="assets/images/ellip-right.png">
+                    <!-- <img style="width: 35px !important;" *ngIf="item.permissions_data[0].course_creation!=1"
+                      src="assets/radio.png"> -->
                   </td>
 
-                  <td>
-                    <img *ngIf="item.permissions_data[0].class_creation==1" src="assets/images/ellip-right.png">
-                    <img style="width: 35px !important;" *ngIf="item.permissions_data[0].class_creation!=1"
-                      src="assets/radio.png">
+                  <td class="text-center">
+                    <img style="margin: 0 auto;" *ngIf="item.permissions_data[0].class_creation==1" src="assets/images/ellip-right.png">
+                    <!-- <img style="width: 35px !important;" *ngIf="item.permissions_data[0].class_creation!=1"
+                      src="assets/radio.png"> -->
                   </td>
 
-                  <td>
-                    <img *ngIf="item.permissions_data[0].add_learners==1" src="assets/images/ellip-right.png">
-                    <img style="width: 35px !important;" *ngIf="item.permissions_data[0].add_learners!=1"
-                      src="assets/radio.png">
+                  <td class="text-center">
+                    <img style="margin: 0 auto;" *ngIf="item.permissions_data[0].add_learners==1" src="assets/images/ellip-right.png">
+                    <!-- <img style="width: 35px !important;" *ngIf="item.permissions_data[0].add_learners!=1"
+                      src="assets/radio.png"> -->
                   </td>
 
-                  <td>
-                    <img *ngIf="item.permissions_data[0].main_library==1" src="assets/images/ellip-right.png">
-                    <img style="width: 35px !important;" *ngIf="item.permissions_data[0].main_library!=1"
-                      src="assets/radio.png">
+                  <td class="text-center">
+                    <img style="margin: 0 auto;" *ngIf="item.permissions_data[0].main_library==1" src="assets/images/ellip-right.png">
+                    <!-- <img style="width: 35px !important;" *ngIf="item.permissions_data[0].main_library!=1"
+                      src="assets/radio.png"> -->
                   </td>
 
-                  <td>
-                    <img *ngIf="item.permissions_data[0].course_library==1" src="assets/images/ellip-right.png">
-                    <img style="width: 35px !important;" *ngIf="item.permissions_data[0].course_library!=1"
-                      src="assets/radio.png">
+                  <td class="text-center">
+                    <img style="margin: 0 auto;" *ngIf="item.permissions_data[0].course_library==1" src="assets/images/ellip-right.png">
+                    <!-- <img style="width: 35px !important;" *ngIf="item.permissions_data[0].course_library!=1"
+                      src="assets/radio.png"> -->
                   </td>
-                  <td>
-                    <img *ngIf="item.permissions_data[0].live_sessions==1" src="assets/images/ellip-right.png">
-                    <img style="width: 35px !important;" *ngIf="item.permissions_data[0].live_sessions!=1"
-                      src="assets/radio.png">
+                  <td class="text-center">
+                    <img style="margin: 0 auto;" *ngIf="item.permissions_data[0].live_sessions==1" src="assets/images/ellip-right.png">
+                    <!-- <img style="width: 35px !important;" *ngIf="item.permissions_data[0].live_sessions!=1"
+                      src="assets/radio.png"> -->
                   </td>
                   <th style="border: none;">
                     <div class="radio-table">
@@ -186,7 +186,8 @@
           <div class="col-md-6 text-center">
             <ul>
               <li style="color: #AFBCD2;">Admin type</li>
-              <li class="mt-3">{{adminDetails.admintype}}</li>
+              <li class="mt-3" *ngIf="adminDetails.admintype=='sub_admin_' ">Sub admin</li>
+              <li class="mt-3" *ngIf="adminDetails.admintype=='course_administrators' ">Course administrators</li>
             </ul>
           </div>
         </div>
@@ -248,7 +249,7 @@
           <div class="col-md-6 text-center">
             <ul>
               <li style="padding-right: 62px; color: #AFBCD2;">Email</li>
-              <li class="mt-3">abc@mail.com</li>
+              <li class="mt-3">{{adminDetails.email}}</li>
             </ul>
           </div>
           <div class="col-md-6 text-center">
@@ -678,7 +679,7 @@
           <div class="col-md-6 text-center">
             <ul>
               <li style="padding-right: 62px; color: #AFBCD2;">Email</li>
-              <li class="mt-3">abc@mail.com</li>
+              <li class="mt-3">{{adminDetails.email}}</li>
             </ul>
           </div>
           <div class="col-md-6 text-center">
@@ -857,7 +858,8 @@
           <div class="col-md-6 text-center">
             <ul>
               <li style="color: #AFBCD2;">Admin type</li>
-              <li class="mt-3">{{this.selectedItems.type}}</li>
+              <li class="mt-3" *ngIf="adminDetails.admintype=='sub_admin_' ">Sub admin</li>
+              <li class="mt-3" *ngIf="adminDetails.admintype=='course_administrators' ">Course administrators</li>
             </ul>
           </div>
         </div>
@@ -1012,7 +1014,7 @@
           <div class="col-md-6 text-center">
             <ul>
               <li style="padding-right: 62px; color: #AFBCD2;">Email</li>
-              <li class="mt-3">abc@mail.com</li>
+              <li class="mt-3">{{adminDetails.email}}</li>
             </ul>
           </div>
           <div class="col-md-6 text-center">
@@ -1101,7 +1103,7 @@
           <div class="col-md-6 text-center">
             <ul>
               <li style="padding-right: 62px; color: #AFBCD2;">Email</li>
-              <li class="mt-3">abc@mail.com</li>
+              <li class="mt-3">{{adminDetails.email}}</li>
             </ul>
           </div>
           <div class="col-md-6 text-center">

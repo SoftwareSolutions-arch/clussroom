@@ -72,7 +72,7 @@ export class AdminVendorComponent implements OnInit {
   }
 
   goToLiveSession() {
-    this.router.navigate(['/live-session']);
+    this.router.navigate(['/zoom-home']);
   }
 
   // handling page events
@@ -189,7 +189,7 @@ export class AdminVendorComponent implements OnInit {
     this.edit_permission.course_creation = event.target.checked
   }
 
-  // save details for edit admins 
+  // save details for edit admins
   editAdmin() {
     console.log('params', this.edit_permission);
     let params = {
@@ -211,7 +211,7 @@ export class AdminVendorComponent implements OnInit {
       this.isLoadingBool = false;
       this.util.showSuccessToast('Update successfully');
       this.editAdminPopup.nativeElement.click();
-      this.viewAllAdminSection();      
+      this.viewAllAdminSection();
     })
 
   }

@@ -1,0 +1,159 @@
+<div class="dashboard">
+<app-teacher-profile-sidebar></app-teacher-profile-sidebar>
+
+	<div class="control-panel">
+
+		<!-- dashboard header start -->
+		<div class="dashboard-header mb-2">
+			<div class="user-search-setting">
+				<form>
+					<input type="search" placeholder="Search now ...">
+					<button class="search-btn"><img src="assets/images/dashboard/search.png"></button>
+				</form>
+				<div class="user-notification">
+				    <img src="assets/images/dashboard/notification.png" class="dropdown-toggle" data-toggle="dropdown">
+				    <div class="dropdown-menu">
+				      <a class="dropdown-item" href="#">Notification 1</a>
+				      <a class="dropdown-item" href="#">Notification 2</a>
+				      <a class="dropdown-item" href="#">Notification 3</a>
+				    </div>
+				</div>
+				<div class="user-setting">
+					<img src="assets/images/dashboard/setting.png" class="dropdown-toggle" data-toggle="dropdown">
+				    <div class="dropdown-menu">
+				      <a class="dropdown-item" href="#">Logout</a>
+				    </div>
+				</div>
+			</div>
+			<div class="site-logo">
+				<img src="assets/images/LOGO.png">
+			</div>
+		</div>
+		<!-- dashboard header end -->
+		<div *ngIf="isLoadingBool" class="loading-indicator">
+			<mat-spinner></mat-spinner>
+		  </div>
+        <div class="col-lg-12 mt-4" style="border-bottom:1px dashed #E7EDFF;">
+            <h3 style="font-size:22px; font-weight: 500; padding-bottom: .5em;">Profile</h3>
+        </div>
+
+        <div class="prospectus-section sequence-list" style="padding: 20px 43px;">
+			<div class="prospectus-tabs">
+				<ul class="nav nav-tabs">
+				    <li><a data-toggle="tab" href="#reportcard" class="active" style="border: 3px solid #F1F6FB; border-bottom: none;">User details</a></li>
+                    <li><a data-toggle="tab" href="#grades" class="offline" style="border: 3px solid #F1F6FB; border-bottom: none;">Password settings</a></li>
+				</ul>
+			</div>
+            <div class="col-lg-12 display-center" style="padding: 0;">
+                <div class="col-md-6" style="padding: 0; border: 3px solid #F1F6FB; border-bottom-left-radius: 12px;">
+                    <div class="col-lg-12 display-center mt-2 mb-5" style="justify-content: flex-end;">
+                        <!-- <img src="assets/images/profile-edit.png" style="cursor: pointer;"> -->
+                    </div>
+					<form [formGroup]="editForm">
+                    <div class="col-lg-12 display-center left-section">
+                        <div class="col-md-6">
+                            <div class="circle" style="float: right; border: 3px solid #396aff;">
+								<img [src]="imageSrc" *ngIf="imageSrc">
+								<img *ngIf="!imageSrc" [src] = "imageData">
+                            </div>
+                        </div>
+                        <div class="col-md-6" style="padding: 0 48px;">
+                            <ul>
+                                <li class="mb-3">
+                                    <label>First name</label>
+                                    <input type="text" value="Darren" formControlName="firstName">
+                                </li>
+                                <li>
+                                    <label>Last name</label>
+								    <button type="button"><input type="file" formControlName = "image" accept="jpg/png" (change)="onFileChange($event)"></button>
+
+                                    <input type="text" value="Leow" formControlName="lastName">
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 mt-5 mb-5 text-center bottom-input">
+                        <p class="title">Email</p>
+                        <input type="text" value="something@mail.com" formControlName="email" disabled>
+                    </div>
+
+                    <div class="col-lg-12 display-center mb-5" style="justify-content: center;">
+                        <button type="button" class="user-cancel mr-4" routerLink="/teacher-profile">Cancel</button>
+                        <button type="button" class="user-save" (click)="editProfile()">Save</button>
+
+                    </div>
+				</form>
+                </div>
+                <div class="col-md-6" style="border: 3px solid #F1F6FB; padding: 0; border-top-right-radius: 12px; border-bottom-right-radius: 12px;">
+                    <form [formGroup]="instructionsForm"> 
+					<div class="col-lg-12 mt-2 mb-5 display-center" style="justify-content: flex-end;">
+                            <button type="button" class="user-cancel-small mr-4" routerLink="/teacher-profile">Cancel</button>
+                            <button type="button" class="user-save-small" (click)="saveInstruction()">Save</button>
+                        </div>
+                        <div class="upper-mid-section col-lg-12 mb-5 text-center">
+                            <input type="text" formControlName="instituteName" value="The math wiz" class="text-center mb-1">
+                            <p>Name of institution/school</p>
+                        </div>
+
+                        <div class="lower-section col-lg-12 mb-5 text-center">
+                            <select class="mb-1" formControlName="instruction">
+                                <option  *ngFor = "let data of levelData" value="{{data.tid}}">{{data.name}}</option>
+                                <!-- <option> Subject 1</option> -->
+                                <!-- <option>Subject 2</option>
+                                <option>Subject 3</option>
+                                <option>Subject 4</option> -->
+                            </select>
+                            <p>Instructions</p>
+                        </div>
+					</form>  
+					<form [formGroup]="timezoneForm">
+                        <div class="other-section col-lg-12 display-center mb-4" style="border-top: 3px solid #F1F6FB; padding:0; padding-top: 12px;">
+                                <div class="col-md-6">
+                                    <p>Timezone</p>
+                                </div>
+                                <div class="col-md-6 display-center" style="justify-content: flex-end;">
+                                    <button type="button" class="user-cancel-small mr-4" routerLink="/teacher-profile">Cancel</button>
+                                    <button type="button" class="user-save-small" (click)="getTimeZone()">Save</button>
+                                </div>
+                        </div>
+                        <div class="col-lg-12 text-center mt-3 mb-5 lower-section">
+                            <select style="padding-left: calc(20% - 1em);" formControlName="timeZone" (change)="timeZoneChanged($event.target.value)">
+								<option *ngFor="let tz of tzNames"  [value]="tz">
+									{{ tz }}
+								  </option>
+                                <!-- <option>GMT + 8 hrs (Singapore/Beijing/Perth)</option> -->
+                               
+                            </select>
+                        </div>
+					</form>
+                </div>
+            </div>
+			  	</div>		
+		    </div>
+  		</div>	
+		    <!-- Email success modal popup start -->
+
+
+<!-- <div id="emailsuccess" class="modal deletetest-modal" role="dialog">
+	<div class="modal-dialog" style="max-width: 550px;">
+  
+	<div class="modal-content">
+		<div class="modal-body">
+            <div class="modal-header display-center lower-section" style="justify-content: center; background-color: #EEF5FF;">
+                <h6 style="font-size: 17px !important; margin: 0;">Change Email</h6>
+            </div>
+            
+            <div class="col-lg-12 text-center user-email mt-5 mb-5">
+                <h5>Email updated!</h5>
+            </div>
+            
+            <div class="col-lg-12 profile-modal-footer display-center mb-3" style="justify-content: center;">
+                <button type="button" class="user-success mr-3" data-dismiss="modal">Ok</button>
+            </div>
+		</div>
+	</div>
+  
+	</div>  
+	</div> -->
+  
+  <!-- Email success modal popup end -->  

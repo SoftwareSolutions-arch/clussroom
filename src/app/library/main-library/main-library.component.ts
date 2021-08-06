@@ -183,6 +183,8 @@ export class MainLibraryComponent implements OnInit {
 
   picked(event: any) {
 
+    this.fileLists=[];
+    this.ExteriorPicString=[]
     this.fileLists = FileList = event.target.files;
     for (var i = 0; i <= event.target.files.length - 1; i++) {
       const file: File = this.fileLists[i];
@@ -233,7 +235,7 @@ export class MainLibraryComponent implements OnInit {
     let params = {
       "materials_type": 'file',
       "library_type": 'main',
-      "file_type": this.fileType,
+      "file_type":'file',
       "attachments_file": this.ExteriorPicString
     }
 

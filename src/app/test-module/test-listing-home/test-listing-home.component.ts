@@ -23,7 +23,7 @@ export class TestListingHomeComponent implements OnInit {
   currentIndex = -1;
   page = 1;
   count = 0;
-  pageSize = 10;
+  pageSize = 5;
   SettingsData: any = {
     test_name: '',
     instruction: '',
@@ -48,9 +48,40 @@ export class TestListingHomeComponent implements OnInit {
   testData: any = '';
   classesId: any = '';
   step4TestId: any = '';
+  headerData: any = '';
+
+  selectTestLiabrary: any = '';
+  testLibraryData: any = '';
   constructor(public service: SharedServiceService, private toastr: ToastrService, public util: UtilService, private router: Router) {
     this.classId = localStorage.getItem('classListId');
     this.getTestListing();
+    this.getDashboardHeaderData();
+
+  }
+
+
+  getDashboardHeaderData() {
+    this.headerData = '';
+    let params = {
+      "class_id": this.classId
+    }
+    this.service.post('class-material-dashboard-api', params, 1).subscribe(result => {
+
+      this.headerData = result
+      this.isLoadingBool = false;
+    })
+  }
+
+  goTotest() {
+    this.router.navigate(['/test/test-listing-home']);
+  }
+
+  goToAssignment() {
+    this.router.navigate(['/assignment/test-assignment-home']);
+  }
+
+  goToClassMaterial() {
+    this.router.navigate(['/class-material/assignment-detail']);
   }
 
   ngOnInit() {
@@ -84,8 +115,9 @@ export class TestListingHomeComponent implements OnInit {
     }
 
     this.service.post('test-list-api', params, 1).subscribe(result => {
+      console.log('res', result);
       if (result.test_data == "No Test Available") {
-        this.toastr.error(result.test_data);
+        this.toastr.error('No test available');
         this.isLoadingBool = false;
       }
       else {
@@ -123,8 +155,15 @@ export class TestListingHomeComponent implements OnInit {
   }
 
   settingsClicked() {
-    // this.isTestSelected = false;
-    this.router.navigate(["/test/settings-tabs"]);
+    console.log('this.isEditClicked', this.isEditClicked);
+    if (this.isEditClicked == true) {
+      this.router.navigate(["/test/settings-tabs"]);
+    }
+
+    else {
+      this.util.errorAlertPopup('Please select test');
+    }
+
   }
 
   goToTestAssessment() {
@@ -139,14 +178,13 @@ export class TestListingHomeComponent implements OnInit {
   // get events of check box for edit or add button show and hide 
   isCheckBoxClicked(testListing, i) {
     this.isEditClicked = true;
-    
+    localStorage.setItem('test_name', testListing.test_name)
+    localStorage.setItem('test_id', testListing.test_id);
     this.testId = testListing.test_id;
   }
 
   goToTest() {
-    
     this.deleteclosebutton.nativeElement.click();
-    localStorage.setItem('test_id', this.testId);
     this.router.navigate(['/test/question-screen'])
   }
 
@@ -156,17 +194,21 @@ export class TestListingHomeComponent implements OnInit {
       "step": 2,
       "test_id": [this.testId]
     }
-    
+
     this.isLoadingBool = true;
     this.service.post('delete-test-api', params, 1).subscribe(result => {
+      console.log('result', result)
       this.isLoadingBool = false;
       this.deleteclosebutton.nativeElement.click();
       this.getTestListing();
+      this.getDashboardHeaderData();
     })
   }
 
   //step 1
   addTestFromLiabrary(data) {
+    this.selectTestLiabrary = data;
+    this.liabraryData = [];
     let params = {
       "step": "1",
       "library": data
@@ -174,7 +216,7 @@ export class TestListingHomeComponent implements OnInit {
     this.isLoadingBool = true;
     this.service.post('add-test-from-libarary-api', params, 1).subscribe(result => {
       this.isLoadingBool = false;
-      
+
       this.liabraryData = result.coursesdata
       // this.deleteclosebutton.nativeElement.click();
     })
@@ -182,15 +224,17 @@ export class TestListingHomeComponent implements OnInit {
 
   //step 2
   addTestFromLiabrary2(data) {
-    
+    console.log('data', data);
+    this.testLibraryData = data.course_name
     let params = {
       "step": "2",
       "course_id": data.course_id
     }
     this.isLoadingBool = true;
     this.service.post('add-test-from-libarary-api', params, 1).subscribe(result => {
+      console.log('result++', result);
       this.isLoadingBool = false;
-      
+
       this.classData = result.classdata
       // this.deleteclosebutton.nativeElement.click();
     })
@@ -205,7 +249,7 @@ export class TestListingHomeComponent implements OnInit {
     }
     this.service.post('add-test-from-libarary-api', params, 1).subscribe(result => {
       this.isLoadingBool = false;
-      
+      console.log('+++++++', result);
       this.testData = result.testdata
       // this.deleteclosebutton.nativeElement.click();
     })
@@ -222,16 +266,14 @@ export class TestListingHomeComponent implements OnInit {
       "test_id": this.step4TestId,
       "class_id_for_add_test": this.classesId
     }
-
-    
+    console.log('params', params);
     this.service.post('add-test-from-libarary-api', params, 1).subscribe(result => {
+      this.getTestListing();
       this.isLoadingBool = false;
-      
       this.util.showSuccessAlert(result.message);
       this.steponelibrary.nativeElement.click();
       this.steptwolibrary.nativeElement.click();
       this.stepthreelibrary.nativeElement.click();
     })
   }
-
 }

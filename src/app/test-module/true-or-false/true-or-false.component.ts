@@ -46,18 +46,30 @@ export class TrueOrFalseComponent implements OnInit {
   }
 
   picked(event: any) {
-    this.fileLists = FileList = event.target.files;
-    for (var i = 0; i <= event.target.files.length - 1; i++) {
-      const file: File = this.fileLists[i];
-      this.ExteriorPicFile = file;
-      this.handleInputChange(file); //turn into base64
-      var selectedFile = event.target.files[i];
-      this.fileList.push(selectedFile);
-      this.listOfFiles.push(selectedFile.name)
+    if(this.ExteriorPicString.length + this.fillData.attachment.length < 4){
+      if(event.target.files.length>4){
+        this.util.errorAlertPopup('Can not select more than 4 images');
+      }
+
+      else{
+        this.fileLists = FileList = event.target.files;
+        for (var i = 0; i <= event.target.files.length - 1; i++) {
+          const file: File = this.fileLists[i];
+          this.ExteriorPicFile = file;
+          this.handleInputChange(file); //turn into base64
+          var selectedFile = event.target.files[i];
+          this.fileList.push(selectedFile);
+          this.listOfFiles.push(selectedFile.name)
+        }
+        this.attachment.nativeElement.value = '';
+      }
     }
 
-    this.attachment.nativeElement.value = '';
+    else{
+      this.util.errorAlertPopup('Can not select more than 4 images');
+    }
   }
+
   removeImages(index) {
     this.fillData.attachment.splice(index, 1);
   }
@@ -106,9 +118,11 @@ export class TrueOrFalseComponent implements OnInit {
       "correct_answer": this.fillData.correct_answer
     }
 
+    console.log('params',params);
+
     this.isLoadingBool = true;
     this.service.post('add-question-api', params, 1).subscribe(result => {
-
+      console.log('result',result)
       this.isLoadingBool = false;
       this.util.showSuccessAlert('Answer Saved Successfully');
       this.router.navigate(['/test/question-screen']);
@@ -116,7 +130,7 @@ export class TrueOrFalseComponent implements OnInit {
   }
 
   getQuestionDetais() {
-    
+
     if (this.getQuestionId == null) {
       this.isEditQuestion = true;
       return
@@ -130,7 +144,7 @@ export class TrueOrFalseComponent implements OnInit {
       this.isLoadingBool = true;
       this.service.post('questions-listing', params, 1).subscribe(result => {
         this.isLoadingBool = false;
-        
+
         var data = result.question_data[0]
         this.fillData = {
           question: data.paper_summary,
@@ -158,9 +172,9 @@ export class TrueOrFalseComponent implements OnInit {
 
     this.isLoadingBool = true;
     this.service.post('edit-question-api', params, 1).subscribe(result => {
-      
+
       this.isLoadingBool = false;
-      this.util.showSuccessAlert('Updated Successfully');
+      this.util.showSuccessAlert('Updated successfully');
       this.router.navigate(['/test/question-screen']);
     })
   }

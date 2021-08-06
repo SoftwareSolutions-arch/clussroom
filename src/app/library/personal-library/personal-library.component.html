@@ -35,12 +35,23 @@
       <div id="course-content" class="tab-pane active">
         <div class="prospectus-section">
           <div class="prospectus-tabs">
-            <h3>Main library</h3>
+            <ul class="nav nav-tabs">
+                <li (click)="gotoMainLibrary()"><a data-toggle="tab" href="#main" >Main library</a></li>
+                <li><a data-toggle="tab" href="#personal" class="active">Personal library</a></li>
+            </ul>
             <div class="prospectus-action">
-              <a class="add-btn custom-a-btn" data-toggle="modal" data-target="#addmaterial"
-                style="width: 115px; height: 36px;">Add materials</a>
-            </div>
-          </div>
+                <ng-container *ngIf="this.main_library_upload_edit_permission==1">
+                  <div class="prospectus-action">
+                    <a class="add-btn custom-a-btn" data-toggle="modal" data-target="#addmaterial" style="width: 115px;">Add materials</a>
+                  </div>
+                </ng-container>
+                <ng-container (click)="isCourseCreated()" *ngIf="this.main_library_upload_edit_permission==0">
+                  <div (click)="isCourseCreated()" class="prospectus-action">
+                    <a class="add-btn custom-a-btn" style="width: 115px;">Add materials</a>
+                  </div>
+                </ng-container>
+              </div>
+        </div>
 
           <div class="tab-content col-lg-12">
             <div id="personal" class="tab-pane active">
@@ -61,17 +72,16 @@
                     <tr
                       *ngFor="let mainData of this.mainLibraryData| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;"
                       [class.active]="i == currentIndex">
-                      <td>1</td>
+                      <td>{{i+1}}</td>
                       <td class="text-left">{{mainData.name}}</td>
                       <td class="display-center">
                         <img *ngIf="mainData.file_type=='test'" src="assets/images/Personal Library/Vector.png">
                         <img *ngIf="mainData.file_type=='folder'" src="assets/images/Personal Library/Vector-3.png">
-                        <img *ngIf="mainData.file_type=='video'" src="assets/images/Personal Library/file.png">
-                        <img *ngIf="mainData.file_type=='image'" src="assets/images/Personal Library/file.png">
+                        <img *ngIf="mainData.file_type!='test' && mainData.file_type!='folder'" src="assets/images/Personal Library/file.png">
                         <p style="margin: 0; padding-left: 6px;">{{mainData.file_type}}</p>
                       </td>
                       <td>{{mainData.uploaded_by}}</td>
-                      <td>{{mainData.size}} Mb</td>
+                      <td>{{mainData.size}}</td>
                       <th>
                         <div class="radio-table">
                           <input style="height: 22px !important;" name="checkbox"
@@ -79,123 +89,6 @@
                         </div>
                       </th>
                     </tr>
-                    <!-- <tr>
-                      <td>2</td>
-                      <td class="text-left">Pre-assignment reading - geography</td>
-                      <td class="display-center">
-                        <img src="assets/images/Personal Library/file.png">
-                        <p style="margin: 0; padding-left: 6px;">File</p>
-                      </td>
-                      <td>Darren Leow</td>
-                      <td>103 Mb</td>
-                      <th>
-                        <div class="radio-table"><input type="checkbox"></div>
-                      </th>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td class="text-left">Formula generation - Engineering gears</td>
-                      <td class="display-center">
-                        <img src="assets/images/Personal Library/blackboard.png">
-                        <p style="margin: 0; padding-left: 6px;">Whiteboard</p>
-                      </td>
-                      <td>Darren Leow</td>
-                      <td>1 Mb</td>
-                      <th>
-                        <div class="radio-table"><input type="checkbox"></div>
-                      </th>
-                    </tr>
-                    <tr>
-                      <td>4</td>
-                      <td class="text-left">Pure Physics - Term 2</td>
-                      <td class="display-center">
-                        <img src="assets/images/Personal Library/Vector.png">
-                        <p style="margin: 0; padding-left: 6px;">Test</p>
-                      </td>
-                      <td>Kennedy Johnson</td>
-                      <td>1 Mb</td>
-                      <th>
-                        <div class="radio-table"><input type="checkbox"></div>
-                      </th>
-                    </tr>
-                    <tr>
-                      <td>5</td>
-                      <td class="text-left">Instructions on baking strawberry cake</td>
-                      <td class="display-center">
-                        <img src="assets/images/Personal Library/write.png">
-                        <p style="margin: 0; padding-left: 6px;">Assignment</p>
-                      </td>
-                      <td>Assignment</td>
-                      <td>0.5 Mb</td>
-                      <th>
-                        <div class="radio-table"><input type="checkbox"></div>
-                      </th>
-                    </tr>
-                    <tr>
-                      <td>6</td>
-                      <td class="text-left">For Elementary Biology administrators</td>
-                      <td class="display-center">
-                        <img src="assets/images/Personal Library/Vector-3.png">
-                        <p style="margin: 0; padding-left: 6px;">Folder</p>
-                      </td>
-                      <td>Marina Brandy</td>
-                      <td>3.2 Mb</td>
-                      <th>
-                        <div class="radio-table"><input type="checkbox"></div>
-                      </th>
-                    </tr>
-                    <tr>
-                      <td>7</td>
-                      <td class="text-left">Pre-assignment reading - geography</td>
-                      <td class="display-center">
-                        <img src="assets/images/Personal Library/file-1.png">
-                        <p style="margin: 0; padding-left: 6px;">File</p>
-                      </td>
-                      <td>Darren Leow</td>
-                      <td>0.5 Mb</td>
-                      <th>
-                        <div class="radio-table"><input type="checkbox"></div>
-                      </th>
-                    </tr>
-                    <tr>
-                      <td>8</td>
-                      <td class="text-left">Formula generation - Engineering gears</td>
-                      <td class="display-center">
-                        <img src="assets/images/Personal Library/blackboard-1.png">
-                        <p style="margin: 0; padding-left: 6px;">Whiteboard</p>
-                      </td>
-                      <td>Darren Leow</td>
-                      <td>0.5 Mb</td>
-                      <th>
-                        <div class="radio-table"><input type="checkbox"></div>
-                      </th>
-                    </tr>
-                    <tr>
-                      <td>9</td>
-                      <td class="text-left">Pure Physics - Term 2</td>
-                      <td class="display-center">
-                        <img src="assets/images/Personal Library/Vector-1.png">
-                        <p style="margin: 0; padding-left: 6px;">Test</p>
-                      </td>
-                      <td>Kennedy Johnson</td>
-                      <td>0.5 Mb</td>
-                      <th>
-                        <div class="radio-table"><input type="checkbox"></div>
-                      </th>
-                    </tr>
-                    <tr>
-                      <td>10</td>
-                      <td class="text-left">Instructions on baking strawberry cake</td>
-                      <td class="display-center">
-                        <img src="assets/images/Personal Library/write-1.png">
-                        <p style="margin: 0; padding-left: 6px;">Assignment</p>
-                      </td>
-                      <td>Assignment</td>
-                      <td>0.5 Mb</td>
-                      <th>
-                        <div class="radio-table"><input type="checkbox"></div>
-                      </th>
-                    </tr> -->
                     <tr>
                       <td>&nbsp;</td>
                       <td class="text-left">&nbsp;</td>

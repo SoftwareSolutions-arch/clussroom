@@ -14867,3 +14867,7 @@ i .grade-tip .grade-text {
 	color: #eef5ff !important;
     background-color: #396aff !important;
 }
+.gray {
+	background-color: gray;
+	border: gray;
+   }

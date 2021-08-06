@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ShapeComponent } from './components/shape/shape.component';
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +10,6 @@ export class SharedServiceService {
   // tempUrl = "https://api.countrystatecity.in/v1/"
   tempUrl = "https://www.universal-tutorial.com/api/"
   private _yourComponentNameLoadedAlready: boolean;
-
-  public shapesComponents: ShapeComponent[] = [];
-
-  public selectedComponent: ShapeComponent;
-
-
   constructor(public http: HttpClient) { }
 
   // post  method
@@ -97,33 +90,4 @@ export class SharedServiceService {
   public get YourComponentNameLoadedAlready(): boolean {
     return this._yourComponentNameLoadedAlready;
   }
-
-  getShapeComponents(): ShapeComponent[] {
-    return this.shapesComponents;
-  }
-
-  removeAllShapeComponents(): void {
-    this.shapesComponents = [];
-  }
-
-  setShapeComponent(component: ShapeComponent): void {
-    this.selectedComponent = component;
-    this.shapesComponents.push(component);
-    
-    
-  }
-
-  getShapeComponent(): ShapeComponent {
-    return this.selectedComponent;
-  }
-
-  findShapeComponent(name: string): ShapeComponent {
-    
-    // for (var i = 0; i < this.shapesComponents.length; i++) {
-    //     
-    // }
-
-    return this.shapesComponents.find(x => x.shape.shapeProperties.name == name);
-  }
-
 }

@@ -14894,3 +14894,11 @@ i .grade-tip .grade-text {
 	border: 0px none #ffffff;
 	border-radius: 5px;
 }
+.gray {
+	background-color: gray;
+	border: gray;
+   }
+   .grey {
+	background-color: gray;
+	border: gray;
+   }

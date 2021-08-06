@@ -25,6 +25,8 @@ export class AssignmentQuestionComponent implements OnInit {
   assignmentId: string;
   imagedata: any;
   isLoadingBool: boolean = false;
+  questionButton = true;
+  prevId: any = [];
 
   constructor(private route: ActivatedRoute, private service: SharedServiceService, private util: UtilService, private router: Router) {
     this.route.queryParamMap.subscribe(queryParams => {
@@ -42,20 +44,56 @@ export class AssignmentQuestionComponent implements OnInit {
     this.imagedata.attachment.splice(index, 1);
   }
   picked(event: any) {
-
-    this.fileLists = FileList = event.target.files;
-    // this.allImages.push(this.fileLists);
-    for (var i = 0; i <= event.target.files.length - 1; i++) {
-      const file: File = this.fileLists[i];
-      this.ExteriorPicFile = file;
-      this.handleInputChange(file); //turn into base64
-      var selectedFile = event.target.files[i];
-      this.fileList.push(selectedFile);
-      this.listOfFiles.push(selectedFile.name)
-      this.filesName = this.listOfFiles
+    if (this.assignmentId) {
+      if (this.ExteriorPicString.length + this.imagedata.length < 4) {
+        console.log(this.ExteriorPicString.length + this.imagedata.length)
+        if (event.target.files.length > 4) {
+          alert('')
+          this.util.errorAlertPopup('Can not select more than 4 images')
+        }
+  
+        else {
+          this.fileLists = FileList = event.target.files;
+          // this.allImages.push(this.fileLists);
+          for (var i = 0; i <= event.target.files.length - 1; i++) {
+            const file: File = this.fileLists[i];
+            this.ExteriorPicFile = file;
+            this.handleInputChange(file); //turn into base64
+            var selectedFile = event.target.files[i];
+            this.fileList.push(selectedFile);
+            this.listOfFiles.push(selectedFile.name)
+            this.filesName = this.listOfFiles
+          }
+          this.attachment.nativeElement.value = '';
+        }
+      }
+      else {
+        this.util.errorAlertPopup('Can not select more than 4 images');
+      }
+    }else{
+      // if (this.ExteriorPicString.length < 4) {
+      //   console.log(this.ExteriorPicString.length + this.imagedata.length)
+        if (this.ExteriorPicString.length < 4) {
+          this.fileLists = FileList = event.target.files;
+          // this.allImages.push(this.fileLists);
+          for (var i = 0; i <= event.target.files.length - 1; i++) {
+            const file: File = this.fileLists[i];
+            this.ExteriorPicFile = file;
+            this.handleInputChange(file); //turn into base64
+            var selectedFile = event.target.files[i];
+            this.fileList.push(selectedFile);
+            this.listOfFiles.push(selectedFile.name)
+            this.filesName = this.listOfFiles
+          }
+          this.attachment.nativeElement.value = '';
+        }
+      else {
+        this.util.errorAlertPopup('Can not select more than 4 images');
+      }
     }
-    this.attachment.nativeElement.value = '';
+
   }
+
   handleInputChange(files) {
     var file = files;
     this.filename = file.name;
@@ -99,7 +137,8 @@ export class AssignmentQuestionComponent implements OnInit {
     const data = {
       assignment_question: this.questionForm.value.question,
       assignment_id: sessionStorage.getItem('assignment_id'),
-      assignment_attachments: this.allImages
+      assignment_attachments: this.ExteriorPicString,
+      attachments_name: this.allImages
     }
     this.service.post('add-assignment-question-api', data, 1).subscribe(res => {
       if (res.status == '1') {
@@ -118,7 +157,11 @@ export class AssignmentQuestionComponent implements OnInit {
     }
     this.service.post('assignment-questions-listing', data, 1).subscribe(res => {
       this.assignmentData = res.result.questions
-      this.imagedata = res.result.attachments
+      this.imagedata = res.result.image_name
+      res.result.attachments.forEach(element => {
+        var id = element.id
+        this.prevId.push(id)
+      });
       this.questionForm.patchValue({
         question: this.assignmentData,
         // attachment: data.image,
@@ -132,8 +175,8 @@ export class AssignmentQuestionComponent implements OnInit {
       questions: this.questionForm.value.question,
       id: this.assignmentId,
       assignment_id: sessionStorage.getItem('assignment_id'),
-      previous_fid: [],
-      assignment_attachments: this.allImages
+      previous_fid: this.prevId,
+      assignment_attachments: this.ExteriorPicString
     }
     this.service.post('update-assignment-question-api', data, 1).subscribe(res => {
       if (res.status == '1') {

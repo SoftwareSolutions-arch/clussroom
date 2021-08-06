@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SharedServiceService } from '../../shared-service.service';
@@ -10,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./add-test-assestment.component.css']
 })
 export class AddTestAssestmentComponent implements OnInit {
+  @ViewChild('closeRubric') closeRubric;
   empForm: FormGroup;
   isChecked: boolean;
   myCheckbox: boolean;
@@ -18,6 +19,7 @@ export class AddTestAssestmentComponent implements OnInit {
   updateNewData: any;
   assignment_id: void;
   questionButton: boolean = true;
+  saveButton: boolean = false;
   sumData: any;
   public controls = {};
   ages = [];
@@ -33,6 +35,10 @@ export class AddTestAssestmentComponent implements OnInit {
   viewRubricData: any;
   rubricTitle: any;
   isLoadingBool: boolean = false;
+  numberValue: any = [];
+  value: any;
+  numberValues: any = [];
+  isLoadingBoolean: boolean = false;
   constructor(private service: SharedServiceService, private router: Router, private route: ActivatedRoute, private util: UtilService, private toster: ToastrService, private fb: FormBuilder) {
     this.empForm = this.fb.group({
       employees: this.fb.array([]),
@@ -103,6 +109,7 @@ export class AddTestAssestmentComponent implements OnInit {
       }
       this.service.post('add-assignment-api', data, 1).subscribe(res => {
         if (res.status == '1') {
+          this.saveButton = true;
           this.isLoadingBool = false;
           this.util.showSuccessAlert('Assignment added successfully');
           this.assignment_id = sessionStorage.setItem('assignment_id', res.assignment_id)
@@ -226,29 +233,70 @@ export class AddTestAssestmentComponent implements OnInit {
   removeEmployeeSkill(empIndex: number, skillIndex: number) {
     this.employeeSkills(empIndex).removeAt(skillIndex);
   }
+  sumMethod(empIndex){
+    var arrayControl = this.employees()
+    .at(empIndex)
+    .get('scale') as FormArray;
+    
+    var marks = arrayControl.value
+    var highestMarks = 0
+   if(marks.length > 0){
+       marks.forEach(element => {
+        var numberValue = Number(element.value);
+         if(highestMarks < numberValue){
+           highestMarks = numberValue
+         }
+       });
+   }
+   var isAllreadyExist = false
+   var index = -1
+   for(let i = 0; i < this.listingData.length; i ++){
+    var data = this.listingData[i]
+    if(data.id == empIndex){
+      isAllreadyExist = true
+      index = i
+      break;
+    }
+   }
+   if(isAllreadyExist){
+     this.listingData[index].value = highestMarks
+     console.log('agd',this.listingData)
+   }else{
+    this.listingData.push({id: empIndex,value: highestMarks})
+   }  
+  }
+  numberOnly(event): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
 
+  }
   addRubric() {
+    this.isLoadingBoolean = true;
+    for(let i = 0; i < this.listingData.length; i++){
+      var newData = this.listingData[i].value
+      this.numberValues.push(newData)
+    }
+
     const titleForm = this.employees().getRawValue();
     const data = {
       "type": "add",
       "critterion_input": titleForm,
-      "number": this.listingData,
+      "number": this.numberValues,
       "rubric_title": this.empForm.value.rubric_title,
     }
     this.service.post('rubric-api',data,1).subscribe(res => {
+      this.isLoadingBoolean = false;
+      if(res.status == 1){
+        this.util.showSuccessAlert('Rubric added successully')
+        setTimeout(() => {
+        this.closeRubric.nativeElement.click();
+        this.addAssignment();
+        }, 1000);
+      }
     })
-  }
-  sum(i) {
-    this.pointsData = [];
-    this.finalData = [];
-    this.empForm.value.employees.forEach(element => {
-    this.pointsData = [];
-      element.scale.forEach(element1 => {  
-      this.pointsData.push(element1.value)
-      this.finalData = Math.max(...this.pointsData);
-      });
-      this.listingData.push(this.finalData)
-    });
   }
 // rubric list api
 listRubric() {

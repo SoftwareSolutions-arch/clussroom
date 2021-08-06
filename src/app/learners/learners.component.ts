@@ -43,6 +43,7 @@ export class LearnersComponent implements OnInit {
     })
     this.addInitialForms();
     this.add_learner_permission = localStorage.getItem('add_learner_permission');
+    console.log('result',this.add_learner_permission);
   }
 
   isCourseCreated(){
@@ -124,9 +125,9 @@ export class LearnersComponent implements OnInit {
   getAllClassesList() {
     this.isLoadingBool = true;
     this.service.post('view-all-learners-api', '', 1).subscribe(result => {
+      console.log('result',result);
       if(result.message=="No Learner Found"){
         this.isLoadingBool = false;
-        this.util.errorAlertPopup(result.message);
       }
 
       else{
@@ -153,6 +154,7 @@ export class LearnersComponent implements OnInit {
 
   // view classes
   viewAllCoursesList() {
+    console.log('this.selectedCategory',this.selectedCategory)
     let params = {
       "course_id": this.selectedCategory.nid
     }
@@ -193,7 +195,9 @@ export class LearnersComponent implements OnInit {
         "class_id": this.selectedClass.nid
       }
 
+      console.log('params',params);
       this.service.post('add-learner-api', params, 1).subscribe(result => {
+        console.log('res++',result);
         if (result['status'] == 1) {
           this.util.showSuccessAlert(result['error_message']);
           this.getAllClassesList();
@@ -306,6 +310,7 @@ export class LearnersComponent implements OnInit {
   }
 
   goToClasses(classList) {
-    this.router.navigate(['/test-listing'], { state: { data: classList.class_id } })
+    // localStorage.setItem('classListId', classList.nid);
+    this.router.navigate(['/classes', { id: classList.learner_id}]);
   }
 }

@@ -1492,7 +1492,7 @@ table.dashboard-table td input {
 }
 
 .blue:before {
-	content:""; 
+	content:"";
 	background: #396aff;
 }
 
@@ -2675,7 +2675,7 @@ table.dashboard-table td input {
 	font-size: 15px;
 	font-weight: 500;
     color: #FF82AC;
-    
+
 }
 
 .selector {
@@ -2917,7 +2917,7 @@ select {
     padding: 6px 6px 6px 14px;
     border: none;
   cursor: pointer;
-  
+
 }
 
 .tstbtn i {
@@ -3033,8 +3033,8 @@ select {
     width: 110px;
     height: 35px;
     border-radius: 6px;
-    border: 2px solid #ffBB38;
-    background-color: #FFBB38;
+    border: 2px solid #FFA26B;
+    background-color: #FFA26B;
     margin-right: 1em;
     transition: .5s ease-in-out;
 }
@@ -3059,7 +3059,7 @@ select {
     height: 35px;
     border-radius: 6px;
     border: 2px solid #fff3ec;
-    background-color: #fff3ec;    
+    background-color: #fff3ec;
 }
 
 .lite-Org a {
@@ -3176,7 +3176,7 @@ a.preview-btn {
     width: 71px;
     height: 35px;
     border-radius: 6px;
-    background-color: #ffe8da;   
+    background-color: #ffe8da;
     color: #FFA26B !important;
     font-family: 'Barlow';
 }
@@ -3184,7 +3184,7 @@ a.preview-btn {
 
 
 .button-wrapper {
-    width: 100%;
+    width: 85%;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -3202,7 +3202,7 @@ a.preview-btn {
     font-size: 13px;
     font-weight: 500;
     font-family: 'Barlow';
-    
+
 }
 
 a.edit-points-btn {
@@ -3330,7 +3330,7 @@ left: 8px;
     padding: 6px 6px 6px 14px;
     border: none;
   cursor: pointer;
-  
+
 }
 
 .ellipbtn i {
@@ -3570,7 +3570,7 @@ left: 8px;
     align-items: center;
     justify-content: center;
     display: flex;
-    
+
 }
 
 /*Questions Screen CSS End*/
@@ -4038,7 +4038,7 @@ a.done-btn:hover {
     font-size: 15px;
     font-weight: 500;
     font-family: 'Barlow';
-    color: #5b73a0;    
+    color: #5b73a0;
 }
 
 .displayflex-items {
@@ -4053,7 +4053,7 @@ a.done-btn:hover {
 
 .deleteportion button i {
     color: #FF82AC;
-    
+
 }
 
 .deleteportion button {
@@ -4089,8 +4089,8 @@ a.done-btn:hover {
     color: #396aff;
 }
 
-    
-    
+
+
 /*Delete Test modal css end*/
 
 
@@ -4267,7 +4267,7 @@ a.done-btn:hover {
     font-size: 15px;
     font-weight: 500;
     font-family: 'Barlow';
-    color: #5b73a0;  
+    color: #5b73a0;
 }
 
 .displayflex-items {
@@ -4282,7 +4282,7 @@ a.done-btn:hover {
 
 .attachportion button i {
     color: #FF82AC;
-    
+
 }
 
 .attachportion button {
@@ -4322,7 +4322,7 @@ a.done-btn:hover {
     border: 5px dashed #DCE2EC;
     text-align: center;
     padding: 2em 0 2em 0;
-} 
+}
 
 .attachrect img {
     margin: 0 0;
@@ -4354,7 +4354,7 @@ a.done-btn:hover {
 }
 
 
-    
+
 /* Attach modal css end*/
 
 /*Remove Question modal css start*/
@@ -4527,7 +4527,7 @@ a.done-btn:hover {
     font-size: 15px;
     font-weight: 500;
     font-family: 'Barlow';
-    color: #5b73a0;    
+    color: #5b73a0;
 }
 
 .displayflex-items {
@@ -4542,7 +4542,7 @@ a.done-btn:hover {
 
 .removeportion button i {
     color: #FF82AC;
-    
+
 }
 
 .removeportion button {
@@ -4583,8 +4583,8 @@ a.done-btn:hover {
     padding: 0 15.4em;
 }
 
-    
-    
+
+
 /*Remove Question modal css end*/
 
 
@@ -4716,7 +4716,7 @@ a.done-btn:hover {
     font-size: 15px;
     font-weight: 500;
     font-family: 'Barlow';
-    color: #5b73a0;    
+    color: #5b73a0;
 }
 
 .displayflex-items {
@@ -4731,7 +4731,7 @@ a.done-btn:hover {
 
 .addlibraryportion button i {
     color: #FF82AC;
-    
+
 }
 
 .addlibraryportion button {
@@ -4830,7 +4830,7 @@ font-size: 15px;
     display: flex;
     align-items: center;
 }
-    
+
 /*Add From Library modal css end*/
 
 /* Responsive */
@@ -4839,7 +4839,7 @@ font-size: 15px;
 
 .nav-clip {
 	width: 100%;
-}	
+}
 
 .program_course_wrapper {
 	width: 100%;
@@ -4884,7 +4884,7 @@ font-size: 15px;
 }
 
 }
-  
+
 .final-order label{
 	font-size: 15px;
 	font-weight: 500;
@@ -4902,7 +4902,7 @@ font-size: 15px;
 .mat-spinner {
 	stroke: grey;
   }
-  
+
   .loading-indicator {
 	position: fixed;
 	z-index: 999;
@@ -4915,7 +4915,7 @@ font-size: 15px;
 	bottom: 0;
 	right: 0;
   }
-  
+
   .loading-indicator::before {
 	content: '';
 	display: block;

@@ -18,9 +18,11 @@ export class EditPointsScreenComponent implements OnInit {
   testAllData: any = '';
   selectedTestDetails: any = "";
   arrayList:any=[];
+  test_name:any='';
   constructor(public service: SharedServiceService, private toastr: ToastrService, public util: UtilService, private router: Router) {
     this.testId = localStorage.getItem('test_id');
     this.classId = localStorage.getItem('classListId');
+    this.test_name = localStorage.getItem('test_name');
     this.getTestListing();
     this.getAllQuestion();
   }
@@ -38,7 +40,7 @@ export class EditPointsScreenComponent implements OnInit {
       "test_id": this.testId
     }
     this.service.post('questions-list-api', params, 1).subscribe(result => {
-      
+      console.log('result',result);
       this.isLoadingBool = false;
       if (result.question_data.length > 0) {
         this.allData = result.question_data;
@@ -48,6 +50,7 @@ export class EditPointsScreenComponent implements OnInit {
       }
     })
   }
+
   // get test listing data
   getTestListing() {
     this.isLoadingBool = true;
@@ -63,13 +66,14 @@ export class EditPointsScreenComponent implements OnInit {
 
   onChange() {
     this.allData = [];
+    localStorage.setItem('test_name',this.selectedTestDetails.test_name)
     localStorage.setItem('test_id', this.selectedTestDetails.test_id);
     this.isLoadingBool = true;
     let params = {
       "test_id": this.selectedTestDetails.test_id
     }
     this.service.post('questions-list-api', params, 1).subscribe(result => {
-      
+      this.test_name = localStorage.getItem('test_name');
       this.isLoadingBool = false;
       if (result.question_data.length > 0) {
         this.allData = result.question_data;
@@ -78,6 +82,10 @@ export class EditPointsScreenComponent implements OnInit {
         this.toastr.error(result.question_data);
       }
     })
+  }
+
+  cancel(){
+    this.router.navigate(['/test/question-screen']);
   }
 
   confirmButton() {

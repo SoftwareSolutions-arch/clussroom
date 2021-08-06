@@ -9,7 +9,7 @@
     </div>
     <div class="right">
       <div class="question-width">
-        <h4>Test1</h4>
+        <h4>{{this.test_name}}</h4>
       </div>
       <div class="width">
         <select class="form-control" (change)="onChange()" [(ngModel)]="selectedTestDetails">
@@ -22,11 +22,11 @@
     <div class="prospectus-section sequence-list">
       <div class="prospectus-tabs">
         <ul class="nav nav-tabs">
-          <li><a data-toggle="tab" href="#test" class="active">Test</a>
+          <li><a data-toggle="tab" class="active">Test</a>
           </li>
-          <li><a data-toggle="tab" href="#settings">Settings</a>
+          <li (click)="settingsClicked()"><a data-toggle="tab">Settings</a>
           </li>
-          <li><a data-toggle="tab" href="#assignment-grading">Result/Assessment</a>
+          <li (click)="goToTestAssessment()"><a data-toggle="tab">Result/Assessment</a>
           </li>
         </ul>
       </div>
@@ -37,7 +37,7 @@
               <h4>Questions re-order</h4>
             </div>
             <div class="button-wrapper">
-              <button (click)="confirmEdit()" type="button" class="Org"><a>Confirm Edit</a>
+              <button (click)="confirmEdit()" type="button" class="Org"><a>Confirm edit</a>
               </button>
               <button type="button" class="pink">Cancel</button>
             </div>
@@ -347,22 +347,11 @@
 
           <div class="container" style="padding: 18px 0 0 0; display: flex; margin: 0 !important;">
             <div class="delete-button">
-              <button (click)="confirmEdit()" type="button" class="Org"><a>Confirm Edit</a>
+              <button (click)="confirmEdit()" type="button" class="Org"><a>Confirm re-order</a>
               </button>
               <button type="button" class="pink">Cancel</button>
             </div>
-            <!--
-                <button type="button" class="blue">Confirm</button>
-                <button type="button" class="blue-border">Cancel</button>
-                <button type="button" class="lime"><a>Edit</a></button>
-                 <div class="button-wrapper">
-              <a class="done-blue custom-button" data-toggle="modal" data-target="#ReOrder">Done</a>
-              </div> 
-             <a class="addbutton custom-button" data-toggle="modal" data-target="#addClass">Add Question</a>                        
-             <a class="edit-points-btn custom-button" data-toggle="midal" data-target="#ReOrder">Re-Order</a>
-                -->
           </div>
-          <!-- Submisssion Log end -->
         </div>
       </div>
     </div>

@@ -63,35 +63,35 @@
               <i class="fa fa-plus" aria-hidden="true"></i> edit course</a> -->
               <ng-container *ngIf="this.course_creation_permission==1 && !editForm && !isSaveCourses">
                 <a  class="add-btn custom-a-btn" data-toggle="modal"
-                  data-target="#addCourse" style="position: relative; right: 3.3em;">
-                  <i class="fa fa-plus" aria-hidden="true"></i> New {{instructionName}}</a>
+                    data-target="#addCourse" style="position: relative; right: 3.3em;">
+                  <i class="fa fa-plus" aria-hidden="true"></i> New {{instructionName | lowercase}}</a>
               </ng-container>
 
               <ng-container (click)="isCourseCreated()" *ngIf="this.course_creation_permission==0">
                 <a (click)="isCourseCreated()" *ngIf="!editForm && !isSaveCourses" class="add-btn custom-a-btn"
-                  style="position: relative; right: 3.3em;">
-                  <i (click)="isCourseCreated()" class="fa fa-plus" aria-hidden="true"></i> New {{instructionName}}</a>
+                   style="position: relative; right: 3.3em;">
+                  <i (click)="isCourseCreated()" class="fa fa-plus" aria-hidden="true"></i> New {{instructionName | lowercase}</a>
               </ng-container>
 
               <ng-container *ngIf="this.course_creation_permission==1 && editForm">
-                <a style="margin-left: 15px;background: #ef4a4a !important; width: 60px;"
-                  class="add-btn custom-a-btn" data-target="#editCourse" data-toggle="modal"> <i class="fa fa-edit"
-                    aria-hidden="true" style="margin-right: 5px; font-size: 13px;"></i> Edit</a>
+                <a style="margin-left: 15px;background: #FFBB38  !important; width: 60px;"
+                   class="add-btn custom-a-btn" data-target="#editCourse" data-toggle="modal"> <i class="fa fa-edit"
+                                                                                                  aria-hidden="true" style="margin-right: 5px; font-size: 13px;"></i> Edit</a>
               </ng-container>
 
               <ng-container (click)="isCourseCreated()" *ngIf="this.course_creation_permission==0">
                 <a (click)="isCourseCreated()" *ngIf="!editForm"
-                  style="margin-left: 15px;background: #ef4a4a !important; width: 60px;" class="add-btn custom-a-btn">
+                   style="margin-left: 15px;background: #FFBB38  !important; width: 60px;" class="add-btn custom-a-btn">
                   <i (click)="isCourseCreated()" class="fa fa-edit" aria-hidden="true"
-                    style="margin-right: 5px; font-size: 13px;"></i> Edit</a>
+                     style="margin-right: 5px; font-size: 13px;"></i> Edit</a>
               </ng-container>
 
               <a *ngIf="!isSaveCourses && editForm" (click)="cancelCourses()"
-                style="margin-left: 15px;background: #db2929 !important;" class="add-btn custom-a-btn"
-                data-toggle="modal"> <i class="fa fa-times" aria-hidden="true"></i> Cancel</a>
-              <a *ngIf="!isSaveCourses && editForm" style="margin-left: 15px;background: #9a7be3 !important;"
-                class="add-btn custom-a-btn" data-toggle="modal" data-target="#deleteCourse"> <i class="fa fa-trash"
-                  aria-hidden="true"></i> Delete</a>
+                 style="margin-left: 15px;background: #db2929 !important;" class="add-btn custom-a-btn"
+                 data-toggle="modal"> <i class="fa fa-times" aria-hidden="true"></i> Cancel</a>
+              <a *ngIf="!isSaveCourses && editForm" style="margin-left: 15px;background: #FF5A64  !important;"
+                 class="add-btn custom-a-btn" data-toggle="modal" data-target="#deleteCourse"> <i class="fa fa-trash"
+                                                                                                  aria-hidden="true"></i> Delete</a>
             </div>
           </div>
           <div class="tab-content">
@@ -99,93 +99,108 @@
               <div class="table-responsive">
                 <table class="table dashboard-table">
                   <thead>
-                    <tr>
-                      <th scope="col" class="text-left">No.</th>
-                      <th scope="col"></th>
-                      <th scope="col" class="text-left">{{this.instructionName}} Name</th>
-                      <th scope="col" class="text-center">{{this.instructionName}} Code</th>
-                      <th scope="col" class="table-filter text-center">Category/Dept</th>
-                      <th scope="col" class="table-filter text-center">Level</th>
-                      <th scope="col" class="table-filter text-center">Banding</th>
-                      <th scope="col" class="table-filter text-center">No. of classes</th>
-                      <th scope="col" class="table-filter text-center">No. of learners</th>
-                      <th scope="col" class="table-filter">Admin</th>
-                    </tr>
+                  <tr>
+                    <th scope="col" class="text-left">No.</th>
+                    <th scope="col"></th>
+                    <th scope="col" class="text-left">{{this.instructionName}} Name</th>
+                    <th scope="col" class="text-center">{{this.instructionName }} code</th>
+                    <th scope="col" class="table-filter text-center">Category/Dept</th>
+                    <th scope="col" class="table-filter text-center">Level</th>
+                    <th scope="col" class="table-filter text-center">Banding</th>
+                    <th scope="col" class="table-filter text-center">No. of classes</th>
+                    <th scope="col" class="table-filter text-center">No. of learners</th>
+                    <th scope="col" class="table-filter">Admin</th>
+                  </tr>
                   </thead>
                   <tbody>
-                    <tr
-                      *ngFor="let courseLists of this.allCourseList| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;"
-                      [class.active]="i == currentIndex">
-                      <th class="text-left" style="width: 1%; padding: 7px 8px 7px 8px;">
-                        <div class="radio-table">
-                          <input name="checkbox" (click)="isCheckClicked($event,courseLists,i)" type="radio">
-                        </div>
-                      </th>
-                      <td class="text-left" style="padding-left: 0 !important;">{{courseLists.sno}}</td>
-                      <td (click)="goToclassesPage(courseLists)" class="text-left" style="padding-left: 8px;">
-                        {{courseLists.title}}</td>
-                      <td class="text-center">{{courseLists.field_course_code}}</td>
-                      <td class="text-center">{{courseLists.field_category}}</td>
-                      <td class="text-center">{{courseLists.field_level}}</td>
-                      <td class="text-center">{{courseLists.field_banding}}</td>
-                      <td class="text-center">{{courseLists.classes}}</td>
-                      <td class="text-center">{{courseLists.total_learners}}</td>
-                      <td>
-                        <button type="button" class="final-assign">Assign</button>
-                      </td>
-                    </tr>
+                  <tr
+                    *ngFor="let courseLists of this.allCourseList| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;"
+                    [class.active]="i == currentIndex">
+                    <th class="text-left" style="width: 1%; padding: 7px 8px 7px 8px;">
+                      <div class="radio-table">
+                        <input name="checkbox" (click)="isCheckClicked($event,courseLists,i)" type="radio">
+                      </div>
+                    </th>
+                    <td class="text-left" style="padding-left: 0 !important;">{{courseLists.sno}}</td>
+                    <td (click)="goToclassesPage(courseLists)" class="text-left" style="padding-left: 8px;">
+                      {{courseLists.title}}</td>
+                    <td class="text-center">{{courseLists.field_course_code}}</td>
+                    <td class="text-center">{{courseLists.field_category}}</td>
+                    <td class="text-center">{{courseLists.field_level}}</td>
+                    <td class="text-center">{{courseLists.field_banding}}</td>
+                    <td class="text-center">{{courseLists.classes}}</td>
+                    <td class="text-center">{{courseLists.total_learners}}</td>
+                    <td>
+                      <button type="button" class="final-assign">Assign</button>
+                    </td>
+                  </tr>
                   </tbody>
                 </table>
               </div>
               <div class="table-result-wrapper">
                 <pagination-controls previousLabel="Prev" nextLabel="Next" responsive="true"
-                  (pageChange)="handlePageChange($event)"></pagination-controls>
+                                     (pageChange)="handlePageChange($event)"></pagination-controls>
               </div>
             </div>
             <div id="instructions" class="tab-pane">
               <div class="table-responsive">
                 <table class="table dashboard-table">
                   <thead>
-                    <tr>
-                      <th scope="col" class="text-left">No.</th>
-                      <th scope="col"></th>
-                      <th scope="col" class="text-left">Course Name</th>
-                      <th scope="col" class="text-center">Code</th>
-                      <th scope="col" class="table-filter text-center">Category/Dept</th>
-                      <th scope="col" class="table-filter text-center">Level</th>
-                      <th scope="col" class="table-filter text-center">Banding</th>
-                      <th scope="col" class="table-filter text-center">Before</th>
-                      <th scope="col" class="table-filter text-center">After</th>
-                      <th scope="col" class="table-filter text-center">Admin</th>
-                    </tr>
+                  <tr>
+                    <th scope="col" class="text-left">&nbsp;</th>
+                    <th scope="col">&nbsp;</th>
+                    <th scope="col" class="text-left">&nbsp;</th>
+                    <th scope="col" class="text-center">&nbsp;</th>
+                    <th scope="col" class="text-center">&nbsp;</th>
+                    <th scope="col" class="text-center">&nbsp;</th>
+                    <th scope="col" class="text-center">&nbsp;</th>
+                    <th scope="col" class="text-center">&nbsp;</th>
+                    <th scope="col" class="text-left" style="padding-left: 0 !important; width: 18%;">Materials access</th>
+                    <th scope="col" class="text-center">&nbsp;</th>
+                    <th scope="col" class="text-center">&nbsp;</th>
+                    <th scope="col" class="text-center">&nbsp;</th>
+
+                  </tr>
+                  <tr>
+                    <th scope="col" class="text-left">No.</th>
+                    <th scope="col"></th>
+                    <th scope="col" class="text-left" style="text-transform: none;">Course name</th>
+                    <th scope="col" class="text-center">Code</th>
+                    <th scope="col" class="table-filter text-center">Category/Dept</th>
+                    <th scope="col" class="table-filter text-center">Level</th>
+                    <th scope="col" class="table-filter text-center">Banding</th>
+                    <th scope="col" class="table-filter text-center">Before</th>
+                    <th scope="col" class="table-filter text-center">After</th>
+                    <th scope="col" class="table-filter text-center">Admin</th>
+                  </tr>
                   </thead>
                   <tbody>
-                    <tr
-                      *ngFor="let courseList of this.allCourseList| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index"
-                      [class.active]="i == currentIndex">
-                      <th class="text-left" style="width: 1%; padding: 7px 8px 7px 8px;">
-                        <div class="radio-table">
-                          <input name="gender" (click)="isCheckClicked($event,courseList,i)" type="radio">
-                        </div>
-                      </th>
-                      <td>{{i+1}}</td>
-                      <td (click)="goToclassesPage(courseList)" *ngIf="i !== this.indexesValue" class="text-left">
-                        {{this.courseList.title}}</td>
-                      <td class="text-center">{{this.courseList.field_course_code}}</td>
-                      <td *ngIf="i !== this.indexesValue" class="text-center">{{this.courseList.field_category}}</td>
-                      <td *ngIf="i !== this.indexesValue" class="text-center">{{this.courseList.field_level}}</td>
-                      <td *ngIf="i !== this.indexesValue" class="text-center">{{this.courseList.field_banding}}</td>
-                      <td *ngIf="i !== this.indexesValue" class="text-center">{{this.courseList.classes}}</td>
-                      <td *ngIf="i !== this.indexesValue" class="text-center">{{this.courseList.total_learners}}</td>
-                      <td *ngIf="i !== this.indexesValue" class="text-center">{{this.courseList.field_banding}}</td>
-                      <td (click)="saveCourses(courseList)">Save</td>
-                    </tr>
+                  <tr
+                    *ngFor="let courseList of this.allCourseList| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index"
+                    [class.active]="i == currentIndex">
+                    <th class="text-left" style="width: 1%; padding: 7px 8px 7px 8px;">
+                      <div class="radio-table">
+                        <input name="gender" (click)="isCheckClicked($event,courseList,i)" type="radio">
+                      </div>
+                    </th>
+                    <td>{{i+1}}</td>
+                    <td (click)="goToclassesPage(courseList)" *ngIf="i !== this.indexesValue" class="text-left">
+                      {{this.courseList.title}}</td>
+                    <td class="text-center">{{this.courseList.field_course_code}}</td>
+                    <td *ngIf="i !== this.indexesValue" class="text-center">{{this.courseList.field_category}}</td>
+                    <td *ngIf="i !== this.indexesValue" class="text-center">{{this.courseList.field_level}}</td>
+                    <td *ngIf="i !== this.indexesValue" class="text-center">{{this.courseList.field_banding}}</td>
+                    <td *ngIf="i !== this.indexesValue" class="text-center">{{this.courseList.classes}}</td>
+                    <td *ngIf="i !== this.indexesValue" class="text-center">{{this.courseList.total_learners}}</td>
+                    <td *ngIf="i !== this.indexesValue" class="text-center">{{this.courseList.field_banding}}</td>
+                    <td (click)="saveCourses(courseList)">Save</td>
+                  </tr>
                   </tbody>
                 </table>
               </div>
               <div class="table-result-wrapper">
                 <pagination-controls previousLabel="Prev" nextLabel="Next" autoHide="true" responsive="true"
-                  (pageChange)="handlePageChange($event)"></pagination-controls>
+                                     (pageChange)="handlePageChange($event)"></pagination-controls>
               </div>
             </div>
           </div>
@@ -221,7 +236,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <!-- <h4>Add new &lt;course&gt;</h4> -->
-                <h4>Add new {{instructionName}}</h4>
+                <h4>Add new {{instructionName | lowercase}}</h4>
                 <button type="button" class="close" data-dismiss="modal">
                   <img src="assets/images/dashboard/close-course.png">
                 </button>
@@ -230,9 +245,9 @@
                 <form>
                   <div class="addCourse-form">
                     <div class="name-of-course fieldset">
-                      <label>Name of {{instructionName}}*</label>
+                      <label>Name of {{instructionName | lowercase}}*</label>
                       <input id="name" name="name" class="form-control" required minlength="4" [(ngModel)]="courseName"
-                        #name="ngModel">
+                             #name="ngModel">
                     </div>
                     <!-- <div *ngIf="name.invalid && name.dirty || name.touched" class="alert alert-danger">
                       <div *ngIf="name.errors.required">
@@ -242,7 +257,7 @@
                     <div class="category-course fieldset">
                       <label>Category &nbsp;</label>
                       <select [(ngModel)]="selectedCategory" name="category" id="categorycourse"
-                        (change)="getCategory()" style="padding: 0 11px;">
+                              (change)="getCategory()" style="padding: 0 11px;">
                         <option *ngIf="this.allCategories.length>1" value="create_new">Create new</option>
                         <option *ngFor="let categoriesList of this.allCategories" value="{{categoriesList.tid}}">
                           {{categoriesList.name}}</option>
@@ -256,7 +271,7 @@
                     <div class="level-course fieldset">
                       <label>Level</label>
                       <select [(ngModel)]="level" name="level" id="levelcourse" (change)="getLevel()"
-                        style="padding: 0 11px;">
+                              style="padding: 0 11px;">
                         <option *ngIf="this.allLevel.length>1" value="create_new">Create new</option>
                         <option *ngFor="let level of this.allLevel" value="{{level.tid}}">{{level.name}}</option>
                       </select>
@@ -269,7 +284,7 @@
                     <div class="banding-course fieldset">
                       <label>Banding</label>
                       <select [(ngModel)]="banding" name="level" id="bandingcourse" (change)="getBanding()"
-                        style="padding: 0 11px;">
+                              style="padding: 0 11px;">
                         <option *ngIf="this.allBanding.length>1" value="create_new">Create new</option>
                         <option *ngFor="let banding of this.allBanding" value="{{banding.tid}}">{{banding.name}}
                         </option>
@@ -284,9 +299,9 @@
                   <div class="modal-footer">
                     <button class="next-btn-course" data-dismiss="modal">Back</button>
                     <button *ngIf="courseName!='' " data-toggle="modal" data-target="#addCourse2"
-                      class="back-btn-course">Next</button>
+                            class="back-btn-course">Next</button>
                     <button *ngIf="courseName==='' " [disabled]="courseName==='' " data-toggle="modal"
-                      data-target="#addCourse2" class="back-btn-course close">Next</button>
+                            data-target="#addCourse2" class="back-btn-course close">Next</button>
                   </div>
                 </form>
               </div>
@@ -313,16 +328,16 @@
                       <div class="editcourse-field-wrapper">
                         <div class="class-materials-radio">
                           <input (change)="getRadio($event)" [(ngModel)]="class_start_date" type="radio"
-                            name="start-date" value="classstartdate">
+                                 name="start-date" value="Class start date">
                           <label for="teacher">Class start date</label>
                         </div>
                         <div class="class-materials-radio">
                           <input #checkboxes (change)="getRadio($event)" type="radio" name="start-date">
                           <input *ngIf="this.isClickedRadio === 'on'; else elseSpan" [(ngModel)]="class_start_date"
-                            [ngModelOptions]="{standalone: true}" type="date">
+                                 [ngModelOptions]="{standalone: true}" type="date">
                           <ng-template #elseSpan>
                             <input disabled style="background: #dddddd;" [(ngModel)]="class_start_date"
-                              [ngModelOptions]="{standalone: true}" type="date">
+                                   [ngModelOptions]="{standalone: true}" type="date">
                           </ng-template>
                         </div>
                       </div>
@@ -332,16 +347,16 @@
                       <div class="editcourse-field-wrapper">
                         <div class="class-materials-radio">
                           <input (change)="getRadios($event)" [(ngModel)]="class_end_date" type="radio"
-                            name="start-date-calender" value="classenddate">
+                                 name="start-date-calender" value="Class end date">
                           <label for="teacher">Class end date</label>
                         </div>
                         <div class="class-materials-radio">
                           <input #checkboxes type="radio" (change)="getRadios($event)" name="start-date-calender">
                           <input *ngIf="this.isClickedRadios === 'on'; else elseSpans" [(ngModel)]="class_end_date"
-                            [ngModelOptions]="{standalone: true}" type="date">
+                                 [ngModelOptions]="{standalone: true}" type="date">
                           <ng-template #elseSpans>
                             <input disabled style="background: #dddddd;" [(ngModel)]="class_end_date"
-                              [ngModelOptions]="{standalone: true}" type="date">
+                                   [ngModelOptions]="{standalone: true}" type="date">
                           </ng-template>
                         </div>
                       </div>
@@ -351,12 +366,12 @@
                       <div class="editcourse-field-wrapper">
                         <div class="allow-messaging-radio">
                           <input [(ngModel)]="allow_msg_learner" [ngModelOptions]="{standalone: true}" type="radio"
-                            name="available" value="1">
+                                 name="available" value="1">
                           <label for="Yes">Yes</label>
                         </div>
                         <div class="allow-messaging-radio">
                           <input [(ngModel)]="allow_msg_learner" [ngModelOptions]="{standalone: true}" type="radio"
-                            name="available" value="0">
+                                 name="available" value="0">
                           <label for="No">No</label>
                         </div>
                       </div>
@@ -366,12 +381,12 @@
                       <div class="editcourse-field-wrapper">
                         <div class="allow-messaging-radio">
                           <input [(ngModel)]="allow_msg_coach" [ngModelOptions]="{standalone: true}" type="radio"
-                            name="unavailable" value="1">
+                                 name="unavailable" value="1">
                           <label for="Yes">Yes</label>
                         </div>
                         <div class="allow-messaging-radio">
                           <input [(ngModel)]="allow_msg_coach" [ngModelOptions]="{standalone: true}" type="radio"
-                            name="unavailable" value="0">
+                                 name="unavailable" value="0">
                           <label for="No">No</label>
                         </div>
                       </div>
@@ -380,8 +395,8 @@
                   <div class="modal-footer">
                     <button class="cancel-btn-course" data-dismiss="modal">Back</button>
                     <button class="edit-btn-course" data-toggle="modal" data-target="#addCourse3"
-                      [disabled]="this.class_start_date=='' || this.class_end_date=='' "
-                      (click)="nextPopup()">Next</button>
+                            [disabled]="this.class_start_date=='' || this.class_end_date=='' "
+                            (click)="nextPopup()">Next</button>
                   </div>
                 </form>
               </div>
@@ -405,34 +420,34 @@
                     <div class="name-of-course fieldset">
                       <label>Name of course*</label>
                       <input disabled style="background-color: #f3f6ff; border: 1px solid #f3f6ff;" type="text"
-                        name="course" value="{{courseName}}">
+                             name="course" value="{{courseName}}">
                     </div>
                     <div class="category-course fieldset">
                       <label>Category*</label>
                       <input *ngIf="this.newCategory!=''" disabled
-                        style="background-color: #f3f6ff; border: 1px solid #f3f6ff;" type="text" name="course"
-                        value="{{this.newCategory}}">
+                             style="background-color: #f3f6ff; border: 1px solid #f3f6ff;" type="text" name="course"
+                             value="{{this.newCategory}}">
                       <input *ngIf="this.newCategory==''" disabled
-                        style="background-color: #f3f6ff; border: 1px solid #f3f6ff;" type="text" name="course"
-                        value="{{this.patchCategorieName}}">
+                             style="background-color: #f3f6ff; border: 1px solid #f3f6ff;" type="text" name="course"
+                             value="{{this.patchCategorieName}}">
                     </div>
                     <div class="level-course fieldset">
                       <label>Levels</label>
                       <input *ngIf="this.newLevel!=''" disabled
-                        style="background-color: #f3f6ff; border: 1px solid #f3f6ff;" type="text" name="course"
-                        value="{{this.newLevel}}">
+                             style="background-color: #f3f6ff; border: 1px solid #f3f6ff;" type="text" name="course"
+                             value="{{this.newLevel}}">
                       <input *ngIf="this.newLevel==''" disabled
-                        style="background-color: #f3f6ff; border: 1px solid #f3f6ff;" type="text" name="course"
-                        value="{{this.patchLevelName}}">
+                             style="background-color: #f3f6ff; border: 1px solid #f3f6ff;" type="text" name="course"
+                             value="{{this.patchLevelName}}">
                     </div>
                     <div class="banding-course fieldset">
                       <label>Banding</label>
                       <input *ngIf="this.newBanding!=''" disabled
-                        style="background-color: #f3f6ff; border: 1px solid #f3f6ff;" type="text" name="course"
-                        value="{{this.newBanding}}">
+                             style="background-color: #f3f6ff; border: 1px solid #f3f6ff;" type="text" name="course"
+                             value="{{this.newBanding}}">
                       <input *ngIf="this.newBanding==''" disabled
-                        style="background-color: #f3f6ff; border: 1px solid #f3f6ff;" type="text" name="course"
-                        value="{{this.patchBandingName}}">
+                             style="background-color: #f3f6ff; border: 1px solid #f3f6ff;" type="text" name="course"
+                             value="{{this.patchBandingName}}">
                     </div>
                   </div>
                   <div class="editCourse-form-down">
@@ -546,7 +561,7 @@
                         <div class="class-materials-radio">
                           <input [checked]="true" name="class_start" type="radio" value="date">
                           <input formControlName="datagram" type="date" #myDate
-                            [value]="demoUser.date | date:'yyyy-MM-dd'" />
+                                 [value]="demoUser.date | date:'yyyy-MM-dd'" />
                         </div>
                       </div>
                     </div>
@@ -568,14 +583,14 @@
                       <div class="editcourse-field-wrapper">
                         <div class="allow-messaging-radio">
                           <input name="unit1" [(ngModel)]="courseList.field_messaging_between_learners"
-                            [ngModelOptions]="{standalone: true}" type="radio"
-                            [checked]="courseList.field_messaging_between_learners==1" value="1">
+                                 [ngModelOptions]="{standalone: true}" type="radio"
+                                 [checked]="courseList.field_messaging_between_learners==1" value="1">
                           <label for="Yes">Yes</label>
                         </div>
                         <div class="allow-messaging-radio">
                           <input name="unit2" [(ngModel)]="courseList.field_messaging_between_learners"
-                            [ngModelOptions]="{standalone: true}"
-                            [checked]="courseList.field_messaging_between_learners==0" type="radio" value="0">
+                                 [ngModelOptions]="{standalone: true}"
+                                 [checked]="courseList.field_messaging_between_learners==0" type="radio" value="0">
                           <label for="No">No</label>
                         </div>
                       </div>
@@ -585,14 +600,14 @@
                       <div class="editcourse-field-wrapper">
                         <div class="allow-messaging-radio">
                           <input name="unit3" [(ngModel)]="courseList.field_messaging_learner_to_coach"
-                            [ngModelOptions]="{standalone: true}"
-                            [checked]="courseList.field_messaging_learner_to_coach==1" type="radio" value="1">
+                                 [ngModelOptions]="{standalone: true}"
+                                 [checked]="courseList.field_messaging_learner_to_coach==1" type="radio" value="1">
                           <label for="Yes">Yes</label>
                         </div>
                         <div class="allow-messaging-radio">
                           <input name="unit4" [(ngModel)]="courseList.field_messaging_learner_to_coach"
-                            [ngModelOptions]="{standalone: true}"
-                            [checked]="courseList.field_messaging_learner_to_coach==0" type="radio" value="0">
+                                 [ngModelOptions]="{standalone: true}"
+                                 [checked]="courseList.field_messaging_learner_to_coach==0" type="radio" value="0">
                           <label for="No">No</label>
                         </div>
                       </div>

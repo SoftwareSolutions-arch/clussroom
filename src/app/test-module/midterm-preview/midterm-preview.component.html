@@ -8,7 +8,7 @@
     </div>
     <div class="right">
       <div class="question-width">
-        <h4>Mid Term Test</h4>
+        <h4>{{this.test_name}}</h4>
       </div>
       <div class="width">
         <select class="form-control" (change)="onChange()" [(ngModel)]="selectedTestDetails">
@@ -16,284 +16,277 @@
           <option *ngFor="let user of testAllData" [ngValue]="user">{{user.test_name}}</option>
         </select>
       </div>
-      <button type="button">Back</button>
     </div>
     <div class="prospectus-section sequence-list">
       <div class="prospectus-tabs">
         <ul class="nav nav-tabs">
-          <li><a data-toggle="tab" href="#test" class="active">Test</a>
+          <li (click)="goToTestHome()"><a data-toggle="tab">Test</a>
           </li>
-          <li><a data-toggle="tab" href="#settings">Settings</a>
+          <li (click)="settingsClicked()"><a data-toggle="tab">Settings</a>
           </li>
-          <li><a data-toggle="tab" href="#assignment-grading">Result/Assessment</a>
+          <li (click)="goToTestAssessment()"><a data-toggle="tab">Result/Assessment</a>
           </li>
         </ul>
       </div>
       <div class="tab-content">
-        <div class="user-action-wrapper">
+        <div class="user-action-wrapper" style="border: none !important;">
           <div class="question-action-list">
-            <div (click)="homeQuestion()" class="button-wrapper"> <a class="done-btn custom-button">Done</a>
+            <div class="col-md-6">
+              <h6 style="margin-bottom: 0 !important;">Preview</h6>
+            </div>
+            <div (click)="homeQuestion()" class="button-wrapper col-md-6"> <a class="done-btn custom-button">Done</a>
             </div>
           </div>
         </div>
         <!-- Submisssion Log start -->
-		<div id="settings" class="tab-pane active box-shadow">
-			<ng-container *ngFor="let data of this.allData;let i = index">
-			  <div [ngSwitch]="data.questiontype">
-				<!-- select and option list-->
-				<div *ngSwitchCase="'multiple_choice_type_paper'">
-				  <div *ngIf="!data.attachment">
-					<div class="custom-control custom-checkbox mb-3 question-label col-lg-12">
-					  <label class="question-checkbox col-lg-11 mt-3">Q {{i+1}}.&nbsp;&nbsp;
-						<span style="color: black;" [innerHtml]="data.question"></span>
-						<span>(Multiple
-						  Choice)</span>
-						<input type="checkbox" (click)="isCheckClicked(data)">
-						<span class="mark"></span>
-					  </label>
-					  <div class="ellipdown col-sm-1 dropdown-1 text-right"
-						style="display: flex !important; align-items: center !important;">
-						<label style="padding: 0;">{{data.points}} Points</label>
-					
-						
-					  </div>
-					</div>
-					<div class="test-option border-bottom col-lg-12">
-					  <ul class="col-md-5">
-						<li *ngFor="let optionList of data.multiple_choices[0] | slice:0:2;"><input type="radio"
-							id="option1" name="option" value="option1">
-						  <label for="option1">{{optionList.option_text}}</label>
-						</li>
-					  </ul>
-					  <ul class="col-md-5">
-						<li *ngFor="let optionList of data.multiple_choices[0] | slice:2:3;">
-						  <input type="radio" id="option3" name="option" value="option3">
-						  <label for="option3">{{optionList.option_text}}</label>
-						</li>
-					  </ul>
-					</div>
-				  </div>
-				  <div *ngIf="data.attachment">
-					<div class="custom-control custom-checkbox mb-3 question-label col-lg-12" style="padding-top: 2em;">
-					  <label class="question-checkbox col-lg-11">Q {{i+1}}.&nbsp;&nbsp;Choose the correct image for
-						preposition
-						near. <span>(Multiple Choice)</span>
-						<input type="checkbox"> <span class="mark"></span>
-					  </label>
-					  <div class="ellipdown col-sm-1 dropdown-1 text-right"
-						style="display: flex !important; align-items: center !important;">
-						<label style="padding: 0;">{{data.points}} Points</label>
-					
-					  </div>
-					</div>
-					<div class="test-option border-bottom sample custom-control custom-checkbox col-lg-12">
-					  <div *ngFor="let item of data.attachment" class="col-sm-3 text-center">
-						<button type="button">
-						  <h2><img src="{{item.image}}"></h2>
-						</button>
-						<p>Description 1</p>
-						<label class="choice-checkbox" style="padding-left: 55px;">
-						  <input type="checkbox" (click)="isCheckClicked(data)"> <span class="mark2"></span>
-						  <h6>Choice 1</h6>
-						</label>
-					  </div>
-  
-					</div>
-				  </div>
-				</div>
-  
-				<div *ngSwitchCase="'true_false_type_paper'">
-				  <div class="custom-control custom-checkbox mb-3 question-label col-lg-12" style="padding-top: 1em;">
-					<label class="question-checkbox col-lg-11">Q {{i+1}}.&nbsp;&nbsp;
-					  <span style="color: black;" [innerHtml]="data.question"></span>
-					  <span>({{data.questiontypename}})</span>
-					  <input type="checkbox" (click)="isCheckClicked(data)">
-					  <span class="mark"></span>
-					</label>
-					<div class="ellipdown col-sm-1 dropdown-1 text-right"
-					  style="display: flex !important; align-items: center !important;">
-					  <label style="padding: 0;">{{data.points}} Points</label>
-				
-					 
-					</div>
-				  </div>
-  
-				  <div class="test-option sample custom-control custom-checkbox col-lg-12">
-					<div *ngFor="let item of data.attachment" class="col-sm-3 text-center">
-					  <button type="button">
-						<h2><img src="{{item.image}}"></h2>
-					  </button>
-					  <p>Title for image</p>
-					</div>
-  
-					<div class="col-sm-3 text-center"></div>
-				  </div>
-  
-				  <div class="test-option col-lg-12">
-					<ul class="col-md-5" style="display: flex;">
-					  <li><input type="radio" id="true1" name="true" value="true1">
-						<label for="true1">True</label>
-					  </li>
-					  <li>
-						<input type="radio" id="false1" name="false" value="false1">
-						<label for="false1">False</label>
-					  </li>
-					</ul>
-				  </div>
-				</div>
-  
-				<div *ngSwitchCase="'fill_in_the_blanks_type_paper'">
-				  <div class="custom-control custom-checkbox mb-3 question-label col-lg-12"
-					style="padding-top: 1em; padding-bottom: 1em;">
-					<label class="question-checkbox col-lg-11">Q {{i+1}}.&nbsp;&nbsp;
-					  <span style="color: black;" [innerHtml]="data.question"></span>
-					  <span>({{data.questiontypename}})</span>
-					  <input type="checkbox" (click)="isCheckClicked(data)">
-					  <span class="mark"></span>
-					</label>
-					<div class="ellipdown col-sm-1 dropdown-1 text-right"
-					  style="display: flex !important; align-items: center !important;">
-					  <label style="padding: 0;">{{data.points}} Points</label>
-					 
-					
-					</div>
-  
-				  </div>
-  
-  
-				  <div class="fill mb-4" style="padding-bottom: 1em;">
-					<!-- <h6 style="font-size: 15px; font-weight: 400;">I don't want to argue&nbsp;<input type="text">&nbsp;you&nbsp;<input type="text">&nbsp;that matter at this time.</h6> -->
-					<h6 style="font-size: 15px; font-weight: 400;">{{data.questiontype}}<input type="text"></h6>
-				  </div>
-  
-				  <div class="test-option border-bottom sample custom-control custom-checkbox col-lg-12">
-					<div *ngFor="let item of data.attachment" class="col-sm-3 text-center">
-					  <button type="button">
-						<h2><img src="{{item.image}}"></h2>
-					  </button>
-					  <p>Description 1</p>
-					  <!-- <label class="choice-checkbox" style="padding-left: 55px;">
-						<input type="checkbox" (click)="isCheckClicked(data)"> <span class="mark2"></span>
-						<h6>Choice 1</h6>
-					  </label> -->
-					</div>
-				  </div>
-  
-				</div>
-  
-				<ng-container *ngSwitchCase="'short_ques_ans_type_paper'">
-				  <div class="custom-control custom-checkbox mb-3 col-lg-12 question-label" style="padding-top: 1em;">
-					<label class="question-checkbox col-lg-11">Q {{i+1}}.&nbsp;&nbsp;
-					  <span style="color: black;" [innerHtml]="data.question"></span>
-					  <span>(Short Answer)</span>
-					  <input type="checkbox" (click)="isCheckClicked(data)"> <span class="mark"></span>
-					</label>
-					<div class="ellipdown col-sm-1 dropdown-1 text-right"
-					  style="display: flex !important; align-items: center !important;">
-					  <label style="padding: 0;">{{data.points}} Points</label>
-					
-					</div>
-				  </div>
-				  <div class="test-option sample custom-control custom-checkbox col-lg-12">
-					<div *ngFor="let item of data.attachment" class="col-sm-3 text-center">
-					  <button type="button">
-						<h2><img src="{{item.image}}"></h2>
-					  </button>
-					  <p>Title for image</p>
-					</div>
-  
-					<div class="col-sm-3 text-center"></div>
-				  </div>
-				  <div  class="question-text col-lg-12">
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<angular-editor name="shortanswer" cols="80" label="notes" rows="4" wrap="virtual" style="margin: 0;"
-					  name="question" required (keyup)="onkeyup()"  maxlength="5">
-					</angular-editor>
-					<div class="col-md-4"></div>
-				  </div>
-				  <div class="word-tag col-lg-12">
-					<div class="col-md-4">&nbsp;</div>
-					<div class="col-md-4 text-right" style="padding: 0 4px !important;">
-					  <p>0/255</p>
-					</div>
-					<div class="col-md-4"></div>
-				  </div>
-				</ng-container>
-  
-				<div *ngSwitchCase="'ordering_type_paper'">
-				  <div class="custom-control custom-checkbox mb-3 question-label col-lg-12" style="padding-top: 2em;">
-					<label class="question-checkbox col-lg-11">Q {{i+1}}.&nbsp;&nbsp;
-					  <span style="color: black;" [innerHtml]="data.question"></span>
-					  <span>(Ordering)</span>
-					  <input type="checkbox" (click)="isCheckClicked(data)"> <span class="mark"></span>
-					</label>
-					<div class="ellipdown col-sm-1 dropdown-1 text-right"
-					  style="display: flex !important; align-items: center !important;">
-					  <label style="padding: 0;">{{data.points}} Points</label>
-					  
-					 
-					</div>
-				  </div>
-				  <div class="test-option sample custom-control custom-checkbox col-lg-12">
-					<div *ngFor="let item of data.attachment" class="col-sm-3 text-center">
-					  <button type="button">
-						<h2><img src="{{item.image}}"></h2>
-					  </button>
-					  <p>Title for image</p>
-					</div>
-  
-					<div class="col-sm-3 text-center"></div>
-				  </div>
-				  <div class="match-option" style="font-size: 15px; font-weight: 400; border-bottom: 1px solid #F1F6FB;">
-					<div *ngFor="let item of data.odering_option" class="col-lg-12 mt-3"
-					  style="display: flex; margin-bottom:1em;">
-					  <div class="col-md-6" style="padding-left: 5.5em;">1.&nbsp;&nbsp;{{item.odering_option_text}}</div>
-					  <div class="col-md-3 text-center">
-						<button type="button">2</button>
-					  </div>
-					</div>
-				  </div>
-				</div>
-  
-				<div *ngSwitchCase="'matching_type_paper'">
-				  <div class="custom-control custom-checkbox mb-3 question-label col-lg-12" style="padding-top: 2em;">
-					<label class="question-checkbox col-lg-11">Q
-					  {{i+1}}.&nbsp;&nbsp;
-					  <span style="color: black;" [innerHtml]="data.question"></span>
-					  <span>({{data.questiontypename}})</span>
-					  <input type="checkbox" (click)="isCheckClicked(data)"> <span class="mark"></span>
-					</label>
-					<div class="ellipdown col-sm-1 dropdown-1 text-right"
-					  style="display: flex !important; align-items: center !important;">
-					  <label style="padding: 0;">{{data.points}} Points</label>
-					 
-					</div>
-				  </div>
-				  <div class="test-option sample custom-control custom-checkbox col-lg-12">
-					<div *ngFor="let item of data.attachment" class="col-sm-3 text-center">
-					  <button type="button">
-						<h2><img src="{{item.image}}"></h2>
-					  </button>
-					  <p>Title for image</p>
-					</div>
-					<div class="col-sm-3 text-center"></div>
-				  </div>
-				  <div class="match-option"
-					style="display: block !important; padding-bottom: 1em; font-size: 15px; font-weight: 400;">
-					<div *ngFor="let item of data.matching_question_answers;let j=index" class="col-lg-12"
-					  style="display: flex; margin-bottom:1em;">
-					  <div class="col-md-6" style="padding-left: 5.5em;">{{j+1}}.&nbsp;&nbsp;{{item.question}}</div>
-					  <div class="col-md-3">{{j+1}}.&nbsp;&nbsp;{{item.answer}}</div>
-					</div>
-				  </div>
-				</div>
-  
-			  </div>
-			</ng-container>
-			<div (click)="homeQuestion()" class="container button-wrappe" style="padding: 22px 0; display: flex; margin: 0 !important;"> 
-			  <a class="done-blue custom-button" data-toggle="midal" data-target="#ReOrder" >Done</a>
-			</div>
-		  </div>
+        <div id="settings" class="tab-pane active box-shadow">
+          <ng-container
+            *ngFor="let data of this.allData| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;">
+            <div [ngSwitch]="data.questiontype">
+              <!-- select and option list-->
+              <div *ngSwitchCase="'multiple_choice_type_paper'">
+                <div *ngIf="!data.attachment">
+                  <div class="custom-control custom-checkbox mb-3 question-label col-lg-12">
+                    <label class="question-checkbox col-lg-11 mt-3">Q {{i+1}}.&nbsp;&nbsp;
+                      <span style="color: black;" [innerHtml]="data.question"></span>
+                      <span>(Multiple
+                        Choice)</span>
+                      <!-- <input type="checkbox" (click)="isCheckClicked(data)">
+						<span class="mark"></span> -->
+                    </label>
+                    <div class="ellipdown col-sm-1 dropdown-1 text-right"
+                      style="display: flex !important; align-items: center !important;">
+                      <label style="padding: 0;">{{data.points}} Points</label>
+
+
+                    </div>
+                  </div>
+                  <div class="test-option border-bottom col-lg-12">
+                    <ul class="col-md-5">
+                      <li *ngFor="let optionList of data.multiple_choices[0] | slice:0:2;"><input type="radio"
+                          id="option1" name="option" value="option1">
+                        <label for="option1">{{optionList.option_text}}</label>
+                      </li>
+                    </ul>
+                    <ul class="col-md-5">
+                      <li *ngFor="let optionList of data.multiple_choices[0] | slice:2:3;">
+                        <input type="radio" id="option3" name="option" value="option3">
+                        <label for="option3">{{optionList.option_text}}</label>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div *ngIf="data.attachment">
+                  <div class="custom-control custom-checkbox mb-3 question-label col-lg-12" style="padding-top: 2em;">
+                    <label class="question-checkbox col-lg-11">Q {{i+1}}.&nbsp;&nbsp;Choose the correct image for
+                      preposition
+                      near. <span>(Multiple Choice)</span>
+                      <input type="checkbox"> <span class="mark"></span>
+                    </label>
+                    <div class="ellipdown col-sm-1 dropdown-1 text-right"
+                      style="display: flex !important; align-items: center !important;">
+                      <label style="padding: 0;">{{data.points}} Points</label>
+
+                    </div>
+                  </div>
+                  <div class="test-option border-bottom sample custom-control custom-checkbox col-lg-12">
+                    <div *ngFor="let item of data.attachment" class="col-sm-3 text-center">
+                      <button type="button">
+                        <h2><img src="{{item.image}}"></h2>
+                      </button>
+                      <p>Description 1</p>
+                      <label class="choice-checkbox" style="padding-left: 55px;">
+                        <!-- <input type="checkbox" (click)="isCheckClicked(data)"> <span class="mark2"></span> -->
+                        <h6>Choice 1</h6>
+                      </label>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div *ngSwitchCase="'true_false_type_paper'">
+                <div class="custom-control custom-checkbox mb-3 question-label col-lg-12" style="padding-top: 1em;">
+                  <label class="question-checkbox col-lg-11">Q {{i+1}}.&nbsp;&nbsp;
+                    <span style="color: black;" [innerHtml]="data.question"></span>
+                    <span>({{data.questiontypename}})</span>
+                    <!-- <input type="checkbox" (click)="isCheckClicked(data)">
+					  <span class="mark"></span> -->
+                  </label>
+                  <div class="ellipdown col-sm-1 dropdown-1 text-right"
+                    style="display: flex !important; align-items: center !important;">
+                    <label style="padding: 0;">{{data.points}} Points</label>
+
+
+                  </div>
+                </div>
+
+                <div class="test-option sample custom-control custom-checkbox col-lg-12">
+                  <div *ngFor="let item of data.attachment" class="col-sm-3 text-center">
+                    <button type="button">
+                      <h2><img src="{{item.image}}"></h2>
+                    </button>
+                    <p>Title for image</p>
+                  </div>
+
+                  <div class="col-sm-3 text-center"></div>
+                </div>
+
+                <div class="test-option col-lg-12">
+                  <ul class="col-md-5" style="display: flex;">
+                    <li><input type="radio" id="true1" name="true" value="true1">
+                      <label for="true1">True</label>
+                    </li>
+                    <li>
+                      <input type="radio" id="false1" name="false" value="false1">
+                      <label for="false1">False</label>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div *ngSwitchCase="'fill_in_the_blanks_type_paper'">
+                <div class="custom-control custom-checkbox mb-3 question-label col-lg-12"
+                  style="padding-top: 1em; padding-bottom: 1em;">
+                  <label class="question-checkbox col-lg-11">Q {{i+1}}.&nbsp;&nbsp;
+                    <span style="color: black;" [innerHtml]="data.question"></span>
+                    <span>({{data.questiontypename}})</span>
+                    <!-- <input type="checkbox" (click)="isCheckClicked(data)">
+					  <span class="mark"></span> -->
+                  </label>
+                  <div class="ellipdown col-sm-1 dropdown-1 text-right"
+                    style="display: flex !important; align-items: center !important;">
+                    <label style="padding: 0;">{{data.points}} Points</label>
+                  </div>
+                </div>
+                <div class="fill mb-4" style="padding-bottom: 1em;">
+                  <!-- <h6 style="font-size: 15px; font-weight: 400;">I don't want to argue&nbsp;<input type="text">&nbsp;you&nbsp;<input type="text">&nbsp;that matter at this time.</h6> -->
+                  <h6 style="font-size: 15px; font-weight: 400;">{{data.questiontype}}<input type="text"></h6>
+                </div>
+
+                <div class="test-option border-bottom sample custom-control custom-checkbox col-lg-12">
+                  <div *ngFor="let item of data.attachment" class="col-sm-3 text-center">
+                    <button type="button">
+                      <h2><img src="{{item.image}}"></h2>
+                    </button>
+                    <p>Description 1</p>
+                  </div>
+                </div>
+
+              </div>
+
+              <ng-container *ngSwitchCase="'short_ques_ans_type_paper'">
+                <div class="custom-control custom-checkbox mb-3 col-lg-12 question-label" style="padding-top: 1em;">
+                  <label class="question-checkbox col-lg-11">Q {{i+1}}.&nbsp;&nbsp;
+                    <span style="color: black;" [innerHtml]="data.question"></span>
+                    <span>(Short Answer)</span>
+                    <!-- <input type="checkbox" (click)="isCheckClicked(data)"> <span class="mark"></span> -->
+                  </label>
+                  <div class="ellipdown col-sm-1 dropdown-1 text-right"
+                    style="display: flex !important; align-items: center !important;">
+                    <label style="padding: 0;">{{data.points}} Points</label>
+
+                  </div>
+                </div>
+                <div class="test-option sample custom-control custom-checkbox col-lg-12">
+                  <div *ngFor="let item of data.attachment" class="col-sm-3 text-center">
+                    <button type="button">
+                      <h2><img src="{{item.image}}"></h2>
+                    </button>
+                    <p>Title for image</p>
+                  </div>
+
+                  <div class="col-sm-3 text-center"></div>
+                </div>
+                <div class="question-text col-lg-12">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <angular-editor name="shortanswer" cols="80" label="notes" rows="4" wrap="virtual" style="margin: 0;"
+                    name="question" required (keyup)="onkeyup()" maxlength="5">
+                  </angular-editor>
+                  <div class="col-md-4"></div>
+                </div>
+                <div class="word-tag col-lg-12">
+                  <div class="col-md-4">&nbsp;</div>
+                  <div class="col-md-4 text-right" style="padding: 0 4px !important;">
+                    <p>0/255</p>
+                  </div>
+                  <div class="col-md-4"></div>
+                </div>
+              </ng-container>
+
+              <div *ngSwitchCase="'ordering_type_paper'">
+                <div class="custom-control custom-checkbox mb-3 question-label col-lg-12" style="padding-top: 2em;">
+                  <label class="question-checkbox col-lg-11">Q {{i+1}}.&nbsp;&nbsp;
+                    <span style="color: black;" [innerHtml]="data.question"></span>
+                    <span>(Ordering)</span>
+                    <!-- <input type="checkbox" (click)="isCheckClicked(data)"> <span class="mark"></span> -->
+                  </label>
+                  <div class="ellipdown col-sm-1 dropdown-1 text-right"
+                    style="display: flex !important; align-items: center !important;">
+                    <label style="padding: 0;">{{data.points}} Points</label>
+                  </div>
+                </div>
+                <div class="test-option sample custom-control custom-checkbox col-lg-12">
+                  <div *ngFor="let item of data.attachment" class="col-sm-3 text-center">
+                    <button type="button">
+                      <h2><img src="{{item.image}}"></h2>
+                    </button>
+                    <p>Title for image</p>
+                  </div>
+
+                  <div class="col-sm-3 text-center"></div>
+                </div>
+                <div class="match-option" style="font-size: 15px; font-weight: 400; border-bottom: 1px solid #F1F6FB;">
+                  <div *ngFor="let item of data.odering_option" class="col-lg-12 mt-3"
+                    style="display: flex; margin-bottom:1em;">
+                    <div class="col-md-6" style="padding-left: 5.5em;">1.&nbsp;&nbsp;{{item.odering_option_text}}</div>
+                    <div class="col-md-3 text-center">
+                      <button type="button">{{item.odering_options}}</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div *ngSwitchCase="'matching_type_paper'">
+                <div class="custom-control custom-checkbox mb-3 question-label col-lg-12" style="padding-top: 2em;">
+                  <label class="question-checkbox col-lg-11">Q
+                    {{i+1}}.&nbsp;&nbsp;
+                    <span style="color: black;" [innerHtml]="data.question"></span>
+                    <span>({{data.questiontypename}})</span>
+                  </label>
+                  <div class="ellipdown col-sm-1 dropdown-1 text-right"
+                    style="display: flex !important; align-items: center !important;">
+                    <label style="padding: 0;">{{data.points}} Points</label>
+
+                  </div>
+                </div>
+                <div class="test-option sample custom-control custom-checkbox col-lg-12">
+                  <div *ngFor="let item of data.attachment" class="col-sm-3 text-center">
+                    <button type="button">
+                      <h2><img src="{{item.image}}"></h2>
+                    </button>
+                    <p>Title for image</p>
+                  </div>
+                  <div class="col-sm-3 text-center"></div>
+                </div>
+                <div class="match-option"
+                  style="display: block !important; padding-bottom: 1em; font-size: 15px; font-weight: 400;">
+                  <div *ngFor="let item of data.matching_question_answers;let j=index" class="col-lg-12"
+                    style="display: flex; margin-bottom:1em;">
+                    <div class="col-md-6" style="padding-left: 5.5em;">{{j+1}}.&nbsp;&nbsp;{{item.question}}</div>
+                    <div class="col-md-3">{{item.sequence}}.&nbsp;&nbsp;{{item.answer}}</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </ng-container>
+
+          <div class="table-result-wrapper">
+            <pagination-controls previousLabel="Prev" nextLabel="Next" responsive="true"
+              (pageChange)="handlePageChange($event)"></pagination-controls>
+          </div>
+        </div>
       </div>
     </div>
   </div>
