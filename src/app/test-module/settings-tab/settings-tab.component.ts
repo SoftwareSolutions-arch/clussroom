@@ -9,20 +9,20 @@ import { UtilService } from 'src/providers/util.service';
   styleUrls: ['./settings-tab.component.scss']
 })
 export class SettingsTabComponent implements OnInit {
-  isClicked:boolean=true;
+  isClicked: boolean = true;
   SettingsData: any = {
     test_name: '',
     instruction: '',
     start_date: '',
-    end_time:'',
+    end_time: '',
     timer: '',
     timer_time: '',
     attempts: '',
     pagination: '',
     view_ans_after_compliation: '',
-    start_time:'',
-    end_date:'',
-    attempts_score:''
+    start_time: '',
+    end_date: '',
+    attempts_score: ''
   }
   selectedTestDetails: any = "";
   allData: any = [];
@@ -32,7 +32,7 @@ export class SettingsTabComponent implements OnInit {
   testDetails: any = '';
   test_name: any = '';
   test_id: any = '';
-  constructor(private router: Router, public service: SharedServiceService) {
+  constructor(private router: Router, public util: UtilService, public service: SharedServiceService) {
     this.classId = localStorage.getItem('classListId');
     this.test_name = localStorage.getItem('test_name');
     this.test_id = localStorage.getItem('test_id');
@@ -44,8 +44,8 @@ export class SettingsTabComponent implements OnInit {
   ngOnInit() {
   }
 
-  confirmEditStep1(){
-    this.isClicked=false;
+  confirmEditStep1() {
+    this.isClicked = false;
   }
 
   // get test listing data
@@ -62,31 +62,31 @@ export class SettingsTabComponent implements OnInit {
   }
 
 
-  getTestDetails(){
+  getTestDetails() {
     this.isLoadingBool = true;
     let params = {
       "test_id": this.test_id
     }
 
     this.service.post('test-details', params, 1).subscribe(result => {
-      console.log('result',result);
+      console.log('result', result);
       this.isLoadingBool = false;
       this.testDetails = result.test_data
-      this.SettingsData.test_name=result.test_data.test_name;
-      this.SettingsData.instruction=result.test_data.instruction;
-      this.SettingsData.start_date=new Date(result.test_data.start_date);
-      this.SettingsData.end_date=new Date(result.test_data.end_date);
-      this.SettingsData.start_time=result.test_data.start_time
-      this.SettingsData.end_time=result.test_data.end_time;
-      this.SettingsData.timer_time=result.test_data.test_timer;
-      this.SettingsData.attempts=Number(result.test_data.test_attempts);
-      this.SettingsData.pagination=Number(result.test_data.pagination);
-      this.SettingsData.view_ans_after_compliation= (result.test_data.view_ans_after_complition=='Yes')?1:0
+      this.SettingsData.test_name = result.test_data.test_name;
+      this.SettingsData.instruction = result.test_data.instruction;
+      this.SettingsData.start_date = new Date(result.test_data.start_date);
+      this.SettingsData.end_date = new Date(result.test_data.end_date);
+      this.SettingsData.start_time = result.test_data.start_time
+      this.SettingsData.end_time = result.test_data.end_time;
+      this.SettingsData.timer_time = result.test_data.test_timer;
+      this.SettingsData.attempts = Number(result.test_data.test_attempts);
+      this.SettingsData.pagination = Number(result.test_data.pagination);
+      this.SettingsData.view_ans_after_compliation = (result.test_data.view_ans_after_complition == 'Yes') ? 1 : 0
     })
   }
 
-  onChange(){
-    console.log('selectedTestDetails',this.selectedTestDetails.test_id);
+  onChange() {
+    console.log('selectedTestDetails', this.selectedTestDetails.test_id);
     localStorage.setItem('test_name', this.selectedTestDetails.test_name);
     localStorage.setItem('test_id', this.selectedTestDetails.test_id);
 
@@ -99,22 +99,22 @@ export class SettingsTabComponent implements OnInit {
 
     this.service.post('test-details', params, 1).subscribe(result => {
       this.isLoadingBool = false;
-      console.log('result',result);
+      console.log('result', result);
       this.testDetails = result.test_data
-      this.SettingsData.test_name=result.test_data.test_name;
-      this.SettingsData.instruction=result.test_data.instruction;
+      this.SettingsData.test_name = result.test_data.test_name;
+      this.SettingsData.instruction = result.test_data.instruction;
 
-      this.SettingsData.start_date=new Date(result.test_data.start_date);
-      this.SettingsData.test_available_to=new Date(result.test_data.end_date);
+      this.SettingsData.start_date = new Date(result.test_data.start_date);
+      this.SettingsData.test_available_to = new Date(result.test_data.end_date);
 
-      this.SettingsData.test_availble_from_time=result.test_data.start_time;
-      this.SettingsData.test_availble_to_time=result.test_data.end_time;
+      this.SettingsData.test_availble_from_time = result.test_data.start_time;
+      this.SettingsData.test_availble_to_time = result.test_data.end_time;
 
-      this.SettingsData.timer_time=result.test_data.test_timer;
-      this.SettingsData.attempts=Number(result.test_data.test_attempts);
-      this.SettingsData.pagination=Number(result.test_data.pagination);
-      this.SettingsData.view_ans_after_compliation= (result.test_data.view_ans_after_complition=='Yes')?1:0
-      
+      this.SettingsData.timer_time = result.test_data.test_timer;
+      this.SettingsData.attempts = Number(result.test_data.test_attempts);
+      this.SettingsData.pagination = Number(result.test_data.pagination);
+      this.SettingsData.view_ans_after_compliation = (result.test_data.view_ans_after_complition == 'Yes') ? 1 : 0
+
     })
 
   }
@@ -127,7 +127,27 @@ export class SettingsTabComponent implements OnInit {
     this.router.navigate(['/test/test-assessment']);
   }
 
-  confirmEdit(){
-    console.log('this.SettingsData',this.SettingsData);
+  // confirm add test
+  confirmEdit() {
+    console.log('this.SettingsData', this.SettingsData);
+    this.SettingsData.timer = (this.SettingsData.timer == true) ? "Yes" : "No"
+    this.SettingsData.test_id = this.test_id;
+    var x = new Date(this.SettingsData.test_available_from);
+    var y = new Date(this.SettingsData.test_available_to);
+
+    if (x > y) {
+      this.util.errorAlertPopup('start date should be less than end date');
+    }
+    else {
+      this.isLoadingBool = true;
+      this.service.post('update-test-api', this.SettingsData, 1).subscribe(result => {
+        console.log('result', result);
+        if (result.status == '1') {
+          this.isLoadingBool = false;
+          this.util.showSuccessAlert('Updated successfully');
+          this.router.navigate(['/test/test-listing-home']);
+        }
+      })
+    }
   }
 }

@@ -346,7 +346,7 @@
           </ul>
         </div>
         <div class="class-remove-btn" style="padding: 21px 39px 0 39px;">
-          <button (click)="addTestFromLiabrary4()" [disabled]="this.step4TestId==='' " type="button"
+          <button (click)="addTestFromLiabrary4()" *ngIf="showYesButton" type="button"
             class="modal-para-btn" style="margin: 8px auto;">Yes</button>
         </div>
       </div>

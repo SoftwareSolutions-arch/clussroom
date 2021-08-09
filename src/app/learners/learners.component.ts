@@ -311,6 +311,6 @@ export class LearnersComponent implements OnInit {
 
   goToClasses(classList) {
     // localStorage.setItem('classListId', classList.nid);
-    this.router.navigate(['/classes', { id: classList.learner_id}]);
+    this.router.navigate(['/classes', { learnerId: classList.learner_id}]);
   }
 }

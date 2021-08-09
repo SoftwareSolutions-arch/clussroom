@@ -149,7 +149,7 @@ export class AddTestAssestmentComponent implements OnInit {
     )
   }
 
-  // update data 
+  // update data
   updateAssignment() {
     this.submitted = true;
     if (this.addAssignmentForm.invalid) {
@@ -190,7 +190,7 @@ export class AddTestAssestmentComponent implements OnInit {
   }
   goToQuestion() {
     var ids = sessionStorage.getItem('assignment_id')
-    this.router.navigate(['/assignment/assignment-question'], { queryParams: { id: ids } }); 
+    this.router.navigate(['/assignment/assignment-question'], { queryParams: { id: ids } });
   }
 
   // add rubric form
@@ -237,7 +237,7 @@ export class AddTestAssestmentComponent implements OnInit {
     var arrayControl = this.employees()
     .at(empIndex)
     .get('scale') as FormArray;
-    
+
     var marks = arrayControl.value
     var highestMarks = 0
    if(marks.length > 0){
@@ -263,7 +263,7 @@ export class AddTestAssestmentComponent implements OnInit {
      console.log('agd',this.listingData)
    }else{
     this.listingData.push({id: empIndex,value: highestMarks})
-   }  
+   }
   }
   numberOnly(event): boolean {
     const charCode = (event.which) ? event.which : event.keyCode;
@@ -291,6 +291,7 @@ export class AddTestAssestmentComponent implements OnInit {
       this.isLoadingBoolean = false;
       if(res.status == 1){
         this.util.showSuccessAlert('Rubric added successully')
+        this.listRubric();
         setTimeout(() => {
         this.closeRubric.nativeElement.click();
         this.addAssignment();

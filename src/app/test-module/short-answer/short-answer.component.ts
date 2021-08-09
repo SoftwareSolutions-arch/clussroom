@@ -48,8 +48,8 @@ export class ShortAnswerComponent implements OnInit {
     if(this.ExteriorPicString.length + this.fillData.attachment.length < 4){
       if(event.target.files.length>4){
         this.util.errorAlertPopup('Can not select more than 4 images')
-      } 
-  
+      }
+
       else{
         this.fileLists = FileList = event.target.files;
         for (var i = 0; i <= event.target.files.length - 1; i++) {
@@ -67,7 +67,7 @@ export class ShortAnswerComponent implements OnInit {
     else{
       this.util.errorAlertPopup('Can not select more than 4 images');
     }
-   
+
   }
 
   removeImage(index) {
@@ -126,7 +126,7 @@ export class ShortAnswerComponent implements OnInit {
     this.service.post('add-question-api', params, 1).subscribe(result => {
 
       this.isLoadingBool = false;
-      this.util.showSuccessAlert('Answer Saved Successfully');
+      this.util.showSuccessAlert('Question saved successfully');
       this.router.navigate(['/test/question-screen']);
     })
   }
@@ -198,5 +198,5 @@ export class ShortAnswerComponent implements OnInit {
         this.router.navigate(['/test/question-screen']);
       })
     }
-  } 
+  }
 }

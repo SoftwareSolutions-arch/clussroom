@@ -291,13 +291,12 @@ export class CourseLibraryComponent implements OnInit {
 
   // download library
   downloadLibrary() {
-    
     this.editlibrary.nativeElement.click();
     let params = {
       "materials_type": this.selectedLibraryData.file_type,
       "id": this.selectedLibraryData.id
     }
-    
+    console.log('params',params);    
     this.isLoadingBool = true;
     this.service.post('download-libarary-data', params, 1).subscribe(result => {
       console.log('res',result);

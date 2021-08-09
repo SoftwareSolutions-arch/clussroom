@@ -37,28 +37,34 @@ export class ClassesComponent implements OnInit {
   isClassEdited: boolean = true;
   selectedNewItems: any = '';
   instructionName: any = '';
-  courseId: any = '';
+  courseId: any = null;
   class_creation_permission: any = '';
-  learnerId:any='';
-  constructor(public util: UtilService,private route: ActivatedRoute, private activatedRoute: ActivatedRoute, public router: Router, public service: SharedServiceService) {
-    this.courseId = localStorage.getItem('courseId');
-    this.getClassesList();
-    this.getAllCoursesList();
+  learnerId: any = null;
+  showDisabledButton: boolean = false;
+  constructor(public util: UtilService, private route: ActivatedRoute, private activatedRoute: ActivatedRoute, public router: Router, public service: SharedServiceService) {
+    this.courseId = this.route.snapshot.paramMap.get('id');
+    this.learnerId = this.route.snapshot.paramMap.get('learnerId');
     this.instructionName = localStorage.getItem('instructionName')
     this.class_creation_permission = localStorage.getItem('class_creation_permission');
-    this.learnerId = this.route.snapshot.paramMap.get('id');
-    console.log('this.learnerId',this.learnerId);
-    this.getLearner();
+    this.getClassesList();
+    this.getAllCoursesList();
   }
 
   ngOnInit(): void {
   }
 
+  selectCategory() {
+    this.viewClassesList();
+  }
+
+  // handling page events
+  handlePageChange(event): void {
+    this.page = event;
+  }
+
   isCourseCreated() {
     this.util.showSuccessToast("You don't have permission");
   }
-
-  ngAfterViewInit() { }
 
   // get all courses list
   getAllCoursesList() {
@@ -69,18 +75,17 @@ export class ClassesComponent implements OnInit {
     })
   }
 
-  selectCategory() {
-    this.viewClassesList();
-  }
+
 
   getClassesList() {
-    if (this.courseId != '') {
+    if (this.courseId != null) {
       let params = {
         "course_id": this.courseId
       }
+      console.log('params', params);
       this.isLoadingBool = true;
       this.service.post('view-all-classes-api', params, 1).subscribe(result => {
-
+        console.log('result', result);
         this.isLoadingBool = false;
         if (result['status'] == 1) {
           this.allClassesData = result['classesdata'];
@@ -91,7 +96,18 @@ export class ClassesComponent implements OnInit {
         }
       })
     }
-
+    if (this.learnerId != null) {
+      this.isLoadingBool = true;
+      let params = {
+        "user_id": this.learnerId
+      }
+      console.log('params', params);
+      this.service.post('student-classes-listing', params, 1).subscribe(result => {
+        console.log('result learner +++', result);
+        this.isLoadingBool = false;
+        this.allClassesData = result.result
+      })
+    }
   }
 
   // view classes
@@ -102,15 +118,10 @@ export class ClassesComponent implements OnInit {
     this.isLoadingBool = true;
     this.service.post('view-all-classes-api', params, 1).subscribe(result => {
       this.isLoadingBool = false;
+      this.showDisabledButton = true;
       if (result['status'] == 1) {
         this.allClassesData = result['classesdata'];
         this.isTableShow = true;
-        // if (result['classesdata'].length > 0) {
-        //   this.isTableShow = true;
-        // }
-        // if (result['classesdata'].length == 0) {
-        //   this.isTableShow = false;
-        // }
       }
       else {
         this.util.errorAlertPopup(result['mesaage']);
@@ -118,10 +129,7 @@ export class ClassesComponent implements OnInit {
     })
   }
 
-  // handling page events
-  handlePageChange(event): void {
-    this.page = event;
-  }
+
 
   // get events of check box for edit or add button show and hide
   isCheckClicked(event, courseList, i) {
@@ -215,21 +223,6 @@ export class ClassesComponent implements OnInit {
     })
   }
 
-  // final delete for classes
-  getLearner() {
-    console.log('this.learnerId',this.learnerId)
-    if(this.learnerId!=''){
-      let params = {
-        "user_id": this.learnerId
-      }
-      console.log('params',params);
-      this.service.post('student-classes-listing', params, 1).subscribe(result => {
-        console.log('result learner +++', result);
-        this.allClassesData=result.result
-      })
-    }  
-  }
-
   // edit course details
   editCourses() {
     this.selectedItems.forEach(element => {
@@ -264,33 +257,38 @@ export class ClassesComponent implements OnInit {
       this.util.errorAlertPopup('start date should be less than end date')
     }
     else if (x <= y) {
-      let params = {
-        "class_name": data['title'],
-        "classid": data['nid'],
-        "startdate": data['field_start_date'],
-        "enddate": data['field_end_date'],
+
+      if (data['title'] == '') {
+        this.util.errorAlertPopup('Class name can not be empty')
       }
 
-      this.isLoadingBool = true;
-      this.service.post('update-class-api', params, 1).subscribe(result => {
-
-        if (result['Status'] == 1 || '1') {
-          this.isLoadingBool = false;
-          this.isSaveCourses = false;
-          this.editForm = false;
-          this.userIdDetails = '';
-          this.selectedItems = []
-          this.checkboxes.forEach((element) => {
-            element.nativeElement.checked = false;
-          });
-          // this.deleteclosebutton.nativeElement.click();
-          this.util.showSuccessAlert('Classes updated successfully');
-          this.viewClassesList();
+      else {
+        let params = {
+          "class_name": data['title'],
+          "classid": data['nid'],
+          "startdate": data['field_start_date'],
+          "enddate": data['field_end_date'],
         }
-      })
+
+        this.isLoadingBool = true;
+        this.service.post('update-class-api', params, 1).subscribe(result => {
+
+          if (result['Status'] == 1 || '1') {
+            this.isLoadingBool = false;
+            this.isSaveCourses = false;
+            this.editForm = false;
+            this.userIdDetails = '';
+            this.selectedItems = []
+            this.checkboxes.forEach((element) => {
+              element.nativeElement.checked = false;
+            });
+            // this.deleteclosebutton.nativeElement.click();
+            this.util.showSuccessAlert('Classes updated successfully');
+            this.viewClassesList();
+          }
+        })
+      }
     }
-
-
   }
 
   // clear all form values

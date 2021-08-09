@@ -81,6 +81,8 @@ export class Sample04Component implements OnInit {
   selectedNewItems: any = '';
   edit_allow_msg_learner: any = '';
   edit_allow_msg_coach: any = '';
+  user1:any='';
+  user2:any='';
   constructor(public router: Router, public util: UtilService, public service: SharedServiceService,
               public formBuilder: FormBuilder, public classes: ClassesComponent) {
     this.instructionName = localStorage.getItem('instructionName');
@@ -97,6 +99,16 @@ export class Sample04Component implements OnInit {
 
   isCourseCreated(){
     this.util.showSuccessToast("You don't have permission");
+  }
+
+  newCourseCreated(){
+    this.selectedCategory='';
+    this.level='';
+    this.banding='';
+    
+    this.isCourseAdded=false;
+    this.isLevelAdded=false;
+    this.isBandingAdded=false;
   }
 
   ngOnInit(): void {
@@ -171,6 +183,13 @@ export class Sample04Component implements OnInit {
     )
   }
 
+  clearFormValues(){
+    this.isCourseAdded=false;
+    this.isLevelAdded=false;
+    this.isBandingAdded=false;
+    this.editSampleForm.reset();
+  }
+
   getallListingDropdown() {
     let params = {
       "step": 1
@@ -199,7 +218,10 @@ export class Sample04Component implements OnInit {
 
   // get events of check box for edit or add button show and hide
   isCheckClicked(event, courseList, i) {
-
+    this.isCourseAdded=false;
+    this.isLevelAdded=false;
+    this.isBandingAdded=false;
+    this.editSampleForm.reset();
     if (event.target.checked == true) {
       this.courseList = courseList;
       this.editSampleForm.controls.courseName.setValue(courseList.title);
@@ -437,6 +459,10 @@ export class Sample04Component implements OnInit {
 
     }
     else {
+      console.log();
+      console.log();
+      this.user1= (this.allow_msg_learner == 1) ? "Yes" : "No";
+      this.user2= (this.allow_msg_coach == 1) ? "Yes" : "No";
       this.allTrue = true;
     }
   }
@@ -574,7 +600,7 @@ export class Sample04Component implements OnInit {
   }
 
   goToclassesPage(courseList) {
-    localStorage.setItem('courseId', courseList.nid);
-    this.router.navigate(['/classes']);
+    // localStorage.setItem('courseId', courseList.nid);
+    this.router.navigate(['/classes',{ id: courseList.nid}]);
   }
 }

@@ -71,13 +71,14 @@
           <div class="prospectus-section">
             <div class="prospectus-tabs col-lg-12" style="justify-content: flex-end;">
               <div class="prospectus-action display-center" style="justify-content: flex-end;">
-                <ng-container *ngIf="this.class_creation_permission==1 && selectedCategory!='' ">
+                <ng-container *ngIf="this.class_creation_permission==1 && showDisabledButton ">
                   <a *ngIf="!editForm && !isSaveCourses" class="add-btn custom-a-btn mt-3" data-toggle="modal"
                     data-target="#addClass" style="position: relative; right: 7.8em; bottom: 1em;">
                     <i class="fa fa-plus" aria-hidden="true"></i> New class</a>
                 </ng-container>
 
-                <ng-container (click)="isCourseCreated()" *ngIf="this.class_creation_permission==0 && selectedCategory!='' ">
+                <ng-container (click)="isCourseCreated()"
+                  *ngIf="this.class_creation_permission==0 && selectedCategory!='' ">
                   <a (click)="isCourseCreated()" *ngIf="!editForm && !isSaveCourses" class="add-btn custom-a-btn mt-3"
                     style="position: relative; right: 7.8em; bottom: 1em;">
                     <i (click)="isCourseCreated()" class="fa fa-plus" aria-hidden="true"></i> New class</a>
@@ -133,7 +134,7 @@
                       <th scope="col">&nbsp;</th>
                     </tr>
                   </thead>
-                  <tbody *ngIf="this.learnerId==null " class="learner-text-left">
+                  <tbody *ngIf="this.learnerId==null && this.courseId==null" class="learner-text-left">
                     <tr
                       *ngFor="let classList of this.allClassesData| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;"
                       [class.active]="i == currentIndex">
@@ -187,7 +188,7 @@
                     </tr>
                   </tbody>
 
-                  <tbody *ngIf="this.learnerId!=null " class="learner-text-left">
+                  <tbody *ngIf="this.learnerId!=null" class="learner-text-left">
                     <tr
                       *ngFor="let classList of this.allClassesData| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;"
                       [class.active]="i == currentIndex">
@@ -216,7 +217,7 @@
                       <td *ngIf="this.classList.nid===this.userIdDetails">
                         <input type="date" [(ngModel)]="this.classList.start_date" class="text-center" />
                       </td>
-                      
+
                       <td *ngIf="this.classList.nid !== this.userIdDetails" class="text-center"
                         style="padding: 15px 0;">{{this.classList.end_date}}</td>
                       <td *ngIf="this.classList.nid===this.userIdDetails">
@@ -232,6 +233,60 @@
                           {{this.classList.status}}</div>
                         <div class="schedule" *ngIf="this.classList.status=='Sheduled'">
                           {{this.classList.status}}</div>
+                      </td>
+                      <td (click)="goToClasses(classList)">
+                        <button><a>Go to class</a>
+                        </button>
+                      </td>
+                      <td>
+                        <button style="color: #90a193 !important;" *ngIf="this.classList.nid===this.userIdDetails"
+                          (click)="updateClasses(this.classList)"> <a style="color: #90a193 !important;">Save class</a>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+
+                  <tbody *ngIf="this.courseId!=null" class="learner-text-left">
+                    <tr
+                      *ngFor="let classList of this.allClassesData| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;"
+                      [class.active]="i == currentIndex">
+                      <th>
+                        <div class="radio-table">
+                          <!-- <input type="checkbox" #checkboxes (click)="isCheckClicked($event,classList,i)"> -->
+                          <input name="checkbox" (click)="isCheckClicked($event,classList,i)" type="radio">
+                        </div>
+                      </th>
+                      <td style="padding: 15px 0;">
+                        <div>{{this.classList.sno}}</div>
+                      </td>
+                      <td *ngIf="this.classList.nid !== this.userIdDetails" class="text-left" style="padding: 15px 0;">
+                        {{this.classList.title}}</td>
+                      <td *ngIf="this.classList.nid===this.userIdDetails">
+                        <input [(ngModel)]="this.classList.title" class="text-left" />
+                      </td>
+                      <td class="text-center" style="padding: 15px 0;">
+                        <div>{{this.classList.field_class_code}}</div>
+                      </td>
+                      <td *ngIf="this.classList.nid !== this.userIdDetails" class="text-center"
+                        style="padding: 15px 0;">{{this.classList.field_start_date}}</td>
+                      <td *ngIf="this.classList.nid===this.userIdDetails">
+                        <input type="date" [(ngModel)]="this.classList.field_start_date" class="text-center" />
+                      </td>
+                      <td *ngIf="this.classList.nid !== this.userIdDetails" class="text-center"
+                        style="padding: 15px 0;">{{this.classList.field_end_date}}</td>
+                      <td *ngIf="this.classList.nid===this.userIdDetails">
+                        <input type="date" [(ngModel)]="this.classList.field_end_date" class="text-center" />
+                      </td>
+                      <td class="text-center" style="padding: 15px 0;">
+                        <div class="highlight">{{this.classList.total_learners}}</div>
+                      </td>
+                      <td style="padding: 15px 0;">
+                        <div class="effective" *ngIf="this.classList.field_status=='Completed'">
+                          {{this.classList.field_status}}</div>
+                        <div class="ongoing" *ngIf="this.classList.field_status=='Ongoing'">
+                          {{this.classList.field_status}}</div>
+                        <div class="schedule" *ngIf="this.classList.field_status=='Sheduled'">
+                          {{this.classList.field_status}}</div>
                       </td>
                       <td (click)="goToClasses(classList)">
                         <button><a>Go to class</a>

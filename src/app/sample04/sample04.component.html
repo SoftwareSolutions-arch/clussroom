@@ -61,8 +61,8 @@
             <div class="prospectus-action">
               <!-- <a class="add-btn custom-a-btn" data-toggle="modal" data-target="#editCourse">
               <i class="fa fa-plus" aria-hidden="true"></i> edit course</a> -->
-              <ng-container *ngIf="this.course_creation_permission==1 && !editForm && !isSaveCourses">
-                <a  class="add-btn custom-a-btn" data-toggle="modal"
+              <ng-container (click)="newCourseCreated()" *ngIf="this.course_creation_permission==1 && !editForm && !isSaveCourses">
+                <a (click)="newCourseCreated()" class="add-btn custom-a-btn" data-toggle="modal"
                     data-target="#addCourse" style="position: relative; right: 3.3em;">
                   <i class="fa fa-plus" aria-hidden="true"></i> New {{instructionName | lowercase}}</a>
               </ng-container>
@@ -73,10 +73,10 @@
                   <i (click)="isCourseCreated()" class="fa fa-plus" aria-hidden="true"></i> New {{instructionName | lowercase}</a>
               </ng-container>
 
-              <ng-container *ngIf="this.course_creation_permission==1 && editForm">
+              <ng-container  (click)="clearFormValues()" *ngIf="this.course_creation_permission==1 && editForm">
                 <a style="margin-left: 15px;background: #FFBB38  !important; width: 60px;"
-                   class="add-btn custom-a-btn" data-target="#editCourse" data-toggle="modal"> <i class="fa fa-edit"
-                                                                                                  aria-hidden="true" style="margin-right: 5px; font-size: 13px;"></i> Edit</a>
+                   class="add-btn custom-a-btn" data-target="#editCourse" data-toggle="modal">
+                    <i class="fa fa-edit"aria-hidden="true" style="margin-right: 5px; font-size: 13px;"></i> Edit</a>
               </ng-container>
 
               <ng-container (click)="isCourseCreated()" *ngIf="this.course_creation_permission==0">
@@ -193,7 +193,7 @@
                     <td *ngIf="i !== this.indexesValue" class="text-center">{{this.courseList.classes}}</td>
                     <td *ngIf="i !== this.indexesValue" class="text-center">{{this.courseList.total_learners}}</td>
                     <td *ngIf="i !== this.indexesValue" class="text-center">{{this.courseList.field_banding}}</td>
-                    <td (click)="saveCourses(courseList)">Save</td>
+                    <!-- <td (click)="saveCourses(courseList)">Save</td> -->
                   </tr>
                   </tbody>
                 </table>
@@ -474,16 +474,16 @@
                       <div class="editcourse-field-wrapper">
                         <div class="class-materials-radio">&nbsp;</div>
                         <div class="class-materials-radio">
-                          <input type="text" value="{{this.allow_msg_learner}}" readonly>
+                          <input type="text" value="{{this.user1}}" readonly>
                         </div>
                       </div>
                     </div>
                     <div class="fieldset class-materials">
-                      <label>Allow messaging from learner to coach</label>
+                      <label>Allow messaging from coach to learner</label>
                       <div class="editcourse-field-wrapper">
                         <div class="class-materials-radio">&nbsp;</div>
                         <div class="class-materials-radio">
-                          <input type="text" value="{{this.allow_msg_coach}}" readonly>
+                          <input type="text" value="{{this.user2}}" readonly>
                         </div>
                       </div>
                     </div>

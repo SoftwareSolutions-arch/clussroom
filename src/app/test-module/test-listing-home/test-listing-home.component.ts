@@ -52,6 +52,7 @@ export class TestListingHomeComponent implements OnInit {
 
   selectTestLiabrary: any = '';
   testLibraryData: any = '';
+  showYesButton:boolean=false;
   constructor(public service: SharedServiceService, private toastr: ToastrService, public util: UtilService, private router: Router) {
     this.classId = localStorage.getItem('classListId');
     this.getTestListing();
@@ -256,6 +257,7 @@ export class TestListingHomeComponent implements OnInit {
   }
 
   saveTestData(item) {
+    this.showYesButton=true;
     this.step4TestId = item.nid
   }
 

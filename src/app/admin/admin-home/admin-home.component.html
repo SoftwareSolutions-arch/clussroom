@@ -135,8 +135,8 @@
         </div>
         <div class="modal-body mt-5 admin-inputs">
           <div class="col-lg-12 display-center">
-            <div class="col-lg-8" style="padding: 0 44px;">
-            <input [(ngModel)]="adminDetails.email" type="text" placeholder="Email">
+            <div class="col-lg-8">
+              <input [(ngModel)]="adminDetails.email" type="text" placeholder="Email">
             </div>
             <div class="col-md-3">
               <select [(ngModel)]="adminDetails.admintype">
@@ -155,7 +155,7 @@
       </div>
     </div>
   </div>
-  <!-- Add comment modal pop up end -->
+  <!-- Add comment modal popup end -->
   <!-- Edit comment modal popup start -->
   <div id="Editcomment" class="modal deletetest-modal" role="dialog">
     <div class="modal-dialog" style="max-width:750px">
@@ -436,8 +436,22 @@
               <p>{{item.field_banding}}</p>
             </div>
             <div class="col-sm-1 display-center green-container" style="justify-content: center;">
-              <input (click)="editCheckBox($event,item)" type="checkbox" style="height: 18px; width: 18px;">
-              <span class="green-checkmark"></span>
+              <!-- <input [checked]="this.selectedItems.course_name.course_id === item.nid " (click)="editCheckBox($event,item)" type="checkbox" style="height: 18px; width: 18px;"> -->
+              <ng-container *ngFor=" let data of selectedItems.course_name">
+                <div *ngIf="data.course_id === item.nid; then content else other_content"></div>
+                <ng-template #content>
+                  <ng-container>
+                    <input [checked]="true"  type="checkbox" style="height: 18px; width: 18px;">
+                    <span class="green-checkmark"></span>
+                  </ng-container>
+                </ng-template>
+                <ng-template #other_content>
+                  <ng-container >
+                    <input  (click)="editCheckBox($event,item)" type="checkbox" style="height: 18px; width: 18px;">
+                    <span class="green-checkmark"></span>
+                  </ng-container>
+                </ng-template>
+           </ng-container>
             </div>
           </div>
 
@@ -465,8 +479,8 @@
                   <p>Add / remove learners</p>
                 </div>
                 <div class="col-sm-1 display-center green-container" style="justify-content: center;">
-                  <input [checked]="this.selectedItems.permissions_data[0].add_learners==='1'"
-                    [(ngModel)]="this.allCHeckboxValue.add_learners" type="checkbox" style="height: 18px; width: 18px;">
+                  <input  [checked]="this.selectedItems.permissions_data[0].add_learners==='1'"
+                  (click)="addLernerData($event.target.checked)" type="checkbox" style="height: 18px; width: 18px;">
                   <span class="green-checkmark"></span>
                 </div>
               </ng-container>
@@ -480,8 +494,11 @@
                 </div>
                 <div class="col-sm-1 display-center green-container" style="justify-content: center;">
                   <input [checked]="this.selectedItems.permissions_data[0].main_library==='1'"
-                    [(ngModel)]="this.allCHeckboxValue.main_library" type="checkbox" style="height: 18px; width: 18px;">
-                  <span class="green-checkmark"></span>
+                  (click)="addLibraryData($event.target.checked)"type="checkbox" style="height: 18px; width: 18px;">
+                  <span class="green-checkmark"  >   </span>
+                  <!-- <span class="green-checkmark"  *ngIf="selectedItems?.permissions_data[0]?.main_library == '0'">   </span> -->
+
+
                 </div>
               </ng-container>
             </div>
@@ -493,8 +510,8 @@
                   <p>Course library upload/edit</p>
                 </div>
                 <div class="col-sm-1 display-center green-container" style="justify-content: center;">
-                  <input [checked]="this.selectedItems.permissions_data[0].course_library==='1'"
-                    [(ngModel)]="this.allCHeckboxValue.course_library" type="checkbox"
+                  <input [checked]="this.selectedItems.permissions_data[0].course_library=='1'"
+                  (click)="setDisplayValue($event.target.checked)"  type="checkbox"
                     style="height: 18px; width: 18px;">
                   <span class="green-checkmark"></span>
                 </div>
@@ -510,7 +527,7 @@
                 </div>
                 <div class="col-sm-1 display-center green-container" style="justify-content: center;">
                   <input [checked]="this.selectedItems.permissions_data[0].class_creation==='1'"
-                    [(ngModel)]="this.allCHeckboxValue.class_creation" type="checkbox"
+                  (click)="classCreationData($event.target.checked)"  type="checkbox"
                     style="height: 18px; width: 18px;">
                   <span class="green-checkmark"></span>
                 </div>
@@ -526,7 +543,7 @@
                 </div>
                 <div class="col-sm-1 display-center green-container" style="justify-content: center;">
                   <input [checked]="this.selectedItems.permissions_data[0].class_delation==='1'"
-                    [(ngModel)]="this.allCHeckboxValue.class_delation" type="checkbox"
+                  (click)="classDeletionData($event.target.checked)" type="checkbox"
                     style="height: 18px; width: 18px;">
                   <span class="green-checkmark"></span>
                 </div>
@@ -542,7 +559,7 @@
                 </div>
                 <div class="col-sm-1 display-center green-container" style="justify-content: center;">
                   <input [checked]="this.selectedItems.permissions_data[0].course_creation==='1'"
-                    [(ngModel)]="this.allCHeckboxValue.course_creation" type="checkbox"
+                  (click)="courseCreationData($event.target.checked)" type="checkbox"
                     style="height: 18px; width: 18px;">
                   <span class="green-checkmark"></span>
                 </div>
@@ -558,12 +575,13 @@
                 </div>
                 <div class="col-sm-1 display-center green-container" style="justify-content: center;">
                   <input [checked]="this.selectedItems.permissions_data[0].live_sessions==='1'"
-                    [(ngModel)]="this.allCHeckboxValue.live_sessions" type="checkbox"
+                  (click)="liveSessionData($event.target.checked)"  type="checkbox"
                     style="height: 18px; width: 18px;">
                   <span class="green-checkmark"></span>
                 </div>
               </ng-container>
             </div>
+
           </div>
           <div class="class-deltest-btn display-center mt-4 mb-3" style="justify-content: center;">
             <button (click)="confirmEdit()" type="button" class="confirm-submit-orange">Confirm edit</button>

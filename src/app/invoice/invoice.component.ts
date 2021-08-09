@@ -12,6 +12,7 @@ import { UtilService } from '../../providers/util.service'
   styleUrls: ['./invoice.component.css']
 })
 export class InvoiceComponent implements OnInit {
+  backButton: boolean = true;
   nidKey: any = '';
   allCountryList: any = '';
   allStateList: any = '';
@@ -149,8 +150,14 @@ export class InvoiceComponent implements OnInit {
             // Validators.pattern('^[a-zA-Z, ]*$')
           ])
         ),
-        email: new FormControl("", Validators.compose([Validators.required, this.equalto('cmail'), Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'),])),
-        cmail: new FormControl("", Validators.compose([Validators.required, this.equalto('email'), Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'),])),
+        email: new FormControl("", Validators.compose([
+          Validators.required,
+          this.equalto('cmail'),
+          Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'),])),
+        cmail: new FormControl("", Validators.compose([
+          Validators.required,
+          this.equalto('email'),
+          Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'),])),
       }
     );
 
@@ -216,12 +223,15 @@ export class InvoiceComponent implements OnInit {
 
   // enable or disable form
   add() {
-    var str = JSON.stringify(this.invoiceForm.value.firstName)
-    
-    this.myValue = false;
-    this.paymentForm.enable();
-    this.invoiceForm.disable();
-    this.enablePaymemtForm = false;
+    if (this.invoiceForm.value.email == '' || this.invoiceForm.value.cmail == '') {
+      console.log('this.invoiceForm.value', this.invoiceForm.value);
+    }
+    else {
+      this.myValue = false;
+      this.paymentForm.enable();
+      this.invoiceForm.disable();
+      this.enablePaymemtForm = false;
+    }
   }
 
   // enable previous page
@@ -246,7 +256,7 @@ export class InvoiceComponent implements OnInit {
 
   // submit all invoice details
   submit() {
-    
+    this.backButton = false;
     if (this.invoiceForm.value.firstName == '' && this.paymentForm.value.cardNumber == '') {
       this.util.errorAlertPopup('Please insert all required values before proceed');
       return;
@@ -270,7 +280,7 @@ export class InvoiceComponent implements OnInit {
     }
 
     this.service.post('vendor-registration', data, 0).subscribe(result => {
-
+      this.backButton = true;
       if (result['status_message'] == 'User Created Successfully') {
         localStorage.setItem('userMail', result['email']);
         localStorage.setItem('firstName', result['fname']);

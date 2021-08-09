@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { SharedServiceService } from '../../shared-service.service';
 import { UtilService } from '../../../providers/util.service';
 import { ToastrService } from 'ngx-toastr';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-home',
@@ -44,7 +45,17 @@ export class AdminHomeComponent implements OnInit {
   page = 1;
   count = 0;
   pageSize = 10;
-  
+  newItem: any;
+  prevId: any = [];
+  adminId: any;
+  courseUpload: any;
+  classCreationUpload: any;
+  classDeletionUpload: any;
+  courseCreationUpload: any;
+  livesessiondata: any;
+  addLearnerData: any;
+  addLibData: any;
+
   constructor(public service: SharedServiceService, public util: UtilService, private router: Router, private toastr: ToastrService) {
     this.userId = localStorage.getItem("uid");
     this.allAdminList();
@@ -159,7 +170,14 @@ export class AdminHomeComponent implements OnInit {
 
   // checkbox value
   checkBox(event, item) {
+    this.adminId = item.id
     this.selectedItems = item;
+    this.selectedItems.course_name.forEach(element => {
+      var ids = element.course_id
+       this.prevId.push(ids)
+    });
+      // console.log(newItem)
+
     // if (event.target.checked == true) {
     //   this.selectedItems.push(item);
     // }
@@ -173,6 +191,7 @@ export class AdminHomeComponent implements OnInit {
   }
 
   editCheckBox(event, item) {
+    console.log('abcd',item)
     if (event.target.checked == true) {
       this.selectededitItems.push(item);
     }
@@ -184,7 +203,7 @@ export class AdminHomeComponent implements OnInit {
 
 
 
-  // remove vendor admin 
+  // remove vendor admin
   removeVendorAdmin() {
     this.isLoadingBool = true;
     let params = {
@@ -203,23 +222,53 @@ export class AdminHomeComponent implements OnInit {
   noRowSelected() {
     this.toastr.error("please select row");
   }
-
+  // permissionForm = new FormGroup({
+  //   addLearner: new FormControl('',),
+  //   libraryLearner: new FormControl('',),
+  //   courseLibraryLearner: new FormControl('',),
+  //   classCreation: new FormControl('',),
+  //   classDeletion : new FormControl('',),
+  //   courseCreation :new FormControl('',),
+  //   liveSession :new FormControl('',),
+  // })
+  setDisplayValue(value){
+   this.courseUpload = value
+  }
+  classCreationData(value){
+    this.classCreationUpload = value
+  }
+  classDeletionData(value){
+    this.classDeletionUpload = value
+  }
+  courseCreationData(value){
+    this.courseCreationUpload = value
+  }
+  liveSessionData(value){
+    this.livesessiondata = value
+  }
+  addLernerData(value){
+    this.addLearnerData = value
+  }
+addLibraryData(value){
+  this.addLibData = value
+}
   confirmEdit() {
     var array = [];
     this.selectededitItems.forEach(element => {
       array.push(element.nid)
     });
+
     let params = {
-      "add_learner": (this.allCHeckboxValue.add_learners == true) ? "1" : "0",
-      "main_library": (this.allCHeckboxValue.main_library == true) ? "1" : "0",
-      "course_library": (this.allCHeckboxValue.course_library == true) ? "1" : "0",
-      "live_session": (this.allCHeckboxValue.live_sessions == true) ? "1" : "0",
-      "course_creation": (this.allCHeckboxValue.course_creation == true) ? "1" : "0",
-      "class_creation": (this.allCHeckboxValue.class_creation == true) ? "1" : "0",
-      "class_delation": (this.allCHeckboxValue.class_delation == true) ? "1" : "0",
-      'course_id': array,
+      "add_learner": (this.addLearnerData == true) ? "1" : "0",
+      "main_library": (this.addLibData  == true) ? "1" : "0",
+      "course_library": (this.courseUpload  == true) ? "1" : "0",
+      "live_session": (this.livesessiondata  == true) ? "1" : "0",
+      "course_creation": (this.courseCreationUpload == true) ? "1" : "0",
+      "class_creation": (this.classCreationUpload  == true) ? "1" : "0",
+      "class_delation": (this.classDeletionUpload  == true) ? "1" : "0",
+      'course_id': array.concat(this.prevId),
       "email": this.selectedItems.email,
-      'id': this.userId,
+      'id': this.adminId,
       'p_id': this.selectedItems.permissions_data[0].p_id
     }
 

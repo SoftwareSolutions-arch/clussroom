@@ -57,7 +57,7 @@
             </ng-container>
           </div>
           <div class="country fieldset">
-            <label>Country</label>
+            <label>Country<span style="color: red; margin-left: 4px;">*</span></label>
             <select formControlName="country" name="category" id="categorycourse" (change)="getState()"
               style="padding: 0 11px;">
               <option *ngFor="let countryName of this.allCountryList" [ngValue]="countryName">
@@ -66,7 +66,7 @@
           </div>
           <div class="flex-curve">
             <div class="city fieldset col-md-6">
-              <label>State</label>
+              <label>State<span style="color: red; margin-left: 4px;">*</span></label>
               <select formControlName="state" name="category" id="categorycourse" (change)="getCity()"
                 style="padding: 0 11px;">
                 <option *ngFor="let stateName of this.allStateList" [ngValue]="stateName">{{stateName.state_name}}
@@ -74,7 +74,7 @@
               </select>
             </div>
             <div class="state fieldset col-md-6">
-              <label>City</label>
+              <label>City<span style="color: red; margin-left: 4px;">*</span></label>
               <select formControlName="city" name="category" id="categorycourse" style="padding: 0 11px;">
                 <option *ngFor="let cityName of this.allCityList" [ngValue]="cityName">{{cityName.city_name}}</option>
               </select>
@@ -106,7 +106,7 @@
             </div>
           </div>
           <div class="row" style="padding: 0 1.5em;">
-            <button class="btn" [disabled]="!invoiceForm.valid" (click)="add()">Next</button>
+            <button class="btn" (click)="add()">Next</button>
             <button class="btn back-btn" (click)="backToPreviousPage()">Back</button>
           </div>
         </form>
@@ -311,7 +311,7 @@
                 <div class="spinner-loader" *ngIf="isSpinnerShow">
                   <img style="width:100px" src="assets/spinner.gif">
                 </div>
-                <button class="btn -back-btn" (click)="back()">Back</button>
+                <button class="btn -back-btn" (click)="back()" *ngIf="backButton">Back</button>
               </div>
             </form>
           </div>

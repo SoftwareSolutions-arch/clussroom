@@ -158,6 +158,7 @@ export class ClassListComponent implements OnInit {
 
   // view classes
   viewAllCoursesList() {
+    this.selectedClass=''
     let params = {
       "course_id": this.selectedCategory.nid
     }
