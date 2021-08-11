@@ -135,22 +135,31 @@
         </div>
         <div class="modal-body mt-5 admin-inputs">
           <div class="col-lg-12 display-center">
-            <div class="col-lg-8">
-              <input [(ngModel)]="adminDetails.email" type="text" placeholder="Email">
-            </div>
-            <div class="col-md-3">
-              <select [(ngModel)]="adminDetails.admintype">
-                <option disabled>Admin type</option>
-                <option value="sub_admin_">Sub admin</option>
-                <option value="course_administrators">Course admin </option>
-              </select>
-            </div>
+            <form [formGroup]="loginForm">
+              <div class="col-lg-8">
+                <input formControlName="email" type="text" placeholder="Email">
+                <ng-container *ngFor="let error of error_messages.email">
+                  <div class="error-message" *ngIf="loginForm.get('email').hasError(error.type) &&
+                      (loginForm.get('email').dirty || loginForm.get('email').touched)">{{ error.message }}</div>
+                </ng-container>
+              </div>
+              <div class="col-md-3">
+                <select formControlName="adminType">
+                  <option disabled>Admin type</option>
+                  <option value="sub_admin_">Sub admin</option>
+                  <option value="course_administrators">Course admin </option>
+                </select>
+                <ng-container *ngFor="let error of error_messages.adminType">
+                  <div class="error-message" *ngIf="loginForm.get('adminType').hasError(error.type) &&
+                      (loginForm.get('adminType').dirty || loginForm.get('adminType').touched)">{{ error.message }}</div>
+                </ng-container>
+              </div>
+            </form>           
           </div>
         </div>
         <div class="class-deltest-btn display-center mt-4 mb-3" style="justify-content: center;">
-          <button [disabled]="adminDetails.email== '' || adminDetails.admintype==='' " (click)="addAdminStep1()"
-            type="button" class="confirm-submit" style="width: 100px;" data-toggle="modal"
-            data-target="#Editcomment">Next</button>
+          <button type="button" class="confirm-submit" style="width: 100px;" data-toggle="modal"
+            data-target="#Editcomment" [disabled]="loginForm.invalid">Next</button>
         </div>
       </div>
     </div>

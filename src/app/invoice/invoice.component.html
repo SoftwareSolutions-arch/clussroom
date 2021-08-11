@@ -59,7 +59,7 @@
           <div class="country fieldset">
             <label>Country<span style="color: red; margin-left: 4px;">*</span></label>
             <select formControlName="country" name="category" id="categorycourse" (change)="getState()"
-              style="padding: 0 11px;">
+              style="padding: 0 11px;" autocomplete="disabled">
               <option *ngFor="let countryName of this.allCountryList" [ngValue]="countryName">
                 {{countryName.country_name}}</option>
             </select>
@@ -68,14 +68,15 @@
             <div class="city fieldset col-md-6">
               <label>State<span style="color: red; margin-left: 4px;">*</span></label>
               <select formControlName="state" name="category" id="categorycourse" (change)="getCity()"
-                style="padding: 0 11px;">
+                style="padding: 0 11px;" autocomplete="disabled">
                 <option *ngFor="let stateName of this.allStateList" [ngValue]="stateName">{{stateName.state_name}}
                 </option>
               </select>
             </div>
             <div class="state fieldset col-md-6">
               <label>City<span style="color: red; margin-left: 4px;">*</span></label>
-              <select formControlName="city" name="category" id="categorycourse" style="padding: 0 11px;">
+              <select formControlName="city" name="category" id="categorycourse" style="padding: 0 11px;"
+                autocomplete="disabled">
                 <option *ngFor="let cityName of this.allCityList" [ngValue]="cityName">{{cityName.city_name}}</option>
               </select>
             </div>
@@ -102,11 +103,12 @@
               </ng-container>
               <div class="error-message"
                 *ngIf="invoiceForm.get('cmail').hasError('equalTo') && invoiceForm.get('cmail').dirty || invoiceForm.get('cmail').hasError('equalTo') && invoiceForm.get('cmail').touched">
-                Email mismatch</div>
+                Email mismatch
+              </div>
             </div>
           </div>
           <div class="row" style="padding: 0 1.5em;">
-            <button class="btn" (click)="add()">Next</button>
+            <button class="btn" (click)="add()" [disabled]="invoiceForm.invalid">Next</button>
             <button class="btn back-btn" (click)="backToPreviousPage()">Back</button>
           </div>
         </form>
@@ -167,13 +169,21 @@
               </div>
               <div class="cardnumber fieldset">
                 <label>Card number</label>
-                <input formControlName="cardNumber" type="number">
+                <input type="number" ng-model="number"
+                  onKeyPress="if(this.value.length==4) return false;" min="0" style="width:20%; margin-right: 5px;">
+                <input type="number" ng-model="number"
+                  onKeyPress="if(this.value.length==4) return false;" min="0" style="width:20%; margin-right: 5px;">
+                <input type="number" ng-model="number"
+                  onKeyPress="if(this.value.length==4) return false;" min="0" style="width:20%; margin-right: 5px;">
+                <input type="number" ng-model="number"
+                  onKeyPress="if(this.value.length==4) return false;" min="0" style="width:20%; margin-right: 5px;">
                 <!-- <div> -->
                 <ng-container *ngFor="let error of error_messages.cardNumber">
                   <div class="error-message"
                     *ngIf="paymentForm.get('cardNumber').hasError(error.type) &&
                                               (paymentForm.get('cardNumber').dirty || paymentForm.get('cardNumber').touched)">
-                    {{ error.message }}</div>
+                    {{ error.message }}
+                  </div>
                 </ng-container>
               </div>
               <div class="payment-flex-curve">
@@ -264,22 +274,22 @@
               </div>
               <div class="cardnumber fieldset">
                 <label>Card number</label>
-                <input type="number" ng-model="number" onKeyPress="if(this.value.length==4) return false;" min="0"
-                  style="width:20%; margin-right: 5px;">
-                <input type="number" ng-model="number" onKeyPress="if(this.value.length==4) return false;" min="0"
-                  style="width:20%; margin-right: 5px;">
-                <input type="number" ng-model="number" onKeyPress="if(this.value.length==4) return false;" min="0"
-                  style="width:20%; margin-right: 5px;">
-                <input type="number" ng-model="number" onKeyPress="if(this.value.length==4) return false;" min="0"
-                  style="width:20%; margin-right: 5px;">
+                <input formControlName="cardNumber" type="number" ng-model="number"
+                  onKeyPress="if(this.value.length==4) return false;" min="0" style="width:20%; margin-right: 5px;">
+                <input formControlName="cardNumber" type="number" ng-model="number"
+                  onKeyPress="if(this.value.length==4) return false;" min="0" style="width:20%; margin-right: 5px;">
+                <input formControlName="cardNumber" type="number" ng-model="number"
+                  onKeyPress="if(this.value.length==4) return false;" min="0" style="width:20%; margin-right: 5px;">
+                <input formControlName="cardNumber" type="number" ng-model="number"
+                  onKeyPress="if(this.value.length==4) return false;" min="0" style="width:20%; margin-right: 5px;">
                 <!-- <div> -->
-                <!-- <ng-container *ngFor="let error of error_messages.cardNumber">
+                <ng-container *ngFor="let error of error_messages.cardNumber">
                   <div class="error-message"
                     *ngIf="paymentForm.get('cardNumber').hasError(error.type) &&
                                               (paymentForm.get('cardNumber').dirty || paymentForm.get('cardNumber').touched)">
                     {{ error.message }}
                   </div>
-                </ng-container> -->
+                </ng-container>
               </div>
               <div class="payment-flex-curve">
                 <div class="expire-date fieldset">

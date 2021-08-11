@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { SharedServiceService } from '../../shared-service.service';
 import { UtilService } from '../../../providers/util.service';
 import { ToastrService } from 'ngx-toastr';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-admin-home',
@@ -55,11 +55,37 @@ export class AdminHomeComponent implements OnInit {
   livesessiondata: any;
   addLearnerData: any;
   addLibData: any;
-
-  constructor(public service: SharedServiceService, public util: UtilService, private router: Router, private toastr: ToastrService) {
+  error_messages:any='';
+  loginForm: FormGroup;
+  constructor(public service: SharedServiceService,public formBuilder: FormBuilder, public util: UtilService, private router: Router, private toastr: ToastrService) {
     this.userId = localStorage.getItem("uid");
     this.allAdminList();
     this.getAllCoursesList();
+    this.setupLoginFormData();
+
+  }
+
+  setupLoginFormData() {
+    this.error_messages = {
+      email: [
+        { type: "required", message: '*Required' },
+        { type: "pattern", message: '*Please enter valid email' }
+      ],
+      adminType: [
+        { type: "required", message: '*Required' }
+      ],
+    };
+    this.loginForm = this.formBuilder.group(
+      {
+        email: new FormControl("", Validators.compose([Validators.required, Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'),])),
+        adminType: new FormControl(
+          "",
+          Validators.compose([
+            Validators.required,
+          ])
+        ),
+      }
+    );
   }
 
   ngOnInit(): void {
@@ -71,9 +97,9 @@ export class AdminHomeComponent implements OnInit {
     let params = {
       "vendor_id": this.userId
     }
-    
+
     this.service.post('vendor-admin-listing-api', params, 1).subscribe(result => {
-      
+
       this.adminList = result;
       this.isLoadingBool = false;
     })
@@ -93,7 +119,7 @@ export class AdminHomeComponent implements OnInit {
   }
 
   isCheckboxClicked(event, item) {
-    
+
     this.selectedItems = '';
     if (event.target.checked == true) {
       this.arrayItem.push(item);
@@ -137,13 +163,12 @@ export class AdminHomeComponent implements OnInit {
   confirm() {
     var data = [];
     this.arrayItem.forEach(element => {
-      
       data.push(element.nid);
     });
     let params = {
       "vendor_id": this.userId,
-      "email": this.adminDetails.email,
-      "admin_type": this.adminDetails.admintype,
+      "email": this.loginForm.value.email,
+      "admin_type": this.loginForm.value.adminType,
       "course_id": data,
       "add_learner": (this.add_learner == true) ? "1" : "0",
       "main_library": (this.main_library == true) ? "1" : "0",
@@ -154,19 +179,19 @@ export class AdminHomeComponent implements OnInit {
       "class_delation": (this.class_deletion == true) ? "1" : "0"
 
     }
-    
+
     this.isLoadingBool = true;
     this.service.post('Add-vendor-admin-api', params, 1).subscribe(result => {
-      
+
       this.allAdminList();
       this.isLoadingBool = false;
     })
   }
 
-    // handling page events
-    handlePageChange(event): void {
-      this.page = event;
-    }
+  // handling page events
+  handlePageChange(event): void {
+    this.page = event;
+  }
 
   // checkbox value
   checkBox(event, item) {
@@ -174,9 +199,9 @@ export class AdminHomeComponent implements OnInit {
     this.selectedItems = item;
     this.selectedItems.course_name.forEach(element => {
       var ids = element.course_id
-       this.prevId.push(ids)
+      this.prevId.push(ids)
     });
-      // 
+    // 
 
     // if (event.target.checked == true) {
     //   this.selectedItems.push(item);
@@ -187,11 +212,11 @@ export class AdminHomeComponent implements OnInit {
     //   if (this.selectedItems.length == 0) {
     //   }
     // }
-    
+
   }
 
   editCheckBox(event, item) {
-    
+
     if (event.target.checked == true) {
       this.selectededitItems.push(item);
     }
@@ -210,9 +235,9 @@ export class AdminHomeComponent implements OnInit {
       "id": this.selectedItems.id,
       "p_id": this.selectedItems.permissions_data[0].p_id,
     }
-    
+
     this.service.post('Remove-vendor-admin-api', params, 1).subscribe(result => {
-      
+
       this.removeadmin.nativeElement.click();
       this.allAdminList();
       this.isLoadingBool = false;
@@ -231,27 +256,27 @@ export class AdminHomeComponent implements OnInit {
   //   courseCreation :new FormControl('',),
   //   liveSession :new FormControl('',),
   // })
-  setDisplayValue(value){
-   this.courseUpload = value
+  setDisplayValue(value) {
+    this.courseUpload = value
   }
-  classCreationData(value){
+  classCreationData(value) {
     this.classCreationUpload = value
   }
-  classDeletionData(value){
+  classDeletionData(value) {
     this.classDeletionUpload = value
   }
-  courseCreationData(value){
+  courseCreationData(value) {
     this.courseCreationUpload = value
   }
-  liveSessionData(value){
+  liveSessionData(value) {
     this.livesessiondata = value
   }
-  addLernerData(value){
+  addLernerData(value) {
     this.addLearnerData = value
   }
-addLibraryData(value){
-  this.addLibData = value
-}
+  addLibraryData(value) {
+    this.addLibData = value
+  }
   confirmEdit() {
     var array = [];
     this.selectededitItems.forEach(element => {
@@ -260,22 +285,22 @@ addLibraryData(value){
 
     let params = {
       "add_learner": (this.addLearnerData == true) ? "1" : "0",
-      "main_library": (this.addLibData  == true) ? "1" : "0",
-      "course_library": (this.courseUpload  == true) ? "1" : "0",
-      "live_session": (this.livesessiondata  == true) ? "1" : "0",
+      "main_library": (this.addLibData == true) ? "1" : "0",
+      "course_library": (this.courseUpload == true) ? "1" : "0",
+      "live_session": (this.livesessiondata == true) ? "1" : "0",
       "course_creation": (this.courseCreationUpload == true) ? "1" : "0",
-      "class_creation": (this.classCreationUpload  == true) ? "1" : "0",
-      "class_delation": (this.classDeletionUpload  == true) ? "1" : "0",
+      "class_creation": (this.classCreationUpload == true) ? "1" : "0",
+      "class_delation": (this.classDeletionUpload == true) ? "1" : "0",
       'course_id': array.concat(this.prevId),
       "email": this.selectedItems.email,
       'id': this.adminId,
       'p_id': this.selectedItems.permissions_data[0].p_id
     }
 
-    
+
     this.isLoadingBool = true;
     this.service.post('edit-vendor-admin-api', params, 1).subscribe(result => {
-      
+
       this.util.showSuccessToast('Updated successfully')
       this.closeEdit.nativeElement.click();
       this.allAdminList();

@@ -45,10 +45,6 @@ export class InvoiceComponent implements OnInit {
 
   setupFormData() {
     this.error_messages = {
-      // companyName: [
-      //   { type: "required", message: '*Company name is required' },
-      //   { type: "pattern", message: '*Please enter character only' }
-      // ],
       firstName: [
         { type: "required", message: '*Required' },
         { type: "pattern", message: '*Please enter character only' }
@@ -57,17 +53,10 @@ export class InvoiceComponent implements OnInit {
         { type: "required", message: '*Required' },
         { type: "pattern", message: '*Please enter character only' }
       ],
-      // address: [
-      //   { type: "required", message: '*Address is required' }
-      // ],
       city: [
         { type: "required", message: '*Required' },
         { type: "pattern", message: '*Please enter character only' }
       ],
-      // state: [
-      //   { type: "required", message: '*State is required' },
-      //   { type: "pattern", message: '*Please enter character only' }
-      // ],
       country: [
         { type: "required", message: '*Required' },
         { type: "pattern", message: '*Please enter character only' }
@@ -89,10 +78,6 @@ export class InvoiceComponent implements OnInit {
       ],
       cardNumber: [
         { type: "required", message: '*Required' },
-        { type: "max", message: '*Maximum length should be 16 digits only' },
-        { type: "min", message: '*Minimum length should be 16 digits only' },
-        { type: "pattern", message: '*Please Enter number only' }
-
       ],
       expiryDate: [
         { type: "required", message: '*Required' },
@@ -105,7 +90,6 @@ export class InvoiceComponent implements OnInit {
         companyName: new FormControl(
           "",
           Validators.compose([
-            // Validators.required,
             Validators.pattern('^[a-zA-Z, ]*$')
           ])
         ),
@@ -126,7 +110,6 @@ export class InvoiceComponent implements OnInit {
         address: new FormControl(
           "",
           Validators.compose([
-            // Validators.required
           ])
         ),
         city: new FormControl(
@@ -179,7 +162,7 @@ export class InvoiceComponent implements OnInit {
         cardNumber: new FormControl(
           "",
           Validators.compose([
-            // Validators.required,
+            Validators.required,
             // Validators.min(1000000000000000),
             // Validators.max(9999999999999999),
             // Validators.pattern('^[0-9, ]*$')
@@ -223,8 +206,9 @@ export class InvoiceComponent implements OnInit {
 
   // enable or disable form
   add() {
-    if (this.invoiceForm.value.email == '' || this.invoiceForm.value.cmail == '') {
-      
+    console.log(this.invoiceForm.value);
+    if (this.invoiceForm.invalid) {
+      return;
     }
     else {
       this.myValue = false;
