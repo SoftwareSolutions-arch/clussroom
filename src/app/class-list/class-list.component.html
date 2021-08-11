@@ -79,7 +79,7 @@
         <div class="col-sm-2 org-btn mt-5" *ngIf="selectedClass=='' ">
           Class code:&nbsp;&nbsp;&nbsp;<span>#0000</span>
         </div>
-        <div class="col-sm-2 org-btn mt-5" *ngIf="selectedClass!=0">
+        <div class="col-sm-2 org-btn mt-5" *ngIf="selectedClass!=0" style="font-family: 'Barlow';">
           Class code:&nbsp;&nbsp;&nbsp;<span>#{{selectedClass.field_class_code}}</span>
         </div>
         <div class="col-sm-2 mt-5 text-right"
@@ -145,7 +145,16 @@
                   <td class="text-left">{{classList.last_name}}</td>
                   <td>{{classList.email}}</td>
                   <td>{{classList.grades}}</td>
-                  <td class="danger-text">{{classList.learner_status}}</td>
+                  <td>{{classList.learner_status}}
+                    <div style="color: #81C8C1;font-weight: 500;" *ngIf="this.classList.learner_status=='Active' ">
+                      {{this.classList.learner_status}}</div>
+                    <div style="color: #FF5A64;font-weight: 500;" *ngIf="this.classList.learner_status=='Cancelled' ">
+                      {{this.classList.learner_status}}</div>
+                    <div style="color: #FFBB38;font-weight: 500;" *ngIf="this.classList.learner_status=='Pending' ">
+                      {{this.classList.learner_status}}</div>
+                    <div style="color: #FF5A64;font-weight: 500;" *ngIf="this.classList.learner_status=='Suspended' ">
+                      {{this.classList.learner_status}}</div>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -155,111 +164,9 @@
             <pagination-controls previousLabel="Prev" nextLabel="Next" responsive="true"
               (pageChange)="handlePageChange($event)"></pagination-controls>
           </div>
-          <!-- <div class="table-result-wrapper bottom-select row">
-            <select name="course" id="course-name">
-              <option selected>10</option>
-              <option value="Course 1">1</option>
-              <option value="Course 2">2</option>
-              <option value="Course 3">3</option>
-            </select>
-          </div> -->
+         
         </div>
-        <div id="instructions" class="tab-pane">
-          <div class="table=-responsive">
-            <table class="table dashboard-table">
-              <thead>
-                <tr>
-                  <th scope="col"></th>
-                  <th scope="col">No.</th>
-                  <th scope="col" class="text-left">Course name</th>
-                  <th scope="col">Code</th>
-                  <th scope="col" class="table-filter">Cateory/Dept</th>
-                  <th scope="col" class="table-filter">Level</th>
-                  <th scope="col" class="table-filter">Banding</th>
-                  <th scope="col" class="table-filter">No. of classes</th>
-                  <th scope="col" class="table-filter">No. of learners</th>
-                  <th scope="col" class="table-filter">Admin</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th>
-                    <div class="radio-table"><input type="checkbox"></div>
-                  </th>
-                  <td>1</td>
-                  <td class="text-left">Biology for Primary 1</td>
-                  <td>A3K</td>
-                  <td>Math</td>
-                  <td>Professional medical</td>
-                  <td>1</td>
-                  <td>12</td>
-                  <td>189</td>
-                  <td>Aeriel Connelly</td>
-                </tr>
-                <tr>
-                  <th>
-                    <div class="radio-table"><input type="checkbox"></div>
-                  </th>
-                  <td>2</td>
-                  <td class="text-left">Geography for Primary 2</td>
-                  <td>4CE</td>
-                  <td>Science</td>
-                  <td>Secondary</td>
-                  <td>2</td>
-                  <td>8</td>
-                  <td>874</td>
-                  <td>Darren Leow</td>
-                </tr>
-                <tr>
-                  <th>
-                    <div class="radio-table"><input type="checkbox"></div>
-                  </th>
-                  <td>3</td>qQ
-                  <td class="text-left">Bull in share market</td>
-                  <td>3AC</td>
-                  <td>Social studies</td>
-                  <td>Primary</td>
-                  <td>3</td>
-                  <td>4</td>
-                  <td>234</td>
-                  <td>Finelly Abrodobe</td>
-                </tr>
-                <tr>
-                  <th>
-                    <div class="radio-table"><input type="checkbox"></div>
-                  </th>
-                  <td>4</td>
-                  <td class="text-left">Balance Sheet making</td>
-                  <td>R6T</td>
-                  <td>Psychology</td>
-                  <td>University</td>
-                  <td>4</td>
-                  <td>11</td>
-                  <td>431</td>
-                  <td>Prena Abdullah</td>
-                </tr>
-                <tr>
-                  <th>
-                    <div class="radio-table"><input type="checkbox"></div>
-                  </th>
-                  <td>5</td>
-                  <td class="text-left">Cash flow </td>
-                  <td>2UY</td>
-                  <td>Accounting</td>
-                  <td>Primary</td>
-                  <td>2</td>
-                  <td>7</td>
-                  <td>501</td>
-                  <td>Nisha Fasa</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <!-- <div class="table-result-wrapper">
-            <pagination-controls previousLabel="Prev" nextLabel="Next" responsive="true"
-              (pageChange)="handlePageChange($event)"></pagination-controls>
-          </div> -->
-        </div>
+
       </div>
     </div>
 
@@ -336,7 +243,7 @@
                 <h3>{{this.selectedCourseList.first_name}} {{this.selectedCourseList.last_name}}</h3>
               </div>
               <div class="modal-mid-section mt-5">
-                <h3>Cancel class Invite?</h3>
+                <h3>Cancel class invite?</h3>
               </div>
               <div class="center-btn-orange mt-3" (click)="cancelInviteConfirm()">
                 <button><a>Yes</a></button>

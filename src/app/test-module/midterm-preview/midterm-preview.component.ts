@@ -36,7 +36,7 @@ export class MidtermPreviewComponent implements OnInit {
   }
 
   nextPage() {
-    this.router.navigate(['/test/midterm-preview-2']);
+    // this.router.navigate(['/test/midterm-preview-2']);
   }
 
   // get test listing data
@@ -60,7 +60,7 @@ export class MidtermPreviewComponent implements OnInit {
       "test_id": this.testId
     }
     this.service.post('questions-list-api', params, 1).subscribe(result => {
-
+      console.log('result',result);
       this.isLoadingBool = false;
       if (result.question_data.length > 0) {
         this.allData = result.question_data;

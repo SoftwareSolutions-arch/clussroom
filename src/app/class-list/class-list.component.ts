@@ -230,40 +230,58 @@ export class ClassListComponent implements OnInit {
   // add learner
   addLearner() {
     if (this.radioMail == 'byEmail') {
-      this.closeModal.nativeElement.click();
       let data = []
       this.addCourseForm.value.employees[0].sub_title.forEach(element => {
         data.push(element.sub_title)
       });
-      let params = {
-        "email": data,
-        "class_id": this.selectedClass.nid
+      console.log("data",this.addCourseForm.value.employees[0].sub_title[0].sub_title);
+
+      if(this.addCourseForm.value.employees[0].sub_title[0].sub_title!=''){
+        let params = {
+          "email": data,
+          "class_id": this.selectedClass.nid
+        }
+        this.service.post('add-learner-api', params, 1).subscribe(result => {
+          if (result['status'] == 1) {
+            this.closeModal.nativeElement.click();
+            this.util.showSuccessAlert(result.message);
+            this.getClassesListData();
+          }
+          else {
+            this.closeModal.nativeElement.click();
+            this.util.showSuccessAlert(result.message);
+          }
+        })
       }
-      this.service.post('add-learner-api', params, 1).subscribe(result => {
-        if (result['status'] == 1) {
-          this.util.showSuccessAlert(result['error_message']);
-          this.getClassesListData();
-        }
-        else {
-          this.util.showSuccessAlert(result['error_message']);
-        }
-      })
+
+      else{
+        this.util.showSuccessToast('Please enter email');
+      }
+
     }
     else {
-      let params = {
-        "csv_file": this.base64Files,
-        "class_id": this.selectedClass.nid
+      console.log('this.base64Files',this.base64Files);
+      if(this.base64Files == ''){
+        let params = {
+          "csv_file": this.base64Files,
+          "class_id": this.selectedClass.nid
+        }
+        this.service.post('add-learner-api', params, 1).subscribe(result => {
+          if (result['status'] == 1) {
+            this.closeModal.nativeElement.click();
+            this.util.showSuccessAlert(result.message);
+            this.getClassesListData();
+          }
+          else {
+            this.closeModal.nativeElement.click();
+            this.util.showSuccessAlert(result.message);
+          }
+        })
       }
-      this.service.post('add-learner-api', params, 1).subscribe(result => {
-        this.closeModal.nativeElement.click();
-        if (result['status'] == 1) {
-          this.util.showSuccessAlert(result['error_message']);
-          this.getClassesListData();
-        }
-        else {
-          this.util.showSuccessAlert(result['error_message']);
-        }
-      })
+      else{
+        this.util.showSuccessToast('Please attach file');
+      }
+    
     }
   }
 
@@ -455,7 +473,7 @@ export class ClassListComponent implements OnInit {
       if (result.status == 1) {
         this.isLoadingBool = false;
         this.getClassesListData();
-        this.util.showSuccessAlert(result.error_message);
+        this.util.showSuccessAlert("Learner cancelled successfully");
       }
     })
   }

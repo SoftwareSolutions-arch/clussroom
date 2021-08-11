@@ -85,17 +85,17 @@ export class InvoiceComponent implements OnInit {
         { type: "pattern", message: '*Please enter character only' }
       ],
       cvv: [
-        { type: "required", message: '*Cvv is Required' }
+        { type: "required", message: '*Required' }
       ],
       cardNumber: [
-        { type: "required", message: '*Card Number is Required' },
+        { type: "required", message: '*Required' },
         { type: "max", message: '*Maximum length should be 16 digits only' },
         { type: "min", message: '*Minimum length should be 16 digits only' },
         { type: "pattern", message: '*Please Enter number only' }
 
       ],
       expiryDate: [
-        { type: "required", message: '*Expirey Date is Required' },
+        { type: "required", message: '*Required' },
         { type: "pattern", message: '*Please Enter correct expiry date  only' }
       ],
 

@@ -7,6 +7,8 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
+import { DatePipe } from '@angular/common'
+
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
     timeGridPlugin,
@@ -22,6 +24,9 @@ FullCalendarModule.registerPlugins([
     ],
     declarations: [
     ],
+    providers:[
+        DatePipe
+    ]
 })
 export class TestModule {
 

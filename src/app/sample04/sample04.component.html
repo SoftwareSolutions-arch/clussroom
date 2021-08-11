@@ -197,8 +197,10 @@
                       {{this.courseList.field_access_material_from}}</td>
                     <td *ngIf="i !== this.indexesValue" class="text-center">{{this.courseList.field_access_material_to}}
                     </td>
-                    <td *ngIf="i !== this.indexesValue" class="text-center">{{this.courseList.field_banding}}</td>
-                    <!-- <td (click)="saveCourses(courseList)">Save</td> -->
+                    <td class="text-center">
+                      <button (click)="assignCourseToadmin(courseLists)" type="button" class="final-assign"
+                      data-toggle="modal" data-target="#add-admin">Assign</button>
+                    </td>
                   </tr>
                 </tbody>
               </table>

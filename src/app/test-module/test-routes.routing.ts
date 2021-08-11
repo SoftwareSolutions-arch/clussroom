@@ -12,7 +12,6 @@ import { TrueOrFalseComponent } from './true-or-false/true-or-false.component';
 import { MatchingComponent } from './matching/matching.component';
 import { ReorderScreenComponent } from './reorder-screen/reorder-screen.component';
 import { MidtermPreviewComponent } from './midterm-preview/midterm-preview.component';
-import { MidtermPreviewSecondComponent } from './midterm-preview-second/midterm-preview-second.component';
 import { EditPointsScreenComponent } from './edit-points-screen/edit-points-screen.component';
 import { CalendarComponent } from './calendar/calendar.component';
 
@@ -55,9 +54,6 @@ const routes: Routes = [
   },
   {
     path: 'midterm-preview-1', component: MidtermPreviewComponent
-  },
-  {
-    path: 'midterm-preview-2', component: MidtermPreviewSecondComponent
   },
   {
     path: 'edit-points', component: EditPointsScreenComponent

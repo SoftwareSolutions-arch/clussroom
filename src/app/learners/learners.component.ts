@@ -43,10 +43,10 @@ export class LearnersComponent implements OnInit {
     })
     this.addInitialForms();
     this.add_learner_permission = localStorage.getItem('add_learner_permission');
-    
+
   }
 
-  isCourseCreated(){
+  isCourseCreated() {
     this.util.showSuccessToast("You don't have permission");
   }
 
@@ -125,12 +125,12 @@ export class LearnersComponent implements OnInit {
   getAllClassesList() {
     this.isLoadingBool = true;
     this.service.post('view-all-learners-api', '', 1).subscribe(result => {
-      
-      if(result.message=="No Learner Found"){
+
+      if (result.message == "No Learner Found") {
         this.isLoadingBool = false;
       }
 
-      else{
+      else {
         this.isLoadingBool = false;
         this.allClassesList = result;
       }
@@ -154,7 +154,7 @@ export class LearnersComponent implements OnInit {
 
   // view classes
   viewAllCoursesList() {
-    
+
     let params = {
       "course_id": this.selectedCategory.nid
     }
@@ -185,43 +185,54 @@ export class LearnersComponent implements OnInit {
   // add learner
   addLearner() {
     if (this.radioMail == 'byEmail') {
-      this.closeModal.nativeElement.click();
       let data = []
       this.addCourseForm.value.employees[0].sub_title.forEach(element => {
         data.push(element.sub_title)
       });
-      let params = {
-        "email": data,
-        "class_id": this.selectedClass.nid
+      if (this.addCourseForm.value.employees[0].sub_title[0].sub_title != '') {
+        let params = {
+          "email": data,
+          "class_id": this.selectedClass.nid
+        }
+        this.service.post('add-learner-api', params, 1).subscribe(result => {
+          if (result['status'] == 1) {
+            this.closeModal.nativeElement.click();
+            this.util.showSuccessAlert(result.message);
+            this.getAllClassesList();
+          }
+          else {
+            this.util.showSuccessAlert(result.message);
+          }
+        })
       }
 
-      
-      this.service.post('add-learner-api', params, 1).subscribe(result => {
-        
-        if (result['status'] == 1) {
-          this.util.showSuccessAlert(result['error_message']);
-          this.getAllClassesList();
-        }
-        else {
-          this.util.showSuccessAlert(result['error_message']);
-        }
-      })
+      else {
+        this.util.showSuccessToast('Please enter email');
+      }
     }
     else {
-      let params = {
-        "csv_file": this.base64Files,
-        "class_id": this.selectedClass.nid
+      if (this.base64Files == '') {
+        let params = {
+          "csv_file": this.base64Files,
+          "class_id": this.selectedClass.nid
+        }
+        this.service.post('add-learner-api', params, 1).subscribe(result => {
+          this.closeModal.nativeElement.click();
+          if (result['status'] == 1) {
+            this.util.showSuccessAlert(result.message);
+            this.getAllClassesList();
+          }
+          else {
+            this.util.showSuccessAlert(result.message);
+          }
+        })
       }
-      this.service.post('add-learner-api', params, 1).subscribe(result => {
-        this.closeModal.nativeElement.click();
-        if (result['status'] == 1) {
-          this.util.showSuccessAlert(result['error_message']);
-          this.getAllClassesList();
-        }
-        else {
-          this.util.showSuccessAlert(result['error_message']);
-        }
-      })
+
+      else {
+        this.util.showSuccessToast('Please attach file');
+      }
+
+
     }
   }
 
@@ -310,7 +321,6 @@ export class LearnersComponent implements OnInit {
   }
 
   goToClasses(classList) {
-    // localStorage.setItem('classListId', classList.nid);
-    this.router.navigate(['/classes', { learnerId: classList.learner_id}]);
+    this.router.navigate(['/classes', { learnerId: classList.learner_id }]);
   }
 }

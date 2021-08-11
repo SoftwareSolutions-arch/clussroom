@@ -155,11 +155,11 @@
           </div>
           <div class="container" style="padding: 18px 0 0 0; display: flex; margin: 0 3px;">
             <button *ngIf="isEditQuestion && fillData.question!='' " [disabled]="!registerForm.valid" class="button a"
-              style="font-size: 10px;" (click)="saveQuestion()">Save
+              style="font-size: 10px;text-transform:none !important" (click)="saveQuestion()">Save
               question</button>
 
             <button *ngIf="isEditQuestion && fillData.question=='' " [disabled]="!registerForm.valid" class="button a"
-              style="font-size: 10px;" >Save
+              style="font-size: 10px;text-transform:none !important" >Save
               question</button>
 
             <button *ngIf="!isEditQuestion" class="button a"

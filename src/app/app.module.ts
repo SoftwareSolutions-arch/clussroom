@@ -61,7 +61,6 @@ import { TrueOrFalseComponent } from './test-module/true-or-false/true-or-false.
 import { ShortAnswerComponent } from './test-module/short-answer/short-answer.component';
 import { ReorderScreenComponent } from './test-module/reorder-screen/reorder-screen.component';
 import { MidtermPreviewComponent } from './test-module/midterm-preview/midterm-preview.component';
-import { MidtermPreviewSecondComponent } from './test-module/midterm-preview-second/midterm-preview-second.component';
 import { EditPointsScreenComponent } from './test-module/edit-points-screen/edit-points-screen.component';
 import { AppDashboardHeaderComponent } from './test-module/app-dashboard-header/app-dashboard-header.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -165,7 +164,6 @@ FullCalendarModule.registerPlugins([
     ShortAnswerComponent,
     ReorderScreenComponent,
     MidtermPreviewComponent,
-    MidtermPreviewSecondComponent,
     EditPointsScreenComponent,
     AppDashboardHeaderComponent,
     CalendarComponent,

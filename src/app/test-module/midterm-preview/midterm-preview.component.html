@@ -43,11 +43,11 @@
           <ng-container
             *ngFor="let data of this.allData| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;">
             <div [ngSwitch]="data.questiontype">
-              <!-- select and option list-->
+
               <div *ngSwitchCase="'multiple_choice_type_paper'">
                 <div *ngIf="!data.attachment">
                   <div class="custom-control custom-checkbox mb-3 question-label col-lg-12">
-                    <label class="question-checkbox col-lg-11 mt-3">Q {{i+1}}.&nbsp;&nbsp;
+                    <label class="question-checkbox col-lg-11 mt-3">Q {{data.serial_number}}.&nbsp;&nbsp;
                       <span style="color: black;" [innerHtml]="data.question"></span>
                       <span>(Multiple
                         Choice)</span>
@@ -78,7 +78,7 @@
                 </div>
                 <div *ngIf="data.attachment">
                   <div class="custom-control custom-checkbox mb-3 question-label col-lg-12" style="padding-top: 2em;">
-                    <label class="question-checkbox col-lg-11">Q {{i+1}}.&nbsp;&nbsp;Choose the correct image for
+                    <label class="question-checkbox col-lg-11">Q {{data.serial_number}}.&nbsp;&nbsp;Choose the correct image for
                       preposition
                       near. <span>(Multiple Choice)</span>
                       <input type="checkbox"> <span class="mark"></span>
@@ -107,7 +107,7 @@
 
               <div *ngSwitchCase="'true_false_type_paper'">
                 <div class="custom-control custom-checkbox mb-3 question-label col-lg-12" style="padding-top: 1em;">
-                  <label class="question-checkbox col-lg-11">Q {{i+1}}.&nbsp;&nbsp;
+                  <label class="question-checkbox col-lg-11">Q {{data.serial_number}}.&nbsp;&nbsp;
                     <span style="color: black;" [innerHtml]="data.question"></span>
                     <span>({{data.questiontypename}})</span>
                     <!-- <input type="checkbox" (click)="isCheckClicked(data)">
@@ -148,7 +148,7 @@
               <div *ngSwitchCase="'fill_in_the_blanks_type_paper'">
                 <div class="custom-control custom-checkbox mb-3 question-label col-lg-12"
                   style="padding-top: 1em; padding-bottom: 1em;">
-                  <label class="question-checkbox col-lg-11">Q {{i+1}}.&nbsp;&nbsp;
+                  <label class="question-checkbox col-lg-11">Q {{data.serial_number}}.&nbsp;&nbsp;
                     <span style="color: black;" [innerHtml]="data.question"></span>
                     <span>({{data.questiontypename}})</span>
                     <!-- <input type="checkbox" (click)="isCheckClicked(data)">
@@ -177,7 +177,7 @@
 
               <ng-container *ngSwitchCase="'short_ques_ans_type_paper'">
                 <div class="custom-control custom-checkbox mb-3 col-lg-12 question-label" style="padding-top: 1em;">
-                  <label class="question-checkbox col-lg-11">Q {{i+1}}.&nbsp;&nbsp;
+                  <label class="question-checkbox col-lg-11">Q {{data.serial_number}}.&nbsp;&nbsp;
                     <span style="color: black;" [innerHtml]="data.question"></span>
                     <span>(Short Answer)</span>
                     <!-- <input type="checkbox" (click)="isCheckClicked(data)"> <span class="mark"></span> -->
@@ -216,7 +216,7 @@
 
               <div *ngSwitchCase="'ordering_type_paper'">
                 <div class="custom-control custom-checkbox mb-3 question-label col-lg-12" style="padding-top: 2em;">
-                  <label class="question-checkbox col-lg-11">Q {{i+1}}.&nbsp;&nbsp;
+                  <label class="question-checkbox col-lg-11">Q {{data.serial_number}}.&nbsp;&nbsp;
                     <span style="color: black;" [innerHtml]="data.question"></span>
                     <span>(Ordering)</span>
                     <!-- <input type="checkbox" (click)="isCheckClicked(data)"> <span class="mark"></span> -->

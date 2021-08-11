@@ -85,7 +85,7 @@ export class Edit_assignmentComponent implements OnInit {
       this.addAssignmentForm.patchValue({
         "assignment_name": this.updateNewData.assignment_name,
         "instruction": this.updateNewData.assignment_instruction,
-        "available_date": this.updateNewData.start_date,
+        "available_date": new Date (this.updateNewData.start_date),
         "available_time": this.updateNewData.start_time,
         "available_dateTo": this.updateNewData.end_date,
         available_timeTo: this.updateNewData.end_time,
