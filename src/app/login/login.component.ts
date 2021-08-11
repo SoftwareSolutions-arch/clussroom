@@ -106,7 +106,7 @@ export class LoginComponent implements OnInit {
 
       }
       this.service.post('user/login', data, 0).subscribe(result => {
-        console.log('result',result);
+        
         try {
           if (result['status'] == 200) {
             this.getInstructionName();
@@ -144,7 +144,7 @@ export class LoginComponent implements OnInit {
 
       }
       this.service.post('user/login', data, 0).subscribe(result => {
-        console.log('result',result);
+        
         try {
           if (result['status'] == 200) {
             this.getInstructionName2();

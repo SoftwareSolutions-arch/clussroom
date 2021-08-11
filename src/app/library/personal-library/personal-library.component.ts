@@ -301,7 +301,7 @@ export class PersonalLibraryComponent implements OnInit {
     this.service.post('download-libarary-data', params, 1).subscribe(result => {
       
       this.isLoadingBool = false;
-      window.open(result.pdf);
+      window.open(result.url);
     })
   }
 

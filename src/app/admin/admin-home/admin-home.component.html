@@ -200,7 +200,7 @@
               <input type="checkbox" style="height: 18px; width: 18px;">
             </div>
           </div>
-          <div class="col-lg-12 common-p display-center" style="padding:0;" *ngFor="let item of this.allCourseList| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index">
+          <div class="col-lg-12 common-p display-center" style="padding:0;" *ngFor="let item of this.allCourseList">
             <div class="col-md-6" style="background-color: #F5F5F5; padding: 12px 15px;">
               <p>{{item.title}}</p>
             </div>

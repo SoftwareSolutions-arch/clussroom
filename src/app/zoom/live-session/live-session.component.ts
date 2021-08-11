@@ -359,7 +359,7 @@ export class LiveSessionComponent implements OnInit {
   }
   setOrders() {
     this.cloneOrders = [...this.liveData];
-    console.log(this.cloneOrders)
+    
   }
   // end metting api
   endMetting() {

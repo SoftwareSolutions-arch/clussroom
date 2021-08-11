@@ -46,7 +46,7 @@ export class InstructionNameComponent implements OnInit {
     }
 
     this.service.post('vendor-first-login-api', data, 1).subscribe(result => {
-      console.log('result', result);
+      
       if (result.status == 1) {
         localStorage.setItem('instructionName', this.selectedItem.name);
         localStorage.setItem('isLogin', '1');

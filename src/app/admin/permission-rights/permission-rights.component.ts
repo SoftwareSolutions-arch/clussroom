@@ -60,7 +60,7 @@ export class PermissionRightsComponent implements OnInit {
       "vendor_id": this.userId
     }
     this.service.post('vendor-admin-listing-api', params, 1).subscribe(result => {
-      console.log('res', result);
+      
       this.isLoadingBool = false;
       this.adminList = result;
     })
@@ -80,7 +80,7 @@ export class PermissionRightsComponent implements OnInit {
   }
 
   isCheckboxClicked(event, item) {
-    console.log('item', item)
+    
     this.selectedItems = '';
     if (event.target.checked == true) {
       this.arrayItem.push(item);
@@ -140,10 +140,10 @@ export class PermissionRightsComponent implements OnInit {
       "class_delation": (this.class_deletion == true) ? "1" : "0"
 
     }
-    console.log('params', params);
+    
     this.isLoadingBool = true;
     this.service.post('Add-vendor-admin-api', params, 1).subscribe(result => {
-      console.log('result', result);
+      
       this.allAdminList();
       this.isLoadingBool = false;
     })
@@ -161,7 +161,7 @@ export class PermissionRightsComponent implements OnInit {
     //   if (this.selectedItems.length == 0) {
     //   }
     // }
-    console.log('this.selectedItems', this.selectedItems);
+    
 
   }
 
@@ -184,9 +184,9 @@ export class PermissionRightsComponent implements OnInit {
       "id": this.selectedItems.id,
       "p_id": this.selectedItems.permissions_data[0].p_id,
     }
-    console.log('params', params)
+    
     this.service.post('Remove-vendor-admin-api', params, 1).subscribe(result => {
-      console.log('res', result);
+      
       this.removeadmin.nativeElement.click();
       this.allAdminList();
       this.isLoadingBool = false;
@@ -217,7 +217,7 @@ export class PermissionRightsComponent implements OnInit {
     }
     this.isLoadingBool = true;
     this.service.post('edit-vendor-admin-api', params, 1).subscribe(result => {
-      console.log('result', result);
+      
       this.util.showSuccessToast('Update successfully')
       this.closeEdit.nativeElement.click();
       this.allAdminList();

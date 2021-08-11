@@ -46,7 +46,7 @@ export class AssignmentQuestionComponent implements OnInit {
   picked(event: any) {
     if (this.assignmentId) {
       if (this.ExteriorPicString.length + this.imagedata.length < 4) {
-        console.log(this.ExteriorPicString.length + this.imagedata.length)
+        
         if (event.target.files.length > 4) {
           alert('')
           this.util.errorAlertPopup('Can not select more than 4 images')
@@ -72,7 +72,7 @@ export class AssignmentQuestionComponent implements OnInit {
       }
     }else{
       // if (this.ExteriorPicString.length < 4) {
-      //   console.log(this.ExteriorPicString.length + this.imagedata.length)
+      //   
         if (this.ExteriorPicString.length < 4) {
           this.fileLists = FileList = event.target.files;
           // this.allImages.push(this.fileLists);

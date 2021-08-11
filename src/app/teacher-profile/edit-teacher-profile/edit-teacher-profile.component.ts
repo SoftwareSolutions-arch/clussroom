@@ -163,7 +163,7 @@ export class EditTeacherProfileComponent implements OnInit {
     })
   }
    timeZoneChanged(timeZone: string): void {
-    console.log(timeZone);
+    
     this.selectedTz = timeZone;
 
     this.updateTime(timeZone);

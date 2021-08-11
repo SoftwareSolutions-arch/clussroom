@@ -218,7 +218,7 @@ export class MultipleChoiceQuestionComponent implements OnInit {
   }
 
   isClicked(event, i) {
-    console.log('event',event)
+    
     if (event.target.checked) {
       this.index.push(i);
     }
@@ -229,8 +229,7 @@ export class MultipleChoiceQuestionComponent implements OnInit {
   }
 
   saveEditQuestion() {
-    
-    
+    console.log('hello')
     var image_description = this.old_image_Description.concat(this.new_image_Description)
     this.fillData.mcq_option_text = [];
     this.fillData.mcq_option_check = [];
@@ -272,13 +271,15 @@ export class MultipleChoiceQuestionComponent implements OnInit {
       'attachment': this.fillData.attachment,
       "image_description": image_description
     }
+
+    console.log('params',params);
     
 
-    // this.isLoadingBool = true;
-    // this.service.post('edit-question-api', params, 1).subscribe(result => {
-    //   this.util.showSuccessAlert(result.message);
-    //   this.isLoadingBool = false;
-    //   this.router.navigate(['/test/question-screen']);
-    // })
+    this.isLoadingBool = true;
+    this.service.post('edit-question-api', params, 1).subscribe(result => {
+      this.util.showSuccessAlert(result.message);
+      this.isLoadingBool = false;
+      this.router.navigate(['/test/question-screen']);
+    })
   }
 }

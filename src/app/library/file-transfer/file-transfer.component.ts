@@ -32,7 +32,7 @@ export class FileTransferComponent implements OnInit {
     this.array = [];
     this.isLoadingBool = true;
     if (event.previousContainer === event.container) {
-      console.log('evetn', event.container.data, event.previousIndex, event.currentIndex)
+      
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
       this.mainLibrary = event.container.data;
       this.mainLibrary.forEach(element => {
@@ -55,7 +55,7 @@ export class FileTransferComponent implements OnInit {
       })
     }
     else {
-      console.log('evetn2++', event)
+      
       transferArrayItem(event.previousContainer.data,
         event.container.data,
         event.previousIndex,

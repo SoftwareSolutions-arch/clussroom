@@ -1668,19 +1668,21 @@ table.dashboard-table td input {
   margin-right: 8px;
   cursor: pointer;
   font-size: 17px;
-  visibility: hidden;
-  margin: 0 -4px;
+  visibility: visible;
+  margin: 0 22px;
+  border-radius: 6px;
+  margin: -4px 22px 0 22px;
 }
 
 .custom-checkbox input[type=checkbox]:after {
   content: " ";
   background-color: #fff;
   display: inline-block;
-  margin-left: 10px;
+  margin-left: -1px;
   padding-bottom: 5px;
   color: #7990B4;
-  width: 35px;
-  height: 35px;
+  width: 37px;
+  height: 37px;
   visibility: visible;
   border: 1px solid #E7EDFF;
   padding-left: 3px;
@@ -1748,7 +1750,7 @@ table.dashboard-table td input {
   height: 35px;
   border-radius: 6px;
   border: 1px solid #e7edff;
-  margin-left: 1.4em;
+  margin-left: 1.8em;
   padding: 5px 5px;
 }
 
@@ -2864,3 +2866,13 @@ select {
   height: 100%;
   background-color: rgb(0 0 0 / 7%);
 }
+
+input:-moz-read-write, textarea:-moz-read-write {
+  -moz-user-modify: read-write !important;
+}
+
+.custom-setting-input input[type="time"]::-webkit-calendar-picker-indicator {
+
+  -webkit-appearance: inherit !important;
+}
+

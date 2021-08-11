@@ -133,7 +133,7 @@
                   [class.active]="i == currentIndex">
                   <th>
                     <div class="radio-table-latest"><input name="radio" (click)="isCheckBoxClicked(testListing,i)"
-                        type="radio"></div>
+                        type="radio" style="visibility: visible !important;"></div>
                   </th>
                   <td>{{testListing.s_no}}</td>
                   <td class="text-left">{{testListing.test_name}}</td>
@@ -175,6 +175,44 @@
 </div>
 
 
+<!-- Add From 1 Library popup start -->
+<div id="copy-to" class="modal addlibrary-modal" role="dialog" #copytest>
+  <div class="modal-dialog" style="max-width: 718px;">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 style="padding: 0 15em;">Add from library</h4>
+        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"
+            style="color: #396aff;"></i>
+        </button>
+      </div>
+      <div class="modal-body" style="padding: 56px 56px;">
+        <div class="addlibraryportion container col-lg-12 mt-4" style="border: none;">
+          <div data-toggle="modal" class="col-md-4 text-center add-field" (click)="copyTestToLibrary('main')">
+            <button type="button">
+              <img src="assets/images/test/folder.png">
+            </button>
+            <p>Main<br>library</p>
+          </div>
+          <div data-toggle="modal" class="col-md-4 text-center add-field" (click)="copyTestToLibrary('course')">
+            <button type="button">
+              <img src="assets/images/test/folder.png">
+            </button>
+            <p>Course<br>library</p>
+          </div>
+          <div data-toggle="modal" class="col-md-4 text-center add-field" (click)="copyTestToLibrary('personal')">
+            <button type="button">
+              <img src="assets/images/test/folder.png">
+            </button>
+            <p>Personal<br>library</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Add From 1 Library popup end -->
+
 
 <!-- Add From 1 Library popup start -->
 <div id="library-1" class="modal addlibrary-modal" role="dialog" #steponelibrary>
@@ -182,7 +220,7 @@
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-        <h4 style="padding: 0 15em;">Add from Library</h4>
+        <h4 style="padding: 0 15em;">Add from library</h4>
         <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"
             style="color: #396aff;"></i>
         </button>
@@ -364,7 +402,7 @@
             <button type="button"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</button>
           </li>
           <li style="margin-bottom: .7em;">
-            <button type="button" data-toggle="modal" data-target="#library-1">
+            <button type="button" data-toggle="modal" data-target="#copy-to">
               <i class="fa fa-files-o" aria-hidden="true"></i>Copy to</button>
           </li>
           <li>

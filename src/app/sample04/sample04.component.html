@@ -61,15 +61,16 @@
             <div class="prospectus-action">
               <!-- <a class="add-btn custom-a-btn" data-toggle="modal" data-target="#editCourse">
               <i class="fa fa-plus" aria-hidden="true"></i> edit course</a> -->
-              <ng-container (click)="newCourseCreated()" *ngIf="this.course_creation_permission==1 && !editForm && !isSaveCourses">
+              <ng-container (click)="newCourseCreated()"
+                *ngIf="this.course_creation_permission==1 && !editForm && !isSaveCourses">
                 <a (click)="newCourseCreated()" class="add-btn custom-a-btn" data-toggle="modal"
-                    data-target="#addCourse" style="position: relative; right: 3.3em;">
+                  data-target="#addCourse" style="position: relative; right: 3.3em;">
                   <i class="fa fa-plus" aria-hidden="true"></i> New {{instructionName | lowercase}}</a>
               </ng-container>
 
               <ng-container (click)="isCourseCreated()" *ngIf="this.course_creation_permission==0">
                 <a (click)="isCourseCreated()" *ngIf="!editForm && !isSaveCourses" class="add-btn custom-a-btn"
-                   style="position: relative; right: 3.3em;">
+                  style="position: relative; right: 3.3em;">
                   <i (click)="isCourseCreated()" class="fa fa-plus" aria-hidden="true"></i> New {{instructionName | lowercase}</a>
               </ng-container>
 
@@ -103,49 +104,50 @@
                     <th scope="col" class="text-left">No.</th>
                     <th scope="col"></th>
                     <th scope="col" class="text-left">{{this.instructionName}} Name</th>
-                    <th scope="col" class="text-center">{{this.instructionName }} code</th>
-                    <th scope="col" class="table-filter text-center">Category/Dept</th>
-                    <th scope="col" class="table-filter text-center">Level</th>
-                    <th scope="col" class="table-filter text-center">Banding</th>
-                    <th scope="col" class="table-filter text-center">No. of classes</th>
-                    <th scope="col" class="table-filter text-center">No. of learners</th>
-                    <th scope="col" class="table-filter">Admin</th>
+                  <th scope="col" class="text-center">{{this.instructionName }} code</th>
+                  <th scope="col" class="table-filter text-center">Category/Dept</th>
+                  <th scope="col" class="table-filter text-center">Level</th>
+                  <th scope="col" class="table-filter text-center">Banding</th>
+                  <th scope="col" class="table-filter text-center">No. of classes</th>
+                  <th scope="col" class="table-filter text-center">No. of learners</th>
+                  <th scope="col" class="table-filter">Admin</th>
                   </tr>
                   </thead>
                   <tbody>
-                  <tr
-                    *ngFor="let courseLists of this.allCourseList| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;"
-                    [class.active]="i == currentIndex">
-                    <th class="text-left" style="width: 1%; padding: 7px 8px 7px 8px;">
-                      <div class="radio-table">
-                        <input name="checkbox" (click)="isCheckClicked($event,courseLists,i)" type="radio">
-                      </div>
-                    </th>
-                    <td class="text-left" style="padding-left: 0 !important;">{{courseLists.sno}}</td>
-                    <td (click)="goToclassesPage(courseLists)" class="text-left" style="padding-left: 8px;">
-                      {{courseLists.title}}</td>
-                    <td class="text-center">{{courseLists.field_course_code}}</td>
-                    <td class="text-center">{{courseLists.field_category}}</td>
-                    <td class="text-center">{{courseLists.field_level}}</td>
-                    <td class="text-center">{{courseLists.field_banding}}</td>
-                    <td class="text-center">{{courseLists.classes}}</td>
-                    <td class="text-center">{{courseLists.total_learners}}</td>
-                    <td>
-                      <button type="button" class="final-assign">Assign</button>
-                    </td>
-                  </tr>
+                    <tr
+                      *ngFor="let courseLists of this.allCourseList| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;"
+                      [class.active]="i == currentIndex">
+                      <th class="text-left" style="width: 1%; padding: 7px 8px 7px 8px;">
+                        <div class="radio-table">
+                          <input name="checkbox" (click)="isCheckClicked($event,courseLists,i)" type="radio">
+                        </div>
+                      </th>
+                      <td class="text-left" style="padding-left: 0 !important;">{{courseLists.sno}}</td>
+                      <td (click)="goToclassesPage(courseLists)" class="text-left" style="padding-left: 8px;">
+                        {{courseLists.title}}</td>
+                      <td class="text-center">{{courseLists.field_course_code}}</td>
+                      <td class="text-center">{{courseLists.field_category}}</td>
+                      <td class="text-center">{{courseLists.field_level}}</td>
+                      <td class="text-center">{{courseLists.field_banding}}</td>
+                      <td class="text-center">{{courseLists.classes}}</td>
+                      <td class="text-center">{{courseLists.total_learners}}</td>
+                      <td>
+                        <button (click)="assignCourseToadmin(courseLists)" type="button" class="final-assign"
+                          data-toggle="modal" data-target="#add-admin">Assign</button>
+                      </td>
+                    </tr>
                   </tbody>
-                </table>
-              </div>
-              <div class="table-result-wrapper">
-                <pagination-controls previousLabel="Prev" nextLabel="Next" responsive="true"
-                                     (pageChange)="handlePageChange($event)"></pagination-controls>
-              </div>
+                  </table>
             </div>
-            <div id="instructions" class="tab-pane">
-              <div class="table-responsive">
-                <table class="table dashboard-table">
-                  <thead>
+            <div class="table-result-wrapper">
+              <pagination-controls previousLabel="Prev" nextLabel="Next" responsive="true"
+                (pageChange)="handlePageChange($event)"></pagination-controls>
+            </div>
+          </div>
+          <div id="instructions" class="tab-pane">
+            <div class="table-responsive">
+              <table class="table dashboard-table">
+                <thead>
                   <tr>
                     <th scope="col" class="text-left">&nbsp;</th>
                     <th scope="col">&nbsp;</th>
@@ -155,7 +157,8 @@
                     <th scope="col" class="text-center">&nbsp;</th>
                     <th scope="col" class="text-center">&nbsp;</th>
                     <th scope="col" class="text-center">&nbsp;</th>
-                    <th scope="col" class="text-left" style="padding-left: 0 !important; width: 18%;">Materials access</th>
+                    <th scope="col" class="text-left" style="padding-left: 0 !important; width: 18%;">Materials access
+                    </th>
                     <th scope="col" class="text-center">&nbsp;</th>
                     <th scope="col" class="text-center">&nbsp;</th>
                     <th scope="col" class="text-center">&nbsp;</th>
@@ -173,8 +176,8 @@
                     <th scope="col" class="table-filter text-center">After</th>
                     <th scope="col" class="table-filter text-center">Admin</th>
                   </tr>
-                  </thead>
-                  <tbody>
+                </thead>
+                <tbody>
                   <tr
                     *ngFor="let courseList of this.allCourseList| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index"
                     [class.active]="i == currentIndex">
@@ -190,455 +193,599 @@
                     <td *ngIf="i !== this.indexesValue" class="text-center">{{this.courseList.field_category}}</td>
                     <td *ngIf="i !== this.indexesValue" class="text-center">{{this.courseList.field_level}}</td>
                     <td *ngIf="i !== this.indexesValue" class="text-center">{{this.courseList.field_banding}}</td>
-                    <td *ngIf="i !== this.indexesValue" class="text-center">{{this.courseList.classes}}</td>
-                    <td *ngIf="i !== this.indexesValue" class="text-center">{{this.courseList.total_learners}}</td>
+                    <td *ngIf="i !== this.indexesValue" class="text-center">
+                      {{this.courseList.field_access_material_from}}</td>
+                    <td *ngIf="i !== this.indexesValue" class="text-center">{{this.courseList.field_access_material_to}}
+                    </td>
                     <td *ngIf="i !== this.indexesValue" class="text-center">{{this.courseList.field_banding}}</td>
                     <!-- <td (click)="saveCourses(courseList)">Save</td> -->
                   </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="table-result-wrapper">
-                <pagination-controls previousLabel="Prev" nextLabel="Next" autoHide="true" responsive="true"
-                                     (pageChange)="handlePageChange($event)"></pagination-controls>
-              </div>
+                </tbody>
+              </table>
+            </div>
+            <div class="table-result-wrapper">
+              <pagination-controls previousLabel="Prev" nextLabel="Next" autoHide="true" responsive="true"
+                (pageChange)="handlePageChange($event)"></pagination-controls>
             </div>
           </div>
         </div>
-        <!-- close courses table-->
-        <!-- Delete modal popup start -->
-        <div id="deleteCourse" class="modal deletecourse-modal" role="dialog" #deleteclosebutton>
-          <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-              <div class="modal-body">
-                <button type="button" class="close" data-dismiss="modal">
-                  <img src="assets/images/dashboard/close-modal.png">
-                </button>
-                <figure>
-                  <img src="assets/images/dashboard/delete-course.png">
-                </figure>
-                <h4 class="modal-title">Delete course</h4>
-                <br>
-                <p>Once deleted, all related files including information about past learners & class materials, course
-                  materials and learners’ grades will be removed.</p>
-                <br> <span>Continue?</span>
-                <br> <a (click)="deleteCourse()" class="del-btn-course">Delete course</a>
-              </div>
+      </div>
+      <!-- close courses table-->
+      <!-- Delete modal popup start -->
+      <div id="deleteCourse" class="modal deletecourse-modal" role="dialog" #deleteclosebutton>
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-body">
+              <button type="button" class="close" data-dismiss="modal">
+                <img src="assets/images/dashboard/close-modal.png">
+              </button>
+              <figure>
+                <img src="assets/images/dashboard/delete-course.png">
+              </figure>
+              <h4 class="modal-title">Delete course</h4>
+              <br>
+              <p>Once deleted, all related files including information about past learners & class materials, course
+                materials and learners’ grades will be removed.</p>
+              <br> <span>Continue?</span>
+              <br> <a (click)="deleteCourse()" class="del-btn-course">Delete course</a>
             </div>
           </div>
         </div>
-        <!-- Delete modal popup start -->
-        <!-- Add Course modal popup start -->
-        <div id="addCourse" class="modal addcourse-modal" role="dialog" #closeModal3>
-          <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-              <div class="modal-header">
-                <!-- <h4>Add new &lt;course&gt;</h4> -->
-                <h4>Add new {{instructionName | lowercase}}</h4>
-                <button type="button" class="close" data-dismiss="modal">
-                  <img src="assets/images/dashboard/close-course.png">
-                </button>
-              </div>
-              <div class="modal-body">
-                <form>
-                  <div class="addCourse-form">
-                    <div class="name-of-course fieldset">
-                      <label>Name of {{instructionName | lowercase}}*</label>
-                      <input id="name" name="name" class="form-control" required minlength="4" [(ngModel)]="courseName"
-                             #name="ngModel">
-                    </div>
-                    <!-- <div *ngIf="name.invalid && name.dirty || name.touched" class="alert alert-danger">
+      </div>
+      <!-- Delete modal popup start -->
+      <!-- Add Course modal popup start -->
+      <div id="addCourse" class="modal addcourse-modal" role="dialog" #closeModal3>
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <!-- <h4>Add new &lt;course&gt;</h4> -->
+              <h4>Add new {{instructionName | lowercase}}</h4>
+              <button type="button" class="close" data-dismiss="modal">
+                <img src="assets/images/dashboard/close-course.png">
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="addCourse-form">
+                  <div class="name-of-course fieldset">
+                    <label>Name of {{instructionName | lowercase}}*</label>
+                    <input id="name" name="name" class="form-control" required minlength="4" [(ngModel)]="courseName"
+                      #name="ngModel">
+                  </div>
+                  <!-- <div *ngIf="name.invalid && name.dirty || name.touched" class="alert alert-danger">
                       <div *ngIf="name.errors.required">
                         Name is required.
                       </div>
                     </div> -->
-                    <div class="category-course fieldset">
-                      <label>Category &nbsp;</label>
-                      <select [(ngModel)]="selectedCategory" name="category" id="categorycourse"
-                              (change)="getCategory()" style="padding: 0 11px;">
-                        <option *ngIf="this.allCategories.length>1" value="create_new">Create new</option>
-                        <option *ngFor="let categoriesList of this.allCategories" value="{{categoriesList.tid}}">
-                          {{categoriesList.name}}</option>
-                      </select>
-                    </div>
-                    <!-- if user select create new course -->
-                    <div class="new-category-course fieldset" *ngIf="isCourseAdded">
-                      <label>&nbsp;</label>
-                      <input [(ngModel)]="newCategory" type="text" name="course" placeholder="Name of category/dept">
-                    </div>
-                    <div class="level-course fieldset">
-                      <label>Level</label>
-                      <select [(ngModel)]="level" name="level" id="levelcourse" (change)="getLevel()"
-                              style="padding: 0 11px;">
-                        <option *ngIf="this.allLevel.length>1" value="create_new">Create new</option>
-                        <option *ngFor="let level of this.allLevel" value="{{level.tid}}">{{level.name}}</option>
-                      </select>
-                    </div>
-                    <!-- if user select create new level course -->
-                    <div class="new-level-course fieldset" *ngIf="isLevelAdded">
-                      <label>&nbsp;</label>
-                      <input [(ngModel)]="newLevel" type="text" name="level" placeholder="Name of level">
-                    </div>
-                    <div class="banding-course fieldset">
-                      <label>Banding</label>
-                      <select [(ngModel)]="banding" name="level" id="bandingcourse" (change)="getBanding()"
-                              style="padding: 0 11px;">
-                        <option *ngIf="this.allBanding.length>1" value="create_new">Create new</option>
-                        <option *ngFor="let banding of this.allBanding" value="{{banding.tid}}">{{banding.name}}
-                        </option>
-                      </select>
-                    </div>
-                    <!-- if user select create new banding course -->
-                    <div class="new-banding-course fieldset" *ngIf="isBandingAdded">
-                      <label>&nbsp;</label>
-                      <input [(ngModel)]="newBanding" type="text" name="banding" placeholder="Name of banding">
-                    </div>
+                  <div class="category-course fieldset">
+                    <label>Category &nbsp;</label>
+                    <select [(ngModel)]="selectedCategory" name="category" id="categorycourse" (change)="getCategory()"
+                      style="padding: 0 11px;">
+                      <option *ngIf="this.allCategories.length>1" value="create_new">Create new</option>
+                      <option *ngFor="let categoriesList of this.allCategories" value="{{categoriesList.tid}}">
+                        {{categoriesList.name}}</option>
+                    </select>
                   </div>
-                  <div class="modal-footer">
-                    <button class="next-btn-course" data-dismiss="modal">Back</button>
-                    <button *ngIf="courseName!='' " data-toggle="modal" data-target="#addCourse2"
-                            class="back-btn-course">Next</button>
-                    <button *ngIf="courseName==='' " [disabled]="courseName==='' " data-toggle="modal"
-                            data-target="#addCourse2" class="back-btn-course close">Next</button>
+                  <!-- if user select create new course -->
+                  <div class="new-category-course fieldset" *ngIf="isCourseAdded">
+                    <label>&nbsp;</label>
+                    <input [(ngModel)]="newCategory" type="text" name="course" placeholder="Name of category/dept">
                   </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Add Course modal popup start -->
-        <!--add course modal 2-->
-        <div id="addCourse2" class="modal editcourse-modal" role="dialog" #closeModal2>
-          <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-              <div class="modal-header">
-                <h4>{{courseName}}</h4>
-                <button type="button" class="close" data-dismiss="modal">
-                  <img src="assets/images/dashboard/close-course.png">
-                </button>
-              </div>
-              <div class="modal-body">
-                <form>
-                  <div class="editCourse-form-down">
-                    <div class="fieldset class-materials">
-                      <label>Class materials access available from</label>
-                      <div class="editcourse-field-wrapper">
-                        <div class="class-materials-radio">
-                          <input (change)="getRadio($event)" [(ngModel)]="class_start_date" type="radio"
-                                 name="start-date" value="Class start date">
-                          <label for="teacher">Class start date</label>
-                        </div>
-                        <div class="class-materials-radio">
-                          <input #checkboxes (change)="getRadio($event)" type="radio" name="start-date">
-                          <input *ngIf="this.isClickedRadio === 'on'; else elseSpan" [(ngModel)]="class_start_date"
-                                 [ngModelOptions]="{standalone: true}" type="date">
-                          <ng-template #elseSpan>
-                            <input disabled style="background: #dddddd;" [(ngModel)]="class_start_date"
-                                   [ngModelOptions]="{standalone: true}" type="date">
-                          </ng-template>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="fieldset class-materials-to">
-                      <label>Class materials access available to</label>
-                      <div class="editcourse-field-wrapper">
-                        <div class="class-materials-radio">
-                          <input (change)="getRadios($event)" [(ngModel)]="class_end_date" type="radio"
-                                 name="start-date-calender" value="Class end date">
-                          <label for="teacher">Class end date</label>
-                        </div>
-                        <div class="class-materials-radio">
-                          <input #checkboxes type="radio" (change)="getRadios($event)" name="start-date-calender">
-                          <input *ngIf="this.isClickedRadios === 'on'; else elseSpans" [(ngModel)]="class_end_date"
-                                 [ngModelOptions]="{standalone: true}" type="date">
-                          <ng-template #elseSpans>
-                            <input disabled style="background: #dddddd;" [(ngModel)]="class_end_date"
-                                   [ngModelOptions]="{standalone: true}" type="date">
-                          </ng-template>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="fieldset allow-messaging">
-                      <label>Allow messaging from learner to coach</label>
-                      <div class="editcourse-field-wrapper">
-                        <div class="allow-messaging-radio">
-                          <input [(ngModel)]="allow_msg_learner" [ngModelOptions]="{standalone: true}" type="radio"
-                                 name="available" value="1">
-                          <label for="Yes">Yes</label>
-                        </div>
-                        <div class="allow-messaging-radio">
-                          <input [(ngModel)]="allow_msg_learner" [ngModelOptions]="{standalone: true}" type="radio"
-                                 name="available" value="0">
-                          <label for="No">No</label>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="fieldset allow-messaging">
-                      <label>Allow messaging from coach to learner</label>
-                      <div class="editcourse-field-wrapper">
-                        <div class="allow-messaging-radio">
-                          <input [(ngModel)]="allow_msg_coach" [ngModelOptions]="{standalone: true}" type="radio"
-                                 name="unavailable" value="1">
-                          <label for="Yes">Yes</label>
-                        </div>
-                        <div class="allow-messaging-radio">
-                          <input [(ngModel)]="allow_msg_coach" [ngModelOptions]="{standalone: true}" type="radio"
-                                 name="unavailable" value="0">
-                          <label for="No">No</label>
-                        </div>
-                      </div>
-                    </div>
+                  <div class="level-course fieldset">
+                    <label>Level</label>
+                    <select [(ngModel)]="level" name="level" id="levelcourse" (change)="getLevel()"
+                      style="padding: 0 11px;">
+                      <option *ngIf="this.allLevel.length>1" value="create_new">Create new</option>
+                      <option *ngFor="let level of this.allLevel" value="{{level.tid}}">{{level.name}}</option>
+                    </select>
                   </div>
-                  <div class="modal-footer">
-                    <button class="cancel-btn-course" data-dismiss="modal">Back</button>
-                    <button class="edit-btn-course" data-toggle="modal" data-target="#addCourse3"
-                            [disabled]="this.class_start_date=='' || this.class_end_date=='' "
-                            (click)="nextPopup()">Next</button>
+                  <!-- if user select create new level course -->
+                  <div class="new-level-course fieldset" *ngIf="isLevelAdded">
+                    <label>&nbsp;</label>
+                    <input [(ngModel)]="newLevel" type="text" name="level" placeholder="Name of level">
                   </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- add course pop up 3-->
-        <div *ngIf="allTrue" id="addCourse3" class="modal editcourse-modal" role="dialog" #closeModal>
-          <div class="modal-dialog" style="min-width: 685px !important;">
-            <!-- Modal content-->
-            <div class="modal-content">
-              <div class="modal-header">
-                <h4>{{courseName}}</h4>
-                <button type="button" class="close" data-dismiss="modal">
-                  <img src="assets/images/dashboard/close-course.png">
-                </button>
-              </div>
-              <div class="modal-body">
-                <form>
-                  <div class="editCourse-form-top">
-                    <div class="name-of-course fieldset">
-                      <label>Name of course*</label>
-                      <input disabled style="background-color: #f3f6ff; border: 1px solid #f3f6ff;" type="text"
-                             name="course" value="{{courseName}}">
-                    </div>
-                    <div class="category-course fieldset">
-                      <label>Category*</label>
-                      <input *ngIf="this.newCategory!=''" disabled
-                             style="background-color: #f3f6ff; border: 1px solid #f3f6ff;" type="text" name="course"
-                             value="{{this.newCategory}}">
-                      <input *ngIf="this.newCategory==''" disabled
-                             style="background-color: #f3f6ff; border: 1px solid #f3f6ff;" type="text" name="course"
-                             value="{{this.patchCategorieName}}">
-                    </div>
-                    <div class="level-course fieldset">
-                      <label>Levels</label>
-                      <input *ngIf="this.newLevel!=''" disabled
-                             style="background-color: #f3f6ff; border: 1px solid #f3f6ff;" type="text" name="course"
-                             value="{{this.newLevel}}">
-                      <input *ngIf="this.newLevel==''" disabled
-                             style="background-color: #f3f6ff; border: 1px solid #f3f6ff;" type="text" name="course"
-                             value="{{this.patchLevelName}}">
-                    </div>
-                    <div class="banding-course fieldset">
-                      <label>Banding</label>
-                      <input *ngIf="this.newBanding!=''" disabled
-                             style="background-color: #f3f6ff; border: 1px solid #f3f6ff;" type="text" name="course"
-                             value="{{this.newBanding}}">
-                      <input *ngIf="this.newBanding==''" disabled
-                             style="background-color: #f3f6ff; border: 1px solid #f3f6ff;" type="text" name="course"
-                             value="{{this.patchBandingName}}">
-                    </div>
+                  <div class="banding-course fieldset">
+                    <label>Banding</label>
+                    <select [(ngModel)]="banding" name="level" id="bandingcourse" (change)="getBanding()"
+                      style="padding: 0 11px;">
+                      <option *ngIf="this.allBanding.length>1" value="create_new">Create new</option>
+                      <option *ngFor="let banding of this.allBanding" value="{{banding.tid}}">{{banding.name}}
+                      </option>
+                    </select>
                   </div>
-                  <div class="editCourse-form-down">
-                    <div class="fieldset class-materials">
-                      <label>Class materials access available from</label>
-                      <div class="editcourse-field-wrapper">
-                        <div class="class-materials-radio">&nbsp;</div>
-                        <div class="class-materials-radio">
-                          <input type="text" value="{{this.class_start_date}}" readonly>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="fieldset class-materials">
-                      <label>Class materials access available to</label>
-                      <div class="editcourse-field-wrapper">
-                        <div class="class-materials-radio">&nbsp;</div>
-                        <div class="class-materials-radio">
-                          <input type="text" value="{{this.class_end_date}}" readonly>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="fieldset class-materials">
-                      <label>Allow messaging from learner to coach</label>
-                      <div class="editcourse-field-wrapper">
-                        <div class="class-materials-radio">&nbsp;</div>
-                        <div class="class-materials-radio">
-                          <input type="text" value="{{this.user1}}" readonly>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="fieldset class-materials">
-                      <label>Allow messaging from coach to learner</label>
-                      <div class="editcourse-field-wrapper">
-                        <div class="class-materials-radio">&nbsp;</div>
-                        <div class="class-materials-radio">
-                          <input type="text" value="{{this.user2}}" readonly>
-                        </div>
-                      </div>
-                    </div>
+                  <!-- if user select create new banding course -->
+                  <div class="new-banding-course fieldset" *ngIf="isBandingAdded">
+                    <label>&nbsp;</label>
+                    <input [(ngModel)]="newBanding" type="text" name="banding" placeholder="Name of banding">
                   </div>
-                  <div class="modal-footer">
-                    <button class="cancel-btn-course" data-dismiss="modal">Back</button>
-                    <button class="edit-btn-course" (click)="createCourse()">Save</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Edit Course modal popup start -->
-        <div id="editCourse" class="modal editcourse-modal" role="dialog" #editclosebutton>
-          <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-              <div class="modal-header">
-                <h4>Edit course</h4>
-                <button type="button" class="close" data-dismiss="modal">
-                  <img src="assets/images/dashboard/close-course.png">
-                </button>
-              </div>
-              <div class="modal-body">
-                <form [formGroup]="editSampleForm">
-                  <div class="editCourse-form-top">
-                    <div class="name-of-course fieldset">
-                      <label>Name of course*</label>
-                      <input formControlName="courseName" type="text" name="course">
-                    </div>
-                    <div class="category-course fieldset">
-                      <label>Category*</label>
-                      <select formControlName="category" name="category" id="category" (change)="getEditCategory()">
-                        <option *ngFor="let categories of allCategories" [value]="categories.tid">{{categories.name}}
-                        </option>
-                        <option *ngIf="this.allCategories.length>1" value="create_new">Create new</option>
-                      </select>
-                    </div>
-                    <div class="new-category-course fieldset" *ngIf="isCourseAdded">
-                      <label>New category</label>
-                      <input formControlName="newCategory" type="text" name="course">
-                    </div>
-                    <div class="level-course fieldset">
-                      <label>Level</label>
-                      <select formControlName="level" name="level" id="level" (change)="getEditLevel()">
-                        <option *ngFor="let level of this.allLevel" [value]="level.tid">{{level.name}}</option>
-                        <option *ngIf="this.allLevel.length>1" value="create_new">Create new</option>
-                      </select>
-                    </div>
-                    <div class="new-level-course fieldset" *ngIf="isLevelAdded">
-                      <label>New level</label>
-                      <input formControlName="newLevel" type="text" name="level">
-                    </div>
-                    <div class="banding-course fieldset">
-                      <label>Banding</label>
-                      <select formControlName="banding" name="banding" id="banding" (change)="getEditBanding()">
-                        <option *ngFor="let banding of this.allBanding" [value]="banding.tid">{{banding.name}}</option>
-                        <option *ngIf="this.allBanding.length>1" value="create_new">Create new</option>
-                      </select>
-                    </div>
-                    <div class="new-banding-course fieldset" *ngIf="isBandingAdded">
-                      <label>New banding</label>
-                      <input formControlName="newBanding" type="text" name="banding">
-                    </div>
-                  </div>
-                  <div class="editCourse-form-down">
-                    <div class="fieldset class-materials">
-                      <label>Class materials access available from</label>
-                      <div class="editcourse-field-wrapper">
-                        <div class="class-materials-radio">
-                          <input name="class_start" type="radio" value="classstartdate">
-                          <label for="teacher">Class start date</label>
-                        </div>
-                        <div class="class-materials-radio">
-                          <input [checked]="true" name="class_start" type="radio" value="date">
-                          <input formControlName="datagram" type="date" #myDate
-                                 [value]="demoUser.date | date:'yyyy-MM-dd'" />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="fieldset class-materials-to">
-                      <label>Class materials access available to</label>
-                      <div class="editcourse-field-wrapper">
-                        <div class="class-materials-radio">
-                          <input name='class1' type="radio" value="classenddate">
-                          <label for="teacher">Class end date</label>
-                        </div>
-                        <div class="class-materials-radio">
-                          <input [checked]="true" name='class1' type="radio" value="start-date-calender">
-                          <input formControlName="datagram2" type="date" [value]="demoUser.dates | date:'yyyy-MM-dd'" />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="fieldset allow-messaging">
-                      <label>Allow messaging from learner to coach</label>
-                      <div class="editcourse-field-wrapper">
-                        <div class="allow-messaging-radio">
-                          <input name="unit1" [(ngModel)]="courseList.field_messaging_between_learners"
-                                 [ngModelOptions]="{standalone: true}" type="radio"
-                                 [checked]="courseList.field_messaging_between_learners==1" value="1">
-                          <label for="Yes">Yes</label>
-                        </div>
-                        <div class="allow-messaging-radio">
-                          <input name="unit2" [(ngModel)]="courseList.field_messaging_between_learners"
-                                 [ngModelOptions]="{standalone: true}"
-                                 [checked]="courseList.field_messaging_between_learners==0" type="radio" value="0">
-                          <label for="No">No</label>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="fieldset allow-messaging">
-                      <label>Allow messaging from coach to learner</label>
-                      <div class="editcourse-field-wrapper">
-                        <div class="allow-messaging-radio">
-                          <input name="unit3" [(ngModel)]="courseList.field_messaging_learner_to_coach"
-                                 [ngModelOptions]="{standalone: true}"
-                                 [checked]="courseList.field_messaging_learner_to_coach==1" type="radio" value="1">
-                          <label for="Yes">Yes</label>
-                        </div>
-                        <div class="allow-messaging-radio">
-                          <input name="unit4" [(ngModel)]="courseList.field_messaging_learner_to_coach"
-                                 [ngModelOptions]="{standalone: true}"
-                                 [checked]="courseList.field_messaging_learner_to_coach==0" type="radio" value="0">
-                          <label for="No">No</label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button class="cancel-btn-course" data-dismiss="modal">Cancel</button>
-                    <button class="edit-btn-course" (click)="updateCourses(courseList)">Save</button>
-                  </div>
-                </form>
-              </div>
+                </div>
+                <div class="modal-footer">
+                  <button class="next-btn-course" data-dismiss="modal">Back</button>
+                  <button *ngIf="courseName!='' " data-toggle="modal" data-target="#addCourse2"
+                    class="back-btn-course">Next</button>
+                  <button *ngIf="courseName==='' " [disabled]="courseName==='' " data-toggle="modal"
+                    data-target="#addCourse2" class="back-btn-course close">Next</button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
       </div>
-      <div id="classes-content" class="tab-pane" style="min-height: 425px;"></div>
-      <div id="class-list-content" class="tab-pane">
-        <!-- <app-class-list></app-class-list> -->
+      <!-- Add Course modal popup start -->
+      <!--add course modal 2-->
+      <div id="addCourse2" class="modal editcourse-modal" role="dialog" #closeModal2>
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4>{{courseName}}</h4>
+              <button type="button" class="close" data-dismiss="modal">
+                <img src="assets/images/dashboard/close-course.png">
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="editCourse-form-down">
+                  <div class="fieldset class-materials">
+                    <label>Class materials access available from</label>
+                    <div class="editcourse-field-wrapper">
+                      <div class="class-materials-radio">
+                        <input (change)="getRadio($event)" [(ngModel)]="class_start_date" type="radio" name="start-date"
+                          value="Class start date">
+                        <label for="teacher">Class start date</label>
+                      </div>
+                      <div class="class-materials-radio">
+                        <input #checkboxes (change)="getRadio($event)" type="radio" name="start-date">
+                        <input *ngIf="this.isClickedRadio === 'on'; else elseSpan" [(ngModel)]="class_start_date"
+                          [ngModelOptions]="{standalone: true}" type="date">
+                        <ng-template #elseSpan>
+                          <input disabled style="background: #dddddd;" [(ngModel)]="class_start_date"
+                            [ngModelOptions]="{standalone: true}" type="date">
+                        </ng-template>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="fieldset class-materials-to">
+                    <label>Class materials access available to</label>
+                    <div class="editcourse-field-wrapper">
+                      <div class="class-materials-radio">
+                        <input (change)="getRadios($event)" [(ngModel)]="class_end_date" type="radio"
+                          name="start-date-calender" value="Class end date">
+                        <label for="teacher">Class end date</label>
+                      </div>
+                      <div class="class-materials-radio">
+                        <input #checkboxes type="radio" (change)="getRadios($event)" name="start-date-calender">
+                        <input *ngIf="this.isClickedRadios === 'on'; else elseSpans" [(ngModel)]="class_end_date"
+                          [ngModelOptions]="{standalone: true}" type="date">
+                        <ng-template #elseSpans>
+                          <input disabled style="background: #dddddd;" [(ngModel)]="class_end_date"
+                            [ngModelOptions]="{standalone: true}" type="date">
+                        </ng-template>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="fieldset allow-messaging">
+                    <label>Allow messaging from learner to coach</label>
+                    <div class="editcourse-field-wrapper">
+                      <div class="allow-messaging-radio">
+                        <input [(ngModel)]="allow_msg_learner" [ngModelOptions]="{standalone: true}" type="radio"
+                          name="available" value="1">
+                        <label for="Yes">Yes</label>
+                      </div>
+                      <div class="allow-messaging-radio">
+                        <input [(ngModel)]="allow_msg_learner" [ngModelOptions]="{standalone: true}" type="radio"
+                          name="available" value="0">
+                        <label for="No">No</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="fieldset allow-messaging">
+                    <label>Allow messaging from coach to learner</label>
+                    <div class="editcourse-field-wrapper">
+                      <div class="allow-messaging-radio">
+                        <input [(ngModel)]="allow_msg_coach" [ngModelOptions]="{standalone: true}" type="radio"
+                          name="unavailable" value="1">
+                        <label for="Yes">Yes</label>
+                      </div>
+                      <div class="allow-messaging-radio">
+                        <input [(ngModel)]="allow_msg_coach" [ngModelOptions]="{standalone: true}" type="radio"
+                          name="unavailable" value="0">
+                        <label for="No">No</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button class="cancel-btn-course" data-dismiss="modal">Back</button>
+                  <button class="edit-btn-course" data-toggle="modal" data-target="#addCourse3"
+                    [disabled]="this.class_start_date=='' || this.class_end_date=='' "
+                    (click)="nextPopup()">Next</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
-      <div id="learners-content" class="tab-pane">
-        <app-learners></app-learners>
+      <!-- add course pop up 3-->
+      <div *ngIf="allTrue" id="addCourse3" class="modal editcourse-modal" role="dialog" #closeModal>
+        <div class="modal-dialog" style="min-width: 685px !important;">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4>{{courseName}}</h4>
+              <button type="button" class="close" data-dismiss="modal">
+                <img src="assets/images/dashboard/close-course.png">
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="editCourse-form-top">
+                  <div class="name-of-course fieldset">
+                    <label>Name of course*</label>
+                    <input disabled style="background-color: #f3f6ff; border: 1px solid #f3f6ff;" type="text"
+                      name="course" value="{{courseName}}">
+                  </div>
+                  <div class="category-course fieldset">
+                    <label>Category*</label>
+                    <input *ngIf="this.newCategory!=''" disabled
+                      style="background-color: #f3f6ff; border: 1px solid #f3f6ff;" type="text" name="course"
+                      value="{{this.newCategory}}">
+                    <input *ngIf="this.newCategory==''" disabled
+                      style="background-color: #f3f6ff; border: 1px solid #f3f6ff;" type="text" name="course"
+                      value="{{this.patchCategorieName}}">
+                  </div>
+                  <div class="level-course fieldset">
+                    <label>Levels</label>
+                    <input *ngIf="this.newLevel!=''" disabled
+                      style="background-color: #f3f6ff; border: 1px solid #f3f6ff;" type="text" name="course"
+                      value="{{this.newLevel}}">
+                    <input *ngIf="this.newLevel==''" disabled
+                      style="background-color: #f3f6ff; border: 1px solid #f3f6ff;" type="text" name="course"
+                      value="{{this.patchLevelName}}">
+                  </div>
+                  <div class="banding-course fieldset">
+                    <label>Banding</label>
+                    <input *ngIf="this.newBanding!=''" disabled
+                      style="background-color: #f3f6ff; border: 1px solid #f3f6ff;" type="text" name="course"
+                      value="{{this.newBanding}}">
+                    <input *ngIf="this.newBanding==''" disabled
+                      style="background-color: #f3f6ff; border: 1px solid #f3f6ff;" type="text" name="course"
+                      value="{{this.patchBandingName}}">
+                  </div>
+                </div>
+                <div class="editCourse-form-down">
+                  <div class="fieldset class-materials">
+                    <label>Class materials access available from</label>
+                    <div class="editcourse-field-wrapper">
+                      <div class="class-materials-radio">&nbsp;</div>
+                      <div class="class-materials-radio">
+                        <input type="text" value="{{this.class_start_date}}" readonly>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="fieldset class-materials">
+                    <label>Class materials access available to</label>
+                    <div class="editcourse-field-wrapper">
+                      <div class="class-materials-radio">&nbsp;</div>
+                      <div class="class-materials-radio">
+                        <input type="text" value="{{this.class_end_date}}" readonly>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="fieldset class-materials">
+                    <label>Allow messaging from learner to coach</label>
+                    <div class="editcourse-field-wrapper">
+                      <div class="class-materials-radio">&nbsp;</div>
+                      <div class="class-materials-radio">
+                        <input type="text" value="{{this.user1}}" readonly>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="fieldset class-materials">
+                    <label>Allow messaging from coach to learner</label>
+                    <div class="editcourse-field-wrapper">
+                      <div class="class-materials-radio">&nbsp;</div>
+                      <div class="class-materials-radio">
+                        <input type="text" value="{{this.user2}}" readonly>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button class="cancel-btn-course" data-dismiss="modal">Back</button>
+                  <button class="edit-btn-course" (click)="createCourse()">Save</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
-      <div id="storage-content" class="tab-pane">
-        <app-storage></app-storage>
+      <!-- Edit Course modal popup start -->
+      <div id="editCourse" class="modal editcourse-modal" role="dialog" #editclosebutton>
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4>Edit course</h4>
+              <button type="button" class="close" data-dismiss="modal">
+                <img src="assets/images/dashboard/close-course.png">
+              </button>
+            </div>
+            <div class="modal-body">
+              <form [formGroup]="editSampleForm">
+                <div class="editCourse-form-top">
+                  <div class="name-of-course fieldset">
+                    <label>Name of course*</label>
+                    <input formControlName="courseName" type="text" name="course">
+                  </div>
+                  <div class="category-course fieldset">
+                    <label>Category*</label>
+                    <select formControlName="category" name="category" id="category" (change)="getEditCategory()">
+                      <option *ngFor="let categories of allCategories" [value]="categories.tid">{{categories.name}}
+                      </option>
+                      <option *ngIf="this.allCategories.length>1" value="create_new">Create new</option>
+                    </select>
+                  </div>
+                  <div class="new-category-course fieldset" *ngIf="isCourseAdded">
+                    <label>New category</label>
+                    <input formControlName="newCategory" type="text" name="course">
+                  </div>
+                  <div class="level-course fieldset">
+                    <label>Level</label>
+                    <select formControlName="level" name="level" id="level" (change)="getEditLevel()">
+                      <option *ngFor="let level of this.allLevel" [value]="level.tid">{{level.name}}</option>
+                      <option *ngIf="this.allLevel.length>1" value="create_new">Create new</option>
+                    </select>
+                  </div>
+                  <div class="new-level-course fieldset" *ngIf="isLevelAdded">
+                    <label>New level</label>
+                    <input formControlName="newLevel" type="text" name="level">
+                  </div>
+                  <div class="banding-course fieldset">
+                    <label>Banding</label>
+                    <select formControlName="banding" name="banding" id="banding" (change)="getEditBanding()">
+                      <option *ngFor="let banding of this.allBanding" [value]="banding.tid">{{banding.name}}</option>
+                      <option *ngIf="this.allBanding.length>1" value="create_new">Create new</option>
+                    </select>
+                  </div>
+                  <div class="new-banding-course fieldset" *ngIf="isBandingAdded">
+                    <label>New banding</label>
+                    <input formControlName="newBanding" type="text" name="banding">
+                  </div>
+                </div>
+                <div class="editCourse-form-down">
+                  <div class="fieldset class-materials">
+                    <label>Class materials access available from</label>
+                    <div class="editcourse-field-wrapper">
+                      <div class="class-materials-radio">
+                        <input name="class_start" type="radio" value="classstartdate">
+                        <label for="teacher">Class start date</label>
+                      </div>
+                      <div class="class-materials-radio">
+                        <input [checked]="true" name="class_start" type="radio" value="date">
+                        <input formControlName="datagram" type="date" #myDate
+                          [value]="demoUser.date | date:'yyyy-MM-dd'" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="fieldset class-materials-to">
+                    <label>Class materials access available to</label>
+                    <div class="editcourse-field-wrapper">
+                      <div class="class-materials-radio">
+                        <input name='class1' type="radio" value="classenddate">
+                        <label for="teacher">Class end date</label>
+                      </div>
+                      <div class="class-materials-radio">
+                        <input [checked]="true" name='class1' type="radio" value="start-date-calender">
+                        <input formControlName="datagram2" type="date" [value]="demoUser.dates | date:'yyyy-MM-dd'" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="fieldset allow-messaging">
+                    <label>Allow messaging from learner to coach</label>
+                    <div class="editcourse-field-wrapper">
+                      <div class="allow-messaging-radio">
+                        <input name="unit1" [(ngModel)]="courseList.field_messaging_between_learners"
+                          [ngModelOptions]="{standalone: true}" type="radio"
+                          [checked]="courseList.field_messaging_between_learners==1" value="1">
+                        <label for="Yes">Yes</label>
+                      </div>
+                      <div class="allow-messaging-radio">
+                        <input name="unit2" [(ngModel)]="courseList.field_messaging_between_learners"
+                          [ngModelOptions]="{standalone: true}"
+                          [checked]="courseList.field_messaging_between_learners==0" type="radio" value="0">
+                        <label for="No">No</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="fieldset allow-messaging">
+                    <label>Allow messaging from coach to learner</label>
+                    <div class="editcourse-field-wrapper">
+                      <div class="allow-messaging-radio">
+                        <input name="unit3" [(ngModel)]="courseList.field_messaging_learner_to_coach"
+                          [ngModelOptions]="{standalone: true}"
+                          [checked]="courseList.field_messaging_learner_to_coach==1" type="radio" value="1">
+                        <label for="Yes">Yes</label>
+                      </div>
+                      <div class="allow-messaging-radio">
+                        <input name="unit4" [(ngModel)]="courseList.field_messaging_learner_to_coach"
+                          [ngModelOptions]="{standalone: true}"
+                          [checked]="courseList.field_messaging_learner_to_coach==0" type="radio" value="0">
+                        <label for="No">No</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button class="cancel-btn-course" data-dismiss="modal">Cancel</button>
+                  <button class="edit-btn-course" (click)="updateCourses(courseList)">Save</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
-      <div id="admin-content" class="tab-pane">
 
+      <div id="add-admin" class="modal addcourse-modal" role="dialog" #addAdminPopup>
+        <div class="modal-dialog modal-dialog-width">
+          <div class="modal-content">
+            <div class="green-modal-header">
+              <h4>Add Admin</h4>
+              <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"
+                  style="color: #fff;"></i></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="name-of-course fieldset admin-popup-button"
+                  style="padding: 20px 16px;border-bottom: 1px solid #F1F6FB;">
+                  <label style="text-align: center; margin: 0 -2em;">Email:</label>
+                  <input [(ngModel)]="adminDetails.email" [ngModelOptions]="{standalone: true}" placeholder="enter your mail">
+
+                  <label style="text-align: center; margin: 0 -1em;">Admin type:</label>
+                  <select [(ngModel)]="adminDetails.admintype" [ngModelOptions]="{standalone: true}" name="admin" id="admin" style="width: 235px !important;">
+                    <option disabled>Please select admin</option>
+                    <option value="sub_admin_">Sub admin</option>
+                    <option value="course_administrators">Course admin </option>
+                  </select>
+                </div>
+
+                <div class="addCourse-form" style="display: block !important;">
+                  <div class="name-of-course fieldset" style="padding: 0 16px;">
+                    <label style="text-align: center;">Course Name:</label>
+                    <p class="label-p">{{adminCourseDetails.title}}</p>
+                  </div>
+                  <div class="name-of-course fieldset mt-3" style="padding: 0 16px;">
+                    <label style="text-align: right; padding-right: 2em;">Level:</label>
+                    <select name="level" id="levelcourse" style="width: 140px !important;">
+                      <option selected>{{adminCourseDetails.field_level}}</option>
+                    </select>
+                    <label style="text-align: right; width: 113px; padding-right: 1.5em">Banding:</label>
+                    <select name="level" id="levelcourse" style="width: 140px !important;">
+                      <option selected>{{adminCourseDetails.field_banding}}</option>
+                    </select>
+                  </div>
+                  <div class="name-of-course fieldset"
+                    style="border-bottom: 1px solid #F1F6FB; margin: 0; padding-bottom: 1.5em;">
+                    <label style="text-align: right; padding: 0 14px; margin: 0 16px 0 0;">class:</label>
+                    <select [(ngModel)]="selectedClass" [ngModelOptions]="{standalone: true}" name="level" id="levelcourse" style="width: 140px !important;">
+                      <option *ngFor="let classesData of this.allClassesData" value="{{classesData.nid}}">{{this.classesData.title}}
+                      </option>
+                    </select>
+                    <p style="padding:0 0 0 8.6em; margin: 0; font-size: 15px;"><span class="orange">#56782</span></p>
+                  </div>
+
+                  <div class="name-of-course fieldset admin-table">
+                    <div class="table-responsive">
+                      <table class="table dashboard-table">
+
+                        <tbody>
+                          <tr>
+                            <td>1</td>
+                            <td class="text-left admin-table-width">Add / remove learners</td>
+                            <td></td>
+                            <th>
+                              <div class="radio-table">
+                                <input (click)="addRemovePermission($event)" type="checkbox">
+                              </div>
+                            </th>
+                          </tr>
+                          <tr>
+                            <td>2</td>
+                            <td class="text-left admin-table-width">Main library upload/edit</td>
+                            <td></td>
+                            <th>
+                              <div class="radio-table">
+                                <input (click)="mainLibraryPermission($event)" type="checkbox">
+                              </div>
+                            </th>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td class="text-left admin-table-width">Course library upload/edit</td>
+                            <td></td>
+                            <th>
+                              <div class="radio-table">
+                                <input (click)="courseLibraryPermission($event)" type="checkbox">
+                              </div>
+                            </th>
+                          </tr>
+                          <tr>
+                            <td>4</td>
+                            <td class="text-left admin-table-width">Live sessions</td>
+                            <td></td>
+                            <th>
+                              <div class="radio-table"><input (click)="liveSession($event)" type="checkbox"></div>
+                            </th>
+                          </tr>
+                          <tr>
+                            <td>5</td>
+                            <td class="text-left admin-table-width">Class creation</td>
+                            <td></td>
+                            <th>
+                              <div class="radio-table">
+                                <input (click)="classCreation($event)" type="checkbox">
+                              </div>
+                            </th>
+
+                          </tr>
+                          <tr>
+                            <td>6</td>
+                            <td class="text-left admin-table-width">Class deletion</td>
+                            <td></td>
+                            <th>
+                              <div class="radio-table">
+                                <input (click)="classDeletion($event)" type="checkbox">
+                              </div>
+                            </th>
+
+                          </tr>
+                          <tr>
+                            <td>7</td>
+                            <td class="text-left admin-table-width">Course creation</td>
+                            <td></td>
+                            <th>
+                              <div class="radio-table">
+                                <input (click)="courseCreation($event)" type="checkbox">
+                              </div>
+                            </th>
+
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                  </div>
+                  <!--                      modal footer start-->
+                  <div class="modal-footer" style="box-shadow: none;">
+                    <button (click)="assignAdmin()" class="back-btn-course-blue"><a>Confirm</a></button>
+                    <button data-dismiss="modal" class="next-btn-course">Cancel</button>
+                  </div>
+                  <!--                      modal footer end-->
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
-      <div id="live-sessions-content" class="tab-pane">
-        <app-live-sessions></app-live-sessions>
-      </div>
+      <!--add admin PopUp End    -->
+    </div>
+    <div id="classes-content" class="tab-pane" style="min-height: 425px;"></div>
+    <div id="class-list-content" class="tab-pane">
+    </div>
+    <div id="learners-content" class="tab-pane">
+      <app-learners></app-learners>
+    </div>
+    <div id="storage-content" class="tab-pane">
+      <app-storage></app-storage>
+    </div>
+    <div id="admin-content" class="tab-pane">
+    </div>
+    <div id="live-sessions-content" class="tab-pane">
+      <app-live-sessions></app-live-sessions>
     </div>
   </div>
 </div>
+</div>
+<!--add admin PopUp End    -->

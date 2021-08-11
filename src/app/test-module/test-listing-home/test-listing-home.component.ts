@@ -13,6 +13,7 @@ export class TestListingHomeComponent implements OnInit {
   @ViewChild('deleteclosebutton') deleteclosebutton;
   @ViewChild('deleteTestModal') private deleteTestModal: ElementRef;
   @ViewChild('steponelibrary') steponelibrary;
+  @ViewChild('copytest') copytest;
   @ViewChild('steptwolibrary') steptwolibrary;
   @ViewChild('stepthreelibrary') stepthreelibrary;
   isTestSelected: boolean = false
@@ -52,7 +53,7 @@ export class TestListingHomeComponent implements OnInit {
 
   selectTestLiabrary: any = '';
   testLibraryData: any = '';
-  showYesButton:boolean=false;
+  showYesButton: boolean = false;
   constructor(public service: SharedServiceService, private toastr: ToastrService, public util: UtilService, private router: Router) {
     this.classId = localStorage.getItem('classListId');
     this.getTestListing();
@@ -116,7 +117,7 @@ export class TestListingHomeComponent implements OnInit {
     }
 
     this.service.post('test-list-api', params, 1).subscribe(result => {
-      console.log('res', result);
+
       if (result.test_data == "No Test Available") {
         this.toastr.error('No test available');
         this.isLoadingBool = false;
@@ -156,7 +157,7 @@ export class TestListingHomeComponent implements OnInit {
   }
 
   settingsClicked() {
-    console.log('this.isEditClicked', this.isEditClicked);
+
     if (this.isEditClicked == true) {
       this.router.navigate(["/test/settings-tabs"]);
     }
@@ -178,6 +179,7 @@ export class TestListingHomeComponent implements OnInit {
 
   // get events of check box for edit or add button show and hide 
   isCheckBoxClicked(testListing, i) {
+    console.log('testListing', testListing);
     this.isEditClicked = true;
     localStorage.setItem('test_name', testListing.test_name)
     localStorage.setItem('test_id', testListing.test_id);
@@ -198,11 +200,36 @@ export class TestListingHomeComponent implements OnInit {
 
     this.isLoadingBool = true;
     this.service.post('delete-test-api', params, 1).subscribe(result => {
-      console.log('result', result)
+
       this.isLoadingBool = false;
       this.deleteclosebutton.nativeElement.click();
       this.getTestListing();
       this.getDashboardHeaderData();
+    })
+  }
+
+
+  // copy test to library 
+
+  copyTestToLibrary(data) {
+    this.selectTestLiabrary = data;
+    this.liabraryData = [];
+    let params = {
+      "step": "3",
+      "test_id": this.testId,
+      "class_id_for_add_test": this.classId,
+      "library_for_add_test": data
+    }
+    
+    console.log('params', params);
+    this.isLoadingBool = true;
+    this.service.post('copy-test-api', params, 1).subscribe(result => {
+      console.log('result', result);
+      this.isLoadingBool = false;
+      if(result.status==1){
+        this.util.showSuccessToast('Test copied successfully');
+        this.copytest.nativeElement.click();
+      }
     })
   }
 
@@ -225,7 +252,7 @@ export class TestListingHomeComponent implements OnInit {
 
   //step 2
   addTestFromLiabrary2(data) {
-    console.log('data', data);
+
     this.testLibraryData = data.course_name
     let params = {
       "step": "2",
@@ -233,7 +260,7 @@ export class TestListingHomeComponent implements OnInit {
     }
     this.isLoadingBool = true;
     this.service.post('add-test-from-libarary-api', params, 1).subscribe(result => {
-      console.log('result++', result);
+
       this.isLoadingBool = false;
 
       this.classData = result.classdata
@@ -250,14 +277,14 @@ export class TestListingHomeComponent implements OnInit {
     }
     this.service.post('add-test-from-libarary-api', params, 1).subscribe(result => {
       this.isLoadingBool = false;
-      console.log('+++++++', result);
+
       this.testData = result.testdata
       // this.deleteclosebutton.nativeElement.click();
     })
   }
 
   saveTestData(item) {
-    this.showYesButton=true;
+    this.showYesButton = true;
     this.step4TestId = item.nid
   }
 
@@ -268,7 +295,7 @@ export class TestListingHomeComponent implements OnInit {
       "test_id": this.step4TestId,
       "class_id_for_add_test": this.classesId
     }
-    console.log('params', params);
+
     this.service.post('add-test-from-libarary-api', params, 1).subscribe(result => {
       this.getTestListing();
       this.isLoadingBool = false;

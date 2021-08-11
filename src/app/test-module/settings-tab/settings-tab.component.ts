@@ -69,7 +69,7 @@ export class SettingsTabComponent implements OnInit {
     }
 
     this.service.post('test-details', params, 1).subscribe(result => {
-      console.log('result', result);
+      
       this.isLoadingBool = false;
       this.testDetails = result.test_data
       this.SettingsData.test_name = result.test_data.test_name;
@@ -86,7 +86,7 @@ export class SettingsTabComponent implements OnInit {
   }
 
   onChange() {
-    console.log('selectedTestDetails', this.selectedTestDetails.test_id);
+    
     localStorage.setItem('test_name', this.selectedTestDetails.test_name);
     localStorage.setItem('test_id', this.selectedTestDetails.test_id);
 
@@ -99,7 +99,7 @@ export class SettingsTabComponent implements OnInit {
 
     this.service.post('test-details', params, 1).subscribe(result => {
       this.isLoadingBool = false;
-      console.log('result', result);
+      
       this.testDetails = result.test_data
       this.SettingsData.test_name = result.test_data.test_name;
       this.SettingsData.instruction = result.test_data.instruction;
@@ -129,7 +129,7 @@ export class SettingsTabComponent implements OnInit {
 
   // confirm add test
   confirmEdit() {
-    console.log('this.SettingsData', this.SettingsData);
+    
     this.SettingsData.timer = (this.SettingsData.timer == true) ? "Yes" : "No"
     this.SettingsData.test_id = this.test_id;
     var x = new Date(this.SettingsData.test_available_from);
@@ -141,7 +141,7 @@ export class SettingsTabComponent implements OnInit {
     else {
       this.isLoadingBool = true;
       this.service.post('update-test-api', this.SettingsData, 1).subscribe(result => {
-        console.log('result', result);
+        
         if (result.status == '1') {
           this.isLoadingBool = false;
           this.util.showSuccessAlert('Updated successfully');

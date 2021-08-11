@@ -40,7 +40,7 @@ export class EditPointsScreenComponent implements OnInit {
       "test_id": this.testId
     }
     this.service.post('questions-list-api', params, 1).subscribe(result => {
-      console.log('result',result);
+      
       this.isLoadingBool = false;
       if (result.question_data.length > 0) {
         this.allData = result.question_data;

@@ -115,7 +115,7 @@ export class ChoosePasswordComponent implements OnInit {
     }
 
     this.service.post('create-password-api', data, 0).subscribe(result => {
-      console.log('res',result);
+      
       if (result['status'] == 1 || '1') {
         this.util.openSnackBarSuccess(result['message']);
         localStorage.setItem("isPasswordSet", '1');

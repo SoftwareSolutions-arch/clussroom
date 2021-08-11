@@ -4693,3 +4693,9 @@ a.done-btn:hover {
   color: red;
 }
 
+.custom-answer {
+  font-size: 15px;
+  font-weight: 500;
+  font-family: 'Barlow';
+  color: #5B73A0;
+}

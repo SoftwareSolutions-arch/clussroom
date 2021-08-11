@@ -30,7 +30,7 @@
                      </div>
                      <div class="col-lg-10 setting-padding input-fonts">
                         <input type="text" formControlName="assignment_name" [ngClass]="{ 'is-invalid': addAssignmentForm.get('assignment_name').hasError('required') && submitted}">
-                        <div class="fieldRequired" 
+                        <div class="fieldRequired"
                         *ngIf="addAssignmentForm.get('assignment_name').hasError('required') && submitted" style="font-size: 10px;
                        color: #ec3232; font-size: 13px; ">
                      * Required
@@ -45,7 +45,7 @@
                         <angular-editor formControlName="instruction" name="shortanswer" cols="80" label="notes" rows="4"
                         wrap="virtual" style="margin: 0;"></angular-editor>
 							<!-- <angular-editor formControlName="instruction"  cols="80" label="notes" rows="4" wrap="virtual" style="margin: 0;" [placeholder]="'Please read the questions carefully. This test will form part of your final grading this year.'" [ngClass]="{ 'is-invalid': addAssignmentForm.get('instruction').hasError('required') && submitted}"></angular-editor> -->
-                     <div class="fieldRequired" 
+                     <div class="fieldRequired"
                      *ngIf="addAssignmentForm.get('instruction').hasError('required') && submitted" style="font-size: 10px;
                     color: #ec3232; font-size: 13px; ">
                    * Required
@@ -62,21 +62,21 @@
                      </div>
                      <div class="col-md-2 input-fonts" style="padding-left: 21px; margin-right: 2em">
                         <input type="date" formControlName="available_date" [ngClass]="{ 'is-invalid': addAssignmentForm.get('available_date').hasError('required') && submitted}">
-                    
-                        <div class="fieldRequired" 
+
+                        <div class="fieldRequired"
                         *ngIf="addAssignmentForm.get('available_date').hasError('required') && submitted" style="font-size: 10px;
                        color: #ec3232; font-size: 13px; ">
                      * Required
-                    </div> 
+                    </div>
                   </div>
                      <div class="col-md-2 input-fonts">
                         <input type="time" formControlName="available_time" style="width: 148px !important;"
                            class="text-center" [ngClass]="{ 'is-invalid': addAssignmentForm.get('available_time').hasError('required') && submitted}">
-                           <div class="fieldRequired" 
+                           <div class="fieldRequired"
                            *ngIf="addAssignmentForm.get('available_time').hasError('required') && submitted" style="font-size: 10px;
                           color: #ec3232; font-size: 13px; ">
                         * Required
-                       </div> 
+                       </div>
                         </div>
                   </div>
                   <div class="setting-date-section setting-input bottom-border col-lg-12">
@@ -85,20 +85,20 @@
                      </div>
                      <div class="col-md-2 input-fonts" style="padding-left: 21px; margin-right: 2em">
                         <input type="date" formControlName="available_dateTo" [ngClass]="{ 'is-invalid': addAssignmentForm.get('available_dateTo').hasError('required') && submitted}">
-                        <div class="fieldRequired" 
+                        <div class="fieldRequired"
                         *ngIf="addAssignmentForm.get('available_dateTo').hasError('required') && submitted" style="font-size: 10px;
                        color: #ec3232; font-size: 13px; ">
                         * Required
-                    </div> 
+                    </div>
                      </div>
                      <div class="col-md-2 input-fonts">
                         <input type="time" formControlName="available_timeTo" style="width: 148px !important;"
                            value="12:00" class="text-center" [ngClass]="{ 'is-invalid': addAssignmentForm.get('available_timeTo').hasError('required') && submitted}">
-                           <div class="fieldRequired" 
+                           <div class="fieldRequired"
                            *ngIf="addAssignmentForm.get('available_timeTo').hasError('required') && submitted" style="font-size: 10px;
                           color: #ec3232; font-size: 13px; ">
                            * Required
-                       </div> 
+                       </div>
                         </div>
                   </div>
                   <div class="custom-checkbox-assign setting-input bottom-border col-lg-12">
@@ -140,7 +140,7 @@
                            <button class="dropbtn-1">Dropdown &nbsp;<i class="fa fa-caret-down" aria-hidden="true"
                                  style="margin-left: 1em;"></i></button>
                            <div class="dropdown-content-1 drop-height-fix">
-                              <a *ngFor = "let data of rubricList" (click)="getRubricId(data.nid)">{{data.title}}</a> 
+                              <a *ngFor = "let data of rubricList" (click)="getRubricId(data.nid)">{{data.title}}</a>
                               <!-- <a href="#">Rubric 2</a> -->
                               <a href="#" data-toggle="modal" data-target="#createRubric">Create New</a>
                            </div>
@@ -155,11 +155,11 @@
                      </div>
                      <div class="custom" style="padding: 0 6px !important;">
                         <input type="text" formControlName="points" style="margin: 0; width: 94px !important;" [ngClass]="{ 'is-invalid': addAssignmentForm.get('points').hasError('required') && submitted}">
-                        <div class="fieldRequired" 
+                        <div class="fieldRequired"
                         *ngIf="addAssignmentForm.get('points').hasError('required') && submitted" style="font-size: 10px;
                        color: #ec3232; font-size: 13px; ">
                         * Required
-                    </div> 
+                    </div>
                      </div>
                   </div>
                   <div class="col-lg-12" style="padding: 18px 0 0 0px; margin: 0;">
@@ -183,7 +183,7 @@
 
 <div id="view-rubric" class="modal deletetest-modal" role="dialog">
    <div class="modal-dialog" style="max-width: 1300px;">
-  
+
      <div class="modal-content">
         <div class="rubric-header col-lg-12 display-center">
             <div class="col-md-4"></div>
@@ -194,7 +194,7 @@
                 <i class="fa fa-times" aria-hidden="true" style="color: #396aff;" data-dismiss="modal"></i>
             </div>
         </div>
-      <div class="modal-body mt-5 col-lg-12 rubric-back mb-5" style="padding: 20px 30px 30px 30px; margin: 0 auto; width: 1200px;">            
+      <div class="modal-body mt-5 col-lg-12 rubric-back mb-5" style="padding: 20px 30px 30px 30px; margin: 0 auto; width: 1200px;">
          <div class="col-lg-12 display-center" style="justify-content: center;">
                 <h3 style="font-size: 24px; font-weight: 300; color:#333B6A;">{{rubricTitle}}</h3>
             </div>
@@ -209,7 +209,7 @@
                 <div class="col-md-9 text-center" style="padding: 14px 0;border-right: 1px solid #DCE2EC;">
                     <p>Scale</p>
                 </div>
-                
+
                 <div class="col-sm-1 text-center" style="padding: 14px 0;;">
                     <p>Total points</p>
                 </div>
@@ -225,17 +225,17 @@
                 <div class="col-md-9 display-center" style="padding: 0;" >
                     <div *ngFor = "let data1 of data.rubric_scale" class="first-mid-section display-center col-md-4"style="justify-content:center; border-right: 1px solid #DCE2EC;">
                         <p style="margin-right: 12em;">{{data1.scale_text}}</p>
-                        <p>{{data1.scale_number}}</p>                      
+                        <p>{{data1.scale_number}}</p>
                     </div>
 
                     <!-- <div class="first-mid-section display-center col-md-4"style="justify-content:center; border-right: 1px solid #DCE2EC;">
                         <p style="margin-right: 7em;">Can be improved</p>
-                        <p>3</p>                        
+                        <p>3</p>
                     </div>
 
                     <div class="first-mid-section display-center col-md-4"style="justify-content:center; border-right: 1px solid #DCE2EC;">
                         <p style="margin-left: 1em;">Excellent & exceeded comprehension ability</p>
-                        <p style="margin-right: 1em;">5</p>                       
+                        <p style="margin-right: 1em;">5</p>
                     </div> -->
                 </div>
 
@@ -245,7 +245,7 @@
                <!-- </ng-container> -->
             </div>
             <!-- <div class="col-lg-12 rubric-heading display-center" style="padding: 0;">
-                
+
                 <div class="col-md-2 custom-add rubric-1-section display-center" style="padding: 4px 0;border-right: 1px solid #DCE2EC; padding-left: 4px;">
                     <p style="padding: 9px 4px;">Delivery</p>
                 </div>
@@ -253,22 +253,22 @@
                 <div class="col-md-9 display-center" style="padding: 0;">
                     <div class="second-mid-section display-center col-md-3"style="justify-content:center; border-right: 1px solid #DCE2EC; padding-left:12px;">
                         <p style="margin-right: 8em;">Poor</p>
-                        <p>2</p>                       
+                        <p>2</p>
                     </div>
 
                     <div class="second-mid-section display-center col-md-3"style="justify-content:center; border-right: 1px solid #DCE2EC;">
                         <p style="margin-right: 5em;">Satisfactory</p>
-                        <p>4</p>                       
+                        <p>4</p>
                     </div>
 
                     <div class="second-mid-section display-center col-md-3"style="justify-content:center; border-right: 1px solid #DCE2EC;">
                         <p style="margin-right: 8em;">Good</p>
-                        <p>6</p>                      
+                        <p>6</p>
                     </div>
 
                     <div class="second-mid-section display-center col-md-3"style="justify-content:center; border-right: 1px solid #DCE2EC;">
                         <p style="margin-right: 4em;">Well & effective<br>delivery</p>
-                        <p>8</p>                     
+                        <p>8</p>
                     </div>
                 </div>
 
@@ -276,9 +276,9 @@
                     <p>7</p>
                 </div>
             </div>
-            
+
             <div class="col-lg-12 rubric-heading display-center" style="border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; padding: 0;">
-                
+
                 <div class="col-md-2 custom-add rubric-1-section display-center" style="padding: 4px 0;border-right: 1px solid #DCE2EC; padding-left: 4px;">
                     <p style="padding: 9px 4px;">Grammar</p>
                 </div>
@@ -308,17 +308,17 @@
         </div>
 
       </div>
-        
+
         </div>
-  
+
      </div>
 
-<!-- Add Rubric modal popup end -->  
+<!-- Add Rubric modal popup end -->
 
 <!--View rubric modal popup start -->
 
 
-<div id="createRubric" class="modal deletetest-modal" role="dialog" #closeRubric> 
+<div id="createRubric" class="modal deletetest-modal" role="dialog" #closeRubric>
    <div class="modal-dialog" style="max-width: 1300px;">
 
       <div class="modal-content">
@@ -339,7 +339,7 @@
                <!--             <p class="i-position"><button type="button"><i class="fa fa-minus-circle" aria-hidden="true" style="top:18em; right: 2.3em;"></i></button></p> -->
                <!--             <p class="i-position"><button type="button"><i class="fa fa-minus-circle" aria-hidden="true" style="top:14em; right:3.2em"></i></button></p> -->
             </div>
-            
+
             <form [formGroup]="empForm">
 
                <div class="col-lg-12 display-center" style="justify-content: center;">
@@ -364,23 +364,23 @@
                      <p>Scale</p>
                   </div>
 
-                  <div class="col-sm-1 text-center" style="padding: 14px 0;;">
+                  <div class="col-sm-1 text-center" style="padding: 14px 0;">
                      <p>Total points</p>
                   </div>
 
                </div>
                <ng-container formArrayName="employees">
                   <ng-container *ngFor="let employee of employees().controls; let empIndex=index">
-                     
+
                      <div class="col-lg-12 rubric-heading display-center" style="padding: 0;"
                         [formGroupName]="empIndex">
 
                         <div class="col-md-2 custom-add rubric-1-section display-center"
                            style="padding: 4px 0;border-right: 1px solid #DCE2EC;padding-left: 4px;">
                            <textarea formControlName="critterion">
-                Comprehension & 
-                understanding ability
-                    </textarea>
+                              Comprehension &
+                              understanding ability
+                           </textarea>
                            <button type="button" style="position: relative; left: 15px;"
                               (click)="addEmployeeSkill(empIndex)">
                               <i class="fa fa-plus" aria-hidden="true"></i>
@@ -388,17 +388,17 @@
                         </div>
                         <ng-container formArrayName="scale">
                               <div class="col-md-9 display-center" style="padding: 0;">
-                                    <ng-container >
-                                 <div class="first-mid-section display-center col-md-4"  *ngFor="let skill of employeeSkills(empIndex).controls; let skillIndex=index"
-                                    style="justify-content:center; border-right: 1px solid #DCE2EC;" [formGroupName]="skillIndex">
-                                    <textarea style="padding: 10px 4px;" formControlName="text"></textarea>
-                                    <input type="text"  (input)=sumMethod(empIndex) (keypress)="numberOnly($event)" class="form-control" formControlName="value">
-                                   
-                                    <button type="button" (click)="removeEmployeeSkill(empIndex,skillIndex)"
-                                       style="position: relative; bottom: .6em; right: 4.1em; border: none; background-color: transparent; color: #FF82AC;">
-                                       <i class="fa fa-minus-circle" aria-hidden="true"></i>
-                                    </button>
-                                 </div>
+                                 <ng-container >
+                                    <div class="first-mid-section display-center col-md-4"  *ngFor="let skill of employeeSkills(empIndex).controls; let skillIndex=index"
+                                       style="justify-content:center; border-right: 1px solid #DCE2EC;" [formGroupName]="skillIndex">
+                                       <textarea style="padding: 10px 4px;" formControlName="text"></textarea>
+                                       <input type="text"  (input)=sumMethod(empIndex) (keypress)="numberOnly($event)" class="form-control" formControlName="value">
+
+                                       <button type="button" (click)="removeEmployeeSkill(empIndex,skillIndex)"
+                                          style="position: relative; bottom: .6em; right: 4.1em; border: none; background-color: transparent; color: #FF82AC;">
+                                          <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                                       </button>
+                                    </div>
 
                                  <div class="first-mid-section display-center col-md-4"
                                     style="justify-content:center; border-right: 1px solid #DCE2EC;">

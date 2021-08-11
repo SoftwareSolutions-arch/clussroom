@@ -40,7 +40,7 @@ export class SettingsComponent implements OnInit {
   }
 
   setTimer(event) {
-    console.log('event', event.target.checked);
+    
     if (event.target.checked == true) {
       this.isShow = true
     }
@@ -59,7 +59,7 @@ export class SettingsComponent implements OnInit {
 
   // confirm add test
   confirm() {
-    console.log('this.SettingsData',this.SettingsData);
+    
     if(this.SettingsData.test_name=='' || this.SettingsData.instruction=='' || this.SettingsData.test_available_from=='' || this.SettingsData.test_available_to==''){
         this.util.errorAlertPopup('Please enter all values first');
     }

@@ -5,6 +5,7 @@ import { UtilService } from 'src/providers/util.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import Swal from 'sweetalert2'
+import { is } from 'date-fns/locale';
 
 @Component({
   selector: 'app-question-screen',
@@ -29,8 +30,10 @@ export class QuestionScreenComponent implements OnInit {
   boxLength: any = '';
   public totalCount: string = '0';
   loginForm: FormGroup;
-  questionIdData: any = '';
-  test_name: any = '';
+  questionIdData: any='';
+  test_name: any='';
+  ischecked: boolean = false;
+  deleteButon: boolean = false;
 
   constructor(public service: SharedServiceService, public formBuilder: FormBuilder, private toastr: ToastrService, public util: UtilService, private router: Router) {
     this.testId = localStorage.getItem('test_id');
@@ -124,7 +127,7 @@ export class QuestionScreenComponent implements OnInit {
       "test_id": this.testId
     }
     this.service.post('questions-list-api', params, 1).subscribe(result => {
-      console.log('result', result);
+      console.log('result',result);
       this.isLoadingBool = false;
       if (result.question_data.length > 0) {
         this.allData = result.question_data;
@@ -178,7 +181,7 @@ export class QuestionScreenComponent implements OnInit {
       "test_id": this.selectedTestDetails.test_id
     }
     this.service.post('questions-list-api', params, 1).subscribe(result => {
-      console.log('result',result)
+
       this.isLoadingBool = false;
       this.test_name = localStorage.getItem('test_name');
       if (result.question_data.length > 0) {
@@ -225,7 +228,7 @@ export class QuestionScreenComponent implements OnInit {
     })
   }
 
-  // get events of check box for edit or add button show and hide 
+  // get events of check box for edit or add button show and hide
   isCheckClicked(data) {
     this.questionId = data.question_id
   }
@@ -243,14 +246,10 @@ export class QuestionScreenComponent implements OnInit {
     }
     this.isLoadingBool = true;
     this.service.post('delete-question-api', params, 1).subscribe(result => {
-
+      this.util.showSuccessToast('Question deleted successfully');
       this.isLoadingBool = false;
       this.getAllQuestion();
-      Swal.fire(
-        'Deleted!',
-        'Your file has been deleted.',
-        'success'
-      )
+  
     })
   }
 

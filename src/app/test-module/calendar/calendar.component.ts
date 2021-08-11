@@ -130,10 +130,10 @@ export class CalendarComponent implements OnInit {
         "class_code": this.selectedCategory.field_course_code,
         "banding": this.selectedCategory.field_banding_id
       }
-      console.log('parmas',params);  
+      
       this.isLoadingBool = true;
       this.service.post('add-calendar-remindar-api', params, 1).subscribe(result => {
-        console.log('resullt',result);
+        
         this.getAllRemainder();
         this.isLoadingBool = false;
       })
@@ -176,10 +176,10 @@ export class CalendarComponent implements OnInit {
     let params = {
       "user_id": this.userId
     }
-    console.log('params',params)
+    
     this.isLoadingBool = true;
     this.service.post('user-calendar-remindar-listing', params, 1).subscribe(result => {
-      console.log('result',result);
+      
       this.isLoadingBool = false;
       this.allRemainderData = result.result;
       let data: any = []
@@ -228,7 +228,7 @@ export class CalendarComponent implements OnInit {
   }
 
   selectedClassList(){
-    console.log('selectedClass',this.selectedClass);
+    
   }
 
   viewAllEditCourses() {

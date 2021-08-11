@@ -162,9 +162,11 @@ export class OrderingComponent implements OnInit {
       minimum_sequence: "1",
     }
 
+    console.log('params',params);
+
     this.isLoadingBool = true;
     this.service.post('add-question-api', params, 1).subscribe(result => {
-
+      console.log('result',result);
       this.util.showSuccessAlert(result.message);
       this.isLoadingBool = false;
       this.router.navigate(['/test/question-screen']);
@@ -177,6 +179,15 @@ export class OrderingComponent implements OnInit {
       userA.push(element.question);
     });
 
+    var datas = [];
+
+    if (this.fillData.attachment != null) {
+      this.fillData.attachment.forEach(element => {
+        datas.push(element.id)
+      });
+    }
+
+
     let params = {
       question_pragraph_id: this.getQuestionId,
       class_id: this.classId,
@@ -188,9 +199,10 @@ export class OrderingComponent implements OnInit {
       partial_points: (this.fillData.partial_points == true) ? "1" : "0",
       checkstatus: 1,
       drag_drop_sequenece_answers: (this.itemListArray.length > 0) ? this.itemListArray : userA,
-      minimum_sequence: this.fillData.minimum_sequence
+      minimum_sequence: this.fillData.minimum_sequence,
+      previous_attachment_f_ids: datas,
     }
-
+    console.log('params',params)
     this.isLoadingBool = true;
     this.service.post('edit-question-api', params, 1).subscribe(result => {
 
@@ -214,6 +226,7 @@ export class OrderingComponent implements OnInit {
       }
       this.isLoadingBool = true;
       this.service.post('questions-listing', params, 1).subscribe(result => {
+        console.log('result',result);
         this.isLoadingBool = false;
 
         result.question_data[0].ordering_sequence.forEach((element, index) => {

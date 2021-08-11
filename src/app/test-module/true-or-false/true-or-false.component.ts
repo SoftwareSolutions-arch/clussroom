@@ -118,11 +118,9 @@ export class TrueOrFalseComponent implements OnInit {
       "correct_answer": this.fillData.correct_answer
     }
 
-    console.log('params',params);
-
     this.isLoadingBool = true;
     this.service.post('add-question-api', params, 1).subscribe(result => {
-      console.log('result',result)
+      
       this.isLoadingBool = false;
       this.util.showSuccessAlert('Answer Saved Successfully');
       this.router.navigate(['/test/question-screen']);
@@ -158,6 +156,12 @@ export class TrueOrFalseComponent implements OnInit {
 
   // save question
   editQuestion() {
+
+    var data = [];
+    this.fillData.attachment.forEach(element => {
+      data.push(element.id)
+    });
+
     this.fillData.attachment = this.ExteriorPicString
     let params = {
       'question_pragraph_id': this.getQuestionId,
@@ -167,7 +171,8 @@ export class TrueOrFalseComponent implements OnInit {
       "attachment": this.fillData.attachment,
       "points": this.fillData.points,
       "checkstatus": "1",
-      "correct_answer": this.fillData.correct_answer
+      "correct_answer": this.fillData.correct_answer,
+      "previous_attachment_f_ids": data,
     }
 
     this.isLoadingBool = true;

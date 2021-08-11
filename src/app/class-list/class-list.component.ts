@@ -21,9 +21,9 @@ export class ClassListComponent implements OnInit {
   allClassesList: any = [];
   addCourseForm: FormGroup;
   allCourseList: any = '';
-  selectedCategory: any = '';
+  selectedCategory: any = 'please_select';
   selectedCategorys: any = '';
-  selectedClass: any = '';
+  selectedClass: any = 'please_select';
   selectedClasses: any = '';
   allClassesData: any = [];
   allClassesDatas: any = [];
@@ -156,9 +156,19 @@ export class ClassListComponent implements OnInit {
     })
   }
 
+  setClasses(){
+    console.log('selectedClass',this.selectedClass)
+    if(this.selectedClass=='please_select'){
+      this.selectedClass='';
+      this.allClassesList='';
+      this.allClassesData='';
+    }
+  }
+
   // view classes
   viewAllCoursesList() {
-    this.selectedClass=''
+    this.selectedClass='';
+    this.allClassesList='';
     let params = {
       "course_id": this.selectedCategory.nid
     }
@@ -269,7 +279,7 @@ export class ClassListComponent implements OnInit {
   }
 
   isCheckClicked(event, courseList, i) {
-    console.log('lear',courseList)
+    
     this.selectedCourseList = courseList;
     this.isGoToShow = true;
   }
@@ -288,7 +298,7 @@ export class ClassListComponent implements OnInit {
   }
 
   goToClass(){
-    console.log('this.selectedCourseList.learner_id',this.selectedCourseList.learner_id)
+    
     this.router.navigate(['/classes', { id: this.selectedCourseList.learner_id}]);
   }
 

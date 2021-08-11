@@ -73,7 +73,7 @@ export class CourseLibraryComponent implements OnInit {
     }
     this.isLoadingBool = true;
     this.service.post('vendor_library_listing', params, 1).subscribe(result => {
-      console.log('result',result);
+      
       this.isLoadingBool = false;
       this.mainLibraryData = result.result;
       
@@ -296,10 +296,10 @@ export class CourseLibraryComponent implements OnInit {
       "materials_type": this.selectedLibraryData.file_type,
       "id": this.selectedLibraryData.id
     }
-    console.log('params',params);    
+    
     this.isLoadingBool = true;
     this.service.post('download-libarary-data', params, 1).subscribe(result => {
-      console.log('res',result);
+      
       this.isLoadingBool = false;
       window.open(result.url);
     })

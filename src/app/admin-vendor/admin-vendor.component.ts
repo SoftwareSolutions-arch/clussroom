@@ -97,14 +97,14 @@ export class AdminVendorComponent implements OnInit {
       "vendor_id": this.userId
     }
     this.service.post('vendor-admin-listing-api', params, 1).subscribe(result => {
-      console.log('res', result);
+      
       this.adminData = result;
       this.isLoadingBool = false;
     })
   }
 
   isClicked(adminList) {
-    console.log('adminList', adminList);
+    
     this.editData = adminList;
   }
 
@@ -159,17 +159,17 @@ export class AdminVendorComponent implements OnInit {
   }
 
   classCreation(event) {
-    console.log(event.target.checked);
+    
     this.edit_permission.class_creation = event.target.checked;
   }
 
   addLearner(event) {
-    console.log(event.target.checked);
+    
     this.edit_permission.add_learner = event.target.checked
   }
 
   mainLibrary(event) {
-    console.log(event.target.checked);
+    
     this.edit_permission.main_library = event.target.checked
   }
 
@@ -191,7 +191,7 @@ export class AdminVendorComponent implements OnInit {
 
   // save details for edit admins
   editAdmin() {
-    console.log('params', this.edit_permission);
+    
     let params = {
       'id': this.userId,
       "email": this.editData.email,
@@ -205,7 +205,7 @@ export class AdminVendorComponent implements OnInit {
       "class_creation": (this.edit_permission.class_creation == true) ? "1" : "0",
       "class_delation": (this.edit_permission.class_deletion == true) ? "1" : "0",
     }
-    console.log('params', params);
+    
     this.isLoadingBool = true;
     this.service.post('edit-vendor-admin-api', params, 1).subscribe(result => {
       this.isLoadingBool = false;

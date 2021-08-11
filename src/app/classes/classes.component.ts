@@ -82,10 +82,10 @@ export class ClassesComponent implements OnInit {
       let params = {
         "course_id": this.courseId
       }
-      console.log('params', params);
+      
       this.isLoadingBool = true;
       this.service.post('view-all-classes-api', params, 1).subscribe(result => {
-        console.log('result', result);
+        
         this.isLoadingBool = false;
         if (result['status'] == 1) {
           this.allClassesData = result['classesdata'];
@@ -101,9 +101,9 @@ export class ClassesComponent implements OnInit {
       let params = {
         "user_id": this.learnerId
       }
-      console.log('params', params);
+      
       this.service.post('student-classes-listing', params, 1).subscribe(result => {
-        console.log('result learner +++', result);
+        
         this.isLoadingBool = false;
         this.allClassesData = result.result
       })

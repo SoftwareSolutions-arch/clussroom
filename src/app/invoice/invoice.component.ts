@@ -224,7 +224,7 @@ export class InvoiceComponent implements OnInit {
   // enable or disable form
   add() {
     if (this.invoiceForm.value.email == '' || this.invoiceForm.value.cmail == '') {
-      console.log('this.invoiceForm.value', this.invoiceForm.value);
+      
     }
     else {
       this.myValue = false;

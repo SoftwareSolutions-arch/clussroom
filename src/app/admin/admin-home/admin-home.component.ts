@@ -71,9 +71,9 @@ export class AdminHomeComponent implements OnInit {
     let params = {
       "vendor_id": this.userId
     }
-    console.log('pareams', params)
+    
     this.service.post('vendor-admin-listing-api', params, 1).subscribe(result => {
-      console.log('res', result);
+      
       this.adminList = result;
       this.isLoadingBool = false;
     })
@@ -93,7 +93,7 @@ export class AdminHomeComponent implements OnInit {
   }
 
   isCheckboxClicked(event, item) {
-    console.log('item', item)
+    
     this.selectedItems = '';
     if (event.target.checked == true) {
       this.arrayItem.push(item);
@@ -137,7 +137,7 @@ export class AdminHomeComponent implements OnInit {
   confirm() {
     var data = [];
     this.arrayItem.forEach(element => {
-      console.log('res', element);
+      
       data.push(element.nid);
     });
     let params = {
@@ -154,10 +154,10 @@ export class AdminHomeComponent implements OnInit {
       "class_delation": (this.class_deletion == true) ? "1" : "0"
 
     }
-    console.log('params', params);
+    
     this.isLoadingBool = true;
     this.service.post('Add-vendor-admin-api', params, 1).subscribe(result => {
-      console.log('result', result);
+      
       this.allAdminList();
       this.isLoadingBool = false;
     })
@@ -176,7 +176,7 @@ export class AdminHomeComponent implements OnInit {
       var ids = element.course_id
        this.prevId.push(ids)
     });
-      // console.log(newItem)
+      // 
 
     // if (event.target.checked == true) {
     //   this.selectedItems.push(item);
@@ -187,11 +187,11 @@ export class AdminHomeComponent implements OnInit {
     //   if (this.selectedItems.length == 0) {
     //   }
     // }
-    console.log('this.selectedItems', this.selectedItems);
+    
   }
 
   editCheckBox(event, item) {
-    console.log('abcd',item)
+    
     if (event.target.checked == true) {
       this.selectededitItems.push(item);
     }
@@ -210,9 +210,9 @@ export class AdminHomeComponent implements OnInit {
       "id": this.selectedItems.id,
       "p_id": this.selectedItems.permissions_data[0].p_id,
     }
-    console.log('params', params)
+    
     this.service.post('Remove-vendor-admin-api', params, 1).subscribe(result => {
-      console.log('res', result);
+      
       this.removeadmin.nativeElement.click();
       this.allAdminList();
       this.isLoadingBool = false;
@@ -272,10 +272,10 @@ addLibraryData(value){
       'p_id': this.selectedItems.permissions_data[0].p_id
     }
 
-    console.log('params', params);
+    
     this.isLoadingBool = true;
     this.service.post('edit-vendor-admin-api', params, 1).subscribe(result => {
-      console.log('result', result);
+      
       this.util.showSuccessToast('Updated successfully')
       this.closeEdit.nativeElement.click();
       this.allAdminList();

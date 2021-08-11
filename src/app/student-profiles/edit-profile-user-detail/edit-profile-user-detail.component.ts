@@ -80,7 +80,7 @@ email: new FormControl('',)
       this.service.post('user-profile-api',data,1).subscribe(res => {
       this.userData = res.result
       this.imageData = res.result.avatar
-      console.log(this.imageData);
+      
       this.userForm.patchValue({
         name : this.userData.firstname,
         lastName: this.userData.lastname,

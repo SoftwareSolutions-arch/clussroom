@@ -14,12 +14,14 @@ import { DatePipe } from '@angular/common'
 })
 
 export class Sample04Component implements OnInit {
+  edit_permission: any = '';
   instructionName: any = '';
   course_creation_permission: any = '';
 
   @ViewChild('deleteclosebutton') deleteclosebutton;
   @ViewChild('addclosebutton') addclosebutton;
   @ViewChild('editclosebutton') editclosebutton;
+  @ViewChild('addAdminPopup') addAdminPopup;
   @ViewChildren("checkboxes") checkboxes: QueryList<ElementRef>;
 
   @ViewChild('closeModal') private closeModal: ElementRef;
@@ -81,12 +83,30 @@ export class Sample04Component implements OnInit {
   selectedNewItems: any = '';
   edit_allow_msg_learner: any = '';
   edit_allow_msg_coach: any = '';
-  user1:any='';
-  user2:any='';
+  user1: any = '';
+  user2: any = '';
+  adminCourseDetails: any = '';
+  allClassesData: any = '';
+  selectedClass: any = '';
+
+  adminDetails: any = {
+    email: '',
+    admintype: ''
+  }
+  userId: any = '';
+
+  add_learner: any;
+  main_library: any;
+  course_library: any;
+  live_session: any;
+  class_creation: any = '';
+  class_deletion: any = '';
+  course_creation: any = '';
   constructor(public router: Router, public util: UtilService, public service: SharedServiceService,
-              public formBuilder: FormBuilder, public classes: ClassesComponent) {
+    public formBuilder: FormBuilder, public classes: ClassesComponent) {
     this.instructionName = localStorage.getItem('instructionName');
     this.course_creation_permission = localStorage.getItem('course_creation_permission');
+    this.userId = localStorage.getItem('uid')
   }
 
   parseDate(dateString: string): Date {
@@ -97,18 +117,18 @@ export class Sample04Component implements OnInit {
     return null;
   }
 
-  isCourseCreated(){
+  isCourseCreated() {
     this.util.showSuccessToast("You don't have permission");
   }
 
-  newCourseCreated(){
-    this.selectedCategory='';
-    this.level='';
-    this.banding='';
-    
-    this.isCourseAdded=false;
-    this.isLevelAdded=false;
-    this.isBandingAdded=false;
+  newCourseCreated() {
+    this.selectedCategory = '';
+    this.level = '';
+    this.banding = '';
+
+    this.isCourseAdded = false;
+    this.isLevelAdded = false;
+    this.isBandingAdded = false;
   }
 
   ngOnInit(): void {
@@ -183,10 +203,10 @@ export class Sample04Component implements OnInit {
     )
   }
 
-  clearFormValues(){
-    this.isCourseAdded=false;
-    this.isLevelAdded=false;
-    this.isBandingAdded=false;
+  clearFormValues() {
+    this.isCourseAdded = false;
+    this.isLevelAdded = false;
+    this.isBandingAdded = false;
     this.editSampleForm.reset();
   }
 
@@ -218,9 +238,9 @@ export class Sample04Component implements OnInit {
 
   // get events of check box for edit or add button show and hide
   isCheckClicked(event, courseList, i) {
-    this.isCourseAdded=false;
-    this.isLevelAdded=false;
-    this.isBandingAdded=false;
+    this.isCourseAdded = false;
+    this.isLevelAdded = false;
+    this.isBandingAdded = false;
     this.editSampleForm.reset();
     if (event.target.checked == true) {
       this.courseList = courseList;
@@ -258,7 +278,7 @@ export class Sample04Component implements OnInit {
   getAllCoursesList() {
     this.isLoadingBool = true;
     this.service.post('view-all-courses-api', '', 1).subscribe(result => {
-
+      console.log('result', result);
       this.isLoadingBool = false;
       this.allCourseList = result.coursesdata;
       const { tutorials, totalItems } = result.coursesdata;
@@ -459,10 +479,8 @@ export class Sample04Component implements OnInit {
 
     }
     else {
-      console.log();
-      console.log();
-      this.user1= (this.allow_msg_learner == 1) ? "Yes" : "No";
-      this.user2= (this.allow_msg_coach == 1) ? "Yes" : "No";
+      this.user1 = (this.allow_msg_learner == 1) ? "Yes" : "No";
+      this.user2 = (this.allow_msg_coach == 1) ? "Yes" : "No";
       this.allTrue = true;
     }
   }
@@ -601,6 +619,82 @@ export class Sample04Component implements OnInit {
 
   goToclassesPage(courseList) {
     // localStorage.setItem('courseId', courseList.nid);
-    this.router.navigate(['/classes',{ id: courseList.nid}]);
+    this.router.navigate(['/classes', { id: courseList.nid }]);
+  }
+
+  addRemovePermission(event) {
+    console.log('ervetn',event);
+    this.add_learner = event.target.checked;
+  }
+  mainLibraryPermission(event) {
+    this.main_library = event.target.checked;
+  }
+  courseLibraryPermission(event) {
+    this.course_library = event.target.checked;
+  }
+  liveSession(event) {
+    this.live_session = event.target.checked;
+  }
+  classCreation(event) {
+    this.class_creation = event.target.checked;
+  }
+  classDeletion(event) {
+    this.class_deletion = event.target.checked;
+  }
+  courseCreation(event) {
+    this.course_creation = event.target.checked;
+  }
+
+  viewAllCoursesLists() { }
+
+  assignCourseToadmin(courseLists) {
+    this.adminCourseDetails = courseLists;
+    this.viewClassesList();
+  }
+
+  // view classes
+  viewClassesList() {
+    let params = {
+      "course_id": this.adminCourseDetails.nid
+    }
+    this.isLoadingBool = true;
+    this.service.post('view-all-classes-api', params, 1).subscribe(result => {
+      console.log('result', result);
+      this.isLoadingBool = false;
+      if (result['status'] == 1) {
+        this.allClassesData = result['classesdata'];
+      }
+      else {
+        this.util.errorAlertPopup(result['mesaage']);
+      }
+    })
+  }
+
+  // save details for edit admins
+  assignAdmin() {
+    let params = {
+      "vendor_id": this.userId,
+      "email": this.adminDetails.email,
+      "admin_type": this.adminDetails.admintype,
+      "course_id": this.adminCourseDetails.nid,
+      "add_learner": (this.add_learner == true) ? "1" : "0",
+      "main_library": (this.main_library == true) ? "1" : "0",
+      "course_library": (this.course_library == true) ? "1" : "0",
+      "live_session": (this.live_session == true) ? "1" : "0",
+      "course_creation": (this.course_creation == true) ? "1" : "0",
+      "class_creation": (this.class_creation == true) ? "1" : "0",
+      "class_delation": (this.class_deletion == true) ? "1" : "0"
+    }
+
+    console.log('params', params);
+
+    this.isLoadingBool = true;
+    this.service.post('Add-vendor-admin-api', params, 1).subscribe(result => {
+      console.log('resul',result);
+      this.isLoadingBool = false;
+      this.util.showSuccessToast('Added successfully');
+      this.addAdminPopup.nativeElement.click();
+    })
+
   }
 }
