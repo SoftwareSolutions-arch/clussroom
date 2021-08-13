@@ -44,8 +44,9 @@ export class FillInTheBlanksComponent implements OnInit {
   isImageShow: boolean = true;
   classId: any = '';
   arrayList = [];
-  old_image_Description = []
-  new_image_Description = []
+
+  new_image_Description = [];
+
   constructor(private router: Router, private fb: FormBuilder, private route: ActivatedRoute, public service: SharedServiceService, public util: UtilService) {
     this.testId = localStorage.getItem('test_id');
     this.getQuestionId = this.route.snapshot.paramMap.get('id');
@@ -130,9 +131,12 @@ export class FillInTheBlanksComponent implements OnInit {
   }
 
   picked(event: any) {
+    if(this.fillData.attachment==null){
+      this.fillData.attachment=[];
+    }
     if(this.ExteriorPicString.length + this.fillData.attachment.length < 4){
       if(event.target.files.length>4){
-        this.util.errorAlertPopup('Can not select more than 4 images')
+        this.util.errorAlertPopup('Can not select more than 4 images');
       }
 
       else{
@@ -152,7 +156,6 @@ export class FillInTheBlanksComponent implements OnInit {
     else{
       this.util.errorAlertPopup('Can not select more than 4 images');
     }
-
   }
 
   removeImage(index) {
@@ -200,8 +203,6 @@ export class FillInTheBlanksComponent implements OnInit {
       data.push(element.question);
     });
 
-
-
     let params = {
       test_assignment_nid: this.testId,
       test_assignment_question_type: "fill_in_the_blanks",
@@ -211,7 +212,8 @@ export class FillInTheBlanksComponent implements OnInit {
       words_hint: (this.fillData.words_hint == true) ? "1" : "0",
       words_hint_text: this.words_hint_text,
       partial_points: (this.fillData.partial_points == true) ? "1" : "0",
-      points: this.fillData.points
+      points: this.fillData.points,
+      image_description: this.new_image_Description
     }
 
 
@@ -273,7 +275,6 @@ export class FillInTheBlanksComponent implements OnInit {
   }
 
   editQuestion() {
-    var image_description = this.old_image_Description.concat(this.new_image_Description)
     var datas = [];
 
     if (this.fillData.attachment != null) {
@@ -282,7 +283,6 @@ export class FillInTheBlanksComponent implements OnInit {
       });
     }
 
-    this.fillData.attachment = this.ExteriorPicString;
     this.fillData.fill_inthe_blanks_options = this.leagueForm.value.answerList;
 
     this.fillData.fill_inthe_blanks_options.forEach(element => {
@@ -300,22 +300,32 @@ export class FillInTheBlanksComponent implements OnInit {
     });
     this.fillData.partial_points = (this.fillData.partial_points == true) ? "1" : "0";
     this.fillData.words_hint = (this.fillData.words_hint == true) ? "1" : "0"
-    this.fillData.test_assignment_nid = this.testId;
+
+    if(this.fillData.attachment!=null){
+      var old_attchment = [];
+      this.fillData.attachment.forEach(element => {
+        old_attchment.push({
+          'id': element.id,
+          'image_description': element.image_description
+        })
+      });
+    }
 
     let params = {
       question_pragraph_id: this.getQuestionId,
       test_assignment_question_type: "edit_fill_in_the_blanks",
       question: this.fillData.question,
-      previous_attachment_f_ids: datas,
       attachment: this.ExteriorPicString,
       fill_inthe_blanks_options: this.arrayList,
       words_hint: (this.fillData.words_hint == true) ? "1" : "0",
       words_hint_text: this.words_hint_text,
       partial_points: (this.fillData.partial_points == true) ? "1" : "0",
       points: this.fillData.points,
-      image_description: image_description
+      previous_attachment_f_ids: old_attchment,
+      image_description: this.new_image_Description,
     }
 
+    console.log('params', params);
 
     this.isLoadingBool = true;
     this.service.post('edit-question-api', params, 1).subscribe(result => {

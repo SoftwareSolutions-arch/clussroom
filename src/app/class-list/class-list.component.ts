@@ -156,19 +156,19 @@ export class ClassListComponent implements OnInit {
     })
   }
 
-  setClasses(){
-    console.log('selectedClass',this.selectedClass)
-    if(this.selectedClass=='please_select'){
-      this.selectedClass='';
-      this.allClassesList='';
-      this.allClassesData='';
+  setClasses() {
+    console.log('selectedClass', this.selectedClass)
+    if (this.selectedClass == 'please_select') {
+      this.selectedClass = '';
+      this.allClassesList = '';
+      this.allClassesData = '';
     }
   }
 
   // view classes
   viewAllCoursesList() {
-    this.selectedClass='';
-    this.allClassesList='';
+    this.selectedClass = '';
+    this.allClassesList = '';
     let params = {
       "course_id": this.selectedCategory.nid
     }
@@ -234,9 +234,9 @@ export class ClassListComponent implements OnInit {
       this.addCourseForm.value.employees[0].sub_title.forEach(element => {
         data.push(element.sub_title)
       });
-      console.log("data",this.addCourseForm.value.employees[0].sub_title[0].sub_title);
+      console.log("data", this.addCourseForm.value.employees[0].sub_title[0].sub_title);
 
-      if(this.addCourseForm.value.employees[0].sub_title[0].sub_title!=''){
+      if (this.addCourseForm.value.employees[0].sub_title[0].sub_title != '') {
         let params = {
           "email": data,
           "class_id": this.selectedClass.nid
@@ -254,14 +254,14 @@ export class ClassListComponent implements OnInit {
         })
       }
 
-      else{
+      else {
         this.util.showSuccessToast('Please enter email');
       }
 
     }
     else {
-      console.log('this.base64Files',this.base64Files);
-      if(this.base64Files == ''){
+      console.log('this.base64Files', this.base64Files);
+      if (this.base64Files == '') {
         let params = {
           "csv_file": this.base64Files,
           "class_id": this.selectedClass.nid
@@ -278,10 +278,10 @@ export class ClassListComponent implements OnInit {
           }
         })
       }
-      else{
+      else {
         this.util.showSuccessToast('Please attach file');
       }
-    
+
     }
   }
 
@@ -297,7 +297,7 @@ export class ClassListComponent implements OnInit {
   }
 
   isCheckClicked(event, courseList, i) {
-    
+
     this.selectedCourseList = courseList;
     this.isGoToShow = true;
   }
@@ -315,9 +315,9 @@ export class ClassListComponent implements OnInit {
     }
   }
 
-  goToClass(){
-    
-    this.router.navigate(['/classes', { id: this.selectedCourseList.learner_id}]);
+  goToClass() {
+
+    this.router.navigate(['/classes', { id: this.selectedCourseList.learner_id }]);
   }
 
   /**
@@ -443,7 +443,7 @@ export class ClassListComponent implements OnInit {
       this.transferClassModal.nativeElement.click();
       // this.isLoadingBool = false;
       this.getClassesListData();
-      this.util.showSuccessAlert(result.error_message);
+      this.util.showSuccessAlert('Learner transferred successfully');
     })
   }
 
@@ -473,7 +473,7 @@ export class ClassListComponent implements OnInit {
       if (result.status == 1) {
         this.isLoadingBool = false;
         this.getClassesListData();
-        this.util.showSuccessAlert("Learner cancelled successfully");
+        this.util.showSuccessAlert("Learner suspended successfully");
       }
     })
   }
@@ -489,8 +489,6 @@ export class ClassListComponent implements OnInit {
     this.service.post('cancel-invite-learner-api', params, 1).subscribe(result => {
       if (result.status == 1) {
         this.isLoadingBool = false;
-        // this.getClassesListData();
-        // this.util.showSuccessAlert(result.error_message);
       }
     })
   }
@@ -509,7 +507,7 @@ export class ClassListComponent implements OnInit {
       if (result.status == 1) {
         this.isLoadingBool = false;
         this.getClassesListData();
-        this.util.showSuccessAlert(result.error_message);
+        this.util.showSuccessAlert('Learner cancelled successfully');
       }
     })
   }

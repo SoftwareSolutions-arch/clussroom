@@ -40,6 +40,7 @@ export class OrderingComponent implements OnInit {
   isEditQuestion: boolean;
   isImageShow: boolean = true;
   classId: any = '';
+  new_image_Description=[];
 
   constructor(public util: UtilService, private router: Router, private route: ActivatedRoute, private fb: FormBuilder, public service: SharedServiceService) {
     this.testId = localStorage.getItem('test_id');
@@ -59,12 +60,15 @@ export class OrderingComponent implements OnInit {
   }
 
   picked(event: any) {
-    if (this.ExteriorPicString.length + this.fillData.attachment.length < 4) {
-      if (event.target.files.length > 4) {
-        this.util.errorAlertPopup('Can not select more than 4 images')
+    if(this.fillData.attachment==null){
+      this.fillData.attachment=[];
+    }
+    if(this.ExteriorPicString.length + this.fillData.attachment.length < 4){
+      if(event.target.files.length>4){
+        this.util.errorAlertPopup('Can not select more than 4 images');
       }
 
-      else {
+      else{
         this.fileLists = FileList = event.target.files;
         for (var i = 0; i <= event.target.files.length - 1; i++) {
           const file: File = this.fileLists[i];
@@ -78,7 +82,7 @@ export class OrderingComponent implements OnInit {
       }
     }
 
-    else {
+    else{
       this.util.errorAlertPopup('Can not select more than 4 images');
     }
   }
@@ -160,6 +164,7 @@ export class OrderingComponent implements OnInit {
       checkstatus: 1,
       drag_drop_sequenece_answers: (this.itemListArray.length > 0) ? this.itemListArray : userA,
       minimum_sequence: "1",
+      image_description: this.new_image_Description
     }
 
     console.log('params',params);
@@ -178,15 +183,15 @@ export class OrderingComponent implements OnInit {
     this.myForm.value.arr.forEach(element => {
       userA.push(element.question);
     });
-
-    var datas = [];
-
-    if (this.fillData.attachment != null) {
+    if(this.fillData.attachment!=null){
+      var old_attchment = [];
       this.fillData.attachment.forEach(element => {
-        datas.push(element.id)
+        old_attchment.push({
+          'id': element.id,
+          'image_description': element.image_description
+        })
       });
-    }
-
+    }   
 
     let params = {
       question_pragraph_id: this.getQuestionId,
@@ -200,7 +205,8 @@ export class OrderingComponent implements OnInit {
       checkstatus: 1,
       drag_drop_sequenece_answers: (this.itemListArray.length > 0) ? this.itemListArray : userA,
       minimum_sequence: this.fillData.minimum_sequence,
-      previous_attachment_f_ids: datas,
+      previous_attachment_f_ids: old_attchment,
+      image_description:this.new_image_Description,
     }
     console.log('params',params)
     this.isLoadingBool = true;

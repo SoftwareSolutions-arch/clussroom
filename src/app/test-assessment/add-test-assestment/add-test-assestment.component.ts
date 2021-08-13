@@ -260,7 +260,7 @@ export class AddTestAssestmentComponent implements OnInit {
    }
    if(isAllreadyExist){
      this.listingData[index].value = highestMarks
-     
+
    }else{
     this.listingData.push({id: empIndex,value: highestMarks})
    }

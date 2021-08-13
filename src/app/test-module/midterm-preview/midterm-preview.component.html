@@ -51,8 +51,6 @@
                       <span style="color: black;" [innerHtml]="data.question"></span>
                       <span>(Multiple
                         Choice)</span>
-                      <!-- <input type="checkbox" (click)="isCheckClicked(data)">
-						<span class="mark"></span> -->
                     </label>
                     <div class="ellipdown col-sm-1 dropdown-1 text-right"
                       style="display: flex !important; align-items: center !important;">
@@ -78,7 +76,8 @@
                 </div>
                 <div *ngIf="data.attachment">
                   <div class="custom-control custom-checkbox mb-3 question-label col-lg-12" style="padding-top: 2em;">
-                    <label class="question-checkbox col-lg-11">Q {{data.serial_number}}.&nbsp;&nbsp;Choose the correct image for
+                    <label class="question-checkbox col-lg-11">Q {{data.serial_number}}.&nbsp;&nbsp;Choose the correct
+                      image for
                       preposition
                       near. <span>(Multiple Choice)</span>
                       <input type="checkbox"> <span class="mark"></span>
@@ -94,11 +93,21 @@
                       <button type="button">
                         <h2><img src="{{item.image}}"></h2>
                       </button>
-                      <p>Description 1</p>
-                      <label class="choice-checkbox" style="padding-left: 55px;">
-                        <!-- <input type="checkbox" (click)="isCheckClicked(data)"> <span class="mark2"></span> -->
-                        <h6>Choice 1</h6>
+                      <p>{{item.image_description}}</p>
+                      <div class="col-sm-3 text-center">
+                        <label *ngFor="let optionList of data.multiple_choices[0] | slice:0:2;" class="choice-checkbox"
+                        style="padding-left: 55px;">
+                        <input type="checkbox" name="new" id="new" (click)="isCheckClicked(data)"> <span
+                          class="mark2"></span>
+                        <h6>{{optionList.option_text}}</h6>
                       </label>
+                      <label *ngFor="let optionList of data.multiple_choices[0] | slice:2:4;" class="choice-checkbox"
+                        style="padding-left: 55px;">
+                        <input type="checkbox" name="new" id="new" (click)="isCheckClicked(data)"> <span
+                          class="mark2"></span>
+                        <h6>{{optionList.option_text}}</h6>
+                      </label>
+                      </div>
                     </div>
 
                   </div>
@@ -110,14 +119,10 @@
                   <label class="question-checkbox col-lg-11">Q {{data.serial_number}}.&nbsp;&nbsp;
                     <span style="color: black;" [innerHtml]="data.question"></span>
                     <span>({{data.questiontypename}})</span>
-                    <!-- <input type="checkbox" (click)="isCheckClicked(data)">
-					  <span class="mark"></span> -->
                   </label>
                   <div class="ellipdown col-sm-1 dropdown-1 text-right"
                     style="display: flex !important; align-items: center !important;">
                     <label style="padding: 0;">{{data.points}} Points</label>
-
-
                   </div>
                 </div>
 
@@ -126,9 +131,8 @@
                     <button type="button">
                       <h2><img src="{{item.image}}"></h2>
                     </button>
-                    <p>Title for image</p>
+                    <p>{{item.image_description}}</p>
                   </div>
-
                   <div class="col-sm-3 text-center"></div>
                 </div>
 
@@ -149,10 +153,10 @@
                 <div class="custom-control custom-checkbox mb-3 question-label col-lg-12"
                   style="padding-top: 1em; padding-bottom: 1em;">
                   <label class="question-checkbox col-lg-11">Q {{data.serial_number}}.&nbsp;&nbsp;
-                    <span style="color: black;" [innerHtml]="data.question"></span>
+                    <span style="color: black;">
+                      Fill in the blanks with the most appropriate words. (Fill in the blanks)
+                    </span>
                     <span>({{data.questiontypename}})</span>
-                    <!-- <input type="checkbox" (click)="isCheckClicked(data)">
-					  <span class="mark"></span> -->
                   </label>
                   <div class="ellipdown col-sm-1 dropdown-1 text-right"
                     style="display: flex !important; align-items: center !important;">
@@ -161,7 +165,9 @@
                 </div>
                 <div class="fill mb-4" style="padding-bottom: 1em;">
                   <!-- <h6 style="font-size: 15px; font-weight: 400;">I don't want to argue&nbsp;<input type="text">&nbsp;you&nbsp;<input type="text">&nbsp;that matter at this time.</h6> -->
-                  <h6 style="font-size: 15px; font-weight: 400;">{{data.questiontype}}<input type="text"></h6>
+                  <h6 style="font-size: 15px; font-weight: 400;">{{data.question}}
+                    <!-- <input type="text"> -->
+                  </h6>
                 </div>
 
                 <div class="test-option border-bottom sample custom-control custom-checkbox col-lg-12">
@@ -169,7 +175,7 @@
                     <button type="button">
                       <h2><img src="{{item.image}}"></h2>
                     </button>
-                    <p>Description 1</p>
+                    <p>{{item.image_description}}</p>
                   </div>
                 </div>
 
@@ -193,7 +199,7 @@
                     <button type="button">
                       <h2><img src="{{item.image}}"></h2>
                     </button>
-                    <p>Title for image</p>
+                    <p>{{item.image_description}}</p>
                   </div>
 
                   <div class="col-sm-3 text-center"></div>
@@ -231,7 +237,7 @@
                     <button type="button">
                       <h2><img src="{{item.image}}"></h2>
                     </button>
-                    <p>Title for image</p>
+                    <p>{{item.image_description}}</p>
                   </div>
 
                   <div class="col-sm-3 text-center"></div>
@@ -250,7 +256,7 @@
               <div *ngSwitchCase="'matching_type_paper'">
                 <div class="custom-control custom-checkbox mb-3 question-label col-lg-12" style="padding-top: 2em;">
                   <label class="question-checkbox col-lg-11">Q
-                    {{i+1}}.&nbsp;&nbsp;
+                    {{data.serial_number}}.&nbsp;&nbsp;
                     <span style="color: black;" [innerHtml]="data.question"></span>
                     <span>({{data.questiontypename}})</span>
                   </label>
@@ -265,7 +271,7 @@
                     <button type="button">
                       <h2><img src="{{item.image}}"></h2>
                     </button>
-                    <p>Title for image</p>
+                    <p>{{item.image_description}}</p>
                   </div>
                   <div class="col-sm-3 text-center"></div>
                 </div>

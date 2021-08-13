@@ -24,7 +24,7 @@ export class TestListingHomeComponent implements OnInit {
   currentIndex = -1;
   page = 1;
   count = 0;
-  pageSize = 5;
+  pageSize = 10;
   SettingsData: any = {
     test_name: '',
     instruction: '',
@@ -252,7 +252,8 @@ export class TestListingHomeComponent implements OnInit {
 
   //step 2
   addTestFromLiabrary2(data) {
-
+    this.testData=[];
+    this.classData=[];
     this.testLibraryData = data.course_name
     let params = {
       "step": "2",
@@ -270,7 +271,8 @@ export class TestListingHomeComponent implements OnInit {
 
   addTestFromLiabrary3(item) {
     this.isLoadingBool = true;
-    this.classesId = item.nid
+    this.classesId = item.nid;
+    this.testData=[];
     let params = {
       "step": "3",
       "class_id": item.nid

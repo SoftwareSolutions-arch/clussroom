@@ -40,9 +40,8 @@ export class MatchingComponent implements OnInit {
   isEditQuestion: boolean;
   isImageShow: boolean = true;
   classId: any = '';
-  old_image_Description = [];
-  new_image_Description = [];
 
+  new_image_Description = [];
   constructor(public util: UtilService, private route: ActivatedRoute, private router: Router, private fb: FormBuilder, public service: SharedServiceService) {
     this.testId = localStorage.getItem('test_id');
     this.getQuestionId = this.route.snapshot.paramMap.get('id');
@@ -78,9 +77,12 @@ export class MatchingComponent implements OnInit {
   }
 
   picked(event: any) {
+    if(this.fillData.attachment==null){
+      this.fillData.attachment=[];
+    }
     if(this.ExteriorPicString.length + this.fillData.attachment.length < 4){
       if(event.target.files.length>4){
-        this.util.errorAlertPopup('Can not select more than 4 images')
+        this.util.errorAlertPopup('Can not select more than 4 images');
       }
 
       else{
@@ -100,7 +102,6 @@ export class MatchingComponent implements OnInit {
     else{
       this.util.errorAlertPopup('Can not select more than 4 images');
     }
-
   }
 
   removeImage(index) {
@@ -134,21 +135,32 @@ export class MatchingComponent implements OnInit {
   }
 
   saveQuestion() {
-    this.isLoadingBool = true;
-
     var userA = [];
     var userB = [];
     this.myForm.value.arr.forEach(element => {
       userA.push(element.question);
       userB.push(element.answer);
     });
-    this.fillData.attachment = this.ExteriorPicString
-    this.fillData.match_question_text = userA
-    this.fillData.match_answer_text = userB
-    this.fillData.test_assignment_nid = this.testId
 
-    this.service.post('add-question-api', this.fillData, 1).subscribe(result => {
+    let params = {
+      "test_assignment_nid": this.testId,
+      "test_assignment_question_type": "matching",
+      "question": this.fillData.question,
+      "points": this.fillData.points,
+      "checkstatus": "1",
+      "correct_answer": this.fillData.correct_answer,
+      'jumble_points': this.fillData.jumble_points,
+      'jumble_questions_placement': this.fillData.jumble_questions_placement,
+      'match_question_text': userA,
+      'match_answer_text': userB,
+      'partial_points': this.fillData.partial_points,
+      "attachment": this.ExteriorPicString,
+      'image_description': this.new_image_Description,
+    }
 
+    console.log('params', params);
+    this.isLoadingBool = true;
+    this.service.post('add-question-api', params, 1).subscribe(result => {
       this.util.showSuccessAlert('Answer Saved Successfully');
       this.isLoadingBool = false;
       this.router.navigate(['/test/question-screen']);
@@ -220,25 +232,32 @@ export class MatchingComponent implements OnInit {
         });
       }
     });
-    this.fillData.test_assignment_nid = this.testId
-    var data = [];
-    this.fillData.attachment.forEach(element => {
-      data.push(element.id)
-    });
-    this.fillData.attachment = this.ExteriorPicString;
+
+    if(this.fillData.attachment!=null){
+      var old_attchment = [];
+      this.fillData.attachment.forEach(element => {
+        old_attchment.push({
+          'id': element.id,
+          'image_description': element.image_description
+        })
+      });
+    }
+   
+
     let params = {
       question_pragraph_id: this.getQuestionId,
       test_assignment_question_type: 'edit_matching',
       question: this.fillData.question,
-      previous_attachment_f_ids: data,
       edit_match_question_text: this.fillData.match_question_text,
       jumble_questions_placement: this.fillData.jumble_questions_placement,
       partial_points: this.fillData.partial_points,
-      attachment: this.fillData.attachment,
-      image_description:this.new_image_Description,
-      previous_image_description: this.old_image_Description,
+      attachment: this.ExteriorPicString,
       points: this.fillData.points,
+      previous_attachment_f_ids: old_attchment,
+      image_description:this.new_image_Description,
     }
+
+    console.log('params',params);
 
     this.isLoadingBool = true;
     this.service.post('edit-question-api', params, 1).subscribe(result => {
@@ -249,7 +268,7 @@ export class MatchingComponent implements OnInit {
     })
   }
 
-  cancel(){
+  cancel() {
     this.router.navigate(['/test/question-screen']);
   }
 }

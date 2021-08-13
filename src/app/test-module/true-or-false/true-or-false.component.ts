@@ -33,6 +33,7 @@ export class TrueOrFalseComponent implements OnInit {
   isEditQuestion: boolean;
   isImageShow: boolean = true;
   classId: any = '';
+  new_image_Description = [];
   constructor(public util: UtilService, private route: ActivatedRoute, public service: SharedServiceService, private router: Router) {
     this.testId = localStorage.getItem('test_id');
     this.getQuestionId = this.route.snapshot.paramMap.get('id');
@@ -46,6 +47,9 @@ export class TrueOrFalseComponent implements OnInit {
   }
 
   picked(event: any) {
+    if(this.fillData.attachment==null){
+      this.fillData.attachment=[];
+    }
     if(this.ExteriorPicString.length + this.fillData.attachment.length < 4){
       if(event.target.files.length>4){
         this.util.errorAlertPopup('Can not select more than 4 images');
@@ -106,21 +110,24 @@ export class TrueOrFalseComponent implements OnInit {
 
   // save question
   saveQuestion() {
-    this.fillData.attachment = this.ExteriorPicString
+    // this.fillData.attachment = this.ExteriorPicString
 
     let params = {
       "test_assignment_nid": this.testId,
       "test_assignment_question_type": "true_false",
       "question": this.fillData.question,
-      "attachment": this.fillData.attachment,
+      "attachment": this.ExteriorPicString,
       "points": this.fillData.points,
       "checkstatus": "1",
-      "correct_answer": this.fillData.correct_answer
+      "correct_answer": this.fillData.correct_answer,
+      'image_description': this.new_image_Description
     }
+
+    console.log('params',params);
 
     this.isLoadingBool = true;
     this.service.post('add-question-api', params, 1).subscribe(result => {
-      
+      console.log('params',params);
       this.isLoadingBool = false;
       this.util.showSuccessAlert('Answer Saved Successfully');
       this.router.navigate(['/test/question-screen']);
@@ -156,24 +163,29 @@ export class TrueOrFalseComponent implements OnInit {
 
   // save question
   editQuestion() {
-
-    var data = [];
+   if(this.fillData.attachment!=null){
+    var old_attchment = [];
     this.fillData.attachment.forEach(element => {
-      data.push(element.id)
+      old_attchment.push({
+        'id': element.id,
+        'image_description': element.image_description
+      })
     });
+    }
 
-    this.fillData.attachment = this.ExteriorPicString
     let params = {
       'question_pragraph_id': this.getQuestionId,
       "class_id": this.classId,
       "test_assignment_question_type": "true_false",
       "question": this.fillData.question,
-      "attachment": this.fillData.attachment,
+      "attachment": this.ExteriorPicString,
       "points": this.fillData.points,
       "checkstatus": "1",
       "correct_answer": this.fillData.correct_answer,
-      "previous_attachment_f_ids": data,
+      "previous_attachment_f_ids": old_attchment,
+      'image_description':this.new_image_Description,
     }
+    console.log('params',params);
 
     this.isLoadingBool = true;
     this.service.post('edit-question-api', params, 1).subscribe(result => {

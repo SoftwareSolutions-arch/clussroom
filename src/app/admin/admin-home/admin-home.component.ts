@@ -195,12 +195,14 @@ export class AdminHomeComponent implements OnInit {
 
   // checkbox value
   checkBox(event, item) {
+    console.log(item)
     this.adminId = item.id
     this.selectedItems = item;
     this.selectedItems.course_name.forEach(element => {
       var ids = element.course_id
       this.prevId.push(ids)
     });
+    console.log('this.',this.selectedItems);
     // 
 
     // if (event.target.checked == true) {

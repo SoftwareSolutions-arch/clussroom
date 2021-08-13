@@ -180,6 +180,10 @@ const routes: Routes = [
     loadChildren: () => import('./calendar/calendar-module.routing').then(m => m.CalendarModule)
   },
   {
+    path: 'grade',
+    loadChildren: () => import('./grading/grading-setup/grading.module').then(m => m.GradeModule)
+  },
+  {
     path: 'class-material-vendor',
     loadChildren: () => import('./class-material-vendor/class-material-vendor.module').then(m => m.ClassMaterialVendorModule)
   },

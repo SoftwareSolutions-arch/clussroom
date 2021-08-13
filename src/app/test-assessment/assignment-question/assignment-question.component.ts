@@ -46,12 +46,12 @@ export class AssignmentQuestionComponent implements OnInit {
   picked(event: any) {
     if (this.assignmentId) {
       if (this.ExteriorPicString.length + this.imagedata.length < 4) {
-        
+
         if (event.target.files.length > 4) {
           alert('')
           this.util.errorAlertPopup('Can not select more than 4 images')
         }
-  
+
         else {
           this.fileLists = FileList = event.target.files;
           // this.allImages.push(this.fileLists);
@@ -72,7 +72,7 @@ export class AssignmentQuestionComponent implements OnInit {
       }
     }else{
       // if (this.ExteriorPicString.length < 4) {
-      //   
+      //
         if (this.ExteriorPicString.length < 4) {
           this.fileLists = FileList = event.target.files;
           // this.allImages.push(this.fileLists);
@@ -118,6 +118,8 @@ export class AssignmentQuestionComponent implements OnInit {
     this.listOfFiles.splice(index, 1);
     this.fileList.splice(index, 1);
     this.allImages.splice(index, 1);
+    this.ExteriorPicString.splice(index,1)
+
   }
   questionForm = new FormGroup({
     question: new FormControl('',),
@@ -149,7 +151,7 @@ export class AssignmentQuestionComponent implements OnInit {
       }
     })
   }
-  // patch data 
+  // patch data
   editData() {
     var file = this.filesName
     const data = {

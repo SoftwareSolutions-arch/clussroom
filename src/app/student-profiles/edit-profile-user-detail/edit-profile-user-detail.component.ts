@@ -31,21 +31,21 @@ email: new FormControl('',)
   // upload image
   onFileChange(event) {
     const reader = new FileReader();
-    
+
     if(event.target.files && event.target.files.length) {
       const [file] = event.target.files;
       reader.readAsDataURL(file);
-    
+
       reader.onload = () => {
-   
+
         this.imageSrc = reader.result as string;
-     
+
         this.userForm.patchValue({
           fileSource: reader.result
         });
-   
+
       };
-   
+
     }
   }
     // edit profile api
@@ -60,7 +60,7 @@ email: new FormControl('',)
         "instruction_name":"",
         "timezone":"",
         "image": this.imageSrc
-        
+
       }
       this.service.post('edit-profile-api',data,1).subscribe(res => {
         this.isLoadingBool =false;
@@ -80,7 +80,7 @@ email: new FormControl('',)
       this.service.post('user-profile-api',data,1).subscribe(res => {
       this.userData = res.result
       this.imageData = res.result.avatar
-      
+      console.log(this.imageData);
       this.userForm.patchValue({
         name : this.userData.firstname,
         lastName: this.userData.lastname,

@@ -32,12 +32,12 @@
             </div>
             <div class="col-md-3">
                <button *ngIf="connectButton" type="button" class="zoom-log-out" (click)="logout()">Log out</button>
-					<button *ngIf="disconnectButton" type="button" class="ml-2" (click)="connectZoom(data.id)">Log in</button>
+					<button *ngIf="disconnectButton" type="button" class="ml-2" (click)="connectZoom()">Log in</button>
 
-            </div>                                     
+            </div>
          </div>
 
-        </div>         
+        </div>
 
       </div>
       </div>
@@ -45,7 +45,7 @@
          function myFunction() {
            document.getElementById("myDropdown").classList.toggle("zoom-show");
          }
-         
+
          // Close the dropdown if the user clicks outside of it
          window.onclick = function(event) {
            if (!event.target.matches('.zoom-ellip')) {

@@ -1,0 +1,552 @@
+<div class="dashboard">
+    <app-grading-sidebar></app-grading-sidebar>
+	<div class="control-panel">
+<app-grading-dashboard-header></app-grading-dashboard-header>
+<app-grading-header></app-grading-header>
+         <div class="col-lg-12 mt-2">
+             <h3 style="font-size: 22px; font-weight: 500;">Grade set-up</h3>
+         </div>
+        <div class="prospectus-section sequence-list" style="padding: 20px 11px;">
+			<div class="prospectus-tabs">
+				<ul class="nav nav-tabs">
+				    <li><a data-toggle="tab" href="#reportcard">Settings</a></li>
+                    <li><a data-toggle="tab" href="#grades" style="color: #FF5A64;">Weightage</a></li>
+				    <li><a data-toggle="tab" href="#comments" class="active">Rubric</a></li>
+				</ul>
+			</div>
+
+		<div class="tab-content" style="padding: 22px 50px 0 50px;">
+            <div class="col-lg-12 display-center" style="justify-content: flex-end; padding-right: 0;">
+                <button type="button" class="confirm-submit mb-3" data-toggle="modal" data-target="#addrubric" style="font-size: 12px; font-weight: 500; height: 27px; width: 79px;">Add rubric</button>
+            </div>
+                        <div id="comments" class="tab-pane active">
+                            <div class="table-responsive">
+                                <table class="table custom-table-without-hover">
+                                  <thead>
+                                    <tr style="border-bottom: none;" >
+                                      <th scope="col" style="border-top-left-radius:6px; padding: 20px 10px;">Rubric</th>
+                                      <th scope="col" class="text-left" style="padding-left: 0;">Status</th>
+                                      <th scope="col" class="text-center" style="padding: 20px 0;">&nbsp;</th>
+                                      <th scope="col" class="text-center" style="padding: 20px 0;">&nbsp;</th>
+                                      <th scope="col" class="text-center" style="border-top-right-radius: 6px; padding: 20px 0;">&nbsp;</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr *ngFor = "let data of rubricList" >
+                                      <td style="border-left: none; padding: 27px 0; font-size: 14px; color: #25213B;">{{data.title}}</td>                                      
+                                    <td class="text-left" style="padding: 26px 0; border-left: none;">
+                                        <button type="button" class="active-rubric">
+                                            <i class="fa fa-circle" aria-hidden="true" style="margin-right: 8px;"></i>Active
+                                        </button>
+                                    </td>
+                                      <td class="text-center" style="padding:22px 0; border-left: none;"><button type="button" class="view-rubric" data-toggle="modal" data-target="#viewrubric">View rubric</button></td>
+                                      <td class="text-center" style="padding:24px 0; border-left: none;">
+                                          <button type="button" class="edit-rubric" data-toggle="modal" data-target="#editrubric">Edit</button>
+                                      </td>
+                                      <td class="text-center" style="padding: 27px 16px;border-left: none;">
+                                        <i class="fa fa-ellipsis-v" aria-hidden="true" data-toggle="modal" data-target="#Addcomment" style="cursor: pointer;"></i></td>
+                                    </tr>
+                                    <!-- <tr>
+                                        <td style="border-left: none; padding: 27px 0; font-size: 14px; color: #25213B;">Chemical knowledge assessment</td>                                      
+                                        <td class="text-left" style="padding: 26px 0; border-left: none;">&nbsp;</td>
+                                        <td class="text-center" style="padding:22px 0; border-left: none;"><button type="button" class="view-rubric">View rubric</button></td>
+                                        <td class="text-center" style="padding:24px 0; border-left: none;">
+                                        
+                                        </td>
+                                        <td class="text-center" style="padding: 27px 16px;border-left: none;">
+                                          <i class="fa fa-ellipsis-v" aria-hidden="true" data-toggle="modal" data-target="#Addcomment" style="cursor: pointer;"></i></td>
+                                      </tr>
+
+                                      <tr>
+                                        <td style="border-left: none; padding: 27px 0; font-size: 14px; color: #25213B;">Math agility</td>                                      
+                                        <td class="text-left" style="padding: 26px 0; border-left: none;">
+                                            <button type="button" class="active-rubric">
+                                                <i class="fa fa-circle" aria-hidden="true" style="margin-right: 8px;"></i>Active
+                                            </button>
+                                        </td>
+                                        <td class="text-center" style="padding:22px 0; border-left: none;"><button type="button" class="view-rubric">View rubric</button></td>
+                                        <td class="text-center" style="padding:24px 0; border-left: none;">
+                                    
+                                        </td>
+                                        <td class="text-center" style="padding: 27px 16px;border-left: none;">
+                                          <i class="fa fa-ellipsis-v" aria-hidden="true" data-toggle="modal" data-target="#Addcomment" style="cursor: pointer;"></i></td>
+                                      </tr>
+
+                                      <tr>
+                                        <td style="border-left: none; padding: 27px 0; font-size: 14px; color: #25213B;">Language - vocabulary (Grade 1)</td>                                      
+                                        <td class="text-left" style="padding: 26px 0; border-left: none;">&nbsp;</td>
+                                        <td class="text-center" style="padding:22px 0; border-left: none;"><button type="button" class="view-rubric">View rubric</button></td>
+                                        <td class="text-center" style="padding:24px 0; border-left: none;">
+                                        
+                                        </td>
+                                        <td class="text-center" style="padding: 27px 16px;border-left: none;">
+                                          <i class="fa fa-ellipsis-v" aria-hidden="true" data-toggle="modal" data-target="#Addcomment" style="cursor: pointer;"></i></td>
+                                      </tr>
+
+                                      <tr>
+                                        <td style="border-left: none; padding: 27px 0; font-size: 14px; color: #25213B;">Assignment for Mid-term</td>                                      
+                                        <td class="text-left" style="padding: 26px 0; border-left: none;">
+                                            <button type="button" class="active-rubric">
+                                                <i class="fa fa-circle" aria-hidden="true" style="margin-right: 8px;"></i>Active
+                                            </button>
+                                        </td>
+                                        <td class="text-center" style="padding:22px 0; border-left: none;"><button type="button" class="view-rubric">View rubric</button></td>
+                                        <td class="text-center" style="padding:24px 0; border-left: none;">
+                                    
+                                        </td>
+                                        <td class="text-center" style="padding: 27px 16px;border-left: none;">
+                                          <i class="fa fa-ellipsis-v" aria-hidden="true" data-toggle="modal" data-target="#Addcomment" style="cursor: pointer;"></i></td>
+                                      </tr> -->
+                                      
+                                      
+                                  </tbody>
+                                </table>
+                            </div>
+					    </div>
+			  		</div>
+			  	</div>		
+		    </div>
+  		</div>	
+
+      <!-- Add comment modal popup start -->
+
+
+<div id="Addcomment" class="modal deletetest-modal" role="dialog">
+	<div class="modal-dialog" style="max-width: 79px; position: relative; top: 7.5em; left: 39.5em;">
+  
+	<div class="modal-content">
+		<div class="modal-body display-center" style="justify-content: center;">
+            <p style="cursor: pointer;" data-toggle="modal" data-target="#Editview" data-dismiss="modal">View</p>
+		</div>
+	</div>
+  
+	</div>  
+	</div>
+  
+  <!-- Add comment modal popup end -->  
+
+<!--Add rubric modal popup start -->
+
+<div id="addrubric" class="modal deletetest-modal" role="dialog" #closeRubric> 
+    <div class="modal-dialog" style="max-width: 1300px;">
+ 
+       <div class="modal-content">
+          <div class="rubric-header col-lg-12 display-center">
+             <div class="col-md-4"></div>
+             <div class="col-md-4 text-center">
+                <h3>Add rubric</h3>
+             </div>
+             <div class="col-md-4 text-right">
+                <i class="fa fa-times" aria-hidden="true" style="color: #396aff;" data-dismiss="modal"></i>
+             </div>
+          </div>
+          <div class="modal-body mt-5 col-lg-12 rubric-back mb-5"
+             style="padding: 20px 30px 30px 30px; margin: 0 auto; width: 1200px;">
+             <div style="display: flex; align-items: center;">
+                <p class="i-position"><button type="button"><i class="fa fa-minus-circle"
+                         aria-hidden="true"></i></button></p>
+                <!--             <p class="i-position"><button type="button"><i class="fa fa-minus-circle" aria-hidden="true" style="top:18em; right: 2.3em;"></i></button></p> -->
+                <!--             <p class="i-position"><button type="button"><i class="fa fa-minus-circle" aria-hidden="true" style="top:14em; right:3.2em"></i></button></p> -->
+             </div>
+             
+             <form [formGroup]="empForm">
+ 
+                <div class="col-lg-12 display-center" style="justify-content: center;">
+                   <input type="text" formControlName="rubric_title" placeholder="&lt;Title of rubric&gt;" class="rubric-title mb-3">
+                </div>
+                <div class="col-lg-12 rubric-heading display-center"
+                   style="border-top-left-radius: 6px; border-top-right-radius: 6px; padding: 0;">
+ 
+                   <div class="col-md-2 display-center custom-add"
+                      style="padding: 14px 0;; justify-content: center;border-right: 1px solid #DCE2EC; padding-left: 29px;">
+                      <div class="col-lg-8" style="padding: 0; text-align: right;">
+                         <p>Criterion</p>
+                      </div>
+                      <div class="col-md-4" style="padding: 0 50px;">
+                         <button type="button" style="position: relative; left: 3.5px;" (click)="addEmployee()">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                         </button>
+                      </div>
+                   </div>
+ 
+                   <div class="col-md-9 text-center" style="padding: 14px 0;border-right: 1px solid #DCE2EC;">
+                      <p>Scale</p>
+                   </div>
+ 
+                   <div class="col-sm-1 text-center" style="padding: 14px 0;;">
+                      <p>Total points</p>
+                   </div>
+ 
+                </div>
+                <ng-container formArrayName="employees">
+                   <ng-container *ngFor="let employee of employees().controls; let empIndex=index">
+                      
+                      <div class="col-lg-12 rubric-heading display-center" style="padding: 0;"
+                         [formGroupName]="empIndex">
+ 
+                         <div class="col-md-2 custom-add rubric-1-section display-center"
+                            style="padding: 4px 0;border-right: 1px solid #DCE2EC;padding-left: 4px;">
+                            <textarea formControlName="critterion">
+                 Comprehension & 
+                 understanding ability
+                     </textarea>
+                            <button type="button" style="position: relative; left: 15px;"
+                               (click)="addEmployeeSkill(empIndex)">
+                               <i class="fa fa-plus" aria-hidden="true"></i>
+                            </button>
+                         </div>
+                         <ng-container formArrayName="scale">
+                               <div class="col-md-9 display-center" style="padding: 0;">
+                                     <ng-container >
+                                  <div class="first-mid-section display-center col-md-4"  *ngFor="let skill of employeeSkills(empIndex).controls; let skillIndex=index"
+                                     style="justify-content:center; border-right: 1px solid #DCE2EC;" [formGroupName]="skillIndex">
+                                     <textarea style="padding: 10px 4px;" formControlName="text"></textarea>
+                                     <input type="text"  (input)=sumMethod(empIndex) (keypress)="numberOnly($event)" class="form-control" formControlName="value">
+                                    
+                                     <button type="button" (click)="removeEmployeeSkill(empIndex,skillIndex)"
+                                        style="position: relative; bottom: .6em; right: 4.1em; border: none; background-color: transparent; color: #FF82AC;">
+                                        <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                                     </button>
+                                  </div>
+ 
+                                  <div class="first-mid-section display-center col-md-4"
+                                     style="justify-content:center; border-right: 1px solid #DCE2EC;">
+                                  </div>
+ 
+                                  <div class="first-mid-section display-center col-md-4"
+                                     style="justify-content:center; border-right: 1px solid #DCE2EC;">
+                                  </div>
+                               </ng-container>
+                               </div>
+                            </ng-container>
+                         <div class="col-sm-1 total-pointsp" *ngIf="listingData.length > 0">
+                           <ng-container *ngFor=" let data of listingData">
+                              <ng-container *ngIf="data.id === empIndex">
+                                 <p>{{data.value}}</p>
+                              </ng-container>
+                          
+                         </ng-container>
+                         </div>
+                      </div>
+                   </ng-container>
+                </ng-container>
+             </form>
+          </div>
+          <div class="col-lg-12 display-center mb-5" style="justify-content: center;">
+             <button type="submit" (click)="addRubric()" class="confirm-rubric" >Add rubric</button>
+         </div>
+       </div>
+ 
+    </div>
+ 
+ </div>
+  <!-- Add rubric modal popup end -->
+
+  <!--Edit rubric modal popup start -->
+
+
+<div id="editrubric" class="modal deletetest-modal" role="dialog">
+	<div class="modal-dialog" style="max-width: 1300px;">
+  
+	  <div class="modal-content">
+        <div class="rubric-header col-lg-12 display-center">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 text-center">
+            <h3>Edit rubric</h3>
+            </div>
+            <div class="col-md-4 text-right">
+                <i class="fa fa-times" aria-hidden="true" style="color: #396aff; cursor: pointer;" data-dismiss="modal"></i>
+            </div>
+        </div>
+		<div class="modal-body mt-5 col-lg-12 rubric-back mb-5" style="padding: 20px 30px 30px 30px; margin: 0 auto; width: 1200px;">
+            <div class="col-lg-12 display-center" style="justify-content: center;">
+                <input type="text" placeholder="&lt;Title of rubric&gt;" class="rubric-title mb-3">
+            </div>
+            <div class="col-lg-12 rubric-heading display-center" style="border-top-left-radius: 6px; border-top-right-radius: 6px; padding: 0;">
+                
+                <div class="col-md-2 display-center custom-add" style="padding: 14px 0;; justify-content: center;border-right: 1px solid #DCE2EC; padding-left: 29px;">
+                    <div class="col-lg-8" style="padding: 0; text-align: right;">
+                    <p>Criterion</p></div>
+                    <div class="col-md-4" style="padding: 0 50px;">
+                    <button type="button">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    </button></div>
+                </div>
+
+                <div class="col-md-9 text-center" style="padding: 14px 0;border-right: 1px solid #DCE2EC;">
+                    <p>Scale</p>
+                </div>
+                
+                <div class="col-sm-1 text-center" style="padding: 14px 0;;">
+                    <p>Total points</p>
+                </div>
+
+            </div>
+
+            <div class="col-lg-12 rubric-heading display-center" style="padding: 0;">
+                <i class="fa fa-minus-circle" aria-hidden="true" style="position: relative; right: 1.4em; color: #FF82AC; cursor: pointer;"></i>
+                <div class="col-md-2 custom-add rubric-1-section display-center" style="padding: 4px 0;border-right: 1px solid #DCE2EC;padding-left: 4px;">
+                    <textarea>
+Comprehension & 
+understanding ability
+                    </textarea>
+                    <button type="button" style="position: relative; left: 15px; bottom: 12px;">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" style="position: relative; left: 1px; top: 14px; background-color: transparent; color: #FF82AC;">
+                        <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                    </button>
+                </div>
+
+                <div class="col-md-9 display-center" style="padding: 0;">
+                    <div class="first-mid-section display-center col-md-4"style="justify-content:center; border-right: 1px solid #DCE2EC;">
+                        <textarea style="padding: 10px 4px;">Poor</textarea>
+                        <input type="text" value="1">
+                    </div>
+
+                    <div class="first-mid-section display-center col-md-4"style="justify-content:center; border-right: 1px solid #DCE2EC;">
+                        <textarea style="padding: 10px 4px;">Can be improved</textarea>
+                        <input type="text" value="3">
+                    </div>
+
+                    <div class="first-mid-section display-center col-md-4"style="justify-content:center; border-right: 1px solid #DCE2EC;">
+                        <textarea>
+Excellent & exceeded 
+comprehension ability                            
+                        </textarea>
+                        <input type="text" value="5">
+                    </div>
+                </div>
+
+                <div class="col-sm-1 total-pointsp">
+                    <p>3</p>
+                </div>
+            </div>
+            <div class="col-lg-12 rubric-heading display-center" style="padding: 0;">
+                <i class="fa fa-minus-circle" aria-hidden="true" style="position: relative; right: 1.4em; color: #FF82AC; cursor: pointer;"></i>
+                <div class="col-md-2 custom-add rubric-1-section display-center" style="padding: 4px 0;border-right: 1px solid #DCE2EC; padding-left: 4px;">
+                    <textarea style="padding: 9px 4px;">Delivery</textarea>
+                    <button type="button" style="position: relative; left: 15px; bottom: 12px;">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" style="position: relative; left: 1px; top: 14px; background-color: transparent; color: #FF82AC;">
+                        <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                    </button>
+                </div>
+
+                <div class="col-md-9 display-center" style="padding: 0;">
+                    <div class="second-mid-section display-center col-md-3"style="justify-content:center; border-right: 1px solid #DCE2EC; padding-left:12px;">
+                        <textarea style="padding: 10px 4px;">Poor</textarea>
+                        <input type="text" value="1">
+                    </div>
+
+                    <div class="second-mid-section display-center col-md-3"style="justify-content:center; border-right: 1px solid #DCE2EC;">
+                        <textarea style="padding: 10px 4px;">Satisfactory</textarea>
+                        <input type="text" value="3">
+                    </div>
+
+                    <div class="second-mid-section display-center col-md-3"style="justify-content:center; border-right: 1px solid #DCE2EC;">
+                        <textarea style="padding: 10px 4px;">Good</textarea>
+                        <input type="text" value="3">
+                    </div>
+
+                    <div class="second-mid-section display-center col-md-3"style="justify-content:center; border-right: 1px solid #DCE2EC;">
+                        <textarea>
+Well & effective 
+delivery                          
+                        </textarea>
+                        <input type="text" value="5">
+                    </div>
+                </div>
+
+                <div class="col-sm-1 total-pointsp">
+                    <p>7</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-12 rubric-heading display-center" style="border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; padding: 0;">
+                <i class="fa fa-minus-circle" aria-hidden="true" style="position: relative; right: 1.4em; color: #FF82AC; cursor: pointer;"></i>
+                <div class="col-md-2 custom-add rubric-1-section display-center" style="padding: 4px 0;border-right: 1px solid #DCE2EC; padding-left: 4px;">
+                    <textarea style="padding: 9px 4px;">Grammar</textarea>
+                    <button type="button" style="position: relative; left: 15px; bottom: 12px;">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" style="position: relative; left: 1px; top: 14px; background-color: transparent; color: #FF82AC;">
+                        <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                    </button>
+                </div>
+
+                <div class="col-md-9 display-center" style="padding: 0;">
+                    <div class="first-mid-section display-center col-md-4"style="justify-content:center; border-right: 1px solid #DCE2EC;">
+                        <textarea style="padding: 10px 4px;">Poor</textarea>
+                        <input type="text" value="1">
+                    </div>
+
+                    <div class="first-mid-section display-center col-md-4"style="justify-content:center; border-right: 1px solid #DCE2EC;">
+                        <textarea style="padding: 10px 4px;">Can be improved</textarea>
+                        <input type="text" value="3">
+                    </div>
+
+                    <div class="first-mid-section display-center col-md-4"style="justify-content:center; border-right: 1px solid #DCE2EC;">
+                        <textarea>
+Excellent & exceeded 
+comprehension ability                            
+                        </textarea>
+                        <input type="text" value="5">
+                    </div>
+                </div>
+
+                <div class="col-sm-1 total-pointsp">
+                    <p>3</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-lg-12 display-center mb-5" style="justify-content: center;">
+            <button type="submit" class="confirm-rubric" data-dismiss="modal">Confirm edit</button>
+        </div>
+
+		</div>
+        
+		  </div>
+  
+	  </div>
+  <!-- Edit rubric modal popup end -->
+
+
+
+  <!--View rubric modal popup start -->
+
+
+  <div id="viewrubric" class="modal deletetest-modal" role="dialog">
+    <div class="modal-dialog" style="max-width: 1300px;">
+   
+      <div class="modal-content">
+         <div class="rubric-header col-lg-12 display-center">
+             <div class="col-md-4"></div>
+             <div class="col-md-4 text-center">
+             <h3>{{rubricTitle}}</h3>
+             </div>
+             <div class="col-md-4 text-right">
+                 <i class="fa fa-times" aria-hidden="true" style="color: #396aff;" data-dismiss="modal"></i>
+             </div>
+         </div>
+       <div class="modal-body mt-5 col-lg-12 rubric-back mb-5" style="padding: 20px 30px 30px 30px; margin: 0 auto; width: 1200px;">            
+          <div class="col-lg-12 display-center" style="justify-content: center;">
+                 <h3 style="font-size: 24px; font-weight: 300; color:#333B6A;">{{rubricTitle}}</h3>
+             </div>
+             <div class="col-lg-12 rubric-heading display-center" style="border-top-left-radius: 6px; border-top-right-radius: 6px; padding: 0;">
+ 
+                 <div class="col-md-2 display-center custom-add" style="padding: 14px 0;; justify-content: center;border-right: 1px solid #DCE2EC; padding-left: 29px;">
+                     <div class="col-lg-8" style="padding: 0; text-align: right;">
+                     <p>Criterion</p></div>
+                     <div class="col-md-4" style="padding: 0 50px;"></div>
+                 </div>
+ 
+                 <div class="col-md-9 text-center" style="padding: 14px 0;border-right: 1px solid #DCE2EC;">
+                     <p>Scale</p>
+                 </div>
+                 
+                 <div class="col-sm-1 text-center" style="padding: 14px 0;;">
+                     <p>Total points</p>
+                 </div>
+ 
+             </div>
+ 
+             <div class="col-lg-12 rubric-heading display-center" style="padding: 0;" *ngFor = "let data of viewRubricData">
+                 <!-- <ng-container > -->
+                 <div class="col-md-2 custom-add rubric-1-section display-center" style="padding: 4px 0;border-right: 1px solid #DCE2EC;padding-left: 4px;">
+                     <p>{{data.criterions}}</p>
+                 </div>
+ 
+                 <div class="col-md-9 display-center" style="padding: 0;" >
+                     <div *ngFor = "let data1 of data.rubric_scale" class="first-mid-section display-center col-md-4"style="justify-content:center; border-right: 1px solid #DCE2EC;">
+                         <p style="margin-right: 12em;">{{data1.scale_text}}</p>
+                         <p>{{data1.scale_number}}</p>                      
+                     </div>
+ 
+                     <!-- <div class="first-mid-section display-center col-md-4"style="justify-content:center; border-right: 1px solid #DCE2EC;">
+                         <p style="margin-right: 7em;">Can be improved</p>
+                         <p>3</p>                        
+                     </div>
+ 
+                     <div class="first-mid-section display-center col-md-4"style="justify-content:center; border-right: 1px solid #DCE2EC;">
+                         <p style="margin-left: 1em;">Excellent & exceeded comprehension ability</p>
+                         <p style="margin-right: 1em;">5</p>                       
+                     </div> -->
+                 </div>
+ 
+                 <div class="col-sm-1 total-pointsp">
+                     <p>{{data.point}}</p>
+                 </div>
+                <!-- </ng-container> -->
+             </div>
+             <!-- <div class="col-lg-12 rubric-heading display-center" style="padding: 0;">
+                 
+                 <div class="col-md-2 custom-add rubric-1-section display-center" style="padding: 4px 0;border-right: 1px solid #DCE2EC; padding-left: 4px;">
+                     <p style="padding: 9px 4px;">Delivery</p>
+                 </div>
+ 
+                 <div class="col-md-9 display-center" style="padding: 0;">
+                     <div class="second-mid-section display-center col-md-3"style="justify-content:center; border-right: 1px solid #DCE2EC; padding-left:12px;">
+                         <p style="margin-right: 8em;">Poor</p>
+                         <p>2</p>                       
+                     </div>
+ 
+                     <div class="second-mid-section display-center col-md-3"style="justify-content:center; border-right: 1px solid #DCE2EC;">
+                         <p style="margin-right: 5em;">Satisfactory</p>
+                         <p>4</p>                       
+                     </div>
+ 
+                     <div class="second-mid-section display-center col-md-3"style="justify-content:center; border-right: 1px solid #DCE2EC;">
+                         <p style="margin-right: 8em;">Good</p>
+                         <p>6</p>                      
+                     </div>
+ 
+                     <div class="second-mid-section display-center col-md-3"style="justify-content:center; border-right: 1px solid #DCE2EC;">
+                         <p style="margin-right: 4em;">Well & effective<br>delivery</p>
+                         <p>8</p>                     
+                     </div>
+                 </div>
+ 
+                 <div class="col-sm-1 total-pointsp">
+                     <p>7</p>
+                 </div>
+             </div>
+             
+             <div class="col-lg-12 rubric-heading display-center" style="border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; padding: 0;">
+                 
+                 <div class="col-md-2 custom-add rubric-1-section display-center" style="padding: 4px 0;border-right: 1px solid #DCE2EC; padding-left: 4px;">
+                     <p style="padding: 9px 4px;">Grammar</p>
+                 </div>
+ 
+                 <div class="col-md-9 display-center" style="padding: 0;">
+                     <div class="first-mid-section display-center col-md-4"style="justify-content:center; border-right: 1px solid #DCE2EC;">
+                      <p style="margin-right: 12em;">Poor</p>
+                      <p>1</p>
+                     </div>
+ 
+                     <div class="first-mid-section display-center col-md-4"style="justify-content:center; border-right: 1px solid #DCE2EC;">
+                      <p style="margin-right: 7em;">Need brushing up</p>
+                      <p>3</p>
+                     </div>
+ 
+                     <div class="first-mid-section display-center col-md-4"style="justify-content:center; border-right: 1px solid #DCE2EC;">
+                         <p style="margin-right: 7em;">Strong gammatical<br>skillsets</p>
+                         <p>5</p>
+                     </div>
+                 </div>
+ 
+                 <div class="col-sm-1 total-pointsp">
+                     <p>3</p>
+                 </div>
+             </div> -->
+ 
+         </div>
+ 
+       </div>
+         
+         </div>
+   
+      </div>

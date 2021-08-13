@@ -1,0 +1,213 @@
+<!-- <div class="dashboard">
+  <app-grading-sidebar></app-grading-sidebar>
+	<div class="control-panel">
+<app-grading-dashboard-header></app-grading-dashboard-header>
+<app-grading-header></app-grading-header>
+      <div class="col-lg-12 mt-2">
+          <h3 style="font-size: 22px; font-weight: 500;">Grade set-up</h3>
+      </div>
+      <div class="prospectus-section sequence-list" style="padding: 20px 11px;">
+          <div class="prospectus-tabs">
+              <ul class="nav nav-tabs">
+                  <li><a data-toggle="tab" href="#reportcard"class="active">Settings</a></li>
+                  <li><a data-toggle="tab" href="#grades" style="color:#FF5A64;">Weightage</a></li>
+                  <li><a data-toggle="tab" href="#comments">Rubric</a></li>
+              </ul>
+          </div>
+
+      <div class="tab-content col-lg-12">
+          <div class="col-md-12 weightage-p">
+              <p style="width: 235px;">Grading scale needs to be completed.</p>
+          </div>
+
+          <div class="col-lg-12 weightage-p mt-5" style="display: flex;">
+              <div class="col-md-3 text-center">
+                  <h3>Grading scale:</h3>
+              </div>
+              <div class="col-lg-9">
+                  <ul>
+                      <li class="display-center mb-4">
+                          <input type="radio" id="percentage" name="" value="percentage">
+                          <label for="percentage" style="padding-left: 40px;">Percentage</label>
+                      </li>
+
+                      <li class="display-center">
+                          <input type="radio" id="A/B/C/D" name="" value="A/B/C/D">
+                          <label for="A/B/C/D" style="padding-left: 40px;">A/B/C/D</label>
+                      </li>
+                  </ul>
+
+                  <div class="col-lg-12 val-inputs mt-5 box-shadow" style="padding: 0;">
+                      <ul>
+                          <li>
+                              <input type="text" readonly value="Grade" class="text-center mr-3" style="height:48px; border: 1px solid #AFBCD2; color: #5B73A0;">
+                              <input type="text" readonly value="Points (onwards)" class="text-center" style="height:48px; border: 1px solid #AFBCD2; color: #5B73A0;">
+                          </li>
+                         
+                          <li class="mt-1" >
+                           
+                              <button type="button" class="val-add-btn" (click)="addEmployee()">
+                                  <i class="fa fa-plus" aria-hidden="true" style="padding-right: 5px;" ></i>Add
+                              </button>
+                              <form [formGroup]="empForm">
+                                <div formArrayName="employees">
+                                  <div *ngFor="let employee of employees().controls; let empIndex=index">
+                                    <div  [formGroupName]="empIndex">
+                              <input type="text" placeholder="A" class="text-center mr-3" formControlName="firstName">
+                              <input type="text" placeholder="75" class="text-center mr-4" formControlName="lastName">
+                              <button type="button" class="delete-li">
+                                  <i class="fa fa-times" aria-hidden="true"  (click)="removeEmployee(empIndex)"></i>
+                              </button>
+                            </div>
+                            </div>
+                          </div>
+                          </form>
+                          </li>
+                       
+                      </ul>
+                  </div>
+
+                  <div class="validation-buttons mt-5 mb-4">
+                      <button type="button" class="val-conf mr-2">Confirm</button>
+                      <button type="button" class="val-cancel">Cancel</button>
+                  </div>
+
+                  <div class="validation-buttons">
+                      <button type="button" class="val-conf-grey mr-2">Confirm</button>
+                  </div>
+
+              </div>
+          </div>
+                  </div>
+              </div>		
+          </div>
+      </div> -->
+
+
+
+<div class="dashboard">
+    <app-grading-sidebar></app-grading-sidebar>
+    <div class="control-panel">
+        <app-grading-dashboard-header></app-grading-dashboard-header>
+        <app-grading-header></app-grading-header>
+        <div *ngIf="isLoadingBool" class="loading-indicator">
+            <mat-spinner></mat-spinner>
+          </div>
+        <div class="col-lg-12 mt-2">
+            <h3 style="font-size: 22px; font-weight: 500;">Grade set-up</h3>
+        </div>
+        <div class="prospectus-section sequence-list" style="padding: 20px 11px;">
+            <div class="prospectus-tabs">
+                <ul class="nav nav-tabs">
+                    <li><a data-toggle="tab" href="#reportcard" class="active">Settings</a></li>
+                    <li><a data-toggle="tab" href="#grades" style="color:#FF5A64;">Weightage</a></li>
+                    <li><a data-toggle="tab" href="#comments">Rubric</a></li>
+                </ul>
+            </div>
+
+            <div class="tab-content">
+                <div class="col-md-12 weightage-p">
+                    <p style="width: 235px;">Grading scale needs to be completed.</p>
+                </div>
+
+                <div class="col-lg-12 weightage-p mt-5" style="display: flex;">
+                    <div class="col-md-3 text-center">
+                        <h3>Grading scale:</h3>
+                    </div>
+                    <div class="col-lg-9">
+                        <ul *ngIf="first">
+                            <li class="display-center mb-4" *ngIf="showValue">
+                                <input type="radio" id="percentage" name="percentage" value="percentage"
+                                    (change)="gradingValue($event.target.value)">
+                                <label for="percentage" style="padding-left: 40px;">Percentage</label>
+                            </li>
+
+                            <li class="display-center" *ngIf="showNewValue">
+                                <input type="radio" id="A/B/C/D" name="percentage" value="A/B/C/D"
+                                    (change)="gradingValue($event.target.value)">
+                                <label for="A/B/C/D" style="padding-left: 40px;">A/B/C/D</label>
+                            </li>
+
+                            <li *ngIf="buttonShow">
+                                <button type="button" class="val-conf mt-4" (click)="confirmButton()">Confirm</button>
+                            </li>
+                            <li *ngIf="finalButtonShow">
+                                <button type="button" class="val-conf mt-4" (click)="confirmedButton()">Confirm</button>
+                                <button type="button" class="val-cancel mt-4 ml-2">Cancel</button>
+                            </li>
+                            <li *ngIf="editShow">
+                                <button type="button" class="val-edit mt-4" (click)="editGradingValue()">Edit</button>
+                            </li>
+                        </ul>
+                        <ul *ngIf="second">
+                            <li class="display-center mb-4" *ngIf="showValue">
+                                <input type="radio" id="percentage" name="" value="percentage"
+                                    (change)="gradingValues($event.target.value)">
+                                <label for="percentage" style="padding-left: 40px;">Percentage</label>
+                            </li>
+
+                            <li class="display-center" *ngIf="showNewValue">
+                                <input type="radio" id="A/B/C/D" name="" value="A/B/C/D"
+                                    (change)="gradingValues($event.target.value)">
+                                <label for="A/B/C/D" style="padding-left: 40px;">A/B/C/D</label>
+                            </li>
+                            <li *ngIf="finalButtonShow">
+                                <button type="button" class="val-conf mt-4" (click)="confirmedButton()">Confirm</button>
+                                <button type="button" class="val-cancel mt-4 ml-2">Cancel</button>
+                            </li>
+                            <li *ngIf="editShow">
+                                <button type="button" class="val-edit mt-4" (click)="editGradingValue()">Edit</button>
+                            </li>
+                        </ul>
+                        <ng-container >
+                            <div class="col-lg-12 val-inputs mt-5 box-shadow" style="padding: 0;" *ngIf="gradingShow"> 
+                                <ul>
+                                    <li>
+                                        <button type="button" class="val-edit mb-3" *ngIf="editButton"
+                                            style="margin-left: 15.3em;" (click)="editForm()">Edit</button>
+                                    </li>
+                                    <li>
+                                        <input type="text" readonly value="Grade" class="text-center mr-3"
+                                            style="height:48px; border: 1px solid #AFBCD2; color: #5B73A0;">
+                                        <input type="text" readonly value="Points (onwards)" class="text-center"
+                                            style="height:48px; border: 1px solid #AFBCD2; color: #5B73A0;">
+                                    </li>
+                                    <li class="mt-1">
+                                        <form [formGroup]="empForm" >
+                                            <button type="button" class="val-add-btn" (click)="addEmployee()">
+                                                <i class="fa fa-plus" aria-hidden="true"
+                                                    style="padding-right: 5px;"></i>Add
+                                            </button>
+                                            <div formArrayName="employees">
+                                                <div *ngFor="let employee of employees().controls; let empIndex=index">
+                                                    <div [formGroupName]="empIndex">
+                                                        <input type="text" placeholder="A" class="text-center mr-3"
+                                                            formControlName="grade" required>
+                                                        <input type="text" placeholder="75" class="text-center mr-4"
+                                                            formControlName="point" required>
+                                                        <button type="button" class="delete-li"
+                                                            (click)="removeEmployee(empIndex)">
+                                                            <i class="fa fa-times" aria-hidden="true"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="validation-buttons mt-5 mb-4" *ngIf="scalesd">
+                                <button type="button" class="val-conf mr-2" (click)="submit()">Confirm</button>
+                                <button type="button" class="val-cancel">Cancel</button>
+                            </div>
+                            <div class="validation-buttons" *ngIf="scales" >
+                                <button type="button" *ngIf="empForm.invalid" class="val-conf-grey mr-2" [disabled]="empForm.invalid" (click)="scaleConfirm()">Confirm</button>
+                                <button type="button" class="val-conf mr-2" *ngIf="!empForm.invalid"  (click)="scaleConfirm()">Confirm</button>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

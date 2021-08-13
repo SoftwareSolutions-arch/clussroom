@@ -34,7 +34,11 @@ export class QuestionScreenComponent implements OnInit {
   test_name: any='';
   ischecked: boolean = false;
   deleteButon: boolean = false;
+  currentIndex = -1;
 
+  page = 1;
+  count = 0;
+  pageSize = 10;
   constructor(public service: SharedServiceService, public formBuilder: FormBuilder, private toastr: ToastrService, public util: UtilService, private router: Router) {
     this.testId = localStorage.getItem('test_id');
     this.classId = localStorage.getItem('classListId');
@@ -58,6 +62,11 @@ export class QuestionScreenComponent implements OnInit {
   onkeyup() {
     this.loginForm.value.description.length;
     this.totalCount = this.loginForm.value.description.length;
+  }
+
+   // handling page events
+   handlePageChange(event): void {
+    this.page = event;
   }
 
   ngOnInit() {

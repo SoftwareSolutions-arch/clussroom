@@ -46,7 +46,7 @@
                       aria-hidden="true"></i></a></span>
                 <img style="height: 100%;width: 100%;" src={{baseString+item}}>
               </button>
-              <input [(ngModel)]="old_image_Description[i]" [ngModelOptions]="{standalone: true}" type="text"
+              <input [(ngModel)]="new_image_Description[i]" [ngModelOptions]="{standalone: true}" type="text"
                 placeholder="Description" class="mt-3">
             </div>
             <div class="col-sm-3 text-center" *ngFor="let item of fillData.attachment;let i = index;">
@@ -54,7 +54,7 @@
                       aria-hidden="true"></i></a></span>
                 <img style="height: 100%;width: 100%;" src={{item.image}}>
               </button>
-              <input [(ngModel)]="new_image_Description[i]" [ngModelOptions]="{standalone: true}" type="text"
+              <input [(ngModel)]="item.image_description" [ngModelOptions]="{standalone: true}" type="text"
                 placeholder="Description" class="mt-3">
             </div>
           </div>
@@ -165,7 +165,7 @@
             <button *ngIf="!isEditQuestion" class="button a"
               style="font-size: 10px;text-transform: none !important;" (click)="editQuestion()">Confirm edit</button>
 
-            <a (click)="cancel()" class="edit-points-btn custom-button">Cancel</a>
+            <a routerLink="/test/question-screen" class="edit-points-btn custom-button">Cancel</a>
           </div>
         </form>
       </div>

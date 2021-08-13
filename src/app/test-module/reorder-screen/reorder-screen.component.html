@@ -39,7 +39,7 @@
             <div class="button-wrapper">
               <button (click)="confirmEdit()" type="button" class="Org"><a>Confirm re-order</a>
               </button>
-              <button type="button" class="pink">Cancel</button>
+              <button type="button" class="pink" routerLink="/test/question-screen">Cancel</button>
             </div>
           </div>
         </div>
@@ -66,6 +66,16 @@
                         <a href="#about"><i class="fa fa-trash" aria-hidden="true"></i>Remove</a>
                       </div>
                     </div>
+                  </div>
+                  <div class="test-option sample custom-control custom-checkbox col-lg-12">
+                    <div *ngFor="let item of data.attachment;let index as j" class="col-sm-3 text-center">
+                      <button type="button">
+                        <h2><img src="{{item.image}}"></h2>
+                      </button>
+                      <p>{{item.image_description}}</p>
+                    </div>
+  
+                    <div class="col-sm-3 text-center"></div>
                   </div>
                   <div class="test-option border-bottom col-lg-12">
                     <ul class="col-md-5">
@@ -109,47 +119,15 @@
                       </div>
                     </div>
                   </div>
-                  <div class="test-option border-bottom sample custom-control custom-checkbox ">
-                    <div class="col-sm-3 text-center">
+                  <div class="test-option sample custom-control custom-checkbox col-lg-12">
+                    <div *ngFor="let item of data.attachment;let index as j" class="col-sm-3 text-center">
                       <button type="button">
-                        <h2>Sample image</h2>
+                        <h2><img src="{{item.image}}"></h2>
                       </button>
-                      <p>Description 1</p>
-                      <label class="choice-checkbox" style="padding-left: 37px;">
-                        <input type="checkbox"> <span class="mark2"></span>
-                        <h6>Choice 1</h6>
-                      </label>
+                      <p>{{item.image_description}}</p>
                     </div>
-                    <div class="col-sm-3 text-center">
-                      <button type="button">
-                        <h2>Sample image</h2>
-                      </button>
-                      <p>Description 2</p>
-                      <label class="choice-checkbox" style="padding-left: 37px;">
-                        <input type="checkbox"> <span class="mark2"></span>
-                        <h6>Choice 2</h6>
-                      </label>
-                    </div>
-                    <div class="col-sm-3 text-center">
-                      <button type="button">
-                        <h2>Sample image</h2>
-                      </button>
-                      <p>Description 3</p>
-                      <label class="choice-checkbox" style="padding-left: 37px;">
-                        <input type="checkbox"> <span class="mark2"></span>
-                        <h6>Choice 3</h6>
-                      </label>
-                    </div>
-                    <div class="col-sm-3 text-center">
-                      <button type="button">
-                        <h2>Sample image</h2>
-                      </button>
-                      <p>Description 4</p>
-                      <label class="choice-checkbox" style="padding-left: 37px;">
-                        <input type="checkbox"> <span class="mark2"></span>
-                        <h6>Choice 4</h6>
-                      </label>
-                    </div>
+  
+                    <div class="col-sm-3 text-center"></div>
                   </div>
                 </div>
 
@@ -171,6 +149,16 @@
                       </div>
                     </div>
                   </div>
+                  <div class="test-option sample custom-control custom-checkbox col-lg-12">
+                    <div *ngFor="let item of data.attachment;let index as j" class="col-sm-3 text-center">
+                      <button type="button">
+                        <h2><img src="{{item.image}}"></h2>
+                      </button>
+                      <p>{{item.image_description}}</p>
+                    </div>
+  
+                    <div class="col-sm-3 text-center"></div>
+                  </div>
                   <div class="test-option col-lg-12">
                     <ul class="col-md-5" style="display: flex;">
                       <li>
@@ -185,28 +173,45 @@
                   </div>
                 </div>
 
+                
+
                 <div *ngSwitchCase="'fill_in_the_blanks_type_paper'">
                   <div class="custom-control custom-checkbox mb-3 question-label col-lg-12"
-                    style="padding-top: 1em; padding-bottom: 1em;"> <i class="fa fa-random" aria-hidden="true"></i>
-                    <label class="question-checkbox col-md-8">Q {{i+1}}.&nbsp;&nbsp;
-                      <span style="color: black;" [innerHtml]="data.question"></span>
-                      <span>({{data.questiontypename}})</span>
+                    style="padding-top: 1em; padding-bottom: 1em;">
+                    <label class="question-checkbox col-lg-11">Q {{data.serial_number}}.&nbsp;&nbsp;
+  
+                      <span style="color: black;">
+                        Fill in the blanks with the most appropriate words. (Fill in the blanks)
+                      </span>
+                      <!-- <span>({{data.question}})</span> -->
+                      <input type="checkbox" name="new" id="new" (click)="isCheckClicked(data)">
+                      <span class="mark"></span>
                     </label>
-                    <div class="ellipdown col-md-4">
+                    <div class="ellipdown col-sm-1 dropdown-1 text-right"
+                      style="display: flex !important; align-items: center !important;">
                       <label style="padding: 0;">{{data.points}} Points</label>
-                      <button onclick="myFunction()" class="ellipbtn"><i class="fa fa-ellipsis-v"
-                          style="color:#5B73A0;"></i>
+                      <button class="dropbtn-1"
+                        style="background-color: transparent; border: none; width: 22px; height: 22px;">
+                        <i class="fa fa-ellipsis-v"></i>
                       </button>
-                      <div id="myellipdown" class="ellipdown-content"> <a href="#home"><i
-                            class="fa fa-pencil"></i>Edit</a>
-                        <a href="#about"><i class="fa fa-trash" aria-hidden="true"></i>Remove</a>
-                      </div>
+                    
                     </div>
                   </div>
-                  <div class="fill border-bottom" style="padding-bottom: 1em;">
-                    <!-- <h6 style="font-size: 15px; font-weight: 400;">I don't want to argue&nbsp;<input
-                      type="text">&nbsp;you&nbsp;<input type="text">&nbsp;that matter at this time.</h6> -->
-                    <h6 style="font-size: 15px; font-weight: 400;">{{data.questiontype}}<input type="text"></h6>
+  
+  
+                  <div class="fill mb-4" style="padding-bottom: 1em;">
+                    <h6 style="font-size: 15px; font-weight: 400;">{{data.question}}
+                      <!-- <input type="text"> -->
+                    </h6>
+                  </div>
+  
+                  <div class="test-option border-bottom sample custom-control custom-checkbox col-lg-12">
+                    <div *ngFor="let item of data.attachment" class="col-sm-3 text-center">
+                      <button type="button">
+                        <h2><img src="{{item.image}}"></h2>
+                      </button>
+                      <p>{{item.image_description}}</p>
+                    </div>
                   </div>
                 </div>
 
@@ -227,6 +232,16 @@
                         <a href="#about"><i class="fa fa-trash" aria-hidden="true"></i>Remove</a>
                       </div>
                     </div>
+                  </div>
+                  <div class="test-option sample custom-control custom-checkbox col-lg-12">
+                    <div *ngFor="let item of data.attachment;let index as j" class="col-sm-3 text-center">
+                      <button type="button">
+                        <h2><img src="{{item.image}}"></h2>
+                      </button>
+                      <p>{{item.image_description}}</p>
+                    </div>
+  
+                    <div class="col-sm-3 text-center"></div>
                   </div>
                   <div class="question-text col-lg-12">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -261,24 +276,13 @@
                     </div>
                   </div>
                   <div class="test-option sample custom-control custom-checkbox col-lg-12">
-                    <div class="col-sm-3 text-center">
+                    <div *ngFor="let item of data.attachment" class="col-sm-3 text-center">
                       <button type="button">
-                        <h2>Sample image</h2>
+                        <h2><img src="{{item.image}}"></h2>
                       </button>
-                      <p>Title for image</p>
+                      <p>{{item.image_description}}</p>
                     </div>
-                    <div class="col-sm-3 text-center">
-                      <button type="button">
-                        <h2>Sample image</h2>
-                      </button>
-                      <p>Title for image</p>
-                    </div>
-                    <div class="col-sm-3 text-center">
-                      <button type="button">
-                        <h2>Sample image</h2>
-                      </button>
-                      <p>Title for image</p>
-                    </div>
+  
                     <div class="col-sm-3 text-center"></div>
                   </div>
                   <div class="match-option"
@@ -312,23 +316,11 @@
                     </div>
                   </div>
                   <div class="test-option sample custom-control custom-checkbox col-lg-12">
-                    <div class="col-sm-3 text-center">
+                    <div *ngFor="let item of data.attachment" class="col-sm-3 text-center">
                       <button type="button">
-                        <h2>Sample image</h2>
+                        <h2><img src="{{item.image}}"></h2>
                       </button>
-                      <p>Title for image</p>
-                    </div>
-                    <div class="col-sm-3 text-center">
-                      <button type="button">
-                        <h2>Sample image</h2>
-                      </button>
-                      <p>Title for image</p>
-                    </div>
-                    <div class="col-sm-3 text-center">
-                      <button type="button">
-                        <h2>Sample image</h2>
-                      </button>
-                      <p>Title for image</p>
+                      <p>{{item.image_description}}</p>
                     </div>
                     <div class="col-sm-3 text-center"></div>
                   </div>
@@ -349,7 +341,7 @@
             <div class="delete-button">
               <button (click)="confirmEdit()" type="button" class="Org"><a>Confirm re-order</a>
               </button>
-              <button type="button" class="pink">Cancel</button>
+              <button type="button" class="pink" routerLink="/test/question-screen">Cancel</button>
             </div>
           </div>
         </div>

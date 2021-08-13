@@ -45,13 +45,15 @@
       <!-- Submisssion Log start -->
       <div class="tab-content">
         <div id="settings" class="tab-pane active box-shadow">
-          <ng-container *ngFor="let data of this.allData;let i = index">
+          <ng-container
+            *ngFor="let data of this.allData| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index"
+            [class.active]="i == currentIndex" ;>
             <div [ngSwitch]="data.questiontype">
               <!-- select and option list-->
               <div *ngSwitchCase="'multiple_choice_type_paper'">
                 <div *ngIf="!data.attachment">
                   <div class="custom-control custom-checkbox mb-3 question-label col-lg-12">
-                    <label class="question-checkbox col-lg-11 mt-3">Q {{i+1}}.&nbsp;&nbsp;
+                    <label class="question-checkbox col-lg-11 mt-3">Q {{data.serial_number}}.&nbsp;&nbsp;
                       <span style="color: black;" [innerHtml]="data.question"></span>
                       <span>(Multiple
                         Choice)</span>
@@ -88,7 +90,7 @@
                 </div>
                 <div *ngIf="data.attachment">
                   <div class="custom-control custom-checkbox mb-3 question-label col-lg-12" style="padding-top: 2em;">
-                    <label class="question-checkbox col-lg-11">Q {{i+1}}.&nbsp;&nbsp;
+                    <label class="question-checkbox col-lg-11">Q {{data.serial_number}}.&nbsp;&nbsp;
                       <span style="color: black;" [innerHtml]="data.question"></span>
                       <span>(Multiple Choice)</span>
                       <input type="checkbox" name="new" id="new"> <span class="mark"></span>
@@ -111,24 +113,30 @@
                       <button type="button">
                         <h2><img src="{{item.image}}"></h2>
                       </button>
-                      <!-- <p>Description 1</p> -->
-                      <label *ngFor="let optionList of data.multiple_choices[0] | slice:0:2;" class="choice-checkbox" style="padding-left: 55px;">
-                        <input type="checkbox" name="new" id="new" (click)="isCheckClicked(data)"> <span class="mark2"></span>
-                        <h6>{{optionList.option_text}}</h6>
-                      </label>
-                      <label *ngFor="let optionList of data.multiple_choices[0] | slice:2:4;" class="choice-checkbox" style="padding-left: 55px;">
-                        <input type="checkbox" name="new" id="new" (click)="isCheckClicked(data)"> <span class="mark2"></span>
-                        <h6>{{optionList.option_text}}</h6>
-                      </label>
+                      <p>{{item.image_description}}</p>
                     </div>
-
+                    <div class="col-sm-3 text-center">
+                      <label *ngFor="let optionList of data.multiple_choices[0] | slice:0:2;" class="choice-checkbox"
+                      style="padding-left: 55px;">
+                      <input type="checkbox" name="new" id="new" (click)="isCheckClicked(data)"> <span
+                        class="mark2"></span>
+                      <h6>{{optionList.option_text}}</h6>
+                    </label>
+                    <label *ngFor="let optionList of data.multiple_choices[0] | slice:2:4;" class="choice-checkbox"
+                      style="padding-left: 55px;">
+                      <input type="checkbox" name="new" id="new" (click)="isCheckClicked(data)"> <span
+                        class="mark2"></span>
+                      <h6>{{optionList.option_text}}</h6>
+                    </label>
+                    </div>
                   </div>
+                  
                 </div>
               </div>
 
               <div *ngSwitchCase="'true_false_type_paper'">
                 <div class="custom-control custom-checkbox mb-3 question-label col-lg-12" style="padding-top: 1em;">
-                  <label class="question-checkbox col-lg-11">Q {{i+1}}.&nbsp;&nbsp;
+                  <label class="question-checkbox col-lg-11">Q {{data.serial_number}}.&nbsp;&nbsp;
                     <span style="color: black;" [innerHtml]="data.question"></span>
                     <span>({{data.questiontypename}})</span>
                     <input type="checkbox" name="new" id="new" (click)="isCheckClicked(data)">
@@ -153,7 +161,7 @@
                     <button type="button">
                       <h2><img src="{{item.image}}"></h2>
                     </button>
-                    <p>Title for image</p>
+                    <p>{{item.image_description}}</p>
                   </div>
 
                   <div class="col-sm-3 text-center"></div>
@@ -175,8 +183,8 @@
               <div *ngSwitchCase="'fill_in_the_blanks_type_paper'">
                 <div class="custom-control custom-checkbox mb-3 question-label col-lg-12"
                   style="padding-top: 1em; padding-bottom: 1em;">
-                  <label class="question-checkbox col-lg-11">Q {{i+1}}.&nbsp;&nbsp;
-                    
+                  <label class="question-checkbox col-lg-11">Q {{data.serial_number}}.&nbsp;&nbsp;
+
                     <span style="color: black;">
                       Fill in the blanks with the most appropriate words. (Fill in the blanks)
                     </span>
@@ -217,10 +225,11 @@
 
               <ng-container *ngSwitchCase="'short_ques_ans_type_paper'">
                 <div class="custom-control custom-checkbox mb-3 col-lg-12 question-label" style="padding-top: 1em;">
-                  <label class="question-checkbox col-lg-11">Q {{i+1}}.&nbsp;&nbsp;
+                  <label class="question-checkbox col-lg-11">Q {{data.serial_number}}.&nbsp;&nbsp;
                     <span style="color: black;" [innerHtml]="data.question"></span>
                     <span>(Short answer)</span>
-                    <input type="checkbox" name="new" id="new" (click)="isCheckClicked(data)"> <span class="mark"></span>
+                    <input type="checkbox" name="new" id="new" (click)="isCheckClicked(data)"> <span
+                      class="mark"></span>
                   </label>
                   <div class="ellipdown col-sm-1 dropdown-1 text-right"
                     style="display: flex !important; align-items: center !important;">
@@ -240,7 +249,7 @@
                     <button type="button">
                       <h2><img src="{{item.image}}"></h2>
                     </button>
-                    <p>Title for image</p>
+                    <p>{{item.image_description}}</p>
                   </div>
 
                   <div class="col-sm-3 text-center"></div>
@@ -263,7 +272,7 @@
 
               <div *ngSwitchCase="'ordering_type_paper'">
                 <div class="custom-control custom-checkbox mb-3 question-label col-lg-12" style="padding-top: 2em;">
-                  <label class="question-checkbox col-lg-11">Q {{i+1}}.&nbsp;&nbsp;
+                  <label class="question-checkbox col-lg-11">Q {{data.serial_number}}.&nbsp;&nbsp;
                     <span style="color: black;" [innerHtml]="data.question"></span>
                     <span>(Ordering)</span>
                     <input type="checkbox" (click)="isCheckClicked(data)"> <span class="mark"></span>
@@ -286,7 +295,7 @@
                     <button type="button">
                       <h2><img src="{{item.image}}"></h2>
                     </button>
-                    <p>Title for image</p>
+                    <p>{{item.image_description}}</p>
                   </div>
 
                   <div class="col-sm-3 text-center"></div>
@@ -306,7 +315,7 @@
               <div *ngSwitchCase="'matching_type_paper'">
                 <div class="custom-control custom-checkbox mb-3 question-label col-lg-12" style="padding-top: 2em;">
                   <label class="question-checkbox col-lg-11">Q
-                    {{i+1}}.&nbsp;&nbsp;
+                    {{data.serial_number}}.&nbsp;&nbsp;
                     <span style="color: black;" [innerHtml]="data.question"></span>
                     <span>({{data.questiontypename}})</span>
                     <input type="checkbox" (click)="isCheckClicked(data)"> <span class="mark"></span>
@@ -329,7 +338,7 @@
                     <button type="button">
                       <h2><img src="{{item.image}}"></h2>
                     </button>
-                    <p>Title for image</p>
+                    <p>{{item.image_description}}</p>
                   </div>
                   <div class="col-sm-3 text-center"></div>
                 </div>
@@ -343,8 +352,14 @@
                 </div>
               </div>
 
+
+
             </div>
           </ng-container>
+          <div class="table-result-wrapper">
+            <pagination-controls previousLabel="Prev" nextLabel="Next" autoHide="true" responsive="true"
+              (pageChange)="handlePageChange($event)"></pagination-controls>
+          </div>
           <div class="container" style="padding: 22px 0; display: flex; margin: 0 !important;"> <a
               class="addbutton custom-button" data-toggle="modal" data-target="#addQues">Add question</a>
             <a class="edit-points-btn custom-button" data-toggle="midal" data-target="#ReOrder">Re-Order</a>

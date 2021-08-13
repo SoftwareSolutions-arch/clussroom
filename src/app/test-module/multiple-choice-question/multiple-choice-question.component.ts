@@ -40,7 +40,6 @@ export class MultipleChoiceQuestionComponent implements OnInit {
   getQuestionId: any = '';
   isEditQuestion: boolean;
   index = [];
-  old_image_Description = []
   new_image_Description = []
   constructor(public util: UtilService, private route: ActivatedRoute, private router: Router, private fb: FormBuilder, public service: SharedServiceService) {
     this.testId = localStorage.getItem('test_id');
@@ -126,11 +125,14 @@ export class MultipleChoiceQuestionComponent implements OnInit {
   }
 
   picked(event: any) {
+    if(this.fillData.attachment==null){
+      this.fillData.attachment=[];
+    }
     if(this.ExteriorPicString.length + this.fillData.attachment.length < 4){
       if(event.target.files.length>4){
-        this.util.errorAlertPopup('Can not select more than 4 images')
-      } 
-  
+        this.util.errorAlertPopup('Can not select more than 4 images');
+      }
+
       else{
         this.fileLists = FileList = event.target.files;
         for (var i = 0; i <= event.target.files.length - 1; i++) {
@@ -148,7 +150,6 @@ export class MultipleChoiceQuestionComponent implements OnInit {
     else{
       this.util.errorAlertPopup('Can not select more than 4 images');
     }
-   
   }
 
   removeImage(index) {
@@ -188,10 +189,8 @@ export class MultipleChoiceQuestionComponent implements OnInit {
       this.fillData.mcq_option_text.push(element.question);
     });
     this.fillData.mcq_option_check = this.index
-    this.fillData.attachment = this.ExteriorPicString;
     this.fillData.partial_points = ((this.fillData.partial_points == true) ? "1" : "0")
     this.fillData.jumble_questions_placement = ((this.fillData.jumble_questions_placement == true) ? "1" : "0")
-    this.fillData.test_assignment_nid = this.testId;
 
     let params = {
       "test_assignment_nid": this.testId,
@@ -204,13 +203,12 @@ export class MultipleChoiceQuestionComponent implements OnInit {
       "mcq_option_check": this.index,
       "partial_points": this.fillData.partial_points,
       "image_description": this.new_image_Description
-    }
-
-    
+    } 
 
     this.isLoadingBool = true;
-    this.service.post('add-question-api', this.fillData, 1).subscribe(result => {
-      
+    console.log('params',params);
+    this.service.post('add-question-api', params, 1).subscribe(result => {
+      console.log('result',result);
       this.util.showSuccessAlert(result.message);
       this.isLoadingBool = false;
       this.router.navigate(['/test/question-screen']);
@@ -229,8 +227,7 @@ export class MultipleChoiceQuestionComponent implements OnInit {
   }
 
   saveEditQuestion() {
-    console.log('hello')
-    var image_description = this.old_image_Description.concat(this.new_image_Description)
+    // var image_description = this.old_image_Description.concat(this.new_image_Description)
     this.fillData.mcq_option_text = [];
     this.fillData.mcq_option_check = [];
 
@@ -247,13 +244,16 @@ export class MultipleChoiceQuestionComponent implements OnInit {
         });
       }
     });
+    if(this.fillData.attachment!=null){
+      var old_attchment = [];
+      this.fillData.attachment.forEach(element => {
+        old_attchment.push({
+          'id': element.id,
+          'image_description': element.image_description
+        })
+      });
+    }
 
-    var data = [];
-    this.fillData.attachment.forEach(element => {
-      data.push(element.id)
-    });
-
-    this.fillData.attachment = this.ExteriorPicString;
     this.fillData.partial_points = ((this.fillData.partial_points == true) ? "1" : "0")
     this.fillData.jumble_questions_placement = ((this.fillData.jumble_questions_placement == true) ? "1" : "0")
     this.fillData.test_assignment_nid = this.testId;
@@ -262,19 +262,17 @@ export class MultipleChoiceQuestionComponent implements OnInit {
       'question_pragraph_id': this.getQuestionId,
       'test_assignment_question_type': 'mcq',
       'question': this.fillData.question,
-      'previous_attachment_f_ids': data,
       "mcq_option_array": this.fillData.mcq_option_text,
       "mcq_option_check": this.index,
       'jumble_questions_placement': this.fillData.jumble_questions_placement,
       'partial_points': this.fillData.partial_points,
       'points': this.fillData.points,
-      'attachment': this.fillData.attachment,
-      "image_description": image_description
+      'attachment': this.ExteriorPicString,
+      'previous_attachment_f_ids': old_attchment,
+      'image_description':this.new_image_Description
     }
 
     console.log('params',params);
-    
-
     this.isLoadingBool = true;
     this.service.post('edit-question-api', params, 1).subscribe(result => {
       this.util.showSuccessAlert(result.message);

@@ -1,0 +1,234 @@
+<div class="dashboard">
+<app-grading-sidebar></app-grading-sidebar>
+	<div class="control-panel">
+<app-grading-dashboard-header></app-grading-dashboard-header>
+<app-grading-header></app-grading-header>
+         <div class="col-lg-12 mt-2">
+             <h3 style="font-size: 22px; font-weight: 500;">Grade set-up</h3>
+         </div>
+        <div class="prospectus-section sequence-list" style="padding: 20px 11px;">
+			<div class="prospectus-tabs">
+				<ul class="nav nav-tabs">
+				    <li><a data-toggle="tab" href="#reportcard">Settings</a></li>
+                    <li><a data-toggle="tab" href="#grades"class="active">Weightage</a></li>
+				    <li><a data-toggle="tab" href="#comments">Rubric</a></li>
+				</ul>
+			</div>
+
+		<div class="tab-content col-lg-12" style="padding: 22px 50px 0 50px;">
+            <div class="col-lg-12 display-center" style="justify-content: flex-end; padding: 0;">
+                <div class="col-md-6 weightage-p" style="padding: 0;">
+                    <p>You have not completed allocation of scoring weightage.</p>
+                </div>
+                <div class="col-md-6 text-right" style="padding: 0;">
+                <!-- <button type="button" class="Weightage-btn mb-3">Assign weightage</button> -->
+                <button type="button" class="confirm-final-edit mb-3 mr-2">Confirm</button>
+				<button type="button" class="cancel-edit mb-3">Cancel</button>
+                </div>
+            </div>
+                        <div id="comments" class="tab-pane active">
+                            <div class="table-responsive">
+                                <table class="table custom-table-without-hover mb-5">
+                                  <thead>
+                                    <tr style="border-bottom: none;">
+                                      <th scope="col" style="border-top-left-radius:6px; padding: 28px 13px; text-transform: uppercase; width: 35%;">Test / Assignment</th>
+                                      <th scope="col" class="text-center" style="padding:28px 0; text-transform: uppercase;">Due Date</th>
+                                      <th scope="col" class="text-center" style="padding: 28px 0; text-transform: uppercase;">Total score</th>
+                                      <th scope="col" class="text-center" style="padding: 20px 0; text-transform: uppercase;">FINAL GRADE <br>Weightage (%)</th>
+
+                                    </tr>
+                                  </thead>
+                                  <tbody class="nothing-select-table">
+                                    <tr>
+                                        <td style="border-right: none;">
+                                            <ul>
+                                                <li>Assignment for Mid-term</li>
+                                                <li style="font-weight:400; color:#6E6893">Assignment</li>
+                                            </ul>
+                                        </td>
+                                        <td class="text-center">
+                                            <ul>
+                                                <li style="color: #6E6893;">23 March</li>
+                                                <li style="color: #6E6893;">2021</li>
+                                            </ul>
+                                        </td>
+                                        <td class="text-center">
+                                            <ul>
+                                                <li>140</li>
+                                                <li>
+                                                    <button type="button" class="nothing-select">
+                                                        <i class="fa fa-circle" aria-hidden="true" style="margin-right: 8px;"></i>Active
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td class="text-center" style="font-size: 14px;">
+                                            <input type="text" placeholder="20" class="text-center">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-right: none;">
+                                            <ul>
+                                                <li>Assignment for Mid-term</li>
+                                                <li style="font-weight:400; color:#6E6893">Assignment</li>
+                                            </ul>
+                                        </td>
+                                        <td class="text-center">
+                                            <ul>
+                                                <li style="color: #6E6893;">23 March</li>
+                                                <li style="color: #6E6893;">2021</li>
+                                            </ul>
+                                        </td>
+                                        <td class="text-center">
+                                            <ul>
+                                                <li>140</li>
+                                                <li>
+                                                    <button type="button" class="nothing-select">
+                                                        <i class="fa fa-circle" aria-hidden="true" style="margin-right: 8px;"></i>Active
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td class="text-center" style="font-size: 14px;">
+                                            <input type="text" placeholder="20" class="text-center">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-right: none;">
+                                            <ul>
+                                                <li>Assignment for Mid-term</li>
+                                                <li style="font-weight:400; color:#6E6893">Assignment</li>
+                                            </ul>
+                                        </td>
+                                        <td class="text-center">
+                                            <ul>
+                                                <li style="color: #6E6893;">23 March</li>
+                                                <li style="color: #6E6893;">2021</li>
+                                            </ul>
+                                        </td>
+                                        <td class="text-center">
+                                            <ul>
+                                                <li>140</li>
+                                                <li>
+                                                    <button type="button" class="completed-select">
+                                                        <i class="fa fa-circle" aria-hidden="true" style="margin-right: 8px;"></i>Completed
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td class="text-center" style="font-size: 14px;">
+                                            <input type="text" placeholder="20" class="text-center">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-right: none;">
+                                            <ul>
+                                                <li>Assignment for Mid-term</li>
+                                                <li style="font-weight:400; color:#6E6893">Assignment</li>
+                                            </ul>
+                                        </td>
+                                        <td class="text-center">
+                                            <ul>
+                                                <li style="color: #6E6893;">23 March</li>
+                                                <li style="color: #6E6893;">2021</li>
+                                            </ul>
+                                        </td>
+                                        <td class="text-center">
+                                            <ul>
+                                                <li>140</li>
+                                                <li>
+                                                    <button type="button" class="nothing-select">
+                                                        <i class="fa fa-circle" aria-hidden="true" style="margin-right: 8px;"></i>Active
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td class="text-center" style="font-size: 14px;">
+                                            <input type="text" placeholder="20" class="text-center">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-right: none;">
+                                            <ul>
+                                                <li>Assignment for Mid-term</li>
+                                                <li style="font-weight:400; color:#6E6893">Assignment</li>
+                                            </ul>
+                                        </td>
+                                        <td class="text-center">
+                                            <ul>
+                                                <li style="color: #6E6893;">23 March</li>
+                                                <li style="color: #6E6893;">2021</li>
+                                            </ul>
+                                        </td>
+                                        <td class="text-center">
+                                            <ul>
+                                                <li>140</li>
+                                                <li>
+                                                    <button type="button" class="nothing-select">
+                                                        <i class="fa fa-circle" aria-hidden="true" style="margin-right: 8px;"></i>Active
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td class="text-center" style="font-size: 14px;">
+                                            <input type="text" placeholder="20" class="text-center">
+                                        </td>
+                                    </tr>
+
+
+                                    <tr style="border-bottom: none;">
+                                        <td>&nbsp;</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td class="text-center" style="font-size: 20px;">100</td>
+                                    </tr>
+
+                                  </tbody>
+                                </table>
+                            </div>
+					    </div>
+			  		</div>
+			  	</div>		
+		    </div>
+  		</div>	
+
+      <!-- Add comment modal popup start -->
+
+
+<div id="Addcomment" class="modal deletetest-modal" role="dialog">
+	<div class="modal-dialog" style="max-width: 79px; position: relative; top: 7.5em; left: 39.5em;">
+  
+	<div class="modal-content">
+		<div class="modal-body display-center" style="justify-content: center;">
+            <p style="cursor: pointer;" data-toggle="modal" data-target="#Editview" data-dismiss="modal">View</p>
+		</div>
+	</div>
+  
+	</div>  
+	</div>
+  
+  <!-- Add comment modal popup end --> 
+  
+  <!-- Delete Rubric modal popup start -->
+
+
+<div id="delrubric" class="modal deletetest-modal" role="dialog">
+	<div class="modal-dialog">
+  
+	<div class="modal-content">
+		<div class="modal-body display-center" style="justify-content: center;">
+            <div class="col-lg-12 display-center mt-3" style="justify-content: flex-end;">
+            <i class="fa fa-times" aria-hidden="true" style="cursor: pointer;" data-dismiss="modal"></i>
+            </div>
+		</div>
+        <div class="col-lg-12 text-center mt-4 del-rubric-p">
+            <img src="assets/images/delete-course.png" style="margin: 0 auto;" class="mb-4">
+            <p class="mb-5">Delete Rubric?</p>
+            <button type="button" class="mb-5">Proceed</button>
+        </div>
+	</div>
+  
+	</div>  
+	</div>
+  
+  <!-- Delete rubric modal popup end --> 

@@ -157,22 +157,22 @@
       </div>
       <div class="modal-body" style="padding:26px 26px 0px 26px !important">
         <label class="mat-container border-bottom">
-          <input (input)="typeData('folder')" type="checkbox" id="chkBoxHelp" name="HelpCheckbox" value="Help" />Folder
+          <input (input)="typeData('folder')" type="radio" id="chkBoxHelp" name="HelpCheckbox" value="Help" />Folder
           <span class="mat-checkmark"></span>
         </label>
 
         <label class="mat-container border-bottom">
-          <input (input)="typeData('file')" name="1" type="checkbox">File (Pdf, Excel, Audio, Video, Word)
+          <input (input)="typeData('file')" name="HelpCheckbox" type="radio">File (Pdf, Excel, Audio, Video, Word)
           <span class="mat-checkmark"></span>
         </label>
 
         <label class="mat-container border-bottom">
-          <input (input)="typeData('white board')" name="2" type="checkbox">White Board
+          <input (input)="typeData('white board')" name="HelpCheckbox" type="radio">White Board
           <span class="mat-checkmark"></span>
         </label>
 
         <label class="mat-container border-bottom">
-          <input (input)="typeData('test')" name="3" type="checkbox">Test
+          <input (input)="typeData('test')" name="HelpCheckbox" type="radio">Test
           <span class="mat-checkmark"></span>
         </label>
       </div>

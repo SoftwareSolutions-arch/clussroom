@@ -33,7 +33,8 @@ export class ShortAnswerComponent implements OnInit {
   getQuestionId: any;
   isEditQuestion: boolean;
   isImageShow: boolean = true;
-
+  new_image_Description = [];
+  new_attachment:any=[];
   constructor(public util: UtilService, private route: ActivatedRoute, public service: SharedServiceService, private router: Router) {
     this.testId = localStorage.getItem('test_id');
     this.getQuestionId = this.route.snapshot.paramMap.get('id');
@@ -45,9 +46,12 @@ export class ShortAnswerComponent implements OnInit {
   }
 
   picked(event: any) {
+    if(this.fillData.attachment==null){
+      this.fillData.attachment=[];
+    }
     if(this.ExteriorPicString.length + this.fillData.attachment.length < 4){
       if(event.target.files.length>4){
-        this.util.errorAlertPopup('Can not select more than 4 images')
+        this.util.errorAlertPopup('Can not select more than 4 images');
       }
 
       else{
@@ -67,7 +71,6 @@ export class ShortAnswerComponent implements OnInit {
     else{
       this.util.errorAlertPopup('Can not select more than 4 images');
     }
-
   }
 
   removeImage(index) {
@@ -107,24 +110,25 @@ export class ShortAnswerComponent implements OnInit {
 
   // save question
   saveQuestion() {
-    this.fillData.attachment = this.ExteriorPicString
-
+    console.log('new_image_Description',this.new_image_Description)
     let params = {
       "test_assignment_nid": this.testId,
       "test_assignment_question_type": "short_answer",
       "question": this.fillData.question,
-      "attachment": this.fillData.attachment,
+      "attachment": this.ExteriorPicString,
       "rich_text_responses_for_learner": (this.fillData.rich_text_responses_for_learner == true) ? "1" : "0",
       "points": this.fillData.points,
       "character_limit": (this.fillData.character_limit == true) ? "1" : "0",
       "insert_limit": "1000",
       "partial_point": (this.fillData.partial_point == true) ? "1" : "0",
-
+      'image_description': this.new_image_Description
     }
+
+    console.log('params', params)
 
     this.isLoadingBool = true;
     this.service.post('add-question-api', params, 1).subscribe(result => {
-
+      console.log('result',result)
       this.isLoadingBool = false;
       this.util.showSuccessAlert('Question saved successfully');
       this.router.navigate(['/test/question-screen']);
@@ -146,7 +150,7 @@ export class ShortAnswerComponent implements OnInit {
       this.isLoadingBool = true;
       this.service.post('questions-listing', params, 1).subscribe(result => {
         this.isLoadingBool = false;
-
+        console.log('result', result)
         var data = result.question_data[0]
         this.fillData = {
           question: data.paper_summary,
@@ -159,7 +163,10 @@ export class ShortAnswerComponent implements OnInit {
           test_assignment_question_type: "short_answer",
           insert_limit: data.insert_limit,
           test_assignment_nid: data.id,
+          old_image_Description: data.image_description
+
         }
+        console.log('this', this.fillData);
       })
     }
   }
@@ -171,18 +178,24 @@ export class ShortAnswerComponent implements OnInit {
     }
 
     else {
-      var data = [];
-      this.fillData.attachment.forEach(element => {
-        data.push(element.id)
-      });
-
-      this.fillData.attachment = this.ExteriorPicString
+      if(this.fillData.attachment!=null){
+        var old_attchment = [];
+        this.fillData.attachment.forEach(element => {
+          old_attchment.push({
+            'id': element.id,
+            'image_description': element.image_description
+          })
+        });
+      }
+     
+      
       let params = {
         "question_pragraph_id": this.getQuestionId,
         "test_assignment_question_type": "edit_short_answer",
         "question": this.fillData.question,
-        "attachment": this.fillData.attachment,
-        "previous_attachment_f_ids": data,
+        "attachment":this.ExteriorPicString,
+        'image_description':this.new_image_Description,
+        "previous_attachment_f_ids": old_attchment,
         "rich_text_responses_for_learner": (this.fillData.rich_text_responses_for_learner == true) ? "1" : "0",
         "points": this.fillData.points,
         "character_limit": (this.fillData.character_limit == true) ? "1" : "0",
@@ -190,9 +203,10 @@ export class ShortAnswerComponent implements OnInit {
         "partial_point": (this.fillData.partial_point == true) ? "1" : "0"
       }
 
+      console.log('params', params)
       this.isLoadingBool = true;
       this.service.post('edit-question-api', params, 1).subscribe(result => {
-
+        console.log('params',params);
         this.isLoadingBool = false;
         this.util.showSuccessAlert('Updated Successfully');
         this.router.navigate(['/test/question-screen']);

@@ -79,7 +79,7 @@ export class LiveSessionComponent implements OnInit {
     this.service.post('delete-meeting', data, 1).subscribe(res => {
       this.isLoadingBool = false
       if (res.status == 1) {
-        this.util.showSuccessAlert('Metting deleted')
+        this.util.showSuccessAlert('Meeting deleted added successfully')
         this.liveSession();
       }
     })
@@ -186,7 +186,7 @@ export class LiveSessionComponent implements OnInit {
       this.closeMetting.nativeElement.click();
       this.closeZom.nativeElement.click();
       if (res.status == 1) {
-        this.util.showSuccessAlert('New metting added sucessfully')
+        this.util.showSuccessAlert('New meeting added successfully')
         this.scheduledForm.reset();
         this.liveSession();
       }
@@ -342,7 +342,7 @@ export class LiveSessionComponent implements OnInit {
       this.closeEditSchedule.nativeElement.click();
 
       if (res.status == 1) {
-        this.util.showSuccessAlert('Metting updated sucessfully')
+        this.util.showSuccessAlert('Meeting updated successfully')
         this.liveSession();
       }
     })
@@ -359,7 +359,7 @@ export class LiveSessionComponent implements OnInit {
   }
   setOrders() {
     this.cloneOrders = [...this.liveData];
-    
+
   }
   // end metting api
   endMetting() {

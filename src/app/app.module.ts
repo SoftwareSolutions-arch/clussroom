@@ -1,3 +1,4 @@
+import {enableProdMode} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -118,6 +119,8 @@ FullCalendarModule.registerPlugins([
   listPlugin,
   interactionPlugin
 ])
+// enableProdMode();
+
 @NgModule({
   declarations: [
     AppComponent,

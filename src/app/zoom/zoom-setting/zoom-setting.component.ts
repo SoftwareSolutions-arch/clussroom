@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SharedServiceService } from 'src/app/shared-service.service';
 import { UtilService } from 'src/providers/util.service';
 
@@ -14,8 +14,10 @@ export class ZoomSettingComponent implements OnInit {
   disconnectButton: boolean =false;
   isLoadingBool: boolean = true;
   codeId: any;
+  connectZoomList: any;
+  connectZoomId: any;
 
-  constructor(private service: SharedServiceService,private util:UtilService,private route: ActivatedRoute) {
+  constructor(private service: SharedServiceService,private router:Router,private util:UtilService,private route: ActivatedRoute) {
     this.route.queryParams.subscribe(params => {
       this.codeId = params['code'];
     });
@@ -44,7 +46,7 @@ export class ZoomSettingComponent implements OnInit {
     const data = {}
     this.service.post('disconnect-zoom', data, 1).subscribe(res => {
       if (res.status == 1) {
-        this.util.showSuccessAlert('Logout SucessFully')
+        this.util.showSuccessAlert('Logged out successfully')
         this.connectButton = false;
         this.disconnectButton = true
       }
@@ -59,4 +61,26 @@ export class ZoomSettingComponent implements OnInit {
           //  this.connectZoomList = res.connect_zoom_options
         })
       }
+
+   connectZoom(){
+    const data = {
+     "zoom_login_id":this.connectZoomId
+    }
+    this.service.post('connect-zoom',data,1).subscribe(res => {
+      this.connectButton = true;
+     if(res.status == 1){
+       this.router.navigateByUrl('/zoom-user');
+     }
+    })
+  }
+  getConnectZoom(){
+    const data ={
+
+    }
+  this.service.post('zoom-connect-listing',data,1).subscribe(res => {
+   this.connectZoomList = res.connect_zoom_options
+   this.connectZoomId = res.connect_zoom_options.id
+
+  })
+  }
 }
