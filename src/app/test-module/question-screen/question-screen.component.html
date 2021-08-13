@@ -108,29 +108,28 @@
                       </div>
                     </div>
                   </div>
-                  <div class="test-option border-bottom sample custom-control custom-checkbox col-lg-12">
+                  <div class="test-option sample custom-control custom-checkbox col-lg-12">
                     <div *ngFor="let item of data.attachment" class="col-sm-3 text-center">
                       <button type="button">
                         <h2><img src="{{item.image}}"></h2>
                       </button>
                       <p>{{item.image_description}}</p>
                     </div>
-                    <div class="col-sm-3 text-center">
-                      <label *ngFor="let optionList of data.multiple_choices[0] | slice:0:2;" class="choice-checkbox"
-                      style="padding-left: 55px;">
-                      <input type="checkbox" name="new" id="new" (click)="isCheckClicked(data)"> <span
-                        class="mark2"></span>
-                      <h6>{{optionList.option_text}}</h6>
-                    </label>
-                    <label *ngFor="let optionList of data.multiple_choices[0] | slice:2:4;" class="choice-checkbox"
-                      style="padding-left: 55px;">
-                      <input type="checkbox" name="new" id="new" (click)="isCheckClicked(data)"> <span
-                        class="mark2"></span>
-                      <h6>{{optionList.option_text}}</h6>
-                    </label>
-                    </div>
                   </div>
-                  
+                  <div class="test-option sample custom-control custom-checkbox border-bottom col-sm-3 text-center col-lg-12">
+                    <label *ngFor="let optionList of data.multiple_choices[0] | slice:0:2;" class="choice-checkbox"
+                    style="padding-left: 55px;">
+                    <input type="checkbox" name="new" id="new" (click)="isCheckClicked(data)"> <span
+                      class="mark2"></span>
+                    <h6>{{optionList.option_text}}</h6>
+                  </label>
+                  <label *ngFor="let optionList of data.multiple_choices[0] | slice:2:4;" class="choice-checkbox"
+                    style="padding-left: 55px;">
+                    <input type="checkbox" name="new" id="new" (click)="isCheckClicked(data)"> <span
+                      class="mark2"></span>
+                    <h6>{{optionList.option_text}}</h6>
+                  </label>
+                  </div>
                 </div>
               </div>
 
@@ -346,14 +345,11 @@
                   style="display: block !important; padding-bottom: 1em; font-size: 15px; font-weight: 400;">
                   <div *ngFor="let item of data.matching_question_answers;let j=index" class="col-lg-12"
                     style="display: flex; margin-bottom:1em;">
-                    <div class="col-md-6" style="padding-left: 5.5em;">{{j+1}}.&nbsp;&nbsp;{{item.answer}}</div>
-                    <div class="col-md-3">{{item.sequence}}.&nbsp;&nbsp;{{item.question}}</div>
+                    <div class="col-md-6" style="padding-left: 5.5em;">{{j+1}}.&nbsp;&nbsp;{{item.question}}</div>
+                    <div class="col-md-3">{{item.sequence}}.&nbsp;&nbsp;{{item.answer}}</div>
                   </div>
                 </div>
               </div>
-
-
-
             </div>
           </ng-container>
           <div class="table-result-wrapper">

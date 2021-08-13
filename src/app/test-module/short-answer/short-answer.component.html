@@ -90,21 +90,10 @@
           </div>
         </div>
         <div class="container" style="padding: 18px 0 0 0; display: flex;">
-          <!--
-                  <button type="button" class="blue">Confirm</button>
-                  <button type="button" class="blue-border">Cancel</button>
-                  <button type="button" class="lime"><a>Edit</a></button>
-                  <button type="button" class="Org"><a>Confirm Edit</a></button>
-                  -->
           <a *ngIf="isEditQuestion" class="addbutton custom-button" (click)="saveQuestion()">Save question</a>
           <a *ngIf="!isEditQuestion" class="addbutton custom-button" (click)="EditQuestion()">Edit question</a>
           <a class="edit-points-btn custom-button" routerLink="/test/question-screen">Cancel</a>
         </div>
-        <!--
-            <div class="container multi-choice-orange" style="padding: 6px 0 0 0;">
-               <button type="button">Confirm Edit</button>
-            </div>
--->
       </div>
     </div>
   </div>

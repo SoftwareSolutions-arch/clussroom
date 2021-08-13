@@ -181,11 +181,11 @@
         </label>
       </div>
       <div class="mat-modal-footer col-lg-12" style="padding-top: 4px;" *ngIf="this.selectedDataType==''">
-        <button type="button" class="mat-blue">Create</button>
+        <button type="button" class="mat-blue" data-dismiss="modal">Create</button>
         <button type="button" class="mat-gr" data-dismiss="modal">Cancel</button>
       </div>
       <div class="mat-modal-footer col-lg-12" style="padding-top: 4px;" *ngIf="this.selectedDataType=='folder'">
-        <button type="button" class="mat-blue" data-toggle="modal" data-target="#addfolder">Create</button>
+        <button data-dismiss="modal" type="button" class="mat-blue" data-toggle="modal" data-target="#addfolder">Create</button>
         <button type="button" class="mat-gr" data-dismiss="modal">Cancel</button>
       </div>
       <div class="mat-modal-footer col-lg-12" style="padding-top: 4px;" *ngIf="this.selectedDataType=='file'">
@@ -195,11 +195,11 @@
         <button type="button" class="mat-gr" data-dismiss="modal">Cancel</button>
       </div>
       <div class="mat-modal-footer col-lg-12" style="padding-top: 4px;" *ngIf="this.selectedDataType=='white board'">
-        <button type="button" class="mat-blue">Create</button>
+        <button data-dismiss="modal" type="button" class="mat-blue">Create</button>
         <button type="button" class="mat-gr" data-dismiss="modal">Cancel</button>
       </div>
       <div class="mat-modal-footer col-lg-12" style="padding-top: 4px;" *ngIf="this.selectedDataType=='test'">
-        <button type="button" class="mat-blue" data-toggle="modal" data-target="#addtest">Create</button>
+        <button type="button" class="mat-blue"  data-dismiss="modal" data-toggle="modal" data-target="#addtest">Create</button>
         <button type="button" class="mat-gr" data-dismiss="modal">Cancel</button>
       </div>
     </div>
@@ -337,7 +337,7 @@
           </ul>
         </div>
 
-        <a (click)="deleteCourse()" class="del-btn-course">Delete Course</a>
+        <a (click)="deleteCourse()" class="del-btn-course">Delete</a>
       </div>
     </div>
   </div>

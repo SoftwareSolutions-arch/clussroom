@@ -235,6 +235,7 @@ export class TestListingHomeComponent implements OnInit {
 
   //step 1
   addTestFromLiabrary(data) {
+    this.steponelibrary.nativeElement.click();
     this.selectTestLiabrary = data;
     this.liabraryData = [];
     let params = {
@@ -244,14 +245,13 @@ export class TestListingHomeComponent implements OnInit {
     this.isLoadingBool = true;
     this.service.post('add-test-from-libarary-api', params, 1).subscribe(result => {
       this.isLoadingBool = false;
-
       this.liabraryData = result.coursesdata
-      // this.deleteclosebutton.nativeElement.click();
     })
   }
 
   //step 2
   addTestFromLiabrary2(data) {
+    this.steptwolibrary.nativeElement.click();
     this.testData=[];
     this.classData=[];
     this.testLibraryData = data.course_name

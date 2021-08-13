@@ -419,7 +419,7 @@ export class ClassListComponent implements OnInit {
       this.isGoToShow = false;
       this.transferCourseModal.nativeElement.click();
       this.getClassesListData();
-      this.util.showSuccessAlert(result.error_message);
+      this.util.showSuccessAlert("Learner transferred successfully");
       // this.isLoadingBool = false;
     })
   }

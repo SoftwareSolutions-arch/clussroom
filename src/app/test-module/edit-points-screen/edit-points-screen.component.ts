@@ -34,6 +34,10 @@ export class EditPointsScreenComponent implements OnInit {
     
   }
 
+  goToResultAssesment(){
+    
+  }
+
   // get all courses list
   getAllQuestion() {
     let params = {

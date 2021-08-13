@@ -16,16 +16,16 @@
           <option *ngFor="let user of testAllData" [ngValue]="user">{{user.test_name}}</option>
         </select>
       </div>
-      <button *ngIf="selectedTestDetails=='' " type="button">Back</button>
+      <button *ngIf="selectedTestDetails=='' " type="button" routerLink="/test/question-screen">Back</button>
     </div>
     <div class="prospectus-section sequence-list">
       <div class="prospectus-tabs">
         <ul class="nav nav-tabs">
-          <li><a data-toggle="tab" href="#test" class="active">Test</a>
+          <li><a data-toggle="tab" class="active">Test</a>
           </li>
-          <li><a data-toggle="tab" href="#settings">Settings</a>
+          <li routerLink="/test/settings-tabs"><a data-toggle="tab" href="#settings">Settings</a>
           </li>
-          <li><a data-toggle="tab" href="#assignment-grading">Result/Assessment</a>
+          <li routerLink="/assignment/assignment-result"><a data-toggle="tab" >Result/Assessment</a>
           </li>
         </ul>
       </div>
@@ -64,7 +64,7 @@
                       </button>
                       <p>{{item.image_description}}</p>
                     </div>
-  
+
                     <div class="col-sm-3 text-center"></div>
                   </div>
                   <div class="test-option col-lg-12">
@@ -99,7 +99,7 @@
                       </button>
                       <p>{{item.image_description}}</p>
                     </div>
-  
+
                     <div class="col-sm-3 text-center"></div>
                   </div>
                   <div class="test-option border-bottom col-lg-12">
@@ -147,17 +147,17 @@
                     </div>
                     <div class="col-sm-3 text-center">
                       <label *ngFor="let optionList of data.multiple_choices[0] | slice:0:2;" class="choice-checkbox"
-                      style="padding-left: 55px;">
-                      <input type="checkbox" name="new" id="new" (click)="isCheckClicked(data)"> <span
-                        class="mark2"></span>
-                      <h6>{{optionList.option_text}}</h6>
-                    </label>
-                    <label *ngFor="let optionList of data.multiple_choices[0] | slice:2:4;" class="choice-checkbox"
-                      style="padding-left: 55px;">
-                      <input type="checkbox" name="new" id="new" (click)="isCheckClicked(data)"> <span
-                        class="mark2"></span>
-                      <h6>{{optionList.option_text}}</h6>
-                    </label>
+                        style="padding-left: 55px;">
+                        <input type="checkbox" name="new" id="new" (click)="isCheckClicked(data)"> <span
+                          class="mark2"></span>
+                        <h6>{{optionList.option_text}}</h6>
+                      </label>
+                      <label *ngFor="let optionList of data.multiple_choices[0] | slice:2:4;" class="choice-checkbox"
+                        style="padding-left: 55px;">
+                        <input type="checkbox" name="new" id="new" (click)="isCheckClicked(data)"> <span
+                          class="mark2"></span>
+                        <h6>{{optionList.option_text}}</h6>
+                      </label>
                     </div>
                   </div>
                 </div>
@@ -188,7 +188,7 @@
                       </button>
                       <p>{{item.image_description}}</p>
                     </div>
-  
+
                     <div class="col-sm-3 text-center"></div>
                   </div>
                   <div class="col-lg-8 container"
@@ -204,38 +204,6 @@
                       </ul>
                     </div>
                   </div>
-                  <!-- <div class="blank-section box-shadow mt-3 text-center border-bottom col-lg-12"
-                    style="padding-bottom: 8em;">
-                    <ul class="hint-section mb-3">
-                      <li>
-                        <label>Blank 1.</label>
-                        <input type="text">
-                      </li>
-                      <li style="color: #81c8c1;">Word Hint</li>
-                      <li>
-                        <button>With</button>
-                      </li>
-                      <li>
-                        <button>On</button>
-                      </li>
-                      <li>
-                        <button>In</button>
-                      </li>
-                    </ul>
-                    <ul class="hint-section">
-                      <li>
-                        <label>Blank 2.</label>
-                        <input type="text">
-                      </li>
-                      <li style="color: #81c8c1;">Word Hint</li>
-                      <li>
-                        <button>On</button>
-                      </li>
-                      <li>
-                        <button>In</button>
-                      </li>
-                    </ul>
-                  </div> -->
                 </div>
                 <!-- Short answer-->
                 <ng-container *ngSwitchCase="'short_ques_ans_type_paper'">
@@ -257,7 +225,7 @@
                       </button>
                       <p>{{item.image_description}}</p>
                     </div>
-  
+
                     <div class="col-sm-3 text-center"></div>
                   </div>
                   <div class="question-text text-area container" style="padding-left: 5.5em; margin: 0 !important;">
@@ -338,7 +306,7 @@
 
             <div class="col-lg-12" style="padding: 18px 0 0 0; display: flex; margin: 0;">
               <div class="delete-button">
-                <button type="submit" (click)="confirmButton()"  class="Org"><a>Confirm edit</a>
+                <button type="submit" (click)="confirmButton()" class="Org"><a>Confirm edit</a>
                 </button>
                 <button type="button" class="pink" (click)="cancel()">Cancel</button>
               </div>

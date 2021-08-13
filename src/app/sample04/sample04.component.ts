@@ -215,6 +215,7 @@ export class Sample04Component implements OnInit {
       "step": 1
     }
     this.service.post('create-course-api', params, 1).subscribe(result => {
+      console.log('result',result);
       this.allCategories = result['categories'];
       this.allLevel = result['level'];
       this.allBanding = result['banding'];
@@ -535,6 +536,9 @@ export class Sample04Component implements OnInit {
           this.isBandingAdded = false;
           this.getallListingDropdown();
           this.getAllCoursesList();
+          if(this.editSampleForm.value.newBanding!='' || null){
+            this.getallListingDropdown();
+          }
         }
       })
     }

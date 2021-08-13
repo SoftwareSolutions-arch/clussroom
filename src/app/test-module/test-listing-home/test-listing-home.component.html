@@ -77,9 +77,8 @@
           </li>
           <li (click)="settingsClicked()"><a data-toggle="tab">Settings</a>
           </li>
-          <li (click)="goToTestAssessment()"><a data-toggle="tab">Result/Assessment</a>
+          <li routerLink="assignment/assignment-result"><a data-toggle="tab">Result/Assessment</a>
           </li>
-          <!--<li><a data-toggle="tab" href="#overall-grading">Overall Grading Status</a></li>-->
         </ul>
       </div>
       <div class="tab-content">
@@ -113,10 +112,6 @@
                   <th scope="col" class="table-filter">Attempt</th>
                   <th scope="col" class="table-filter">Marking status</th>
                   <th scope="col" class="table-filter">Total score</th>
-                  <!-- <th scope="col"><button (click)="myFunction()" class="ellipbtn"><i
-                        class="fa fa-ellipsis-v"></i></button>
-
-                  </th> -->
                   <th scope="col">
                     <button *ngIf="isEditClicked" data-toggle="modal" data-target="#iconsEdit"
                       style="background: transparent; border: none;"><i class="fa fa-ellipsis-v"></i>
@@ -155,13 +150,6 @@
             </table>
           </div>
           <div class="table-result-wrapper bottom-select">
-            <!-- <select name="course" id="course-name">
-              <option selected>10</option>
-              <option value="Course 1">1</option>
-              <option value="Course 2">2</option>
-              <option value="Course 3">3</option>
-            </select> -->
-            <!-- <p style="width: 10%;">Results: 1-15 of 324</p> -->
             <div class="selector">
               <pagination-controls previousLabel="Prev" nextLabel="Next" responsive="true"
                 (pageChange)="handlePageChange($event)"></pagination-controls>
@@ -173,8 +161,6 @@
     </div>
   </div>
 </div>
-
-
 <!-- Add From 1 Library popup start -->
 <div id="copy-to" class="modal addlibrary-modal" role="dialog" #copytest>
   <div class="modal-dialog" style="max-width: 718px;">
@@ -212,7 +198,6 @@
   </div>
 </div>
 <!-- Add From 1 Library popup end -->
-
 
 <!-- Add From 1 Library popup start -->
 <div id="library-1" class="modal addlibrary-modal" role="dialog" #steponelibrary>
@@ -274,8 +259,7 @@
           </div>
         </div>
         <div class="addlibraryportion container col-lg-10 mt-4" style="border: none; margin: 0 12px;">
-          <div data-toggle="modal" data-target="#library-3" (click)="addTestFromLiabrary2(item)"
-            *ngFor="let item of this.liabraryData|slice:0:5;let i =index" class="col-sm-3 add-field">
+          <div data-toggle="modal" data-target="#library-3" (click)="addTestFromLiabrary2(item)" *ngFor="let item of this.liabraryData|slice:0:5;let i =index" class="col-sm-3 add-field">
             <button>
               <img src="assets/images/test/folder.png">
             </button>
@@ -345,6 +329,16 @@
             <p>{{item.course_name}}</p>
           </div>
         </div>
+
+        <div *ngIf="this.liabraryData.length==0" class="addlibraryportion container col-lg-10 mt-4" style="border: none; margin: 0 12px;">
+          <div class="col-sm-3 add-field">
+            <!-- <button>
+              <img src="assets/images/test/folder.png">
+            </button> -->
+            <p>No test availble</p>
+          </div>
+        </div>
+        
       </div>
     </div>
   </div>
