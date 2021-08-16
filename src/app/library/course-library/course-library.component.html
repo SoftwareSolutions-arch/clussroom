@@ -75,8 +75,18 @@
                       <td class="text-left">{{mainData.name}}</td>
                       <td class="display-center">
                         <img *ngIf="mainData.file_type=='test'" src="assets/images/Personal Library/Vector.png">
-                        <img *ngIf="mainData.file_type=='folder'" src="assets/images/Personal Library/Vector-3.png">
-                        <img *ngIf="mainData.file_type!='test' && mainData.file_type!='folder' " src="assets/images/Personal Library/file.png">
+                        <img *ngIf="mainData.file_type=='file'" src="assets/images/Personal Library/file.png">
+
+                        <ng-container  *ngIf="mainData.file_type=='folder'">
+                          <img *ngIf="mainData.library_colore=='blue' " src="assets/images/Personal Library/folder.png.png">
+                          <img *ngIf="mainData.library_colore=='green' " src="assets/images/Personal Library/folder-1.png">
+                          <img *ngIf="mainData.library_colore=='red' " src="assets/images/Personal Library/folder-2.png">
+                          <img *ngIf="mainData.library_colore=='orange' " src="assets/images/Personal Library/folder-3.png">
+                          <img *ngIf="mainData.library_colore=='yellow' " src="assets/images/Personal Library/folder-4.png">
+                          <img *ngIf="mainData.library_colore=='purple' " src="assets/images/Personal Library/folder-5.png">
+                        </ng-container>
+
+
                         <p style="margin: 0; padding-left: 6px;">{{mainData.file_type}}</p>
                       </td>
                       <td>{{mainData.uploaded_by}}</td>
@@ -133,7 +143,7 @@
           </li>
           <li (click)="downloadLibrary()"><a><i class="fa fa-arrow-down" aria-hidden="true"></i>Download</a></li>
           <li (click)="moveToPage()"><a><i class="fa fa-arrows-alt" aria-hidden="true"></i>Move</a></li>
-          <li><a><i class="fa fa-trash" aria-hidden="true" data-toggle="modal" data-target="#deletemat"></i>Delete</a>
+          <li data-toggle="modal" data-target="#deletemat"><a><i class="fa fa-trash" aria-hidden="true" ></i>Delete</a>
           </li>
         </ul>
       </div>
@@ -357,11 +367,11 @@
           </div>
           <div class="col-lg-11 drag-input display-center">
             <label class="mr-4" style="margin-bottom: 0 !important;">Folder</label>
-            <input [(ngModel)]="editFoldername" type="text" placeholder="For Elementary Biology administrators">
+            <input [(ngModel)]="editFoldername" type="text" placeholder="For Elementary Biology administrators" style="padding: 0 7px !important;">
           </div>
         </div>
         <div class="col-lg-12 text-center">
-          <button type="submit" class="drag-save mt-5 mb-5" (click)="saveEditRecord()">Save</button>
+          <button type="submit" class="blue mt-5 mb-5" (click)="saveEditRecord()">Save</button>
         </div>
       </div>
     </div>

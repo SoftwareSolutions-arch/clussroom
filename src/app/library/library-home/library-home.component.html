@@ -36,22 +36,23 @@
         <div class="prospectus-section">
           <div class="prospectus-tabs">
             <ul class="nav nav-tabs">
-                <li><a data-toggle="tab" href="#main" class="active">Main library</a></li>
-                <li (click)="gotoPersonalLibrary()"><a data-toggle="tab">Personal library</a></li>
+              <li><a data-toggle="tab" href="#main" class="active">Main library</a></li>
+              <li (click)="gotoPersonalLibrary()"><a data-toggle="tab">Personal library</a></li>
             </ul>
             <div class="prospectus-action">
-                <ng-container *ngIf="this.main_library_upload_edit_permission==1">
-                  <div class="prospectus-action">
-                    <a class="add-btn custom-a-btn" data-toggle="modal" data-target="#addmaterial" style="width: 115px;">Add materials</a>
-                  </div>
-                </ng-container>
-                <ng-container (click)="isCourseCreated()" *ngIf="this.main_library_upload_edit_permission==0">
-                  <div (click)="isCourseCreated()" class="prospectus-action">
-                    <a class="add-btn custom-a-btn" style="width: 115px;">Add materials</a>
-                  </div>
-                </ng-container>
-              </div>
-        </div>
+              <ng-container *ngIf="this.main_library_upload_edit_permission==1">
+                <div class="prospectus-action">
+                  <a class="add-btn custom-a-btn" data-toggle="modal" data-target="#addmaterial"
+                    style="width: 115px;">Add materials</a>
+                </div>
+              </ng-container>
+              <ng-container (click)="isCourseCreated()" *ngIf="this.main_library_upload_edit_permission==0">
+                <div (click)="isCourseCreated()" class="prospectus-action">
+                  <a class="add-btn custom-a-btn" style="width: 115px;">Add materials</a>
+                </div>
+              </ng-container>
+            </div>
+          </div>
 
           <div class="tab-content col-lg-12">
             <div id="personal" class="tab-pane active">
@@ -80,7 +81,8 @@
                       <td class="display-center">
                         <img *ngIf="mainData.file_type=='test'" src="assets/images/Personal Library/Vector.png">
                         <img *ngIf="mainData.file_type=='folder'" src="assets/images/Personal Library/Vector-3.png">
-                        <img *ngIf="mainData.file_type!='test' && mainData.file_type!='folder'" src="assets/images/Personal Library/file.png">
+                        <img *ngIf="mainData.file_type!='test' && mainData.file_type!='folder'"
+                          src="assets/images/Personal Library/file.png">
                         <p style="margin: 0; padding-left: 6px;">{{mainData.file_type}}</p>
                       </td>
                       <td>{{mainData.uploaded_by}}</td>
@@ -137,7 +139,7 @@
           </li>
           <li (click)="downloadLibrary()"><a><i class="fa fa-arrow-down" aria-hidden="true"></i>Download</a></li>
           <li (click)="moveToPage()"><a><i class="fa fa-arrows-alt" aria-hidden="true"></i>Move</a></li>
-          <li><a><i class="fa fa-trash" aria-hidden="true" data-toggle="modal" data-target="#deletemat"></i>Delete</a>
+          <li data-toggle="modal" data-target="#deletemat"><a><i class="fa fa-trash" aria-hidden="true"></i>Delete</a>
           </li>
         </ul>
       </div>
@@ -185,7 +187,8 @@
         <button type="button" class="mat-gr" data-dismiss="modal">Cancel</button>
       </div>
       <div class="mat-modal-footer col-lg-12" style="padding-top: 4px;" *ngIf="this.selectedDataType=='folder'">
-        <button data-dismiss="modal" type="button" class="mat-blue" data-toggle="modal" data-target="#addfolder">Create</button>
+        <button data-dismiss="modal" type="button" class="mat-blue" data-toggle="modal"
+          data-target="#addfolder">Create</button>
         <button type="button" class="mat-gr" data-dismiss="modal">Cancel</button>
       </div>
       <div class="mat-modal-footer col-lg-12" style="padding-top: 4px;" *ngIf="this.selectedDataType=='file'">
@@ -199,7 +202,8 @@
         <button type="button" class="mat-gr" data-dismiss="modal">Cancel</button>
       </div>
       <div class="mat-modal-footer col-lg-12" style="padding-top: 4px;" *ngIf="this.selectedDataType=='test'">
-        <button type="button" class="mat-blue"  data-dismiss="modal" data-toggle="modal" data-target="#addtest">Create</button>
+        <button type="button" class="mat-blue" data-dismiss="modal" data-toggle="modal"
+          data-target="#addtest">Create</button>
         <button type="button" class="mat-gr" data-dismiss="modal">Cancel</button>
       </div>
     </div>

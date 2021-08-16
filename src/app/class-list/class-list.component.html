@@ -7,44 +7,43 @@
     <div class="nav-clip">
       <ul class="nav nav-tabs">
         <li (click)="goToCourses()"><a data-toggle="tab" href="#course-content" class="clip-item">
-            <img src="assets/images/dashboard/second/course-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/course-blue.png"
-              class="hover-in">{{this.instructionName | lowercase}}</a>
+          <img src="assets/images/dashboard/second/course-grey.png" class="hover-out">
+          <img src="assets/images/dashboard/second/course-blue.png" class="hover-in">{{this.instructionName}}</a>
         </li>
 
         <li (click)="goToclasses()"><a data-toggle="tab" href="#classes-content" class="clip-item">
-            <img src="assets/images/dashboard/second/clip-classes-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/clip-classes-blue.png" class="hover-in">Classes</a>
+          <img src="assets/images/dashboard/second/clip-classes-grey.png" class="hover-out">
+          <img src="assets/images/dashboard/second/clip-classes-blue.png" class="hover-in">Classes</a>
         </li>
 
         <li><a data-toggle="tab" href="#class-list-content" class="active clip-item">
-            <img src="assets/images/dashboard/second/list-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/list-blue.png" class="hover-in">
-            Class list</a>
+          <img src="assets/images/dashboard/second/list-grey.png" class="hover-out">
+          <img src="assets/images/dashboard/second/list-blue.png" class="hover-in">
+          Class list</a>
         </li>
 
         <li (click)="goToLearner()"><a data-toggle="tab" href="#learners-content" class="clip-item">
-            <img src="assets/images/dashboard/second/clip-learner-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/clip-learner-blue.png" class="hover-in">
-            Learners</a>
+          <img src="assets/images/dashboard/second/clip-learner-grey.png" class="hover-out">
+          <img src="assets/images/dashboard/second/clip-learner-blue.png" class="hover-in">
+          Learners</a>
         </li>
 
         <li (click)="goToStorage()"><a data-toggle="tab" href="#storage-content" class="clip-item">
-            <img src="assets/images/dashboard/second/clip-storage-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/clip-storage-blue.png" class="hover-in">
-            Storage</a>
+          <img src="assets/images/dashboard/second/clip-storage-grey.png" class="hover-out">
+          <img src="assets/images/dashboard/second/clip-storage-blue.png" class="hover-in">
+          Storage</a>
         </li>
 
         <li (click)="goToAdmin()"><a data-toggle="tab" href="#admin-content" class="clip-item">
-            <img src="assets/images/dashboard/second/clip-user-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/clip-user-blue.png" class="hover-in">
-            Admin</a>
+          <img src="assets/images/dashboard/second/clip-user-grey.png" class="hover-out">
+          <img src="assets/images/dashboard/second/clip-user-blue.png" class="hover-in">
+          Admin</a>
         </li>
 
         <li (click)="goToLiveSession()"><a data-toggle="tab" href="#live-sessions-content" class="clip-item">
-            <img src="assets/images/dashboard/second/session-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/session-blue.png" class="hover-in">
-            Live sessions</a>
+          <img src="assets/images/dashboard/second/session-grey.png" class="hover-out">
+          <img src="assets/images/dashboard/second/session-blue.png" class="hover-in">
+          Live sessions</a>
         </li>
       </ul>
     </div>
@@ -71,12 +70,12 @@
           <label>Class name : </label>
           <select (change)="setClasses()" [(ngModel)]="selectedClass" name="class" id="class-name"
             style="width: 140px !important; margin-left: 24px;">
-            <option  value="please_select">Please select class</option>
+            <option disabled value="please_select_class">Please select class</option>
             <option *ngFor="let classesData of this.allClassesData" [ngValue]="classesData">{{classesData.title}}
             </option>
           </select>
         </div>
-        <div class="col-sm-2 org-btn mt-5" *ngIf="selectedClass=='' ">
+        <div class="col-sm-2 org-btn mt-5" *ngIf="selectedClass=='please_select_class' ">
           Class code:&nbsp;&nbsp;&nbsp;<span>#0000</span>
         </div>
         <div class="col-sm-2 org-btn mt-5" *ngIf="selectedClass!=0" style="font-family: 'Barlow';">
@@ -90,7 +89,7 @@
           End date:&nbsp;&nbsp;&nbsp;{{selectedClass.field_end_date}}
         </div>
       </form>
-      <button class="center-btn" [disabled]="selectedClass=='' " (click)="getClassesListData()">Go</button>
+      <button class="center-btn" [disabled]="this.classesShow==true" (click)="getClassesListData()">Go</button>
     </div>
 
     <div *ngIf="isLoadingBool" class="loading-indicator">
@@ -164,7 +163,7 @@
             <pagination-controls previousLabel="Prev" nextLabel="Next" responsive="true"
               (pageChange)="handlePageChange($event)"></pagination-controls>
           </div>
-         
+
         </div>
 
       </div>

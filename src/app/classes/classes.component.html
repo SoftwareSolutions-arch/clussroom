@@ -10,7 +10,7 @@
           <a data-toggle="tab" href="#course-content" class=" clip-item">
             <img src="assets/images/dashboard/second/course-grey.png" class="hover-out">
             <img src="assets/images/dashboard/second/course-blue.png"
-              class="hover-in">{{this.instructionName | lowercase}}</a>
+              class="hover-in">{{this.instructionName}}</a>
         </li>
         <li>
           <a data-toggle="tab" href="#classes-content" class="active clip-item">
@@ -56,7 +56,7 @@
           style="display: flex; align-items: center; padding-left:0; padding-right:0;">
           <div class="col-sm-1" style="padding: 0;"></div>
           <form class="green-button fieldset course-name">
-            <label class="common-label">{{instructionName | lowercase}} Name:</label>
+            <label class="common-label">{{instructionName}} name:</label>
             <select [(ngModel)]="selectedCategory" name="course" id="course-name">
               <option *ngFor="let courseList of this.allCourseList" value="{{courseList.nid}}">{{this.courseList.title}}
               </option>

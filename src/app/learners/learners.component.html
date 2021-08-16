@@ -8,8 +8,7 @@
         <li (click)="goToCourses()">
           <a data-toggle="tab" href="#course-content" class="clip-item">
             <img src="assets/images/dashboard/second/course-grey.png" class="hover-out">
-            <img src="assets/images/dashboard/second/course-blue.png"
-              class="hover-in">{{this.instructionName | lowercase}}</a>
+            <img src="assets/images/dashboard/second/course-blue.png" class="hover-in">{{this.instructionName}}</a>
         </li>
         <li (click)="goToclasses()">
           <a data-toggle="tab" href="#classes-content" class="clip-item">
@@ -69,16 +68,16 @@
           <thead class="learner-text-left text-left">
             <tr>
               <th scope="col">No.</th>
-              <th scope="col">First name</th>
-              <th scope="col">Last name</th>
-              <th scope="col">Email</th>
-              <th scope="col" class="table-filter">Start date</th>
-              <th scope="col" class="table-filter">End date</th>
-              <th scope="col" class="table-filter">Course</th>
-              <th scope="col">Class name</th>
-              <th scope="col">Class code</th>
-              <th scope="col" class="table-filter">Grade</th>
-              <th scope="col" class="table-filter">Status</th>
+              <th scope="col" style="text-align: center !important;">First name</th>
+              <th scope="col" style="text-align: center !important;">Last name</th>
+              <th scope="col" style="text-align: center !important;">Email</th>
+              <th scope="col" class="table-filter" style="text-align: center !important;">Start date</th>
+              <th scope="col" class="table-filter" style="text-align: center !important;">End date</th>
+              <th scope="col" class="table-filter" style="text-align: center !important;">Course</th>
+              <th scope="col" style="text-align: center !important;">Class name</th>
+              <th scope="col" style="text-align: center !important;">Class code</th>
+              <th scope="col" class="table-filter" style="text-align: center !important;">Grade</th>
+              <th scope="col" class="table-filter" style="text-align: center !important;">Status</th>
               <th scope="col"></th>
             </tr>
           </thead>
@@ -87,17 +86,17 @@
               *ngFor="let classList of this.allClassesList| paginate : {itemsPerPage: pageSize,currentPage: page,totalItems: count};let i = index;"
               [class.active]="i == currentIndex">
               <!-- <td>{{this.classList.sno}}</td> -->
-              <td style="text-align: center !important;">{{classList.s_no}}</td>
-              <td class="text-left">{{this.classList.first_name}}</td>
-              <td class="text-left">{{this.classList.last_name}}</td>
-              <td class="text-left">{{this.classList.email}}</td>
-              <td class="text-left">{{this.classList.class_start_date}}</td>
-              <td class="text-left">{{this.classList.class_end_date}}</td>
-              <td class="text-left">{{this.classList.coursename}}</td>
-              <td class="text-left">{{this.classList.classname}}</td>
-              <td>{{this.classList.class_class_code}}</td>
-              <td>{{this.classList.grades}}</td>
-              <td>
+              <td style="text-align: left !important; padding: .75rem;">{{classList.s_no}}</td>
+              <td class="text-center" style="text-align: center !important; padding: .75rem;">{{this.classList.first_name}}</td>
+              <td class="text-center" style="text-align: center !important; padding: .75rem;">{{this.classList.last_name}}</td>
+              <td class="text-left" style="text-align: center !important; padding: .75rem;">{{this.classList.email}}</td>
+              <td class="text-left" style="padding: .75rem; text-align: center !important;">{{this.classList.class_start_date}}</td>
+              <td class="text-left" style="padding: .75rem; text-align: center !important;">{{this.classList.class_end_date}}</td>
+              <td class="text-left" style="text-align: center !important; padding: .75rem;">{{this.classList.coursename}}</td>
+              <td class="text-left" style="text-align: center !important; padding: .75rem;">{{this.classList.classname}}</td>
+              <td style="text-align: center !important; padding: .75rem;">{{this.classList.class_class_code}}</td>
+              <td style="text-align: center !important; padding: .75rem;">{{this.classList.grades}}</td>
+              <td style="text-align: center !important; padding: .75rem;">
                 <div style="color: #81C8C1;font-weight: 500;" *ngIf="this.classList.learner_status=='Active' ">
                   {{this.classList.learner_status}}</div>
                 <div style="color: #FF5A64;font-weight: 500;" *ngIf="this.classList.learner_status=='Cancelled' ">

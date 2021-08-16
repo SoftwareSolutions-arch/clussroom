@@ -23,7 +23,7 @@ export class ClassListComponent implements OnInit {
   allCourseList: any = '';
   selectedCategory: any = 'please_select';
   selectedCategorys: any = '';
-  selectedClass: any = 'please_select';
+  selectedClass: any = 'please_select_class';
   selectedClasses: any = '';
   allClassesData: any = [];
   allClassesDatas: any = [];
@@ -52,7 +52,7 @@ export class ClassListComponent implements OnInit {
   files: any[] = [];
   selectedCourseList: any = '';
   instructionName: any = '';
-
+  classesShow:boolean=true;
   constructor(public service: SharedServiceService, public router: Router, public util: UtilService, private fb: FormBuilder,
     private http: HttpClient) {
 
@@ -158,11 +158,17 @@ export class ClassListComponent implements OnInit {
 
   setClasses() {
     console.log('selectedClass', this.selectedClass)
-    if (this.selectedClass == 'please_select') {
-      this.selectedClass = '';
+    if (this.selectedClass == 'please_select_class') {
+      this.selectedClass = 'please_select_class';
       this.allClassesList = '';
       this.allClassesData = '';
+      this.classesShow = true;
     }
+
+    if (this.selectedClass != 'please_select_class') {
+      this.classesShow = false;
+    }
+
   }
 
   // view classes

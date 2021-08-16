@@ -117,13 +117,13 @@
                     </div>
                   </div>
                   <div class="test-option sample custom-control custom-checkbox border-bottom col-sm-3 text-center col-lg-12">
-                    <label *ngFor="let optionList of data.multiple_choices[0] | slice:0:2;" class="choice-checkbox"
+                    <label *ngFor="let optionList of data.multiple_choices[0] | slice:0:2;" class="choice-checkbox col-md-3"
                     style="padding-left: 55px;">
                     <input type="checkbox" name="new" id="new" (click)="isCheckClicked(data)"> <span
                       class="mark2"></span>
                     <h6>{{optionList.option_text}}</h6>
                   </label>
-                  <label *ngFor="let optionList of data.multiple_choices[0] | slice:2:4;" class="choice-checkbox"
+                  <label *ngFor="let optionList of data.multiple_choices[0] | slice:2:4;" class="choice-checkbox col-md-3"
                     style="padding-left: 55px;">
                     <input type="checkbox" name="new" id="new" (click)="isCheckClicked(data)"> <span
                       class="mark2"></span>
@@ -358,7 +358,7 @@
           </div>
           <div class="container" style="padding: 22px 0; display: flex; margin: 0 !important;"> <a
               class="addbutton custom-button" data-toggle="modal" data-target="#addQues">Add question</a>
-            <a class="edit-points-btn custom-button" data-toggle="midal" data-target="#ReOrder">Re-Order</a>
+            <a class="edit-points-btn custom-button" (click)="goToReOrder()">Re-Order</a>
           </div>
         </div>
       </div>

@@ -149,13 +149,13 @@
                   <button class="dropbtn-1">Dropdown &nbsp;<i class="fa fa-caret-down" aria-hidden="true"
                       style="margin-left: 1em;"></i></button>
                   <div class="dropdown-content-1 drop-height-fix">
-                    <a *ngFor="let data of rubricList" (click)="getRubricId(data.nid)">{{data.title}}</a>
+                    <a *ngFor="let data of rubricList" (click)="getRubricId(data.nid)" data-toggle="modal"
+                    data-target="#view-rubric" (click)="viewRubric()">{{data.title}}</a>
                     <!-- <a href="#">Rubric 2</a> -->
                     <!-- <a href="#" data-toggle="modal" data-target="#createRubric">Create New</a> -->
                   </div>
                 </div>
-                <button type="button" data-toggle="modal" *ngIf="subCatSelected" (click)="viewRubric()"
-                  data-target="#view-rubric" class="btn-view-rubric">View rubric</button>
+                <button type="button" *ngIf="subCatSelected"  class="btn-view-rubric">View rubric</button>
               </div>
             </div>
 

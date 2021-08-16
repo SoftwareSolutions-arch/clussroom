@@ -61,10 +61,12 @@ export class StudentCourseComponent implements OnInit {
     let params = {
       "class_id": this.selectCourse.classes_id
     }
+    localStorage.setItem('classListId',this.selectCourse.classes_id)
     this.isLoadingBool = true;
     this.service.post('class-material-dashboard-api', params, 1).subscribe(result => {
       this.headerData = result;
       this.getTestList();
+      this.getDashboardHeaderData();
     })
   }
 
@@ -80,5 +82,20 @@ export class StudentCourseComponent implements OnInit {
       this.dashBoardData = result.test_data;
       this.isLoadingBool = false;
     })
+  }
+
+  getDashboardHeaderData() {
+    let params = {
+      "class_id": localStorage.getItem('classListId')
+    }
+    this.service.post('class-material-dashboard-api', params, 1).subscribe(result => {
+
+      this.headerData = result
+      this.isLoadingBool = false;
+    })
+  }
+
+  goTotest(){
+    this.router.navigate(['/test/test-listing-home']);
   }
 }

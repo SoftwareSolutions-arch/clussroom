@@ -73,7 +73,7 @@ export class CourseLibraryComponent implements OnInit {
     }
     this.isLoadingBool = true;
     this.service.post('vendor_library_listing', params, 1).subscribe(result => {
-      
+      console.log('res',result);
       this.isLoadingBool = false;
       this.mainLibraryData = result.result;
       
@@ -96,7 +96,9 @@ export class CourseLibraryComponent implements OnInit {
       materials_type: 'folder',
       library_type: 'course'
     }
+    console.log('params',params);
     this.service.post('add-folder-to-libarary', params, 1).subscribe(result => {
+      console.log('result',result);
       this.getMainListing();
       this.isLoadingBool = false;
     })

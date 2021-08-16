@@ -91,9 +91,8 @@
                           <button *ngIf="playerIndex>0" style="margin: 0 7px" (click)="deletePlayer(team,playerIndex)"
                             type="button" class="orange-cross"><i class="fa fa-times" aria-hidden="true"></i>
                           </button>
-                          <span *ngIf="player.get('answer').touched || player.get('answer').dirty" class="text-danger">*
-                            Required!</span>
-                          <p style="padding: .5em 1em;">Answer {{playerIndex+1}}</p>
+                          <p *ngIf="player.get('answer').touched || player.get('answer').dirty" class="text-danger" style="padding-left:0; margin-bottom: 0;">* Required!</p>
+                          <p style="padding: .5em 1em; padding-left: 0;">Answer {{playerIndex+1}}</p>
                         </div>
                       </div>
                     </ng-container>
@@ -126,9 +125,9 @@
                         [disabled]="fillData.words_hint!=true" type="text" placeholder="Enter answer" name="hint"
                         #hint="ngModel" required>
                       <!-- <input type="hidden" formControlName="question_id"> -->
-                      <p style="padding: 2px 26px !important;" class="text-danger"
+                      <p style="padding: 2px 20px !important;" class="text-danger"
                         *ngIf="(hint.touched || registerForm.submitted) && hint.errors?.required">*Required</p>
-                      <p style="padding: 2px 26px !important;">Hint for Blank {{i+1}}</p>
+                      <p style="padding: 2px 20px !important;">Hint for Blank {{i+1}}</p>
                     </li>
                   </ul>
                 </div>

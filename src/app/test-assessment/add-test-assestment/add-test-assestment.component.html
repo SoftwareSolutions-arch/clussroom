@@ -191,7 +191,7 @@
             <h3>{{rubricTitle}}</h3>
             </div>
             <div class="col-md-4 text-right">
-                <i class="fa fa-times" aria-hidden="true" style="color: #396aff;" data-dismiss="modal"></i>
+                <i class="fa fa-times" aria-hidden="true" style="color: #396aff;" data-dismiss="modal" style="font-size: 14px !important;"></i>
             </div>
         </div>
       <div class="modal-body mt-5 col-lg-12 rubric-back mb-5" style="padding: 20px 30px 30px 30px; margin: 0 auto; width: 1200px;">
@@ -319,7 +319,7 @@
 
 
 <div id="createRubric" class="modal deletetest-modal" role="dialog" #closeRubric>
-   <div class="modal-dialog" style="max-width: 1300px;">
+   <div class="modal-dialog" style="max-width: 1500px;">
 
       <div class="modal-content">
          <div class="rubric-header col-lg-12 display-center">
@@ -328,11 +328,11 @@
                <h3>Add rubric</h3>
             </div>
             <div class="col-md-4 text-right">
-               <i class="fa fa-times" aria-hidden="true" style="color: #396aff;" data-dismiss="modal"></i>
+               <i class="fa fa-times" aria-hidden="true" style="color: #396aff; font-size: 14px; margin-right: 10px; cursor: pointer;" data-dismiss="modal"></i>
             </div>
          </div>
          <div class="modal-body mt-5 col-lg-12 rubric-back mb-5"
-            style="padding: 20px 30px 30px 30px; margin: 0 auto; width: 1200px;">
+            style="padding: 20px 30px 30px 30px; margin: 0 auto; width: 1400px;">
             <div style="display: flex; align-items: center;">
                <p class="i-position"><button type="button"><i class="fa fa-minus-circle"
                         aria-hidden="true"></i></button></p>
@@ -389,13 +389,13 @@
                         <ng-container formArrayName="scale">
                               <div class="col-md-9 display-center" style="padding: 0;">
                                  <ng-container >
-                                    <div class="first-mid-section display-center col-md-4"  *ngFor="let skill of employeeSkills(empIndex).controls; let skillIndex=index"
+                                    <div class="first-mid-section display-center col-md-3"  *ngFor="let skill of employeeSkills(empIndex).controls; let skillIndex=index"
                                        style="justify-content:center; border-right: 1px solid #DCE2EC;" [formGroupName]="skillIndex">
                                        <textarea style="padding: 10px 4px;" formControlName="text"></textarea>
                                        <input type="text"  (input)=sumMethod(empIndex) (keypress)="numberOnly($event)" class="form-control" formControlName="value">
 
                                        <button type="button" (click)="removeEmployeeSkill(empIndex,skillIndex)"
-                                          style="position: relative; bottom: .6em; right: 4.1em; border: none; background-color: transparent; color: #FF82AC;">
+                                          style="position: relative; bottom: 1em; right: 6.1em; border: none; background-color: transparent; color: #FF82AC;">
                                           <i class="fa fa-minus-circle" aria-hidden="true"></i>
                                        </button>
                                     </div>

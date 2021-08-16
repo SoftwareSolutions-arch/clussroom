@@ -3013,3 +3013,23 @@ select {
   background-color: #E7E7E7;
 
 }
+
+.blue-org-edit {
+  width: 92px;
+    height: 35px;
+    border-radius: 6px;
+    background-color: #FFF5D9;
+    border: 2px solid #FFF5D9;
+    transition: .5s ease-in-out;
+    color: #FFBB38;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'Barlow';
+}
+
+.blue-org-edit:hover {
+  background-color: #FFBB38;
+  border: #FFBB38;
+  color: #FFF5D9;
+}
+

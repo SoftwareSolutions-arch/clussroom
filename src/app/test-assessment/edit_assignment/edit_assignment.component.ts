@@ -45,9 +45,9 @@ export class Edit_assignmentComponent implements OnInit {
   }
   getAssignmentData(){
     const data = {
-     "class_id":localStorage.getItem('classListId') 
+     "class_id":localStorage.getItem('classListId')
     }
-    this.service.post('listing-assignment',data,1).subscribe(res => { 
+    this.service.post('listing-assignment',data,1).subscribe(res => {
       this.assignmentData = res.assignment_data
     })
   }
@@ -85,7 +85,7 @@ export class Edit_assignmentComponent implements OnInit {
       this.addAssignmentForm.patchValue({
         "assignment_name": this.updateNewData.assignment_name,
         "instruction": this.updateNewData.assignment_instruction,
-        "available_date": new Date (this.updateNewData.start_date),
+        "available_date": this.updateNewData.start_date,
         "available_time": this.updateNewData.start_time,
         "available_dateTo": this.updateNewData.end_date,
         available_timeTo: this.updateNewData.end_time,
@@ -129,7 +129,7 @@ export class Edit_assignmentComponent implements OnInit {
     )
   }
 
-  // update data 
+  // update data
   updateAssignment() {
     this.submitted = true;
     if (this.addAssignmentForm.invalid) {
