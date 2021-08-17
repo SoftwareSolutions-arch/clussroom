@@ -209,7 +209,7 @@ export class MultipleChoiceQuestionComponent implements OnInit {
     console.log('params',params);
     this.service.post('add-question-api', params, 1).subscribe(result => {
       console.log('result',result);
-      this.util.showSuccessAlert(result.message);
+      this.util.showSuccessAlert("Question added successfully");
       this.isLoadingBool = false;
       this.router.navigate(['/test/question-screen']);
     })
@@ -275,7 +275,7 @@ export class MultipleChoiceQuestionComponent implements OnInit {
     console.log('params',params);
     this.isLoadingBool = true;
     this.service.post('edit-question-api', params, 1).subscribe(result => {
-      this.util.showSuccessAlert(result.message);
+      this.util.showSuccessAlert('Question updated successfully');
       this.isLoadingBool = false;
       this.router.navigate(['/test/question-screen']);
     })
