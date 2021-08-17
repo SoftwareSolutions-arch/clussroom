@@ -618,7 +618,7 @@ export class Sample04Component implements OnInit {
 
   // go to live sessions
   goToLiveSession() {
-    this.router.navigate(['/live-session']);
+    this.router.navigate(['/zoom-home']);
   }
 
   goToclassesPage(courseList) {

@@ -41,7 +41,7 @@ export class AssignmentQuestionComponent implements OnInit {
     this.editData();
   }
   removeImages(index) {
-    this.imagedata.attachment.splice(index, 1);
+    this.imagedata.splice(index, 1);
   }
   picked(event: any) {
     if (this.assignmentId) {

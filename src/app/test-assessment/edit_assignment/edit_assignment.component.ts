@@ -30,10 +30,12 @@ export class Edit_assignmentComponent implements OnInit {
   submitted: boolean = false;
   selectedTestDetails: any = "";
   formDisabled = true;
+  assignment_name: string;
   constructor(private route: ActivatedRoute, private service: SharedServiceService, private util: UtilService, private router: Router) {
     this.route.queryParamMap.subscribe(queryParams => {
       this.id = queryParams.get("id");
     })
+    this.assignment_name = localStorage.getItem('assignment_name');
   }
 
   ngOnInit() {
@@ -74,12 +76,15 @@ export class Edit_assignmentComponent implements OnInit {
   }
   oncahnge(){
     this.isLoadingBool = true;
-
+    localStorage.setItem('assignment_id', this.selectedTestDetails.assignment_id);
+    localStorage.setItem('assignment_name', this.selectedTestDetails.assignment_name)
     let params = {
     //  "class_id":localStorage.getItem('classListId') ,
       "assignment_id": this.selectedTestDetails.assignment_id
     }
     this.service.post('listing-assignment', params, 1).subscribe(res => {
+      this.assignment_name = localStorage.getItem('assignment_name');
+
       this.isLoadingBool = false;
       this.updateNewData = res.assignment_data
       this.addAssignmentForm.patchValue({

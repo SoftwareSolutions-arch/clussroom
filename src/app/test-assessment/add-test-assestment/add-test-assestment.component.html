@@ -141,11 +141,24 @@
                                  style="margin-left: 1em;"></i></button>
                            <div class="dropdown-content-1 drop-height-fix">
                               <a *ngFor = "let data of rubricList" (click)="getRubricId(data.nid)">{{data.title}}</a>
-                              <!-- <a href="#">Rubric 2</a> -->
-                              <a href="#" data-toggle="modal" data-target="#createRubric">Create New</a>
+
+                              <a href="#" data-toggle="modal" data-target="#createRubric">Create new</a>
                            </div>
                         </div>
-                        <button type="button" data-toggle="modal" [disabled]="subCatSelected" (click)="viewRubric()" data-target="#view-rubric" class="btn-view-rubric">View rubric</button>
+                        <!-- <div class="select-wrapper">
+                           <div class="select">
+                               <div class="select__trigger"><span>Tesla</span>
+                                   <div class="arrow"></div>
+                               </div>
+                               <div class="custom-options">
+                                   <span class="custom-option selected" data-value="tesla">Tesla</span>
+                                   <span class="custom-option" data-value="volvo">Volvo</span>
+                                   <span class="custom-option" data-value="mercedes" data-toggle="modal" data-target="#createRubric">Create Rubric</span>
+                               </div>
+                           </div>
+                       </div> -->
+                        <button type="button" *ngIf="subCatSelected" data-toggle="modal"
+                        data-target="#view-rubric" (click)="viewRubric()" class="btn-view-rubric">View rubric</button>
                      </div>
                   </div>
 

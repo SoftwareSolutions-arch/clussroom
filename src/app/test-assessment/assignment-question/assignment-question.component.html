@@ -28,17 +28,21 @@
               <!-- <textarea name="shortanswer" formControlName="question"></textarea> -->
               <div class="col-md-4"></div>
            </div>
-            
+
            <div class="attach mt-3">
               <a href="#"><img src="assets/images/test/Mask.png"></a>
-              <h2>Attachments ({{ExteriorPicString.length}}/4)</h2>
+              <!-- <h2>Attachments ({{ExteriorPicString.length}}/4)</h2> -->
+              <h2 *ngIf="this.imagedata!=null">Attachments
+               ({{this.ExteriorPicString.length + this.imagedata.length}}/4)</h2>
+             <h2 *ngIf="this.imagedata==null">Attachments
+               ({{ExteriorPicString.length}}/4)</h2>
               <label style="margin-left:1em !important;margin: 0px;" for="imageUpload" class="btn-add-1"><i
                class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add</label>
            <input id="imageUpload" #attachments style="display: none" multiple type="file"
              accept="image/png, image/jpeg" class="upload custom-input-file" (change)="picked($event)" required>
            </div>
            <div class="col-lg-12 box-shadow border-bottom mt-3" style="padding-bottom: 6em;">
-              
+
                <div class="col-lg-8" style="display: flex; align-items: center;"*ngFor="let item of allImages;let i = index;">
                    <div class="col-md-8 custom-order-assign" style="padding:0;">
                          <p>{{item}}</p>
@@ -50,27 +54,27 @@
                      <!-- <img [src] = "item.image"> -->
                      <p>{{item}}</p>
 
-                      <button type="button"(click)="removeImage(i)" class="orange-cross" style="width: 30px; height: 30px; margin: 0 7px;"><i class="fa fa-times" aria-hidden="true"></i></button>
+                      <button type="button"(click)="removeImages(i)" class="orange-cross" style="width: 30px; height: 30px; margin: 0 7px;"><i class="fa fa-times" aria-hidden="true"></i></button>
                   </div>
               </div>
-               
+
                <!-- <div class="col-lg-8" style="display: flex; align-items: center;">
                    <div class="col-md-8 custom-order-assign" style="padding:0;">
                          <p>Hanson Deck.png</p>
                        <button type="button" class="orange-cross" style="width: 30px; height: 30px; margin: 0 7px;"><i class="fa fa-times" aria-hidden="true"></i></button>
                    </div>
-               </div>                      
-               
+               </div>
+
                <div class="col-lg-8 mb-3" style="display: flex; align-items: center;">
                    <div class="col-md-8 custom-order-assign" style="padding:0;">
                          <p>Hanson Deck.png</p>
                        <button type="button" class="orange-cross" style="width: 30px; height: 30px; margin: 0 7px;"><i class="fa fa-times" aria-hidden="true"></i></button>
                    </div>
                </div> -->
-               
+
 
            </div>
-           
+
            <div class="container" style="padding: 18px 0 0 0px; display: flex; margin: 0;">
               <!--
                  <button type="button" class="blue">Confirm</button>
@@ -80,7 +84,7 @@
                  -->
                  <button type="button" class="light-green mr-3" [class.gray]="questionForm.invalid" (click)="addUpdateData()" [disabled]="questionForm.invalid">Add question</button>
               <!-- <a  class="addbutton custom-button mr-2" (click)="addUpdateData()" >Save question</a>                         -->
-              <a routerLink="/assignment/test-assignment-home" class="edit-points-btn custom-button">Cancel</a>   
+              <a routerLink="/assignment/test-assignment-home" class="edit-points-btn custom-button">Cancel</a>
            </div>
 <!--
            <div class="container multi-choice-orange" style="padding: 6px 0 0 0;">

@@ -339,7 +339,7 @@ export class ClassesComponent implements OnInit {
 
   // go to live sessions
   goToLiveSession() {
-    this.router.navigate(['/live-session']);
+    this.router.navigate(['/zoom-home']);
   }
 
   goToClasses(classList) {

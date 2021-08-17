@@ -206,16 +206,18 @@ export class InvoiceComponent implements OnInit {
 
   // enable or disable form
   add() {
-    console.log(this.invoiceForm.value);
-    if (this.invoiceForm.invalid) {
-      return;
-    }
-    else {
-      this.myValue = false;
-      this.paymentForm.enable();
-      this.invoiceForm.disable();
-      this.enablePaymemtForm = false;
-    }
+    // console.log(this.invoiceForm.value);
+    // if (this.invoiceForm.invalid) {
+    //   return;
+    // }
+    // else {
+     
+    // }
+
+    this.myValue = false;
+    this.paymentForm.enable();
+    this.invoiceForm.disable();
+    this.enablePaymemtForm = false;
   }
 
   // enable previous page

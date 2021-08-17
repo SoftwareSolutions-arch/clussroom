@@ -79,7 +79,7 @@ export class LiveSessionComponent implements OnInit {
     this.service.post('delete-meeting', data, 1).subscribe(res => {
       this.isLoadingBool = false
       if (res.status == 1) {
-        this.util.showSuccessAlert('Meeting deleted added successfully')
+        this.util.showSuccessAlert('Meeting deleted successfully')
         this.liveSession();
       }
     })
@@ -215,7 +215,7 @@ export class LiveSessionComponent implements OnInit {
   }
 
   metting() {
-    alert('')
+
     this.closeSchedule.nativeElement.click();
     this.closeEditSchedule.nativeElement.click();
     this.scheduleMetting = true;

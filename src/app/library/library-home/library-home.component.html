@@ -80,7 +80,15 @@
                       <td class="text-left">{{mainData.name}}</td>
                       <td class="display-center">
                         <img *ngIf="mainData.file_type=='test'" src="assets/images/Personal Library/Vector.png">
-                        <img *ngIf="mainData.file_type=='folder'" src="assets/images/Personal Library/Vector-3.png">
+                        <ng-container  *ngIf="mainData.file_type=='folder'">
+                          <img *ngIf="mainData.library_colore=='blue' " src="assets/images/Personal Library/folder.png.png">
+                          <img *ngIf="mainData.library_colore=='green' " src="assets/images/Personal Library/folder-1.png">
+                          <img *ngIf="mainData.library_colore=='red' " src="assets/images/Personal Library/folder-2.png">
+                          <img *ngIf="mainData.library_colore=='orange' " src="assets/images/Personal Library/folder-3.png">
+                          <img *ngIf="mainData.library_colore=='yellow' " src="assets/images/Personal Library/folder-4.png">
+                          <img *ngIf="mainData.library_colore=='purple' " src="assets/images/Personal Library/folder-5.png">
+                        </ng-container>
+
                         <img *ngIf="mainData.file_type!='test' && mainData.file_type!='folder'"
                           src="assets/images/Personal Library/file.png">
                         <p style="margin: 0; padding-left: 6px;">{{mainData.file_type}}</p>

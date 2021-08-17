@@ -29,7 +29,7 @@ export class AddTestAssestmentComponent implements OnInit {
   newData: number;
   listingData = [];
   rubricList: any;
-  subCatSelected: boolean = true;
+  subCatSelected: boolean = false;
   submitted: boolean = false;
   rubricId: any;
   viewRubricData: any;
@@ -216,8 +216,12 @@ export class AddTestAssestmentComponent implements OnInit {
   removeEmployee(empIndex: number) {
     this.employees().removeAt(empIndex);
   }
+
+
   addEmployeeSkill(empIndex: number) {
-    this.employeeSkills(empIndex).push(this.newSkill());
+    if (this.empForm.value.employees[empIndex].scale.length < 4) {
+      this.employeeSkills(empIndex).push(this.newSkill());
+    }
   }
   employeeSkills(empIndex: number): FormArray {
     return this.employees()
@@ -312,7 +316,7 @@ listRubric() {
 getRubricId(id){
   this.rubricId = id
   if(id){
-    this.subCatSelected = false;
+    this.subCatSelected = true;
   }
 }
 // view rubric api

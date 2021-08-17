@@ -36,22 +36,23 @@
         <div class="prospectus-section">
           <div class="prospectus-tabs">
             <ul class="nav nav-tabs">
-                <li (click)="gotoMainLibrary()"><a data-toggle="tab" href="#main" >Main library</a></li>
-                <li><a data-toggle="tab" href="#personal" class="active">Personal library</a></li>
+              <li (click)="gotoMainLibrary()"><a data-toggle="tab" href="#main">Main library</a></li>
+              <li><a data-toggle="tab" href="#personal" class="active">Personal library</a></li>
             </ul>
             <div class="prospectus-action">
-                <ng-container *ngIf="this.main_library_upload_edit_permission==1">
-                  <div class="prospectus-action">
-                    <a class="add-btn custom-a-btn" data-toggle="modal" data-target="#addmaterial" style="width: 115px;">Add materials</a>
-                  </div>
-                </ng-container>
-                <ng-container (click)="isCourseCreated()" *ngIf="this.main_library_upload_edit_permission==0">
-                  <div (click)="isCourseCreated()" class="prospectus-action">
-                    <a class="add-btn custom-a-btn" style="width: 115px;">Add materials</a>
-                  </div>
-                </ng-container>
-              </div>
-        </div>
+              <ng-container *ngIf="this.main_library_upload_edit_permission==1">
+                <div class="prospectus-action">
+                  <a class="add-btn custom-a-btn" data-toggle="modal" data-target="#addmaterial"
+                    style="width: 115px;">Add materials</a>
+                </div>
+              </ng-container>
+              <ng-container (click)="isCourseCreated()" *ngIf="this.main_library_upload_edit_permission==0">
+                <div (click)="isCourseCreated()" class="prospectus-action">
+                  <a class="add-btn custom-a-btn" style="width: 115px;">Add materials</a>
+                </div>
+              </ng-container>
+            </div>
+          </div>
 
           <div class="tab-content col-lg-12">
             <div id="personal" class="tab-pane active">
@@ -76,8 +77,23 @@
                       <td class="text-left">{{mainData.name}}</td>
                       <td class="display-center">
                         <img *ngIf="mainData.file_type=='test'" src="assets/images/Personal Library/Vector.png">
-                        <img *ngIf="mainData.file_type=='folder'" src="assets/images/Personal Library/Vector-3.png">
-                        <img *ngIf="mainData.file_type!='test' && mainData.file_type!='folder'" src="assets/images/Personal Library/file.png">
+                        <ng-container *ngIf="mainData.file_type=='folder'">
+                          <img *ngIf="mainData.library_colore=='blue' "
+                            src="assets/images/Personal Library/folder.png.png">
+                          <img *ngIf="mainData.library_colore=='green' "
+                            src="assets/images/Personal Library/folder-1.png">
+                          <img *ngIf="mainData.library_colore=='red' "
+                            src="assets/images/Personal Library/folder-2.png">
+                          <img *ngIf="mainData.library_colore=='orange' "
+                            src="assets/images/Personal Library/folder-3.png">
+                          <img *ngIf="mainData.library_colore=='yellow' "
+                            src="assets/images/Personal Library/folder-4.png">
+                          <img *ngIf="mainData.library_colore=='purple' "
+                            src="assets/images/Personal Library/folder-5.png">
+                        </ng-container>
+
+                        <img *ngIf="mainData.file_type!='test' && mainData.file_type!='folder'"
+                          src="assets/images/Personal Library/file.png">
                         <p style="margin: 0; padding-left: 6px;">{{mainData.file_type}}</p>
                       </td>
                       <td>{{mainData.uploaded_by}}</td>
@@ -134,7 +150,7 @@
           </li>
           <li (click)="downloadLibrary()"><a><i class="fa fa-arrow-down" aria-hidden="true"></i>Download</a></li>
           <li (click)="moveToPage()"><a><i class="fa fa-arrows-alt" aria-hidden="true"></i>Move</a></li>
-          <li><a><i class="fa fa-trash" aria-hidden="true" data-toggle="modal" data-target="#deletemat"></i>Delete</a>
+          <li data-toggle="modal" data-target="#deletemat"><a><i class="fa fa-trash" aria-hidden="true"></i>Delete</a>
           </li>
         </ul>
       </div>
@@ -239,14 +255,11 @@
     </div>
   </div>
 </div>
-
 <!-- Add folder popup end -->
 
 <!-- Add test form popup start -->
-
 <div id="addtest" class="modal add-folder-modal" role="dialog" #addtest>
   <div class="modal-dialog" style="max-width: 650px;">
-
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header" style="padding: 6px 0;">
@@ -302,7 +315,6 @@
     </div>
   </div>
 </div>
-
 <!-- Add test form popup end -->
 
 <!-- Delete modal popup start -->
@@ -340,7 +352,6 @@
   </div>
 </div>
 <!-- Delete modal popup start -->
-
 
 <div id="editdrag" class="modal add-mat-modal" role="dialog" #editlibrary ngDraggable>
   <div class="modal-dialog">

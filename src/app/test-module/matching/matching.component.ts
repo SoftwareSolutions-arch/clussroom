@@ -161,7 +161,7 @@ export class MatchingComponent implements OnInit {
     console.log('params', params);
     this.isLoadingBool = true;
     this.service.post('add-question-api', params, 1).subscribe(result => {
-      this.util.showSuccessAlert('Answer Saved Successfully');
+      this.util.showSuccessAlert('Question saved successfully');
       this.isLoadingBool = false;
       this.router.navigate(['/test/question-screen']);
     })
@@ -242,7 +242,7 @@ export class MatchingComponent implements OnInit {
         })
       });
     }
-   
+
 
     let params = {
       question_pragraph_id: this.getQuestionId,

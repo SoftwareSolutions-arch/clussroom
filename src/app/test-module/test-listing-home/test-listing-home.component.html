@@ -77,7 +77,7 @@
           </li>
           <li (click)="settingsClicked()"><a data-toggle="tab">Settings</a>
           </li>
-          <li routerLink="assignment/assignment-result"><a data-toggle="tab">Result/Assessment</a>
+          <li (click)="goToTestAssessment()"><a data-toggle="tab">Result/Assessment</a>
           </li>
         </ul>
       </div>
@@ -338,7 +338,7 @@
             <p>No test availble</p>
           </div>
         </div>
-        
+
       </div>
     </div>
   </div>
@@ -415,14 +415,14 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close"><i class="fa fa-times" aria-hidden="true"></i>
+        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i>
         </button>
       </div>
       <div class="modal-body">
         <div class="class-delete-list">
           <div class="remove-field">
             <img src="assets/images/test/allert-1.png" style="padding: 0 25em !important;">
-            <h1>Remove Questions?</h1>
+            <h1>Remove Test?</h1>
           </div>
         </div>
         <div (click)="deleteTest()" class="class-remove-btn">
