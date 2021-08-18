@@ -39,6 +39,8 @@ export class AdminHomeComponent implements OnInit {
   @ViewChild('removeadmin') private removeadmin: ElementRef;
   @ViewChildren("checkboxes") checkboxes: QueryList<ElementRef>;
   @ViewChild('closeEdit') private closeEdit: ElementRef;
+  @ViewChild('invitesuccess') private invitesuccess: ElementRef;
+  @ViewChild('addAdmin') private addAdmin: ElementRef;
 
   currentIndex = -1;
 
@@ -55,9 +57,9 @@ export class AdminHomeComponent implements OnInit {
   livesessiondata: any;
   addLearnerData: any;
   addLibData: any;
-  error_messages:any='';
+  error_messages: any = '';
   loginForm: FormGroup;
-  constructor(public service: SharedServiceService,public formBuilder: FormBuilder, public util: UtilService, private router: Router, private toastr: ToastrService) {
+  constructor(public service: SharedServiceService, public formBuilder: FormBuilder, public util: UtilService, private router: Router, private toastr: ToastrService) {
     this.userId = localStorage.getItem("uid");
     this.allAdminList();
     this.getAllCoursesList();
@@ -161,6 +163,7 @@ export class AdminHomeComponent implements OnInit {
 
   // confirm step 1
   confirm() {
+    this.addAdmin.nativeElement.click();
     var data = [];
     this.arrayItem.forEach(element => {
       data.push(element.nid);
@@ -182,9 +185,12 @@ export class AdminHomeComponent implements OnInit {
 
     this.isLoadingBool = true;
     this.service.post('Add-vendor-admin-api', params, 1).subscribe(result => {
-
-      this.allAdminList();
+      console.log('result', result);
       this.isLoadingBool = false;
+      if (result.status == 1) {
+        (<any>$("#invitesuccess")).modal("show");
+        this.allAdminList();
+      }
     })
   }
 
@@ -202,7 +208,7 @@ export class AdminHomeComponent implements OnInit {
       var ids = element.course_id
       this.prevId.push(ids)
     });
-    console.log('this.',this.selectedItems);
+    console.log('this.', this.selectedItems);
     // 
 
     // if (event.target.checked == true) {
@@ -298,7 +304,6 @@ export class AdminHomeComponent implements OnInit {
       'id': this.adminId,
       'p_id': this.selectedItems.permissions_data[0].p_id
     }
-
 
     this.isLoadingBool = true;
     this.service.post('edit-vendor-admin-api', params, 1).subscribe(result => {

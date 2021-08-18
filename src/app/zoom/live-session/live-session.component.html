@@ -17,10 +17,10 @@
         <img src="assets/imgpsh_fullsize_anim.png" style="margin-left: 69.8em;">
       </div>
     </div>
-    <div class="class-table-user" style="height: 60vh; margin-top: 0;">
+    <div class="class-table-user" style="margin-top: 0;">
       <div class="col-lg-12 display-center" style="padding:11px 0;" *ngIf="permissionButton" >
         <div class="col-md-6 padding_0">
-          <button type="button" data-target="#newschedule" data-toggle="modal" class="new-meeting-btn">New
+          <button type="button" data-target="#newschedule" data-toggle="modal" class="new-meeting-btn mr-2">New
             meeting</button>
           <button type="button"  class="copy-meeting-btn" data-target="#copyMetting" data-toggle="modal" (click)="copyMettingData()">Copy meeting details</button>
 
@@ -33,9 +33,9 @@
         <table class="table dashboard-table">
           <thead style="border:none !important;">
           <tr style="border:none !important; background-color: #396AFF;">
-            <th scope="col" class="text-center" style="color:#fff;"></th>
+            <th scope="col" class="text-center" style="color:#fff; border-top-left-radius:4px; border-bottom-left-radius: 4px;"></th>
             <th scope="col" class="text-left"
-                style="color:#fff; border-top-left-radius:4px; border-bottom-left-radius: 4px;">Topic</th>
+                style="color:#fff;">Topic</th>
             <th scope="col" class="text-center" style="color:#fff;">Learners</th>
             <th scope="col" class="text-center" style="color:#fff;">Joined</th>
             <th scope="col" class="text-center table-filter-1" style="color:#fff;">Date/Start time</th>
@@ -138,7 +138,7 @@
 </div>
 <!-- Add Admin modal popup start -->
 <div id="schedule" class="modal" role="dialog" #closeSchedule>
-  <div class="modal-dialog" style="max-width: 600px;">
+  <div class="modal-dialog" style="max-width: 724px;">
     <div class="modal-content">
       <div class="modal-body mt-5 admin-inputs">
         <div class="col-lg-12">
@@ -166,8 +166,8 @@
           </div>
           <div class="col-lg-12 padding_0 mt-4 display-center"
                style="border-bottom: 1px solid #E0E0E0; padding-bottom:1.5em !important;">
-            <div class="col-lg-8 padding_0 zoom-duration display-center">
-              <div class="col-lg-7 padding_0 display-center" style="padding:0 13px !important;">
+            <div class="col-lg-7 padding_0 zoom-duration display-center">
+              <div class="col-lg-6 padding_0 display-center">
                 <label style="margin-right: 10px;">Duration:</label>
                 <select formControlName="hour" (change)="hourData($event.target.value)">
                   <option value="0">0 hours</option>
@@ -185,7 +185,7 @@
                   <option value="12">12 hours</option>
                 </select>
               </div>
-              <div class="col-md-5 padding_0">
+              <div class="col-md-4 padding_0">
                 <select formControlName="minute">
                   <option value="1">1 minutes</option>
                   <option value="2">2 minutes</option>
@@ -220,7 +220,7 @@
                 </select>
               </div>
             </div>
-            <div class="col-md-4 padding_0 time-select display-center">
+            <div class="col-md-4 padding_0 time-select display-center" style="margin-left: 35px;">
               <label style="margin-bottom: 0 !important; margin-right: 24px;">Timezone: </label>
               <select formControlName="timezone"
                       style="border:none !important; background-color: transparent !important; font-size: 12px !important; font-weight: 400 !important; color: #000 !important;">
@@ -331,7 +331,7 @@
 </div>
 <!-- Select participants popup start -->
 <div id="zoomnext" class="modal" role="dialog" #closeZom>
-  <div class="modal-dialog" style="max-width: 600px;">
+  <div class="modal-dialog" style="max-width: 776px;">
     <div class="modal-content">
       <div class="modal-body mt-5 admin-inputs">
         <div class="col-lg-12">
@@ -353,9 +353,9 @@
         <div class="col-lg-12 padding_0 mt-4 display-center"
              style="border-bottom: 1px solid #E0E0E0; padding-bottom:1.5em !important;">
           <div class="col-lg-8 padding_0 zoom-duration-read display-center">
-            <div class="col-lg-7 padding_0 display-center" style="padding:0 13px !important;">
+            <div class="col-lg-7 padding_0 display-center">
               <label style="margin-right: 10px;">Duration:</label>
-              <select readonly>
+              <select readonly style="background-color: #E7E7E7; border: 2px solid #BDBDBD; height: 30px;">
                 <option>0 hours</option>
                 <option>1 hours</option>
                 <option>2 hours</option>
@@ -364,7 +364,7 @@
               </select>
             </div>
             <div class="col-md-5 padding_0">
-              <select>
+              <select style="background-color: #E7E7E7; border: 2px solid #BDBDBD; height: 30px;">
                 <option value="1">1 minutes</option>
                 <option value="2">2 minutes</option>
                 <option value="3">3 minutes</option>
@@ -399,9 +399,9 @@
             </div>
           </div>
           <div class="col-md-4 padding_0 time-select display-center">
-            <label style="margin-bottom: 0 !important; margin-right: 24px;">Timezone: </label>
+            <label style="margin-bottom: 0 !important; margin-right: 18px;">Timezone: </label>
             <select formControlName="timezone"
-                    style="border:none !important; background-color: transparent !important; font-size: 12px !important; font-weight: 400 !important; color: #000 !important;">
+                    style="height:30px; border:none !important; background-color: transparent !important; font-size: 12px !important; font-weight: 400 !important; color: #000 !important;">
               <option *ngFor="let data of timezoneData" value="{{data}}">{{data}}</option>
             </select>
           </div>
@@ -470,7 +470,7 @@
 <!-- scheduled for new metting -->
 
 <div id="newschedule" class="modal" role="dialog" #closeMetting>
-  <div class="modal-dialog" style="max-width: 600px;">
+  <div class="modal-dialog" style="max-width: 724px;">
     <div class="modal-content">
       <div class="modal-body mt-5 admin-inputs">
         <div class="col-lg-12">
@@ -482,7 +482,7 @@
             <input type="text" formControlName="topic">
           </div>
           <div class="col-lg-12 mt-4 display-center">
-            <div class="col-lg-8 padding_0 display-center zoom-select">
+            <div class="col-lg-7 padding_0 display-center zoom-select">
               <label>Start:</label>
               <!--                         <select>
               <option>Thurs &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10 June 2021</option>
@@ -492,15 +492,15 @@
            </select> -->
               <input type="date" formControlName="date" disabled>
             </div>
-            <div class="col-md-4 padding_0 zoom-clock text-right">
+            <div class="col-md-4 padding_0 zoom-clock text-right" style="margin-left: 57px;">
               <input type="time" formControlName="time" disabled>
             </div>
           </div>
           <div class="col-lg-12 padding_0 mt-4 display-center"
                style="border-bottom: 1px solid #E0E0E0; padding-bottom:1.5em !important;">
-            <div class="col-lg-8 padding_0 zoom-duration display-center">
-              <div class="col-lg-7 padding_0 display-center" style="padding:0 13px !important;">
-                <label style="margin-right: 10px;">Duration:</label>
+            <div class="col-lg-7 padding_0 zoom-duration display-center">
+              <div class="col-lg-5 padding_0 display-center" style="padding:0px !important;">
+                <label style="margin-right: 9px;">Duration:</label>
                 <select formControlName="hour">
                   <option value="0">0 hours</option>
                   <option value="1">1 hours</option>
@@ -517,7 +517,7 @@
                   <option value="12">12 hours</option>
                 </select>
               </div>
-              <div class="col-md-5 padding_0">
+              <div class="col-md-5 padding_0" style="margin-left: 33px;">
                 <select formControlName="minute">
                   <option value="1">1 minutes</option>
                   <option value="2">2 minutes</option>
@@ -552,8 +552,8 @@
                 </select>
               </div>
             </div>
-            <div class="col-md-4 padding_0 time-select display-center">
-              <label style="margin-bottom: 0 !important; margin-right: 24px;">Timezone: </label>
+            <div class="col-md-4 padding_0 time-select display-center" style="margin-left: 35px;">
+              <label style="margin-bottom: 0 !important; margin-right: 21px;">Timezone: </label>
               <select formControlName="timezone"
                       style="border:none !important; background-color: transparent !important; font-size: 12px !important; font-weight: 400 !important; color: #000 !important;">
                 <option *ngFor="let data of timezoneData" value="{{data}}">{{data}}</option>
@@ -663,7 +663,7 @@
   </div>
 </div>
 <div id="copyMetting" class="modal" role="dialog" #closeEditSchedule>
-  <div class="modal-dialog" style="max-width: 600px;">
+  <div class="modal-dialog" style="max-width: 724px;">
     <div class="modal-content">
       <div class="modal-body mt-5 admin-inputs">
         <div class="col-lg-12">
@@ -856,7 +856,7 @@
   </div>
 </div>
 <div id="editSchedule" class="modal" role="dialog" #closeEditSchedule>
-  <div class="modal-dialog" style="max-width: 600px;">
+  <div class="modal-dialog" style="max-width: 724px;">
     <div class="modal-content">
       <div class="modal-body mt-5 admin-inputs">
         <div class="col-lg-12">
@@ -1049,7 +1049,7 @@
   </div>
 </div>
 <div id="zoomnextedit" class="modal" role="dialog" #closeUpdateSchedule>
-  <div class="modal-dialog" style="max-width: 600px;">
+  <div class="modal-dialog" style="max-width: 724px;">
     <div class="modal-content">
       <div class="modal-body mt-5 admin-inputs">
         <div class="col-lg-12">
